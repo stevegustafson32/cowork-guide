@@ -771,6 +771,29 @@
           <strong>You Don't Need All This on Day One</strong>
           Start with just <strong>ABOUT ME/</strong> and <strong>CLAUDE OUTPUTS/</strong>. Add TEMPLATES and PROJECTS as you need them. The structure grows with you.
         </div>
+
+        <h3>Starting a New Project</h3>
+        <p>When you start a new project, just tell Claude: <em>"New project: [Project Name]"</em>. Claude will automatically create:</p>
+        <div class="step-card highlighted">
+          <h4>What happens when you say "New Project"</h4>
+          <p>
+            1. A <strong>PROJECTS/[Project Name]/</strong> folder for your reference materials (briefs, docs, research)<br>
+            2. A <strong>CLAUDE OUTPUTS/[Project Name]/</strong> folder where Claude delivers all work for that project<br>
+            3. A <strong>MEMORY.md</strong> inside the project folder &mdash; scoped to that project only
+          </p>
+          <p style="margin-top: 12px;">This means every project has its own memory. Decisions, deadlines, and context for Project A don't bleed into Project B. Claude knows which project it's working on and remembers the right things.</p>
+        </div>
+
+        <h3>File Naming Convention</h3>
+        <p>Use this pattern for everything Claude creates: <code>Project_ContentType_v1.ext</code></p>
+        <table class="compare-table">
+          <tr><th>Example</th><th>What It Is</th></tr>
+          <tr><td><code>Acme_Proposal_v1.docx</code></td><td>First draft of a proposal for Acme</td></tr>
+          <tr><td><code>Q2-Launch_Deck_v2.pptx</code></td><td>Second revision of the Q2 launch deck</td></tr>
+          <tr><td><code>Competitor_Research_v1.docx</code></td><td>Competitive research report</td></tr>
+          <tr><td><code>Monthly_Report_v3.xlsx</code></td><td>Third revision of a monthly report</td></tr>
+        </table>
+        <p style="font-size: 14px; color: var(--text-dim);">When you ask Claude to revise something, it automatically increments the version number (v1 → v2 → v3). This gives you a built-in history of how deliverables evolved &mdash; no git required.</p>
       </div>
     </div>
   </div>
@@ -915,6 +938,36 @@ _Last updated: 2026-03-19_
         <div class="info-box tip">
           <strong>Good Things to Put in Memory</strong>
           Deadlines, decisions, terminology, preferences, project status updates, things that changed since last session. Think: "what would I tell a new assistant on their first day, and what's changed since yesterday?"
+        </div>
+
+        <h3>Per-Project Memory</h3>
+        <p>When you create a new project (see Step 4), each project gets its own MEMORY.md. This is powerful because:</p>
+        <div class="two-col">
+          <div class="step-card">
+            <h4>Global MEMORY.md (workspace root)</h4>
+            <p>Cross-project stuff: your role, recurring contacts, preferences, tool accounts, things that are always true regardless of project.</p>
+          </div>
+          <div class="step-card">
+            <h4>Project MEMORY.md (inside project folder)</h4>
+            <p>Project-scoped notes: this project's deadlines, decisions, status updates, stakeholder feedback, version history. Stays isolated from other projects.</p>
+          </div>
+        </div>
+
+        <h3>When to Update MEMORY.md vs CLAUDE.md</h3>
+        <p>These two files serve different purposes. Here's when to update each:</p>
+        <table class="compare-table">
+          <tr><th></th><th>MEMORY.md</th><th>CLAUDE.md</th></tr>
+          <tr><td><strong>What goes here</strong></td><td>Things that change: status, decisions, deadlines, contacts, what happened last session</td><td>Things that don't change: rules, folder structure, naming conventions, workflow instructions</td></tr>
+          <tr><td><strong>How to update</strong></td><td>Say "remember this" or "make a note" during any session &mdash; Claude writes it automatically</td><td>Edit the file directly when your workflow or rules change (rare)</td></tr>
+          <tr><td><strong>How often</strong></td><td>Every session or two</td><td>Maybe once a month</td></tr>
+          <tr><td><strong>Who updates it</strong></td><td>Claude (when you ask)</td><td>You (manually) or Claude (when you explicitly ask "update CLAUDE.md")</td></tr>
+        </table>
+
+        <div class="info-box key">
+          <strong>The Rule of Thumb</strong>
+          If it's a <em>fact that will change</em> (deadline, decision, status) → MEMORY.md.<br>
+          If it's a <em>rule that should always apply</em> (naming convention, folder structure, behavior) → CLAUDE.md.<br>
+          When in doubt, put it in MEMORY.md &mdash; it's easier to clean up later.
         </div>
       </div>
     </div>
@@ -1269,8 +1322,8 @@ _Last updated: 2026-03-19_
         </div>
 
         <div class="step-card">
-          <h4>12. Version Your Work</h4>
-          <p>Use a naming convention like <code>Project_ContentType_v1.ext</code>. When you iterate, Claude automatically creates v2, v3, etc. This gives you a history of how deliverables evolved.</p>
+          <h4>12. Say "New Project" to Stay Organized</h4>
+          <p>When starting fresh work, just say "new project: [Name]." Claude creates the folder structure, project-specific memory, and output directory automatically. Everything for that project stays together from day one. See Step 4 for the full workflow.</p>
         </div>
       </div>
     </div>
