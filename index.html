@@ -350,6 +350,11 @@
     cursor: pointer;
   }
   .path-option:hover { border-color: var(--accent); background: var(--surface-2); transform: translateY(-1px); }
+  .path-option.recommended {
+    border-color: var(--green);
+    background: rgba(92,184,92,0.06);
+  }
+  .path-option.recommended:hover { border-color: var(--accent); background: rgba(92,184,92,0.1); }
   .path-option .path-label {
     font-size: 11px;
     text-transform: uppercase;
@@ -358,9 +363,19 @@
     margin-bottom: 6px;
   }
   .path-option .path-label.fast { color: var(--green); }
-  .path-option .path-label.manual { color: var(--blue); }
+  .path-option .path-label.manual { color: var(--text-dim); }
   .path-option h4 { font-size: 15px; margin-bottom: 6px; }
   .path-option p { font-size: 13px; color: var(--text-muted); margin: 0; }
+  .path-option .rec-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(92,184,92,0.2);
+    color: var(--green);
+    margin-left: 8px;
+  }
 
   .download-banner {
     background: linear-gradient(135deg, rgba(91,155,213,0.12) 0%, rgba(212,149,106,0.12) 100%);
@@ -958,18 +973,18 @@
 
   <!-- CHOOSE YOUR PATH -->
   <div class="path-chooser">
-    <h3>Choose Your Setup Path</h3>
-    <p style="color: var(--text-muted); margin-bottom: 16px; font-size: 14px;">Steps 4&ndash;6 walk you through setting up your workspace manually. Step 7 does it all automatically with a plugin. Pick your style:</p>
+    <h3>Next: Set Up Your Workspace</h3>
+    <p style="color: var(--text-muted); margin-bottom: 16px; font-size: 14px;">The fastest way to get going is to let a plugin handle the setup for you. It takes 5 minutes and you'll be ready to work. If you prefer to understand every piece first, you can do it manually &mdash; but most people start with the automated path and learn the details as they go.</p>
     <div class="path-options">
-      <a class="path-option toc-link" data-accordion="7">
-        <div class="path-label fast">Fast Track &mdash; 5 minutes</div>
-        <h4>Jump to Step 7: CoWork OS Plugin</h4>
-        <p>Install one plugin, answer a few questions, and your workspace is set up automatically. Recommended if you want to get working ASAP.</p>
+      <a class="path-option recommended toc-link" data-accordion="7">
+        <div class="path-label fast">Recommended &mdash; 5 minutes<span class="rec-badge">Most people start here</span></div>
+        <h4>Jump to Step 7: Automated Setup</h4>
+        <p>Install the CoWork OS plugin, answer a few questions about yourself, and Claude builds your entire workspace &mdash; folders, About Me, instructions, memory system. You're working in 5 minutes.</p>
       </a>
       <a class="path-option toc-link" data-accordion="4">
-        <div class="path-label manual">Learn the Fundamentals &mdash; 15 minutes</div>
-        <h4>Continue with Step 4</h4>
-        <p>Understand how folders, About Me, CLAUDE.md, and MEMORY.md work under the hood. Recommended if you want full control or want to customize your setup.</p>
+        <div class="path-label manual">Manual Setup &mdash; 15 minutes</div>
+        <h4>Continue with Steps 4&ndash;6</h4>
+        <p>Build everything yourself. Good if you want to understand how the pieces fit together or customize beyond the defaults.</p>
       </a>
     </div>
   </div>
