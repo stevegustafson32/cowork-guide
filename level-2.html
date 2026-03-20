@@ -1213,10 +1213,11 @@ When the user asks you to research a company:
   const tocSection = document.querySelector('.toc');
 
   function scrollToHeader(header) {
+    // Wait for accordion CSS transition to finish (300ms) before calculating position
     setTimeout(() => {
-      const y = header.getBoundingClientRect().top + window.pageYOffset - 20;
+      const y = header.getBoundingClientRect().top + window.pageYOffset - 60;
       window.scrollTo({ top: y, behavior: 'smooth' });
-    }, 80);
+    }, 350);
   }
 
   function updateStickyNav() {
