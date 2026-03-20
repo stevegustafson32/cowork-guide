@@ -881,6 +881,11 @@ _Last updated: 2026-03-19_
       <strong>Start With 1-2 Plugins</strong>
       Don't install everything at once. Pick the plugin closest to your primary job function and get comfortable with it. Add more as you need them.
     </div>
+
+    <h3>What Are Skills? (The Building Blocks)</h3>
+    <p>Under the hood, every plugin is made up of <strong>skills</strong> &mdash; small instruction files that teach Claude how to do one thing really well. A skill might teach Claude how to write a contract review, build an Excel dashboard, or research a company using a specific framework.</p>
+
+    <p>You don't need to know this to use Cowork &mdash; plugins handle it for you. But understanding skills matters because you can eventually <strong>create your own</strong>. If you find yourself giving Claude the same instructions repeatedly ("always format reports this way" or "research companies using this framework"), that's a skill waiting to be built. We cover this in the <a href="https://stevegustafson32.github.io/cowork-guide/level-2" target="_blank">Level 2 Advanced Guide</a>.</p>
   </div>
 
   <!-- SECTION 9: FIRST REAL TASK -->
@@ -1027,42 +1032,68 @@ _Last updated: 2026-03-19_
     <p class="subtitle">Things that took experienced users weeks to figure out. You get them now.</p>
 
     <div class="step-card highlighted">
-      <h4>1. Set Personal Preferences in Claude Settings</h4>
+      <h4>1. Think "Context Engineering," Not "Prompt Engineering"</h4>
+      <p>The biggest mindset shift for Cowork: <strong>stop trying to write the perfect prompt and start giving Claude the right context.</strong> That's what the folder structure, About Me file, CLAUDE.md, and MEMORY.md are doing &mdash; they're building a context layer that makes every conversation better. A mediocre prompt with great context beats a perfect prompt with zero context every time. This is why the setup in Steps 4-6 matters so much.</p>
+    </div>
+
+    <div class="step-card highlighted">
+      <h4>2. End Every Request With "Ask Me Any Questions"</h4>
+      <p>This is the single easiest way to get better results. Instead of just stating what you want, close your prompt with <em>"ask me any questions to give better context before you start."</em> Claude will then interview you &mdash; asking about audience, tone, scope, format, and details you didn't think to mention. The 30 seconds you spend answering saves you from getting something wrong on the first pass.</p>
+    </div>
+
+    <div class="step-card">
+      <h4>3. Say "Think Hard" for Complex Tasks</h4>
+      <p>When you're asking Claude to do something that requires deep reasoning &mdash; strategy, analysis, debugging, research synthesis &mdash; include <strong>"think hard"</strong> in your request. This activates Claude's extended thinking mode, where it spends more time reasoning through the problem before responding. The difference is significant on complex tasks. You can also say "think step by step" or "take your time with this."</p>
+    </div>
+
+    <div class="step-card">
+      <h4>4. Choose the Right Model</h4>
+      <p>Claude comes in three tiers. You can select your model in the Cowork interface:</p>
+      <p style="margin-top: 8px;">
+        <strong>Opus</strong> &mdash; The most capable. Best for complex analysis, deep research, multi-step projects, and anything that needs careful reasoning. Slower but smarter. Use this when quality matters more than speed.<br>
+        <strong>Sonnet</strong> &mdash; The sweet spot. Fast, capable, handles 90% of tasks well. Great default for everyday work: documents, research, presentations, code.<br>
+        <strong>Haiku</strong> &mdash; The fastest. Best for quick tasks: reformatting text, simple questions, file organization, rapid iteration. Use when speed matters most.
+      </p>
+      <p style="margin-top: 8px; font-size: 13px; color: var(--text-dim);">Rule of thumb: start with Sonnet. Switch to Opus when the task is high-stakes or complex. Switch to Haiku when you need something quick and simple.</p>
+    </div>
+
+    <div class="step-card">
+      <h4>5. Set Personal Preferences in Claude Settings</h4>
       <p>Go to <strong>Claude Desktop &rarr; Settings &rarr; Personal Preferences</strong>. Paste a block that describes your name, role, working style, and communication preferences. Unlike the About Me file (which only works in one folder), Personal Preferences apply to <em>every</em> Claude session &mdash; Chat and Cowork. This is where you tell Claude your personality expectations.</p>
     </div>
 
     <div class="step-card">
-      <h4>2. Use Subfolders for Different Projects</h4>
+      <h4>6. Use Subfolders for Different Projects</h4>
       <p>Each project can have its own CLAUDE.md and MEMORY.md. This means Claude can have different instructions and memory for different projects. A marketing folder can have Claude act as a content strategist; a finance folder can have Claude act as an analyst.</p>
     </div>
 
     <div class="step-card">
-      <h4>3. Tell Claude to "Remember This"</h4>
+      <h4>7. Tell Claude to "Remember This"</h4>
       <p>Whenever something important comes up &mdash; a decision, a deadline change, a new contact &mdash; say "remember this: [fact]." Claude will write it to MEMORY.md. Next session, it'll already know.</p>
     </div>
 
     <div class="step-card">
-      <h4>4. Schedule Recurring Tasks</h4>
+      <h4>8. Schedule Recurring Tasks</h4>
       <p>Cowork can run tasks on a schedule. Example: "Every Monday at 9am, compile a summary of my unread emails and create a priorities list." Set this up once, get it delivered automatically.</p>
     </div>
 
     <div class="step-card">
-      <h4>5. Upload Files for Context</h4>
+      <h4>9. Upload Files for Context</h4>
       <p>Drop files directly into the chat or put them in your workspace folder. Claude can read PDFs, Word docs, Excel sheets, CSVs, images, and more. The more context Claude has, the better the output.</p>
     </div>
 
     <div class="step-card">
-      <h4>6. Use Claude in Chrome (Browser Extension)</h4>
+      <h4>10. Use Claude in Chrome (Browser Extension)</h4>
       <p>Install the Claude in Chrome extension to let Claude see and interact with your browser. It can fill forms, navigate websites, take screenshots, and automate browser-based work. Extremely powerful for research and web tasks.</p>
     </div>
 
     <div class="step-card">
-      <h4>7. Be Specific About Output Format</h4>
+      <h4>11. Be Specific About Output Format</h4>
       <p>Always tell Claude what format you want: "Make it a Word doc," "Create a .pptx," "Give me an Excel file," "Build an HTML page." Claude can create nearly any file type &mdash; but only if you ask.</p>
     </div>
 
     <div class="step-card">
-      <h4>8. Version Your Work</h4>
+      <h4>12. Version Your Work</h4>
       <p>Use a naming convention like <code>Project_ContentType_v1.ext</code>. When you iterate, Claude automatically creates v2, v3, etc. This gives you a history of how deliverables evolved.</p>
     </div>
   </div>
