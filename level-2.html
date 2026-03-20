@@ -167,6 +167,7 @@
     width: 100%;
     text-align: left;
     transition: border-color 0.2s;
+    position: relative;
   }
   .accordion-header:hover {
     border-left-color: var(--accent);
@@ -218,14 +219,22 @@
     justify-content: center;
     width: 24px;
     height: 24px;
-    font-size: 18px;
-    color: var(--accent);
     flex-shrink: 0;
     transition: transform 0.3s ease;
     margin-top: 4px;
+    position: relative;
   }
-  .accordion-header.open .accordion-chevron {
-    transform: rotate(90deg);
+  .accordion-chevron::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    transform: rotate(-45deg);
+    transition: transform 0.3s ease;
+  }
+  .accordion-header.open .accordion-chevron::after {
+    transform: rotate(45deg);
   }
 
   .accordion-content {
@@ -398,6 +407,80 @@
   a { color: var(--accent); }
   html { scroll-behavior: smooth; }
 
+  /* STICKY NAV BAR (FIX 3) */
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: var(--bg);
+    background-color: rgba(15, 15, 15, 0.95);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    font-size: 13px;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .sticky-nav.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sticky-nav-left { color: var(--text-muted); font-weight: 500; }
+  .sticky-nav-right { color: var(--accent); font-weight: 600; }
+
+  /* BACK TO TOP BUTTON (FIX 2) */
+  .back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .back-to-top:hover { background: var(--accent-light); }
+
+  /* PROGRESS INDICATOR (FIX 5) */
+  .accordion-progress {
+    position: absolute;
+    top: 28px;
+    right: 0;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+  }
+  .accordion-header.open .accordion-progress {
+    opacity: 1;
+  }
+
   @media (max-width: 640px) {
     .hero { padding: 60px 20px 48px; }
     .hero h1 { font-size: 28px; }
@@ -408,12 +491,18 @@
 </head>
 <body>
 
+<!-- STICKY NAV (FIX 3) -->
+<div class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-left">Level 2 Guide</div>
+  <div class="sticky-nav-right"><span id="stickyProgress">Section 1 of 12</span></div>
+</div>
+
 <!-- HERO -->
 <div class="hero">
   <div class="hero-badge">ADVANCED GUIDE &mdash; LEVEL 2</div>
   <h1>Claude Cowork<br><span>Power User Guide</span></h1>
   <p>You've got the basics. Now learn to build skills, create plugins, automate with Chrome, orchestrate agents, and turn Cowork into your operating system.</p>
-  <a href="#accordion1" class="hero-cta">Start Level 2 &darr;</a>
+  <button class="hero-cta" id="heroCtaBtn">Start Level 2 &darr;</button>
   <br>
   <a href="https://stevegustafson32.github.io/cowork-guide/" class="hero-back">&larr; Back to Level 1: Getting Started</a>
 </div>
@@ -447,8 +536,9 @@
         <div class="accordion-title">Build Your Own Skills</div>
         <div class="accordion-subtitle">Turn your repeated instructions into reusable, auto-triggering capabilities.</div>
       </div>
-      <span class="accordion-chevron">▸</span>
-    </button>
+      <span class="accordion-chevron"></span>
+ 
+      <div class="accordion-progress">Section 1 of 12</div>   </button>
     <div class="accordion-content open">
       <div class="accordion-body section">
         <p>If you followed the Level 1 guide, you've already been using skills without knowing it. When you say "new project" and Claude creates folders, memory files, and output directories &mdash; that's a skill in action. The "new project" workflow, the file naming conventions, the per-project memory &mdash; all of these are patterns that could be (and are) encoded as skills. Now you'll learn to build your own.</p>
@@ -534,7 +624,8 @@ When the user asks you to research a company:
         <div class="accordion-title">Create & Distribute Plugins</div>
         <div class="accordion-subtitle">Bundle your skills, connectors, and commands into shareable packages.</div>
       </div>
-      <span class="accordion-chevron">▸</span>
+      <span class="accordion-chevron"></span>
+      <div class="accordion-progress">Section 2 of 12</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body section">
@@ -594,7 +685,8 @@ When the user asks you to research a company:
         <div class="accordion-title">Share Skills With Your Network</div>
         <div class="accordion-subtitle">Your best workflows shouldn't die on your laptop.</div>
       </div>
-      <span class="accordion-chevron">▸</span>
+      <span class="accordion-chevron"></span>
+      <div class="accordion-progress">Section 3 of 12</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body section">
@@ -641,7 +733,8 @@ When the user asks you to research a company:
         <div class="accordion-title">Chrome Extension Power Moves</div>
         <div class="accordion-subtitle">Turn your browser into an autonomous agent.</div>
       </div>
-      <span class="accordion-chevron">▸</span>
+      <span class="accordion-chevron"></span>
+      <div class="accordion-progress">Section 4 of 12</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body section">
@@ -692,7 +785,8 @@ When the user asks you to research a company:
         <div class="accordion-title">Scheduled Tasks & Recurring Automation</div>
         <div class="accordion-subtitle">Set it once, it runs forever.</div>
       </div>
-      <span class="accordion-chevron">▸</span>
+      <span class="accordion-chevron"></span>
+      <div class="accordion-progress">Section 5 of 12</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body section">
@@ -738,8 +832,9 @@ When the user asks you to research a company:
         <div class="accordion-title">Memory Architecture Mastery</div>
         <div class="accordion-subtitle">The 3-layer system that makes Claude feel like a long-term colleague.</div>
       </div>
-      <span class="accordion-chevron">▸</span>
-    </button>
+      <span class="accordion-chevron"></span>
+ 
+      <div class="accordion-progress">Section 6 of 12</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>Claude's memory isn't one thing &mdash; it's a hierarchy. Understanding the layers lets you put the right information in the right place.</p>
@@ -784,8 +879,9 @@ When the user asks you to research a company:
         <div class="accordion-title">MCP: Connect Anything</div>
         <div class="accordion-subtitle">The protocol that lets Claude talk to any tool, database, or API.</div>
       </div>
-      <span class="accordion-chevron">▸</span>
-    </button>
+      <span class="accordion-chevron"></span>
+ 
+      <div class="accordion-progress">Section 7 of 12</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p><strong>MCP (Model Context Protocol)</strong> is how Claude connects to external services. Every connector you use &mdash; Google Drive, Slack, Gmail, GitHub &mdash; is an MCP server under the hood. You can build your own.</p>
@@ -835,8 +931,9 @@ When the user asks you to research a company:
         <div class="accordion-title">Parallel Agents</div>
         <div class="accordion-subtitle">Claude doesn't just do one thing at a time. It can split into teams.</div>
       </div>
-      <span class="accordion-chevron">▸</span>
-    </button>
+      <span class="accordion-chevron"></span>
+ 
+      <div class="accordion-progress">Section 8 of 12</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>When Claude encounters a task that can be broken into independent pieces, it automatically spawns <strong>sub-agents</strong> &mdash; parallel workers that execute simultaneously. This is one of the most powerful features most people never discover.</p>
@@ -895,8 +992,9 @@ When the user asks you to research a company:
         <div class="accordion-title">File Power Moves</div>
         <div class="accordion-subtitle">Claude creates real, production-quality files &mdash; not just text.</div>
       </div>
-      <span class="accordion-chevron">▸</span>
-    </button>
+      <span class="accordion-chevron"></span>
+ 
+      <div class="accordion-progress">Section 9 of 12</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
         <h3>What Claude Can Create</h3>
@@ -936,8 +1034,9 @@ When the user asks you to research a company:
         <div class="accordion-title">Domain Playbooks</div>
         <div class="accordion-subtitle">What each plugin category actually unlocks.</div>
       </div>
-      <span class="accordion-chevron">▸</span>
-    </button>
+      <span class="accordion-chevron"></span>
+ 
+      <div class="accordion-progress">Section 10 of 12</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>Each plugin category transforms Claude from a generalist into a domain specialist. Here's what the major categories enable:</p>
@@ -979,8 +1078,9 @@ When the user asks you to research a company:
         <div class="accordion-title">Enterprise & Team Features</div>
         <div class="accordion-subtitle">For organizations scaling Cowork across teams.</div>
       </div>
-      <span class="accordion-chevron">▸</span>
-    </button>
+      <span class="accordion-chevron"></span>
+ 
+      <div class="accordion-progress">Section 11 of 12</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
         <div class="step-card">
@@ -1017,8 +1117,9 @@ When the user asks you to research a company:
         <div class="accordion-title">Advanced Resources</div>
         <div class="accordion-subtitle">The best articles, repos, and references for going deeper.</div>
       </div>
-      <span class="accordion-chevron">▸</span>
-    </button>
+      <span class="accordion-chevron"></span>
+ 
+      <div class="accordion-progress">Section 12 of 12</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
         <h3>Must-Read Articles</h3>
@@ -1104,6 +1205,12 @@ When the user asks you to research a company:
   // Accordion toggle functionality
   const headers = document.querySelectorAll('.accordion-header');
   const tocLinks = document.querySelectorAll('.toc-link');
+  const stickyNav = document.getElementById('stickyNav');
+  const stickyProgress = document.getElementById('stickyProgress');
+  const heroCtaBtn = document.getElementById('heroCtaBtn');
+
+  // Get TOC section to know when to show sticky nav
+  const tocSection = document.querySelector('.toc');
 
   function scrollToHeader(header) {
     setTimeout(() => {
@@ -1111,6 +1218,69 @@ When the user asks you to research a company:
       window.scrollTo({ top: y, behavior: 'smooth' });
     }, 80);
   }
+
+  function updateStickyNav() {
+    // FIX 3: Update sticky nav visibility and content based on scroll position
+    if (window.scrollY > tocSection.offsetTop) {
+      stickyNav.classList.add('visible');
+      // Find which accordion is open and update progress
+      headers.forEach((header, index) => {
+        if (header.classList.contains('open')) {
+          const sectionNum = index + 1;
+          stickyProgress.textContent = `Section ${sectionNum} of 12`;
+        }
+      });
+    } else {
+      stickyNav.classList.remove('visible');
+    }
+
+    // FIX 2: Show back-to-top button when scrolled down more than 400px
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    if (backToTopBtn) {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', updateStickyNav);
+
+  // FIX 1: Hero CTA button - open accordion1 and scroll to it
+  if (heroCtaBtn) {
+    heroCtaBtn.addEventListener('click', function() {
+      const accordion = document.getElementById('accordion1');
+      if (accordion) {
+        const header = accordion.querySelector('.accordion-header');
+        const content = accordion.querySelector('.accordion-content');
+
+        // Close all other accordions
+        headers.forEach(h => {
+          h.classList.remove('open');
+          h.closest('.accordion').querySelector('.accordion-content').classList.remove('open');
+        });
+
+        // Open accordion1
+        header.classList.add('open');
+        content.classList.add('open');
+
+        // Scroll header to top of viewport
+        scrollToHeader(header);
+      }
+    });
+  }
+
+  // FIX 2: Create and add back-to-top button
+  const backToTopContainer = document.createElement('button');
+  backToTopContainer.id = 'backToTopBtn';
+  backToTopContainer.className = 'back-to-top';
+  backToTopContainer.innerHTML = '↑';
+  document.body.appendChild(backToTopContainer);
+
+  backToTopContainer.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
   // Toggle accordion on header click
   headers.forEach((header, index) => {
@@ -1130,6 +1300,9 @@ When the user asks you to research a company:
       // Toggle current accordion
       this.classList.toggle('open');
       content.classList.toggle('open');
+
+      // Update sticky nav when accordion changes
+      updateStickyNav();
 
       // Scroll to top of this section when opening
       if (!isOpen) {
@@ -1159,11 +1332,17 @@ When the user asks you to research a company:
         header.classList.add('open');
         content.classList.add('open');
 
+        // Update sticky nav when accordion changes
+        updateStickyNav();
+
         // Scroll header to top of viewport
         scrollToHeader(header);
       }
     });
   });
+
+  // Initialize on page load
+  window.addEventListener('load', updateStickyNav);
 </script>
 
 </body>

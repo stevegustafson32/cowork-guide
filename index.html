@@ -165,6 +165,7 @@
     width: 100%;
     text-align: left;
     transition: border-color 0.2s;
+    position: relative;
   }
   .accordion-header:hover {
     border-left-color: var(--accent);
@@ -216,14 +217,22 @@
     justify-content: center;
     width: 24px;
     height: 24px;
-    font-size: 18px;
-    color: var(--accent);
     flex-shrink: 0;
     transition: transform 0.3s ease;
     margin-top: 4px;
+    position: relative;
   }
-  .accordion-header.open .accordion-chevron {
-    transform: rotate(90deg);
+  .accordion-chevron::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    transform: rotate(-45deg);
+    transition: transform 0.3s ease;
+  }
+  .accordion-header.open .accordion-chevron::after {
+    transform: rotate(45deg);
   }
 
   .accordion-content {
@@ -492,6 +501,80 @@
   .final-cta h2 { margin-bottom: 16px; }
   .final-cta p { color: var(--text-muted); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
 
+  /* STICKY NAV BAR (FIX 3) */
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: var(--bg);
+    background-color: rgba(15, 15, 15, 0.95);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    font-size: 13px;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .sticky-nav.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sticky-nav-left { color: var(--text-muted); font-weight: 500; }
+  .sticky-nav-right { color: var(--accent); font-weight: 600; }
+
+  /* BACK TO TOP BUTTON (FIX 2) */
+  .back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .back-to-top:hover { background: var(--accent-light); }
+
+  /* PROGRESS INDICATOR (FIX 5) */
+  .accordion-progress {
+    position: absolute;
+    top: 28px;
+    right: 0;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+  }
+  .accordion-header.open .accordion-progress {
+    opacity: 1;
+  }
+
   /* RESPONSIVE */
   @media (max-width: 640px) {
     .hero { padding: 60px 20px 48px; }
@@ -504,12 +587,18 @@
 </head>
 <body>
 
+<!-- STICKY NAV (FIX 3) -->
+<div class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-left">Cowork Guide</div>
+  <div class="sticky-nav-right"><span id="stickyProgress">Step 1 of 12</span></div>
+</div>
+
 <!-- HERO -->
 <div class="hero">
   <div class="hero-badge">COMPLETE BEGINNER GUIDE &mdash; UPDATED MARCH 2026</div>
   <h1>Get Started with<br><span>Claude Cowork</span></h1>
   <p>The step-by-step guide to setting up your AI-powered workspace. No technical experience required. From download to your first real task in under 30 minutes.</p>
-  <a href="#accordion1" class="hero-cta">Start the Guide &darr;</a>
+  <button class="hero-cta" id="heroCtaBtn">Start the Guide &darr;</button>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -541,7 +630,8 @@
         <div class="accordion-title">What Is Claude Cowork?</div>
         <div class="accordion-subtitle">Think of it as hiring an AI assistant who sits at a desk next to you.</div>
       </div>
-      <div class="accordion-chevron">▸</div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 1 of 12</div>
     </button>
     <div class="accordion-content open">
       <div class="accordion-body">
@@ -622,7 +712,8 @@
         <div class="accordion-title">Download & First-Time Setup</div>
         <div class="accordion-subtitle">Takes about 5 minutes. You need a paid Claude subscription.</div>
       </div>
-      <div class="accordion-chevron">▸</div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 2 of 12</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -674,7 +765,8 @@
         <div class="accordion-title">Your First Cowork Session</div>
         <div class="accordion-subtitle">Here's what it looks like and how it works.</div>
       </div>
-      <div class="accordion-chevron">▸</div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 3 of 12</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -719,7 +811,8 @@
         <div class="accordion-title">Set Up Your Folder Structure</div>
         <div class="accordion-subtitle">This is the single most important thing you'll do. A good folder structure makes Claude 10x more effective.</div>
       </div>
-      <div class="accordion-chevron">▸</div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 4 of 12</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -814,7 +907,8 @@
         <div class="accordion-title">Write Your "About Me" File</div>
         <div class="accordion-subtitle">This is Claude's cheat sheet about you. Spend 10 minutes here and every session gets better.</div>
       </div>
-      <div class="accordion-chevron">▸</div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 5 of 12</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -896,7 +990,8 @@ I manage a team of 6 and report directly to the CEO.
         <div class="accordion-title">CLAUDE.md & MEMORY.md</div>
         <div class="accordion-subtitle">The two files that make Cowork actually intelligent across sessions.</div>
       </div>
-      <div class="accordion-chevron">▸</div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 6 of 12</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -999,7 +1094,8 @@ _Last updated: 2026-03-19_
         <div class="accordion-title">Install the CoWork OS Plugin</div>
         <div class="accordion-subtitle">Optional but recommended. It automates the entire setup you just learned about.</div>
       </div>
-      <div class="accordion-chevron">▸</div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 7 of 12</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -1053,7 +1149,8 @@ _Last updated: 2026-03-19_
         <div class="accordion-title">Connectors & Plugins</div>
         <div class="accordion-subtitle">Connect Claude to your tools and unlock specialized capabilities.</div>
       </div>
-      <div class="accordion-chevron">▸</div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 8 of 12</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -1128,7 +1225,8 @@ _Last updated: 2026-03-19_
         <div class="accordion-title">Your First Real Task</div>
         <div class="accordion-subtitle">Here are five great starter tasks ranked from simple to advanced.</div>
       </div>
-      <div class="accordion-chevron">▸</div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 9 of 12</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -1180,7 +1278,8 @@ _Last updated: 2026-03-19_
         <div class="accordion-title">Videos & Tutorials to Watch</div>
         <div class="accordion-subtitle">Watch these in order. Start with the essentials, then go deeper.</div>
       </div>
-      <div class="accordion-chevron">▸</div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 10 of 12</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -1283,7 +1382,8 @@ _Last updated: 2026-03-19_
         <div class="accordion-title">Power User Tips</div>
         <div class="accordion-subtitle">Things that took experienced users weeks to figure out. You get them now.</div>
       </div>
-      <div class="accordion-chevron">▸</div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 11 of 12</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -1365,7 +1465,8 @@ _Last updated: 2026-03-19_
         <div class="accordion-title">Quick Reference & Resources</div>
         <div class="accordion-subtitle">Bookmark this section. You'll come back to it.</div>
       </div>
-      <div class="accordion-chevron">▸</div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 12 of 12</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -1453,6 +1554,12 @@ _Last updated: 2026-03-19_
   // Accordion toggle functionality
   const headers = document.querySelectorAll('.accordion-header');
   const tocLinks = document.querySelectorAll('.toc-link');
+  const stickyNav = document.getElementById('stickyNav');
+  const stickyProgress = document.getElementById('stickyProgress');
+  const heroCtaBtn = document.getElementById('heroCtaBtn');
+
+  // Get TOC section to know when to show sticky nav
+  const tocSection = document.querySelector('.toc');
 
   function scrollToHeader(header) {
     setTimeout(() => {
@@ -1460,6 +1567,69 @@ _Last updated: 2026-03-19_
       window.scrollTo({ top: y, behavior: 'smooth' });
     }, 80);
   }
+
+  function updateStickyNav() {
+    // FIX 3: Update sticky nav visibility and content based on scroll position
+    if (window.scrollY > tocSection.offsetTop) {
+      stickyNav.classList.add('visible');
+      // Find which accordion is open and update progress
+      headers.forEach((header, index) => {
+        if (header.classList.contains('open')) {
+          const stepNum = index + 1;
+          stickyProgress.textContent = `Step ${stepNum} of 12`;
+        }
+      });
+    } else {
+      stickyNav.classList.remove('visible');
+    }
+
+    // FIX 2: Show back-to-top button when scrolled down more than 400px
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    if (backToTopBtn) {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', updateStickyNav);
+
+  // FIX 1: Hero CTA button - open accordion1 and scroll to it
+  if (heroCtaBtn) {
+    heroCtaBtn.addEventListener('click', function() {
+      const accordion = document.getElementById('accordion1');
+      if (accordion) {
+        const header = accordion.querySelector('.accordion-header');
+        const content = accordion.querySelector('.accordion-content');
+
+        // Close all other accordions
+        headers.forEach(h => {
+          h.classList.remove('open');
+          h.closest('.accordion').querySelector('.accordion-content').classList.remove('open');
+        });
+
+        // Open accordion1
+        header.classList.add('open');
+        content.classList.add('open');
+
+        // Scroll header to top of viewport
+        scrollToHeader(header);
+      }
+    });
+  }
+
+  // FIX 2: Create and add back-to-top button
+  const backToTopContainer = document.createElement('button');
+  backToTopContainer.id = 'backToTopBtn';
+  backToTopContainer.className = 'back-to-top';
+  backToTopContainer.innerHTML = '↑';
+  document.body.appendChild(backToTopContainer);
+
+  backToTopContainer.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
   // Toggle accordion on header click
   headers.forEach((header, index) => {
@@ -1479,6 +1649,9 @@ _Last updated: 2026-03-19_
       // Toggle current accordion
       this.classList.toggle('open');
       content.classList.toggle('open');
+
+      // Update sticky nav when accordion changes
+      updateStickyNav();
 
       // Scroll to top of this section when opening
       if (!isOpen) {
@@ -1508,11 +1681,17 @@ _Last updated: 2026-03-19_
         header.classList.add('open');
         content.classList.add('open');
 
+        // Update sticky nav when accordion changes
+        updateStickyNav();
+
         // Scroll header to top of viewport
         scrollToHeader(header);
       }
     });
   });
+
+  // Initialize on page load
+  window.addEventListener('load', updateStickyNav);
 </script>
 
 </body>
