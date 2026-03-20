@@ -705,8 +705,8 @@
   <div class="download-banner">
     <div class="banner-icon">&#11015;</div>
     <div>
-      <strong style="color: var(--blue);">Start downloading now &mdash; read while it installs</strong>
-      <span style="color: var(--text-muted);">Grab <a href="https://claude.com/download" target="_blank">Claude Desktop</a> before you read further. The first-time setup includes a ~2GB download that takes a few minutes. Get it going now and read Step 1 while you wait.</span>
+      <strong style="color: var(--blue);">Start these two things now &mdash; read while you wait</strong>
+      <span style="color: var(--text-muted);"><strong>1.</strong> Download <a href="https://claude.com/download" target="_blank">Claude Desktop</a> &mdash; the first-time setup includes a ~2GB download that takes a few minutes.<br><strong>2. Coming from ChatGPT?</strong> <a href="https://chatgpt.com" target="_blank">Export your data now</a> (Settings &rarr; Data Controls &rarr; Export). It takes 1&ndash;3 days to arrive by email. Start it now so it's ready when you set up your workspace.</span>
     </div>
   </div>
 
@@ -807,52 +807,49 @@
           </div>
         </div>
 
-        <h3>Coming from ChatGPT? Here's How to Bring Your History</h3>
-        <p>If you've been using ChatGPT, you can't import conversations directly into Claude &mdash; but you can extract the valuable parts and set Claude up so it knows everything ChatGPT knew about you. Here's how.</p>
+        <h3>Coming from ChatGPT? Your History Is a Head Start</h3>
+        <p>If you've been using ChatGPT for months, you've already done work that makes Claude setup faster. Every time you corrected ChatGPT's tone, told it about your role, explained your preferences, or repeated project context &mdash; that's exactly the information that goes into Claude's setup files (Steps 4&ndash;6). Instead of starting from scratch, you can extract it.</p>
 
-        <div class="step-card highlighted">
+        <div class="info-box warning">
+          <strong>Start Your Export Now &mdash; It Takes 1&ndash;3 Days</strong>
+          ChatGPT's data export is not instant. You request it, then wait for an email. <strong>Kick this off right now</strong> so the file is ready by the time you reach Steps 4&ndash;6. Go to <a href="https://chatgpt.com" target="_blank">chatgpt.com</a> &rarr; profile icon (bottom-left) &rarr; <strong>Settings</strong> &rarr; <strong>Data Controls</strong> &rarr; <strong>Export Data</strong> &rarr; confirm. You'll get an email from <code>noreply@openai.com</code> with a download link (expires in 24 hours). Check spam if you don't see it.
+        </div>
+
+        <h4 style="margin-top: 24px;">Why This Matters for Your Setup</h4>
+        <p>Later in this guide, you'll create three files that make Claude feel like your assistant instead of a generic AI. Your ChatGPT history is the fastest way to fill them out:</p>
+        <table class="migration-table">
+          <tr><th>Claude setup file</th><th>What goes in it</th><th>Where to find it in ChatGPT</th></tr>
+          <tr><td><strong>About Me</strong> (Step 5)</td><td>Who you are, your role, how you work</td><td>Every time you told ChatGPT "I'm a [role] at [company]" or corrected its tone</td></tr>
+          <tr><td><strong>CLAUDE.md</strong> (Step 6)</td><td>Workspace rules, naming conventions, behavior</td><td>Instructions you repeated &mdash; "always format it this way," "don't use bullet points," etc.</td></tr>
+          <tr><td><strong>MEMORY.md</strong> (Step 6)</td><td>Decisions, deadlines, project context</td><td>Facts you kept re-explaining each session &mdash; deadlines, stakeholders, strategies</td></tr>
+          <tr><td><strong>Personal Preferences</strong> (Step 11)</td><td>Communication style, personality</td><td>Times you said "be more direct," "stop over-explaining," "match my tone"</td></tr>
+          <tr><td><strong>TEMPLATES/</strong> (Step 4)</td><td>Reusable document structures</td><td>Prompts you copy-pasted repeatedly &mdash; report formats, email templates, frameworks</td></tr>
+        </table>
+
+        <h4 style="margin-top: 24px;">How to Extract It (Once Your Export Arrives)</h4>
+        <div class="step-card">
           <div class="step-num">1</div>
-          <h4>Export Your ChatGPT Data</h4>
-          <p>Go to <a href="https://chatgpt.com" target="_blank">chatgpt.com</a> &rarr; click your profile icon (bottom-left) &rarr; <strong>Settings</strong> &rarr; <strong>Data Controls</strong> &rarr; <strong>Export Data</strong> &rarr; confirm. You'll get an email from <code>noreply@openai.com</code> with a download link (expires in 24 hours). The export can take up to a few days, so <strong>start this now</strong> while you continue the guide.</p>
+          <h4>Open Your Export</h4>
+          <p>Unzip the file from the email. You'll get <code>conversations.json</code> (machine-readable) and <code>chat.html</code> (human-readable). Open <code>chat.html</code> in your browser.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">2</div>
-          <h4>Mine Your History for Context (Not Conversations)</h4>
-          <p>You're not importing old chats &mdash; you're extracting the knowledge ChatGPT learned about you over time. Unzip the export, open <code>chat.html</code> in your browser, and look for:</p>
-          <p>&bull; <strong>Who you are:</strong> role, company, industry, team size<br>
-             &bull; <strong>How you like to work:</strong> tone, formatting, pet peeves you corrected<br>
-             &bull; <strong>Recurring projects:</strong> topics or workstreams you kept coming back to<br>
-             &bull; <strong>Terminology:</strong> jargon, acronyms, product names, brand guidelines<br>
-             &bull; <strong>Key decisions:</strong> deadlines, strategies, stakeholder preferences</p>
+          <h4>Scan for Patterns</h4>
+          <p>Skim your conversations looking for the stuff in the table above: identity info, style corrections, repeated instructions, project context, terminology. You don't need to read every chat &mdash; focus on the ones where you were training ChatGPT to work your way.</p>
         </div>
 
-        <div class="step-card">
+        <div class="step-card highlighted">
           <div class="step-num">3</div>
-          <h4>Put It Where Claude Will Use It</h4>
-          <p>Take what you found and map it to Claude's setup files (you'll create these in Steps 4&ndash;6):</p>
-          <table class="migration-table">
-            <tr><th>What you found</th><th>Where it goes in Claude</th></tr>
-            <tr><td>Who you are, your role, your style</td><td><strong>About Me file</strong> (Step 5)</td></tr>
-            <tr><td>How you want Claude to behave</td><td><strong>Personal Preferences</strong> in Settings (Step 11)</td></tr>
-            <tr><td>Workspace rules, naming conventions</td><td><strong>CLAUDE.md</strong> (Step 6)</td></tr>
-            <tr><td>Project facts, deadlines, decisions</td><td><strong>MEMORY.md</strong> (Step 6)</td></tr>
-            <tr><td>Document templates you reused</td><td><strong>TEMPLATES/ folder</strong> (Step 4)</td></tr>
-            <tr><td>Reference docs, past deliverables</td><td><strong>PROJECTS/ folder</strong> (Step 4)</td></tr>
-          </table>
-        </div>
-
-        <div class="step-card">
-          <div class="step-num">4</div>
-          <h4>Shortcut: Let Claude Do the Extraction</h4>
-          <p>If your <code>chat.html</code> file isn't too large, drop it into your Cowork workspace folder and tell Claude:</p>
-          <p><em>"I just exported my ChatGPT history. It's in chat.html. Read through it and extract: (1) everything it knew about me personally, (2) my working preferences and style, (3) any recurring projects or topics, (4) key decisions or facts. Use what you find to draft my About Me file and seed my MEMORY.md."</em></p>
-          <p>Claude will read the file, pull out the patterns, and build your setup files pre-loaded with context. This is the fastest way to make Claude feel like it already knows you.</p>
+          <h4>Or Let Claude Do It For You</h4>
+          <p>This is the fastest path. Drop <code>chat.html</code> into your Cowork workspace folder and tell Claude:</p>
+          <p><em>"I just exported my ChatGPT history. It's in chat.html. Read through it and extract: (1) everything it knew about me &mdash; role, company, preferences, (2) instructions I repeated often, (3) recurring projects or topics, (4) key decisions and facts. Use what you find to draft my About Me file and seed my MEMORY.md."</em></p>
+          <p>Claude reads the file, pulls out the patterns, and builds your setup files pre-loaded with months of context. What took you months to teach ChatGPT, Claude gets in one conversation.</p>
         </div>
 
         <div class="info-box key">
-          <strong>The Mindset Shift</strong>
-          ChatGPT remembers things buried in conversation history you can't see or edit. Claude Cowork stores everything in files you own &mdash; MEMORY.md, CLAUDE.md, About Me. You can read, edit, and organize your AI's "memory" like any other document. It's more transparent and more powerful once you set it up.
+          <strong>The Difference</strong>
+          ChatGPT buries your preferences in conversation history you can't see or edit. Claude stores them in files you own &mdash; About Me, CLAUDE.md, MEMORY.md. You can read them, edit them, organize them. When something changes, you update the file. No more re-explaining yourself every session.
         </div>
 
       </div>
@@ -1329,59 +1326,103 @@ _Last updated: 2026-03-19_
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
-        <div class="info-box tip">
-          <strong>This Step Is Optional</strong>
-          Connectors and plugins are powerful but not required to get started. You can skip this entirely and come back when you're comfortable. Cowork works great without any connectors or plugins installed.
+        <div class="info-box key">
+          <strong>This Step Is Optional &mdash; But Powerful</strong>
+          Connectors and plugins aren't required to use Cowork. But they're what turn Claude from a general assistant into a specialist who can pull data from your tools and do domain-specific work at a professional level. Most people install at least 2&ndash;3 within their first week.
+        </div>
+
+        <h3>Claude in Chrome (Install This First)</h3>
+        <p>Before connectors and plugins, there's one capability worth setting up immediately: <strong>Claude in Chrome</strong>. It's a browser extension that lets Claude see and interact with your browser &mdash; fill out forms, navigate websites, take screenshots, pull data from pages, and automate web tasks.</p>
+        <div class="step-card highlighted">
+          <div class="step-num">&#9733;</div>
+          <h4>Why this matters</h4>
+          <p>When Claude can see your browser, it can research things live, reference what you're looking at, and do web-based tasks without you copy-pasting content back and forth. It's especially powerful combined with Cowork &mdash; you can say <em>"look at this page and write a competitive analysis"</em> and Claude reads the live page, then creates a Word doc.</p>
+          <p style="margin-top: 8px;"><strong>To install:</strong> Search for "Claude" in the <a href="https://chromewebstore.google.com" target="_blank">Chrome Web Store</a> or look for the Claude in Chrome option in your Claude Desktop settings.</p>
         </div>
 
         <h3>Connectors (Connect Your Apps)</h3>
-        <p>Connectors let Claude talk to other services on your behalf. Think of them as giving Claude login access to your tools. Adding one takes about 30 seconds &mdash; you just click "Connect" and sign in like you normally would.</p>
+        <p>Connectors give Claude direct access to your tools &mdash; no copy-pasting, no exporting. Claude reads and writes natively. Adding one takes about 30 seconds: click "Connect" and sign in. There are 50+ connectors available across every category. Here are the most popular:</p>
 
         <table class="compare-table">
           <tr><th>Connector</th><th>What Claude Can Do</th></tr>
-          <tr><td>Google Drive</td><td>Read, search, and reference your Google Docs</td></tr>
-          <tr><td>Gmail</td><td>Read emails, draft responses</td></tr>
-          <tr><td>Slack</td><td>Read channels, search messages</td></tr>
-          <tr><td>Canva</td><td>Create and edit designs</td></tr>
-          <tr><td>GitHub</td><td>Work with repositories and code</td></tr>
+          <tr><td><strong>Google Drive</strong></td><td>Read, search, and reference your Google Docs, Sheets, Slides</td></tr>
+          <tr><td><strong>Gmail</strong></td><td>Read emails, draft and send responses, search your inbox</td></tr>
+          <tr><td><strong>Google Calendar</strong></td><td>Read your schedule, find conflicts, prep for upcoming meetings</td></tr>
+          <tr><td><strong>Slack</strong></td><td>Read channels, search messages, catch up on what you missed</td></tr>
+          <tr><td><strong>Notion</strong></td><td>Read and reference your Notion workspace, databases, and wikis</td></tr>
+          <tr><td><strong>Jira</strong></td><td>Read tickets, track issues, understand sprint context</td></tr>
+          <tr><td><strong>HubSpot</strong></td><td>Access CRM contacts, deals, and company records</td></tr>
+          <tr><td><strong>Salesforce</strong></td><td>Pull account, opportunity, and contact data from your CRM</td></tr>
+          <tr><td><strong>Canva</strong></td><td>Create and edit designs directly</td></tr>
+          <tr><td><strong>GitHub</strong></td><td>Work with repos, issues, PRs, and code</td></tr>
+          <tr><td><strong>Airtable</strong></td><td>Read and query your Airtable bases and records</td></tr>
         </table>
 
-        <p><strong>To add a connector:</strong> Go to Cowork &rarr; Customize &rarr; Connectors &rarr; Browse available connectors &rarr; Click "Connect" and authorize access. Each connector will ask you to sign in to the relevant service.</p>
+        <p style="font-size: 13px; color: var(--text-muted);">Full directory at <a href="https://claude.com/connectors" target="_blank">claude.com/connectors</a> &mdash; categories include communication, data, design, finance, productivity, sales, and more. All connectors are free.</p>
 
-        <h3>Plugins (Specialized Skills)</h3>
-        <p>Plugins bundle pre-built skills for specific job functions. They teach Claude HOW to do domain-specific work well.</p>
+        <p><strong>To add a connector:</strong> Go to Cowork &rarr; Customize &rarr; Connectors &rarr; browse or search &rarr; click "Connect" and authorize access.</p>
+
+        <h3>Plugins (Specialized Skills by Job Function)</h3>
+        <p>Plugins teach Claude how to do domain-specific work at a professional level. Each one bundles skills, templates, and workflows built for a specific role. All free, all built by Anthropic.</p>
 
         <div class="two-col">
           <div class="step-card">
-            <h4>Sales Plugin</h4>
-            <p>Account research, call prep, outreach drafting, pipeline review, competitive battlecards.</p>
+            <h4>Productivity</h4>
+            <p>Task management, memory system, daily workflow. The foundation plugin &mdash; pairs well with everything else.</p>
           </div>
           <div class="step-card">
-            <h4>Marketing Plugin</h4>
-            <p>Content creation, campaign planning, SEO audits, brand voice review, email sequences.</p>
+            <h4>Sales</h4>
+            <p>Account research, call prep, outreach drafting, pipeline review, competitive battlecards, forecasting.</p>
           </div>
           <div class="step-card">
-            <h4>Finance Plugin</h4>
-            <p>Journal entries, reconciliation, variance analysis, financial statements, SOX compliance.</p>
+            <h4>Marketing</h4>
+            <p>Content creation, campaign planning, SEO audits, brand voice review, email sequences, performance reports.</p>
           </div>
           <div class="step-card">
-            <h4>Legal Plugin</h4>
-            <p>Contract review, NDA triage, compliance tracking, risk assessment.</p>
+            <h4>Finance</h4>
+            <p>Journal entries, reconciliation, variance analysis, financial statements, SOX compliance, close management.</p>
+          </div>
+          <div class="step-card">
+            <h4>Legal</h4>
+            <p>Contract review, NDA triage, compliance tracking, risk assessment, DPA review, meeting briefings.</p>
           </div>
           <div class="step-card">
             <h4>Product Management</h4>
-            <p>PRDs, roadmaps, stakeholder updates, competitive analysis, user research synthesis.</p>
+            <p>PRDs and specs, roadmaps, stakeholder updates, competitive analysis, user research synthesis, metrics tracking.</p>
           </div>
           <div class="step-card">
-            <h4>Data Plugin</h4>
-            <p>SQL queries, data exploration, visualization, dashboards, statistical analysis.</p>
+            <h4>Data</h4>
+            <p>SQL queries, data exploration, visualization, interactive dashboards, statistical analysis, data validation.</p>
+          </div>
+          <div class="step-card">
+            <h4>Operations</h4>
+            <p>Process documentation, risk assessment, vendor management, compliance tracking, change management, resource planning.</p>
+          </div>
+          <div class="step-card">
+            <h4>Design</h4>
+            <p>Design critique, accessibility audits, UX writing, design system management, developer handoff specs, user research.</p>
+          </div>
+          <div class="step-card">
+            <h4>Enterprise Search</h4>
+            <p>Search across all your connected tools at once &mdash; email, Slack, docs, wikis. Daily and weekly digests.</p>
           </div>
         </div>
 
-        <div class="info-box tip">
-          <strong>Start With 1-2 Plugins</strong>
-          Don't install everything at once. Pick the plugin closest to your primary job function and get comfortable with it. Add more as you need them.
-        </div>
+        <h3>Recommended Starter Packs</h3>
+        <p>Not sure where to start? Here's what to install based on your role:</p>
+        <table class="compare-table">
+          <tr><th>If you're a&hellip;</th><th>Install these first</th></tr>
+          <tr><td>Founder / CEO</td><td><strong>Productivity</strong> + <strong>Sales</strong> + Claude in Chrome + Gmail + Google Calendar</td></tr>
+          <tr><td>Marketer</td><td><strong>Marketing</strong> + <strong>Productivity</strong> + Claude in Chrome + Google Drive + Slack</td></tr>
+          <tr><td>Salesperson</td><td><strong>Sales</strong> + <strong>Productivity</strong> + Claude in Chrome + HubSpot or Salesforce + Gmail</td></tr>
+          <tr><td>Product Manager</td><td><strong>Product Management</strong> + <strong>Data</strong> + Jira + Slack + Notion</td></tr>
+          <tr><td>Finance / Accounting</td><td><strong>Finance</strong> + <strong>Data</strong> + Google Drive</td></tr>
+          <tr><td>Legal</td><td><strong>Legal</strong> + <strong>Productivity</strong> + Google Drive + Gmail</td></tr>
+          <tr><td>Designer</td><td><strong>Design</strong> + Claude in Chrome + Canva</td></tr>
+          <tr><td>Ops / Chief of Staff</td><td><strong>Operations</strong> + <strong>Enterprise Search</strong> + <strong>Productivity</strong> + Slack + Google Calendar</td></tr>
+          <tr><td>Data / Analytics</td><td><strong>Data</strong> + Airtable + Google Drive</td></tr>
+          <tr><td>Just exploring</td><td><strong>Productivity</strong> + Claude in Chrome + Google Drive &mdash; add more as you need them</td></tr>
+        </table>
 
         <h3>What Are Skills? (The Building Blocks)</h3>
         <p>Under the hood, every plugin is made up of <strong>skills</strong> &mdash; small instruction files that teach Claude how to do one thing really well. A skill might teach Claude how to write a contract review, build an Excel dashboard, or research a company using a specific framework.</p>
@@ -1615,7 +1656,7 @@ _Last updated: 2026-03-19_
 
         <div class="step-card">
           <h4>10. Use Claude in Chrome (Browser Extension)</h4>
-          <p>Install the Claude in Chrome extension to let Claude see and interact with your browser. It can fill forms, navigate websites, take screenshots, and automate browser-based work. Extremely powerful for research and web tasks.</p>
+          <p>If you skipped this in Step 8, go back and install it. Claude in Chrome lets Claude see and interact with your browser &mdash; research, form filling, screenshots, web automation. It's one of the highest-impact additions you can make.</p>
         </div>
 
         <div class="step-card">
