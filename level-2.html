@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Cowork Level 2 — Advanced Techniques for Power Users</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface-2: #242424;
+    --surface-3: #2e2e2e;
+    --border: #333;
+    --text: #e8e8e8;
+    --text-muted: #999;
+    --text-dim: #666;
+    --accent: #7b8bd4;
+    --accent-light: #9aa6e0;
+    --accent-dim: rgba(123,139,212,0.15);
+    --green: #5cb85c;
+    --blue: #5b9bd5;
+    --purple: #9b7ed8;
+    --red: #e06666;
+    --yellow: #f0c040;
+    --orange: #d4956a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    position: relative;
+    padding: 100px 40px 80px;
+    text-align: center;
+    background: linear-gradient(180deg, #10121a 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(123,139,212,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 640px;
+    margin: 0 auto 32px;
+  }
+  .hero-cta {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .hero-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
+  .hero-back {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--text-dim);
+    text-decoration: none;
+  }
+  .hero-back:hover { color: var(--accent); }
+
+  .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+  .toc {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc h2 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .toc-item:hover { border-color: var(--accent); background: var(--surface-2); }
+  .toc-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ACCORDION */
+  .accordion {
+    border-bottom: 1px solid var(--border);
+  }
+  .accordion:last-child { border-bottom: none; }
+
+  .accordion-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 28px 0;
+    background: none;
+    border: none;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: border-color 0.2s;
+  }
+  .accordion-header:hover {
+    border-left-color: var(--accent);
+  }
+  .accordion-header.open {
+    border-left-color: var(--accent);
+  }
+
+  .accordion-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .accordion-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+
+  .accordion-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+
+  .accordion-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 0;
+  }
+
+  .accordion-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    font-size: 18px;
+    color: var(--accent);
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    margin-top: 4px;
+  }
+  .accordion-header.open .accordion-chevron {
+    transform: rotate(90deg);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0;
+  }
+  .accordion-content.open {
+    max-height: 10000px;
+  }
+
+  .accordion-body {
+    padding-bottom: 28px;
+  }
+
+  /* SECTIONS */
+  .section p {
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 32px 0 12px;
+  }
+
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 16px;
+  }
+  .step-card.highlighted {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--surface) 0%, rgba(123,139,212,0.05) 100%);
+  }
+  .step-card h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .step-card p {
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  .info-box {
+    padding: 20px 24px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .info-box.tip {
+    background: rgba(92,184,92,0.08);
+    border-left: 3px solid var(--green);
+  }
+  .info-box.warning {
+    background: rgba(240,192,64,0.08);
+    border-left: 3px solid var(--yellow);
+  }
+  .info-box.key {
+    background: var(--accent-dim);
+    border-left: 3px solid var(--accent);
+  }
+  .info-box strong { display: block; margin-bottom: 6px; }
+
+  .code-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    overflow-x: auto;
+    margin: 16px 0;
+    white-space: pre;
+  }
+
+  .file-tree {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text-muted);
+    overflow-x: auto;
+    margin: 20px 0;
+  }
+  .file-tree .folder { color: var(--accent); font-weight: 600; }
+  .file-tree .file { color: var(--text-muted); }
+  .file-tree .comment { color: var(--text-dim); font-style: italic; }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  .compare-table th {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .compare-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .compare-table tr:hover td { background: var(--surface); }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  .video-card {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+  }
+  .video-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .video-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  .video-icon.official { background: rgba(91,155,213,0.15); }
+  .video-icon.community { background: rgba(155,126,216,0.15); }
+  .video-icon.guide { background: rgba(92,184,92,0.15); }
+  .video-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .video-card .meta { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+  .video-card .desc { font-size: 13px; color: var(--text-dim); }
+
+  .footer {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  a { color: var(--accent); }
+  html { scroll-behavior: smooth; }
+
+  @media (max-width: 640px) {
+    .hero { padding: 60px 20px 48px; }
+    .hero h1 { font-size: 28px; }
+    .toc-grid { grid-template-columns: 1fr; }
+    .video-card { flex-direction: column; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">ADVANCED GUIDE &mdash; LEVEL 2</div>
+  <h1>Claude Cowork<br><span>Power User Guide</span></h1>
+  <p>You've got the basics. Now learn to build skills, create plugins, automate with Chrome, orchestrate agents, and turn Cowork into your operating system.</p>
+  <a href="#accordion1" class="hero-cta">Start Level 2 &darr;</a>
+  <br>
+  <a href="https://stevegustafson32.github.io/cowork-guide/" class="hero-back">&larr; Back to Level 1: Getting Started</a>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="container">
+  <div class="toc">
+    <h2>What's Inside</h2>
+    <div class="toc-grid">
+      <a class="toc-item toc-link" data-accordion="1"><span class="toc-num">1</span> Build Your Own Skills</a>
+      <a class="toc-item toc-link" data-accordion="2"><span class="toc-num">2</span> Create & Share Plugins</a>
+      <a class="toc-item toc-link" data-accordion="3"><span class="toc-num">3</span> Share With Your Network</a>
+      <a class="toc-item toc-link" data-accordion="4"><span class="toc-num">4</span> Chrome Power Moves</a>
+      <a class="toc-item toc-link" data-accordion="5"><span class="toc-num">5</span> Scheduled Automation</a>
+      <a class="toc-item toc-link" data-accordion="6"><span class="toc-num">6</span> Memory Architecture</a>
+      <a class="toc-item toc-link" data-accordion="7"><span class="toc-num">7</span> MCP: Connect Anything</a>
+      <a class="toc-item toc-link" data-accordion="8"><span class="toc-num">8</span> Parallel Agents</a>
+      <a class="toc-item toc-link" data-accordion="9"><span class="toc-num">9</span> File Power Moves</a>
+      <a class="toc-item toc-link" data-accordion="10"><span class="toc-num">10</span> Domain Playbooks</a>
+      <a class="toc-item toc-link" data-accordion="11"><span class="toc-num">11</span> Enterprise & Teams</a>
+      <a class="toc-item toc-link" data-accordion="12"><span class="toc-num">12</span> Advanced Resources</a>
+    </div>
+  </div>
+
+  <!-- ACCORDION 1: BUILD YOUR OWN SKILLS -->
+  <div class="accordion" id="accordion1">
+    <button class="accordion-header open">
+      <span class="accordion-badge">1</span>
+      <div style="flex: 1;">
+        <div class="accordion-label">Section 1</div>
+        <div class="accordion-title">Build Your Own Skills</div>
+        <div class="accordion-subtitle">Turn your repeated instructions into reusable, auto-triggering capabilities.</div>
+      </div>
+      <span class="accordion-chevron">▸</span>
+    </button>
+    <div class="accordion-content open">
+      <div class="accordion-body section">
+        <p>If you followed the Level 1 guide, you've already been using skills without knowing it. When you say "new project" and Claude creates folders, memory files, and output directories &mdash; that's a skill in action. The "new project" workflow, the file naming conventions, the per-project memory &mdash; all of these are patterns that could be (and are) encoded as skills. Now you'll learn to build your own.</p>
+
+        <p>A <strong>skill</strong> is a markdown file called <code>SKILL.md</code> that teaches Claude a specific capability. Every time you find yourself giving Claude the same instructions &mdash; "format reports this way," "research companies using this framework," "always check these 5 things" &mdash; that's a skill waiting to be built.</p>
+
+        <h3>When to Build a Skill</h3>
+        <div class="two-col">
+          <div class="step-card">
+            <h4>You should build a skill when:</h4>
+            <p>You give the same instructions 3+ times. You have a specific workflow or framework. You want consistent output quality across sessions. You want to share a process with colleagues.</p>
+          </div>
+          <div class="step-card">
+            <h4>You don't need a skill when:</h4>
+            <p>It's a one-time task. The instructions are simple enough to type each time. The process changes frequently and isn't standardized yet.</p>
+          </div>
+        </div>
+
+        <h3>Skill File Structure</h3>
+        <div class="file-tree">
+<span class="folder">my-skill/</span>
+<span class="file">  SKILL.md</span>              <span class="comment">&larr; Required: instructions + metadata</span>
+<span class="file">  template.md</span>            <span class="comment">&larr; Optional: reference files</span>
+<span class="file">  examples/</span>              <span class="comment">&larr; Optional: example inputs/outputs</span>
+        </div>
+
+        <h3>SKILL.md Anatomy</h3>
+        <p>Every skill has two parts: YAML frontmatter (metadata) and markdown body (instructions).</p>
+
+        <div class="code-block">---
+name: company-research
+description: Deep competitive intelligence research on any company,
+  delivered as a professional Word document. Use when the user says
+  'research [company]', 'competitive profile', 'company deep dive'.
+---
+
+## Instructions
+
+When the user asks you to research a company:
+
+1. Search the web for the company's website, recent news, funding,
+   and key people
+2. Analyze their product, pricing, go-to-market strategy
+3. Identify 3-5 direct competitors
+4. Deliver as a formatted .docx with sections:
+   - Company Overview
+   - Product & Positioning
+   - Business Model
+   - Competitive Landscape
+   - Key Risks & Opportunities</div>
+
+        <div class="info-box key">
+          <strong>The Description is Everything</strong>
+          Claude decides whether to auto-invoke a skill based entirely on the <code>description</code> field. Be specific about trigger phrases. Vague descriptions = skills that never fire. Include examples of what users might say: "research [company]", "tell me about [company]", "competitive profile".
+        </div>
+
+        <h3>Where Skills Live</h3>
+        <table class="compare-table">
+          <tr><th>Location</th><th>Scope</th><th>Priority</th></tr>
+          <tr><td><code>~/.claude/skills/</code></td><td>All your projects (personal)</td><td>High</td></tr>
+          <tr><td><code>.claude/skills/</code> in project</td><td>That project only</td><td>Medium</td></tr>
+          <tr><td>Inside a plugin</td><td>Anyone who installs the plugin</td><td>Standard</td></tr>
+          <tr><td>Enterprise managed</td><td>Entire organization</td><td>Highest</td></tr>
+        </table>
+
+        <h3>The Easy Way: Use /skill-creator</h3>
+        <p>If you have the CoWork OS plugin installed, type <code>/skill-creator</code> in any session. Claude will interview you about what you want the skill to do, write the SKILL.md for you, test it, and optimize the description for reliable triggering. You don't need to write YAML by hand.</p>
+
+        <div class="info-box tip">
+          <strong>Advanced: Dynamic Context Injection</strong>
+          Skills can pull live data using shell commands: <code>!`git log --oneline -5`</code> injects your recent commits. <code>!`cat package.json | jq .dependencies`</code> injects your project dependencies. This happens before Claude sees the skill, so the data is always fresh.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION 2: CREATE & SHARE PLUGINS -->
+  <div class="accordion" id="accordion2">
+    <button class="accordion-header">
+      <span class="accordion-badge">2</span>
+      <div style="flex: 1;">
+        <div class="accordion-label">Section 2</div>
+        <div class="accordion-title">Create & Distribute Plugins</div>
+        <div class="accordion-subtitle">Bundle your skills, connectors, and commands into shareable packages.</div>
+      </div>
+      <span class="accordion-chevron">▸</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p>A <strong>plugin</strong> is a folder that bundles skills, commands, and connector configurations into a single installable package. If skills are individual tools, plugins are the toolbox.</p>
+
+        <h3>Plugin Folder Structure</h3>
+        <div class="file-tree">
+<span class="folder">my-plugin/</span>
+<span class="folder">  .claude-plugin/</span>
+<span class="file">    plugin.json</span>           <span class="comment">&larr; Required: name, version, author</span>
+<span class="folder">  skills/</span>
+<span class="folder">    company-research/</span>
+<span class="file">      SKILL.md</span>
+<span class="folder">    person-research/</span>
+<span class="file">      SKILL.md</span>
+<span class="folder">  commands/</span>
+<span class="file">    research.md</span>            <span class="comment">&larr; Slash commands: /research</span>
+<span class="file">  .mcp.json</span>                <span class="comment">&larr; Optional: MCP tool connections</span>
+        </div>
+
+        <h3>plugin.json (The Minimum)</h3>
+        <div class="code-block">{
+  "name": "my-research-toolkit",
+  "version": "1.0.0",
+  "description": "Company and person research with Word doc output",
+  "author": "Your Name"
+}</div>
+
+        <div class="info-box warning">
+          <strong>Critical: Don't Put Skills Inside .claude-plugin/</strong>
+          Only <code>plugin.json</code> goes inside the <code>.claude-plugin/</code> directory. Skills, commands, and agents go at the plugin root level. This is the most common mistake when building plugins.
+        </div>
+
+        <h3>Distribution Methods</h3>
+        <div class="step-card highlighted">
+          <h4>1. GitHub (Recommended)</h4>
+          <p>Push your plugin folder to a GitHub repo. Anyone installs with: <code>/plugin marketplace add your-username/your-repo</code>. Free, versioned, and easy to update.</p>
+        </div>
+        <div class="step-card">
+          <h4>2. Direct File Sharing</h4>
+          <p>Zip the plugin folder as a <code>.plugin</code> file and email or share it. Recipients drop it into their Cowork plugins folder.</p>
+        </div>
+        <div class="step-card">
+          <h4>3. Official Anthropic Marketplace</h4>
+          <p>Submit through Anthropic's review process for broad distribution. Must pass security and quality standards.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION 3: SHARE WITH NETWORK -->
+  <div class="accordion" id="accordion3">
+    <button class="accordion-header">
+      <span class="accordion-badge">3</span>
+      <div style="flex: 1;">
+        <div class="accordion-label">Section 3</div>
+        <div class="accordion-title">Share Skills With Your Network</div>
+        <div class="accordion-subtitle">Your best workflows shouldn't die on your laptop.</div>
+      </div>
+      <span class="accordion-chevron">▸</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p>Once you've built skills or plugins that work well, sharing them is straightforward.</p>
+
+        <h3>Sharing a Single Skill</h3>
+        <p>Zip the skill folder (the one containing SKILL.md) as a <code>.skill</code> file. Send it to anyone. They drop it into their <code>~/.claude/skills/</code> directory. Done.</p>
+
+        <h3>Sharing a Plugin (via GitHub)</h3>
+        <div class="code-block">1. Create a public GitHub repo
+2. Push your plugin folder (with .claude-plugin/plugin.json at root)
+3. Share the install command:
+
+   /plugin marketplace add your-username/your-repo
+
+4. Recipients run that command in Cowork. Installed instantly.</div>
+
+        <h3>Community Ecosystem</h3>
+        <p>The Claude skills community is growing fast. Here are places to find and share skills:</p>
+
+        <div class="step-card">
+          <h4>anthropics/knowledge-work-plugins</h4>
+          <p>Official Anthropic plugins repo on GitHub. Sales, Finance, Legal, Marketing, Product, Data, Design, Operations plugins with full source code. Great reference for building your own.</p>
+        </div>
+        <div class="step-card">
+          <h4>travisvn/awesome-claude-skills</h4>
+          <p>Community-curated list of 37+ skills and growing. Covers coding, research, writing, and workflow automation. Fork it, add yours, submit a PR.</p>
+        </div>
+
+        <div class="info-box tip">
+          <strong>Pro Move: Create a Team Plugin</strong>
+          If your team repeatedly does the same workflows, build a plugin that encodes your processes. New team members install it on day one and immediately have your best practices available. No training deck needed &mdash; the skill IS the training.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION 4: CHROME POWER MOVES -->
+  <div class="accordion" id="accordion4">
+    <button class="accordion-header">
+      <span class="accordion-badge">4</span>
+      <div style="flex: 1;">
+        <div class="accordion-label">Section 4</div>
+        <div class="accordion-title">Chrome Extension Power Moves</div>
+        <div class="accordion-subtitle">Turn your browser into an autonomous agent.</div>
+      </div>
+      <span class="accordion-chevron">▸</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p>Claude in Chrome lets Claude see, click, type, navigate, and interact with anything in your browser. It goes far beyond basic web search.</p>
+
+        <h3>What You Can Actually Do</h3>
+        <div class="two-col">
+          <div class="step-card">
+            <h4>Multi-Tab Orchestration</h4>
+            <p>Claude manages multiple tabs simultaneously. Drag tabs into Claude's group, and it can read and act across all of them. "Compare pricing across these 5 competitor websites."</p>
+          </div>
+          <div class="step-card">
+            <h4>Form Filling & Data Entry</h4>
+            <p>Claude fills forms using context it already has. "Fill out this vendor registration form using our company details." Works with any web form.</p>
+          </div>
+          <div class="step-card">
+            <h4>Web Scraping & Data Extraction</h4>
+            <p>"Go to LinkedIn and pull the last 20 posts from these 5 people into a spreadsheet." Claude navigates, reads, extracts, and organizes.</p>
+          </div>
+          <div class="step-card">
+            <h4>GIF Recording</h4>
+            <p>Record browser interactions as GIF animations with click indicators and action labels. Perfect for creating demos, tutorials, and documentation.</p>
+          </div>
+          <div class="step-card">
+            <h4>Debug & Development</h4>
+            <p>Claude reads console logs, DOM state, and network requests directly. "Check why the login page is throwing a 403" &mdash; it reads the actual error.</p>
+          </div>
+          <div class="step-card">
+            <h4>Scheduled Browser Tasks</h4>
+            <p>Combine Chrome extension with scheduled tasks. "Every morning at 9am, check these 3 dashboards and summarize what changed."</p>
+          </div>
+        </div>
+
+        <div class="info-box warning">
+          <strong>Requirements & Limitations</strong>
+          Chrome extension is in beta. Works on Chrome and Edge only (not Brave, Arc, or others). Requires a paid Claude plan. Claude uses your existing login sessions &mdash; it can access anything you're logged into, so be mindful of which tabs are in the Claude group.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION 5: SCHEDULED AUTOMATION -->
+  <div class="accordion" id="accordion5">
+    <button class="accordion-header">
+      <span class="accordion-badge">5</span>
+      <div style="flex: 1;">
+        <div class="accordion-label">Section 5</div>
+        <div class="accordion-title">Scheduled Tasks & Recurring Automation</div>
+        <div class="accordion-subtitle">Set it once, it runs forever.</div>
+      </div>
+      <span class="accordion-chevron">▸</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p>Cowork can run tasks on a schedule &mdash; daily, weekly, or at specific times. Combined with plugins and Chrome, this is where Cowork becomes an autonomous operator.</p>
+
+        <h3>Cron Syntax (Simplified)</h3>
+        <table class="compare-table">
+          <tr><th>Schedule</th><th>Cron Expression</th><th>Plain English</th></tr>
+          <tr><td>Every morning</td><td><code>0 9 * * *</code></td><td>9:00 AM daily</td></tr>
+          <tr><td>Weekdays only</td><td><code>0 9 * * 1-5</code></td><td>9:00 AM Mon-Fri</td></tr>
+          <tr><td>Every Monday</td><td><code>30 8 * * 1</code></td><td>8:30 AM Mondays</td></tr>
+          <tr><td>First of month</td><td><code>0 0 1 * *</code></td><td>Midnight, 1st day</td></tr>
+        </table>
+
+        <h3>Real-World Examples</h3>
+        <div class="step-card highlighted">
+          <h4>Morning Briefing</h4>
+          <p>Daily at 9am: summarize unread emails, check calendar, create a priorities list with talking points for today's meetings. Outputs a markdown file you review with coffee.</p>
+        </div>
+        <div class="step-card">
+          <h4>Weekly Invoice Cleanup</h4>
+          <p>Fridays at 5pm: scan email for invoices received this week, extract amounts and vendors, add to a tracking spreadsheet, flag anything over $5K for review.</p>
+        </div>
+        <div class="step-card">
+          <h4>Competitor Monitor</h4>
+          <p>Every Monday: check 5 competitor websites for pricing changes, new features, or blog posts. Compile a diff report showing what changed since last week.</p>
+        </div>
+
+        <div class="info-box warning">
+          <strong>Key Limitation</strong>
+          Your computer must be awake and the Claude Desktop app must be open for scheduled tasks to run. If your Mac is asleep at 9am, the task runs when you open the lid. Tasks don't run in the cloud.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION 6: MEMORY ARCHITECTURE -->
+  <div class="accordion" id="accordion6">
+    <button class="accordion-header">
+      <span class="accordion-badge">6</span>
+      <div style="flex: 1;">
+        <div class="accordion-label">Section 6</div>
+        <div class="accordion-title">Memory Architecture Mastery</div>
+        <div class="accordion-subtitle">The 3-layer system that makes Claude feel like a long-term colleague.</div>
+      </div>
+      <span class="accordion-chevron">▸</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p>Claude's memory isn't one thing &mdash; it's a hierarchy. Understanding the layers lets you put the right information in the right place.</p>
+
+        <h3>The 3 Layers</h3>
+        <div class="step-card highlighted">
+          <h4>Layer 1: Personal Preferences (Global)</h4>
+          <p><strong>Where:</strong> Claude Desktop &rarr; Settings &rarr; Personal Preferences<br>
+          <strong>Scope:</strong> Every conversation, every project, every session<br>
+          <strong>What goes here:</strong> Your name, role, communication style, personality preferences, behavioral rules. Things that are always true about how you want Claude to work.</p>
+        </div>
+        <div class="step-card">
+          <h4>Layer 2: Project Instructions (CLAUDE.md)</h4>
+          <p><strong>Where:</strong> CLAUDE.md in your workspace folder (or subfolder)<br>
+          <strong>Scope:</strong> That specific project/folder only<br>
+          <strong>What goes here:</strong> Folder structure rules, naming conventions, project-specific context, team conventions, tech stack details. Things specific to this workspace.</p>
+        </div>
+        <div class="step-card">
+          <h4>Layer 3: Session Memory (MEMORY.md)</h4>
+          <p><strong>Where:</strong> MEMORY.md in your workspace folder<br>
+          <strong>Scope:</strong> Persistent across sessions in that workspace<br>
+          <strong>What goes here:</strong> Decisions, deadlines, status updates, things that change over time. Say "remember this" to write; "forget that" to delete.</p>
+        </div>
+
+        <h3>Multi-Project Isolation</h3>
+        <p>Each subfolder can have its own CLAUDE.md and MEMORY.md. This means Claude acts differently depending on which project you're in. Your marketing folder's Claude has different context than your finance folder's Claude. The CoWork OS plugin handles this automatically with the <code>/subfolders</code> skill.</p>
+
+        <div class="info-box tip">
+          <strong>Keep CLAUDE.md Under 200 Lines</strong>
+          Claude reads the entire CLAUDE.md at the start of every session. If it's 500+ lines, you're eating context window for instructions instead of actual work. Move detailed reference material into separate files that Claude can read when needed.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION 7: MCP -->
+  <div class="accordion" id="accordion7">
+    <button class="accordion-header">
+      <span class="accordion-badge">7</span>
+      <div style="flex: 1;">
+        <div class="accordion-label">Section 7</div>
+        <div class="accordion-title">MCP: Connect Anything</div>
+        <div class="accordion-subtitle">The protocol that lets Claude talk to any tool, database, or API.</div>
+      </div>
+      <span class="accordion-chevron">▸</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p><strong>MCP (Model Context Protocol)</strong> is how Claude connects to external services. Every connector you use &mdash; Google Drive, Slack, Gmail, GitHub &mdash; is an MCP server under the hood. You can build your own.</p>
+
+        <h3>Why Build a Custom MCP Connector?</h3>
+        <div class="two-col">
+          <div class="step-card">
+            <h4>Connect Internal Tools</h4>
+            <p>Your company's CRM, ticketing system, internal wiki, or custom database. If it has an API, Claude can connect to it.</p>
+          </div>
+          <div class="step-card">
+            <h4>Automate Proprietary Workflows</h4>
+            <p>"Pull this week's support tickets from Zendesk, categorize them, and create a summary for the team standup." Requires a Zendesk MCP connector.</p>
+          </div>
+        </div>
+
+        <h3>MCP Architecture (Simplified)</h3>
+        <div class="code-block">Your Tool / API
+           &uarr;
+      MCP Server         (your code: translates between Claude and your API)
+           &uarr;
+      MCP Protocol       (standardized JSON messages)
+           &uarr;
+      Claude Desktop     (the client that calls your server)</div>
+
+        <h3>Two Types of MCP Servers</h3>
+        <table class="compare-table">
+          <tr><th>Type</th><th>Where It Runs</th><th>Best For</th></tr>
+          <tr><td><strong>Desktop</strong></td><td>Your local machine</td><td>Local databases, file systems, local tools</td></tr>
+          <tr><td><strong>Remote</strong></td><td>Cloud server (HTTPS)</td><td>Web APIs, shared team tools, multi-device access</td></tr>
+        </table>
+
+        <div class="info-box key">
+          <strong>Start Simple</strong>
+          Before building a custom MCP connector, check if one already exists. Cowork's connector directory has 50+ pre-built integrations. Type your tool name in the Customize &rarr; Connectors search. If it's there, you're done in 2 clicks.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION 8: PARALLEL AGENTS -->
+  <div class="accordion" id="accordion8">
+    <button class="accordion-header">
+      <span class="accordion-badge">8</span>
+      <div style="flex: 1;">
+        <div class="accordion-label">Section 8</div>
+        <div class="accordion-title">Parallel Agents</div>
+        <div class="accordion-subtitle">Claude doesn't just do one thing at a time. It can split into teams.</div>
+      </div>
+      <span class="accordion-chevron">▸</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p>When Claude encounters a task that can be broken into independent pieces, it automatically spawns <strong>sub-agents</strong> &mdash; parallel workers that execute simultaneously. This is one of the most powerful features most people never discover.</p>
+
+        <h3>How It Works</h3>
+        <p>Say you ask: "Research these 8 companies and create a competitive matrix." Instead of researching them one by one (slow), Claude spawns 8 parallel agents that each research one company simultaneously. Results come back in minutes instead of an hour.</p>
+
+        <h3>When to Trigger Parallel Agents</h3>
+        <div class="step-card highlighted">
+          <h4>The Magic Phrase: "Use parallel agents wherever possible"</h4>
+          <p>Include this in your request when the task involves multiple independent workstreams. Claude will automatically identify what can run in parallel and split the work. You can also include this in your Personal Preferences or CLAUDE.md so Claude always looks for parallelization opportunities.</p>
+        </div>
+
+        <h3>Great Tasks for Parallel Agents</h3>
+        <div class="two-col">
+          <div class="step-card">
+            <h4>Research Multiple Entities</h4>
+            <p>"Research these 5 companies" &mdash; each company gets its own agent researching simultaneously.</p>
+          </div>
+          <div class="step-card">
+            <h4>Multi-File Analysis</h4>
+            <p>"Analyze these 10 spreadsheets and summarize findings" &mdash; each file gets its own agent.</p>
+          </div>
+          <div class="step-card">
+            <h4>Content at Scale</h4>
+            <p>"Write social posts for each of these 8 topics" &mdash; parallel content generation.</p>
+          </div>
+          <div class="step-card">
+            <h4>Code Across Modules</h4>
+            <p>"Update the frontend, backend, and tests for this feature" &mdash; three agents working different parts.</p>
+          </div>
+        </div>
+
+        <h3>Agent Types</h3>
+        <table class="compare-table">
+          <tr><th>Type</th><th>What It Does</th><th>Best For</th></tr>
+          <tr><td><strong>general-purpose</strong></td><td>Full capabilities: search, read, write, execute</td><td>Most tasks</td></tr>
+          <tr><td><strong>Explore</strong></td><td>Read-only: fast search and analysis</td><td>Research, codebase exploration</td></tr>
+          <tr><td><strong>Plan</strong></td><td>Decision-focused: architecture and strategy</td><td>Planning before execution</td></tr>
+        </table>
+
+        <div class="info-box warning">
+          <strong>Token Cost</strong>
+          Each sub-agent has its own context window. Running 8 parallel agents uses roughly 8x the tokens of a single agent. This is most effective on Opus or Sonnet where reasoning quality justifies the cost. Don't parallelize trivial tasks.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION 9: FILE POWER MOVES -->
+  <div class="accordion" id="accordion9">
+    <button class="accordion-header">
+      <span class="accordion-badge">9</span>
+      <div style="flex: 1;">
+        <div class="accordion-label">Section 9</div>
+        <div class="accordion-title">File Power Moves</div>
+        <div class="accordion-subtitle">Claude creates real, production-quality files &mdash; not just text.</div>
+      </div>
+      <span class="accordion-chevron">▸</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <h3>What Claude Can Create</h3>
+        <table class="compare-table">
+          <tr><th>File Type</th><th>What You Get</th><th>Example Prompt</th></tr>
+          <tr><td><strong>Excel (.xlsx)</strong></td><td>Formulas, formatting, charts, multiple sheets</td><td>"Create a financial model with revenue projections"</td></tr>
+          <tr><td><strong>Word (.docx)</strong></td><td>Headings, TOC, page numbers, letterhead, tables</td><td>"Write a 10-page market analysis report"</td></tr>
+          <tr><td><strong>PowerPoint (.pptx)</strong></td><td>Slides, layouts, speaker notes</td><td>"Build a 15-slide investor pitch deck"</td></tr>
+          <tr><td><strong>PDF</strong></td><td>Formatted documents, forms, merged files</td><td>"Merge these 3 PDFs and add page numbers"</td></tr>
+          <tr><td><strong>HTML</strong></td><td>Interactive dashboards, reports, web tools</td><td>"Create a dashboard from this CSV data"</td></tr>
+          <tr><td><strong>CSV/Data</strong></td><td>Cleaned data, analysis results, exports</td><td>"Clean this messy CSV and export with headers"</td></tr>
+        </table>
+
+        <h3>Power Patterns</h3>
+        <div class="step-card highlighted">
+          <h4>CSV &rarr; Interactive Dashboard</h4>
+          <p>Upload a CSV and ask: "Create an interactive HTML dashboard with filters, charts, and a summary table." You get a single-file HTML that works in any browser &mdash; no server needed. Share it with anyone.</p>
+        </div>
+        <div class="step-card">
+          <h4>Screenshot &rarr; Code</h4>
+          <p>Upload a screenshot of a design mockup and ask: "Convert this to a working React component." Claude's vision analyzes the layout, colors, and spacing and produces functional code.</p>
+        </div>
+        <div class="step-card">
+          <h4>Multiple Documents &rarr; Executive Summary</h4>
+          <p>Drop 5 research documents into your workspace and ask: "Read all of these and create a one-page executive summary highlighting the key insights and contradictions across them."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION 10: DOMAIN PLAYBOOKS -->
+  <div class="accordion" id="accordion10">
+    <button class="accordion-header">
+      <span class="accordion-badge">10</span>
+      <div style="flex: 1;">
+        <div class="accordion-label">Section 10</div>
+        <div class="accordion-title">Domain Playbooks</div>
+        <div class="accordion-subtitle">What each plugin category actually unlocks.</div>
+      </div>
+      <span class="accordion-chevron">▸</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p>Each plugin category transforms Claude from a generalist into a domain specialist. Here's what the major categories enable:</p>
+
+        <div class="step-card">
+          <h4>Sales</h4>
+          <p><strong>Account research</strong> that pulls web data + CRM context into a one-page brief. <strong>Call prep</strong> that builds agendas with attendee research. <strong>Competitive battlecards</strong> as interactive HTML with comparison matrices. <strong>Pipeline review</strong> that flags at-risk deals and creates weekly action plans. <strong>Outreach drafting</strong> with personalization from research data.</p>
+        </div>
+        <div class="step-card">
+          <h4>Finance</h4>
+          <p><strong>Journal entries</strong> with proper debits/credits and supporting detail. <strong>Account reconciliation</strong> matching GL to subledger/bank. <strong>Variance analysis</strong> decomposing budget-vs-actual into drivers. <strong>Financial statements</strong> with GAAP presentation and period-over-period comparison. <strong>SOX compliance</strong> testing workpapers and sample selection.</p>
+        </div>
+        <div class="step-card">
+          <h4>Legal</h4>
+          <p><strong>Contract review</strong> against your negotiation playbook with clause-by-clause analysis. <strong>NDA triage</strong> classifying as GREEN/YELLOW/RED in seconds. <strong>Compliance tracking</strong> for GDPR, CCPA, and data subject requests. <strong>Risk assessment</strong> with severity-by-likelihood framework.</p>
+        </div>
+        <div class="step-card">
+          <h4>Marketing</h4>
+          <p><strong>Campaign planning</strong> with objectives, channel strategy, and content calendars. <strong>SEO audits</strong> covering keyword research, on-page analysis, and competitor comparison. <strong>Email sequences</strong> for nurture flows and onboarding. <strong>Brand voice review</strong> checking content against your style guide. <strong>Performance reports</strong> with KPIs and optimization recommendations.</p>
+        </div>
+        <div class="step-card">
+          <h4>Product Management</h4>
+          <p><strong>PRDs</strong> with problem statements, user stories, and acceptance criteria. <strong>Roadmap management</strong> using RICE, MoSCoW, or ICE frameworks. <strong>User research synthesis</strong> turning interview notes into themes and opportunity areas. <strong>Stakeholder updates</strong> tailored to audience (exec, engineering, customers). <strong>Competitive analysis</strong> with feature comparison matrices.</p>
+        </div>
+        <div class="step-card">
+          <h4>Data</h4>
+          <p><strong>SQL queries</strong> optimized for your warehouse dialect (Snowflake, BigQuery, Postgres). <strong>Data exploration</strong> profiling datasets for quality, distributions, and outliers. <strong>Visualization</strong> with matplotlib, seaborn, or plotly. <strong>Interactive dashboards</strong> as self-contained HTML with Chart.js filters. <strong>Statistical analysis</strong> including hypothesis testing and trend detection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION 11: ENTERPRISE & TEAMS -->
+  <div class="accordion" id="accordion11">
+    <button class="accordion-header">
+      <span class="accordion-badge">11</span>
+      <div style="flex: 1;">
+        <div class="accordion-label">Section 11</div>
+        <div class="accordion-title">Enterprise & Team Features</div>
+        <div class="accordion-subtitle">For organizations scaling Cowork across teams.</div>
+      </div>
+      <span class="accordion-chevron">▸</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <div class="step-card">
+          <h4>Private Plugin Marketplaces</h4>
+          <p>Create a private GitHub repo as your org's plugin marketplace. Team members install from it directly. Control which plugins are available, which are auto-installed, and which are hidden.</p>
+        </div>
+        <div class="step-card">
+          <h4>Org-Managed Plugins</h4>
+          <p>Admins can auto-install plugins across all team members. New hires get your org's skills on day one without any setup. Managed plugins take highest priority &mdash; they override personal settings.</p>
+        </div>
+        <div class="step-card">
+          <h4>Usage Monitoring</h4>
+          <p>Track usage, costs, and tool activity per team via OpenTelemetry integration. See which skills get used most, which teams are heaviest users, and where to invest in more automation.</p>
+        </div>
+        <div class="step-card">
+          <h4>Custom Branding</h4>
+          <p>Customize the Cowork home screen with your company logo and branded experience.</p>
+        </div>
+
+        <div class="info-box warning">
+          <strong>Important Limitation</strong>
+          Cowork activity is NOT captured in enterprise audit logs or compliance APIs. This makes it unsuitable for regulated workloads (financial services compliance, healthcare data, etc.) where full audit trails are required.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION 12: ADVANCED RESOURCES -->
+  <div class="accordion" id="accordion12">
+    <button class="accordion-header">
+      <span class="accordion-badge">12</span>
+      <div style="flex: 1;">
+        <div class="accordion-label">Section 12</div>
+        <div class="accordion-title">Advanced Resources</div>
+        <div class="accordion-subtitle">The best articles, repos, and references for going deeper.</div>
+      </div>
+      <span class="accordion-chevron">▸</span>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <h3>Must-Read Articles</h3>
+
+        <a href="https://karozieminski.substack.com/p/claude-cowork-guide-plugins-memory-sub-agents-tips" target="_blank" class="video-card">
+          <div class="video-icon community">&#128161;</div>
+          <div>
+            <h4>Claude Cowork Guide: 50+ Tested Tips</h4>
+            <div class="meta">Karo Zieminski &bull; Substack</div>
+            <div class="desc">The deepest community guide. Covers plugins, memory, sub-agents, and techniques no one else writes about.</div>
+          </div>
+        </a>
+
+        <a href="https://leehanchung.github.io/blogs/2025/10/26/claude-skills-deep-dive/" target="_blank" class="video-card">
+          <div class="video-icon guide">&#128218;</div>
+          <div>
+            <h4>Claude Agent Skills: A First Principles Deep Dive</h4>
+            <div class="meta">Lee Han Chung &bull; Blog</div>
+            <div class="desc">Technical deep dive into how skills work internally. Best resource for understanding SKILL.md architecture, frontmatter options, and execution model.</div>
+          </div>
+        </a>
+
+        <a href="https://aiblewmymind.substack.com/p/claude-cowork-plugins-guide" target="_blank" class="video-card">
+          <div class="video-icon guide">&#128218;</div>
+          <div>
+            <h4>Claude Cowork Plugins: What They Are, How to Build One</h4>
+            <div class="meta">AIBle With My Mind &bull; Substack</div>
+            <div class="desc">Step-by-step guide to building and distributing your first plugin. Includes manifest.json templates and common pitfalls.</div>
+          </div>
+        </a>
+
+        <a href="https://aimaker.substack.com/p/claude-chrome-extension-browser-automation-guide" target="_blank" class="video-card">
+          <div class="video-icon community">&#128161;</div>
+          <div>
+            <h4>Claude in Chrome: The Browser Extension Guide</h4>
+            <div class="meta">AI Maker &bull; Substack</div>
+            <div class="desc">Complete walkthrough of Chrome automation. Multi-tab orchestration, scheduled browser tasks, and real-world automation examples.</div>
+          </div>
+        </a>
+
+        <h3>GitHub Repositories</h3>
+        <table class="compare-table">
+          <tr><th>Repository</th><th>What It Has</th></tr>
+          <tr><td><a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank">anthropics/knowledge-work-plugins</a></td><td>Official Anthropic plugins: Sales, Finance, Legal, Marketing, Product, Data, Design, Operations</td></tr>
+          <tr><td><a href="https://github.com/anthropics/skills" target="_blank">anthropics/skills</a></td><td>Official skills reference and examples</td></tr>
+          <tr><td><a href="https://github.com/travisvn/awesome-claude-skills" target="_blank">travisvn/awesome-claude-skills</a></td><td>Community-curated list of 37+ skills</td></tr>
+          <tr><td><a href="https://github.com/ykdojo/claude-code-tips" target="_blank">ykdojo/claude-code-tips</a></td><td>45 tips for getting the most out of Claude Code</td></tr>
+        </table>
+
+        <h3>Official Documentation</h3>
+        <table class="compare-table">
+          <tr><th>Topic</th><th>Link</th></tr>
+          <tr><td>Skills Documentation</td><td><a href="https://docs.claude.com/en/docs/claude-code/skills" target="_blank">docs.claude.com/skills</a></td></tr>
+          <tr><td>Plugin Development</td><td><a href="https://docs.claude.com/en/docs/claude-code/plugins" target="_blank">docs.claude.com/plugins</a></td></tr>
+          <tr><td>Chrome Extension</td><td><a href="https://code.claude.com/docs/en/chrome" target="_blank">code.claude.com/chrome</a></td></tr>
+          <tr><td>Scheduled Tasks</td><td><a href="https://code.claude.com/docs/en/scheduled-tasks" target="_blank">code.claude.com/scheduled-tasks</a></td></tr>
+          <tr><td>Memory System</td><td><a href="https://code.claude.com/docs/en/memory" target="_blank">code.claude.com/memory</a></td></tr>
+          <tr><td>Hooks & Automation</td><td><a href="https://code.claude.com/docs/en/hooks-guide" target="_blank">code.claude.com/hooks</a></td></tr>
+          <tr><td>Agent Teams</td><td><a href="https://code.claude.com/docs/en/agent-teams" target="_blank">code.claude.com/agent-teams</a></td></tr>
+          <tr><td>MCP Connectors</td><td><a href="https://modelcontextprotocol.io" target="_blank">modelcontextprotocol.io</a></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL CTA -->
+  <div class="section" style="text-align: center; padding: 80px 0;">
+    <h2 style="margin-bottom: 16px;">You're a Power User Now</h2>
+    <p style="color: var(--text-muted); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto;">Build your first skill. Share it with a friend. Automate something you do every week. The difference between "using Claude" and "operating with Claude" is everything on this page.</p>
+    <a href="https://stevegustafson32.github.io/cowork-guide/" class="hero-cta" style="background: var(--orange);">&larr; Back to Level 1</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Created by Steve Gustafson &bull; March 2026</p>
+  <p style="margin-top: 8px;">Built with Claude Cowork (naturally). Have questions? <a href="mailto:stevegustafson@gmail.com">Reach out</a>.</p>
+  <p style="margin-top: 16px; color: var(--text-dim);">Claude and Cowork are products of <a href="https://anthropic.com" target="_blank">Anthropic</a>. This is an independent guide, not official Anthropic documentation.</p>
+</div>
+
+<script>
+  // Accordion toggle functionality
+  const headers = document.querySelectorAll('.accordion-header');
+  const tocLinks = document.querySelectorAll('.toc-link');
+
+  // Toggle accordion on header click
+  headers.forEach((header, index) => {
+    header.addEventListener('click', function() {
+      const accordion = this.closest('.accordion');
+      const content = accordion.querySelector('.accordion-content');
+      const isOpen = this.classList.contains('open');
+
+      // Close all other accordions
+      headers.forEach((h, i) => {
+        if (i !== index) {
+          h.classList.remove('open');
+          h.closest('.accordion').querySelector('.accordion-content').classList.remove('open');
+        }
+      });
+
+      // Toggle current accordion
+      this.classList.toggle('open');
+      content.classList.toggle('open');
+    });
+  });
+
+  // TOC link click functionality
+  tocLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const accordionNum = this.getAttribute('data-accordion');
+      const accordion = document.getElementById('accordion' + accordionNum);
+
+      if (accordion) {
+        const header = accordion.querySelector('.accordion-header');
+        const content = accordion.querySelector('.accordion-content');
+
+        // Close all other accordions
+        headers.forEach(h => {
+          h.classList.remove('open');
+          h.closest('.accordion').querySelector('.accordion-content').classList.remove('open');
+        });
+
+        // Open target accordion
+        header.classList.add('open');
+        content.classList.add('open');
+
+        // Scroll to accordion
+        setTimeout(() => {
+          header.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

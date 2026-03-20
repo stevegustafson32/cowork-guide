@@ -723,7 +723,14 @@
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
-        <p>Think of your workspace folder as Claude's desk. The better organized it is, the better Claude performs. Here's the proven structure used by power users:</p>
+        <p>Think of your workspace folder as Claude's desk. The better organized it is, the better Claude performs.</p>
+
+        <div class="info-box key">
+          <strong>The Easy Way: Just Ask Claude to Do It</strong>
+          Here's the secret &mdash; <strong>you don't have to create any of this manually.</strong> Once you're in Cowork, just type: <em>"Set up my workspace with an ABOUT ME folder, TEMPLATES folder, PROJECTS folder, and CLAUDE OUTPUTS folder."</em> Claude will create all the folders for you. You can also install the CoWork OS plugin (Step 7) which does this automatically. The section below explains what each folder is for, but Claude handles the creation.
+        </div>
+
+        <p>Here's the proven folder structure used by power users:</p>
 
         <div class="file-tree">
 <span class="folder">My Workspace/</span>
@@ -811,7 +818,12 @@
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
-        <p>Create a file called <code>about-me.md</code> inside your <code>ABOUT ME/</code> folder. Open it in any text editor (TextEdit on Mac, Notepad on Windows, or any app that can edit text files). Here's what to include:</p>
+        <div class="info-box key">
+          <strong>Easiest Approach: Just Tell Claude</strong>
+          You don't need to create this file manually. In Cowork, just say: <em>"Create an About Me file for me. My name is [name], I'm a [role] at [company]. Ask me any questions you need to fill it out."</em> Claude will interview you and create the file automatically. If you prefer to write it yourself, here's what to include:
+        </div>
+
+        <p>The About Me file is a simple text file that lives in your ABOUT ME folder. Here's what goes in it:</p>
 
         <div class="code-block"># About [Your Name]
 
@@ -888,6 +900,11 @@ I manage a team of 6 and report directly to the CEO.
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
+        <div class="info-box key">
+          <strong>You Don't Need to Create These Manually</strong>
+          Just tell Claude: <em>"Create a CLAUDE.md and MEMORY.md for my workspace. Ask me any questions about how I like to work."</em> Claude will interview you and generate both files. Or install the CoWork OS plugin (Step 7) which handles this in a guided setup. The sections below explain what these files do so you understand why they matter.
+        </div>
+
         <h3>CLAUDE.md &mdash; The Instruction Manual</h3>
         <p>This file lives in the root of your workspace. It tells Claude the rules of your workspace: what folders exist, how to name files, where to save outputs, and any specific behaviors you want. Claude reads this automatically at the start of every session.</p>
 
@@ -986,6 +1003,11 @@ _Last updated: 2026-03-19_
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
+        <div class="info-box key">
+          <strong>If Steps 4-6 Felt Intimidating, This Is Your Shortcut</strong>
+          CoWork OS does everything from Steps 4, 5, and 6 automatically. You don't need to create folders, write files, or know what a .md file is. Install the plugin, type <code>/begin</code>, and Claude walks you through a conversation that sets everything up. It takes about 5 minutes.
+        </div>
+
         <p><strong>CoWork OS</strong> is a free plugin (created by Paul J Lipsky) that automates everything in Steps 4-6. Instead of manually creating folders and writing files, you run one command and it interviews you, generates your About Me, creates CLAUDE.md and MEMORY.md, and sets up project subfolders &mdash; all through a guided conversation.</p>
 
         <h3>How to Install</h3>
@@ -1035,8 +1057,13 @@ _Last updated: 2026-03-19_
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
+        <div class="info-box tip">
+          <strong>This Step Is Optional</strong>
+          Connectors and plugins are powerful but not required to get started. You can skip this entirely and come back when you're comfortable. Cowork works great without any connectors or plugins installed.
+        </div>
+
         <h3>Connectors (Connect Your Apps)</h3>
-        <p>Connectors let Claude talk to other services on your behalf. Think of them as giving Claude login access to your tools.</p>
+        <p>Connectors let Claude talk to other services on your behalf. Think of them as giving Claude login access to your tools. Adding one takes about 30 seconds &mdash; you just click "Connect" and sign in like you normally would.</p>
 
         <table class="compare-table">
           <tr><th>Connector</th><th>What Claude Can Do</th></tr>
@@ -1407,6 +1434,10 @@ _Last updated: 2026-03-19_
     <h2>Ready to Start?</h2>
     <p>Download Claude Desktop, set up your workspace folder, write your About Me file, and give Claude your first task. You'll wonder how you worked without it.</p>
     <a href="https://claude.com/download" target="_blank" class="hero-cta">Download Claude Desktop</a>
+    <div style="margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border);">
+      <p style="color: var(--text-dim); margin-bottom: 12px;">Already comfortable with the basics?</p>
+      <a href="level-2.html" class="hero-cta" style="background: #7b8bd4;">Level 2: Advanced Techniques &rarr;</a>
+    </div>
   </div>
 
 </div>
