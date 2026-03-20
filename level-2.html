@@ -1105,6 +1105,13 @@ When the user asks you to research a company:
   const headers = document.querySelectorAll('.accordion-header');
   const tocLinks = document.querySelectorAll('.toc-link');
 
+  function scrollToHeader(header) {
+    setTimeout(() => {
+      const y = header.getBoundingClientRect().top + window.pageYOffset - 20;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }, 80);
+  }
+
   // Toggle accordion on header click
   headers.forEach((header, index) => {
     header.addEventListener('click', function() {
@@ -1123,6 +1130,11 @@ When the user asks you to research a company:
       // Toggle current accordion
       this.classList.toggle('open');
       content.classList.toggle('open');
+
+      // Scroll to top of this section when opening
+      if (!isOpen) {
+        scrollToHeader(this);
+      }
     });
   });
 
@@ -1147,10 +1159,8 @@ When the user asks you to research a company:
         header.classList.add('open');
         content.classList.add('open');
 
-        // Scroll to accordion
-        setTimeout(() => {
-          header.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 50);
+        // Scroll header to top of viewport
+        scrollToHeader(header);
       }
     });
   });
