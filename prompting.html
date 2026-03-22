@@ -1,0 +1,2283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Prompting Playbook — From Search Bar to Strategic Partner</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface-2: #242424;
+    --surface-3: #2e2e2e;
+    --border: #333;
+    --text: #e8e8e8;
+    --text-muted: #999;
+    --text-dim: #8e8e8e;
+    --accent: #d4956a;
+    --accent-light: #e8b892;
+    --accent-dim: rgba(212,149,106,0.15);
+    --green: #5cb85c;
+    --blue: #5b9bd5;
+    --purple: #9b7ed8;
+    --red: #e06666;
+    --yellow: #f0c040;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    padding: 100px 40px 80px;
+    text-align: center;
+    background: linear-gradient(180deg, #1a1410 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(212,149,106,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 640px;
+    margin: 0 auto 32px;
+  }
+  .hero-cta {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .hero-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+  /* LAYOUT */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* TABLE OF CONTENTS */
+  .toc {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc h2 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .toc-item:hover { border-color: var(--accent); background: var(--surface-2); }
+  .toc-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ACCORDION */
+  .accordion {
+    border-bottom: 1px solid var(--border);
+  }
+  .accordion:last-child { border-bottom: none; }
+
+  .accordion-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 28px 0;
+    background: none;
+    border: none;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+  .accordion-header:hover {
+    border-left-color: var(--accent);
+  }
+  .accordion-header.open {
+    border-left-color: var(--accent);
+  }
+
+  .accordion-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .accordion-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+
+  .accordion-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+  }
+
+  .accordion-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 0;
+  }
+
+  .accordion-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    margin-top: 4px;
+    position: relative;
+  }
+  .accordion-chevron::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    transform: rotate(-45deg);
+    transition: transform 0.3s ease;
+  }
+  .accordion-header.open .accordion-chevron::after {
+    transform: rotate(45deg);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0;
+  }
+  .accordion-content.open {
+    max-height: 10000px;
+  }
+
+  .accordion-body {
+    padding-bottom: 28px;
+  }
+
+  /* SECTIONS */
+  .section p {
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 32px 0 12px;
+  }
+
+  /* STEP CARDS */
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .step-card.highlighted {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--surface) 0%, rgba(212,149,106,0.05) 100%);
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border-radius: 16px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .try-it-box {
+    margin-top: 16px;
+    padding: 20px;
+    background: var(--surface-2);
+    border: 1px dashed var(--accent);
+    border-radius: 8px;
+  }
+  .try-it-box h5 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .try-it-box textarea {
+    width: 100%;
+    min-height: 120px;
+    padding: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+  }
+  .try-it-box textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .try-it-box textarea::placeholder {
+    color: var(--text-dim);
+  }
+  .try-it-box .try-it-hint {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .try-it-btn-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .try-it-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .try-it-btn:hover {
+    background: var(--accent);
+    color: #000;
+  }
+  .try-it-btn.analyze-btn {
+    background: var(--green);
+    color: #000;
+    border-color: var(--green);
+  }
+  .try-it-btn.analyze-btn:hover {
+    background: #4ea84e;
+  }
+  .feedback-panel {
+    margin-top: 16px;
+    padding: 16px;
+    background: var(--surface);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+    display: none;
+  }
+  .feedback-panel.visible { display: block; }
+  .feedback-score {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .feedback-score-num {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .feedback-score-label {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .feedback-score-bar {
+    height: 6px;
+    background: var(--surface-3);
+    border-radius: 3px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .feedback-score-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+  }
+  .feedback-item {
+    padding: 8px 0;
+    font-size: 13px;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--border);
+  }
+  .feedback-item:last-child { border-bottom: none; }
+  .feedback-item .pass { color: var(--green); }
+  .feedback-item .fail { color: var(--red); }
+  .feedback-item .tip { color: var(--yellow); }
+  .feedback-cta {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .print-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 24px;
+    transition: all 0.2s;
+  }
+  .print-btn:hover {
+    background: var(--accent-light);
+  }
+
+  @media print {
+    body * { visibility: hidden; }
+    #cheat-sheet-print, #cheat-sheet-print * { visibility: visible; }
+    #cheat-sheet-print {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      padding: 20px;
+      background: #fff !important;
+      color: #000 !important;
+    }
+    #cheat-sheet-print h3, #cheat-sheet-print h4, #cheat-sheet-print strong {
+      color: #000 !important;
+    }
+    #cheat-sheet-print .code-block {
+      background: #f5f5f5 !important;
+      color: #333 !important;
+      border: 1px solid #ccc !important;
+      page-break-inside: avoid;
+    }
+    #cheat-sheet-print table {
+      border-collapse: collapse;
+    }
+    #cheat-sheet-print td, #cheat-sheet-print th {
+      border: 1px solid #999 !important;
+      color: #000 !important;
+      background: #fff !important;
+    }
+    #cheat-sheet-print th {
+      background: #eee !important;
+    }
+    #cheat-sheet-print .info-box {
+      border: 1px solid #ccc !important;
+      background: #f9f9f9 !important;
+      color: #000 !important;
+    }
+    .print-btn { display: none !important; }
+  }
+  .step-card h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .step-card p {
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  /* INFO BOXES */
+  .info-box {
+    padding: 20px 24px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .info-box.tip {
+    background: rgba(92,184,92,0.08);
+    border-left: 3px solid var(--green);
+  }
+  .info-box.warning {
+    background: rgba(240,192,64,0.08);
+    border-left: 3px solid var(--yellow);
+  }
+  .info-box.key {
+    background: var(--accent-dim);
+    border-left: 3px solid var(--accent);
+  }
+  .info-box strong { display: block; margin-bottom: 6px; }
+
+  /* CODE BLOCKS */
+  .code-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    overflow-x: auto;
+    margin: 16px 0;
+    white-space: pre;
+  }
+
+  /* COMPARISON TABLE */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  .compare-table th {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .compare-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .compare-table tr:hover td { background: var(--surface); }
+
+  /* CHECKLIST */
+  .checklist {
+    list-style: none;
+    margin: 20px 0;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .checklist li::before {
+    content: '☐';
+    flex-shrink: 0;
+    color: var(--accent);
+    font-weight: 600;
+    margin-top: -2px;
+  }
+
+  /* PILL BADGES */
+  .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .pill.beginner { background: rgba(92,184,92,0.15); color: var(--green); }
+  .pill.intermediate { background: rgba(91,155,213,0.15); color: var(--blue); }
+  .pill.advanced { background: rgba(155,126,216,0.15); color: var(--purple); }
+
+  /* QUOTE BLOCK */
+  .quote-block {
+    padding: 20px 24px;
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    margin: 24px 0;
+    font-style: italic;
+    color: var(--text-muted);
+  }
+
+  /* TWO COLUMN LAYOUT */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* FOOTER */
+  .footer {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  /* LINK STYLE */
+  a { color: var(--accent); }
+
+  /* SCROLL SMOOTH */
+  html { scroll-behavior: smooth; }
+
+  /* FINAL CTA */
+  .final-cta {
+    text-align: center;
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .final-cta h2 { margin-bottom: 16px; }
+  .final-cta p { color: var(--text-muted); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+  /* STICKY NAV BAR */
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: var(--bg);
+    background-color: rgba(15, 15, 15, 0.95);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    font-size: 13px;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .sticky-nav.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sticky-nav-left { color: var(--text-muted); font-weight: 500; }
+  .sticky-nav-right { color: var(--accent); font-weight: 600; }
+
+  /* BACK TO TOP BUTTON */
+  .back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .back-to-top:hover { background: var(--accent-light); }
+
+  /* PROGRESS INDICATOR */
+  .accordion-progress {
+    position: absolute;
+    top: 28px;
+    right: 0;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+  }
+  .accordion-header.open .accordion-progress {
+    opacity: 1;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .hero { padding: 60px 20px 48px; }
+    .hero h1 { font-size: 28px; }
+    .toc-grid { grid-template-columns: 1fr; }
+    .accordion-header { padding: 20px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<div class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-left">The Prompting Playbook</div>
+  <div class="sticky-nav-right" id="stickyProgress">Section 1 of 12</div>
+</div>
+
+<!-- HERO SECTION -->
+<div class="hero">
+  <div class="hero-badge">PROMPTING GUIDE — UPDATED MARCH 2026</div>
+  <h1>The <span>Prompting</span> Playbook</h1>
+  <p style="margin-bottom: 8px;">From Search Bar to Strategic Partner</p>
+  <p>Stop Googling. Start engineering. A practical guide to getting dramatically better results from AI.</p>
+  <button class="hero-cta" id="heroCtaBtn">Start with Section 1 →</button>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="container">
+  <div class="toc">
+    <h2>Contents</h2>
+    <div class="toc-grid">
+      <a class="toc-item toc-link" data-accordion="1">
+        <div class="toc-num">1</div>
+        <span>Stop Googling, Start Prompting</span>
+      </a>
+      <a class="toc-item toc-link" data-accordion="2">
+        <div class="toc-num">2</div>
+        <span>The Minimum Viable Prompt</span>
+      </a>
+      <a class="toc-item toc-link" data-accordion="3">
+        <div class="toc-num">3</div>
+        <span>Frameworks That Actually Work</span>
+      </a>
+      <a class="toc-item toc-link" data-accordion="4">
+        <div class="toc-num">4</div>
+        <span>Enhance the Role</span>
+      </a>
+      <a class="toc-item toc-link" data-accordion="5">
+        <div class="toc-num">5</div>
+        <span>Enhance the Task</span>
+      </a>
+      <a class="toc-item toc-link" data-accordion="6">
+        <div class="toc-num">6</div>
+        <span>Enhance the Output</span>
+      </a>
+      <a class="toc-item toc-link" data-accordion="7">
+        <div class="toc-num">7</div>
+        <span>What NOT to Do</span>
+      </a>
+      <a class="toc-item toc-link" data-accordion="8">
+        <div class="toc-num">8</div>
+        <span>Psychological Forcing Functions</span>
+      </a>
+      <a class="toc-item toc-link" data-accordion="9">
+        <div class="toc-num">9</div>
+        <span>Recursive & Iterative Prompting</span>
+      </a>
+      <a class="toc-item toc-link" data-accordion="10">
+        <div class="toc-num">10</div>
+        <span>Context Engineering</span>
+      </a>
+      <a class="toc-item toc-link" data-accordion="11">
+        <div class="toc-num">11</div>
+        <span>One-Page Cheat Sheet</span>
+      </a>
+      <a class="toc-item toc-link" data-accordion="12">
+        <div class="toc-num">12</div>
+        <span>Additional Resources & Practice</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="accordion" id="accordion1">
+    <button class="accordion-header">
+      <div class="accordion-badge">1</div>
+      <div style="flex: 1;">
+        <div class="accordion-label">MINDSET SHIFT</div>
+        <div class="accordion-title">Stop Googling, Start Prompting</div>
+        <div class="accordion-subtitle">The #1 mistake people make with AI is treating it like a search engine.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Section 1 of 12</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <div class="info-box key">
+          <strong>Google answers questions. AI completes tasks.</strong> The shift is from 'finding information' to 'producing work.' AI is built to turn raw input into finished output.
+        </div>
+
+        <h3>The Fundamental Difference</h3>
+        <p>Google is a lookup tool. Ask it a question, get links to answers. AI is a production tool. Give it a task, get finished work.</p>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Google Search</th>
+              <th>Basic AI Prompt</th>
+              <th>Engineered Prompt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>"best project management tools 2026"</td>
+              <td>"What are the best project management tools?"</td>
+              <td>"You are a senior ops consultant. Compare the top 5 project management tools for a 12-person startup. Evaluate on: pricing, integrations, learning curve, and remote team features. Output as a comparison table with a final recommendation."</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="step-card highlighted">
+          <div class="step-num">1.1</div>
+          <h4>The Mindset Shift</h4>
+          <p>AI is a capable new hire on their first day. Brilliant but lacking YOUR context. Your job isn't to ask better questions. Your job is to give better briefs.</p>
+        </div>
+
+        <h3>Why This Matters</h3>
+        <p>Most people waste AI because they search-engine it. "Best email templates." "How do I write a proposal?" These get generic answers. Instead, load the prompt with specificity: role, constraints, examples, output format. The more context you give, the better the work.</p>
+
+        <div class="step-card">
+          <div class="step-num">1.2</div>
+          <h4>Exercise: Rewrite Your Last Searches</h4>
+          <p>Take your last 3 Google searches. For each one, rewrite it as an AI prompt. Start with: "You are a [specific expert]. I need you to [task]. Here's the context: [what I'm doing, who it's for, what success looks like]. Output as [format]."</p>
+        </div>
+
+        <div class="try-it-box" data-coach="section1">
+          <h5>🧠 Prompt Coach</h5>
+          <textarea placeholder="Rewrite one of your recent Google searches as an AI prompt. Try: You are a [expert]. I need you to [task]. Context: [details]. Output as [format]."></textarea>
+          <div class="try-it-btn-row">
+            <button class="try-it-btn analyze-btn" onclick="analyzePrompt(this)">Analyze My Prompt</button>
+            <button class="try-it-btn" onclick="copyTryIt(this)">Copy to Clipboard</button>
+          </div>
+          <div class="feedback-panel"></div>
+          <p class="try-it-hint">Get feedback here, then paste your improved prompt into Claude to see the difference.</p>
+        </div>
+
+        <p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted);">Ready to learn the core framework? Continue to Section 2.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="accordion" id="accordion2">
+    <button class="accordion-header">
+      <div class="accordion-badge">2</div>
+      <div style="flex: 1;">
+        <div class="accordion-label">CORE FORMULA</div>
+        <div class="accordion-title">The Minimum Viable Prompt</div>
+        <div class="accordion-subtitle">Every good prompt has three parts. Miss one and quality drops.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Section 2 of 12</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <div class="info-box key">
+          <strong>ROLE tells AI who to be. TASK tells AI what to do. OUTPUT tells AI how to deliver.</strong> This is the minimum. Everything else is enhancement.
+        </div>
+
+        <h3>The RTO Framework</h3>
+        <p>RTO stands for Role-Task-Output. It's not revolutionary, but it's reliable. Every prompt you write should include these three elements:</p>
+
+        <div class="code-block">ROLE: You are a [specific expert] with experience in [domain].
+TASK: [Specific action verb] + [clear scope] + [constraints].
+OUTPUT: Format as [structure]. Include [requirements]. Keep to [length].</div>
+
+        <h3>Why It Works</h3>
+        <p>When you specify a role, you activate a whole pattern of knowledge in the AI model. The AI was trained on text from countless perspectives. By saying "You are a senior recruiter," you're lighting up that specific region of the model. Then you tell it exactly what to do. Then you tell it how to package the answer. Done.</p>
+
+        <h3>Good vs Bad Examples</h3>
+
+        <div class="two-col">
+          <div class="step-card">
+            <div class="step-num" style="background: var(--red);">✗</div>
+            <h4>Bad: Vague and Generic</h4>
+            <p style="font-size: 14px; margin-top: 8px;">"Help me with my resume"</p>
+            <p style="color: var(--text-dim); font-size: 13px; margin-top: 8px;">Missing: role, specificity, output format. This will generate okay advice but nothing tailored to your situation.</p>
+          </div>
+          <div class="step-card highlighted">
+            <div class="step-num">✓</div>
+            <h4>Good: Specific and Actionable</h4>
+            <p style="font-size: 14px; margin-top: 8px;">"You are a senior recruiter at a Fortune 500 tech company. Review my resume. Identify the 3 weakest bullet points and rewrite each using the STAR method. Format as a before/after table."</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2.1</div>
+          <h4>Breaking Down the Good Example</h4>
+          <p><strong>ROLE:</strong> Senior recruiter at Fortune 500 tech — this activates expertise-specific patterns</p>
+          <p><strong>TASK:</strong> Review resume, identify 3 weakest points, rewrite using STAR — this is concrete and bounded</p>
+          <p><strong>OUTPUT:</strong> Before/after table — this controls the format and makes comparison easy</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2.2</div>
+          <h4>Exercise: Write 3 Prompts Using RTO</h4>
+          <p>Pick 3 tasks you'll do this week. For each one, write a complete RTO prompt. Don't overthink it. Just fill in the three blanks. Get comfortable with the template.</p>
+        </div>
+
+        <div class="try-it-box" data-coach="section2">
+          <h5>🧠 Prompt Coach</h5>
+          <textarea placeholder="Write a prompt using the RTO framework: ROLE: You are a... TASK: [specific action]... OUTPUT: Format as..."></textarea>
+          <div class="try-it-btn-row">
+            <button class="try-it-btn analyze-btn" onclick="analyzePrompt(this)">Analyze My Prompt</button>
+            <button class="try-it-btn" onclick="copyTryIt(this)">Copy to Clipboard</button>
+          </div>
+          <div class="feedback-panel"></div>
+          <p class="try-it-hint">Get feedback here, then paste your improved prompt into Claude to see the difference.</p>
+        </div>
+
+        <p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted);">Once you've mastered RTO, the frameworks in Section 3 will make much more sense.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="accordion" id="accordion3">
+    <button class="accordion-header">
+      <div class="accordion-badge">3</div>
+      <div style="flex: 1;">
+        <div class="accordion-label">PROMPT FRAMEWORKS</div>
+        <div class="accordion-title">Frameworks That Actually Work</div>
+        <div class="accordion-subtitle">RTO is the floor. These frameworks raise the ceiling.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Section 3 of 12</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p>RTO is simple and effective for most tasks. But there are other frameworks designed for specific challenges. Here are the ones that actually move the needle:</p>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Framework</th>
+              <th>Structure</th>
+              <th>Best For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>RTO</strong></td>
+              <td>Role → Task → Output</td>
+              <td>Quick tasks, daily use</td>
+            </tr>
+            <tr>
+              <td><strong>RISEN</strong></td>
+              <td>Role → Instructions → Steps → End goal → Narrowing</td>
+              <td>Complex multi-step work</td>
+            </tr>
+            <tr>
+              <td><strong>COSTAR</strong></td>
+              <td>Context → Objective → Style → Tone → Audience → Response</td>
+              <td>Marketing & content</td>
+            </tr>
+            <tr>
+              <td><strong>RISE</strong></td>
+              <td>Role → Input → Steps → Expectations</td>
+              <td>Executive briefings</td>
+            </tr>
+            <tr>
+              <td><strong>CRAFT</strong></td>
+              <td>Context → Role → Action → Format → Tone</td>
+              <td>Strategic communications</td>
+            </tr>
+            <tr>
+              <td><strong>Chain-of-Thought</strong></td>
+              <td>"Think step by step"</td>
+              <td>Analysis & reasoning</td>
+            </tr>
+            <tr>
+              <td><strong>Tree-of-Thoughts</strong></td>
+              <td>Explore 3 approaches, compare, pick best</td>
+              <td>Strategic decisions</td>
+            </tr>
+            <tr>
+              <td><strong>Few-Shot</strong></td>
+              <td>Show 3-5 examples of desired output</td>
+              <td>Consistent formatting</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>RISE & CRAFT for Executive Work</h3>
+        <p>If you're briefing AI for board-level or investor-facing work, RISE (Role → Input → Steps → Expectations) and CRAFT (Context → Role → Action → Format → Tone) add explicit expectation-setting. Both come from executive prompting playbooks and force you to define what "good" looks like before the AI starts working.</p>
+
+        <h3>RISEN for Complex Multi-Step Work</h3>
+        <p>If your task has multiple stages, RISEN gives structure. Role, specific instructions, numbered steps, the end goal, and narrowing criteria to refine the output.</p>
+
+        <div class="code-block">ROLE: You are a product strategist with 8 years at Series A-C startups.
+
+INSTRUCTIONS:
+- Use only public information available before March 2026
+- Ask clarifying questions if data is missing
+- Prioritize actionable insights over theoretical frameworks
+
+STEPS:
+1. Analyze the competitive landscape
+2. Identify 5 key positioning opportunities
+3. Evaluate feasibility of each
+4. Recommend the top 2 with reasoning
+
+END GOAL: A one-page positioning brief that we can share with our board
+
+NARROWING: Focus on markets where we have existing traction. Exclude enterprise-only plays.</div>
+
+        <h3>COSTAR for Marketing & Content</h3>
+        <p>When writing for an audience, COSTAR forces you to think through context (the situation), objective (what you want to happen), style (voice), tone (emotional temperature), and audience (who reads this). The output is tighter because you've removed ambiguity.</p>
+
+        <div class="info-box tip">
+          <strong>Don't memorize all these.</strong> Master RTO first. Then add one framework at a time based on what you actually need. COSTAR is gold for content. RISEN is gold for strategy. Most of your work will use RTO.
+        </div>
+
+        <h3>Chain-of-Thought for Analysis</h3>
+        <p>Sometimes the best thing to add to a prompt is: "Think step by step." This slows down the AI's reasoning and reduces errors. Try it on any task involving judgment, math, or logic.</p>
+
+        <div class="step-card">
+          <div class="step-num">3.1</div>
+          <h4>Exercise: Same Task, Different Frameworks</h4>
+          <p>Pick a task you need to do. Write it using RTO. Then rewrite it using COSTAR. Run both. Compare the outputs. You'll see why framework choice matters.</p>
+        </div>
+
+        <p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted);">Frameworks give you structure. Persona engineering fills in the details.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="accordion" id="accordion4">
+    <button class="accordion-header">
+      <div class="accordion-badge">4</div>
+      <div style="flex: 1;">
+        <div class="accordion-label">ENHANCING THE ROLE</div>
+        <div class="accordion-title">Enhance the Role</div>
+        <div class="accordion-subtitle">The more specific the persona, the better the output.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Section 4 of 12</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <div class="info-box key">
+          <strong>Why persona engineering works:</strong> AI models were trained on text from many perspectives. Specifying a detailed role activates the relevant patterns in the model's weights.
+        </div>
+
+        <h3>The Enhancement Ladder</h3>
+        <p>Good personas aren't vague. They're specific. Here's how to build them:</p>
+
+        <div class="step-card">
+          <div class="step-num">4.1</div>
+          <h4>Basic Persona</h4>
+          <p>"You are a marketer"</p>
+          <p style="color: var(--text-dim); font-size: 13px; margin-top: 8px;">This is too generic. Marketers vary wildly. You'll get generic output.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">4.2</div>
+          <h4>Better Persona</h4>
+          <p>"You are a B2B SaaS marketing director"</p>
+          <p style="color: var(--text-dim); font-size: 13px; margin-top: 8px;">Better. Now the model knows the domain (B2B SaaS) and the level (director). Output will be more relevant.</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <div class="step-num">4.3</div>
+          <h4>Best Persona</h4>
+          <p>"You are a B2B SaaS marketing director with 10 years experience at companies scaling from $2M to $20M ARR. You specialize in content-led growth and have a bias toward data-driven decisions over hunches."</p>
+          <p style="color: var(--text-dim); font-size: 13px; margin-top: 8px;">Now you're cooking. The model has a clear picture. Experience range, specialization, decision-making style. Output will be specific and sharp.</p>
+        </div>
+
+        <h3>Persona Stacking</h3>
+        <p>You can combine personas. This is powerful for creative work or strategic analysis:</p>
+
+        <div class="quote-block">"You combine the analytical rigor of a McKinsey consultant with the creative instincts of an award-winning copywriter."</div>
+
+        <p>Now the output has both structure and flair. Persona stacking works best with 2-3 combinations. More than that and you'll confuse the model.</p>
+
+        <h3>Anti-Pattern: The Useless Persona</h3>
+        <p>Avoid: "You are a helpful assistant." That's the default. It adds zero information. Instead, go specific: "You are a developer with 8 years building infrastructure at Stripe." Now you have signal.</p>
+
+        <div class="step-card">
+          <div class="step-num">4.4</div>
+          <h4>Exercise: Build 3 Expert Personas</h4>
+          <p>Think of 3 experts you wish you had access to. For each, write a detailed persona: title, years of experience, domain, specialization, decision-making style. These become templates you reuse.</p>
+        </div>
+
+        <div class="try-it-box" data-coach="section4">
+          <h5>🧠 Prompt Coach</h5>
+          <textarea placeholder="Write a detailed persona: You are a [title] with [X] years experience in [domain]. You specialize in [specialty] and have a bias toward [approach]."></textarea>
+          <div class="try-it-btn-row">
+            <button class="try-it-btn analyze-btn" onclick="analyzePrompt(this)">Analyze My Prompt</button>
+            <button class="try-it-btn" onclick="copyTryIt(this)">Copy to Clipboard</button>
+          </div>
+          <div class="feedback-panel"></div>
+          <p class="try-it-hint">Get feedback here, then paste your improved prompt into Claude to see the difference.</p>
+        </div>
+
+        <p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted);">Good personas matter. But they only work if the task is equally well-defined. Section 5 covers task precision.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="accordion" id="accordion5">
+    <button class="accordion-header">
+      <div class="accordion-badge">5</div>
+      <div style="flex: 1;">
+        <div class="accordion-label">ENHANCING THE TASK</div>
+        <div class="accordion-title">Enhance the Task</div>
+        <div class="accordion-subtitle">Vague tasks get vague results. Specific tasks get specific results.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Section 5 of 12</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p>A great persona with a vague task still produces vague output. You need to define the task clearly.</p>
+
+        <h3>The Specificity Spectrum</h3>
+
+        <div class="step-card">
+          <div class="step-num">5.1</div>
+          <h4>Vague</h4>
+          <p>"Help me with my business strategy"</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">5.2</div>
+          <h4>Better</h4>
+          <p>"Create a go-to-market strategy for our new product"</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">5.3</div>
+          <h4>Specific</h4>
+          <p>"Create a 90-day go-to-market strategy for our new feature (AI-powered contract analysis). Our ICP is in-house legal teams at mid-market companies (500-5000 employees). We have no case studies yet. Budget: $50k. Constraints: no enterprise sales team. Output: a phased timeline with specific milestones and success metrics for each phase."</p>
+        </div>
+
+        <h3>Task Enhancement Checklist</h3>
+
+        <ul class="checklist">
+          <li>Action verb is specific (analyze, compare, draft, evaluate — not "help with")</li>
+          <li>Scope is bounded (which data? what timeframe? how many items?)</li>
+          <li>Constraints are stated (word count, audience, tone, budget)</li>
+          <li>Success criteria defined (what does "good" look like?)</li>
+          <li>Edge cases addressed (what if data is missing? what to do then?)</li>
+        </ul>
+
+        <div class="info-box key">
+          <strong>The word "help" is a prompt killer.</strong> Replace it with a specific verb: analyze, compare, draft, evaluate, summarize, prioritize, rewrite, extract, design, build, audit, propose.
+        </div>
+
+        <h3>Good vs Bad Task Specification</h3>
+
+        <div class="two-col">
+          <div class="step-card">
+            <div class="step-num" style="background: var(--red);">✗</div>
+            <h4>Bad: Too Vague</h4>
+            <p style="font-size: 14px; margin-top: 8px;">"Help me improve our onboarding"</p>
+          </div>
+          <div class="step-card highlighted">
+            <div class="step-num">✓</div>
+            <h4>Good: Specific</h4>
+            <p style="font-size: 14px; margin-top: 8px;">"Audit our current 7-day onboarding for enterprise software. Identify the top 3 drop-off points. For each, propose a specific intervention. Format as a prioritized list with estimated effort to implement."</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">5.4</div>
+          <h4>Exercise: Add Precision to an Old Prompt</h4>
+          <p>Find a prompt you've used before. Rewrite it with: specific action verb, clear scope boundaries, stated constraints, and success criteria. Run it. See the difference.</p>
+        </div>
+
+        <div class="try-it-box" data-coach="section5">
+          <h5>🧠 Prompt Coach</h5>
+          <textarea placeholder="Write a precise task prompt: Replace 'help me with' with a specific verb, add scope, define success criteria, and specify constraints."></textarea>
+          <div class="try-it-btn-row">
+            <button class="try-it-btn analyze-btn" onclick="analyzePrompt(this)">Analyze My Prompt</button>
+            <button class="try-it-btn" onclick="copyTryIt(this)">Copy to Clipboard</button>
+          </div>
+          <div class="feedback-panel"></div>
+          <p class="try-it-hint">Get feedback here, then paste your improved prompt into Claude to see the difference.</p>
+        </div>
+
+        <p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted);">Good persona + good task = good foundation. Section 6 covers controlling the output format itself.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="accordion" id="accordion6">
+    <button class="accordion-header">
+      <div class="accordion-badge">6</div>
+      <div style="flex: 1;">
+        <div class="accordion-label">ENHANCING THE OUTPUT</div>
+        <div class="accordion-title">Enhance the Output</div>
+        <div class="accordion-subtitle">Control the shape of the response and you control the quality.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Section 6 of 12</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p>Even with a good role and task, the AI still has choices about format. Your job is to remove those choices.</p>
+
+        <h3>Output Control Techniques</h3>
+
+        <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Structure</h4>
+        <p>"Format as a table with columns for..." or "Structure this as an executive summary (1 paragraph) followed by detailed findings (3-4 paragraphs)."</p>
+
+        <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Length</h4>
+        <p>"Keep to 3 paragraphs" or "Maximum 200 words" or "One page, single-spaced."</p>
+
+        <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Tone</h4>
+        <p>"Write for a C-suite audience (assume no technical background)" or "Use casual, conversational tone as if explaining to a friend."</p>
+
+        <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Anchoring</h4>
+        <p>Provide the first row or first section of the output and let AI complete. This is surprisingly powerful. The model mirrors your structure and style.</p>
+
+        <h3>Output Requirements Template</h3>
+
+        <div class="code-block">OUTPUT REQUIREMENTS:
+- Format: [table / bullets / paragraphs / JSON / markdown]
+- Length: [word count / paragraph count / page count]
+- Tone: [formal / casual / technical / executive]
+- Must include: [specific elements]
+- Must exclude: [things to avoid]</div>
+
+        <h3>Anchoring Example</h3>
+        <p>Instead of asking for a comparison table from scratch, provide the header:</p>
+
+        <div class="code-block">Tool | Pricing | Best For | Limitation
+-----|---------|----------|------------
+[AI fills this in]</div>
+
+        <p>The AI will follow your exact format because you've shown the structure.</p>
+
+        <div class="step-card">
+          <div class="step-num">6.1</div>
+          <h4>Exercise: Write a Prompt with Full Output Specs</h4>
+          <p>Take a task you need done. Write a prompt that specifies: format, length, tone, what to include, what to exclude, and optionally provide an anchor (the first row/section). Run it. Compare to a prompt without these specs.</p>
+        </div>
+
+        <p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted);">Now you know what to do and how to shape the output. Section 7 covers what NOT to do.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="accordion" id="accordion7">
+    <button class="accordion-header">
+      <div class="accordion-badge">7</div>
+      <div style="flex: 1;">
+        <div class="accordion-label">COMMON MISTAKES</div>
+        <div class="accordion-title">What NOT to Do</div>
+        <div class="accordion-subtitle">What NOT to do matters as much as what to do.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Section 7 of 12</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p>Good prompting isn't just about what you add. It's about what you remove or prevent.</p>
+
+        <h3>The Seven Don'ts</h3>
+
+        <div class="step-card">
+          <div class="step-num">7.1</div>
+          <h4>Don't Use "Help Me With"</h4>
+          <p>Replace with specific verbs: analyze, compare, draft, evaluate, summarize. "Help me with my budget" becomes "Create a zero-based budget for Q2 with line items for [departments]."</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">7.2</div>
+          <h4>Don't Dump Your Entire Brain</h4>
+          <p>Be selective with context. More isn't always better. Give the AI what it needs to know, not everything you know. Relevant information beats volume.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">7.3</div>
+          <h4>Don't Ask Multiple Unrelated Questions</h4>
+          <p>One prompt = one clear objective. If you need multiple things, send multiple prompts. The AI's attention gets scattered otherwise.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">7.4</div>
+          <h4>Don't Forget to Specify the Audience</h4>
+          <p>Always include: "This is for [audience]." CEOs think differently than individual contributors. Customers think differently than investors. Make it explicit.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">7.5</div>
+          <h4>Don't Accept the First Output</h4>
+          <p>Iteration is where quality lives. The first output is usually 70% there. Refine it. Tell the AI what to change. Push back. That's when you get 90%+.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">7.6</div>
+          <h4>Don't Copy-Paste AI Output Without Review</h4>
+          <p>AI is a tool, not a replacement for judgment. Read what it produces. Fact-check claims. Adjust tone. Make it yours. This takes 10% extra time and prevents 90% of problems.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">7.7</div>
+          <h4>Don't Skip Examples When Format Matters</h4>
+          <p>If consistent formatting is important, show the AI an example. One good example beats 100 words of instruction.</p>
+        </div>
+
+        <h3>Guardrail Techniques</h3>
+
+        <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Negative Instructions</h4>
+        <p>"Do NOT include disclaimers or caveats" or "Do NOT mention competitors."</p>
+
+        <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Boundary Setting</h4>
+        <p>"Only use information from the attached document. Do not draw on external knowledge."</p>
+
+        <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Quality Gates</h4>
+        <p>"Before finalizing, verify your reasoning by checking your work against the original source."</p>
+
+        <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Hallucination Prevention</h4>
+        <p>"If you're unsure about a fact, say so explicitly. Accuracy matters more than sounding confident."</p>
+
+        <div class="info-box key">
+          <strong>The best prompts include both what to do AND what not to do.</strong> Negative instructions are just as important as positive ones.
+        </div>
+
+        <p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted);">You now know the fundamentals. Section 8 covers advanced psychology — ways to measurably improve output quality through language.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="accordion" id="accordion8">
+    <button class="accordion-header">
+      <div class="accordion-badge">8</div>
+      <div style="flex: 1;">
+        <div class="accordion-label">PSYCHOLOGICAL TRIGGERS</div>
+        <div class="accordion-title">Psychological Forcing Functions</div>
+        <div class="accordion-subtitle">Research-backed phrases that measurably improve AI output quality.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Section 8 of 12</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <div class="info-box key">
+          <strong>These aren't magic. They're pattern activation.</strong> Google DeepMind found that "take a deep breath" improved accuracy by 9%. Other studies show monetary framing ("This is worth $200 to me") improved output quality up to 45%. These work because AI models were trained on human text. Text written under high stakes tends to be higher quality. The model mirrors that pattern.
+        </div>
+
+        <h3>The Top Psychological Triggers</h3>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Trigger</th>
+              <th>What It Does</th>
+              <th>Research</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Stakes Framing</strong></td>
+              <td>Activates higher-effort patterns</td>
+              <td>EmotionPrompt +8-115%</td>
+              <td>"This presentation goes to our board of directors tomorrow"</td>
+            </tr>
+            <tr>
+              <td><strong>Monetary Framing</strong></td>
+              <td>Signals high-value task</td>
+              <td>Bsharat et al. +45%</td>
+              <td>"I'll tip $200 for a thorough analysis"</td>
+            </tr>
+            <tr>
+              <td><strong>Expert Identity</strong></td>
+              <td>Activates domain expertise</td>
+              <td>Bsharat et al. +60%</td>
+              <td>"You are a world-class strategist with 20 years of experience"</td>
+            </tr>
+            <tr>
+              <td><strong>Step-by-Step Breathing</strong></td>
+              <td>Slows reasoning, reduces errors</td>
+              <td>DeepMind +9%</td>
+              <td>"Take a deep breath and work through this step by step"</td>
+            </tr>
+            <tr>
+              <td><strong>Career Importance</strong></td>
+              <td>Triggers emotional engagement</td>
+              <td>EmotionPrompt study</td>
+              <td>"This is very important to my career"</td>
+            </tr>
+            <tr>
+              <td><strong>Consequence Framing</strong></td>
+              <td>Emphasizes accuracy</td>
+              <td>EmotionPrompt study</td>
+              <td>"Getting this wrong could cost us the account"</td>
+            </tr>
+            <tr>
+              <td><strong>Competence Challenge</strong></td>
+              <td>Activates competitive effort</td>
+              <td>ichigoSan article</td>
+              <td>"I don't think you can do this perfectly, but prove me wrong"</td>
+            </tr>
+            <tr>
+              <td><strong>Audience Specification</strong></td>
+              <td>Calibrates complexity level</td>
+              <td>Bsharat et al.</td>
+              <td>"Write this for an audience of senior executives"</td>
+            </tr>
+            <tr>
+              <td><strong>Verification Request</strong></td>
+              <td>Triggers self-checking</td>
+              <td>Chain-of-Thought research</td>
+              <td>"Double-check your work before responding"</td>
+            </tr>
+            <tr>
+              <td><strong>Best Effort Appeal</strong></td>
+              <td>Maximizes output quality</td>
+              <td>EmotionPrompt study</td>
+              <td>"Please give this your absolute best effort"</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Why These Work</h3>
+
+        <p>AI models were trained on billions of words of human text. When you write "take a deep breath," the model activates patterns from contexts where clarity matters — therapy sessions, meditation guides, high-pressure decision-making. It mirrors that calm, methodical thinking.</p>
+
+        <p>When you mention dollar amounts or career stakes, the model recognizes high-value contexts from its training data. Text written under high stakes tends to be more careful, more detailed, more precise. The model mirrors that pattern.</p>
+
+        <p>You're not tricking the AI. You're activating the right patterns by speaking its language.</p>
+
+        <h3>The EmotionPrompt Effect</h3>
+
+        <p>Microsoft researchers (2023) tested 11 emotional stimulus phrases across multiple LLMs. They found that adding emotional context to prompts improved performance by 8% on simple tasks and up to 115% on complex generative tasks. The key insight: emotional framing doesn't make the AI "feel" anything — it activates training patterns associated with higher-quality human output.</p>
+
+        <div class="info-box tip">
+          <strong>The best emotional stimuli from the study:</strong> career importance ("This is crucial for my career"), urgency ("I deeply need your help"), best effort ("Give this your absolute best"), and consequence framing ("Your response will significantly impact my work"). These outperformed neutral prompts across every model tested.
+        </div>
+
+        <h3>The Research</h3>
+
+        <div class="info-box tip">
+          <strong>Original Studies:</strong>
+          <ul style="margin-top: 8px; margin-left: 16px;">
+            <li>"Take a deep breath": Yang et al., Google DeepMind (2023) — <a href="https://arxiv.org/abs/2309.03409" target="_blank">arxiv.org/abs/2309.03409</a></li>
+            <li>"$200 tip" + 26 principles: Bsharat et al. (2023) — <a href="https://arxiv.org/abs/2312.16171" target="_blank">arxiv.org/abs/2312.16171</a></li>
+            <li>EmotionPrompt (+8-115%): Li et al., Microsoft (2023) — <a href="https://arxiv.org/abs/2307.11760" target="_blank">arxiv.org/abs/2307.11760</a></li>
+            <li>Practical application: ichigoSan (2024) — <a href="https://medium.com/@ichigoSan/i-accidentally-made-claude-45-smarter-heres-how-23ad0bf91ccf" target="_blank">Medium article</a></li>
+          </ul>
+        </div>
+
+        <h3>How to Use Them</h3>
+
+        <p>Don't stack all triggers at once. One or two that fit naturally are more effective than five that feel forced. Pick the ones that match your actual situation.</p>
+
+        <div class="quote-block">
+          "You're a world-class analyst. This research will be presented to our investors. Take a deep breath and work through the analysis methodically. I'd rather have thoughtful recommendations than quick ones."
+        </div>
+
+        <p>That's stakes framing + expert identity + step-by-step thinking. Three triggers, all natural. None forced.</p>
+
+        <div class="step-card">
+          <div class="step-num">8.1</div>
+          <h4>Exercise: Test These Triggers</h4>
+          <p>Take a task you'd normally do. Write two versions of the prompt: one with no psychological triggers, one with 1-2 triggers that fit naturally. Compare the outputs. You'll see measurable differences.</p>
+        </div>
+
+        <p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted);">Single prompts are useful. But recursive prompting is where the real power lives.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 9 -->
+  <div class="accordion" id="accordion9">
+    <button class="accordion-header">
+      <div class="accordion-badge">9</div>
+      <div style="flex: 1;">
+        <div class="accordion-label">RECURSIVE PROMPTING</div>
+        <div class="accordion-title">Recursive & Iterative Prompting</div>
+        <div class="accordion-subtitle">One prompt rarely gets it right. The best results come from conversation.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Section 9 of 12</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p>Recursive prompting is where you break a big task into multiple smaller prompts, or repeatedly refine a single prompt through multiple rounds of feedback. This is how you get from 70% to 95%.</p>
+
+        <h3>The Recursive Prompting Cycle</h3>
+
+        <div class="step-card">
+          <div class="step-num">9.1</div>
+          <h4>Initial Prompt</h4>
+          <p>Broad, clear context. Good scope but room for refinement.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">9.2</div>
+          <h4>Evaluate the Response</h4>
+          <p>What's good? What's missing? What's wrong? What needs adjustment?</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">9.3</div>
+          <h4>Refine with Specific Feedback</h4>
+          <p>"The tone is too formal. Make it conversational." or "Add more specifics about timeline." or "This feels generic. Add actual examples from our company."</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">9.4</div>
+          <h4>Evaluate Again</h4>
+          <p>Better? If not, repeat. If yes, move on.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">9.5</div>
+          <h4>Lock in the Pattern</h4>
+          <p>Once you have it right, save the final prompt. You now have a reusable template for this type of task.</p>
+        </div>
+
+        <h3>Practical Recursive Patterns</h3>
+
+        <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Pattern 1: Draft → Critique → Revise</h4>
+        <p>Round 1: "Write a draft proposal for..." Round 2: "Now critique this for [specific criteria]. What's weak? What's missing?" Round 3: "Now revise based on your critique."</p>
+
+        <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Pattern 2: Expand → Contract</h4>
+        <p>Round 1: "Give me 20 ideas for..." Round 2: "Now rank the top 5. Which are most feasible?" Round 3: "Develop the #1 idea in detail."</p>
+
+        <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Pattern 3: Multi-Perspective</h4>
+        <p>Round 1: "Analyze this from the customer's perspective." Round 2: "Now analyze from the CFO's perspective." Round 3: "Synthesize both views into a balanced recommendation."</p>
+
+        <h3>The "Ask Me" Technique</h3>
+
+        <p>Before diving in, let the AI ask questions. This is powerful:</p>
+
+        <div class="quote-block">
+          "If you need more context to do this well, ask me up to 5 questions before starting."
+        </div>
+
+        <p>Often the AI will ask exactly the right questions. You'll give answers that make the output dramatically better. You've just done the recursive work upfront.</p>
+
+        <h3>The Science: Recursive Language Models</h3>
+
+        <div class="info-box key">
+          <strong>MIT CSAIL Research (Zhang, Kraska, & Khattab, 2025)</strong> developed Recursive Language Models (RLMs) that decompose complex problems into smaller subproblems, solve each one, and combine the results. Their findings: RLMs handled inputs 100x beyond normal context window limits while outperforming base models by 28-58% on reasoning tasks. The paper is at <a href="https://arxiv.org/abs/2512.24601" target="_blank" style="color: var(--accent);">arxiv.org/abs/2512.24601</a>.
+        </div>
+
+        <p>You don't need to build an RLM. But the principle translates directly to how you prompt: instead of one massive prompt, decompose your task into sequential steps. Each step builds on the last. The AI processes a smaller, clearer problem each round — just like the research shows works best.</p>
+
+        <div class="step-card">
+          <div class="step-num">9.6</div>
+          <h4>Exercise: Go Three Rounds</h4>
+          <p>Pick a task. Prompt it once. Evaluate. Refine with specific feedback. Run again. Refine once more. Compare Round 1 vs Round 3. You'll see dramatic improvement.</p>
+        </div>
+
+        <div class="try-it-box" data-coach="section9">
+          <h5>🧠 Prompt Coach</h5>
+          <textarea placeholder="Write Round 1 of a recursive prompt. Then below it, write your Round 2 refinement feedback (e.g. 'Now critique this for...' or 'Revise the tone to...')"></textarea>
+          <div class="try-it-btn-row">
+            <button class="try-it-btn analyze-btn" onclick="analyzePrompt(this)">Analyze My Prompt</button>
+            <button class="try-it-btn" onclick="copyTryIt(this)">Copy to Clipboard</button>
+          </div>
+          <div class="feedback-panel"></div>
+          <p class="try-it-hint">Get feedback here, then paste your improved prompt into Claude to see the difference.</p>
+        </div>
+
+        <p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted);">Recursive iteration is powerful. But the real leverage is in context engineering.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 10 -->
+  <div class="accordion" id="accordion10">
+    <button class="accordion-header">
+      <div class="accordion-badge">10</div>
+      <div style="flex: 1;">
+        <div class="accordion-label">CONTEXT ENGINEERING</div>
+        <div class="accordion-title">Context Engineering</div>
+        <div class="accordion-subtitle">The future isn't better prompts. It's better context.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Section 10 of 12</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <div class="info-box key">
+          <strong>Context engineering is the shift from "how do I word this?" to "what information does AI need to do this well?"</strong> It's the difference between coaching an employee on their wording vs. giving them the right briefing materials.
+        </div>
+
+        <h3>The Context Hierarchy</h3>
+
+        <div class="step-card">
+          <div class="step-num">10.1</div>
+          <h4>System Context</h4>
+          <p>Who the AI is, how it behaves. In Cowork, this is your CLAUDE.md file.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">10.2</div>
+          <h4>Domain Context</h4>
+          <p>Background knowledge, terminology, industry. In Cowork, this is your ABOUT ME file and reference docs.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">10.3</div>
+          <h4>Task Context</h4>
+          <p>The specific job — constraints, goals, success criteria. This is your prompt.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">10.4</div>
+          <h4>Memory Context</h4>
+          <p>Past decisions, ongoing projects, preferences. In Cowork, this is your MEMORY.md file.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">10.5</div>
+          <h4>Environmental Context</h4>
+          <p>Tools available, files accessible, connected services. Cowork integrations, available connectors.</p>
+        </div>
+
+        <h3>Why Context > Prompts</h3>
+
+        <p>Here's the truth: a mediocre prompt with great context beats a brilliant prompt with no context. Every time.</p>
+
+        <p>If you've fed the AI your ABOUT ME (who you are, how you think, what matters to you), your CLAUDE.md (how you want to be treated), and your MEMORY (past decisions), then even a simple prompt will produce tailored, relevant output.</p>
+
+        <p>Without that context, you can write the fanciest prompt and get generic advice.</p>
+
+        <h3>Practical Implementation in Cowork</h3>
+
+        <ul class="checklist">
+          <li>Your ABOUT ME file = permanent persona context</li>
+          <li>Your CLAUDE.md = permanent behavioral context</li>
+          <li>Your MEMORY.md = accumulated decision context</li>
+          <li>Your PROJECTS/ folder = domain context for active work</li>
+        </ul>
+
+        <h3>The "Ask for More Context" Prompt</h3>
+
+        <p>Teach the AI to identify gaps in context:</p>
+
+        <div class="code-block">Before starting this task, review what I've given you.
+
+If you need additional context to do this well, ask me up to 5 specific questions. Do not proceed until you have what you need.
+
+Then execute the task.</div>
+
+        <p>This creates a feedback loop. The AI asks. You answer. Output improves dramatically.</p>
+
+        <div class="step-card">
+          <div class="step-num">10.6</div>
+          <h4>Exercise: Set Up Your Context Stack</h4>
+          <p>In Cowork, create or update: your ABOUT ME file (who you are, how you think), a CLAUDE.md file with your preferences, and a PROJECT MEMORY file for ongoing work. Then run the same prompt with and without that context. Notice the difference.</p>
+        </div>
+
+        <p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted);">You now know everything. Section 11 is your one-page reference card.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 11 -->
+  <div class="accordion" id="accordion11">
+    <button class="accordion-header">
+      <div class="accordion-badge">11</div>
+      <div style="flex: 1;">
+        <div class="accordion-label">QUICK REFERENCE</div>
+        <div class="accordion-title">One-Page Cheat Sheet</div>
+        <div class="accordion-subtitle">Print this. Pin it. Reference it daily until it's second nature.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Section 11 of 12</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <button class="print-btn" onclick="window.print()">🖨️ Print This Cheat Sheet</button>
+        <div id="cheat-sheet-print">
+        <div class="step-card highlighted">
+          <h4 style="font-size: 18px; margin-bottom: 16px;">THE FORMULA</h4>
+          <p style="margin-bottom: 8px;"><strong>Minimum viable prompt:</strong></p>
+          <p><strong>ROLE:</strong> You are a [specific expert] with experience in [domain].</p>
+          <p><strong>TASK:</strong> [Action verb] + [clear scope] + [constraints].</p>
+          <p><strong>OUTPUT:</strong> Format as [structure]. Include [requirements]. Keep to [length].</p>
+        </div>
+
+        <div class="step-card">
+          <h4 style="font-size: 18px; margin-bottom: 16px;">ENHANCE THE ROLE</h4>
+          <p style="margin-bottom: 8px;">Go from vague to specific:</p>
+          <p style="margin-bottom: 8px;">❌ "You are a marketer"</p>
+          <p style="margin-bottom: 8px;">✓ "You are a B2B SaaS marketing director with 10 years at companies scaling $2M-$20M ARR. You specialize in content-led growth."</p>
+          <p style="margin-top: 8px; color: var(--text-dim);">Persona stacking: "You combine [expert A] with [expert B]."</p>
+        </div>
+
+        <div class="step-card">
+          <h4 style="font-size: 18px; margin-bottom: 16px;">ENHANCE THE TASK</h4>
+          <p style="margin-bottom: 8px;">Checklist:</p>
+          <p style="margin-bottom: 4px;">☐ Action verb is specific (not "help with")</p>
+          <p style="margin-bottom: 4px;">☐ Scope is bounded (which? when? how many?)</p>
+          <p style="margin-bottom: 4px;">☐ Constraints are stated (audience, tone, length)</p>
+          <p style="margin-bottom: 4px;">☐ Success criteria defined (what's "good"?)</p>
+          <p style="margin-bottom: 4px;">☐ Edge cases addressed (if data missing, then...)</p>
+        </div>
+
+        <div class="step-card">
+          <h4 style="font-size: 18px; margin-bottom: 16px;">ENHANCE THE OUTPUT</h4>
+          <p style="margin-bottom: 8px;"><strong>Tell the AI explicitly:</strong></p>
+          <p style="margin-bottom: 4px;">• Format: [table / bullets / JSON / markdown]</p>
+          <p style="margin-bottom: 4px;">• Length: [word count / page count]</p>
+          <p style="margin-bottom: 4px;">• Tone: [formal / casual / technical]</p>
+          <p style="margin-bottom: 4px;">• Must include: [specific elements]</p>
+          <p style="margin-bottom: 4px;">• Must exclude: [what to avoid]</p>
+        </div>
+
+        <div class="step-card">
+          <h4 style="font-size: 18px; margin-bottom: 16px;">POWER-UPS (Use Strategically)</h4>
+          <p style="margin-bottom: 4px;">• "Take a deep breath and work step by step"</p>
+          <p style="margin-bottom: 4px;">• "This is important for [high stakes]"</p>
+          <p style="margin-bottom: 4px;">• "I'll tip $200 for a thorough analysis"</p>
+          <p style="margin-bottom: 4px;">• "Think step by step. Verify your work."</p>
+          <p style="margin-bottom: 8px;"><em>Don't stack all at once. Use 1-2 that fit naturally.</em></p>
+        </div>
+
+        <div class="step-card">
+          <h4 style="font-size: 18px; margin-bottom: 16px;">DON'TS (Critical)</h4>
+          <p style="margin-bottom: 4px;">❌ Don't use "help me with" — use specific verbs</p>
+          <p style="margin-bottom: 4px;">❌ Don't dump your entire brain — be selective</p>
+          <p style="margin-bottom: 4px;">❌ Don't ask multiple unrelated questions at once</p>
+          <p style="margin-bottom: 4px;">❌ Don't forget to specify the audience</p>
+          <p style="margin-bottom: 4px;">❌ Don't accept the first output — iterate</p>
+          <p style="margin-bottom: 4px;">❌ Don't copy-paste without review — make it yours</p>
+          <p style="margin-bottom: 4px;">❌ Don't skip examples when format matters</p>
+        </div>
+
+        <div class="step-card">
+          <h4 style="font-size: 18px; margin-bottom: 16px;">ITERATE</h4>
+          <p style="margin-bottom: 8px;"><strong>Round 1:</strong> Draft — get something down</p>
+          <p style="margin-bottom: 8px;"><strong>Round 2:</strong> Critique — what's missing? What's weak?</p>
+          <p style="margin-bottom: 8px;"><strong>Round 3:</strong> Revise — fix it</p>
+          <p style="margin-bottom: 8px;"><strong>Lock:</strong> Save the final prompt for reuse</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <h4 style="font-size: 18px; margin-bottom: 16px;">CONTEXT > PROMPTS</h4>
+          <p style="margin-bottom: 8px;">A mediocre prompt with great context beats a brilliant prompt with no context.</p>
+          <p style="margin-bottom: 4px;">Feed the AI:</p>
+          <p style="margin-bottom: 4px;">• Your ABOUT ME (who you are)</p>
+          <p style="margin-bottom: 4px;">• Your CLAUDE.md (how you want to work)</p>
+          <p style="margin-bottom: 4px;">• Your MEMORY (past decisions)</p>
+          <p style="margin-bottom: 4px;">• Relevant project files (domain context)</p>
+        </div>
+
+        <h3 style="margin-top: 32px;">Copy-Paste Templates</h3>
+
+        <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Quick Task Template</h4>
+        <div class="code-block">You are a [ROLE].
+
+TASK: [SPECIFIC ACTION] for [SCOPE].
+
+Constraints: [TIME/AUDIENCE/TONE].
+
+OUTPUT: Format as [STRUCTURE]. Keep to [LENGTH].</div>
+
+        <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Deep Analysis Template</h4>
+        <div class="code-block">You are a [ROLE] with [SPECIFIC EXPERIENCE].
+
+CONTEXT: [BACKGROUND ON SITUATION]
+
+TASK: Analyze [SPECIFIC THING]. Identify [KEY CRITERIA]. Recommend [WHAT YOU WANT].
+
+CONSTRAINTS: Use only [DATA SOURCE]. Audience: [WHO]. Tone: [STYLE].
+
+OUTPUT: Structure as [SECTIONS]. Include [ELEMENTS]. Exclude [WHAT NOT TO DO].
+
+If you need more context, ask me 5 questions before starting.</div>
+
+        <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Creative Brief Template</h4>
+        <div class="code-block">You are a [ROLE].
+
+OBJECTIVE: Create [THING] that [OUTCOME].
+
+CONTEXT: [WHO IT'S FOR, WHY IT MATTERS]
+
+TONE: [STYLE]. STYLE: [VISUAL/VOICE DIRECTION].
+
+CONSTRAINTS: [LENGTH/FORMAT/TABOOS]
+
+OUTPUT: [SPECIFIC STRUCTURE]. Include [REQUIRED ELEMENTS].</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 12 -->
+  <div class="accordion" id="accordion12">
+    <button class="accordion-header">
+      <div class="accordion-badge">12</div>
+      <div style="flex: 1;">
+        <div class="accordion-label">GO DEEPER</div>
+        <div class="accordion-title">Additional Resources & Practice</div>
+        <div class="accordion-subtitle">Where we got this and where to go deeper.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Section 12 of 12</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p>Everything here is either original research, battle-tested practice, or curated from the best sources in prompt engineering. Here's where to go deeper.</p>
+
+        <h3>Foundational Guides</h3>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th>Best For</th>
+              <th>Who</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank">Anthropic Prompting Best Practices</a></td>
+              <td>Official Claude guide, most comprehensive</td>
+              <td>Everyone</td>
+            </tr>
+            <tr>
+              <td><a href="https://developers.openai.com/api/docs/guides/prompt-engineering" target="_blank">OpenAI Prompt Engineering Guide</a></td>
+              <td>GPT-specific, strong on structured output</td>
+              <td>GPT users</td>
+            </tr>
+            <tr>
+              <td><a href="https://ai.google.dev/gemini-api/docs/prompting-strategies" target="_blank">Google Gemini Prompting Strategies</a></td>
+              <td>Direct, example-heavy, multimodal</td>
+              <td>Gemini users</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.promptingguide.ai/" target="_blank">Prompt Engineering Guide (Community)</a></td>
+              <td>Deep technical reference, framework heavy</td>
+              <td>Advanced users</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Frameworks & Theory</h3>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th>Best For</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Shelly Palmer: Mastering Prompt Engineering</td>
+              <td>Frameworks and meta-prompting for business</td>
+              <td><a href="https://shellypalmer.com/2024/11/mastering-the-art-of-prompt-engineering/" target="_blank">shellypalmer.com</a></td>
+            </tr>
+            <tr>
+              <td>MIT Sloan: Effective Prompts for AI</td>
+              <td>Academic but highly practical</td>
+              <td><a href="https://mitsloanedtech.mit.edu/ai/basics/effective-prompts/" target="_blank">mitsloanedtech.mit.edu</a></td>
+            </tr>
+            <tr>
+              <td>IBM Prompt Engineering Guide 2026</td>
+              <td>Enterprise perspective, structured approach</td>
+              <td><a href="https://www.ibm.com/think/prompt-engineering" target="_blank">ibm.com</a></td>
+            </tr>
+            <tr>
+              <td>DreamHost: 25 Claude Prompt Techniques</td>
+              <td>Empirical testing of what works</td>
+              <td><a href="https://www.dreamhost.com/blog/claude-prompt-engineering/" target="_blank">dreamhost.com</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Research & Psychology</h3>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Paper</th>
+              <th>Finding</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>"Take a Deep Breath" (Yang et al.)</td>
+              <td>+9% accuracy improvement just from phrasing</td>
+              <td><a href="https://arxiv.org/abs/2309.03409" target="_blank">arxiv.org/abs/2309.03409</a></td>
+            </tr>
+            <tr>
+              <td>Monetary Framing (Bsharat et al.)</td>
+              <td>Up to 45% improvement in output quality</td>
+              <td><a href="https://arxiv.org/abs/2312.16171" target="_blank">arxiv.org/abs/2312.16171</a></td>
+            </tr>
+            <tr>
+              <td>Recursive Language Models (Zhang et al., MIT)</td>
+              <td>Handle 100x larger inputs, 28-58% better outputs</td>
+              <td><a href="https://arxiv.org/abs/2512.24601" target="_blank">arxiv.org/abs/2512.24601</a></td>
+            </tr>
+            <tr>
+              <td>Anthropic Context Engineering</td>
+              <td>How to design full context stacks for AI agents</td>
+              <td><a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank">anthropic.com</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Practical & Applied</h3>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th>Best For</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>"I Accidentally Made Claude 45% Smarter"</td>
+              <td>Real-world application of psychological prompting</td>
+              <td><a href="https://medium.com/@ichigoSan/i-accidentally-made-claude-45-smarter-heres-how-23ad0bf91ccf" target="_blank">medium.com</a></td>
+            </tr>
+            <tr>
+              <td>Neil Sahota: Recursive Prompting</td>
+              <td>Practical recursive workflow guide</td>
+              <td><a href="https://www.neilsahota.com/recursive-prompting/" target="_blank">neilsahota.com</a></td>
+            </tr>
+            <tr>
+              <td>Harvard IIS: Cognitive Forcing Functions</td>
+              <td>Research on disrupting automation bias</td>
+              <td><a href="https://iis.seas.harvard.edu/papers/2021/bucinca21trust.pdf" target="_blank">harvard.edu</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>30-Minute Workshop Lesson Plan</h3>
+
+        <div class="info-box">
+          <strong>Run This in Your Team</strong>
+          <p style="margin-top: 8px; margin-bottom: 8px;"><strong>Minutes 0-5:</strong> Why AI ≠ Google (Section 1 — show the comparison table)</p>
+          <p style="margin-bottom: 8px;"><strong>Minutes 5-10:</strong> The RTO Framework (Section 2 — live demo: turn a bad prompt into good)</p>
+          <p style="margin-bottom: 8px;"><strong>Minutes 10-15:</strong> Hands-on exercise (everyone rewrites 2 of their own prompts using RTO)</p>
+          <p style="margin-bottom: 8px;"><strong>Minutes 15-20:</strong> Level up: Add persona depth + task precision (Sections 4-5 highlights)</p>
+          <p style="margin-bottom: 8px;"><strong>Minutes 20-25:</strong> Psychological power-ups (Section 8 — show the research, demo psychological triggers)</p>
+          <p style="margin-bottom: 8px;"><strong>Minutes 25-30:</strong> The future: context > prompts (Section 10 — connect to Cowork setup)</p>
+        </div>
+
+        <p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted);">You've reached the end of the guide. You now know more about prompting than 99% of users. Your next step: practice.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FINAL CTA -->
+<div class="final-cta">
+  <h2>Next Step: Practice</h2>
+  <p>Read this guide once. Then go back to Section 2, Section 4, and Section 11. Those are your working references. Practice one framework per week until it becomes muscle memory. Then teach someone else.</p>
+  <p style="margin-top: 16px; color: var(--text-dim);">Questions? <a href="mailto:stevegustafson@gmail.com">Reach out</a>.</p>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p><strong>The Prompting Playbook</strong> — Part of The Complete Guide to Claude Cowork</p>
+  <p style="margin-top: 12px;"><a href="index.html">← Back to Cowork Guide</a></p>
+  <p style="margin-top: 12px;">Written by Steve Gustafson — March 2026</p>
+  <p style="margin-top: 8px; color: var(--text-dim);">Research-backed, battle-tested, and optimized for getting real work done with AI.</p>
+</div>
+
+<script>
+  // Accordion toggle functionality
+  const headers = document.querySelectorAll('.accordion-header');
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const stickyNav = document.getElementById('stickyNav');
+  const stickyProgress = document.getElementById('stickyProgress');
+  const heroCtaBtn = document.getElementById('heroCtaBtn');
+
+  // Get TOC section to know when to show sticky nav
+  const tocSection = document.querySelector('.toc');
+
+  function scrollToHeader(header) {
+    const offset = 70;
+    const elementPosition = header.getBoundingClientRect().top + window.pageYOffset;
+    window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+  }
+
+  function copyTryIt(btn) {
+    const box = btn.closest('.try-it-box');
+    const textarea = box.querySelector('textarea');
+    navigator.clipboard.writeText(textarea.value).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = orig, 2000);
+    });
+  }
+
+  // ── PROMPT COACH ENGINE ──
+  function analyzePrompt(btn) {
+    const box = btn.closest('.try-it-box');
+    const textarea = box.querySelector('textarea');
+    const panel = box.querySelector('.feedback-panel');
+    const text = textarea.value.trim();
+    const section = box.getAttribute('data-coach');
+
+    if (!text || text.length < 10) {
+      panel.innerHTML = '<div class="feedback-item"><span class="fail">✗</span> Type a prompt first — at least a sentence or two so I can give useful feedback.</div>';
+      panel.classList.add('visible');
+      return;
+    }
+
+    const lower = text.toLowerCase();
+    const words = text.split(/\s+/).length;
+    let checks = [];
+    let score = 0;
+    let maxScore = 0;
+
+    // ── UNIVERSAL CHECKS (apply to all sections) ──
+    function check(pass, passMsg, failMsg, weight) {
+      weight = weight || 1;
+      maxScore += weight;
+      if (pass) { score += weight; checks.push({s:'pass', m:passMsg}); }
+      else { checks.push({s:'fail', m:failMsg}); }
+    }
+    function tip(msg) { checks.push({s:'tip', m:msg}); }
+
+    // Length check
+    check(words >= 15, 'Good length — enough detail to work with (' + words + ' words).', 'Very short (' + words + ' words). Longer prompts with more context typically get better results.', 1);
+
+    // Vague verb detection
+    const vagueVerbs = ['help me', 'assist me', 'can you', 'could you', 'i need help', 'do something'];
+    const hasVague = vagueVerbs.some(v => lower.includes(v));
+    check(!hasVague, 'No vague verbs detected — using direct language.', 'Found vague phrasing ("' + vagueVerbs.find(v => lower.includes(v)) + '"). Replace with a specific action verb: analyze, draft, compare, create, evaluate, summarize.', 1);
+
+    // ── SECTION-SPECIFIC CHECKS ──
+    if (section === 'section1') {
+      // Section 1: Stop Googling — checks if it's a conversation vs a search query
+      check(words >= 20, 'This reads like a conversation, not a search query. Good shift.', 'This still looks search-engine short. AI works best when you give it context and specifics — write more like you\'re briefing a colleague.', 2);
+
+      const hasContext = lower.includes('context') || lower.includes('background') || lower.includes('because') || lower.includes('the situation') || lower.includes('i\'m working on') || lower.includes('we are') || lower.includes('my company') || lower.includes('our');
+      check(hasContext, 'You\'re giving context — the AI can tailor its response to your situation.', 'Add context. Why do you need this? What\'s the situation? "Context:" or "Background:" helps the AI personalize its answer instead of giving generic advice.', 2);
+
+      const hasRole = /you are|act as|as a|you\'re a/i.test(text);
+      check(hasRole, 'You\'re assigning a role — smart move for a first prompt.', 'Try adding a role: "You are a [specific expert]." This shifts the AI from general-purpose to specialist.', 1);
+
+      const isQuestion = text.includes('?') && words < 15;
+      if (isQuestion) tip('This looks like a question you\'d type into Google. Try rephrasing as: "You are a [role]. I need you to [task]. Here\'s the context: [details]."');
+    }
+
+    else if (section === 'section2') {
+      // Section 2: MVP Prompt — checks for RTO framework
+      const hasRole = /you are|act as|as a|you\'re a|role:/i.test(text);
+      const hasTask = /\b(analyze|draft|create|write|build|compare|evaluate|summarize|design|develop|plan|review|outline|generate|prepare|assess|identify|recommend|list|explain)\b/i.test(text);
+      const hasOutput = /format|output|structure|bullet|table|markdown|json|list of|word count|keep.*(short|brief|under)|no more than|page|paragraph/i.test(text);
+
+      check(hasRole, '✓ ROLE detected — you\'re telling the AI who to be.', '✗ Missing ROLE. Start with "You are a [specific expert]..." This is the R in RTO.', 2);
+      check(hasTask, '✓ TASK detected — clear action verb found.', '✗ Missing clear TASK. Use a specific action verb: analyze, draft, create, compare, evaluate. This is the T in RTO.', 2);
+      check(hasOutput, '✓ OUTPUT format specified — the AI knows what shape to deliver.', '✗ Missing OUTPUT format. Tell the AI: "Format as [bullets/table/memo/JSON]" or "Keep to [length]." This is the O in RTO.', 2);
+
+      if (hasRole && hasTask && hasOutput) tip('All three RTO components present. This is a solid minimum viable prompt. Now try enhancing each piece using Sections 4-6.');
+      if (hasRole && hasTask && !hasOutput) tip('You\'re 2/3 of the way. Adding output format is often the biggest quality unlock — it eliminates guessing.');
+    }
+
+    else if (section === 'section4') {
+      // Section 4: Enhance the Role — persona depth
+      const hasRole = /you are|act as|you\'re a/i.test(text);
+      const hasYears = /\d+\s*(year|yr)/i.test(text);
+      const hasSpecialty = /speciali|focus|expert in|known for|background in/i.test(text);
+      const hasBias = /bias toward|prefer|lean toward|philosophy|approach is|style is|believe in/i.test(text);
+      const hasTitle = /director|manager|ceo|cto|vp|analyst|engineer|consultant|strategist|architect|designer|lead|senior|head of|chief/i.test(text);
+      const hasIndustry = /saas|b2b|b2c|healthcare|fintech|ecommerce|startup|enterprise|agency|consulting|retail|tech/i.test(text);
+
+      check(hasRole, 'Role assignment detected.', 'Start with "You are a..." to establish the persona.', 1);
+      check(hasTitle, 'Specific job title found — much better than a generic "expert."', 'Add a specific title (e.g., "marketing director" not just "marketer"). Specificity activates better patterns.', 2);
+      check(hasYears, 'Experience level specified — this calibrates seniority of the output.', 'Add years of experience: "with 15 years in..." This calibrates whether you get junior vs. senior-level thinking.', 1);
+      check(hasSpecialty, 'Specialty or focus area defined — narrows the expertise.', 'Add a specialty: "You specialize in [niche]." Generic roles get generic answers.', 2);
+      check(hasBias || hasIndustry, 'Domain context or perspective specified.', 'Add industry context or a perspective bias: "in B2B SaaS" or "with a bias toward data-driven decisions." This shapes the lens.', 1);
+
+      if (words > 40) tip('Great depth on this persona. Consider saving it as a reusable template for similar tasks.');
+    }
+
+    else if (section === 'section5') {
+      // Section 5: Enhance the Task — precision & constraints
+      const hasActionVerb = /\b(analyze|draft|create|write|build|compare|evaluate|summarize|design|develop|plan|review|outline|generate|prepare|assess|identify|recommend|audit|map|prioritize|diagnose|benchmark|forecast|calculate)\b/i.test(text);
+      const hasScope = /\b(for|about|covering|focused on|limited to|specifically|only|between|from .* to)\b/i.test(text);
+      const hasConstraints = /\b(must|should|don't|do not|avoid|never|always|ensure|make sure|include|exclude|no more than|at least|maximum|minimum)\b/i.test(text);
+      const hasAudience = /\b(audience|reader|for .*(team|exec|board|client|customer|stakeholder|beginner|expert))\b/i.test(text);
+      const hasSuccess = /\b(success|criteria|goal|objective|measure|outcome|deliverable|result should)\b/i.test(text);
+      const hasEdgeCases = /\b(if .*then|edge case|exception|fallback|missing|unknown|unclear|when .* isn't)\b/i.test(text);
+
+      check(hasActionVerb, 'Specific action verb found — clear direction.', 'Use a specific action verb instead of "help with" or "work on." Try: analyze, draft, compare, evaluate, audit, prioritize.', 2);
+      check(hasScope, 'Scope detected — the task has boundaries.', 'Add scope: What specifically? Which timeframe? How many? Unbounded tasks get unfocused results.', 2);
+      check(hasConstraints, 'Constraints found — you\'re telling the AI what to include or avoid.', 'Add constraints: "Must include...", "Don\'t include...", "Keep under..." Constraints force precision.', 1);
+      check(hasAudience, 'Audience specified — output will be calibrated.', 'Specify the audience: "This is for [senior executives / technical team / new hires]." Same task, totally different output.', 1);
+      check(hasSuccess || hasEdgeCases, 'Success criteria or edge case handling detected.', 'Define what "good" looks like: "A good result would include..." or handle edge cases: "If data is missing, then..."', 1);
+    }
+
+    else if (section === 'section9') {
+      // Section 9: Recursive — multi-round prompting
+      const rounds = text.split(/\n\n|\nround\s*\d|step\s*\d|\nthen\b/i);
+      const hasMultipleRounds = rounds.length >= 2 || /round\s*[2-9]|step\s*[2-9]|then\b|next\b|now\b.*revise|now\b.*critique|follow.?up/i.test(lower);
+      const hasCritique = /critique|review|what's wrong|what's missing|what's weak|evaluate|assess|grade|score|improve/i.test(lower);
+      const hasRevision = /revise|rewrite|improve|refine|update|adjust|fix|make it|change the|try again/i.test(lower);
+      const hasSpecificFeedback = /tone|format|length|too (formal|casual|long|short|vague|generic)|more (specific|detail|concise|actionable)|less (wordy|formal)/i.test(lower);
+      const hasLockStep = /save|template|reuse|lock|final version|keep this/i.test(lower);
+
+      check(hasMultipleRounds, 'Multiple rounds detected — you\'re iterating, not one-shotting.', 'Write at least two rounds. Round 1: your initial prompt. Round 2: your refinement feedback (e.g., "Now critique this for..." or "Revise the tone to...").', 2);
+      check(hasCritique, 'Critique/evaluation step found — you\'re asking the AI to self-assess.', 'Add a critique step: "Now review what you wrote. What\'s weak? What\'s missing?" Self-critique before revision dramatically improves output.', 2);
+      check(hasRevision, 'Revision instruction detected — closing the feedback loop.', 'Add a revision step: "Now revise based on your critique" or "Rewrite with these changes:..." This is where quality jumps happen.', 1);
+      check(hasSpecificFeedback, 'Specific feedback criteria found — not just "make it better."', 'Be specific about what to change: "The tone is too formal" or "Add more data points." Vague feedback gets vague revisions.', 1);
+
+      if (hasLockStep) tip('Smart — you\'re saving the pattern for reuse. This is how you build a prompt library over time.');
+      if (!hasMultipleRounds) tip('The power of recursive prompting is in the iteration. Try: Round 1 (draft), Round 2 (critique), Round 3 (revise). Compare Round 1 vs Round 3.');
+    }
+
+    // ── SCORE & RENDER ──
+    const pct = Math.round((score / maxScore) * 100);
+    let color = pct >= 80 ? 'var(--green)' : pct >= 50 ? 'var(--yellow)' : 'var(--red)';
+    let verdict = pct >= 80 ? 'Strong prompt' : pct >= 50 ? 'Getting there' : 'Needs work';
+
+    let html = '<div class="feedback-score"><div class="feedback-score-num" style="color:' + color + '">' + pct + '%</div><div><div style="font-weight:600;">' + verdict + '</div><div class="feedback-score-label">' + score + ' of ' + maxScore + ' checks passed</div></div></div>';
+    html += '<div class="feedback-score-bar"><div class="feedback-score-fill" style="width:' + pct + '%;background:' + color + '"></div></div>';
+
+    checks.forEach(function(c) {
+      const icon = c.s === 'pass' ? '<span class="pass">✓</span>' : c.s === 'fail' ? '<span class="fail">✗</span>' : '<span class="tip">💡</span>';
+      html += '<div class="feedback-item">' + icon + ' ' + c.m + '</div>';
+    });
+
+    html += '<div class="feedback-cta">Improve your prompt based on the feedback above, then click <strong>Analyze</strong> again — or <strong>Copy to Clipboard</strong> and go test it in Claude.</div>';
+
+    panel.innerHTML = html;
+    panel.classList.add('visible');
+
+    // Animate the score bar
+    const fill = panel.querySelector('.feedback-score-fill');
+    fill.style.width = '0%';
+    requestAnimationFrame(() => { fill.style.width = pct + '%'; });
+  }
+
+  function updateStickyNav() {
+    // Update sticky nav visibility and content based on scroll position
+    if (window.scrollY > tocSection.offsetTop) {
+      stickyNav.classList.add('visible');
+      // Find which accordion is open and update progress
+      headers.forEach((header, index) => {
+        if (header.classList.contains('open')) {
+          const stepNum = index + 1;
+          stickyProgress.textContent = `Section ${stepNum} of 12`;
+        }
+      });
+    } else {
+      stickyNav.classList.remove('visible');
+    }
+
+    // Show back-to-top button when scrolled down more than 400px
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    if (backToTopBtn) {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }
+  }
+
+  window.addEventListener('scroll', updateStickyNav);
+
+  // Hero CTA button - open accordion1 and scroll to it
+  if (heroCtaBtn) {
+    heroCtaBtn.addEventListener('click', function() {
+      const accordion = document.getElementById('accordion1');
+      if (accordion) {
+        const header = accordion.querySelector('.accordion-header');
+        const content = accordion.querySelector('.accordion-content');
+
+        // Close all other accordions
+        headers.forEach(h => {
+          h.classList.remove('open');
+          h.closest('.accordion').querySelector('.accordion-content').classList.remove('open');
+        });
+
+        // Open accordion1
+        header.classList.add('open');
+        content.classList.add('open');
+
+        // Scroll header to top of viewport using requestAnimationFrame
+        requestAnimationFrame(() => scrollToHeader(header));
+      }
+    });
+  }
+
+  // Create and add back-to-top button
+  const backToTopContainer = document.createElement('button');
+  backToTopContainer.id = 'backToTopBtn';
+  backToTopContainer.className = 'back-to-top';
+  backToTopContainer.innerHTML = '↑';
+  document.body.appendChild(backToTopContainer);
+
+  backToTopContainer.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Toggle accordion on header click
+  headers.forEach((header, index) => {
+    header.addEventListener('click', function() {
+      const accordion = this.closest('.accordion');
+      const content = accordion.querySelector('.accordion-content');
+      const isOpen = this.classList.contains('open');
+
+      // Close all other accordions
+      headers.forEach((h, i) => {
+        if (i !== index) {
+          h.classList.remove('open');
+          h.closest('.accordion').querySelector('.accordion-content').classList.remove('open');
+        }
+      });
+
+      // Toggle current accordion
+      this.classList.toggle('open');
+      content.classList.toggle('open');
+
+      // Update sticky nav when accordion changes
+      updateStickyNav();
+
+      // Scroll to top of this section when opening using requestAnimationFrame
+      if (!isOpen) {
+        requestAnimationFrame(() => scrollToHeader(this));
+      }
+    });
+  });
+
+  // TOC link click functionality
+  tocLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const accordionId = this.getAttribute('data-accordion');
+      const accordion = document.getElementById('accordion' + accordionId);
+
+      if (accordion) {
+        const header = accordion.querySelector('.accordion-header');
+        const content = accordion.querySelector('.accordion-content');
+
+        // Close all other accordions instantly (no transition) so scroll calc is accurate
+        headers.forEach(h => {
+          const c = h.closest('.accordion').querySelector('.accordion-content');
+          h.classList.remove('open');
+          c.style.transition = 'none';
+          c.classList.remove('open');
+        });
+
+        // Force reflow so instant close takes effect
+        void accordion.offsetHeight;
+
+        // Restore transitions and open target accordion
+        headers.forEach(h => {
+          h.closest('.accordion').querySelector('.accordion-content').style.transition = '';
+        });
+        header.classList.add('open');
+        content.classList.add('open');
+
+        // Update sticky nav when accordion changes
+        updateStickyNav();
+
+        // Scroll header to top of viewport — positions are now accurate
+        requestAnimationFrame(() => scrollToHeader(header));
+      }
+    });
+  });
+
+  // Initialize on page load
+  window.addEventListener('load', updateStickyNav);
+</script>
+
+</body>
+</html>
