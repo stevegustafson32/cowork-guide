@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Audience Simulator — Getting Started Guide</title>
+<style>
+  :root {
+    --accent: #0A66C2;
+    --accent-light: #378FE9;
+    --accent-dim: rgba(10,102,194,0.12);
+    --green: #057642;
+    --green-dim: rgba(5,118,66,0.12);
+    --orange: #B24020;
+    --orange-dim: rgba(178,64,32,0.12);
+    --purple: #7C3AED;
+    --purple-dim: rgba(124,58,237,0.12);
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface-hover: #22252f;
+    --border: #2a2d3a;
+    --text: #e8e8ed;
+    --text-dim: #8b8d98;
+    --text-bright: #ffffff;
+    --radius: 10px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  /* Hero */
+  .hero { text-align: center; padding: 80px 24px 60px; max-width: 800px; margin: 0 auto; }
+  .hero .badge { display: inline-block; background: var(--accent-dim); color: var(--accent-light); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 20px; }
+  .hero h1 { font-size: 42px; font-weight: 800; line-height: 1.15; margin-bottom: 16px; color: var(--text-bright); }
+  .hero h1 em { font-style: normal; color: var(--accent-light); }
+  .hero .sub { font-size: 18px; color: var(--text-dim); max-width: 580px; margin: 0 auto 32px; line-height: 1.5; }
+  .hero .cta { display: inline-block; background: var(--accent); color: white; padding: 14px 32px; border-radius: 8px; font-size: 16px; font-weight: 600; text-decoration: none; transition: background 0.2s; cursor: pointer; border: none; }
+  .hero .cta:hover { background: var(--accent-light); }
+
+  /* Container */
+  .container { max-width: 800px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* TOC */
+  .toc { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 48px; }
+  .toc-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; cursor: pointer; transition: all 0.2s; text-decoration: none; color: var(--text); }
+  .toc-item:hover { background: var(--surface-hover); border-color: var(--accent); }
+  .toc-item .num { font-size: 13px; font-weight: 700; color: var(--accent-light); margin-bottom: 4px; }
+  .toc-item .title { font-size: 15px; font-weight: 600; color: var(--text-bright); }
+  .toc-item .desc { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+
+  /* Accordion */
+  .section { margin-bottom: 8px; }
+  .accordion-header { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: all 0.2s; border-left: 3px solid transparent; user-select: none; }
+  .accordion-header:hover { background: var(--surface-hover); border-left-color: var(--accent); }
+  .accordion-header.active { border-left-color: var(--accent); background: var(--surface-hover); }
+  .accordion-header .num-badge { background: var(--accent); color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .accordion-header .header-text { flex: 1; }
+  .accordion-header .header-text .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim); font-weight: 600; }
+  .accordion-header .header-text h2 { font-size: 18px; font-weight: 700; color: var(--text-bright); margin-top: 2px; }
+  .chevron { width: 20px; height: 20px; transition: transform 0.3s ease; flex-shrink: 0; }
+  .chevron path { stroke: var(--text-dim); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .accordion-header.active .chevron { transform: rotate(180deg); }
+
+  .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .accordion-content.open { max-height: 8000px; }
+  .accordion-body { padding: 24px; background: var(--surface); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius) var(--radius); margin-top: -8px; }
+
+  /* Content elements */
+  .accordion-body p { margin-bottom: 16px; color: var(--text); line-height: 1.65; }
+  .accordion-body h3 { font-size: 16px; font-weight: 700; color: var(--text-bright); margin: 28px 0 12px; }
+  .accordion-body h3:first-child { margin-top: 0; }
+  .accordion-body ul { margin: 0 0 16px 20px; }
+  .accordion-body li { margin-bottom: 8px; color: var(--text); }
+  .accordion-body strong { color: var(--text-bright); }
+  .accordion-body code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: 'Monaco', 'Courier New', monospace; }
+
+  /* Info boxes */
+  .info-box { border-radius: 8px; padding: 16px 20px; margin: 16px 0; border-left: 3px solid; }
+  .info-box.tip { background: var(--green-dim); border-color: var(--green); }
+  .info-box.warn { background: var(--orange-dim); border-color: var(--orange); }
+  .info-box.key { background: var(--accent-dim); border-color: var(--accent); }
+  .info-box .box-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+  .info-box.tip .box-label { color: var(--green); }
+  .info-box.warn .box-label { color: var(--orange); }
+  .info-box.key .box-label { color: var(--accent-light); }
+  .info-box p { margin-bottom: 0; font-size: 14px; }
+
+  /* Feature cards */
+  .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .feature-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+  .feature-card .icon { font-size: 24px; margin-bottom: 8px; }
+  .feature-card h4 { font-size: 14px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px; }
+  .feature-card p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+
+  /* Conversation mockup */
+  .convo { margin: 16px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .convo .msg { padding: 14px 18px; font-size: 14px; line-height: 1.5; }
+  .convo .user { background: var(--accent-dim); color: var(--accent-light); border-bottom: 1px solid var(--border); }
+  .convo .user::before { content: 'You: '; font-weight: 700; }
+  .convo .claude { background: rgba(255,255,255,0.03); color: var(--text); }
+  .convo .claude::before { content: 'Claude: '; font-weight: 700; color: var(--purple); }
+
+  /* Output example */
+  .output-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; }
+  .output-box .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--purple); font-weight: 700; margin-bottom: 12px; }
+  .output-box .content { font-size: 14px; color: var(--text); line-height: 1.65; }
+
+  /* Segment cards */
+  .segment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .segment-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+  .segment-card h4 { font-size: 14px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px; }
+  .segment-card p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+  .segment-card .size { font-size: 11px; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px; }
+
+  /* CTA section */
+  .cta-section { text-align: center; padding: 48px 24px; margin-top: 32px; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
+  .cta-section h2 { font-size: 24px; color: var(--text-bright); margin-bottom: 12px; }
+  .cta-section p { color: var(--text-dim); margin-bottom: 24px; }
+  .cta-section .cta { display: inline-block; background: var(--accent); color: white; padding: 14px 32px; border-radius: 8px; font-size: 16px; font-weight: 600; text-decoration: none; cursor: pointer; border: none; }
+
+  /* Back to top */
+  .back-to-top { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: white; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: opacity 0.3s; border: none; font-size: 18px; z-index: 100; }
+  .back-to-top.visible { opacity: 1; }
+
+  /* Footer */
+  .footer { padding: 48px 24px; text-align: center; color: var(--text-dim); font-size: 13px; line-height: 1.8; max-width: 800px; margin: 0 auto; }
+  .footer a { color: var(--accent-light); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  /* Ecosystem section */
+  .ecosystem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .ecosystem-card { background: var(--surface-hover); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-decoration: none; color: var(--text); transition: all 0.2s; }
+  .ecosystem-card:hover { border-color: var(--accent); background: var(--surface); }
+  .ecosystem-card h4 { font-size: 14px; font-weight: 700; color: var(--text-bright); margin-bottom: 6px; }
+  .ecosystem-card p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+  .ecosystem-card .arrow { display: inline-block; margin-left: 4px; transition: transform 0.2s; }
+  .ecosystem-card:hover .arrow { transform: translateX(4px); }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 28px; }
+    .feature-grid, .segment-grid, .ecosystem-grid { grid-template-columns: 1fr; }
+    .toc { grid-template-columns: 1fr; }
+    .hero { padding: 48px 16px 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="badge">LinkedIn Audience Simulator &mdash; Cowork Plugin</div>
+  <h1>Know who'll <em>engage</em> — before you hit post.</h1>
+  <p class="sub">Your LinkedIn audience is segmented by role, seniority, industry, and behavior. The Audience Simulator predicts exactly which segments will react to your content, scores your drafts 0-100, and calibrates predictions as you post. Post with confidence.</p>
+  <button class="cta" onclick="document.getElementById('s2').scrollIntoView({behavior:'smooth'})">Get Started</button>
+</div>
+
+<div class="container" id="toc-section">
+
+  <!-- TOC -->
+  <div class="toc">
+    <a class="toc-item" href="#s1"><div class="num">01</div><div class="title">How It Works</div><div class="desc">Segments, scoring, calibration</div></a>
+    <a class="toc-item" href="#s2"><div class="num">02</div><div class="title">Prerequisites</div><div class="desc">What you need first</div></a>
+    <a class="toc-item" href="#s3"><div class="num">03</div><div class="title">Setup</div><div class="desc">One command. Done.</div></a>
+    <a class="toc-item" href="#s4"><div class="num">04</div><div class="title">What You Get</div><div class="desc">Scores, segments, insights</div></a>
+    <a class="toc-item" href="#s5"><div class="num">05</div><div class="title">Talk to Claude</div><div class="desc">Example conversations</div></a>
+    <a class="toc-item" href="#s6"><div class="num">06</div><div class="title">The Ecosystem</div><div class="desc">Plugins 1, 2, and 3</div></a>
+  </div>
+
+  <!-- Section 1: How It Works -->
+  <div class="section" id="s1">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">1</div>
+      <div class="header-text">
+        <div class="label">How It Works</div>
+        <h2>Parse your network, predict engagement, calibrate over time</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>The Audience Simulator depends on data from Plugin 1 (LinkedIn Feed Tracker). It reads your connections and their engagement patterns, builds audience segments, then scores any draft post you give it.</p>
+
+        <h3>The data flow</h3>
+        <p>When you run setup:</p>
+        <ul>
+          <li><strong>Parses 2,000+ connections</strong> — Extracts roles, seniorities, industries from headlines</li>
+          <li><strong>Creates 4 audience segments</strong> — Executives, Technical Leaders, Growth & Sales, General Audience</li>
+          <li><strong>Tracks engagement patterns</strong> — Measures which topics each segment cares about</li>
+          <li><strong>Stores locally</strong> — Everything lives in your feeds.db from Plugin 1</li>
+        </ul>
+
+        <h3>The audience segments</h3>
+        <div class="segment-grid">
+          <div class="segment-card">
+            <h4>Executives</h4>
+            <p>VPs, C-suite, directors. Engage with leadership, strategy, business outcomes.</p>
+            <div class="size">Typically 5-10% of network</div>
+          </div>
+          <div class="segment-card">
+            <h4>Technical Leaders</h4>
+            <p>Engineers, architects, CTOs. Engage with technical depth, infrastructure, ML/AI.</p>
+            <div class="size">Typically 20-30% of network</div>
+          </div>
+          <div class="segment-card">
+            <h4>Growth & Sales</h4>
+            <p>Sales, marketing, ops, growth PMs. Engage with metrics, growth tactics, user insights.</p>
+            <div class="size">Typically 15-25% of network</div>
+          </div>
+          <div class="segment-card">
+            <h4>General Audience</h4>
+            <p>Broader connections. Engage with accessible, personal, human-centered content.</p>
+            <div class="size">Typically 40-60% of network</div>
+          </div>
+        </div>
+
+        <h3>How scoring works</h3>
+        <p>When you ask Claude to score a draft post:</p>
+        <ol style="margin: 16px 0 16px 20px;">
+          <li><strong>Topic detection</strong> — Claude tags your draft with 1-3 topics (AI/ML, Leadership, Growth, etc.)</li>
+          <li><strong>Hook analysis</strong> — Identifies hook type (question, story, data-driven, contrarian)</li>
+          <li><strong>Per-segment scoring</strong> — For each of your 4 segments, calculates topic affinity + hook strength</li>
+          <li><strong>Aggregate score</strong> — Combines per-segment predictions weighted by segment size</li>
+          <li><strong>Calibration</strong> — After 10+ tracked posts, adjusts predictions based on actual results</li>
+        </ol>
+
+        <div class="info-box key">
+          <div class="box-label">Why this works</div>
+          <p>You're not guessing what your audience wants. You're predicting what <em>your specific segments</em> have historically engaged with, then learning from every post you publish.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Prerequisites -->
+  <div class="section" id="s2">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">2</div>
+      <div class="header-text">
+        <div class="label">Prerequisites</div>
+        <h2>What you need before starting</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <h3>Required: Plugin 1 (LinkedIn Feed Tracker)</h3>
+        <p>The Audience Simulator is Plugin 3. It depends on Plugin 1 to provide:</p>
+        <ul>
+          <li>Your connections list (2,000+)</li>
+          <li>Your network's posts and engagement metrics</li>
+          <li>Your own post performance data</li>
+          <li>A local SQLite database (feeds.db) to store everything</li>
+        </ul>
+
+        <div class="info-box warn">
+          <div class="box-label">Check the dependency</div>
+          <p>If you haven't installed Plugin 1 yet, <a href="https://stevegustafson32.github.io/cowork-guide/linkedin-feed-tracker.html" style="color: var(--accent-light);">go set that up first</a>. It takes about 10 minutes. Come back here once Plugin 1 is running.</p>
+        </div>
+
+        <h3>Data readiness</h3>
+        <p><strong>Ideally, let Plugin 1 collect data for 2+ weeks</strong> before running setup for Plugin 3. Here's why:</p>
+        <ul>
+          <li><strong>Cold start (0-7 days of data):</strong> Predictions are less accurate (MAE ~8 reactions)</li>
+          <li><strong>Building calibration (1-2 weeks):</strong> Accuracy improves as you post and track results</li>
+          <li><strong>Medium confidence (2+ weeks):</strong> Predictions become reliable (MAE ~2-3 reactions)</li>
+        </ul>
+
+        <p>If you're just starting Plugin 1 now, don't worry. Plugin 3 will still work immediately—it just gets better over time as you post and let it learn.</p>
+
+        <h3>What you'll need during setup</h3>
+        <ul>
+          <li>Your Cowork workspace folder (the same one Plugin 1 uses)</li>
+          <li>Access to Claude inside Cowork</li>
+          <li>2-5 minutes to run the setup command</li>
+        </ul>
+
+        <div class="info-box tip">
+          <div class="box-label">Pro tip</div>
+          <p>Revisit setup after 2 weeks of Plugin 1 collecting data. The initial segment calibration will be stronger with more historical posts to analyze.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Setup -->
+  <div class="section" id="s3">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">3</div>
+      <div class="header-text">
+        <div class="label">Setup</div>
+        <h2>One command. Everything initializes.</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <h3>Installation</h3>
+        <p>Install the plugin from the Cowork Plugin Directory, or clone from GitHub:</p>
+        <p><code>git clone https://github.com/stevegustafson32/linkedin-audience-simulator-plugin ~/cowork-plugins/</code></p>
+
+        <h3>Setup in Cowork</h3>
+        <p>Open Cowork and run one command:</p>
+
+        <div class="output-box" style="margin: 16px 0;">
+          <div class="label">Command</div>
+          <div class="content"><code>/setup-audience-simulator</code></div>
+        </div>
+
+        <p>Claude will:</p>
+        <ol style="margin: 16px 0 16px 20px;">
+          <li>Check that Plugin 1 is installed and has data</li>
+          <li>Parse your 2,000+ connections and extract roles/seniorities</li>
+          <li>Create and assign the 4 audience segments</li>
+          <li>Analyze your network's recent posts to build topic affinities</li>
+          <li>Initialize the database tables for predictions and calibration</li>
+        </ol>
+
+        <p>The whole process takes 1-2 minutes. Once done, you're ready to score posts.</p>
+
+        <div class="info-box tip">
+          <div class="box-label">That's it</div>
+          <p>No configuration files to edit. No environment variables. Just run the command and you're live.</p>
+        </div>
+
+        <h3>Available commands</h3>
+        <ul>
+          <li><code>/setup-audience-simulator</code> — Initialize segments and database</li>
+          <li><code>/score</code> — Score a draft post (0-100 + per-segment breakdown)</li>
+          <li><code>/audience</code> — View your segment sizes and engagement patterns</li>
+          <li><code>/deep-dive [segment]</code> — Explore a specific segment in detail</li>
+          <li><code>/accuracy</code> — Review prediction calibration and accuracy trends</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: What You Get -->
+  <div class="section" id="s4">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">4</div>
+      <div class="header-text">
+        <div class="label">What You Get</div>
+        <h2>Engagement scores, segment insights, calibrated predictions</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <h3>Post Scoring</h3>
+        <p>Ask Claude: <strong>"Score this post"</strong> and paste your draft. You'll get:</p>
+        <ul>
+          <li><strong>Overall score (0-100)</strong> — How well your draft will perform with your audience</li>
+          <li><strong>Per-segment breakdown</strong> — Predicted reactions/comments for each of your 4 segments</li>
+          <li><strong>Confidence level</strong> — Low/Medium/High based on calibration data available</li>
+          <li><strong>Reasoning</strong> — Which segments will engage and why</li>
+          <li><strong>Recommendations</strong> — How to improve the draft for better engagement</li>
+        </ul>
+
+        <div class="output-box">
+          <div class="label">Example output</div>
+          <div class="content">
+            <strong>Score: 78/100 — Technical Leaders' Territory</strong><br/>
+            Your post scores best with Technical Leaders (predicted 22 reactions). The ML/Infrastructure topic is highly specialized (92% affinity with TLs, 5% with Executives). The question hook is strong for driving comments.<br/><br/>
+            <strong>Per-segment breakdown:</strong><br/>
+            • Technical Leaders: 22 reactions (85/100 hook strength)<br/>
+            • Growth & Sales: 6 reactions (35/100 hook strength)<br/>
+            • Executives: 3 reactions (28/100 hook strength)<br/>
+            • General: 1 reaction (15/100 hook strength)<br/><br/>
+            <strong>Recommendations:</strong><br/>
+            ✓ Add a business outcome sentence for broader appeal<br/>
+            ✓ Consider leading with results before technical details
+          </div>
+        </div>
+
+        <h3>Audience Segments Overview</h3>
+        <p>Ask Claude: <strong>"Show my audience"</strong></p>
+        <p>Get a high-level overview of your segments: size, engagement rates, top topics, and activity patterns.</p>
+
+        <h3>Deep-Dive Analysis</h3>
+        <p>Ask Claude: <strong>"Deep dive into [segment]"</strong> (e.g., "Deep dive into Executives")</p>
+        <p>Explore a specific segment in detail:</p>
+        <ul>
+          <li>Role and seniority breakdown</li>
+          <li>Topics this segment engages with most</li>
+          <li>Best-performing content types for them</li>
+          <li>Notable patterns and behaviors</li>
+        </ul>
+
+        <h3>Variation Comparison</h3>
+        <p>Ask Claude: <strong>"Compare these two post variations"</strong> and paste multiple drafts. The plugin scores each and shows you which will perform better with which segments.</p>
+
+        <h3>Prediction Accuracy Tracking</h3>
+        <p>Ask Claude: <strong>"How accurate are my predictions?"</strong> or <strong>"/accuracy"</strong></p>
+        <p>Review:</p>
+        <ul>
+          <li>Overall prediction accuracy (Mean Absolute Error)</li>
+          <li>Confidence levels by segment (how many predictions tracked)</li>
+          <li>Calibration coefficients and trends</li>
+          <li>Build plan (what to post more of to improve accuracy)</li>
+        </ul>
+
+        <div class="info-box tip">
+          <div class="box-label">Learning over time</div>
+          <p>After 10-15 posts tracked, calibration kicks in and accuracy jumps significantly. After 50+ posts, predictions become highly reliable.</p>
+        </div>
+
+        <h3>Integration with Plugin 2 (Content Engine)</h3>
+        <p>If you've also installed Plugin 2, you can score its generated variations directly:</p>
+        <ul>
+          <li><code>/score variation-1</code> — Score a specific Content Engine draft</li>
+          <li><code>/compare-variations</code> — Rank multiple variations by predicted performance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Talk to Claude -->
+  <div class="section" id="s5">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">5</div>
+      <div class="header-text">
+        <div class="label">Talk to Claude</div>
+        <h2>Ask questions like you're texting a friend</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>Once setup is done, open Cowork and ask Claude anything about your audience and post performance. You don't need special syntax—just talk naturally.</p>
+
+        <h3>Example conversations</h3>
+
+        <div class="convo">
+          <div class="msg user">Score this post draft: "Just shipped a new feature that cuts deployment time in half. How are you thinking about CI/CD?"</div>
+          <div class="msg claude">Score: 72/100 — Technical Leaders dominate. Technical Leaders will get 18 reactions, but Executives might only engage at 4. The technical hook is strong, but consider adding a business impact line for broader appeal.</div>
+        </div>
+
+        <div class="convo">
+          <div class="msg user">Who in my network would engage with this?</div>
+          <div class="msg claude">Primarily Technical Leaders (92% affinity with Infrastructure topics). Secondary engagement from Growth & Sales (they care about delivery speed). Executives might engage if you lead with ROI impact. General audience will see it but probably won't comment.</div>
+        </div>
+
+        <div class="convo">
+          <div class="msg user">Compare these two variations for me.</div>
+          <div class="msg claude">[Scores both, shows per-segment breakdown, recommends which will perform better overall and which targets specific segments best]</div>
+        </div>
+
+        <div class="convo">
+          <div class="msg user">What topics should I post more about?</div>
+          <div class="msg claude">Based on your segments' engagement patterns, you have high affinity for AI/ML (especially with Technical Leaders), but low coverage in Leadership & Strategy (high affinity with Executives). Try 2-3 posts on leadership in the next week.</div>
+        </div>
+
+        <div class="convo">
+          <div class="msg user">How accurate are my predictions getting?</div>
+          <div class="msg claude">You've scored 18 posts and tracked results on 4. Current MAE is 4.2 reactions. After 10-15 tracked posts, accuracy will jump to ~2-3 reactions. Focus on tracking results on every post for the next 2 weeks.</div>
+        </div>
+
+        <div class="convo">
+          <div class="msg user">Deep dive into Technical Leaders for me.</div>
+          <div class="msg claude">[Detailed breakdown: 420 people, 92% engage with Infrastructure/ML, 45% engage with Leadership, top roles are Senior Engineer/Architect, best content types are technical deep-dives and case studies, etc.]</div>
+        </div>
+
+        <h3>Other things to ask</h3>
+        <ul>
+          <li>"What's my audience breakdown?"</li>
+          <li>"Which of my last 3 posts did Executives engage with most?"</li>
+          <li>"Show me the prediction accuracy trend."</li>
+          <li>"What hook types work best for Growth & Sales?"</li>
+          <li>"Am I covering enough of the topics my Executives care about?"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6: The Ecosystem -->
+  <div class="section" id="s6">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">6</div>
+      <div class="header-text">
+        <div class="label">The Ecosystem</div>
+        <h2>Three plugins that work together</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>The Audience Simulator is Plugin 3 of a 3-plugin LinkedIn ecosystem built for Cowork. Each plugin builds on the others.</p>
+
+        <h3>The three plugins</h3>
+
+        <div class="ecosystem-grid">
+          <a href="https://stevegustafson32.github.io/cowork-guide/linkedin-feed-tracker.html" class="ecosystem-card">
+            <h4>Plugin 1: LinkedIn Feed Tracker</h4>
+            <p>Collects your network's posts, your own post performance, and your connections list. Runs nightly on your Mac. This plugin is the foundation—all others depend on it.</p>
+            <span class="arrow">→</span>
+          </a>
+          <a href="https://stevegustafson32.github.io/cowork-guide/linkedin-content-engine.html" class="ecosystem-card">
+            <h4>Plugin 2: Content Engine</h4>
+            <p>Generates post variations and content ideas based on trends from Plugin 1. Uses your network's data to suggest what will resonate.</p>
+            <span class="arrow">→</span>
+          </a>
+          <div class="ecosystem-card" style="border-color: var(--accent); opacity: 1;">
+            <h4>Plugin 3: Audience Simulator (you are here)</h4>
+            <p>Predicts which segments will engage with your content before you post. Scores drafts from Plugin 2, calibrates against real results from Plugin 1.</p>
+            <span style="display: block; margin-top: 8px; font-size: 11px; color: var(--green); font-weight: 600;">Currently installed</span>
+          </div>
+        </div>
+
+        <h3>How they work together</h3>
+        <p>Typical workflow:</p>
+        <ol style="margin: 16px 0 16px 20px;">
+          <li><strong>Plugin 1 collects data</strong> — Your network, posts, engagement patterns</li>
+          <li><strong>Plugin 2 generates ideas</strong> — Suggests variations based on trends</li>
+          <li><strong>Plugin 3 scores them</strong> — Predicts which variation will work best with your audience</li>
+          <li><strong>You post the winner</strong> — On LinkedIn</li>
+          <li><strong>Plugin 1 tracks results</strong> — Captures actual engagement</li>
+          <li><strong>Plugin 3 learns</strong> — Calibrates predictions based on actual vs predicted</li>
+        </ol>
+
+        <div class="info-box key">
+          <div class="box-label">The power</div>
+          <p>You're not guessing what to post. You're generating ideas from real trends, predicting audience response, learning from every post, and getting better over time. All inside Cowork with Claude.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="cta-section">
+    <h2>Ready to predict your audience?</h2>
+    <p>Setup takes 2-5 minutes. Start scoring drafts immediately.</p>
+    <button class="cta" onclick="document.getElementById('s3').scrollIntoView({behavior:'smooth'})">Go to Setup</button>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p><strong>The 3-Plugin LinkedIn Ecosystem</strong></p>
+  <p style="margin-top: 12px;">
+    <a href="https://stevegustafson32.github.io/cowork-guide/linkedin-feed-tracker.html">Plugin 1: Feed Tracker</a> &bull;
+    <a href="https://stevegustafson32.github.io/cowork-guide/linkedin-content-engine.html">Plugin 2: Content Engine</a> &bull;
+    <a href="https://stevegustafson32.github.io/cowork-guide/">Cowork Guide</a>
+  </p>
+  <p style="margin-top: 16px;">
+    <a href="https://github.com/stevegustafson32/linkedin-audience-simulator-plugin">GitHub</a>
+  </p>
+  <p style="margin-top: 24px; font-size: 12px; color: var(--text-dim);">Created by Steve Gustafson &bull; March 2026 &bull; Built with Claude Cowork</p>
+</div>
+
+<button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">&#8593;</button>
+
+<script>
+function toggle(header) {
+  header.classList.toggle('active');
+  const content = header.nextElementSibling;
+  content.classList.toggle('open');
+}
+
+window.addEventListener('scroll', () => {
+  const btn = document.querySelector('.back-to-top');
+  if (window.scrollY > 300) {
+    btn.classList.add('visible');
+  } else {
+    btn.classList.remove('visible');
+  }
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href !== '#') {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({behavior: 'smooth'});
+      }
+    }
+  });
+});
+</script>
+
+</body>
+</html>
