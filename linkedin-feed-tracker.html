@@ -325,6 +325,43 @@
           <p>Go to <strong>System Settings &rarr; Privacy &amp; Security</strong>, scroll down, and click <strong>"Open Anyway"</strong> next to the blocked file. Then try step 2 again.</p>
         </div>
 
+        <div style="background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 12px; padding: 20px; margin-top: 24px; margin-bottom: 24px;">
+          <div style="font-weight: 700; color: #a78bfa; margin-bottom: 8px; font-size: 15px;">Already installed? Get the latest update</div>
+          <p style="color: var(--text-dim); font-size: 14px; margin-bottom: 12px;">If you've already run Setup, download and double-click this file to pull the latest improvements — headline extraction, better dashboard, comment filtering, and more.</p>
+          <button onclick="downloadUpdate()"
+            style="background: rgba(139, 92, 246, 0.2); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.4); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600;"
+            id="update-btn">Download Update File</button>
+          <script>
+          async function downloadUpdate() {
+            const btn = document.getElementById('update-btn');
+            btn.textContent = 'Downloading...';
+            try {
+              const resp = await fetch('https://raw.githubusercontent.com/stevegustafson32/linkedin-feed-tracker-plugin/main/scripts/Update.command');
+              if (!resp.ok) throw new Error('Download failed');
+              const blob = await resp.blob();
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = 'Update LinkedIn Feed Tracker.command';
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
+              btn.textContent = 'Downloaded ✓';
+              btn.style.background = 'rgba(34,197,94,0.2)';
+              btn.style.color = '#4ade80';
+              btn.style.borderColor = 'rgba(34,197,94,0.4)';
+              setTimeout(() => { btn.textContent = 'Download Update File'; btn.style.background = ''; btn.style.color = ''; btn.style.borderColor = ''; }, 3000);
+            } catch(e) {
+              btn.textContent = 'Error — try link below';
+              setTimeout(() => { btn.textContent = 'Download Update File'; }, 3000);
+            }
+          }
+          </script>
+          <div style="font-size: 12px; color: var(--text-dim); margin-top: 8px;">Button not working? <a href="https://raw.githubusercontent.com/stevegustafson32/linkedin-feed-tracker-plugin/main/scripts/Update.command" download="Update LinkedIn Feed Tracker.command" style="color: #a78bfa;">Direct download link</a></div>
+          <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">Same steps as setup: right-click → Open → confirm. Takes ~5 minutes to re-sync connections.</div>
+        </div>
+
         <h3>What the setup does (8 steps, all automatic)</h3>
         <ol class="step-list">
           <li><div class="step-content"><strong>Picks your project folder</strong><span>You choose where to store your database and browser session. This folder is also accessible to Cowork, so Claude can query your data.</span></div></li>
