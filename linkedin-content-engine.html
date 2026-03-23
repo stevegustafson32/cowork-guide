@@ -44,19 +44,19 @@
   .toc { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 48px; }
   .toc-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; cursor: pointer; transition: all 0.2s; text-decoration: none; color: var(--text); }
   .toc-item:hover { background: var(--surface-hover); border-color: var(--accent); }
-  .toc-item .num { font-size: 13px; font-weight: 700; color: var(--accent-light); margin-bottom: 4px; }
-  .toc-item .title { font-size: 15px; font-weight: 600; color: var(--text-bright); }
-  .toc-item .desc { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+  .toc-item .num { font-size: 15px; font-weight: 700; color: var(--accent-light); margin-bottom: 4px; }
+  .toc-item .title { font-size: 16px; font-weight: 600; color: var(--text-bright); }
+  .toc-item .desc { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
 
   /* Accordion */
   .section { margin-bottom: 8px; }
   .accordion-header { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: all 0.2s; border-left: 3px solid transparent; user-select: none; }
   .accordion-header:hover { background: var(--surface-hover); border-left-color: var(--accent); }
   .accordion-header.active { border-left-color: var(--accent); background: var(--surface-hover); }
-  .accordion-header .num-badge { background: var(--accent); color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .accordion-header .num-badge { background: var(--accent); color: white; min-width: 38px; height: 32px; padding: 0 8px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
   .accordion-header .header-text { flex: 1; }
-  .accordion-header .header-text .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim); font-weight: 600; }
-  .accordion-header .header-text h2 { font-size: 18px; font-weight: 700; color: var(--text-bright); margin-top: 2px; }
+  .accordion-header .header-text .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim); font-weight: 600; }
+  .accordion-header .header-text h2 { font-size: 20px; font-weight: 700; color: var(--text-bright); margin-top: 2px; }
   .chevron { width: 20px; height: 20px; transition: transform 0.3s ease; flex-shrink: 0; }
   .chevron path { stroke: var(--text-dim); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   .accordion-header.active .chevron { transform: rotate(180deg); }
@@ -66,11 +66,11 @@
   .accordion-body { padding: 24px; background: var(--surface); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius) var(--radius); margin-top: -8px; }
 
   /* Content elements */
-  .accordion-body p { margin-bottom: 16px; color: var(--text); line-height: 1.65; }
+  .accordion-body p { margin-bottom: 16px; color: var(--text); line-height: 1.65; font-size: 15px; }
   .accordion-body h3 { font-size: 16px; font-weight: 700; color: var(--text-bright); margin: 28px 0 12px; }
   .accordion-body h3:first-child { margin-top: 0; }
   .accordion-body ul { margin: 0 0 16px 20px; }
-  .accordion-body li { margin-bottom: 8px; color: var(--text); }
+  .accordion-body li { margin-bottom: 8px; color: var(--text); font-size: 15px; }
   .accordion-body strong { color: var(--text-bright); }
   .accordion-body code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: 'Monaco', 'Courier New', monospace; }
 
@@ -83,14 +83,14 @@
   .info-box.tip .box-label { color: var(--green); }
   .info-box.warn .box-label { color: var(--orange); }
   .info-box.key .box-label { color: var(--accent-light); }
-  .info-box p { margin-bottom: 0; font-size: 14px; }
+  .info-box p { margin-bottom: 0; font-size: 15px; }
 
   /* Feature cards */
   .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
   .feature-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
   .feature-card .icon { font-size: 24px; margin-bottom: 8px; }
   .feature-card h4 { font-size: 14px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px; }
-  .feature-card p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+  .feature-card p { font-size: 14px; color: var(--text-dim); margin: 0; line-height: 1.5; }
 
   /* Variation cards */
   .variation-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 16px 0; }
@@ -109,7 +109,7 @@
 
   /* Conversation mockup */
   .convo { margin: 16px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
-  .convo .msg { padding: 14px 18px; font-size: 14px; line-height: 1.5; }
+  .convo .msg { padding: 14px 18px; font-size: 15px; line-height: 1.5; }
   .convo .user { background: var(--accent-dim); color: var(--accent-light); border-bottom: 1px solid var(--border); }
   .convo .user::before { content: 'You: '; font-weight: 700; }
   .convo .claude { background: rgba(255,255,255,0.03); color: var(--text); }
@@ -160,18 +160,18 @@
 
   <!-- TOC -->
   <div class="toc">
-    <a class="toc-item" href="#s1"><div class="num">01</div><div class="title">How It Works</div><div class="desc">Feeds to ideas to variations to posts</div></a>
-    <a class="toc-item" href="#s2"><div class="num">02</div><div class="title">Prerequisites</div><div class="desc">What you need before starting</div></a>
-    <a class="toc-item" href="#s3"><div class="num">03</div><div class="title">Setup</div><div class="desc">Install and configure the engine</div></a>
-    <a class="toc-item" href="#s4"><div class="num">04</div><div class="title">What You Get</div><div class="desc">Ideas, drafts, variations, calendar</div></a>
-    <a class="toc-item" href="#s5"><div class="num">05</div><div class="title">Talk to Claude</div><div class="desc">Example conversations</div></a>
-    <a class="toc-item" href="#s6"><div class="num">06</div><div class="title">The Ecosystem</div><div class="desc">All three plugins working together</div></a>
+    <a class="toc-item" href="#s1"><div class="num">2.1</div><div class="title">How It Works</div><div class="desc">Feeds to ideas to variations to posts</div></a>
+    <a class="toc-item" href="#s2"><div class="num">2.2</div><div class="title">Prerequisites</div><div class="desc">What you need before starting</div></a>
+    <a class="toc-item" href="#s3"><div class="num">2.3</div><div class="title">Setup</div><div class="desc">Install and configure the engine</div></a>
+    <a class="toc-item" href="#s4"><div class="num">2.4</div><div class="title">What You Get</div><div class="desc">Ideas, drafts, variations, calendar</div></a>
+    <a class="toc-item" href="#s5"><div class="num">2.5</div><div class="title">Talk to Claude</div><div class="desc">Example conversations</div></a>
+    <a class="toc-item" href="#s6"><div class="num">2.6</div><div class="title">The Ecosystem</div><div class="desc">All three plugins working together</div></a>
   </div>
 
   <!-- Section 1: How It Works -->
   <div class="section" id="s1">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">1</div>
+      <div class="num-badge">2.1</div>
       <div class="header-text">
         <div class="label">How It Works</div>
         <h2>Feed data flows in. Post ideas flow out.</h2>
@@ -266,7 +266,7 @@
   <!-- Section 2: Prerequisites -->
   <div class="section" id="s2">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">2</div>
+      <div class="num-badge">2.2</div>
       <div class="header-text">
         <div class="label">Prerequisites</div>
         <h2>What you need to get started</h2>
@@ -300,7 +300,7 @@
   <!-- Section 3: Setup -->
   <div class="section" id="s3">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">3</div>
+      <div class="num-badge">2.3</div>
       <div class="header-text">
         <div class="label">Setup</div>
         <h2>Install and configure the engine</h2>
@@ -351,7 +351,7 @@
   <!-- Section 4: What You Get -->
   <div class="section" id="s4">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">4</div>
+      <div class="num-badge">2.4</div>
       <div class="header-text">
         <div class="label">What You Get</div>
         <h2>Ideas, drafts, variations, and content calendar</h2>
@@ -427,7 +427,7 @@
   <!-- Section 5: Talk to Claude -->
   <div class="section" id="s5">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">5</div>
+      <div class="num-badge">2.5</div>
       <div class="header-text">
         <div class="label">Talk to Claude</div>
         <h2>Example conversations</h2>
@@ -494,7 +494,7 @@
   <!-- Section 6: The Ecosystem -->
   <div class="section" id="s6">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">6</div>
+      <div class="num-badge">2.6</div>
       <div class="header-text">
         <div class="label">The Ecosystem</div>
         <h2>All three plugins working together</h2>

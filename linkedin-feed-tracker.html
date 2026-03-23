@@ -44,19 +44,19 @@
   .toc { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 48px; }
   .toc-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; cursor: pointer; transition: all 0.2s; text-decoration: none; color: var(--text); }
   .toc-item:hover { background: var(--surface-hover); border-color: var(--accent); }
-  .toc-item .num { font-size: 13px; font-weight: 700; color: var(--accent-light); margin-bottom: 4px; }
-  .toc-item .title { font-size: 15px; font-weight: 600; color: var(--text-bright); }
-  .toc-item .desc { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+  .toc-item .num { font-size: 15px; font-weight: 700; color: var(--accent-light); margin-bottom: 4px; }
+  .toc-item .title { font-size: 16px; font-weight: 600; color: var(--text-bright); }
+  .toc-item .desc { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
 
   /* Accordion */
   .section { margin-bottom: 8px; }
   .accordion-header { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: all 0.2s; border-left: 3px solid transparent; user-select: none; }
   .accordion-header:hover { background: var(--surface-hover); border-left-color: var(--accent); }
   .accordion-header.active { border-left-color: var(--accent); background: var(--surface-hover); }
-  .accordion-header .num-badge { background: var(--accent); color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .accordion-header .num-badge { background: var(--accent); color: white; min-width: 38px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; padding: 0 8px; }
   .accordion-header .header-text { flex: 1; }
-  .accordion-header .header-text .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim); font-weight: 600; }
-  .accordion-header .header-text h2 { font-size: 18px; font-weight: 700; color: var(--text-bright); margin-top: 2px; }
+  .accordion-header .header-text .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim); font-weight: 600; }
+  .accordion-header .header-text h2 { font-size: 20px; font-weight: 700; color: var(--text-bright); margin-top: 2px; }
   .chevron { width: 20px; height: 20px; transition: transform 0.3s ease; flex-shrink: 0; }
   .chevron path { stroke: var(--text-dim); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   .accordion-header.active .chevron { transform: rotate(180deg); }
@@ -66,11 +66,11 @@
   .accordion-body { padding: 24px; background: var(--surface); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius) var(--radius); margin-top: -8px; }
 
   /* Content elements */
-  .accordion-body p { margin-bottom: 16px; color: var(--text); line-height: 1.65; }
-  .accordion-body h3 { font-size: 16px; font-weight: 700; color: var(--text-bright); margin: 28px 0 12px; }
+  .accordion-body p { margin-bottom: 16px; color: var(--text); line-height: 1.7; font-size: 15px; }
+  .accordion-body h3 { font-size: 17px; font-weight: 700; color: var(--text-bright); margin: 28px 0 12px; }
   .accordion-body h3:first-child { margin-top: 0; }
   .accordion-body ul { margin: 0 0 16px 20px; }
-  .accordion-body li { margin-bottom: 8px; color: var(--text); }
+  .accordion-body li { margin-bottom: 8px; color: var(--text); font-size: 15px; line-height: 1.6; }
   .accordion-body strong { color: var(--text-bright); }
   .accordion-body code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: 'Monaco', 'Courier New', monospace; }
 
@@ -83,14 +83,14 @@
   .info-box.tip .box-label { color: var(--green); }
   .info-box.warn .box-label { color: var(--orange); }
   .info-box.key .box-label { color: var(--accent-light); }
-  .info-box p { margin-bottom: 0; font-size: 14px; }
+  .info-box p { margin-bottom: 0; font-size: 15px; }
 
   /* Feature cards */
   .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
   .feature-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
   .feature-card .icon { font-size: 24px; margin-bottom: 8px; }
-  .feature-card h4 { font-size: 14px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px; }
-  .feature-card p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+  .feature-card h4 { font-size: 15px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px; }
+  .feature-card p { font-size: 14px; color: var(--text-dim); margin: 0; line-height: 1.55; }
 
   /* Setup single card (hero style) */
   .setup-hero { background: var(--surface-hover); border: 2px solid var(--accent); border-radius: 16px; padding: 36px 32px; text-align: center; margin: 24px 0; }
@@ -107,7 +107,7 @@
 
   /* Conversation mockup */
   .convo { margin: 16px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
-  .convo .msg { padding: 14px 18px; font-size: 14px; line-height: 1.5; }
+  .convo .msg { padding: 14px 18px; font-size: 15px; line-height: 1.55; }
   .convo .user { background: var(--accent-dim); color: var(--accent-light); border-bottom: 1px solid var(--border); }
   .convo .user::before { content: 'You: '; font-weight: 700; }
   .convo .claude { background: rgba(255,255,255,0.03); color: var(--text); }
@@ -121,8 +121,8 @@
   /* Scraper grid */
   .scraper-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
   .scraper-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
-  .scraper-card h4 { font-size: 14px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px; }
-  .scraper-card p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+  .scraper-card h4 { font-size: 15px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px; }
+  .scraper-card p { font-size: 14px; color: var(--text-dim); margin: 0; line-height: 1.55; }
   .scraper-card .freq { font-size: 11px; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px; }
 
   /* CTA section */
@@ -162,18 +162,56 @@
 
   <!-- TOC -->
   <div class="toc">
-    <a class="toc-item" href="#s1"><div class="num">01</div><div class="title">How It Works</div><div class="desc">Collect, store, analyze, repeat</div></a>
-    <a class="toc-item" href="#s2"><div class="num">02</div><div class="title">Setup</div><div class="desc">One file. Double-click. Done.</div></a>
-    <a class="toc-item" href="#s3"><div class="num">03</div><div class="title">What You Get</div><div class="desc">Dashboards, reports, deep dives</div></a>
-    <a class="toc-item" href="#s4"><div class="num">04</div><div class="title">Talk to Claude</div><div class="desc">Examples of what to ask</div></a>
-    <a class="toc-item" href="#s5"><div class="num">05</div><div class="title">Privacy</div><div class="desc">Your data, your machine</div></a>
-    <a class="toc-item" href="#s6"><div class="num">06</div><div class="title">FAQ</div><div class="desc">Questions answered</div></a>
+    <a class="toc-item" href="#s1"><div class="num">1.1</div><div class="title">How It Works</div><div class="desc">Collect, store, analyze, repeat</div></a>
+    <a class="toc-item" href="#s2"><div class="num">1.2</div><div class="title">Setup</div><div class="desc">One file. Double-click. Done.</div></a>
+    <a class="toc-item" href="#s3"><div class="num">1.3</div><div class="title">What You Get</div><div class="desc">Dashboards, reports, deep dives</div></a>
+    <a class="toc-item" href="#s4"><div class="num">1.4</div><div class="title">Talk to Claude</div><div class="desc">Examples of what to ask</div></a>
+    <a class="toc-item" href="#s5"><div class="num">1.5</div><div class="title">Privacy</div><div class="desc">Your data, your machine</div></a>
+    <a class="toc-item" href="#s6"><div class="num">1.6</div><div class="title">FAQ</div><div class="desc">Questions answered</div></a>
+  </div>
+
+  <!-- Update banner — visible without expanding anything -->
+  <div style="background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 12px; padding: 24px 28px; margin-bottom: 24px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 240px;">
+      <div style="font-weight: 700; color: #a78bfa; font-size: 16px; margin-bottom: 4px;">Already installed? Get the latest update</div>
+      <div style="color: var(--text-dim); font-size: 14px; line-height: 1.5;">Double-click to pull headline extraction, better dashboard, comment filtering, and more. Same right-click &rarr; Open flow.</div>
+    </div>
+    <button onclick="downloadUpdate()"
+      style="background: #7C3AED; color: white; border: none; padding: 12px 28px; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: 600; white-space: nowrap; transition: background 0.2s;"
+      onmouseover="this.style.background='#6D28D9'" onmouseout="this.style.background='#7C3AED'"
+      id="update-btn">Download Update File</button>
+    <script>
+    async function downloadUpdate() {
+      const btn = document.getElementById('update-btn');
+      btn.textContent = 'Downloading...';
+      try {
+        const resp = await fetch('https://raw.githubusercontent.com/stevegustafson32/linkedin-feed-tracker-plugin/main/scripts/Update.command');
+        if (!resp.ok) throw new Error('Download failed');
+        const blob = await resp.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Update LinkedIn Feed Tracker.command';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        btn.textContent = 'Downloaded!';
+        btn.style.background = '#057642';
+        setTimeout(() => { btn.textContent = 'Download Update File'; btn.style.background = '#7C3AED'; }, 3000);
+      } catch(e) {
+        btn.textContent = 'Error — try link below';
+        setTimeout(() => { btn.textContent = 'Download Update File'; btn.style.background = '#7C3AED'; }, 3000);
+      }
+    }
+    </script>
+    <div style="width: 100%; font-size: 12px; color: var(--text-dim); margin-top: -8px;">Button not working? <a href="https://raw.githubusercontent.com/stevegustafson32/linkedin-feed-tracker-plugin/main/scripts/Update.command" download="Update LinkedIn Feed Tracker.command" style="color: #a78bfa;">Direct download link</a></div>
   </div>
 
   <!-- Section 1: How It Works -->
   <div class="section" id="s1">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">1</div>
+      <div class="num-badge">1.1</div>
       <div class="header-text">
         <div class="label">How It Works</div>
         <h2>Four collectors, one database, Claude on top</h2>
@@ -238,7 +276,7 @@
   <!-- Section 2: Setup -->
   <div class="section" id="s2">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">2</div>
+      <div class="num-badge">1.2</div>
       <div class="header-text">
         <div class="label">Setup</div>
         <h2>One file. Double-click. Everything happens.</h2>
@@ -325,43 +363,6 @@
           <p>Go to <strong>System Settings &rarr; Privacy &amp; Security</strong>, scroll down, and click <strong>"Open Anyway"</strong> next to the blocked file. Then try step 2 again.</p>
         </div>
 
-        <div style="background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 12px; padding: 20px; margin-top: 24px; margin-bottom: 24px;">
-          <div style="font-weight: 700; color: #a78bfa; margin-bottom: 8px; font-size: 15px;">Already installed? Get the latest update</div>
-          <p style="color: var(--text-dim); font-size: 14px; margin-bottom: 12px;">If you've already run Setup, download and double-click this file to pull the latest improvements — headline extraction, better dashboard, comment filtering, and more.</p>
-          <button onclick="downloadUpdate()"
-            style="background: rgba(139, 92, 246, 0.2); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.4); padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600;"
-            id="update-btn">Download Update File</button>
-          <script>
-          async function downloadUpdate() {
-            const btn = document.getElementById('update-btn');
-            btn.textContent = 'Downloading...';
-            try {
-              const resp = await fetch('https://raw.githubusercontent.com/stevegustafson32/linkedin-feed-tracker-plugin/main/scripts/Update.command');
-              if (!resp.ok) throw new Error('Download failed');
-              const blob = await resp.blob();
-              const url = URL.createObjectURL(blob);
-              const a = document.createElement('a');
-              a.href = url;
-              a.download = 'Update LinkedIn Feed Tracker.command';
-              document.body.appendChild(a);
-              a.click();
-              document.body.removeChild(a);
-              URL.revokeObjectURL(url);
-              btn.textContent = 'Downloaded ✓';
-              btn.style.background = 'rgba(34,197,94,0.2)';
-              btn.style.color = '#4ade80';
-              btn.style.borderColor = 'rgba(34,197,94,0.4)';
-              setTimeout(() => { btn.textContent = 'Download Update File'; btn.style.background = ''; btn.style.color = ''; btn.style.borderColor = ''; }, 3000);
-            } catch(e) {
-              btn.textContent = 'Error — try link below';
-              setTimeout(() => { btn.textContent = 'Download Update File'; }, 3000);
-            }
-          }
-          </script>
-          <div style="font-size: 12px; color: var(--text-dim); margin-top: 8px;">Button not working? <a href="https://raw.githubusercontent.com/stevegustafson32/linkedin-feed-tracker-plugin/main/scripts/Update.command" download="Update LinkedIn Feed Tracker.command" style="color: #a78bfa;">Direct download link</a></div>
-          <div style="font-size: 12px; color: var(--text-dim); margin-top: 4px;">Same steps as setup: right-click → Open → confirm. Takes ~5 minutes to re-sync connections.</div>
-        </div>
-
         <h3>What the setup does (8 steps, all automatic)</h3>
         <ol class="step-list">
           <li><div class="step-content"><strong>Picks your project folder</strong><span>You choose where to store your database and browser session. This folder is also accessible to Cowork, so Claude can query your data.</span></div></li>
@@ -391,7 +392,7 @@
   <!-- Section 3: What You Get -->
   <div class="section" id="s3">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">3</div>
+      <div class="num-badge">1.3</div>
       <div class="header-text">
         <div class="label">What You Get</div>
         <h2>Dashboard, reports, analysis, and performance tracking</h2>
@@ -545,7 +546,7 @@
   <!-- Section 4: Talk to Claude -->
   <div class="section" id="s4">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">4</div>
+      <div class="num-badge">1.4</div>
       <div class="header-text">
         <div class="label">Talk to Claude</div>
         <h2>Ask questions like you're texting a friend</h2>
@@ -606,7 +607,7 @@
   <!-- Section 5: Privacy -->
   <div class="section" id="s5">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">5</div>
+      <div class="num-badge">1.5</div>
       <div class="header-text">
         <div class="label">Privacy</div>
         <h2>Your data stays on your machine</h2>
@@ -647,7 +648,7 @@
   <!-- Section 6: FAQ -->
   <div class="section" id="s6">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">6</div>
+      <div class="num-badge">1.6</div>
       <div class="header-text">
         <div class="label">FAQ</div>
         <h2>Questions answered</h2>
