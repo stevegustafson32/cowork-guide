@@ -171,46 +171,53 @@
   </div>
 
   <!-- Update banner — visible without expanding anything -->
-  <div style="background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 12px; padding: 24px 28px; margin-bottom: 24px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
-    <div style="flex: 1; min-width: 240px;">
-      <div style="font-weight: 700; color: #a78bfa; font-size: 16px; margin-bottom: 4px;">Already installed? Get the latest update</div>
-      <div style="color: var(--text-dim); font-size: 14px; line-height: 1.5;">Auto-scaling batches, nightly dashboard refresh, headline extraction, and more.</div>
+  <div style="background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 12px; padding: 24px 28px; margin-bottom: 24px;">
+    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+      <div style="flex: 1;">
+        <div style="font-weight: 700; color: #a78bfa; font-size: 16px; margin-bottom: 4px;">Already installed? Get the latest update</div>
+        <div style="color: var(--text-dim); font-size: 14px; line-height: 1.5;">Updates happen automatically every night. Need it now? Follow the 2 steps below.</div>
+      </div>
     </div>
-    <button onclick="downloadUpdate()"
-      style="background: #7C3AED; color: white; border: none; padding: 12px 28px; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: 600; white-space: nowrap; transition: background 0.2s;"
-      onmouseover="this.style.background='#6D28D9'" onmouseout="this.style.background='#7C3AED'"
-      id="update-btn">Download Update File</button>
+
+    <div style="display: flex; gap: 12px; align-items: stretch;">
+      <!-- Step 1 -->
+      <div style="flex: 0 0 48px; background: #7C3AED; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+        <div style="color: white; font-weight: 800; font-size: 20px;">1</div>
+      </div>
+      <div style="flex: 1; background: rgba(139, 92, 246, 0.06); border: 1px solid rgba(139, 92, 246, 0.15); border-radius: 10px; padding: 16px;">
+        <div style="font-weight: 700; color: var(--text-bright); font-size: 14px; margin-bottom: 8px;">Open Terminal</div>
+        <div style="color: var(--text-dim); font-size: 13px; line-height: 1.5;">Press <kbd style="background: #2a2d3a; border: 1px solid #3a3d4a; border-radius: 4px; padding: 2px 6px; font-size: 12px; color: var(--text-bright);">Cmd</kbd> + <kbd style="background: #2a2d3a; border: 1px solid #3a3d4a; border-radius: 4px; padding: 2px 6px; font-size: 12px; color: var(--text-bright);">Space</kbd>, type <strong style="color: var(--text-bright);">Terminal</strong>, press Enter.</div>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 12px; align-items: stretch; margin-top: 12px;">
+      <!-- Step 2 -->
+      <div style="flex: 0 0 48px; background: #7C3AED; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+        <div style="color: white; font-weight: 800; font-size: 20px;">2</div>
+      </div>
+      <div style="flex: 1; background: rgba(139, 92, 246, 0.06); border: 1px solid rgba(139, 92, 246, 0.15); border-radius: 10px; padding: 16px;">
+        <div style="font-weight: 700; color: var(--text-bright); font-size: 14px; margin-bottom: 8px;">Paste this command and press Enter</div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <div id="update-cmd" style="flex: 1; background: #0a0a0f; border-radius: 6px; padding: 10px 14px; font-family: 'SF Mono', Monaco, monospace; font-size: 12px; color: #e8e8ed; line-height: 1.5; word-break: break-all; cursor: text; user-select: all;">cd ~/.linkedin-feed-tracker/scripts && git pull && npm install --loglevel=error && node src/connections.js && node src/generate-dashboard.js</div>
+          <button onclick="copyUpdateCmd()" id="copy-btn"
+            style="background: #7C3AED; color: white; border: none; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600; white-space: nowrap; transition: all 0.15s; flex-shrink: 0;"
+            onmouseover="this.style.background='#6D28D9'" onmouseout="this.style.background='#7C3AED'">Copy</button>
+        </div>
+        <div style="color: var(--text-dim); font-size: 12px; margin-top: 8px;">Takes about 5 minutes. You'll see progress in the Terminal window. Close it when done.</div>
+      </div>
+    </div>
+
     <script>
-    async function downloadUpdate() {
-      const btn = document.getElementById('update-btn');
-      btn.textContent = 'Downloading...';
-      try {
-        const resp = await fetch('https://raw.githubusercontent.com/stevegustafson32/linkedin-feed-tracker-plugin/main/scripts/Update.command');
-        if (!resp.ok) throw new Error('Download failed');
-        const blob = await resp.blob();
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'Update LinkedIn Feed Tracker.command';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        btn.textContent = 'Downloaded!';
+    function copyUpdateCmd() {
+      const cmd = document.getElementById('update-cmd').textContent;
+      navigator.clipboard.writeText(cmd).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = 'Copied!';
         btn.style.background = '#057642';
-        setTimeout(() => { btn.textContent = 'Download Update File'; btn.style.background = '#7C3AED'; }, 3000);
-      } catch(e) {
-        btn.textContent = 'Error — try link below';
-        setTimeout(() => { btn.textContent = 'Download Update File'; btn.style.background = '#7C3AED'; }, 3000);
-      }
+        setTimeout(() => { btn.textContent = 'Copy'; btn.style.background = '#7C3AED'; }, 2000);
+      });
     }
     </script>
-    <div style="width: 100%; background: rgba(139, 92, 246, 0.06); border: 1px solid rgba(139, 92, 246, 0.15); border-radius: 8px; padding: 14px 16px; margin-top: -4px;">
-      <div style="font-weight: 700; color: #a78bfa; font-size: 13px; margin-bottom: 8px;">After downloading, run this in Terminal:</div>
-      <div style="background: #0a0a0f; border-radius: 6px; padding: 10px 14px; font-family: 'SF Mono', Monaco, monospace; font-size: 13px; color: #e8e8ed; user-select: all; cursor: text; word-break: break-all; line-height: 1.5;">chmod +x ~/Downloads/Update*.command && open ~/Downloads/Update*.command</div>
-      <div style="font-size: 12px; color: var(--text-dim); margin-top: 8px; line-height: 1.5;">This gives macOS permission to run the file, then launches it. Copy-paste the line above into Terminal (press <strong style="color: var(--text-bright);">Cmd+Space</strong>, type <strong style="color: var(--text-bright);">Terminal</strong>, press Enter).</div>
-    </div>
-    <div style="width: 100%; font-size: 12px; color: var(--text-dim); margin-top: 4px;">Button not working? <a href="https://raw.githubusercontent.com/stevegustafson32/linkedin-feed-tracker-plugin/main/scripts/Update.command" download="Update LinkedIn Feed Tracker.command" style="color: #a78bfa;">Direct download link</a></div>
   </div>
 
   <!-- Section 1: How It Works -->
