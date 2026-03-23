@@ -205,8 +205,10 @@
       }
     }
     </script>
-    <div style="width: 100%; font-size: 13px; color: var(--text-dim); margin-top: -4px; line-height: 1.6;">
-      <strong style="color: #a78bfa;">macOS security note:</strong> After downloading, <strong>right-click</strong> the file &rarr; <strong>Open</strong> (don't double-click). macOS blocks files from the internet on first run. Right-click &rarr; Open bypasses this. You only need to do this once.
+    <div style="width: 100%; background: rgba(139, 92, 246, 0.06); border: 1px solid rgba(139, 92, 246, 0.15); border-radius: 8px; padding: 14px 16px; margin-top: -4px;">
+      <div style="font-weight: 700; color: #a78bfa; font-size: 13px; margin-bottom: 8px;">After downloading, run this in Terminal:</div>
+      <div style="background: #0a0a0f; border-radius: 6px; padding: 10px 14px; font-family: 'SF Mono', Monaco, monospace; font-size: 13px; color: #e8e8ed; user-select: all; cursor: text; word-break: break-all; line-height: 1.5;">chmod +x ~/Downloads/Update*.command && open ~/Downloads/Update*.command</div>
+      <div style="font-size: 12px; color: var(--text-dim); margin-top: 8px; line-height: 1.5;">This gives macOS permission to run the file, then launches it. Copy-paste the line above into Terminal (press <strong style="color: var(--text-bright);">Cmd+Space</strong>, type <strong style="color: var(--text-bright);">Terminal</strong>, press Enter).</div>
     </div>
     <div style="width: 100%; font-size: 12px; color: var(--text-dim); margin-top: 4px;">Button not working? <a href="https://raw.githubusercontent.com/stevegustafson32/linkedin-feed-tracker-plugin/main/scripts/Update.command" download="Update LinkedIn Feed Tracker.command" style="color: #a78bfa;">Direct download link</a></div>
   </div>
