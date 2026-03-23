@@ -369,44 +369,53 @@
         <p>Ask Claude: <strong>"Show me my dashboard"</strong></p>
         <p>Claude builds a live HTML dashboard from your database. Here's what it looks like:</p>
 
-        <!-- Dashboard mockup -->
-        <div style="background: #f3f2ef; border-radius: 12px; padding: 20px; margin: 16px 0; border: 1px solid var(--border); overflow: hidden;">
+        <!-- Dashboard mockup — dark theme matching actual dashboard -->
+        <div style="background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%); border-radius: 12px; padding: 20px; margin: 16px 0; border: 1px solid #2d3748; overflow: hidden;">
+          <!-- Stats cards row -->
           <div style="display: flex; gap: 8px; margin-bottom: 16px;">
-            <div style="background: #fff; border-radius: 8px; padding: 14px 18px; flex: 1; border: 1px solid #e0e0e0;">
-              <div style="font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Total Posts</div>
-              <div style="font-size: 28px; font-weight: 800; color: #0A66C2; margin-top: 2px;">847</div>
-              <div style="font-size: 11px; color: #666;">Last 30 days</div>
+            <div style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 10px; padding: 14px 18px; flex: 1; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 10px; color: #8b8d98; text-transform: uppercase; letter-spacing: 0.5px;">Connections</div>
+              <div style="font-size: 28px; font-weight: 800; color: #0A66C2; margin-top: 2px;">1,966</div>
+              <div style="font-size: 11px; color: #8b8d98;">Synced</div>
             </div>
-            <div style="background: #fff; border-radius: 8px; padding: 14px 18px; flex: 1; border: 1px solid #e0e0e0;">
-              <div style="font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Connections</div>
-              <div style="font-size: 28px; font-weight: 800; color: #1d2226; margin-top: 2px;">1,966</div>
-              <div style="font-size: 11px; color: #666;">Synced</div>
+            <div style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 10px; padding: 14px 18px; flex: 1; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 10px; color: #8b8d98; text-transform: uppercase; letter-spacing: 0.5px;">Feed Posts</div>
+              <div style="font-size: 28px; font-weight: 800; color: #10b981; margin-top: 2px;">847</div>
+              <div style="font-size: 11px; color: #8b8d98;">Collected</div>
             </div>
-            <div style="background: #fff; border-radius: 8px; padding: 14px 18px; flex: 1; border: 1px solid #e0e0e0;">
-              <div style="font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Top Topic</div>
-              <div style="font-size: 14px; font-weight: 700; color: #057642; margin-top: 6px;">AI &amp; Automation</div>
-              <div style="font-size: 11px; color: #666;">142 posts this week</div>
+            <div style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 10px; padding: 14px 18px; flex: 1; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 10px; color: #8b8d98; text-transform: uppercase; letter-spacing: 0.5px;">Your Posts</div>
+              <div style="font-size: 28px; font-weight: 800; color: #f59e0b; margin-top: 2px;">23</div>
+              <div style="font-size: 11px; color: #8b8d98;">Tracked</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 10px; padding: 14px 18px; flex: 1; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 10px; color: #8b8d98; text-transform: uppercase; letter-spacing: 0.5px;">Days Active</div>
+              <div style="font-size: 28px; font-weight: 800; color: #8b5cf6; margin-top: 2px;">14</div>
+              <div style="font-size: 11px; color: #8b8d98;">Tracking</div>
             </div>
           </div>
+          <!-- Charts row -->
           <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px;">
-            <div style="background: #fff; border-radius: 8px; padding: 16px; border: 1px solid #e0e0e0;">
-              <div style="font-size: 13px; font-weight: 600; color: #1d2226; margin-bottom: 12px;">Post Volume (7 days)</div>
+            <div style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 10px; padding: 16px; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 13px; font-weight: 600; color: #e8e8ed; margin-bottom: 12px;">Your Post Performance</div>
               <svg viewBox="0 0 300 80" style="width: 100%; height: auto;">
-                <polyline points="10,60 55,45 100,50 145,30 190,25 235,35 280,15" fill="none" stroke="#0A66C2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="10,60 55,45 100,50 145,30 190,25 235,35 280,15" fill="url(#chartGrad)" stroke="none" opacity="0.15"/>
-                <defs><linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0A66C2"/><stop offset="100%" stop-color="#0A66C2" stop-opacity="0"/></linearGradient></defs>
-                <text x="10" y="75" font-size="8" fill="#999">Mon</text><text x="55" y="75" font-size="8" fill="#999">Tue</text><text x="100" y="75" font-size="8" fill="#999">Wed</text><text x="145" y="75" font-size="8" fill="#999">Thu</text><text x="190" y="75" font-size="8" fill="#999">Fri</text><text x="235" y="75" font-size="8" fill="#999">Sat</text><text x="280" y="75" font-size="8" fill="#999">Sun</text>
+                <rect x="10" y="10" width="40" height="60" rx="4" fill="#0A66C2" opacity="0.8"/>
+                <rect x="60" y="25" width="40" height="45" rx="4" fill="#0A66C2" opacity="0.65"/>
+                <rect x="110" y="35" width="40" height="35" rx="4" fill="#0A66C2" opacity="0.55"/>
+                <rect x="160" y="40" width="40" height="30" rx="4" fill="#0A66C2" opacity="0.45"/>
+                <rect x="210" y="48" width="40" height="22" rx="4" fill="#0A66C2" opacity="0.35"/>
+                <rect x="260" y="55" width="30" height="15" rx="4" fill="#0A66C2" opacity="0.25"/>
               </svg>
             </div>
-            <div style="background: #fff; border-radius: 8px; padding: 16px; border: 1px solid #e0e0e0;">
-              <div style="font-size: 13px; font-weight: 600; color: #1d2226; margin-bottom: 10px;">Top Topics</div>
-              <div style="font-size: 12px; margin-bottom: 6px;"><span style="display: inline-block; width: 8px; height: 8px; background: #0A66C2; border-radius: 2px; margin-right: 6px;"></span><span style="color: #1d2226;">AI &amp; Automation</span> <span style="color: #999; float: right;">142</span></div>
-              <div style="font-size: 12px; margin-bottom: 6px;"><span style="display: inline-block; width: 8px; height: 8px; background: #057642; border-radius: 2px; margin-right: 6px;"></span><span style="color: #1d2226;">Hiring &amp; Careers</span> <span style="color: #999; float: right;">98</span></div>
-              <div style="font-size: 12px; margin-bottom: 6px;"><span style="display: inline-block; width: 8px; height: 8px; background: #B24020; border-radius: 2px; margin-right: 6px;"></span><span style="color: #1d2226;">Founders &amp; Startups</span> <span style="color: #999; float: right;">76</span></div>
-              <div style="font-size: 12px;"><span style="display: inline-block; width: 8px; height: 8px; background: #7C3AED; border-radius: 2px; margin-right: 6px;"></span><span style="color: #1d2226;">HR &amp; Benefits</span> <span style="color: #999; float: right;">54</span></div>
+            <div style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 10px; padding: 16px; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 13px; font-weight: 600; color: #e8e8ed; margin-bottom: 10px;">Post Types</div>
+              <div style="font-size: 12px; margin-bottom: 6px;"><span style="display: inline-block; width: 8px; height: 8px; background: #0A66C2; border-radius: 50%; margin-right: 6px;"></span><span style="color: #e8e8ed;">Original</span> <span style="color: #8b8d98; float: right;">68%</span></div>
+              <div style="font-size: 12px; margin-bottom: 6px;"><span style="display: inline-block; width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 6px;"></span><span style="color: #e8e8ed;">Image</span> <span style="color: #8b8d98; float: right;">22%</span></div>
+              <div style="font-size: 12px; margin-bottom: 6px;"><span style="display: inline-block; width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; margin-right: 6px;"></span><span style="color: #e8e8ed;">Repost</span> <span style="color: #8b8d98; float: right;">7%</span></div>
+              <div style="font-size: 12px;"><span style="display: inline-block; width: 8px; height: 8px; background: #8b5cf6; border-radius: 50%; margin-right: 6px;"></span><span style="color: #e8e8ed;">Article</span> <span style="color: #8b8d98; float: right;">3%</span></div>
             </div>
           </div>
-          <div style="text-align: center; margin-top: 8px; font-size: 11px; color: #999;">Example dashboard &mdash; yours is generated live from your data</div>
+          <div style="text-align: center; margin-top: 8px; font-size: 11px; color: #8b8d98;">Example dashboard &mdash; yours is generated live from your data</div>
         </div>
 
         <h3>Weekly Intelligence Report</h3>
@@ -428,45 +437,45 @@
         <p>Ask Claude: <strong>"How are my posts doing?"</strong></p>
         <p>Since the plugin tracks your own post performance (likes, comments, reposts), Claude can tell you what's working, compare against your baseline, and identify which topics and formats get the best engagement from your specific audience.</p>
 
-        <!-- Own Post Performance mockup -->
-        <div style="background: #f3f2ef; border-radius: 12px; padding: 20px; margin: 16px 0; border: 1px solid var(--border); overflow: hidden;">
+        <!-- Own Post Performance mockup — dark theme -->
+        <div style="background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%); border-radius: 12px; padding: 20px; margin: 16px 0; border: 1px solid #2d3748; overflow: hidden;">
           <div style="display: flex; gap: 8px; margin-bottom: 16px;">
-            <div style="background: #fff; border-radius: 8px; padding: 14px 18px; flex: 1; border: 1px solid #e0e0e0;">
-              <div style="font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Your Posts</div>
+            <div style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 10px; padding: 14px 18px; flex: 1; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 10px; color: #8b8d98; text-transform: uppercase; letter-spacing: 0.5px;">Your Posts</div>
               <div style="font-size: 28px; font-weight: 800; color: #0A66C2; margin-top: 2px;">42</div>
-              <div style="font-size: 11px; color: #666;">Tracked</div>
+              <div style="font-size: 11px; color: #8b8d98;">Tracked</div>
             </div>
-            <div style="background: #fff; border-radius: 8px; padding: 14px 18px; flex: 1; border: 1px solid #e0e0e0;">
-              <div style="font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Avg. Likes</div>
-              <div style="font-size: 28px; font-weight: 800; color: #057642; margin-top: 2px;">38</div>
-              <div style="font-size: 11px; color: #057642;">&#9650; 12% vs baseline</div>
+            <div style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 10px; padding: 14px 18px; flex: 1; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 10px; color: #8b8d98; text-transform: uppercase; letter-spacing: 0.5px;">Avg. Likes</div>
+              <div style="font-size: 28px; font-weight: 800; color: #10b981; margin-top: 2px;">38</div>
+              <div style="font-size: 11px; color: #10b981;">+12% vs baseline</div>
             </div>
-            <div style="background: #fff; border-radius: 8px; padding: 14px 18px; flex: 1; border: 1px solid #e0e0e0;">
-              <div style="font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Avg. Comments</div>
-              <div style="font-size: 28px; font-weight: 800; color: #057642; margin-top: 2px;">7</div>
-              <div style="font-size: 11px; color: #057642;">&#9650; 22% vs baseline</div>
+            <div style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 10px; padding: 14px 18px; flex: 1; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 10px; color: #8b8d98; text-transform: uppercase; letter-spacing: 0.5px;">Avg. Comments</div>
+              <div style="font-size: 28px; font-weight: 800; color: #10b981; margin-top: 2px;">7</div>
+              <div style="font-size: 11px; color: #10b981;">+22% vs baseline</div>
             </div>
           </div>
           <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px;">
-            <div style="background: #fff; border-radius: 8px; padding: 16px; border: 1px solid #e0e0e0;">
-              <div style="font-size: 13px; font-weight: 600; color: #1d2226; margin-bottom: 12px;">Engagement Over Time</div>
+            <div style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 10px; padding: 16px; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 13px; font-weight: 600; color: #e8e8ed; margin-bottom: 12px;">Engagement Over Time</div>
               <svg viewBox="0 0 300 80" style="width: 100%; height: auto;">
-                <polyline points="10,55 40,50 70,58 100,42 130,35 160,40 190,28 220,30 250,22 280,18" fill="none" stroke="#057642" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <polyline points="10,55 40,50 70,58 100,42 130,35 160,40 190,28 220,30 250,22 280,18" fill="url(#ownGrad)" stroke="none" opacity="0.12"/>
-                <defs><linearGradient id="ownGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#057642"/><stop offset="100%" stop-color="#057642" stop-opacity="0"/></linearGradient></defs>
-                <polyline points="10,60 40,62 70,58 100,60 130,55 160,57 190,53 220,55 250,50 280,52" fill="none" stroke="#0A66C2" stroke-width="1.5" stroke-dasharray="4 3" stroke-linecap="round" opacity="0.6"/>
-                <text x="10" y="75" font-size="7" fill="#999">4 wks ago</text><text x="140" y="75" font-size="7" fill="#999">2 wks ago</text><text x="262" y="75" font-size="7" fill="#999">Now</text>
+                <polyline points="10,55 40,50 70,58 100,42 130,35 160,40 190,28 220,30 250,22 280,18" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="10,55 40,50 70,58 100,42 130,35 160,40 190,28 220,30 250,22 280,18" fill="url(#ownGrad2)" stroke="none" opacity="0.12"/>
+                <defs><linearGradient id="ownGrad2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#10b981" stop-opacity="0"/></linearGradient></defs>
+                <polyline points="10,60 40,62 70,58 100,60 130,55 160,57 190,53 220,55 250,50 280,52" fill="none" stroke="#0A66C2" stroke-width="1.5" stroke-dasharray="4 3" stroke-linecap="round" opacity="0.5"/>
+                <text x="10" y="75" font-size="7" fill="#8b8d98">4 wks ago</text><text x="140" y="75" font-size="7" fill="#8b8d98">2 wks ago</text><text x="262" y="75" font-size="7" fill="#8b8d98">Now</text>
               </svg>
-              <div style="display: flex; gap: 16px; margin-top: 6px; font-size: 10px; color: #999;">
-                <span><span style="display: inline-block; width: 12px; height: 2px; background: #057642; border-radius: 1px; vertical-align: middle; margin-right: 4px;"></span>Likes</span>
-                <span><span style="display: inline-block; width: 12px; height: 2px; background: #0A66C2; border-radius: 1px; vertical-align: middle; margin-right: 4px; opacity: 0.6; border-top: 1px dashed #0A66C2;"></span>Baseline</span>
+              <div style="display: flex; gap: 16px; margin-top: 6px; font-size: 10px; color: #8b8d98;">
+                <span><span style="display: inline-block; width: 12px; height: 2px; background: #10b981; border-radius: 1px; vertical-align: middle; margin-right: 4px;"></span>Likes</span>
+                <span><span style="display: inline-block; width: 12px; height: 2px; background: #0A66C2; border-radius: 1px; vertical-align: middle; margin-right: 4px; opacity: 0.5;"></span>Baseline</span>
               </div>
             </div>
-            <div style="background: #fff; border-radius: 8px; padding: 16px; border: 1px solid #e0e0e0;">
-              <div style="font-size: 13px; font-weight: 600; color: #1d2226; margin-bottom: 10px;">Best Performing</div>
-              <div style="font-size: 11px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;"><span style="color: #057642; font-weight: 700;">&#127942;</span> <span style="color: #1d2226; font-weight: 600;">AI tools for startups</span><br/><span style="color: #999;">87 likes &middot; 14 comments</span></div>
-              <div style="font-size: 11px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;"><span style="color: #0A66C2; font-weight: 700;">&#9650;</span> <span style="color: #1d2226; font-weight: 600;">Why benefits beat perks</span><br/><span style="color: #999;">62 likes &middot; 11 comments</span></div>
-              <div style="font-size: 11px;"><span style="color: #7C3AED; font-weight: 700;">&#9650;</span> <span style="color: #1d2226; font-weight: 600;">Building in public update</span><br/><span style="color: #999;">54 likes &middot; 9 comments</span></div>
+            <div style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 10px; padding: 16px; border: 1px solid rgba(255,255,255,0.08);">
+              <div style="font-size: 13px; font-weight: 600; color: #e8e8ed; margin-bottom: 10px;">Best Performing</div>
+              <div style="font-size: 11px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08);"><span style="color: #f59e0b; font-weight: 700;">1</span> <span style="color: #e8e8ed; font-weight: 600;">WuunderFund CEO announce</span><br/><span style="color: #8b8d98;">45 comments &middot; 9 reposts</span></div>
+              <div style="font-size: 11px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08);"><span style="color: #0A66C2; font-weight: 700;">2</span> <span style="color: #e8e8ed; font-weight: 600;">Bay Area cloud + AI event</span><br/><span style="color: #8b8d98;">14 likes &middot; 0 comments</span></div>
+              <div style="font-size: 11px;"><span style="color: #8b5cf6; font-weight: 700;">3</span> <span style="color: #e8e8ed; font-weight: 600;">Hiring — join the team</span><br/><span style="color: #8b8d98;">11 likes &middot; 0 comments</span></div>
             </div>
           </div>
           <div style="text-align: center; margin-top: 8px; font-size: 11px; color: #999;">Example own-post metrics &mdash; yours are generated live from your data</div>
