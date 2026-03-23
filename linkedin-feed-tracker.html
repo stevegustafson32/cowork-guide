@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Feed Tracker — Getting Started Guide</title>
+<style>
+  :root {
+    --accent: #0A66C2;
+    --accent-light: #378FE9;
+    --accent-dim: rgba(10,102,194,0.12);
+    --green: #057642;
+    --green-dim: rgba(5,118,66,0.12);
+    --orange: #B24020;
+    --orange-dim: rgba(178,64,32,0.12);
+    --purple: #7C3AED;
+    --purple-dim: rgba(124,58,237,0.12);
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface-hover: #22252f;
+    --border: #2a2d3a;
+    --text: #e8e8ed;
+    --text-dim: #8b8d98;
+    --text-bright: #ffffff;
+    --radius: 10px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  /* Hero */
+  .hero { text-align: center; padding: 80px 24px 60px; max-width: 800px; margin: 0 auto; }
+  .hero .badge { display: inline-block; background: var(--accent-dim); color: var(--accent-light); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 20px; }
+  .hero h1 { font-size: 42px; font-weight: 800; line-height: 1.15; margin-bottom: 16px; color: var(--text-bright); }
+  .hero h1 em { font-style: normal; color: var(--accent-light); }
+  .hero .sub { font-size: 18px; color: var(--text-dim); max-width: 580px; margin: 0 auto 32px; line-height: 1.5; }
+  .hero .cta { display: inline-block; background: var(--accent); color: white; padding: 14px 32px; border-radius: 8px; font-size: 16px; font-weight: 600; text-decoration: none; transition: background 0.2s; cursor: pointer; border: none; }
+  .hero .cta:hover { background: var(--accent-light); }
+
+  /* Container */
+  .container { max-width: 800px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* TOC */
+  .toc { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 48px; }
+  .toc-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; cursor: pointer; transition: all 0.2s; text-decoration: none; color: var(--text); }
+  .toc-item:hover { background: var(--surface-hover); border-color: var(--accent); }
+  .toc-item .num { font-size: 13px; font-weight: 700; color: var(--accent-light); margin-bottom: 4px; }
+  .toc-item .title { font-size: 15px; font-weight: 600; color: var(--text-bright); }
+  .toc-item .desc { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+
+  /* Accordion */
+  .section { margin-bottom: 8px; }
+  .accordion-header { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: all 0.2s; border-left: 3px solid transparent; user-select: none; }
+  .accordion-header:hover { background: var(--surface-hover); border-left-color: var(--accent); }
+  .accordion-header.active { border-left-color: var(--accent); background: var(--surface-hover); }
+  .accordion-header .num-badge { background: var(--accent); color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .accordion-header .header-text { flex: 1; }
+  .accordion-header .header-text .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim); font-weight: 600; }
+  .accordion-header .header-text h2 { font-size: 18px; font-weight: 700; color: var(--text-bright); margin-top: 2px; }
+  .chevron { width: 20px; height: 20px; transition: transform 0.3s ease; flex-shrink: 0; }
+  .chevron path { stroke: var(--text-dim); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .accordion-header.active .chevron { transform: rotate(180deg); }
+
+  .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .accordion-content.open { max-height: 8000px; }
+  .accordion-body { padding: 24px; background: var(--surface); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius) var(--radius); margin-top: -8px; }
+
+  /* Content elements */
+  .accordion-body p { margin-bottom: 16px; color: var(--text); line-height: 1.65; }
+  .accordion-body h3 { font-size: 16px; font-weight: 700; color: var(--text-bright); margin: 28px 0 12px; }
+  .accordion-body h3:first-child { margin-top: 0; }
+  .accordion-body ul { margin: 0 0 16px 20px; }
+  .accordion-body li { margin-bottom: 8px; color: var(--text); }
+  .accordion-body strong { color: var(--text-bright); }
+  .accordion-body code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: 'Monaco', 'Courier New', monospace; }
+
+  /* Info boxes */
+  .info-box { border-radius: 8px; padding: 16px 20px; margin: 16px 0; border-left: 3px solid; }
+  .info-box.tip { background: var(--green-dim); border-color: var(--green); }
+  .info-box.warn { background: var(--orange-dim); border-color: var(--orange); }
+  .info-box.key { background: var(--accent-dim); border-color: var(--accent); }
+  .info-box .box-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+  .info-box.tip .box-label { color: var(--green); }
+  .info-box.warn .box-label { color: var(--orange); }
+  .info-box.key .box-label { color: var(--accent-light); }
+  .info-box p { margin-bottom: 0; font-size: 14px; }
+
+  /* Feature cards */
+  .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .feature-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+  .feature-card .icon { font-size: 24px; margin-bottom: 8px; }
+  .feature-card h4 { font-size: 14px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px; }
+  .feature-card p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+
+  /* Setup single card (hero style) */
+  .setup-hero { background: var(--surface-hover); border: 2px solid var(--accent); border-radius: 16px; padding: 36px 32px; text-align: center; margin: 24px 0; }
+  .setup-hero .step-file { background: var(--accent-dim); color: var(--accent-light); padding: 14px 20px; border-radius: 8px; font-size: 15px; font-weight: 600; margin: 16px auto; font-family: 'Monaco', 'Courier New', monospace; display: inline-block; }
+  .setup-hero .step-desc { font-size: 15px; color: var(--text-dim); margin-top: 12px; }
+
+  /* Step list */
+  .step-list { counter-reset: steps; list-style: none; margin: 16px 0; padding: 0; }
+  .step-list li { counter-increment: steps; display: flex; gap: 14px; margin-bottom: 16px; align-items: flex-start; }
+  .step-list li::before { content: counter(steps); background: var(--accent); color: white; width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .step-list li .step-content { flex: 1; }
+  .step-list li .step-content strong { display: block; color: var(--text-bright); margin-bottom: 2px; }
+  .step-list li .step-content span { font-size: 14px; color: var(--text-dim); }
+
+  /* Conversation mockup */
+  .convo { margin: 16px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .convo .msg { padding: 14px 18px; font-size: 14px; line-height: 1.5; }
+  .convo .user { background: var(--accent-dim); color: var(--accent-light); border-bottom: 1px solid var(--border); }
+  .convo .user::before { content: 'You: '; font-weight: 700; }
+  .convo .claude { background: rgba(255,255,255,0.03); color: var(--text); }
+  .convo .claude::before { content: 'Claude: '; font-weight: 700; color: var(--purple); }
+
+  /* Output example */
+  .output-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; }
+  .output-box .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--purple); font-weight: 700; margin-bottom: 12px; }
+  .output-box .content { font-size: 14px; color: var(--text); line-height: 1.65; }
+
+  /* Scraper grid */
+  .scraper-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .scraper-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+  .scraper-card h4 { font-size: 14px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px; }
+  .scraper-card p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+  .scraper-card .freq { font-size: 11px; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px; }
+
+  /* CTA section */
+  .cta-section { text-align: center; padding: 48px 24px; margin-top: 32px; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
+  .cta-section h2 { font-size: 24px; color: var(--text-bright); margin-bottom: 12px; }
+  .cta-section p { color: var(--text-dim); margin-bottom: 24px; }
+  .cta-section .cta { display: inline-block; background: var(--accent); color: white; padding: 14px 32px; border-radius: 8px; font-size: 16px; font-weight: 600; text-decoration: none; cursor: pointer; border: none; }
+
+  /* Back to top */
+  .back-to-top { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: white; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: opacity 0.3s; border: none; font-size: 18px; z-index: 100; }
+  .back-to-top.visible { opacity: 1; }
+
+  /* Footer */
+  .footer { padding: 48px 24px; text-align: center; color: var(--text-dim); font-size: 13px; line-height: 1.8; max-width: 800px; margin: 0 auto; }
+  .footer a { color: var(--accent-light); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 28px; }
+    .feature-grid, .scraper-grid { grid-template-columns: 1fr; }
+    .toc { grid-template-columns: 1fr; }
+    .hero { padding: 48px 16px 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="badge">LinkedIn Feed Tracker &mdash; Cowork Plugin</div>
+  <h1>See what your network is <em>really</em> talking about.</h1>
+  <p class="sub">Collect every post from your LinkedIn connections. Claude does the rest: finds trends, spots content gaps, tracks your own post performance, and creates weekly intelligence reports. One setup file. Then just ask questions.</p>
+  <button class="cta" onclick="document.getElementById('s2').scrollIntoView({behavior:'smooth'})">Get Started</button>
+</div>
+
+<div class="container" id="toc-section">
+
+  <!-- TOC -->
+  <div class="toc">
+    <a class="toc-item" href="#s1"><div class="num">01</div><div class="title">How It Works</div><div class="desc">Collect, store, analyze, repeat</div></a>
+    <a class="toc-item" href="#s2"><div class="num">02</div><div class="title">Setup</div><div class="desc">One file. Double-click. Done.</div></a>
+    <a class="toc-item" href="#s3"><div class="num">03</div><div class="title">What You Get</div><div class="desc">Dashboards, reports, deep dives</div></a>
+    <a class="toc-item" href="#s4"><div class="num">04</div><div class="title">Talk to Claude</div><div class="desc">Examples of what to ask</div></a>
+    <a class="toc-item" href="#s5"><div class="num">05</div><div class="title">Privacy</div><div class="desc">Your data, your machine</div></a>
+    <a class="toc-item" href="#s6"><div class="num">06</div><div class="title">FAQ</div><div class="desc">Questions answered</div></a>
+  </div>
+
+  <!-- Section 1: How It Works -->
+  <div class="section" id="s1">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">1</div>
+      <div class="header-text">
+        <div class="label">How It Works</div>
+        <h2>Four collectors, one database, Claude on top</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>LinkedIn Feed Tracker is a <strong>Cowork hybrid plugin</strong>. Automated scrapers collect data from your LinkedIn every night. Claude analyzes everything inside Cowork. All data stays on your Mac.</p>
+
+        <h3>The collection layer</h3>
+        <p>Four scrapers run on your Mac (via a nightly schedule) and capture different slices of your LinkedIn world:</p>
+
+        <div class="scraper-grid">
+          <div class="scraper-card">
+            <h4>Feed Collector</h4>
+            <p>Scrolls your LinkedIn home feed and captures every post&mdash;author, content, engagement counts, timestamps. Deduplicates automatically.</p>
+            <div class="freq">Runs nightly</div>
+          </div>
+          <div class="scraper-card">
+            <h4>Profile Collector</h4>
+            <p>Visits your connections' profiles on a 7-day rotation. Each night it covers ~1/7 of your network, so every connection gets visited once a week.</p>
+            <div class="freq">Rotates nightly</div>
+          </div>
+          <div class="scraper-card">
+            <h4>Connections Sync</h4>
+            <p>Keeps your full connections list up to date. Handles networks up to 5,000+ with a multi-strategy approach that auto-adapts to LinkedIn changes.</p>
+            <div class="freq">Runs with setup + on demand</div>
+          </div>
+          <div class="scraper-card">
+            <h4>Own Post Tracker</h4>
+            <p>Scrapes your own posts' performance&mdash;likes, comments, reposts&mdash;so you can see what's working and track growth over time.</p>
+            <div class="freq">Runs nightly</div>
+          </div>
+        </div>
+
+        <h3>The intelligence layer</h3>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="icon">💾</div>
+            <h4>Local SQLite Database</h4>
+            <p>All posts, connections, and performance data live in a single database file in your workspace. You choose where it's stored during setup.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">🤖</div>
+            <h4>Claude Analyzes</h4>
+            <p>Open Cowork and ask anything. Claude queries your database, finds trends, generates dashboards, and writes reports&mdash;all from your own data.</p>
+          </div>
+        </div>
+
+        <h3>Self-healing selectors</h3>
+        <p>LinkedIn changes their page layout frequently. The plugin detects when its selectors break, dumps diagnostic info, and flags itself for repair. Next time you open Cowork, Claude auto-fixes the selectors. You don't have to do anything.</p>
+
+        <div class="info-box tip">
+          <div class="box-label">Why this is powerful</div>
+          <p>You're not relying on LinkedIn's algorithm to tell you what matters. You're asking <em>your data</em> what matters, with Claude as your analyst.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Setup -->
+  <div class="section" id="s2">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">2</div>
+      <div class="header-text">
+        <div class="label">Setup</div>
+        <h2>One file. Double-click. Everything happens.</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <h3>Before you start</h3>
+        <p><strong>You don't need to install anything manually.</strong> The setup file checks for Node.js 20 and installs it automatically if it's missing&mdash;including installing <code>nvm</code> (the Node version manager) if you don't have it. Just double-click and let it run.</p>
+
+        <div class="info-box key">
+          <div class="box-label">Under the hood</div>
+          <p>The plugin requires Node.js 20 specifically (not 22). The setup script handles this for you&mdash;it detects your current version, installs 20 via nvm if needed, and sets it as the default.</p>
+        </div>
+
+        <h3>The setup</h3>
+        <p>One file handles everything. Double-click it and follow the prompts:</p>
+
+        <div class="setup-hero">
+          <div style="font-size: 48px; font-weight: 800; color: var(--accent-light); margin-bottom: 8px;">1 file</div>
+          <div style="font-size: 18px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Setup LinkedIn Feed Tracker.command</div>
+          <div class="step-desc">Double-click to start. The script handles the rest.</div>
+        </div>
+
+        <h3>What the setup does (8 steps, all automatic)</h3>
+        <ol class="step-list">
+          <li><div class="step-content"><strong>Picks your project folder</strong><span>You choose where to store your database and browser session. This folder is also accessible to Cowork, so Claude can query your data.</span></div></li>
+          <li><div class="step-content"><strong>Downloads LinkedIn Feed Tracker</strong><span>Pulls the latest plugin code to your machine.</span></div></li>
+          <li><div class="step-content"><strong>Installs dependencies</strong><span>Runs <code>npm install</code> and downloads the Playwright browser. No manual terminal work.</span></div></li>
+          <li><div class="step-content"><strong>Opens LinkedIn for login</strong><span>A browser window opens to LinkedIn. Sign in normally. The browser auto-closes once it detects you've logged in.</span></div></li>
+          <li><div class="step-content"><strong>Syncs your connections</strong><span>Scrapes your full connection list. Takes a few minutes depending on network size.</span></div></li>
+          <li><div class="step-content"><strong>Runs your first feed collection</strong><span>Scrolls your home feed and captures recent posts.</span></div></li>
+          <li><div class="step-content"><strong>Baselines your own posts</strong><span>Captures your existing post history so you can track performance growth from day one.</span></div></li>
+          <li><div class="step-content"><strong>Schedules nightly collection</strong><span>Sets up a macOS launchd job to run all collectors automatically at 10 PM every night. If your Mac is asleep, it catches up when it wakes.</span></div></li>
+        </ol>
+
+        <div class="info-box tip">
+          <div class="box-label">That's it</div>
+          <p>After setup, data flows automatically every night. Open Cowork anytime and start asking Claude about your network.</p>
+        </div>
+
+        <h3>After setup</h3>
+        <p>Your workspace folder will contain your database (<code>feeds.db</code>), your browser session, and all collected data. A <code>NightlyCollect.command</code> file is also available if you ever want to trigger a manual collection outside the nightly schedule.</p>
+
+        <h3>Set your topic clusters</h3>
+        <p>The plugin ships with default topics, but you'll want to customize them. Open Cowork and tell Claude: <strong>"Show my topics"</strong> to see what's configured, then <strong>"Add a topic for [whatever you care about]"</strong> or <strong>"Remove the topic about [X]."</strong> Claude handles it instantly. This is how you focus the analysis on what matters to you.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: What You Get -->
+  <div class="section" id="s3">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">3</div>
+      <div class="header-text">
+        <div class="label">What You Get</div>
+        <h2>Dashboard, reports, analysis, and performance tracking</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>Once data is flowing, Claude can answer any question you ask inside Cowork. Here's what the plugin gives you:</p>
+
+        <h3>Interactive Dashboard</h3>
+        <p>Ask Claude: <strong>"Show me my dashboard"</strong></p>
+        <p>Claude builds a live HTML dashboard from your database. Here's what it looks like:</p>
+
+        <!-- Dashboard mockup -->
+        <div style="background: #f3f2ef; border-radius: 12px; padding: 20px; margin: 16px 0; border: 1px solid var(--border); overflow: hidden;">
+          <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+            <div style="background: #fff; border-radius: 8px; padding: 14px 18px; flex: 1; border: 1px solid #e0e0e0;">
+              <div style="font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Total Posts</div>
+              <div style="font-size: 28px; font-weight: 800; color: #0A66C2; margin-top: 2px;">847</div>
+              <div style="font-size: 11px; color: #666;">Last 30 days</div>
+            </div>
+            <div style="background: #fff; border-radius: 8px; padding: 14px 18px; flex: 1; border: 1px solid #e0e0e0;">
+              <div style="font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Connections</div>
+              <div style="font-size: 28px; font-weight: 800; color: #1d2226; margin-top: 2px;">1,966</div>
+              <div style="font-size: 11px; color: #666;">Synced</div>
+            </div>
+            <div style="background: #fff; border-radius: 8px; padding: 14px 18px; flex: 1; border: 1px solid #e0e0e0;">
+              <div style="font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Top Topic</div>
+              <div style="font-size: 14px; font-weight: 700; color: #057642; margin-top: 6px;">AI &amp; Automation</div>
+              <div style="font-size: 11px; color: #666;">142 posts this week</div>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px;">
+            <div style="background: #fff; border-radius: 8px; padding: 16px; border: 1px solid #e0e0e0;">
+              <div style="font-size: 13px; font-weight: 600; color: #1d2226; margin-bottom: 12px;">Post Volume (7 days)</div>
+              <svg viewBox="0 0 300 80" style="width: 100%; height: auto;">
+                <polyline points="10,60 55,45 100,50 145,30 190,25 235,35 280,15" fill="none" stroke="#0A66C2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="10,60 55,45 100,50 145,30 190,25 235,35 280,15" fill="url(#chartGrad)" stroke="none" opacity="0.15"/>
+                <defs><linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0A66C2"/><stop offset="100%" stop-color="#0A66C2" stop-opacity="0"/></linearGradient></defs>
+                <text x="10" y="75" font-size="8" fill="#999">Mon</text><text x="55" y="75" font-size="8" fill="#999">Tue</text><text x="100" y="75" font-size="8" fill="#999">Wed</text><text x="145" y="75" font-size="8" fill="#999">Thu</text><text x="190" y="75" font-size="8" fill="#999">Fri</text><text x="235" y="75" font-size="8" fill="#999">Sat</text><text x="280" y="75" font-size="8" fill="#999">Sun</text>
+              </svg>
+            </div>
+            <div style="background: #fff; border-radius: 8px; padding: 16px; border: 1px solid #e0e0e0;">
+              <div style="font-size: 13px; font-weight: 600; color: #1d2226; margin-bottom: 10px;">Top Topics</div>
+              <div style="font-size: 12px; margin-bottom: 6px;"><span style="display: inline-block; width: 8px; height: 8px; background: #0A66C2; border-radius: 2px; margin-right: 6px;"></span><span style="color: #1d2226;">AI &amp; Automation</span> <span style="color: #999; float: right;">142</span></div>
+              <div style="font-size: 12px; margin-bottom: 6px;"><span style="display: inline-block; width: 8px; height: 8px; background: #057642; border-radius: 2px; margin-right: 6px;"></span><span style="color: #1d2226;">Hiring &amp; Careers</span> <span style="color: #999; float: right;">98</span></div>
+              <div style="font-size: 12px; margin-bottom: 6px;"><span style="display: inline-block; width: 8px; height: 8px; background: #B24020; border-radius: 2px; margin-right: 6px;"></span><span style="color: #1d2226;">Founders &amp; Startups</span> <span style="color: #999; float: right;">76</span></div>
+              <div style="font-size: 12px;"><span style="display: inline-block; width: 8px; height: 8px; background: #7C3AED; border-radius: 2px; margin-right: 6px;"></span><span style="color: #1d2226;">HR &amp; Benefits</span> <span style="color: #999; float: right;">54</span></div>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 8px; font-size: 11px; color: #999;">Example dashboard &mdash; yours is generated live from your data</div>
+        </div>
+
+        <h3>Weekly Intelligence Report</h3>
+        <p>Ask Claude: <strong>"Generate a weekly report"</strong></p>
+        <p>A formatted Word document that includes:</p>
+        <ul>
+          <li>What topics trended in your network this week</li>
+          <li>Which connections drove the most engagement</li>
+          <li>Emerging patterns and rising topics</li>
+          <li>Content gaps nobody in your network is covering</li>
+          <li>Recommended post ideas based on gaps and trends</li>
+        </ul>
+
+        <h3>Feed Analysis</h3>
+        <p>Ask Claude: <strong>"Analyze my feed"</strong></p>
+        <p>Deep analysis of collected posts: topic clustering, engagement breakdowns, author activity, and trend spotting. Goes beyond what the dashboard shows with narrative insights.</p>
+
+        <h3>Own Post Performance</h3>
+        <p>Ask Claude: <strong>"How are my posts doing?"</strong></p>
+        <p>Since the plugin tracks your own post performance (likes, comments, reposts), Claude can tell you what's working, compare against your baseline, and identify which topics and formats get the best engagement from your specific audience.</p>
+
+        <!-- Own Post Performance mockup -->
+        <div style="background: #f3f2ef; border-radius: 12px; padding: 20px; margin: 16px 0; border: 1px solid var(--border); overflow: hidden;">
+          <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+            <div style="background: #fff; border-radius: 8px; padding: 14px 18px; flex: 1; border: 1px solid #e0e0e0;">
+              <div style="font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Your Posts</div>
+              <div style="font-size: 28px; font-weight: 800; color: #0A66C2; margin-top: 2px;">42</div>
+              <div style="font-size: 11px; color: #666;">Tracked</div>
+            </div>
+            <div style="background: #fff; border-radius: 8px; padding: 14px 18px; flex: 1; border: 1px solid #e0e0e0;">
+              <div style="font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Avg. Likes</div>
+              <div style="font-size: 28px; font-weight: 800; color: #057642; margin-top: 2px;">38</div>
+              <div style="font-size: 11px; color: #057642;">&#9650; 12% vs baseline</div>
+            </div>
+            <div style="background: #fff; border-radius: 8px; padding: 14px 18px; flex: 1; border: 1px solid #e0e0e0;">
+              <div style="font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Avg. Comments</div>
+              <div style="font-size: 28px; font-weight: 800; color: #057642; margin-top: 2px;">7</div>
+              <div style="font-size: 11px; color: #057642;">&#9650; 22% vs baseline</div>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 8px;">
+            <div style="background: #fff; border-radius: 8px; padding: 16px; border: 1px solid #e0e0e0;">
+              <div style="font-size: 13px; font-weight: 600; color: #1d2226; margin-bottom: 12px;">Engagement Over Time</div>
+              <svg viewBox="0 0 300 80" style="width: 100%; height: auto;">
+                <polyline points="10,55 40,50 70,58 100,42 130,35 160,40 190,28 220,30 250,22 280,18" fill="none" stroke="#057642" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="10,55 40,50 70,58 100,42 130,35 160,40 190,28 220,30 250,22 280,18" fill="url(#ownGrad)" stroke="none" opacity="0.12"/>
+                <defs><linearGradient id="ownGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#057642"/><stop offset="100%" stop-color="#057642" stop-opacity="0"/></linearGradient></defs>
+                <polyline points="10,60 40,62 70,58 100,60 130,55 160,57 190,53 220,55 250,50 280,52" fill="none" stroke="#0A66C2" stroke-width="1.5" stroke-dasharray="4 3" stroke-linecap="round" opacity="0.6"/>
+                <text x="10" y="75" font-size="7" fill="#999">4 wks ago</text><text x="140" y="75" font-size="7" fill="#999">2 wks ago</text><text x="262" y="75" font-size="7" fill="#999">Now</text>
+              </svg>
+              <div style="display: flex; gap: 16px; margin-top: 6px; font-size: 10px; color: #999;">
+                <span><span style="display: inline-block; width: 12px; height: 2px; background: #057642; border-radius: 1px; vertical-align: middle; margin-right: 4px;"></span>Likes</span>
+                <span><span style="display: inline-block; width: 12px; height: 2px; background: #0A66C2; border-radius: 1px; vertical-align: middle; margin-right: 4px; opacity: 0.6; border-top: 1px dashed #0A66C2;"></span>Baseline</span>
+              </div>
+            </div>
+            <div style="background: #fff; border-radius: 8px; padding: 16px; border: 1px solid #e0e0e0;">
+              <div style="font-size: 13px; font-weight: 600; color: #1d2226; margin-bottom: 10px;">Best Performing</div>
+              <div style="font-size: 11px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;"><span style="color: #057642; font-weight: 700;">&#127942;</span> <span style="color: #1d2226; font-weight: 600;">AI tools for startups</span><br/><span style="color: #999;">87 likes &middot; 14 comments</span></div>
+              <div style="font-size: 11px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #f0f0f0;"><span style="color: #0A66C2; font-weight: 700;">&#9650;</span> <span style="color: #1d2226; font-weight: 600;">Why benefits beat perks</span><br/><span style="color: #999;">62 likes &middot; 11 comments</span></div>
+              <div style="font-size: 11px;"><span style="color: #7C3AED; font-weight: 700;">&#9650;</span> <span style="color: #1d2226; font-weight: 600;">Building in public update</span><br/><span style="color: #999;">54 likes &middot; 9 comments</span></div>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 8px; font-size: 11px; color: #999;">Example own-post metrics &mdash; yours are generated live from your data</div>
+        </div>
+
+        <h3>Topic Clusters</h3>
+        <p>Your network's posts are auto-sorted into configurable topic clusters. Manage them by telling Claude: <strong>"Add a topic"</strong> or <strong>"Show my topics."</strong></p>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h4>Work Topics</h4>
+            <p>Remote work, careers, hiring, skill development, AI at work</p>
+          </div>
+          <div class="feature-card">
+            <h4>Industry Topics</h4>
+            <p>HR &amp; benefits, payroll &amp; fintech, employee retention, travel &amp; lifestyle benefits</p>
+          </div>
+          <div class="feature-card">
+            <h4>Startup Talk</h4>
+            <p>Fundraising, founder advice, product, SaaS, growth</p>
+          </div>
+          <div class="feature-card">
+            <h4>Personal</h4>
+            <p>Life updates, celebrations, reflections, wellness</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Talk to Claude -->
+  <div class="section" id="s4">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">4</div>
+      <div class="header-text">
+        <div class="label">Talk to Claude</div>
+        <h2>Ask questions like you're texting a friend</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>Once data is flowing, open Cowork and ask Claude anything about your network. You don't need special commands. Just talk naturally.</p>
+
+        <h3>Example conversations</h3>
+
+        <div class="convo">
+          <div class="msg user">What's trending in my network right now?</div>
+          <div class="msg claude">Based on this week's posts, the top topics are: remote work culture (23 posts), AI tooling (18 posts), and hiring strategies (15 posts). Remote work is up 40% from last week. I can show you the dashboard or dive into any of these.</div>
+        </div>
+
+        <div class="convo">
+          <div class="msg user">Show my dashboard.</div>
+          <div class="msg claude">[Generates an interactive HTML dashboard with charts, filters, and top-level metrics]</div>
+        </div>
+
+        <div class="convo">
+          <div class="msg user">How did my last post perform?</div>
+          <div class="msg claude">Your post about hiring challenges got 42 likes and 11 comments&mdash;that's 35% above your 30-day average. Comments were mostly from HR and recruiting connections. Your question-style hook worked well.</div>
+        </div>
+
+        <div class="convo">
+          <div class="msg user">What's trending in HR and Employee Benefits?</div>
+          <div class="msg claude">Top posts in that cluster are about flexible work arrangements, mental health support, and equity compensation. Three of your connections in HR posted about benefits that improve retention&mdash;there might be an angle for you here.</div>
+        </div>
+
+        <div class="convo">
+          <div class="msg user">Generate my weekly report.</div>
+          <div class="msg claude">[Builds a formatted Word document with this week's trends, top posts, engagement patterns, and content recommendations]</div>
+        </div>
+
+        <h3>You can also use slash commands</h3>
+        <ul>
+          <li><code>/show-dashboard</code> &mdash; Generate and display your analytics dashboard</li>
+          <li><code>/collect-now</code> &mdash; Trigger a manual data collection</li>
+          <li><code>/health-check</code> &mdash; Check system health (database, collection status, errors)</li>
+        </ul>
+
+        <h3>Other things to ask</h3>
+        <ul>
+          <li>"Who's been most active this month?"</li>
+          <li>"What topics did I post about recently?"</li>
+          <li>"Who posted about employee retention?"</li>
+          <li>"What's the engagement breakdown by topic?"</li>
+          <li>"Show me posts about payroll and fintech."</li>
+          <li>"Add a topic cluster for AI in recruiting."</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Privacy -->
+  <div class="section" id="s5">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">5</div>
+      <div class="header-text">
+        <div class="label">Privacy</div>
+        <h2>Your data stays on your machine</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <h3>What gets collected</h3>
+        <ul>
+          <li>Post text and metadata (timestamps, engagement counts)</li>
+          <li>Author names and connection info</li>
+          <li>Your own post performance metrics</li>
+          <li>Your LinkedIn browser session (stored locally for automated login)</li>
+        </ul>
+
+        <h3>Where it's stored</h3>
+        <p><strong>Everything lives on your Mac.</strong> The scrapers run locally. The database is a single file in a folder you choose. There's no cloud component, no external server, no data transmission.</p>
+
+        <h3>Who sees it</h3>
+        <ul>
+          <li>You</li>
+          <li>Claude (only when you ask questions inside Cowork)</li>
+          <li>No one else</li>
+        </ul>
+
+        <h3>What about LinkedIn?</h3>
+        <p>The scraper uses a real browser (Playwright with Chromium) and mimics normal browsing. LinkedIn sees standard page visits, not API calls or bulk requests. Your credentials stay in your local browser profile&mdash;they're never transmitted anywhere.</p>
+
+        <div class="info-box key">
+          <div class="box-label">You're in control</div>
+          <p>Delete the database anytime. Pause the nightly schedule anytime. The plugin is open-source&mdash;you can review every line of code on GitHub.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6: FAQ -->
+  <div class="section" id="s6">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">6</div>
+      <div class="header-text">
+        <div class="label">FAQ</div>
+        <h2>Questions answered</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+
+        <h3>Do I need to know how to code?</h3>
+        <p>No. You double-click one setup file and then talk to Claude. That's it.</p>
+
+        <h3>What platforms are supported?</h3>
+        <p>macOS only right now. The scrapers use macOS .command files and the nightly schedule uses macOS launchd. Windows and Linux support may come later.</p>
+
+        <h3>What if LinkedIn changes their website?</h3>
+        <p>The plugin has a self-healing selector system. When LinkedIn changes their DOM, the scraper detects the failure, dumps diagnostic info, and flags itself for repair. Next time you open Cowork, Claude fixes the selectors automatically. You don't do anything.</p>
+
+        <h3>How often does it collect data?</h3>
+        <p>Every night at 10 PM automatically. The nightly run does three things: collects your feed, visits a batch of connection profiles, and checks your own post performance. If your Mac is asleep at 10 PM, it catches up when it wakes (within a 1-hour grace window).</p>
+
+        <h3>What if I have thousands of connections?</h3>
+        <p>The connection sync handles networks up to 5,000+ using a 4-strategy fallback system. For ongoing monitoring, the profile collector uses a 7-day rotation&mdash;it visits ~1/7 of your connections each night so everyone gets covered weekly.</p>
+
+        <h3>Can I trigger a collection manually?</h3>
+        <p>Yes. Either double-click <code>NightlyCollect.command</code> in your workspace, or tell Claude <code>/collect-now</code> inside Cowork.</p>
+
+        <h3>Can I export my data?</h3>
+        <p>Yes. The database is a standard SQLite file&mdash;you can query it with any SQLite tool. You can also ask Claude to generate reports as Word documents, CSVs, or dashboards you can share.</p>
+
+        <h3>Will this slow down my computer?</h3>
+        <p>The scrapers run briefly (a few minutes) and then stop. Outside of collection windows, there's zero background load. The nightly schedule only triggers once at 10 PM.</p>
+
+        <h3>Why Node.js 20 and not 22?</h3>
+        <p>A key dependency (better-sqlite3) doesn't have a prebuilt binary for Node.js 22 on Apple Silicon Macs. The setup file handles this automatically&mdash;it installs Node 20 via nvm and sets it as your default. You don't need to manage versions yourself.</p>
+
+        <h3>Does LinkedIn know I'm scraping?</h3>
+        <p>LinkedIn sees normal browser traffic. The plugin uses a real Chromium browser with your actual session&mdash;it's visiting pages the same way you would manually. There are no API calls or unusual request patterns.</p>
+
+        <h3>How much does this cost?</h3>
+        <p>The plugin is free and open-source. You need a Cowork subscription for the Claude-powered analysis features, but that's your regular Anthropic subscription.</p>
+
+        <h3>What if I get logged out of LinkedIn?</h3>
+        <p>Re-run the setup file. It will detect your existing installation and just re-open the login browser. Takes about 30 seconds.</p>
+
+        <h3>What if the .command file won't open?</h3>
+        <p>macOS blocks unsigned scripts by default. Right-click the file, select "Open," then click "Open" in the confirmation dialog. You only have to do this once per file.</p>
+
+        <h3>Is this part of a bigger system?</h3>
+        <p>Yes. LinkedIn Feed Tracker is Plugin 1 of 3. Two more plugins are in development that build on top of the data this one collects. More details coming soon.</p>
+
+        <h3>Still stuck?</h3>
+        <p>Check the <a href="https://github.com/stevegustafson32/linkedin-feed-tracker-plugin" style="color: var(--accent-light);">GitHub repo</a> for issues and updates, or reach out to the creator.</p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Coming Soon -->
+  <div style="margin-top: 32px; padding: 32px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); text-align: center;">
+    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--purple); font-weight: 700; margin-bottom: 8px;">Coming Soon</div>
+    <h2 style="font-size: 22px; color: var(--text-bright); font-weight: 700;">This is Plugin 1 of 3.</h2>
+    <p style="color: var(--text-dim); margin-top: 12px; font-size: 15px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.6;">Two more plugins are in development that build on top of your data&mdash;turning network intelligence into content and predictions. More details soon.</p>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="cta-section">
+    <h2>Ready to see what your network is talking about?</h2>
+    <p>Setup takes about 10 minutes. Data starts flowing that night.</p>
+    <button class="cta" onclick="document.getElementById('s2').scrollIntoView({behavior:'smooth'})">Go to Setup</button>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>Created by Steve Gustafson &bull; March 2026</p>
+  <p style="margin-top: 8px;">Built with Claude Cowork (naturally). Have questions? <a href="mailto:stevegustafson@gmail.com">Reach out</a>.</p>
+  <p style="margin-top: 16px;"><a href="https://github.com/stevegustafson32/linkedin-feed-tracker-plugin">GitHub</a></p>
+  <p style="margin-top: 24px; font-size: 12px; color: var(--text-dim);">Your data, your machine, your control.</p>
+</div>
+
+<button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">&#8593;</button>
+
+<script>
+function toggle(header) {
+  header.classList.toggle('active');
+  const content = header.nextElementSibling;
+  content.classList.toggle('open');
+}
+
+window.addEventListener('scroll', () => {
+  const btn = document.querySelector('.back-to-top');
+  if (window.scrollY > 300) {
+    btn.classList.add('visible');
+  } else {
+    btn.classList.remove('visible');
+  }
+});
+
+// Auto-open first section
+document.addEventListener('DOMContentLoaded', () => {
+  const firstHeader = document.querySelector('.accordion-header');
+  if (firstHeader) {
+    firstHeader.click();
+  }
+});
+</script>
+
+</body>
+</html>
