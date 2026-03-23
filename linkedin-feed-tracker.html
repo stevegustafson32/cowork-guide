@@ -256,12 +256,73 @@
         </div>
 
         <h3>The setup</h3>
-        <p>One file handles everything. Double-click it and follow the prompts:</p>
+        <p>One file handles everything. Download it, open it, and follow the prompts:</p>
 
         <div class="setup-hero">
           <div style="font-size: 48px; font-weight: 800; color: var(--accent-light); margin-bottom: 8px;">1 file</div>
-          <div style="font-size: 18px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Setup LinkedIn Feed Tracker.command</div>
-          <div class="step-desc">Double-click to start. The script handles the rest.</div>
+          <div style="font-size: 18px; font-weight: 700; color: var(--text-bright); margin-bottom: 12px;">Setup LinkedIn Feed Tracker.command</div>
+          <button onclick="downloadSetup()"
+             style="display: inline-block; background: var(--accent); color: white; padding: 16px 40px; border-radius: 10px; font-size: 18px; font-weight: 700; text-decoration: none; transition: background 0.2s; margin-bottom: 16px; border: none; cursor: pointer;"
+             onmouseover="this.style.background='#378FE9'" onmouseout="this.style.background='#0A66C2'"
+             id="download-btn">Download Setup File</button>
+          <script>
+          async function downloadSetup() {
+            const btn = document.getElementById('download-btn');
+            btn.textContent = 'Downloading...';
+            try {
+              const resp = await fetch('https://raw.githubusercontent.com/stevegustafson32/linkedin-feed-tracker-plugin/main/scripts/Setup.command');
+              const text = await resp.text();
+              const blob = new Blob([text], { type: 'application/octet-stream' });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = 'Setup LinkedIn Feed Tracker.command';
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
+              btn.textContent = 'Downloaded!';
+              btn.style.background = '#057642';
+              setTimeout(() => { btn.textContent = 'Download Setup File'; btn.style.background = ''; }, 3000);
+            } catch(e) {
+              btn.textContent = 'Download failed — try again';
+              btn.style.background = '#B24020';
+              setTimeout(() => { btn.textContent = 'Download Setup File'; btn.style.background = ''; }, 3000);
+            }
+          }
+          </script>
+          <div class="step-desc">Click the button above, then follow the 3 steps below.</div>
+          <div style="font-size: 12px; color: var(--text-dim); margin-top: 8px;">Button not working? <a href="https://raw.githubusercontent.com/stevegustafson32/linkedin-feed-tracker-plugin/main/scripts/Setup.command" download="Setup LinkedIn Feed Tracker.command" style="color: var(--accent-light);">Direct download link</a></div>
+        </div>
+
+        <h3>After downloading (3 quick steps)</h3>
+        <div style="display: grid; gap: 16px; margin: 16px 0;">
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
+            <div style="background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0;">1</div>
+            <div>
+              <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Find the file in your Downloads folder</div>
+              <div style="color: var(--text-dim); font-size: 14px;">Open Finder &rarr; Downloads. Look for <strong style="color: var(--text-bright);">Setup LinkedIn Feed Tracker.command</strong></div>
+            </div>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
+            <div style="background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0;">2</div>
+            <div>
+              <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Right-click the file &rarr; Open</div>
+              <div style="color: var(--text-dim); font-size: 14px;">macOS blocks files from the internet by default. <strong style="color: var(--text-bright);">Right-click</strong> (or Control-click) the file and choose <strong style="color: var(--text-bright);">"Open"</strong> from the menu. Don't double-click &mdash; that won't work the first time.</div>
+            </div>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
+            <div style="background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0;">3</div>
+            <div>
+              <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Click "Open" again when macOS asks</div>
+              <div style="color: var(--text-dim); font-size: 14px;">A security dialog will appear saying the file is from an unidentified developer. Click <strong style="color: var(--text-bright);">"Open"</strong> to confirm. This only happens once. A Terminal window will open and the setup begins automatically.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box warn" style="margin-top: 16px;">
+          <div class="box-label">If it still won't open</div>
+          <p>Go to <strong>System Settings &rarr; Privacy &amp; Security</strong>, scroll down, and click <strong>"Open Anyway"</strong> next to the blocked file. Then try step 2 again.</p>
         </div>
 
         <h3>What the setup does (8 steps, all automatic)</h3>
