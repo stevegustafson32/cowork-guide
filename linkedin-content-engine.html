@@ -28,7 +28,6 @@
   html { scroll-behavior: smooth; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-  /* Hero */
   .hero { text-align: center; padding: 80px 24px 60px; max-width: 800px; margin: 0 auto; }
   .hero .badge { display: inline-block; background: var(--accent-dim); color: var(--accent-light); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 20px; }
   .hero h1 { font-size: 42px; font-weight: 800; line-height: 1.15; margin-bottom: 16px; color: var(--text-bright); }
@@ -37,26 +36,23 @@
   .hero .cta { display: inline-block; background: var(--accent); color: white; padding: 14px 32px; border-radius: 8px; font-size: 16px; font-weight: 600; text-decoration: none; transition: background 0.2s; cursor: pointer; border: none; }
   .hero .cta:hover { background: var(--accent-light); }
 
-  /* Container */
   .container { max-width: 800px; margin: 0 auto; padding: 0 24px 80px; }
 
-  /* TOC */
   .toc { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 48px; }
   .toc-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; cursor: pointer; transition: all 0.2s; text-decoration: none; color: var(--text); }
   .toc-item:hover { background: var(--surface-hover); border-color: var(--accent); }
-  .toc-item .num { font-size: 15px; font-weight: 700; color: var(--accent-light); margin-bottom: 4px; }
-  .toc-item .title { font-size: 16px; font-weight: 600; color: var(--text-bright); }
-  .toc-item .desc { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+  .toc-item .num { font-size: 13px; font-weight: 700; color: var(--accent-light); margin-bottom: 4px; }
+  .toc-item .title { font-size: 15px; font-weight: 600; color: var(--text-bright); }
+  .toc-item .desc { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
 
-  /* Accordion */
   .section { margin-bottom: 8px; }
   .accordion-header { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: all 0.2s; border-left: 3px solid transparent; user-select: none; }
   .accordion-header:hover { background: var(--surface-hover); border-left-color: var(--accent); }
   .accordion-header.active { border-left-color: var(--accent); background: var(--surface-hover); }
-  .accordion-header .num-badge { background: var(--accent); color: white; min-width: 38px; height: 32px; padding: 0 8px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .accordion-header .num-badge { background: var(--accent); color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
   .accordion-header .header-text { flex: 1; }
-  .accordion-header .header-text .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim); font-weight: 600; }
-  .accordion-header .header-text h2 { font-size: 20px; font-weight: 700; color: var(--text-bright); margin-top: 2px; }
+  .accordion-header .header-text .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim); font-weight: 600; }
+  .accordion-header .header-text h2 { font-size: 18px; font-weight: 700; color: var(--text-bright); margin-top: 2px; }
   .chevron { width: 20px; height: 20px; transition: transform 0.3s ease; flex-shrink: 0; }
   .chevron path { stroke: var(--text-dim); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   .accordion-header.active .chevron { transform: rotate(180deg); }
@@ -65,16 +61,14 @@
   .accordion-content.open { max-height: 8000px; }
   .accordion-body { padding: 24px; background: var(--surface); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius) var(--radius); margin-top: -8px; }
 
-  /* Content elements */
-  .accordion-body p { margin-bottom: 16px; color: var(--text); line-height: 1.65; font-size: 15px; }
+  .accordion-body p { margin-bottom: 16px; color: var(--text); line-height: 1.65; }
   .accordion-body h3 { font-size: 16px; font-weight: 700; color: var(--text-bright); margin: 28px 0 12px; }
   .accordion-body h3:first-child { margin-top: 0; }
-  .accordion-body ul { margin: 0 0 16px 20px; }
-  .accordion-body li { margin-bottom: 8px; color: var(--text); font-size: 15px; }
+  .accordion-body ul, .accordion-body ol { margin: 0 0 16px 20px; }
+  .accordion-body li { margin-bottom: 8px; color: var(--text); }
   .accordion-body strong { color: var(--text-bright); }
   .accordion-body code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: 'Monaco', 'Courier New', monospace; }
 
-  /* Info boxes */
   .info-box { border-radius: 8px; padding: 16px 20px; margin: 16px 0; border-left: 3px solid; }
   .info-box.tip { background: var(--green-dim); border-color: var(--green); }
   .info-box.warn { background: var(--orange-dim); border-color: var(--orange); }
@@ -83,23 +77,19 @@
   .info-box.tip .box-label { color: var(--green); }
   .info-box.warn .box-label { color: var(--orange); }
   .info-box.key .box-label { color: var(--accent-light); }
-  .info-box p { margin-bottom: 0; font-size: 15px; }
+  .info-box p { margin-bottom: 0; font-size: 14px; }
 
-  /* Feature cards */
   .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
   .feature-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
   .feature-card .icon { font-size: 24px; margin-bottom: 8px; }
   .feature-card h4 { font-size: 14px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px; }
-  .feature-card p { font-size: 14px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+  .feature-card p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.5; }
 
-  /* Variation cards */
-  .variation-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 16px 0; }
+  .variation-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin: 16px 0; }
   .variation-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
   .variation-card .hook-type { font-size: 11px; font-weight: 700; color: var(--accent-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-  .variation-card h4 { font-size: 14px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px; }
   .variation-card p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.5; }
 
-  /* Step list */
   .step-list { counter-reset: steps; list-style: none; margin: 16px 0; padding: 0; }
   .step-list li { counter-increment: steps; display: flex; gap: 14px; margin-bottom: 16px; align-items: flex-start; }
   .step-list li::before { content: counter(steps); background: var(--accent); color: white; width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
@@ -107,21 +97,20 @@
   .step-list li .step-content strong { display: block; color: var(--text-bright); margin-bottom: 2px; }
   .step-list li .step-content span { font-size: 14px; color: var(--text-dim); }
 
-  /* Conversation mockup */
   .convo { margin: 16px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
-  .convo .msg { padding: 14px 18px; font-size: 15px; line-height: 1.5; }
+  .convo .msg { padding: 14px 18px; font-size: 14px; line-height: 1.5; }
   .convo .user { background: var(--accent-dim); color: var(--accent-light); border-bottom: 1px solid var(--border); }
   .convo .user::before { content: 'You: '; font-weight: 700; }
   .convo .claude { background: rgba(255,255,255,0.03); color: var(--text); }
   .convo .claude::before { content: 'Claude: '; font-weight: 700; color: var(--purple); }
 
-  /* CTA section */
-  .cta-section { text-align: center; padding: 48px 24px; margin-top: 32px; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
-  .cta-section h2 { font-size: 24px; color: var(--text-bright); margin-bottom: 12px; }
-  .cta-section p { color: var(--text-dim); margin-bottom: 24px; }
-  .cta-section .cta { display: inline-block; background: var(--accent); color: white; padding: 14px 32px; border-radius: 8px; font-size: 16px; font-weight: 600; text-decoration: none; cursor: pointer; border: none; }
+  .score-bar { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+  .score-bar .label { font-size: 12px; color: var(--text-dim); width: 60px; }
+  .score-bar .bar { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .score-bar .fill { height: 100%; border-radius: 3px; }
+  .score-bar .fill.high { background: var(--green); }
+  .score-bar .fill.med { background: var(--accent-light); }
 
-  /* Ecosystem section */
   .ecosystem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
   .ecosystem-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-decoration: none; color: var(--text); transition: all 0.2s; }
   .ecosystem-card:hover { background: var(--surface-hover); border-color: var(--accent); }
@@ -129,11 +118,10 @@
   .ecosystem-card p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.5; }
   .ecosystem-card .badge { font-size: 10px; color: var(--accent-light); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; margin-top: 8px; }
 
-  /* Back to top */
-  .back-to-top { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: white; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: opacity 0.3s; border: none; font-size: 18px; z-index: 100; }
-  .back-to-top.visible { opacity: 1; }
+  .cta-section { text-align: center; padding: 48px 24px; margin-top: 32px; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
+  .cta-section h2 { font-size: 24px; color: var(--text-bright); margin-bottom: 12px; }
+  .cta-section p { color: var(--text-dim); margin-bottom: 24px; }
 
-  /* Footer */
   .footer { padding: 48px 24px; text-align: center; color: var(--text-dim); font-size: 13px; line-height: 1.8; max-width: 800px; margin: 0 auto; }
   .footer a { color: var(--accent-light); text-decoration: none; }
   .footer a:hover { text-decoration: underline; }
@@ -148,116 +136,109 @@
 </head>
 <body>
 
-<!-- Hero -->
 <div class="hero">
-  <div class="badge">LinkedIn Content Engine &mdash; Cowork Plugin</div>
-  <h1>Turn your network intelligence into <em>LinkedIn posts that land.</em></h1>
-  <p class="sub">Generate post ideas grounded in real network trends. Write variations in your voice. Score them against your audience. Powered by your Feed Tracker data, refined by Claude, optimized with your actual performance.</p>
+  <div class="badge">Plugin 2 &mdash; LinkedIn Content Engine</div>
+  <h1>Your feed data becomes <em>posts that land.</em></h1>
+  <p class="sub">Plugin 1 scores your feed. Plugin 2 turns the top-scoring posts into ideas, then writes 3 ready-to-post drafts for each&mdash;in your voice, with different hooks. You pick, post, and the system learns.</p>
   <button class="cta" onclick="document.getElementById('s2').scrollIntoView({behavior:'smooth'})">Get Started</button>
 </div>
 
-<div class="container" id="toc-section">
+<div class="container">
 
-  <!-- TOC -->
   <div class="toc">
-    <a class="toc-item" href="#s1"><div class="num">2.1</div><div class="title">How It Works</div><div class="desc">Feeds to ideas to variations to posts</div></a>
-    <a class="toc-item" href="#s2"><div class="num">2.2</div><div class="title">Prerequisites</div><div class="desc">What you need before starting</div></a>
-    <a class="toc-item" href="#s3"><div class="num">2.3</div><div class="title">Setup</div><div class="desc">Install and configure the engine</div></a>
-    <a class="toc-item" href="#s4"><div class="num">2.4</div><div class="title">What You Get</div><div class="desc">Ideas, drafts, variations, calendar</div></a>
-    <a class="toc-item" href="#s5"><div class="num">2.5</div><div class="title">Talk to Claude</div><div class="desc">Example conversations</div></a>
-    <a class="toc-item" href="#s6"><div class="num">2.6</div><div class="title">The Ecosystem</div><div class="desc">All three plugins working together</div></a>
+    <a class="toc-item" href="#s1"><div class="num">01</div><div class="title">How It Works</div><div class="desc">Scoring to ideas to drafts</div></a>
+    <a class="toc-item" href="#s2"><div class="num">02</div><div class="title">Prerequisites</div><div class="desc">Plugin 1 + scoring required</div></a>
+    <a class="toc-item" href="#s3"><div class="num">03</div><div class="title">Setup</div><div class="desc">5 minutes to configure</div></a>
+    <a class="toc-item" href="#s4"><div class="num">04</div><div class="title">Generate Drafts</div><div class="desc">Ideas + 3 hooks per idea</div></a>
+    <a class="toc-item" href="#s5"><div class="num">05</div><div class="title">Commands</div><div class="desc">Everything you can do</div></a>
+    <a class="toc-item" href="#s6"><div class="num">06</div><div class="title">The Ecosystem</div><div class="desc">3 plugins working together</div></a>
   </div>
 
   <!-- Section 1: How It Works -->
   <div class="section" id="s1">
-    <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">2.1</div>
+    <div class="accordion-header active" onclick="toggle(this)">
+      <div class="num-badge">1</div>
       <div class="header-text">
         <div class="label">How It Works</div>
-        <h2>Feed data flows in. Post ideas flow out.</h2>
+        <h2>Relevance scoring drives content creation</h2>
       </div>
       <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
     </div>
-    <div class="accordion-content">
+    <div class="accordion-content open">
       <div class="accordion-body">
-        <p>LinkedIn Content Engine builds on top of your Feed Tracker data. It reads 7 days of network activity, finds content gaps, generates post ideas, and writes 3 variations of each idea with different hooks&mdash;all in your authentic voice.</p>
+
+        <p>Plugin 1's scoring engine rates every post in your feed from 1-5 based on your focus areas. Plugin 2 takes the posts scoring <strong>3 or higher</strong> and uses them as inspiration for your own content.</p>
 
         <h3>The pipeline</h3>
-        <p>Here's how data flows through the system:</p>
-
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; font-size: 13px; line-height: 2;">
-          <strong style="color: var(--accent-light);">Feed Tracker</strong> (Plugin 1)<br/>
-          ↓ Collects 7 days of network posts<br/>
-          <strong style="color: var(--accent-light);">Content Engine</strong> (Plugin 2)<br/>
-          ↓ Analyzes trends, finds gaps, generates ideas<br/>
-          ↓ Creates 3 variations per idea (story/question/contrarian)<br/>
-          ↓ Scores variations against your voice<br/>
-          <strong style="color: var(--accent-light);">Your Drafts</strong> (ready to post)<br/>
-          ↓ You copy to LinkedIn manually<br/>
-          ↓ Your engagement gets tracked<br/>
-          <strong style="color: var(--accent-light);">Performance Loop</strong><br/>
-          ↓ Next /generate biases toward what worked
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; font-size: 13px; line-height: 2.2;">
+          <strong style="color: var(--accent-light);">Plugin 1</strong> scores your feed posts (1-5 relevance)<br/>
+          &darr;&ensp;Posts scoring 3+ become inspiration<br/>
+          <strong style="color: var(--accent-light);">Content Engine</strong> clusters by focus area<br/>
+          &darr;&ensp;Generates N ideas (N = your posts/week setting)<br/>
+          &darr;&ensp;Writes <strong style="color: var(--text-bright);">3 complete drafts</strong> per idea, different hooks<br/>
+          <strong style="color: var(--accent-light);">You pick and post</strong><br/>
+          &darr;&ensp;Plugin 1 tracks your performance<br/>
+          <strong style="color: var(--green);">Learning loop</strong> &mdash; next cycle improves from results
         </div>
 
-        <h3>Idea generation</h3>
-        <p>Ideas are grounded in real data from your network:</p>
-
-        <ul>
-          <li><strong>Topic clustering</strong> — Finds the topics your network is talking about</li>
-          <li><strong>Content gap analysis</strong> — Spots where your network is active but you're quiet</li>
-          <li><strong>Supporting data</strong> — Shows you # of posts, average engagement, which connections authored them</li>
-          <li><strong>Hook recommendation</strong> — Suggests which hook type works best for each topic</li>
-        </ul>
-
-        <p>Example idea:</p>
-        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin: 16px 0; font-size: 13px;">
-          <strong style="color: var(--text-bright);">TOPIC:</strong> Remote Team Dynamics<br/>
-          <strong style="color: var(--text-bright);">WHY:</strong> 4 posts in your network this week. You last posted 3 weeks ago.<br/>
-          <strong style="color: var(--text-bright);">DATA:</strong> Avg engagement 34 likes, 9 comments<br/>
-          <strong style="color: var(--text-bright);">HOOK:</strong> Story (personal narrative works best for this topic)
+        <h3>Relevance score tiers</h3>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h4>Score 5 &mdash; Bullseye</h4>
+            <p>Directly hits your focus areas. These become your strongest content inspiration.</p>
+          </div>
+          <div class="feature-card">
+            <h4>Score 4 &mdash; Strong</h4>
+            <p>Clear multi-area relevance. Great for cross-topic posts.</p>
+          </div>
+          <div class="feature-card">
+            <h4>Score 3 &mdash; Meaningful</h4>
+            <p>Solid signal worth writing about. The minimum threshold for idea generation.</p>
+          </div>
+          <div class="feature-card">
+            <h4>Scores 0-2</h4>
+            <p>Filtered out. Low-relevance posts don't become content suggestions.</p>
+          </div>
         </div>
 
-        <h3>Variations</h3>
-        <p>3 hook types per idea. All written in your voice. All ready to post as-is:</p>
+        <h3>3 drafts, 7 hook types</h3>
+        <p>For each idea, you get 3 complete, ready-to-post variations. Each uses a different hook from this set:</p>
 
         <div class="variation-grid">
           <div class="variation-card">
-            <div class="hook-type">Story Hook</div>
-            <p>"Just realized something watching my remote team scale... [personal moment] [lesson] [question at end]"</p>
+            <div class="hook-type">Story</div>
+            <p>Personal narrative with a lesson. Starts with a specific moment.</p>
           </div>
           <div class="variation-card">
-            <div class="hook-type">Question Hook</div>
-            <p>"Here's something I see a lot: great managers who struggle as leaders. Why is that? [reasoning]"</p>
+            <div class="hook-type">Question</div>
+            <p>Thought-provoking opener that invites comments and debate.</p>
           </div>
           <div class="variation-card">
-            <div class="hook-type">Contrarian Hook</div>
-            <p>"Unpopular opinion: you can't develop leaders by teaching management. You have to unlearn it first."</p>
+            <div class="hook-type">Contrarian</div>
+            <p>Challenge conventional wisdom. Hot take with reasoning.</p>
+          </div>
+          <div class="variation-card">
+            <div class="hook-type">Data-Driven</div>
+            <p>Lead with a stat or research finding. Numbers get attention.</p>
+          </div>
+          <div class="variation-card">
+            <div class="hook-type">Listicle</div>
+            <p>3-5 numbered insights or tips. Scannable, shareable.</p>
+          </div>
+          <div class="variation-card">
+            <div class="hook-type">Personal</div>
+            <p>Vulnerable admission or struggle. Builds trust and relatability.</p>
+          </div>
+          <div class="variation-card">
+            <div class="hook-type">Call-to-Action</div>
+            <p>Direct invitation to engage, learn, or connect.</p>
           </div>
         </div>
-
-        <h3>Scoring</h3>
-        <p>Each variation gets scored based on:</p>
-        <ul>
-          <li>Voice match — How well it captures your authentic tone</li>
-          <li>Hook strength — How compelling the opening is</li>
-          <li>Engagement potential — Based on your network's response to similar hooks</li>
-          <li>Audience fit — If Plugin 3 is installed, uses AI prediction of your audience response</li>
-        </ul>
 
         <div class="info-box tip">
-          <div class="box-label">Your voice, not generic LinkedIn</div>
-          <p>The engine learns your authentic voice from your recent posts. All variations sound like <em>you</em>, not like generic influencer-speak.</p>
+          <div class="box-label">One config drives everything</div>
+          <p>Your <code>focus-areas.json</code> in Plugin 1 controls both what gets highlighted in your dashboard AND what Plugin 2 suggests you write about. Configure once, both plugins align.</p>
         </div>
-
-        <h3>Learning loop</h3>
-        <p>The system gets smarter with each post:</p>
-        <ol class="step-list">
-          <li><div class="step-content"><strong>You post a variation</strong><span>Copy from Content Engine to LinkedIn (manual).</span></div></li>
-          <li><div class="step-content"><strong>Feed Tracker tracks it</strong><span>Collects likes, comments, reposts on your posts.</span></div></li>
-          <li><div class="step-content"><strong>Content Engine reviews</strong><span>Matches your actual posts to variations. Tracks performance.</span></div></li>
-          <li><div class="step-content"><strong>Pattern detection</strong><span>Updates hook_performance table. "Story hooks avg 67 likes. Listicles avg 12 likes."</span></div></li>
-          <li><div class="step-content"><strong>Next generation improves</strong><span>Ideas and variations weighted toward high-performing hooks and topics.</span></div></li>
-        </ol>
 
       </div>
     </div>
@@ -266,32 +247,36 @@
   <!-- Section 2: Prerequisites -->
   <div class="section" id="s2">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">2.2</div>
+      <div class="num-badge">2</div>
       <div class="header-text">
         <div class="label">Prerequisites</div>
-        <h2>What you need to get started</h2>
+        <h2>What you need before starting</h2>
       </div>
       <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
     </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
-        <h3>Must-have: Feed Tracker (Plugin 1)</h3>
-        <p>Content Engine reads from <strong>feeds.db</strong>&mdash;the database created and updated by Plugin 1. Without it, there's no data to analyze.</p>
+        <h3>Required: Plugin 1 with scoring</h3>
+        <p>Content Engine reads from Plugin 1's <code>feeds.db</code>&mdash;specifically the <code>relevance_score</code> and <code>focus_areas</code> columns added by the scoring engine.</p>
 
         <div class="info-box key">
-          <div class="box-label">Required</div>
-          <p>Plugin 1 (LinkedIn Feed Tracker) must be installed, configured, and actively collecting data. If you haven't set it up yet, <a href="https://stevegustafson32.github.io/cowork-guide/linkedin-feed-tracker.html" style="color: var(--accent-light);">start there first</a>.</p>
+          <div class="box-label">Checklist</div>
+          <p>
+            1. Plugin 1 (LinkedIn Feed Tracker) installed and collecting data<br/>
+            2. <code>focus-areas.json</code> configured with your topics and keywords<br/>
+            3. <code>node src/score-posts.js</code> has run at least once<br/>
+            4. At least a few days of feed data collected
+          </p>
         </div>
 
-        <h3>Recommended: At least one week of data</h3>
-        <p>Plugin 2's idea generation works best when Feed Tracker has collected posts from at least one week. This gives the engine enough signal to spot real trends and content gaps.</p>
+        <p>If Plugin 1 isn't set up yet, <a href="https://stevegustafson32.github.io/cowork-guide/linkedin-feed-tracker.html" style="color: var(--accent-light);">start there first</a>.</p>
 
-        <h3>Optional: Plugin 3 (Audience Simulator)</h3>
-        <p>If you install Plugin 3 later, Content Engine will automatically use its audience predictions to score variations. Without it, the engine self-scores based on your historical performance.</p>
+        <h3>What if scoring hasn't run?</h3>
+        <p>Content Engine will still work&mdash;it falls back to using engagement (likes + comments) as a proxy. But scoring-driven ideas are significantly better because they're aligned to YOUR focus areas, not just whatever got the most likes.</p>
 
         <h3>Cowork access</h3>
-        <p>All commands run inside Cowork. You need a working Cowork installation and your regular Anthropic subscription.</p>
+        <p>All commands run inside Claude Desktop's Cowork mode. Standard Anthropic subscription required.</p>
 
       </div>
     </div>
@@ -300,10 +285,10 @@
   <!-- Section 3: Setup -->
   <div class="section" id="s3">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">2.3</div>
+      <div class="num-badge">3</div>
       <div class="header-text">
         <div class="label">Setup</div>
-        <h2>Install and configure the engine</h2>
+        <h2>5 minutes to configure your engine</h2>
       </div>
       <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
     </div>
@@ -311,296 +296,219 @@
       <div class="accordion-body">
 
         <h3>Step 1: Install the plugin</h3>
-        <p>Install Content Engine from the Cowork Plugin Directory (or clone the repo manually from GitHub):</p>
+        <p>Add via Cowork plugin marketplace or manually from GitHub:</p>
         <div style="background: rgba(255,255,255,0.08); padding: 12px 16px; border-radius: 8px; margin: 12px 0; font-family: 'Monaco', 'Courier New', monospace; font-size: 13px; color: var(--accent-light);">
           https://github.com/stevegustafson32/linkedin-content-engine-plugin
         </div>
 
         <h3>Step 2: Run setup</h3>
-        <p>Open Cowork and run:</p>
+        <p>Open Cowork and type:</p>
         <div style="background: rgba(255,255,255,0.08); padding: 12px 16px; border-radius: 8px; margin: 12px 0; font-family: 'Monaco', 'Courier New', monospace; font-size: 13px; color: var(--accent-light);">
           /setup-content-engine
         </div>
 
-        <h3>What setup does (automatic)</h3>
+        <h3>What setup asks you</h3>
         <ol class="step-list">
-          <li><div class="step-content"><strong>Checks Feed Tracker</strong><span>Verifies Plugin 1 is installed and has collected data.</span></div></li>
-          <li><div class="step-content"><strong>Analyzes your voice</strong><span>Reads your recent 20 posts and profiles your tone, length, emoji/hashtag usage.</span></div></li>
-          <li><div class="step-content"><strong>Sets authority topics</strong><span>Asks you which topics you want to be known for (e.g., "Remote culture," "Leadership").</span></div></li>
-          <li><div class="step-content"><strong>Configures posting schedule</strong><span>How often you want to post (e.g., 3x/week at 9 AM and 2 PM).</span></div></li>
-          <li><div class="step-content"><strong>Initializes database</strong><span>Creates content_ideas, content_variations, and hook_performance tables in feeds.db.</span></div></li>
-          <li><div class="step-content"><strong>Generates first ideas</strong><span>Creates your first batch of post ideas (takes 2-3 minutes).</span></div></li>
+          <li><div class="step-content"><strong>Verifies Plugin 1</strong><span>Checks feeds.db exists and has scored posts.</span></div></li>
+          <li><div class="step-content"><strong>Analyzes your voice</strong><span>Reads your last 20-30 own posts. Profiles tone, length, emoji use, hook patterns.</span></div></li>
+          <li><div class="step-content"><strong>Authority topics</strong><span>You pick 3-5 topics you want to be known for.</span></div></li>
+          <li><div class="step-content"><strong>Posts per week</strong><span>How many posts you want to create: 1, 2, 3, or 5. This sets how many ideas /generate produces.</span></div></li>
+          <li><div class="step-content"><strong>First generation</strong><span>Creates your first batch of ideas from top-scoring feed posts.</span></div></li>
         </ol>
 
         <div class="info-box tip">
-          <div class="box-label">That's it</div>
-          <p>Setup takes 5-10 minutes. After that, you're ready to generate ideas and variations whenever you want.</p>
+          <div class="box-label">Done in 5 minutes</div>
+          <p>After setup, run <code>/generate</code> to see your ideas and create 3 draft variations for each one.</p>
         </div>
-
-        <h3>Next: Generate your first ideas</h3>
-        <p>Once setup is done, run:</p>
-        <div style="background: rgba(255,255,255,0.08); padding: 12px 16px; border-radius: 8px; margin: 12px 0; font-family: 'Monaco', 'Courier New', monospace; font-size: 13px; color: var(--accent-light);">
-          /generate
-        </div>
-        <p style="margin-top: 12px; color: var(--text-dim);">Claude will show you 5-7 post ideas grounded in this week's network activity, with hooks suggested for each.</p>
 
       </div>
     </div>
   </div>
 
-  <!-- Section 4: What You Get -->
+  <!-- Section 4: Generate Drafts -->
   <div class="section" id="s4">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">2.4</div>
+      <div class="num-badge">4</div>
       <div class="header-text">
-        <div class="label">What You Get</div>
-        <h2>Ideas, drafts, variations, and content calendar</h2>
+        <div class="label">Generate Drafts</div>
+        <h2>From scored posts to ready-to-post content</h2>
       </div>
       <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
     </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
-        <h3>Post Ideas (grounded in data)</h3>
-        <p>Run <code>/generate</code> to get 5-7 ideas for this week's posts. Each idea shows:</p>
+        <h3>Run /generate</h3>
+        <p>This is the main command. Here's what happens:</p>
+
+        <h3>1. Ideas from your top-scoring posts</h3>
+        <p>Claude pulls posts scoring 3-5 from the last 7 days, clusters them by focus area, and generates ideas. Each idea shows what inspired it:</p>
+
+        <div style="background: var(--surface-hover); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin: 16px 0; font-size: 13px;">
+          <strong style="color: var(--text-bright);">IDEA 1: "Why employer-matched savings beat traditional benefits"</strong><br/>
+          <span style="color: var(--accent-light);">Focus Area: Employee Benefits</span><br/><br/>
+          <strong style="color: var(--text-dim);">Why now:</strong> 5 posts scoring 4-5 in your feed this week about benefit innovation. Your last post on this topic was 2 weeks ago.<br/><br/>
+          <strong style="color: var(--text-dim);">Inspired by:</strong><br/>
+          &bull; Sarah Chen: "The future of employee retention isn't..." (score: 5, 47 likes)<br/>
+          &bull; Mark Rivera: "We switched from 401k match to..." (score: 4, 31 likes)
+        </div>
+
+        <p>You approve, skip, or reject each idea.</p>
+
+        <h3>2. Three drafts per approved idea</h3>
+        <p>For each "yes," Claude writes 3 complete posts with different hooks:</p>
+
+        <div class="variation-grid">
+          <div class="variation-card" style="border-left: 3px solid var(--green);">
+            <div class="hook-type">Draft 1 &mdash; Story hook</div>
+            <p style="color: var(--text);">"Two years ago, I watched an employee turn down a raise because they couldn't afford to lose their matched savings benefit. That was the moment I knew we'd built something different..."</p>
+            <div style="margin-top: 12px; font-size: 11px; color: var(--text-dim);">142 words &bull; Inspired by 3 posts scoring 4+</div>
+          </div>
+          <div class="variation-card" style="border-left: 3px solid var(--accent);">
+            <div class="hook-type">Draft 2 &mdash; Question hook</div>
+            <p style="color: var(--text);">"What if the best employee benefit cost your company nothing until someone actually used it? That's not a hypothetical. It's how payroll-embedded savings works..."</p>
+            <div style="margin-top: 12px; font-size: 11px; color: var(--text-dim);">118 words &bull; Inspired by 3 posts scoring 4+</div>
+          </div>
+          <div class="variation-card" style="border-left: 3px solid var(--orange);">
+            <div class="hook-type">Draft 3 &mdash; Contrarian hook</div>
+            <p style="color: var(--text);">"Hot take: 401k matching is the most expensive benefit with the least retention impact. Here's what actually keeps people..."</p>
+            <div style="margin-top: 12px; font-size: 11px; color: var(--text-dim);">96 words &bull; Inspired by 3 posts scoring 4+</div>
+          </div>
+        </div>
+
+        <h3>3. Pick, tweak, or regenerate</h3>
+        <p>For each set of drafts you can:</p>
         <ul>
-          <li>The topic and why it's timely (network activity + your posting history)</li>
-          <li>Supporting data (# posts, avg engagement, top authors)</li>
-          <li>Suggested hook type for maximum resonance</li>
+          <li><strong>Pick one</strong> &mdash; "I'm using draft 1" (copy to LinkedIn)</li>
+          <li><strong>Blend</strong> &mdash; "Combine the opening from 1 with the ending from 3"</li>
+          <li><strong>Tweak</strong> &mdash; "Make draft 2 shorter" or "Add more data"</li>
+          <li><strong>Regenerate</strong> &mdash; 3 completely new drafts with different hooks</li>
         </ul>
 
-        <h3>Draft Posts (3 variations per idea)</h3>
-        <p>Select an idea and Claude generates 3 variations with different hooks:</p>
-        <ul>
-          <li><strong>Story</strong> — Personal narrative + lesson (best for authenticity)</li>
-          <li><strong>Question</strong> — Thought-provoking query (best for engagement)</li>
-          <li><strong>Contrarian</strong> — Challenge conventional wisdom (best for controversy/reach)</li>
-        </ul>
-        <p>All variations:</p>
-        <ul>
-          <li>Are written in your authentic voice</li>
-          <li>Match your typical post length and style</li>
-          <li>Are ready to copy to LinkedIn and post as-is</li>
-          <li>Include emoji and hashtags if that's your style</li>
-        </ul>
-
-        <h3>Variation Scoring</h3>
-        <p>Each variation gets scored on a scale (0-100) based on:</p>
-        <ul>
-          <li><strong>Voice match</strong> — How authentically it captures your tone</li>
-          <li><strong>Hook strength</strong> — How compelling the opening is</li>
-          <li><strong>Engagement potential</strong> — Based on your historical data</li>
-          <li><strong>Audience fit</strong> — If Plugin 3 is active, includes audience prediction</li>
-        </ul>
-
-        <h3>Content Calendar</h3>
-        <p>Run <code>/calendar</code> to see:</p>
-        <ul>
-          <li>Upcoming ideas and when to post them</li>
-          <li>Which variations are scheduled</li>
-          <li>Your posting cadence over the next 2 weeks</li>
-          <li>Ability to reschedule, skip, or swap ideas</li>
-        </ul>
-
-        <h3>Performance Tracking</h3>
-        <p>Run <code>/review</code> to see what's working:</p>
-        <ul>
-          <li>Actual engagement on posted variations (likes, comments, reposts)</li>
-          <li>Hook performance breakdown ("Story hooks avg 67 likes")</li>
-          <li>Topic performance ("Leadership content gets 40% more engagement")</li>
-          <li>Trends in what resonates with your audience</li>
-        </ul>
-
-        <h3>Content Repurposing</h3>
-        <p>Ask Claude: <strong>"Give me thread ideas from this week's posts"</strong> or <strong>"Create a carousel version of [topic]"</strong></p>
-        <p>The engine can extend single posts into threads, turn posts into carousels, or create follow-up posts on high-performing topics.</p>
-
-        <div class="info-box tip">
-          <div class="box-label">You stay in control</div>
-          <p>All variations are suggestions. You always decide what to post, when to post, and whether to edit before posting. This keeps you in the creative driver's seat.</p>
+        <div class="info-box key">
+          <div class="box-label">Posts per week = ideas per run</div>
+          <p>If you set 3 posts/week during setup, <code>/generate</code> produces 3 ideas with 3 drafts each = 9 total drafts to choose from.</p>
         </div>
 
       </div>
     </div>
   </div>
 
-  <!-- Section 5: Talk to Claude -->
+  <!-- Section 5: Commands -->
   <div class="section" id="s5">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">2.5</div>
+      <div class="num-badge">5</div>
       <div class="header-text">
-        <div class="label">Talk to Claude</div>
-        <h2>Example conversations</h2>
+        <div class="label">Commands</div>
+        <h2>Everything you can do</h2>
       </div>
       <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
     </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
-        <h3>Generating ideas</h3>
-
-        <div class="convo">
-          <div class="msg user">Give me 5 post ideas from this week's feed</div>
-          <div class="msg claude">Based on the last 7 days of network activity, I found 5 topics where your network is active:<br/>1. Remote team scaling (4 posts, gap = you haven't posted this)<br/>2. AI tooling at work (6 posts, high engagement)<br/>3. Hiring challenges (3 posts, opportunity)<br/>...<br/>Which topic should I develop into variations?</div>
+        <div class="feature-grid" style="grid-template-columns: 1fr;">
+          <div class="feature-card">
+            <h4><code>/setup-content-engine</code></h4>
+            <p>First-run setup. Configure voice, authority topics, posts per week. Creates database tables and generates first batch of ideas.</p>
+          </div>
+          <div class="feature-card">
+            <h4><code>/generate</code></h4>
+            <p>The main command. Pulls top-scoring posts from Plugin 1, generates ideas, and writes 3 draft variations per idea with different hooks.</p>
+          </div>
+          <div class="feature-card">
+            <h4><code>/review</code></h4>
+            <p>After posting, tracks your actual performance. Matches drafts to own_posts data. Updates learning loop so next generation improves.</p>
+          </div>
+          <div class="feature-card">
+            <h4><code>/configure</code></h4>
+            <p>Change voice, authority topics, posts per week, or upload a custom voice document. Changes take effect on next /generate.</p>
+          </div>
+          <div class="feature-card">
+            <h4><code>/calendar</code></h4>
+            <p>View your content pipeline. See ready ideas, drafted variations, posted content, and generation history.</p>
+          </div>
         </div>
 
-        <h3>Writing variations</h3>
-
+        <h3>Example conversation</h3>
         <div class="convo">
-          <div class="msg user">Draft 3 hook variations for "Remote team scaling"</div>
-          <div class="msg claude">[Shows story, question, and contrarian versions of the same core idea, each with a score]<br/>STORY (82 pts) — "Just realized something watching my team scale..."<br/>QUESTION (76 pts) — "Here's what I've learned..."<br/>CONTRARIAN (71 pts) — "Unpopular opinion..."</div>
+          <div class="msg user">/generate</div>
+          <div class="msg claude">Found 12 posts scoring 3+ in your feed this week. Your top focus areas: Employee Benefits (5 posts, avg score 4.2), Fintech (4 posts, avg score 3.8), HR Tech (3 posts, avg score 3.5).<br/><br/>Generating 3 ideas based on your posts/week setting...</div>
         </div>
 
-        <h3>Reviewing performance</h3>
-
-        <div class="convo">
-          <div class="msg user">How are my recent posts doing?</div>
-          <div class="msg claude">Your last 5 posts averaged 47 likes and 8 comments. That's 38% above your baseline. Story-hook posts are performing best (avg 62 likes), while listicles underperformed (avg 15 likes).</div>
+        <div class="convo" style="margin-top: 12px;">
+          <div class="msg user">yes to idea 1, skip 2, yes to 3</div>
+          <div class="msg claude">Creating 3 drafts for Idea 1 (Employee Benefits) and 3 for Idea 3 (Fintech). Each with a different hook type...<br/><br/>[Shows 6 complete, ready-to-post drafts]</div>
         </div>
-
-        <h3>Scheduling and calendar</h3>
-
-        <div class="convo">
-          <div class="msg user">Show me my content calendar</div>
-          <div class="msg claude">[Displays upcoming ideas and posting schedule for the next 14 days]<br/>Monday 9 AM: "Remote Culture" (Story hook, 82 pts)<br/>Wednesday 2 PM: "AI Tooling" (Question hook, 78 pts)<br/>...</div>
-        </div>
-
-        <h3>Asking for specific topics</h3>
-
-        <div class="convo">
-          <div class="msg user">Draft a post about [specific topic]</div>
-          <div class="msg claude">[Creates 3 variations on that exact topic, grounded in network data if available]</div>
-        </div>
-
-        <h3>Customizing your voice</h3>
-
-        <div class="convo">
-          <div class="msg user">I want to sound more casual. Add more humor to future variations.</div>
-          <div class="msg claude">Got it. I've updated your voice profile: more casual tone, added humor to hook potential. Future variations will match this better.</div>
-        </div>
-
-        <h3>Commands and shortcuts</h3>
-        <ul>
-          <li><code>/generate</code> &mdash; Create post ideas and variations from recent feed data</li>
-          <li><code>/review</code> &mdash; See performance of posted variations and learn patterns</li>
-          <li><code>/calendar</code> &mdash; View upcoming ideas and manage posting schedule</li>
-          <li><code>/configure</code> &mdash; Update voice profile, posting schedule, topics, or preferences</li>
-        </ul>
 
       </div>
     </div>
   </div>
 
-  <!-- Section 6: The Ecosystem -->
+  <!-- Section 6: Ecosystem -->
   <div class="section" id="s6">
     <div class="accordion-header" onclick="toggle(this)">
-      <div class="num-badge">2.6</div>
+      <div class="num-badge">6</div>
       <div class="header-text">
         <div class="label">The Ecosystem</div>
-        <h2>All three plugins working together</h2>
+        <h2>Three plugins, one workflow</h2>
       </div>
       <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
     </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
-        <p>Content Engine is Plugin 2 in a 3-plugin LinkedIn ecosystem. Each plugin builds on the others:</p>
-
-        <h3>Plugin 1: Feed Tracker</h3>
-        <p><strong>What it does:</strong> Collects every post from your network. Tracks your own post performance. Stores everything in a local database.</p>
-        <p><strong>Why Content Engine needs it:</strong> All post ideas are grounded in real network trends. Without Feed Tracker data, Content Engine has nothing to analyze.</p>
-        <a href="https://stevegustafson32.github.io/cowork-guide/linkedin-feed-tracker.html" style="color: var(--accent-light); text-decoration: none; display: inline-block; margin-top: 12px;">Learn more about Feed Tracker ↗</a>
-
-        <h3>Plugin 2: Content Engine</h3>
-        <p><strong>What it does:</strong> Generates post ideas and variations from your network trends. Scores them against your voice. Learns from your performance.</p>
-        <p><strong>What it reads:</strong> Posts from Plugin 1.</p>
-        <p><strong>What it writes:</strong> Post ideas, variations, and performance learning loops.</p>
-
-        <h3>Plugin 3: Audience Simulator</h3>
-        <p><strong>What it does:</strong> Predicts how your audience will respond to different post variations.</p>
-        <p><strong>How it helps:</strong> Content Engine sends variation text to Plugin 3, gets back a prediction score (0-100), and shows you both scores so you can decide which variation to post.</p>
-        <p><strong>Currently:</strong> In development. Check back soon.</p>
-
-        <h3>The data flow</h3>
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; font-size: 13px; line-height: 1.8; color: var(--text-dim);">
-          <strong style="color: var(--text-bright); display: block; margin-bottom: 12px;">Plugin 1 collects →</strong>
-          Your network posts, your posts, connections<br/><br/>
-          <strong style="color: var(--text-bright); display: block; margin-bottom: 12px;">Plugin 2 analyzes →</strong>
-          Finds trends, gaps, generates ideas, writes variations<br/><br/>
-          <strong style="color: var(--text-bright); display: block; margin-bottom: 12px;">Plugin 3 predicts (optional) →</strong>
-          Scores variations based on audience fit<br/><br/>
-          <strong style="color: var(--text-bright); display: block; margin-bottom: 12px;">You post →</strong>
-          Copy variation to LinkedIn<br/><br/>
-          <strong style="color: var(--text-bright); display: block; margin-bottom: 12px;">Plugin 1 tracks →</strong>
-          Real engagement on your posts<br/><br/>
-          <strong style="color: var(--text-bright);">Plugin 2 learns →</strong>
-          Updates performance loop, next generation improves
+        <div class="ecosystem-grid">
+          <a class="ecosystem-card" href="https://stevegustafson32.github.io/cowork-guide/linkedin-feed-tracker.html">
+            <h4>Plugin 1: Feed Tracker</h4>
+            <p>Collects network posts, scores by relevance, tracks your own post performance. The data layer.</p>
+            <div class="badge">Live</div>
+          </a>
+          <div class="ecosystem-card" style="border-color: var(--accent);">
+            <h4>Plugin 2: Content Engine</h4>
+            <p>Turns scored feed data into post ideas and 3 draft variations per idea. You're here.</p>
+            <div class="badge" style="color: var(--green);">You are here</div>
+          </div>
+          <a class="ecosystem-card" href="https://stevegustafson32.github.io/cowork-guide/linkedin-audience-simulator.html">
+            <h4>Plugin 3: Audience Simulator</h4>
+            <p>Predicts which variation will perform best with your specific audience.</p>
+            <div class="badge">Coming soon</div>
+          </a>
+          <div class="ecosystem-card">
+            <h4>The Loop</h4>
+            <p>Post &rarr; Plugin 1 tracks performance &rarr; Plugin 2 learns &rarr; better ideas next cycle.</p>
+            <div class="badge">Automatic</div>
+          </div>
         </div>
 
-        <h3>Related resources</h3>
-        <div class="ecosystem-grid">
-          <a href="https://stevegustafson32.github.io/cowork-guide/linkedin-feed-tracker.html" class="ecosystem-card">
-            <h4>Feed Tracker</h4>
-            <p>Collect network intelligence from your LinkedIn feed</p>
-            <div class="badge">Plugin 1</div>
-          </a>
-          <a href="https://stevegustafson32.github.io/cowork-guide/linkedin-audience-simulator.html" class="ecosystem-card">
-            <h4>Audience Simulator</h4>
-            <p>Predict how your audience will respond to posts</p>
-            <div class="badge">Plugin 3 (coming soon)</div>
-          </a>
+        <div class="info-box tip">
+          <div class="box-label">Plugin 2 works standalone</div>
+          <p>You don't need Plugin 3. Content Engine is fully functional with just Plugin 1. Plugin 3 adds audience prediction later if you want it.</p>
         </div>
 
       </div>
     </div>
   </div>
 
-  <!-- CTA Section -->
   <div class="cta-section">
-    <h2>Ready to turn network intelligence into amazing posts?</h2>
-    <p>Setup takes about 5 minutes. First ideas in hand in minutes.</p>
-    <button class="cta" onclick="document.getElementById('s3').scrollIntoView({behavior:'smooth'})">Go to Setup</button>
+    <h2>Ready to generate content?</h2>
+    <p>Install the plugin, run <code>/setup-content-engine</code>, and create your first drafts.</p>
   </div>
 
 </div>
 
-<!-- Footer -->
 <div class="footer">
-  <p>Created by Steve Gustafson &bull; March 2026</p>
-  <p style="margin-top: 8px;">Part of the 3-plugin LinkedIn ecosystem. <a href="https://github.com/stevegustafson32/linkedin-content-engine-plugin">GitHub</a></p>
-  <p style="margin-top: 16px;">
-    <a href="https://stevegustafson32.github.io/cowork-guide/linkedin-feed-tracker.html">Feed Tracker</a> &bull;
-    <a href="https://stevegustafson32.github.io/cowork-guide/linkedin-audience-simulator.html">Audience Simulator</a> &bull;
-    <a href="https://stevegustafson32.github.io/cowork-guide/">Cowork Guide</a>
-  </p>
-  <p style="margin-top: 24px; font-size: 12px; color: var(--text-dim);">Post ideas from your network. Variations in your voice. Learning from your performance.</p>
+  <p>LinkedIn Content Engine &mdash; Plugin 2 of the LinkedIn Ecosystem</p>
+  <p><a href="https://github.com/stevegustafson32/linkedin-content-engine-plugin">GitHub</a> &middot; <a href="https://stevegustafson32.github.io/cowork-guide/linkedin-feed-tracker.html">Plugin 1</a> &middot; <a href="https://stevegustafson32.github.io/cowork-guide/linkedin-audience-simulator.html">Plugin 3</a></p>
 </div>
 
-<button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">&#8593;</button>
-
 <script>
-function toggle(header) {
-  header.classList.toggle('active');
-  const content = header.nextElementSibling;
+function toggle(el) {
+  const content = el.nextElementSibling;
+  const isOpen = el.classList.contains('active');
+  el.classList.toggle('active');
   content.classList.toggle('open');
 }
-
-window.addEventListener('scroll', () => {
-  const btn = document.querySelector('.back-to-top');
-  if (window.scrollY > 300) {
-    btn.classList.add('visible');
-  } else {
-    btn.classList.remove('visible');
-  }
-});
-
-// Auto-open first section
-document.addEventListener('DOMContentLoaded', () => {
-  const firstHeader = document.querySelector('.accordion-header');
-  if (firstHeader) {
-    firstHeader.click();
-  }
-});
 </script>
 
 </body>
