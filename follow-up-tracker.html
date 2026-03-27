@@ -285,37 +285,13 @@
         <div style="background: var(--surface-hover); border: 2px solid var(--accent); border-radius: 16px; padding: 36px 32px; text-align: center; margin: 24px 0;">
           <div style="font-size: 48px; margin-bottom: 8px;">&#128230;</div>
           <div style="font-size: 18px; font-weight: 700; color: var(--text-bright); margin-bottom: 12px;">follow-up-tracker.plugin</div>
-          <button onclick="downloadPlugin()" id="download-btn"
-            style="display: inline-block; background: var(--accent); color: white; padding: 16px 40px; border-radius: 10px; font-size: 18px; font-weight: 700; text-decoration: none; transition: background 0.2s; margin-bottom: 16px; border: none; cursor: pointer;"
-            onmouseover="this.style.background='var(--accent-light)'" onmouseout="this.style.background='var(--accent)'">
+          <a href="https://github.com/stevegustafson32/follow-up-tracker-plugin/releases/latest/download/follow-up-tracker.plugin"
+            download="follow-up-tracker.plugin"
+            style="display: inline-block; background: var(--accent); color: white; padding: 16px 40px; border-radius: 10px; font-size: 18px; font-weight: 700; text-decoration: none; transition: background 0.2s; margin-bottom: 16px; cursor: pointer;"
+            onmouseover="this.style.background='#F0A06A'" onmouseout="this.style.background='#E07C3E'">
             Download Plugin
-          </button>
-          <script>
-          async function downloadPlugin() {
-            const btn = document.getElementById('download-btn');
-            btn.textContent = 'Downloading...';
-            try {
-              const resp = await fetch('https://github.com/stevegustafson32/follow-up-tracker-plugin/releases/latest/download/follow-up-tracker.plugin');
-              const blob = await resp.blob();
-              const url = URL.createObjectURL(blob);
-              const a = document.createElement('a');
-              a.href = url;
-              a.download = 'follow-up-tracker.plugin';
-              document.body.appendChild(a);
-              a.click();
-              document.body.removeChild(a);
-              URL.revokeObjectURL(url);
-              btn.textContent = 'Downloaded!';
-              btn.style.background = '#057642';
-              setTimeout(() => { btn.textContent = 'Download Plugin'; btn.style.background = ''; }, 3000);
-            } catch(e) {
-              btn.textContent = 'Download failed — try GitHub link below';
-              btn.style.background = '#B24020';
-              setTimeout(() => { btn.textContent = 'Download Plugin'; btn.style.background = ''; }, 3000);
-            }
-          }
-          </script>
-          <div style="font-size: 14px; color: var(--text-dim); margin-top: 8px;">Or download directly from <a href="https://github.com/stevegustafson32/follow-up-tracker-plugin/releases" style="color: var(--accent-light);">GitHub Releases</a></div>
+          </a>
+          <div style="font-size: 12px; color: var(--text-dim); margin-top: 8px;">Button not working? <a href="https://github.com/stevegustafson32/follow-up-tracker-plugin/releases" style="color: var(--accent-light);">Go to GitHub Releases</a> and download <code>follow-up-tracker.plugin</code> directly.</div>
         </div>
 
         <h3>Installing in Cowork</h3>
