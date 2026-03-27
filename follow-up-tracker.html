@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Follow-Up Tracker — Getting Started Guide</title>
+<style>
+  :root {
+    --accent: #E07C3E;
+    --accent-light: #F0A06A;
+    --accent-dim: rgba(224,124,62,0.12);
+    --green: #057642;
+    --green-dim: rgba(5,118,66,0.12);
+    --orange: #B24020;
+    --orange-dim: rgba(178,64,32,0.12);
+    --purple: #7C3AED;
+    --purple-dim: rgba(124,58,237,0.12);
+    --blue: #3B82F6;
+    --blue-dim: rgba(59,130,246,0.12);
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface-hover: #22252f;
+    --border: #2a2d3a;
+    --text: #e8e8ed;
+    --text-dim: #8b8d98;
+    --text-bright: #ffffff;
+    --radius: 10px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+  /* Hero */
+  .hero { text-align: center; padding: 80px 24px 60px; max-width: 800px; margin: 0 auto; }
+  .hero .badge { display: inline-block; background: var(--accent-dim); color: var(--accent-light); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 20px; }
+  .hero h1 { font-size: 42px; font-weight: 800; line-height: 1.15; margin-bottom: 16px; color: var(--text-bright); }
+  .hero h1 em { font-style: normal; color: var(--accent-light); }
+  .hero .sub { font-size: 18px; color: var(--text-dim); max-width: 580px; margin: 0 auto 32px; line-height: 1.5; }
+  .hero .cta { display: inline-block; background: var(--accent); color: white; padding: 14px 32px; border-radius: 8px; font-size: 16px; font-weight: 600; text-decoration: none; transition: background 0.2s; cursor: pointer; border: none; }
+  .hero .cta:hover { background: var(--accent-light); }
+
+  /* Container */
+  .container { max-width: 800px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* TOC */
+  .toc { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 48px; }
+  .toc-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; cursor: pointer; transition: all 0.2s; text-decoration: none; color: var(--text); }
+  .toc-item:hover { background: var(--surface-hover); border-color: var(--accent); }
+  .toc-item .num { font-size: 13px; font-weight: 700; color: var(--accent-light); margin-bottom: 4px; }
+  .toc-item .title { font-size: 15px; font-weight: 600; color: var(--text-bright); }
+  .toc-item .desc { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+
+  /* Accordion */
+  .section { margin-bottom: 8px; }
+  .accordion-header { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; cursor: pointer; display: flex; align-items: center; gap: 16px; transition: all 0.2s; border-left: 3px solid transparent; user-select: none; }
+  .accordion-header:hover { background: var(--surface-hover); border-left-color: var(--accent); }
+  .accordion-header.active { border-left-color: var(--accent); background: var(--surface-hover); }
+  .accordion-header .num-badge { background: var(--accent); color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .accordion-header .header-text { flex: 1; }
+  .accordion-header .header-text .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim); font-weight: 600; }
+  .accordion-header .header-text h2 { font-size: 18px; font-weight: 700; color: var(--text-bright); margin-top: 2px; }
+  .chevron { width: 20px; height: 20px; transition: transform 0.3s ease; flex-shrink: 0; }
+  .chevron path { stroke: var(--text-dim); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .accordion-header.active .chevron { transform: rotate(180deg); }
+
+  .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .accordion-content.open { max-height: 8000px; }
+  .accordion-body { padding: 24px; background: var(--surface); border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius) var(--radius); margin-top: -8px; }
+
+  /* Content elements */
+  .accordion-body p { margin-bottom: 16px; color: var(--text); line-height: 1.65; }
+  .accordion-body h3 { font-size: 16px; font-weight: 700; color: var(--text-bright); margin: 28px 0 12px; }
+  .accordion-body h3:first-child { margin-top: 0; }
+  .accordion-body ul { margin: 0 0 16px 20px; }
+  .accordion-body li { margin-bottom: 8px; color: var(--text); }
+  .accordion-body strong { color: var(--text-bright); }
+  .accordion-body code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: 'Monaco', 'Courier New', monospace; }
+
+  /* Info boxes */
+  .info-box { border-radius: 8px; padding: 16px 20px; margin: 16px 0; border-left: 3px solid; }
+  .info-box.tip { background: var(--green-dim); border-color: var(--green); }
+  .info-box.warn { background: var(--orange-dim); border-color: var(--orange); }
+  .info-box.key { background: var(--accent-dim); border-color: var(--accent); }
+  .info-box.blue { background: var(--blue-dim); border-color: var(--blue); }
+  .info-box .box-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+  .info-box.tip .box-label { color: var(--green); }
+  .info-box.warn .box-label { color: var(--orange); }
+  .info-box.key .box-label { color: var(--accent-light); }
+  .info-box.blue .box-label { color: var(--blue); }
+  .info-box p { margin-bottom: 0; font-size: 14px; }
+
+  /* Feature cards */
+  .feature-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .feature-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+  .feature-card .icon { font-size: 28px; margin-bottom: 8px; }
+  .feature-card h4 { font-size: 14px; font-weight: 700; color: var(--text-bright); margin-bottom: 4px; }
+  .feature-card p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+
+  /* Label cards */
+  .label-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .label-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; text-align: center; }
+  .label-card .label-name { font-size: 15px; font-weight: 700; color: var(--text-bright); margin-bottom: 8px; font-family: 'Monaco', 'Courier New', monospace; background: var(--accent-dim); display: inline-block; padding: 4px 12px; border-radius: 6px; }
+  .label-card .label-window { font-size: 32px; font-weight: 800; color: var(--accent-light); margin: 8px 0 4px; }
+  .label-card .label-desc { font-size: 13px; color: var(--text-dim); }
+
+  /* Flow diagram */
+  .flow { display: flex; align-items: center; justify-content: center; gap: 0; margin: 24px 0; flex-wrap: wrap; }
+  .flow-step { background: var(--surface-hover); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; text-align: center; min-width: 120px; }
+  .flow-step .flow-icon { font-size: 24px; margin-bottom: 4px; }
+  .flow-step .flow-label { font-size: 12px; font-weight: 600; color: var(--text-bright); }
+  .flow-step .flow-sub { font-size: 11px; color: var(--text-dim); }
+  .flow-arrow { color: var(--accent); font-size: 20px; padding: 0 8px; flex-shrink: 0; }
+
+  /* Conversation mockup */
+  .convo { margin: 16px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .convo .msg { padding: 14px 18px; font-size: 14px; line-height: 1.5; }
+  .convo .user { background: var(--accent-dim); color: var(--accent-light); border-bottom: 1px solid var(--border); }
+  .convo .user::before { content: 'You: '; font-weight: 700; }
+  .convo .claude { background: rgba(255,255,255,0.03); color: var(--text); }
+  .convo .claude::before { content: 'Claude: '; font-weight: 700; color: var(--purple); }
+
+  /* Output example */
+  .output-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; font-family: 'Monaco', 'Courier New', monospace; font-size: 13px; line-height: 1.7; color: var(--text-dim); white-space: pre-line; }
+  .output-box .highlight { color: var(--accent-light); }
+  .output-box .green { color: #10b981; }
+  .output-box .dim { color: #555; }
+
+  /* Step list */
+  .step-list { counter-reset: steps; list-style: none; margin: 16px 0; padding: 0; }
+  .step-list li { counter-increment: steps; display: flex; gap: 14px; margin-bottom: 16px; align-items: flex-start; }
+  .step-list li::before { content: counter(steps); background: var(--accent); color: white; width: 28px; height: 28px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .step-list li .step-content { flex: 1; }
+  .step-list li .step-content strong { display: block; color: var(--text-bright); margin-bottom: 2px; }
+  .step-list li .step-content span { font-size: 14px; color: var(--text-dim); }
+
+  /* Status badges */
+  .status-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .status-badge { padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+  .status-badge.watching { background: var(--blue-dim); color: var(--blue); }
+  .status-badge.drafted { background: var(--accent-dim); color: var(--accent-light); }
+  .status-badge.replied { background: var(--green-dim); color: var(--green); }
+  .status-badge.escalated { background: var(--purple-dim); color: var(--purple); }
+  .status-badge.cold { background: rgba(255,255,255,0.06); color: var(--text-dim); }
+
+  /* CTA section */
+  .cta-section { text-align: center; padding: 48px 24px; margin-top: 32px; background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); }
+  .cta-section h2 { font-size: 24px; color: var(--text-bright); margin-bottom: 12px; }
+  .cta-section p { color: var(--text-dim); margin-bottom: 24px; }
+  .cta-section .cta { display: inline-block; background: var(--accent); color: white; padding: 14px 32px; border-radius: 8px; font-size: 16px; font-weight: 600; text-decoration: none; cursor: pointer; border: none; }
+
+  /* Back to top */
+  .back-to-top { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: white; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: opacity 0.3s; border: none; font-size: 18px; z-index: 100; }
+  .back-to-top.visible { opacity: 1; }
+
+  /* Footer */
+  .footer { padding: 48px 24px; text-align: center; color: var(--text-dim); font-size: 13px; line-height: 1.8; max-width: 800px; margin: 0 auto; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 28px; }
+    .feature-grid, .label-grid { grid-template-columns: 1fr; }
+    .toc { grid-template-columns: 1fr; }
+    .hero { padding: 48px 16px 36px; }
+    .flow { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="badge">Follow-Up Tracker &mdash; Cowork Plugin</div>
+  <h1>Never let an email <em>fall through the cracks.</em></h1>
+  <p class="sub">Label a sent email. Claude watches for replies, drafts follow-ups when they're overdue, and puts a calendar reminder on your morning. Two follow-ups. Then it moves on. Zero manual tracking.</p>
+  <button class="cta" onclick="document.getElementById('s2').scrollIntoView({behavior:'smooth'})">Get Started</button>
+</div>
+
+<div class="container" id="toc-section">
+
+  <!-- TOC -->
+  <div class="toc">
+    <a class="toc-item" href="#s1"><div class="num">01</div><div class="title">How It Works</div><div class="desc">Label, scan, draft, remind</div></a>
+    <a class="toc-item" href="#s2"><div class="num">02</div><div class="title">Install &amp; Setup</div><div class="desc">Plugin install + 3 labels</div></a>
+    <a class="toc-item" href="#s3"><div class="num">03</div><div class="title">Daily Workflow</div><div class="desc">What your morning looks like</div></a>
+    <a class="toc-item" href="#s4"><div class="num">04</div><div class="title">Using Cowork</div><div class="desc">Commands + natural language</div></a>
+    <a class="toc-item" href="#s5"><div class="num">05</div><div class="title">Escalation Logic</div><div class="desc">How it handles silence</div></a>
+    <a class="toc-item" href="#s6"><div class="num">06</div><div class="title">FAQ</div><div class="desc">Common questions</div></a>
+  </div>
+
+  <!-- Section 1: How It Works -->
+  <div class="section" id="s1">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">1</div>
+      <div class="header-text">
+        <div class="label">How It Works</div>
+        <h2>Label an email. Claude handles the rest.</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>Follow-Up Tracker is a <strong>Cowork plugin</strong> that connects to your Gmail and Google Calendar. You flag sent emails you care about. A daily scan checks if anyone replied. If they didn't, Claude drafts a follow-up and puts a reminder on your calendar.</p>
+
+        <h3>The flow</h3>
+        <div class="flow">
+          <div class="flow-step">
+            <div class="flow-icon">&#9993;</div>
+            <div class="flow-label">Send email</div>
+            <div class="flow-sub">Apply a label</div>
+          </div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step">
+            <div class="flow-icon">&#128269;</div>
+            <div class="flow-label">Daily scan</div>
+            <div class="flow-sub">6:30 AM auto</div>
+          </div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step">
+            <div class="flow-icon">&#9999;</div>
+            <div class="flow-label">Draft follow-up</div>
+            <div class="flow-sub">In same thread</div>
+          </div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step">
+            <div class="flow-icon">&#128197;</div>
+            <div class="flow-label">Calendar event</div>
+            <div class="flow-sub">7 AM reminder</div>
+          </div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step">
+            <div class="flow-icon">&#9989;</div>
+            <div class="flow-label">You review</div>
+            <div class="flow-sub">Edit &amp; send</div>
+          </div>
+        </div>
+
+        <h3>Three labels, three speeds</h3>
+        <p>You control how long to wait before following up. Just apply the right Gmail label after sending:</p>
+
+        <div class="label-grid">
+          <div class="label-card">
+            <div class="label-name">Follow Up 3d</div>
+            <div class="label-window">3</div>
+            <div class="label-desc">days &mdash; urgent or time-sensitive</div>
+          </div>
+          <div class="label-card">
+            <div class="label-name">Follow Up</div>
+            <div class="label-window">7</div>
+            <div class="label-desc">days &mdash; standard follow-up</div>
+          </div>
+          <div class="label-card">
+            <div class="label-name">Follow Up 14d</div>
+            <div class="label-window">14</div>
+            <div class="label-desc">days &mdash; low-pressure check-in</div>
+          </div>
+        </div>
+
+        <h3>What Claude knows when drafting</h3>
+        <p>Claude doesn't just fire off a generic "bumping this" message. Before drafting, it reads the original thread <strong>and</strong> searches your Gmail for prior correspondence with that person. The result is a follow-up that sounds like you wrote it, references the actual conversation, and includes a natural call to action.</p>
+
+        <div class="info-box tip">
+          <div class="box-label">You're always in control</div>
+          <p>Claude saves follow-ups as <strong>Gmail drafts</strong> &mdash; never sends anything automatically. You review, edit if needed, and hit send yourself.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Install & Setup -->
+  <div class="section" id="s2">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">2</div>
+      <div class="header-text">
+        <div class="label">Install &amp; Setup</div>
+        <h2>Install the plugin, create labels, run setup.</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+
+        <h3>Step 1: Install the plugin</h3>
+        <p>Download the plugin file and install it in Cowork:</p>
+
+        <div style="background: var(--surface-hover); border: 2px solid var(--accent); border-radius: 16px; padding: 36px 32px; text-align: center; margin: 24px 0;">
+          <div style="font-size: 48px; margin-bottom: 8px;">&#128230;</div>
+          <div style="font-size: 18px; font-weight: 700; color: var(--text-bright); margin-bottom: 12px;">follow-up-tracker.plugin</div>
+          <button onclick="downloadPlugin()" id="download-btn"
+            style="display: inline-block; background: var(--accent); color: white; padding: 16px 40px; border-radius: 10px; font-size: 18px; font-weight: 700; text-decoration: none; transition: background 0.2s; margin-bottom: 16px; border: none; cursor: pointer;"
+            onmouseover="this.style.background='var(--accent-light)'" onmouseout="this.style.background='var(--accent)'">
+            Download Plugin
+          </button>
+          <script>
+          async function downloadPlugin() {
+            const btn = document.getElementById('download-btn');
+            btn.textContent = 'Downloading...';
+            try {
+              const resp = await fetch('https://github.com/stevegustafson32/follow-up-tracker-plugin/releases/latest/download/follow-up-tracker.plugin');
+              const blob = await resp.blob();
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = 'follow-up-tracker.plugin';
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
+              btn.textContent = 'Downloaded!';
+              btn.style.background = '#057642';
+              setTimeout(() => { btn.textContent = 'Download Plugin'; btn.style.background = ''; }, 3000);
+            } catch(e) {
+              btn.textContent = 'Download failed — try GitHub link below';
+              btn.style.background = '#B24020';
+              setTimeout(() => { btn.textContent = 'Download Plugin'; btn.style.background = ''; }, 3000);
+            }
+          }
+          </script>
+          <div style="font-size: 14px; color: var(--text-dim); margin-top: 8px;">Or download directly from <a href="https://github.com/stevegustafson32/follow-up-tracker-plugin/releases" style="color: var(--accent-light);">GitHub Releases</a></div>
+        </div>
+
+        <h3>Installing in Cowork</h3>
+        <div style="display: grid; gap: 16px; margin: 16px 0;">
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
+            <div style="background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0;">1</div>
+            <div>
+              <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Open Claude Desktop</div>
+              <div style="font-size: 14px; color: var(--text-dim);">Make sure you have Cowork mode enabled. If you don't see it, check for updates &mdash; it's a newer feature.</div>
+            </div>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
+            <div style="background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0;">2</div>
+            <div>
+              <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Drag the .plugin file into a Cowork session</div>
+              <div style="font-size: 14px; color: var(--text-dim);">Or double-click the file &mdash; Claude Desktop will handle the rest. You'll see a confirmation prompt asking if you want to install.</div>
+            </div>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
+            <div style="background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0;">3</div>
+            <div>
+              <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Click Install</div>
+              <div style="font-size: 14px; color: var(--text-dim);">The plugin registers its skills and commands. You'll see <code>/setup</code>, <code>/scan-now</code>, and <code>/check-follow-ups</code> become available.</div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Step 2: Connect Gmail &amp; Calendar</h3>
+        <p>The plugin needs two MCP connectors. If you don't have them yet, Claude will walk you through connecting them during setup.</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0;">
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 8px;">&#9993;</div>
+            <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Gmail MCP</div>
+            <div style="font-size: 13px; color: var(--text-dim);">Search emails, read threads, create drafts</div>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 8px;">&#128197;</div>
+            <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Google Calendar MCP</div>
+            <div style="font-size: 13px; color: var(--text-dim);">Create morning reminder events</div>
+          </div>
+        </div>
+
+        <h3>Step 3: Create Gmail labels</h3>
+        <p>You need three labels in Gmail. Go to <strong>Settings &rarr; Labels &rarr; Create new label</strong>:</p>
+
+        <ol class="step-list">
+          <li><div class="step-content"><strong>Follow Up</strong><span>The default label. Triggers a follow-up after 7 days with no reply.</span></div></li>
+          <li><div class="step-content"><strong>Follow Up 3d</strong><span>For urgent emails. Triggers after 3 days.</span></div></li>
+          <li><div class="step-content"><strong>Follow Up 14d</strong><span>For low-pressure outreach. Triggers after 14 days.</span></div></li>
+        </ol>
+
+        <div class="info-box key">
+          <div class="box-label">Exact names matter</div>
+          <p>The label names must match exactly &mdash; including the space before "3d" and "14d". Gmail labels are case-sensitive.</p>
+        </div>
+
+        <h3>Step 4: Run setup</h3>
+        <p>Open Cowork and type:</p>
+        <div class="convo">
+          <div class="msg user">/setup</div>
+          <div class="msg claude">I'll verify your Gmail and Calendar connections, check that your labels exist, and configure your preferences (email, timezone, reminder time). Takes about 30 seconds.</div>
+        </div>
+
+        <h3>Step 5: Set up the daily scan (optional but recommended)</h3>
+        <p>Ask Claude to create a scheduled task so the scan runs automatically every morning:</p>
+        <div class="convo">
+          <div class="msg user">Set up a scheduled task to run the follow-up scan at 6:30 AM every day</div>
+          <div class="msg claude">Done. I've created a daily task called "daily-follow-up-scan" that runs at 6:30 AM. It will check all your labeled emails, draft follow-ups for anything overdue, and create calendar reminders for your 7 AM review.</div>
+        </div>
+
+        <div class="info-box tip">
+          <div class="box-label">That's it</div>
+          <p>Plugin installed. Labels created. Setup done. Start labeling sent emails and the tracker takes over.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Daily Workflow -->
+  <div class="section" id="s3">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">3</div>
+      <div class="header-text">
+        <div class="label">Daily Workflow</div>
+        <h2>What your morning looks like</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <h3>During the day: label as you go</h3>
+        <p>After sending an important email, apply one of the three labels. That's your only job. No spreadsheets, no reminders to set, no "I'll check back on Thursday."</p>
+
+        <h3>6:30 AM: the scan runs</h3>
+        <p>Claude scans every labeled email, reads each thread, and checks whether the person replied. For any that are overdue:</p>
+        <ul>
+          <li>Searches your Gmail history with that person for context</li>
+          <li>Drafts a follow-up that matches your tone and references the actual conversation</li>
+          <li>Saves it as a draft in the same thread (so Gmail groups it naturally)</li>
+          <li>Creates a 7 AM calendar event: <strong>"Review draft follow-up to [Name]"</strong></li>
+        </ul>
+
+        <h3>7:00 AM: you review</h3>
+        <p>You see the calendar events. Open each draft, tweak if needed, and send. The whole review takes 2&ndash;3 minutes even with multiple follow-ups queued.</p>
+
+        <h3>Example scan output</h3>
+        <div class="output-box"><span class="highlight">Follow-Up Tracker &mdash; March 25, 2026</span>
+<span class="dim">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</span>
+New emails being tracked:   <span class="green">2</span>
+Follow-ups drafted:         <span class="highlight">3</span>
+Replies received:           <span class="green">1</span>
+Gone cold:                  <span class="dim">0</span>
+Still watching:              4</div>
+
+        <div class="info-box blue">
+          <div class="box-label">No scan? No problem.</div>
+          <p>If you miss the automated scan or want to run one manually, just open Cowork and type <code>/scan-now</code>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Using Cowork -->
+  <div class="section" id="s4">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">4</div>
+      <div class="header-text">
+        <div class="label">Using Cowork</div>
+        <h2>Slash commands + plain English. Your call.</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <h3>What is Cowork?</h3>
+        <p>Cowork is a feature of the Claude desktop app that lets Claude run tools, connect to services, and manage tasks on your behalf. It's where this plugin lives. You open the Claude app, start a Cowork session, and interact with your plugins through slash commands or plain conversation.</p>
+
+        <div class="info-box key">
+          <div class="box-label">First time with Cowork?</div>
+          <p>Download Claude Desktop from <a href="https://claude.ai/download" style="color: var(--accent-light);">claude.ai/download</a>. Once installed, you can enable Cowork mode and start connecting plugins and MCP servers. Everything runs locally on your Mac.</p>
+        </div>
+
+        <h3>Slash commands</h3>
+        <p>The plugin gives you three commands. Type them directly in Cowork:</p>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="icon" style="font-family: Monaco, monospace; font-size: 16px; color: var(--accent-light);">/setup</div>
+            <h4>First-Time Setup</h4>
+            <p>Verifies Gmail + Calendar connections, checks labels, sets your email and timezone preferences.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon" style="font-family: Monaco, monospace; font-size: 16px; color: var(--accent-light);">/scan-now</div>
+            <h4>Manual Scan</h4>
+            <p>Runs the full follow-up scan immediately. Same thing the 6:30 AM task does, on demand.</p>
+          </div>
+          <div class="feature-card">
+            <div class="icon" style="font-family: Monaco, monospace; font-size: 16px; color: var(--accent-light);">/check-follow-ups</div>
+            <h4>Status Report</h4>
+            <p>Shows all tracked emails and their current status, without drafting anything new.</p>
+          </div>
+        </div>
+
+        <h3>Or just talk to Claude</h3>
+        <p>You don't need slash commands. The plugin triggers automatically when you ask about follow-ups in plain English:</p>
+
+        <div class="convo">
+          <div class="msg user">Any follow-ups due today?</div>
+          <div class="msg claude">You have 2 follow-ups due. Sarah Chen hasn't replied to your partnership email (sent 8 days ago), and Mike Torres hasn't responded about the demo scheduling (sent 4 days ago, marked as 3-day follow-up). Want me to draft follow-ups for both?</div>
+        </div>
+        <div class="convo">
+          <div class="msg user">What's the status on my email to James about the investor deck?</div>
+          <div class="msg claude">That thread is still in "watching" status. You sent it 4 days ago with a 7-day window, so the follow-up would be due on Friday if he doesn't reply before then.</div>
+        </div>
+        <div class="convo">
+          <div class="msg user">Run a follow-up scan</div>
+          <div class="msg claude">[Runs the full scan, checks all labeled emails, drafts follow-ups for overdue threads, creates calendar reminders, and shows the summary report]</div>
+        </div>
+
+        <h3>Scheduled tasks</h3>
+        <p>The real power is automation. Once you set up the daily scan (see Setup, Step 5), the plugin runs every morning without you opening Cowork. Drafts appear in your Gmail, reminders appear on your calendar. You just review and send.</p>
+
+        <div class="info-box tip">
+          <div class="box-label">How it all fits together</div>
+          <p>Cowork is the brain. Gmail and Calendar MCPs are the hands. The plugin is the playbook. You just label emails and show up in the morning.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Escalation -->
+  <div class="section" id="s5">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">5</div>
+      <div class="header-text">
+        <div class="label">Escalation Logic</div>
+        <h2>Two follow-ups, then it moves on</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>The plugin doesn't just send the same follow-up forever. It has a built-in escalation curve:</p>
+
+        <h3>Status lifecycle</h3>
+        <div class="status-row">
+          <span class="status-badge watching">Watching</span>
+          <span style="color: var(--text-dim);">&rarr;</span>
+          <span class="status-badge drafted">Draft Ready</span>
+          <span style="color: var(--text-dim);">&rarr;</span>
+          <span class="status-badge replied">Replied</span>
+        </div>
+        <div class="status-row" style="margin-top: 4px;">
+          <span style="color: var(--text-dim); font-size: 12px; padding-left: 4px;">or if no reply:</span>
+          <span class="status-badge escalated">Escalated</span>
+          <span style="color: var(--text-dim);">&rarr;</span>
+          <span class="status-badge cold">Gone Cold</span>
+        </div>
+
+        <h3>How it works</h3>
+        <ul>
+          <li><strong>First follow-up:</strong> Warm, natural, references the original email. 3&ndash;5 sentences.</li>
+          <li><strong>Second follow-up:</strong> Shorter and more direct. 2&ndash;3 sentences. Acknowledges they're busy.</li>
+          <li><strong>After two:</strong> Marks the thread as "gone cold" and stops tracking. No more drafts, no more reminders.</li>
+        </ul>
+
+        <div class="info-box key">
+          <div class="box-label">Why two and done?</div>
+          <p>Three or more follow-ups start to feel desperate. Two is the sweet spot &mdash; persistent enough to stay top of mind, respectful enough to maintain the relationship. If they haven't replied after two, the ball is in their court.</p>
+        </div>
+
+        <h3>What happens when they reply?</h3>
+        <p>The scan detects replies automatically. As soon as someone responds to a tracked thread, it gets marked as <strong>replied</strong> and drops off the follow-up queue. No cleanup needed on your end.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6: FAQ -->
+  <div class="section" id="s6">
+    <div class="accordion-header" onclick="toggle(this)">
+      <div class="num-badge">6</div>
+      <div class="header-text">
+        <div class="label">FAQ</div>
+        <h2>Common questions</h2>
+      </div>
+      <svg class="chevron" viewBox="0 0 20 20"><path d="M5 7.5L10 12.5L15 7.5"/></svg>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <h3>Will Claude ever send an email without me reviewing it?</h3>
+        <p>No. Follow-ups are saved as <strong>Gmail drafts</strong> in the same thread. You always review before sending. Claude never hits send for you.</p>
+
+        <h3>What if I don't want to follow up on something anymore?</h3>
+        <p>Remove the label from the email in Gmail. On the next scan, Claude will stop tracking it.</p>
+
+        <h3>Can I change the follow-up window after labeling?</h3>
+        <p>Yes &mdash; just swap the label. Remove "Follow Up" and add "Follow Up 3d" if you want to shorten the window. The next scan will pick up the change.</p>
+
+        <h3>What if my Mac is asleep at 6:30 AM?</h3>
+        <p>The scheduled task will run the next time your Mac wakes up. Or just type <code>/scan-now</code> when you sit down.</p>
+
+        <h3>Does this work with Google Workspace / work email?</h3>
+        <p>Yes, as long as your Gmail MCP is connected to that account. The plugin works with any Gmail-compatible account.</p>
+
+        <h3>Where is my data stored?</h3>
+        <p>Tracking state lives in a <code>tracking.json</code> file in your Cowork workspace. It's a simple JSON array. All email reading happens through the Gmail MCP &mdash; no emails are stored locally.</p>
+
+        <h3>Can I customize the follow-up tone?</h3>
+        <p>The plugin matches the tone of your original email automatically. If you sent something formal, the follow-up will be formal. Casual emails get casual follow-ups. You can always edit the draft before sending.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Ready to stop losing emails?</h2>
+    <p>Three labels. One setup command. Never manually track a follow-up again.</p>
+    <button class="cta" onclick="document.getElementById('s2').scrollIntoView({behavior:'smooth'})">Set It Up</button>
+  </div>
+
+</div>
+
+<!-- Back to top -->
+<button class="back-to-top" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+
+<!-- Footer -->
+<div class="footer">
+  Follow-Up Tracker &mdash; A Cowork Plugin<br>
+  Built for people who send important emails and refuse to let them die in silence.
+</div>
+
+<script>
+function toggle(header) {
+  const content = header.nextElementSibling;
+  const isOpen = header.classList.contains('active');
+  // Close all
+  document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
+  document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+  // Open clicked (if it was closed)
+  if (!isOpen) {
+    header.classList.add('active');
+    content.classList.add('open');
+  }
+}
+
+// Back to top button
+window.addEventListener('scroll', () => {
+  document.getElementById('btt').classList.toggle('visible', window.scrollY > 400);
+});
+
+// Open first section by default
+document.querySelector('.accordion-header').click();
+</script>
+
+</body>
+</html>
