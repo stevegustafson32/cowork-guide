@@ -501,7 +501,7 @@
 <!-- STICKY NAV (FIX 3) -->
 <div class="sticky-nav" id="stickyNav">
   <div class="sticky-nav-left">Level 2 Guide</div>
-  <div class="sticky-nav-right"><span id="stickyProgress">Section 1 of 13</span></div>
+  <div class="sticky-nav-right"><span id="stickyProgress">Section 1 of 14</span></div>
 </div>
 
 <!-- HERO -->
@@ -531,7 +531,8 @@
       <a class="toc-item toc-link" data-accordion="10"><span class="toc-num">10</span> File Power Moves</a>
       <a class="toc-item toc-link" data-accordion="11"><span class="toc-num">11</span> Domain Playbooks</a>
       <a class="toc-item toc-link" data-accordion="12"><span class="toc-num">12</span> Enterprise & Teams</a>
-      <a class="toc-item toc-link" data-accordion="13"><span class="toc-num">13</span> Advanced Resources</a>
+      <a class="toc-item toc-link" data-accordion="13"><span class="toc-num">13</span> Dispatch & Mobile</a>
+      <a class="toc-item toc-link" data-accordion="14"><span class="toc-num">14</span> Advanced Resources</a>
     </div>
   </div>
 
@@ -546,7 +547,7 @@
       </div>
       <span class="accordion-chevron"></span>
  
-      <div class="accordion-progress">Section 1 of 13</div>   </button>
+      <div class="accordion-progress">Section 1 of 14</div>   </button>
     <div class="accordion-content open">
       <div class="accordion-body section">
         <p>If you followed the Level 1 guide, you've already been using skills without knowing it. When you say "new project" and Claude creates folders, memory files, and output directories &mdash; that's a skill in action. The "new project" workflow, the file naming conventions, the per-project memory &mdash; all of these are patterns that could be (and are) encoded as skills. Now you'll learn to build your own.</p>
@@ -633,7 +634,7 @@ When the user asks you to research a company:
         <div class="accordion-subtitle">Bundle your skills, connectors, and commands into shareable packages.</div>
       </div>
       <span class="accordion-chevron"></span>
-      <div class="accordion-progress">Section 2 of 13</div>
+      <div class="accordion-progress">Section 2 of 14</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body section">
@@ -694,7 +695,7 @@ When the user asks you to research a company:
         <div class="accordion-subtitle">Your best workflows shouldn't die on your laptop.</div>
       </div>
       <span class="accordion-chevron"></span>
-      <div class="accordion-progress">Section 3 of 13</div>
+      <div class="accordion-progress">Section 3 of 14</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body section">
@@ -742,7 +743,7 @@ When the user asks you to research a company:
         <div class="accordion-subtitle">Turn your browser into an autonomous agent.</div>
       </div>
       <span class="accordion-chevron"></span>
-      <div class="accordion-progress">Section 4 of 13</div>
+      <div class="accordion-progress">Section 4 of 14</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body section">
@@ -794,7 +795,7 @@ When the user asks you to research a company:
         <div class="accordion-subtitle">Claude controls your mouse and keyboard to operate native apps.</div>
       </div>
       <span class="accordion-chevron"></span>
-      <div class="accordion-progress">Section 5 of 13</div>
+      <div class="accordion-progress">Section 5 of 14</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body section">
@@ -888,7 +889,7 @@ When the user asks you to research a company:
         <div class="accordion-subtitle">Set it once, it runs forever.</div>
       </div>
       <span class="accordion-chevron"></span>
-      <div class="accordion-progress">Section 6 of 13</div>
+      <div class="accordion-progress">Section 6 of 14</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body section">
@@ -932,16 +933,16 @@ When the user asks you to research a company:
       <div style="flex: 1;">
         <div class="accordion-label">Section 7</div>
         <div class="accordion-title">Memory Architecture Mastery</div>
-        <div class="accordion-subtitle">The 3-layer system that makes Claude feel like a long-term colleague.</div>
+        <div class="accordion-subtitle">The 4-layer system that makes Claude feel like a long-term colleague.</div>
       </div>
       <span class="accordion-chevron"></span>
 
-      <div class="accordion-progress">Section 7 of 13</div>   </button>
+      <div class="accordion-progress">Section 7 of 14</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
-        <p>Claude's memory isn't one thing &mdash; it's a hierarchy. Understanding the layers lets you put the right information in the right place.</p>
+        <p>Claude's memory isn't one thing &mdash; it's a hierarchy. With the March 2026 Projects update, there are now <strong>four distinct layers</strong>. Understanding them lets you put the right information in the right place.</p>
 
-        <h3>The 3 Layers</h3>
+        <h3>The 4 Layers</h3>
         <div class="step-card highlighted">
           <h4>Layer 1: Personal Preferences (Global)</h4>
           <p><strong>Where:</strong> Claude Desktop &rarr; Settings &rarr; Personal Preferences<br>
@@ -949,20 +950,43 @@ When the user asks you to research a company:
           <strong>What goes here:</strong> Your name, role, communication style, personality preferences, behavioral rules. Things that are always true about how you want Claude to work.</p>
         </div>
         <div class="step-card">
-          <h4>Layer 2: Project Instructions (CLAUDE.md)</h4>
-          <p><strong>Where:</strong> CLAUDE.md in your workspace folder (or subfolder)<br>
-          <strong>Scope:</strong> That specific project/folder only<br>
-          <strong>What goes here:</strong> Folder structure rules, naming conventions, project-specific context, team conventions, tech stack details. Things specific to this workspace.</p>
+          <h4>Layer 2: Native Project Instructions &amp; Memory (Built-In)</h4>
+          <p><strong>Where:</strong> Project &rarr; Instructions field + automatic <code>memory.md</code><br>
+          <strong>Scope:</strong> All tasks within that project<br>
+          <strong>What goes here:</strong> Project-level tone, formatting rules, and key context in the Instructions field. Auto-memory captures decisions and patterns as you work &mdash; Claude decides what's worth saving. First 200 lines (or 25KB) load at the start of each new task.</p>
         </div>
         <div class="step-card">
-          <h4>Layer 3: Session Memory (MEMORY.md)</h4>
+          <h4>Layer 3: CLAUDE.md (CoWork OS &mdash; Structured Rules)</h4>
+          <p><strong>Where:</strong> CLAUDE.md file in your workspace folder (or subfolder)<br>
+          <strong>Scope:</strong> That specific folder only<br>
+          <strong>What goes here:</strong> Detailed folder protocols, naming conventions, session start behavior, project registry, read-only/write-only rules. More structured and opinionated than native Instructions &mdash; this is your operating system.</p>
+        </div>
+        <div class="step-card">
+          <h4>Layer 4: MEMORY.md (CoWork OS &mdash; Explicit Memory)</h4>
           <p><strong>Where:</strong> MEMORY.md in your workspace folder<br>
-          <strong>Scope:</strong> Persistent across sessions in that workspace<br>
-          <strong>What goes here:</strong> Decisions, deadlines, status updates, things that change over time. Say "remember this" to write; "forget that" to delete.</p>
+          <strong>Scope:</strong> Persistent across sessions, user-controlled<br>
+          <strong>What goes here:</strong> Decisions, deadlines, status updates &mdash; things you specifically want remembered with your exact wording. Say "remember this" to write; "forget that" to delete. Unlike auto-memory, nothing gets saved unless you ask.</p>
+        </div>
+
+        <h3>Native Memory vs. Explicit Memory</h3>
+        <p>This is the most common question: "If Projects auto-remember things, why do I need MEMORY.md?" Because they serve different purposes:</p>
+        <table class="compare-table">
+          <tr><th></th><th>Native Auto-Memory</th><th>MEMORY.md (CoWork OS)</th></tr>
+          <tr><td><strong>Trigger</strong></td><td>Automatic &mdash; Claude decides</td><td>User-triggered &mdash; "remember this"</td></tr>
+          <tr><td><strong>Content</strong></td><td>Whatever Claude thinks is useful</td><td>Exactly what you told it to save</td></tr>
+          <tr><td><strong>Structure</strong></td><td>Unstructured, Claude-formatted</td><td>Your format, your categories</td></tr>
+          <tr><td><strong>Control</strong></td><td>Low &mdash; Claude curates</td><td>High &mdash; you curate</td></tr>
+          <tr><td><strong>Risk</strong></td><td>May save noise or miss critical facts</td><td>You might forget to say "remember this"</td></tr>
+          <tr><td><strong>Best for</strong></td><td>Background context, patterns, preferences</td><td>Key decisions, deadlines, exact specifications</td></tr>
+        </table>
+
+        <div class="info-box key">
+          <strong>Use Both</strong>
+          Let auto-memory catch the patterns you'd forget to save. Use MEMORY.md for the facts you need to persist with precision. They're complementary, not competing. Auto-memory is your safety net; MEMORY.md is your source of truth.
         </div>
 
         <h3>Multi-Project Isolation</h3>
-        <p>Each subfolder can have its own CLAUDE.md and MEMORY.md. This means Claude acts differently depending on which project you're in. Your marketing folder's Claude has different context than your finance folder's Claude. The CoWork OS plugin handles this automatically with the <code>/subfolders</code> skill.</p>
+        <p>Both native Projects and CoWork OS support project-scoped isolation. Each native Project has its own auto-memory. Each CoWork OS subfolder can have its own CLAUDE.md and MEMORY.md. Your marketing project's Claude has different context than your finance project's Claude.</p>
 
         <div class="info-box tip">
           <strong>Keep CLAUDE.md Under 200 Lines</strong>
@@ -983,7 +1007,7 @@ When the user asks you to research a company:
       </div>
       <span class="accordion-chevron"></span>
 
-      <div class="accordion-progress">Section 8 of 13</div>   </button>
+      <div class="accordion-progress">Section 8 of 14</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p><strong>MCP (Model Context Protocol)</strong> is how Claude connects to external services. Every connector you use &mdash; Google Drive, Slack, Gmail, GitHub &mdash; is an MCP server under the hood. You can build your own.</p>
@@ -1035,7 +1059,7 @@ When the user asks you to research a company:
       </div>
       <span class="accordion-chevron"></span>
 
-      <div class="accordion-progress">Section 9 of 13</div>   </button>
+      <div class="accordion-progress">Section 9 of 14</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>When Claude encounters a task that can be broken into independent pieces, it automatically spawns <strong>sub-agents</strong> &mdash; parallel workers that execute simultaneously. This is one of the most powerful features most people never discover.</p>
@@ -1096,7 +1120,7 @@ When the user asks you to research a company:
       </div>
       <span class="accordion-chevron"></span>
 
-      <div class="accordion-progress">Section 10 of 13</div>   </button>
+      <div class="accordion-progress">Section 10 of 14</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
         <h3>What Claude Can Create</h3>
@@ -1123,6 +1147,10 @@ When the user asks you to research a company:
           <h4>Multiple Documents &rarr; Executive Summary</h4>
           <p>Drop 5 research documents into your workspace and ask: "Read all of these and create a one-page executive summary highlighting the key insights and contradictions across them."</p>
         </div>
+        <div class="step-card">
+          <h4>Interactive Visualizations (NEW &mdash; March 2026)</h4>
+          <p>Claude can now create <strong>interactive charts, diagrams, and visualizations inline</strong> in its responses. Ask "Show me a chart of our monthly revenue" and get a live, clickable chart right in the conversation &mdash; not just a static image. These can be exported as standalone HTML files you share with anyone.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1138,7 +1166,7 @@ When the user asks you to research a company:
       </div>
       <span class="accordion-chevron"></span>
 
-      <div class="accordion-progress">Section 11 of 13</div>   </button>
+      <div class="accordion-progress">Section 11 of 14</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>Each plugin category transforms Claude from a generalist into a domain specialist. Here's what the major categories enable:</p>
@@ -1182,7 +1210,7 @@ When the user asks you to research a company:
       </div>
       <span class="accordion-chevron"></span>
 
-      <div class="accordion-progress">Section 12 of 13</div>   </button>
+      <div class="accordion-progress">Section 12 of 14</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
         <div class="step-card">
@@ -1210,18 +1238,74 @@ When the user asks you to research a company:
     </div>
   </div>
 
-  <!-- ACCORDION 13: ADVANCED RESOURCES -->
+  <!-- ACCORDION 13: DISPATCH & MOBILE -->
   <div class="accordion" id="accordion13">
     <button class="accordion-header">
       <span class="accordion-badge">13</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 13</div>
+        <div class="accordion-title">Dispatch &amp; Mobile Control</div>
+        <div class="accordion-subtitle">Control Cowork from your phone. Your desktop does the work.</div>
+      </div>
+      <span class="accordion-chevron"></span>
+      <div class="accordion-progress">Section 13 of 14</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p><strong>Dispatch</strong> is a persistent thread between your phone and your desktop Claude. Send a task from anywhere &mdash; the airport, a meeting, your kid's soccer game &mdash; and Claude executes it on your Mac using your files, connectors, and plugins. It's not cloud-based: your files never leave your computer.</p>
+
+        <h3>How to Set It Up</h3>
+        <div class="step-card highlighted">
+          <h4>4 Steps</h4>
+          <p>1. Open Claude Desktop app on your Mac<br>
+          2. Click <strong>Dispatch</strong> in the left sidebar<br>
+          3. Connect your phone (iOS or Android) via the Claude mobile app<br>
+          4. Send a task from anywhere. Come back to finished work.</p>
+        </div>
+
+        <h3>What Makes Dispatch Powerful</h3>
+        <div class="two-col">
+          <div class="step-card">
+            <h4>Persistent Context</h4>
+            <p>Unlike starting a new Cowork session, Dispatch maintains a single continuous thread. Claude retains context from your previous tasks &mdash; no re-explaining.</p>
+          </div>
+          <div class="step-card">
+            <h4>Full Desktop Access</h4>
+            <p>Since March 2026, Dispatch includes Computer Use. Claude can open apps, move files, fill forms, and navigate your desktop while you're away.</p>
+          </div>
+          <div class="step-card">
+            <h4>Fire &amp; Forget</h4>
+            <p>"Export the pitch deck as PDF and attach it to my 2pm meeting invite." Send it, pocket your phone. Claude opens the app, exports, attaches. Done.</p>
+          </div>
+          <div class="step-card">
+            <h4>The 6 AM Pattern</h4>
+            <p>Queue up 5 tasks before breakfast. Review the results over coffee. Entire morning routines &mdash; email summaries, calendar prep, report generation &mdash; handled before you sit down.</p>
+          </div>
+        </div>
+
+        <h3>Mobile App Updates (March 2026)</h3>
+        <p>The Claude mobile app now integrates with work tools directly. Access <strong>Figma designs</strong>, <strong>Canva projects</strong>, and <strong>Amplitude dashboards</strong> from your phone. Create interactive charts, sketch diagrams, and share assets &mdash; all within a mobile conversation. Combined with Dispatch, this means you can review designs, approve assets, and trigger desktop work from anywhere.</p>
+
+        <div class="info-box warning">
+          <strong>Requirements &amp; Limitations</strong>
+          Available on Pro and Max plans. Your Mac must be awake and Claude Desktop must be open for Dispatch to work. Single thread only &mdash; one task at a time. If your Mac is asleep, the task runs when you open the lid. Desktop must be connected to the internet.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION 14: ADVANCED RESOURCES -->
+  <div class="accordion" id="accordion14">
+    <button class="accordion-header">
+      <span class="accordion-badge">14</span>
+      <div style="flex: 1;">
+        <div class="accordion-label">Section 14</div>
         <div class="accordion-title">Advanced Resources</div>
         <div class="accordion-subtitle">The best articles, repos, and references for going deeper.</div>
       </div>
       <span class="accordion-chevron"></span>
 
-      <div class="accordion-progress">Section 13 of 13</div>   </button>
+      <div class="accordion-progress">Section 13 of 14</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
         <h3>Must-Read Articles</h3>
@@ -1331,7 +1415,7 @@ When the user asks you to research a company:
       headers.forEach((header, index) => {
         if (header.classList.contains('open')) {
           const sectionNum = index + 1;
-          stickyProgress.textContent = `Section ${sectionNum} of 13`;
+          stickyProgress.textContent = `Section ${sectionNum} of 14`;
         }
       });
     } else {
