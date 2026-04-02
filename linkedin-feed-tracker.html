@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LinkedIn Feed Tracker — Getting Started Guide</title>
+<title>LinkedIn Feed Tracker â Getting Started Guide</title>
 <style>
   :root {
     --accent: #0A66C2;
@@ -213,12 +213,12 @@
         <h3>The intelligence layer</h3>
         <div class="feature-grid">
           <div class="feature-card">
-            <div class="icon">💾</div>
+            <div class="icon">ð¾</div>
             <h4>Local SQLite Database</h4>
             <p>All posts, connections, and performance data live in a single database file in your workspace. You choose where it's stored during setup.</p>
           </div>
           <div class="feature-card">
-            <div class="icon">🤖</div>
+            <div class="icon">ð¤</div>
             <h4>Claude Analyzes</h4>
             <p>Open Cowork and ask anything. Claude queries your database, finds trends, generates dashboards, and writes reports&mdash;all from your own data.</p>
           </div>
@@ -248,94 +248,59 @@
     <div class="accordion-content">
       <div class="accordion-body">
         <h3>Before you start</h3>
-        <p><strong>You don't need to install anything manually.</strong> The setup file checks for Node.js 20 and installs it automatically if it's missing&mdash;including installing <code>nvm</code> (the Node version manager) if you don't have it. Just double-click and let it run.</p>
+        <p>You need <strong>Node.js 20</strong>. That's the only prerequisite. Go to <a href="https://nodejs.org" style="color: var(--accent-light);">nodejs.org</a>, download the LTS version, and run the installer. If you already have it, you're good.</p>
 
         <div class="info-box key">
-          <div class="box-label">Under the hood</div>
-          <p>The plugin requires Node.js 20 specifically (not 22). The setup script handles this for you&mdash;it detects your current version, installs 20 via nvm if needed, and sets it as the default.</p>
+          <div class="box-label">Why Node 20?</div>
+          <p>A key dependency (<code>better-sqlite3</code>) doesn't have prebuilt binaries for Node 22 on Apple Silicon. The setup handles version management via <code>nvm</code> if needed.</p>
         </div>
 
-        <h3>The setup</h3>
-        <p>One file handles everything. Download it, open it, and follow the prompts:</p>
+        <h3>Setup (4 double-clicks)</h3>
+        <p>Open the <strong>Setup</strong> folder inside the LinkedIn Feed Tracker folder. You'll see four files. Run them in order:</p>
 
-        <div class="setup-hero">
-          <div style="font-size: 48px; font-weight: 800; color: var(--accent-light); margin-bottom: 8px;">1 file</div>
-          <div style="font-size: 18px; font-weight: 700; color: var(--text-bright); margin-bottom: 12px;">Setup LinkedIn Feed Tracker.command</div>
-          <button onclick="downloadSetup()"
-             style="display: inline-block; background: var(--accent); color: white; padding: 16px 40px; border-radius: 10px; font-size: 18px; font-weight: 700; text-decoration: none; transition: background 0.2s; margin-bottom: 16px; border: none; cursor: pointer;"
-             onmouseover="this.style.background='#378FE9'" onmouseout="this.style.background='#0A66C2'"
-             id="download-btn">Download Setup File</button>
-          <script>
-          async function downloadSetup() {
-            const btn = document.getElementById('download-btn');
-            btn.textContent = 'Downloading...';
-            try {
-              const resp = await fetch('https://raw.githubusercontent.com/stevegustafson32/linkedin-feed-tracker-plugin/main/scripts/Setup.command');
-              const text = await resp.text();
-              const blob = new Blob([text], { type: 'application/octet-stream' });
-              const url = URL.createObjectURL(blob);
-              const a = document.createElement('a');
-              a.href = url;
-              a.download = 'Setup LinkedIn Feed Tracker.command';
-              document.body.appendChild(a);
-              a.click();
-              document.body.removeChild(a);
-              URL.revokeObjectURL(url);
-              btn.textContent = 'Downloaded!';
-              btn.style.background = '#057642';
-              setTimeout(() => { btn.textContent = 'Download Setup File'; btn.style.background = ''; }, 3000);
-            } catch(e) {
-              btn.textContent = 'Download failed — try again';
-              btn.style.background = '#B24020';
-              setTimeout(() => { btn.textContent = 'Download Setup File'; btn.style.background = ''; }, 3000);
-            }
-          }
-          </script>
-          <div class="step-desc">Click the button above, then follow the 3 steps below.</div>
-          <div style="font-size: 12px; color: var(--text-dim); margin-top: 8px;">Button not working? <a href="https://raw.githubusercontent.com/stevegustafson32/linkedin-feed-tracker-plugin/main/scripts/Setup.command" download="Setup LinkedIn Feed Tracker.command" style="color: var(--accent-light);">Direct download link</a></div>
-        </div>
-
-        <h3>After downloading (3 quick steps)</h3>
         <div style="display: grid; gap: 16px; margin: 16px 0;">
           <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
             <div style="background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0;">1</div>
             <div>
-              <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Find the file in your Downloads folder</div>
-              <div style="color: var(--text-dim); font-size: 14px;">Open Finder &rarr; Downloads. Look for <strong style="color: var(--text-bright);">Setup LinkedIn Feed Tracker.command</strong></div>
+              <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Login to LinkedIn.command</div>
+              <div style="color: var(--text-dim); font-size: 14px;">Opens a browser window. Log in to LinkedIn normally. The tool saves your session locally so future runs are headless. If LinkedIn asks for a verification code, complete it in the browser&mdash;same as normal.</div>
             </div>
           </div>
           <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
             <div style="background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0;">2</div>
             <div>
-              <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Right-click the file &rarr; Open</div>
-              <div style="color: var(--text-dim); font-size: 14px;">macOS blocks files from the internet by default. <strong style="color: var(--text-bright);">Right-click</strong> (or Control-click) the file and choose <strong style="color: var(--text-bright);">"Open"</strong> from the menu. Don't double-click &mdash; that won't work the first time.</div>
+              <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Sync Connections.command</div>
+              <div style="color: var(--text-dim); font-size: 14px;">Downloads your full LinkedIn connections list. This powers the profile-scraping feature&mdash;it rotates through 1/7 of your connections every night so everyone gets visited weekly.</div>
             </div>
           </div>
           <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
             <div style="background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0;">3</div>
             <div>
-              <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Click "Open" again when macOS asks</div>
-              <div style="color: var(--text-dim); font-size: 14px;">A security dialog will appear saying the file is from an unidentified developer. Click <strong style="color: var(--text-bright);">"Open"</strong> to confirm. This only happens once. A Terminal window will open and the setup begins automatically.</div>
+              <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Collect Now.command</div>
+              <div style="color: var(--text-dim); font-size: 14px;">Runs your first feed collection. Scrolls your LinkedIn feed, parses every post, and saves them to the local database. Takes 1&ndash;2 minutes.</div>
+            </div>
+          </div>
+          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
+            <div style="background: var(--green); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0;">4</div>
+            <div>
+              <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Install Nightly Automation.command</div>
+              <div style="color: var(--text-dim); font-size: 14px;"><strong style="color: var(--green);">This is the key step.</strong> It copies the collector to your local disk (<code>~/.linkedin-feed-tracker/</code>), installs a macOS LaunchAgent, and activates nightly collection at 10 PM. Takes 30 seconds.</div>
             </div>
           </div>
         </div>
 
         <div class="info-box warn" style="margin-top: 16px;">
-          <div class="box-label">If it still won't open</div>
-          <p>Go to <strong>System Settings &rarr; Privacy &amp; Security</strong>, scroll down, and click <strong>"Open Anyway"</strong> next to the blocked file. Then try step 2 again.</p>
+          <div class="box-label">If a .command file won't open</div>
+          <p>macOS blocks unsigned scripts. <strong>Right-click</strong> the file and choose <strong>"Open"</strong> instead of double-clicking. If that doesn't work, go to <strong>System Settings &rarr; Privacy &amp; Security</strong> and click <strong>"Open Anyway."</strong></p>
         </div>
 
-        <h3>What the setup does (8 steps, all automatic)</h3>
-        <ol class="step-list">
-          <li><div class="step-content"><strong>Picks your project folder</strong><span>You choose where to store your database and browser session. This folder is also accessible to Cowork, so Claude can query your data.</span></div></li>
-          <li><div class="step-content"><strong>Downloads LinkedIn Feed Tracker</strong><span>Pulls the latest plugin code to your machine.</span></div></li>
-          <li><div class="step-content"><strong>Installs dependencies</strong><span>Runs <code>npm install</code> and downloads the Playwright browser. No manual terminal work.</span></div></li>
-          <li><div class="step-content"><strong>Opens LinkedIn for login</strong><span>A browser window opens to LinkedIn. Sign in normally. The browser auto-closes once it detects you've logged in.</span></div></li>
-          <li><div class="step-content"><strong>Syncs your connections</strong><span>Scrapes your full connection list. Takes a few minutes depending on network size.</span></div></li>
-          <li><div class="step-content"><strong>Runs your first feed collection</strong><span>Scrolls your home feed and captures recent posts.</span></div></li>
-          <li><div class="step-content"><strong>Baselines your own posts</strong><span>Captures your existing post history so you can track performance growth from day one.</span></div></li>
-          <li><div class="step-content"><strong>Schedules nightly collection</strong><span>Sets up a macOS launchd job to run all collectors automatically at 10 PM every night. If your Mac is asleep, it catches up when it wakes.</span></div></li>
-        </ol>
+        <h3>Why Step 4 matters</h3>
+        <p>Node.js + SQLite can't run reliably on iCloud Drive&mdash;file locking and sync cause crashes. Step 4 solves this by copying the collector to your <strong>local disk</strong> (<code>~/.linkedin-feed-tracker/</code>) and running from there. After each nightly collection, the script copies the database back to iCloud so Cowork can read it.</p>
+
+        <div class="info-box key">
+          <div class="box-label">How the nightly pipeline works</div>
+          <p>Every night at 10 PM, macOS runs <code>nightly.sh</code> which: (1) syncs code from iCloud to local disk, (2) runs the feed collector, (3) runs the profile batch scraper, (4) checkpoints the SQLite WAL, and (5) copies <code>feeds.db</code> back to iCloud. Logs go to <code>~/.linkedin-feed-tracker/logs/</code> and auto-delete after 14 days.</p>
+        </div>
 
         <div class="info-box tip">
           <div class="box-label">That's it</div>
@@ -343,7 +308,7 @@
         </div>
 
         <h3>After setup</h3>
-        <p>Your workspace folder will contain your database (<code>feeds.db</code>), your browser session, and all collected data. A <code>NightlyCollect.command</code> file is also available if you ever want to trigger a manual collection outside the nightly schedule.</p>
+        <p>Your data lives in two places: <code>~/.linkedin-feed-tracker/app/data/feeds.db</code> (primary, on local disk) and a synced copy on iCloud that Cowork reads. You can trigger a manual collection anytime by double-clicking <strong>Collect Now.command</strong> or running <code>bash ~/.linkedin-feed-tracker/nightly.sh</code> in Terminal.</p>
 
         <h3>Set your topic clusters</h3>
         <p>The plugin ships with default topics, but you'll want to customize them. Open Cowork and tell Claude: <strong>"Show my topics"</strong> to see what's configured, then <strong>"Add a topic for [whatever you care about]"</strong> or <strong>"Remove the topic about [X]."</strong> Claude handles it instantly. This is how you focus the analysis on what matters to you.</p>
@@ -369,7 +334,7 @@
         <p>Ask Claude: <strong>"Show me my dashboard"</strong></p>
         <p>Claude builds a live HTML dashboard from your database. Here's what it looks like:</p>
 
-        <!-- Dashboard mockup — dark theme matching actual dashboard -->
+        <!-- Dashboard mockup â dark theme matching actual dashboard -->
         <div style="background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%); border-radius: 12px; padding: 20px; margin: 16px 0; border: 1px solid #2d3748; overflow: hidden;">
           <!-- Stats cards row -->
           <div style="display: flex; gap: 8px; margin-bottom: 16px;">
@@ -437,7 +402,7 @@
         <p>Ask Claude: <strong>"How are my posts doing?"</strong></p>
         <p>Since the plugin tracks your own post performance (likes, comments, reposts), Claude can tell you what's working, compare against your baseline, and identify which topics and formats get the best engagement from your specific audience.</p>
 
-        <!-- Own Post Performance mockup — dark theme -->
+        <!-- Own Post Performance mockup â dark theme -->
         <div style="background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%); border-radius: 12px; padding: 20px; margin: 16px 0; border: 1px solid #2d3748; overflow: hidden;">
           <div style="display: flex; gap: 8px; margin-bottom: 16px;">
             <div style="background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 10px; padding: 14px 18px; flex: 1; border: 1px solid rgba(255,255,255,0.08);">
@@ -475,7 +440,7 @@
               <div style="font-size: 13px; font-weight: 600; color: #e8e8ed; margin-bottom: 10px;">Best Performing</div>
               <div style="font-size: 11px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08);"><span style="color: #f59e0b; font-weight: 700;">1</span> <span style="color: #e8e8ed; font-weight: 600;">WuunderFund CEO announce</span><br/><span style="color: #8b8d98;">45 comments &middot; 9 reposts</span></div>
               <div style="font-size: 11px; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08);"><span style="color: #0A66C2; font-weight: 700;">2</span> <span style="color: #e8e8ed; font-weight: 600;">Bay Area cloud + AI event</span><br/><span style="color: #8b8d98;">14 likes &middot; 0 comments</span></div>
-              <div style="font-size: 11px;"><span style="color: #8b5cf6; font-weight: 700;">3</span> <span style="color: #e8e8ed; font-weight: 600;">Hiring — join the team</span><br/><span style="color: #8b8d98;">11 likes &middot; 0 comments</span></div>
+              <div style="font-size: 11px;"><span style="color: #8b5cf6; font-weight: 700;">3</span> <span style="color: #e8e8ed; font-weight: 600;">Hiring â join the team</span><br/><span style="color: #8b8d98;">11 likes &middot; 0 comments</span></div>
             </div>
           </div>
           <div style="text-align: center; margin-top: 8px; font-size: 11px; color: #999;">Example own-post metrics &mdash; yours are generated live from your data</div>
@@ -630,19 +595,31 @@
         <p>The plugin has a self-healing selector system. When LinkedIn changes their DOM, the scraper detects the failure, dumps diagnostic info, and flags itself for repair. Next time you open Cowork, Claude fixes the selectors automatically. You don't do anything.</p>
 
         <h3>How often does it collect data?</h3>
-        <p>Every night at 10 PM automatically. The nightly run does three things: collects your feed, visits a batch of connection profiles, and checks your own post performance. If your Mac is asleep at 10 PM, it catches up when it wakes (within a 1-hour grace window).</p>
+        <p>Every night at 10 PM automatically via a macOS LaunchAgent. The nightly run syncs code to local disk, collects your feed, visits a batch of connection profiles, and copies the database back to iCloud. If your Mac is asleep at 10 PM, macOS catches up when it wakes.</p>
 
         <h3>What if I have thousands of connections?</h3>
         <p>The connection sync handles networks up to 5,000+ using a 4-strategy fallback system. For ongoing monitoring, the profile collector uses a 7-day rotation&mdash;it visits ~1/7 of your connections each night so everyone gets covered weekly.</p>
 
         <h3>Can I trigger a collection manually?</h3>
-        <p>Yes. Either double-click <code>NightlyCollect.command</code> in your workspace, or tell Claude <code>/collect-now</code> inside Cowork.</p>
+        <p>Yes. Either double-click <code>Collect Now.command</code> in the Setup folder, run <code>bash ~/.linkedin-feed-tracker/nightly.sh</code> in Terminal, or tell Claude <code>/collect-now</code> inside Cowork.</p>
 
         <h3>Can I export my data?</h3>
         <p>Yes. The database is a standard SQLite file&mdash;you can query it with any SQLite tool. You can also ask Claude to generate reports as Word documents, CSVs, or dashboards you can share.</p>
 
         <h3>Will this slow down my computer?</h3>
         <p>The scrapers run briefly (a few minutes) and then stop. Outside of collection windows, there's zero background load. The nightly schedule only triggers once at 10 PM.</p>
+
+        <h3>Why does the collector run on local disk instead of iCloud?</h3>
+        <p>Node.js + SQLite can't run reliably on iCloud Drive&mdash;file locking and sync cause <code>EAGAIN</code> errors that crash the collector. Step 4 of setup solves this by copying the project to <code>~/.linkedin-feed-tracker/</code> (local disk), running the collector there, and copying <code>feeds.db</code> back to iCloud after each run so Cowork can read it.</p>
+
+        <h3>Where is my data stored?</h3>
+        <p>The primary database lives at <code>~/.linkedin-feed-tracker/app/data/feeds.db</code> on your local disk. After each nightly run, it's copied to two iCloud locations: your LinkedIn Feed Tracker workspace folder and the CLAUDE OUTPUTS backup. Cowork reads from iCloud. Your browser session (LinkedIn cookies) is at <code>~/.linkedin-feed-tracker/browser-profile/</code>.</p>
+
+        <h3>How do I check if the nightly collection is working?</h3>
+        <p>Check today's log: open Terminal and run <code>cat ~/.linkedin-feed-tracker/logs/nightly-$(date +%Y-%m-%d).log</code>. Or run <code>launchctl list | grep com.lft</code> to confirm the LaunchAgent is loaded. You can also ask Claude <code>/health-check</code> inside Cowork.</p>
+
+        <h3>How do I change the collection time?</h3>
+        <p>Edit <code>~/Library/LaunchAgents/com.lft.nightly.plist</code>&mdash;change the <code>Hour</code> (0&ndash;23) and <code>Minute</code> (0&ndash;59) values under <code>StartCalendarInterval</code>. Then reload: <code>launchctl unload ~/Library/LaunchAgents/com.lft.nightly.plist && launchctl load ~/Library/LaunchAgents/com.lft.nightly.plist</code></p>
 
         <h3>Why Node.js 20 and not 22?</h3>
         <p>A key dependency (better-sqlite3) doesn't have a prebuilt binary for Node.js 22 on Apple Silicon Macs. The setup file handles this automatically&mdash;it installs Node 20 via nvm and sets it as your default. You don't need to manage versions yourself.</p>
@@ -654,7 +631,7 @@
         <p>The plugin is free and open-source. You need a Cowork subscription for the Claude-powered analysis features, but that's your regular Anthropic subscription.</p>
 
         <h3>What if I get logged out of LinkedIn?</h3>
-        <p>Re-run the setup file. It will detect your existing installation and just re-open the login browser. Takes about 30 seconds.</p>
+        <p>Double-click <code>Login to LinkedIn.command</code> in the Setup folder to re-authenticate. Takes about 30 seconds. Sessions typically last 1&ndash;2 weeks.</p>
 
         <h3>What if the .command file won't open?</h3>
         <p>macOS blocks unsigned scripts by default. Right-click the file, select "Open," then click "Open" in the confirmation dialog. You only have to do this once per file.</p>
@@ -687,7 +664,7 @@
 
 <!-- Footer -->
 <div class="footer">
-  <p>Created by Steve Gustafson &bull; March 2026</p>
+  <p>Created by Steve Gustafson &bull; Updated April 2026</p>
   <p style="margin-top: 8px;">Built with Claude Cowork (naturally). Have questions? <a href="mailto:stevegustafson@gmail.com">Reach out</a>.</p>
   <p style="margin-top: 16px;"><a href="https://github.com/stevegustafson32/linkedin-feed-tracker-plugin">GitHub</a></p>
   <p style="margin-top: 24px; font-size: 12px; color: var(--text-dim);">Your data, your machine, your control.</p>
