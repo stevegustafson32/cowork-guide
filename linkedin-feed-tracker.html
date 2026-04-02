@@ -247,16 +247,31 @@
     </div>
     <div class="accordion-content">
       <div class="accordion-body">
-        <h3>Before you start</h3>
-        <p>You need <strong>Node.js 20</strong>. That's the only prerequisite. Go to <a href="https://nodejs.org" style="color: var(--accent-light);">nodejs.org</a>, download the LTS version, and run the installer. If you already have it, you're good.</p>
+        <h3>Step 0: Install the plugin</h3>
+        <p>Before anything else, you need to add the plugin to Cowork:</p>
+
+        <div style="display: grid; gap: 12px; margin: 12px 0 20px;">
+          <div style="background: rgba(10,102,194,0.08); border: 1px solid rgba(10,102,194,0.2); border-radius: 10px; padding: 16px 20px; display: flex; gap: 14px; align-items: flex-start;">
+            <div style="color: var(--accent-light); font-weight: 800; font-size: 16px; flex-shrink: 0; margin-top: 1px;">1.</div>
+            <div style="color: var(--text); font-size: 14px;">Open <strong style="color: var(--text-bright);">Claude Desktop</strong> and go to <strong style="color: var(--text-bright);">Settings &rarr; Plugins</strong>.</div>
+          </div>
+          <div style="background: rgba(10,102,194,0.08); border: 1px solid rgba(10,102,194,0.2); border-radius: 10px; padding: 16px 20px; display: flex; gap: 14px; align-items: flex-start;">
+            <div style="color: var(--accent-light); font-weight: 800; font-size: 16px; flex-shrink: 0; margin-top: 1px;">2.</div>
+            <div style="color: var(--text); font-size: 14px;">Search for <strong style="color: var(--text-bright);">LinkedIn Feed Tracker</strong> and click <strong style="color: var(--text-bright);">Install</strong>. This adds the plugin files to your Cowork workspace.</div>
+          </div>
+          <div style="background: rgba(10,102,194,0.08); border: 1px solid rgba(10,102,194,0.2); border-radius: 10px; padding: 16px 20px; display: flex; gap: 14px; align-items: flex-start;">
+            <div style="color: var(--accent-light); font-weight: 800; font-size: 16px; flex-shrink: 0; margin-top: 1px;">3.</div>
+            <div style="color: var(--text); font-size: 14px;">Open the workspace folder the plugin was installed into. You'll see a <strong style="color: var(--text-bright);">Setup</strong> folder with the <code>.command</code> files referenced below.</div>
+          </div>
+        </div>
 
         <div class="info-box key">
-          <div class="box-label">Why Node 20?</div>
-          <p>A key dependency (<code>better-sqlite3</code>) doesn't have prebuilt binaries for Node 22 on Apple Silicon. The setup handles version management via <code>nvm</code> if needed.</p>
+          <div class="box-label">Node.js 20 is handled automatically</div>
+          <p>The setup files install and configure Node.js 20 via <code>nvm</code> if it's not already on your machine. You don't need to install it manually. A key dependency (<code>better-sqlite3</code>) requires Node 20 specifically&mdash;not 22&mdash;on Apple Silicon Macs.</p>
         </div>
 
         <h3>Setup (4 double-clicks)</h3>
-        <p>Open the <strong>Setup</strong> folder inside the LinkedIn Feed Tracker folder. You'll see four files. Run them in order:</p>
+        <p>Open the <strong>Setup</strong> folder inside your LinkedIn Feed Tracker workspace. You'll see four <code>.command</code> files. Double-click them in order:</p>
 
         <div style="display: grid; gap: 16px; margin: 16px 0;">
           <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
