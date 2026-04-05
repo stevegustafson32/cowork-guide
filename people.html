@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>People I Learn From — Steve's Cowork Resources</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    :root {
+      --bg: #0f0f0f;
+      --surface: #1a1a1a;
+      --surface-2: #242424;
+      --surface-3: #2e2e2e;
+      --border: #333;
+      --text: #e8e8e8;
+      --text-muted: #999;
+      --text-dim: #8e8e8e;
+      --accent: #9b7ed8;
+      --accent-light: #b09ae0;
+      --accent-dim: rgba(155,126,216,0.15);
+      --green: #5cb85c;
+      --blue: #5b9bd5;
+      --red: #e06666;
+      --yellow: #f0c040;
+      --orange: #d4956a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* RESOURCE NAV BAR */
+    .resource-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px;
+      max-width: 100%;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      position: relative;
+      z-index: 998;
+    }
+    .resource-nav-brand {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .resource-nav-links {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .resource-nav-links a {
+      padding: 6px 14px;
+      border-radius: 6px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 13px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .resource-nav-links a:hover {
+      color: var(--text);
+      background: var(--surface-2);
+    }
+    .resource-nav-links a.active {
+      color: var(--accent);
+      background: var(--accent-dim);
+      font-weight: 600;
+    }
+    @media (max-width: 640px) {
+      .resource-nav { flex-direction: column; gap: 8px; align-items: flex-start; }
+      .resource-nav-links { gap: 4px; }
+      .resource-nav-links a { padding: 4px 10px; font-size: 12px; }
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      padding: 100px 40px 80px;
+      text-align: center;
+      background: linear-gradient(180deg, #141018 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(155,126,216,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 20px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin: 0 auto 32px;
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* PEOPLE GRID */
+    .people-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+      margin-bottom: 60px;
+    }
+    @media (max-width: 640px) {
+      .people-grid { grid-template-columns: 1fr; }
+    }
+
+    /* PERSON CARD */
+    .person-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .person-card:hover {
+      border-color: var(--accent);
+    }
+    .person-icon {
+      font-size: 28px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .person-name {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .person-role {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+    .person-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .person-links {
+      font-size: 13px;
+    }
+    .person-links a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .person-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* FOOTER */
+    .footer {
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .hero { padding: 60px 20px 48px; }
+      .hero h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- RESOURCE NAV BAR -->
+  <nav class="resource-nav">
+    <div class="resource-nav-brand">Steve's Resources</div>
+    <div class="resource-nav-links">
+      <a href="prompting.html">Prompting Guide</a>
+      <a href="index.html">Cowork Beginner</a>
+      <a href="level-2.html">Cowork Advanced</a>
+      <a href="workflows.html">Cowork in Action</a>
+      <a href="people.html" class="active">People I Learn From</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <div class="hero">
+    <div class="hero-badge">CREDITS & INSPIRATION</div>
+    <h1>People I <span>Learn From</span></h1>
+    <p>This guide exists because these people share what they know. I follow all of them and assembled much of what's here from their ideas, tools, and content. Go find them.</p>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="container" style="padding-top: 60px;">
+
+    <!-- PEOPLE GRID -->
+    <div class="people-grid">
+
+      <!-- PERSON 1 -->
+      <div class="person-card">
+        <div class="person-icon">&#128640;</div>
+        <div>
+          <div class="person-name">Ruben Hassid</div>
+          <div class="person-role">How to AI • 400K+ subscribers</div>
+          <div class="person-desc">Step-by-step AI workflows with screenshots. His Cowork guides and Computer Use infographic directly shaped these resources.</div>
+          <div class="person-links">
+            <a href="https://ruben.substack.com/">Substack</a> • <a href="https://www.linkedin.com/in/ruben-hassid/">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PERSON 2 -->
+      <div class="person-card">
+        <div class="person-icon">&#128218;</div>
+        <div>
+          <div class="person-name">Shelly Palmer</div>
+          <div class="person-role">Daily Newsletter • LinkedIn Top Voice in Tech</div>
+          <div class="person-desc">The clearest daily thinking on where AI meets business strategy and policy. Subscribe and never miss a day.</div>
+          <div class="person-links">
+            <a href="https://shellypalmer.com/subscribe/">Newsletter</a> • <a href="https://www.linkedin.com/in/shellypalmer/">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PERSON 3 -->
+      <div class="person-card">
+        <div class="person-icon">&#129302;</div>
+        <div>
+          <div class="person-name">Pascal Bornet</div>
+          <div class="person-role">IRREPLACEABLE with AI • 1M+ readers</div>
+          <div class="person-desc">Two newsletters on intelligent automation and agentic AI. Plus the Agentic Intelligence newsletter.</div>
+          <div class="person-links">
+            <a href="https://pascalbornet.substack.com/">Substack</a> • <a href="https://www.linkedin.com/in/pascalbornet/">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PERSON 4 -->
+      <div class="person-card">
+        <div class="person-icon">&#128161;</div>
+        <div>
+          <div class="person-name">Ruben Dominguez</div>
+          <div class="person-role">The AI Corner • 322K+ subscribers</div>
+          <div class="person-desc">Deep Claude Cowork setup guides, AI tool breakdowns, and practical workflows.</div>
+          <div class="person-links">
+            <a href="https://www.the-ai-corner.com/">Substack</a> • <a href="https://www.linkedin.com/in/rub%C3%A9n-dom%C3%ADnguez-ibar/">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PERSON 5 -->
+      <div class="person-card">
+        <div class="person-icon">&#127909;</div>
+        <div>
+          <div class="person-name">Jeff Su</div>
+          <div class="person-role">YouTube • 1.6M subscribers</div>
+          <div class="person-desc">Actionable AI and productivity tips for busy professionals. The best YouTube channel for making AI practical at work.</div>
+          <div class="person-links">
+            <a href="https://www.jeffsu.org/">Website</a> • <a href="https://www.linkedin.com/in/jsu05/">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PERSON 6 -->
+      <div class="person-card">
+        <div class="person-icon">&#127891;</div>
+        <div>
+          <div class="person-name">Dr. Jules White</div>
+          <div class="person-role">Vanderbilt University • Coursera</div>
+          <div class="person-desc">The definitive prompt engineering courses. 250K+ students. If you want to understand why prompting works, start here.</div>
+          <div class="person-links">
+            <a href="https://www.coursera.org/specializations/prompt-engineering">Coursera</a> • <a href="https://www.linkedin.com/in/jules-white-5717655/">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PERSON 7 -->
+      <div class="person-card">
+        <div class="person-icon">&#128736;</div>
+        <div>
+          <div class="person-name">Paul J Lipsky</div>
+          <div class="person-role">YouTube • 323K subscribers</div>
+          <div class="person-desc">AI tools and software reviews. Built the CoWork OS plugin that powers the Cowork Beginner guide.</div>
+          <div class="person-links">
+            <a href="https://pauljlipsky.com/">YouTube</a> • <a href="https://www.linkedin.com/in/paul-lipsky-71a79548/">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PERSON 8 -->
+      <div class="person-card">
+        <div class="person-icon">&#127973;</div>
+        <div>
+          <div class="person-name">Christian Pean MD</div>
+          <div class="person-role">Techy Surgeon • Surgeon-Founder at RevelAi</div>
+          <div class="person-desc">Builds AI operating systems for professionals juggling multiple roles. His 6 AM Dispatch and AI Chief of Staff workflows directly shaped the Cowork in Action guide.</div>
+          <div class="person-links">
+            <a href="https://techysurgeon.substack.com/">Substack</a> • <a href="https://www.linkedin.com/in/christianpean/">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Created by Steve Gustafson &bull; March 2026</p>
+    <p style="margin-top: 8px;">Built with Claude Cowork (naturally). Have questions? <a href="mailto:stevegustafson@gmail.com">Reach out</a>.</p>
+    <p style="margin-top: 16px; color: var(--text-dim);">Claude and Cowork are products of <a href="https://anthropic.com" target="_blank">Anthropic</a>. This is an independent guide, not official Anthropic documentation.</p>
+  </div>
+
+</body>
+</html>

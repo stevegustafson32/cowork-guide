@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Prompting Playbook — From Search Bar to Strategic Partner</title>
+<title>The Prompting Guide — From Search Bar to Strategic Partner</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
@@ -700,27 +700,56 @@
     opacity: 1;
   }
 
+  /* RESOURCE NAV */
+  .resource-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 24px; background: var(--surface); border-bottom: 1px solid var(--border);
+    font-size: 13px; position: relative; z-index: 998;
+  }
+  .resource-nav-brand { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+  .resource-nav-links { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+  .resource-nav-links a {
+    padding: 6px 14px; border-radius: 6px; color: var(--text-muted);
+    text-decoration: none; font-weight: 500; font-size: 13px; transition: all 0.2s; white-space: nowrap;
+  }
+  .resource-nav-links a:hover { color: var(--text); background: var(--surface-2); }
+  .resource-nav-links a.active { color: var(--accent); background: var(--accent-dim); font-weight: 600; }
+
   /* RESPONSIVE */
   @media (max-width: 640px) {
     .hero { padding: 60px 20px 48px; }
     .hero h1 { font-size: 28px; }
     .toc-grid { grid-template-columns: 1fr; }
     .accordion-header { padding: 20px 0; }
+    .resource-nav { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .resource-nav-links { gap: 4px; }
+    .resource-nav-links a { padding: 4px 10px; font-size: 12px; }
   }
 </style>
 </head>
 <body>
 
+<nav class="resource-nav">
+  <div class="resource-nav-brand">Steve's Resources</div>
+  <div class="resource-nav-links">
+    <a href="prompting.html" class="active">Prompting Guide</a>
+    <a href="index.html">Cowork Beginner</a>
+    <a href="level-2.html">Cowork Advanced</a>
+    <a href="workflows.html">Cowork in Action</a>
+    <a href="people.html">People I Learn From</a>
+  </div>
+</nav>
+
 <!-- STICKY NAV -->
 <div class="sticky-nav" id="stickyNav">
-  <div class="sticky-nav-left">The Prompting Playbook</div>
+  <div class="sticky-nav-left">The Prompting Guide</div>
   <div class="sticky-nav-right" id="stickyProgress">Section 1 of 12</div>
 </div>
 
 <!-- HERO SECTION -->
 <div class="hero">
   <div class="hero-badge">PROMPTING GUIDE — UPDATED MARCH 2026</div>
-  <h1>The <span>Prompting</span> Playbook</h1>
+  <h1>The <span>Prompting</span> Guide</h1>
   <p style="margin-bottom: 8px;">From Search Bar to Strategic Partner</p>
   <p>Stop Googling. Start engineering. A practical guide to getting dramatically better results from AI.</p>
   <button class="hero-cta" id="heroCtaBtn">Start with Section 1 →</button>
@@ -1740,7 +1769,7 @@ Then execute the task.</div>
           <p style="margin-bottom: 4px;">• "Take a deep breath and work step by step"</p>
           <p style="margin-bottom: 4px;">• "This is important for [high stakes]"</p>
           <p style="margin-bottom: 4px;">• "I'll tip $200 for a thorough analysis"</p>
-          <p style="margin-bottom: 4px;">• "Think step by step. Verify your work."</p>
+          <p style="margin-bottom: 8px;">• "Think step by step. Verify your work."</p>
           <p style="margin-bottom: 8px;"><em>Don't stack all at once. Use 1-2 that fit naturally.</em></p>
         </div>
 
@@ -1990,15 +2019,19 @@ OUTPUT: [SPECIFIC STRUCTURE]. Include [REQUIRED ELEMENTS].</div>
 <!-- FOOTER NAV -->
 <div style="text-align: center; padding: 48px 24px 0;">
   <p style="color: var(--text-dim); margin-bottom: 16px;">Continue your Cowork journey</p>
+  <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px;">
+    <a href="index.html" class="hero-cta" style="background: var(--accent); color: #000;">Cowork Beginner &rarr;</a>
+    <a href="level-2.html" class="hero-cta" style="background: #7b8bd4; color: #fff;">Cowork Advanced &rarr;</a>
+  </div>
   <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-    <a href="index.html" class="hero-cta" style="background: var(--accent);">Level 1: Getting Started &rarr;</a>
-    <a href="level-2.html" class="hero-cta" style="background: #7b8bd4;">Level 2: Advanced Techniques &rarr;</a>
+    <a href="workflows.html" class="hero-cta" style="background: transparent; border: 2px solid #6ab88f; color: #6ab88f;">Cowork in Action &rarr;</a>
+    <a href="people.html" class="hero-cta" style="background: transparent; border: 2px solid var(--purple); color: var(--purple);">People I Learn From &rarr;</a>
   </div>
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
-  <p><strong>The Prompting Playbook</strong> — Part of The Complete Guide to Claude Cowork</p>
+  <p><strong>The Prompting Guide</strong> — Part of The Complete Guide to Claude Cowork</p>
   <p style="margin-top: 12px;">Written by Steve Gustafson — March 2026</p>
   <p style="margin-top: 8px; color: var(--text-dim);">Research-backed, battle-tested, and optimized for getting real work done with AI.</p>
 </div>

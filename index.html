@@ -696,9 +696,40 @@
     .accordion-header { padding: 20px 0; }
     .video-card { flex-direction: column; gap: 12px; }
   }
+
+  /* RESOURCE NAV */
+  .resource-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 24px; background: var(--surface); border-bottom: 1px solid var(--border);
+    font-size: 13px; position: relative; z-index: 998;
+  }
+  .resource-nav-brand { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+  .resource-nav-links { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+  .resource-nav-links a {
+    padding: 6px 14px; border-radius: 6px; color: var(--text-muted);
+    text-decoration: none; font-weight: 500; font-size: 13px; transition: all 0.2s; white-space: nowrap;
+  }
+  .resource-nav-links a:hover { color: var(--text); background: var(--surface-2); }
+  .resource-nav-links a.active { color: var(--accent); background: var(--accent-dim); font-weight: 600; }
+  @media (max-width: 640px) {
+    .resource-nav { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .resource-nav-links { gap: 4px; }
+    .resource-nav-links a { padding: 4px 10px; font-size: 12px; }
+  }
 </style>
 </head>
 <body>
+
+<nav class="resource-nav">
+  <div class="resource-nav-brand">Steve's Resources</div>
+  <div class="resource-nav-links">
+    <a href="prompting.html">Prompting Guide</a>
+    <a href="index.html" class="active">Cowork Beginner</a>
+    <a href="level-2.html">Cowork Advanced</a>
+    <a href="workflows.html">Cowork in Action</a>
+    <a href="people.html">People I Learn From</a>
+  </div>
+</nav>
 
 <!-- STICKY NAV (FIX 3) -->
 <div class="sticky-nav" id="stickyNav">
@@ -1083,17 +1114,17 @@
 
         <h3>How to Install</h3>
         <div class="step-card highlighted">
-          <div class="step-num">4.1</div>
+          <div class="step-num">5.1</div>
           <h4>Download the Plugin</h4>
           <p>Download the plugin file: <a href="cowork-os-plugin.zip" download><strong>cowork-os-plugin.zip</strong></a> (14 KB). Unzip it anywhere on your computer &mdash; you'll get a folder called <code>cowork-os-plugin</code>.</p>
         </div>
         <div class="step-card">
-          <div class="step-num">4.2</div>
+          <div class="step-num">5.2</div>
           <h4>Install in Cowork</h4>
           <p>Open Cowork &rarr; click <strong>Customize</strong> (top-right) &rarr; <strong>Browse plugins</strong> &rarr; search for <strong>"CoWork OS"</strong>. If you find it in the marketplace, click Install. Otherwise, use the <strong>"Install from folder"</strong> option and point it to the unzipped <code>cowork-os-plugin</code> folder.</p>
         </div>
         <div class="step-card highlighted">
-          <div class="step-num">4.3</div>
+          <div class="step-num">5.3</div>
           <h4>Type <code>/begin</code> &mdash; That's It</h4>
           <p>Open a new Cowork session and type <code>/begin</code> in the chat. CoWork OS takes over from here. You just answer questions.</p>
         </div>
@@ -1792,6 +1823,11 @@ _Last updated: 2026-03-19_
           <h4>12. Say "New Project" to Stay Organized</h4>
           <p>When starting fresh work, just say "new project: [Name]." Claude creates the folder structure, project-specific memory, and output directory automatically. Everything for that project stays together from day one. See Step 4 for the full workflow.</p>
         </div>
+
+        <div class="step-card">
+          <h4>13. Talk to Claude Like a Colleague, Not a Search Engine</h4>
+          <p>Anthropic's own research on large language models shows that Claude develops internal representations that mirror collaborative dynamics. In practice: collaborative, respectful framing produces better outputs than demanding or terse commands. Instead of "Write me a report," try "I need a report on X for my board &mdash; here's the context. Can you draft something and I'll refine it with you?" The difference isn't politeness for its own sake &mdash; it's that collaborative framing gives Claude more context about your intent, audience, and quality bar. Claude works best when you treat it like a sharp colleague, not a vending machine.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1876,84 +1912,15 @@ _Last updated: 2026-03-19_
     <p>Download Claude Desktop, set up your workspace folder, write your About Me file, and give Claude your first task. You'll wonder how you worked without it.</p>
     <a href="https://claude.com/download" target="_blank" class="hero-cta">Download Claude Desktop</a>
     <div style="margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border);">
-      <p style="color: var(--text-dim); margin-bottom: 12px;">Already comfortable with the basics?</p>
-      <a href="level-2.html" class="hero-cta" style="background: #7b8bd4;">Level 2: Advanced Techniques &rarr;</a>
-    </div>
-  </div>
-
-</div>
-
-<!-- ACKNOWLEDGMENTS -->
-<div class="section" style="padding: 60px 0 40px;">
-  <div class="container">
-    <h3 style="text-align: center; margin-bottom: 8px;">People I Learn From</h3>
-    <p style="text-align: center; color: var(--text-muted); margin-bottom: 32px; max-width: 640px; margin-left: auto; margin-right: auto;">This guide exists because these people share what they know. I follow all of them and assembled much of what's here from their ideas, tools, and content. Go find them.</p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="font-size: 24px; line-height: 1;">&#128640;</div>
-        <div>
-          <h4 style="margin-bottom: 4px; font-size: 15px;">Ruben Hassid</h4>
-          <div style="color: var(--text-dim); font-size: 13px; margin-bottom: 6px;">How to AI &bull; 400K+ subscribers</div>
-          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.5;">Step-by-step AI workflows with screenshots. His Computer Use infographic directly shaped this guide.</div>
-          <div style="font-size: 13px; margin-top: 6px;"><a href="https://ruben.substack.com/" target="_blank" style="color: var(--accent); text-decoration: none;">Substack</a> &bull; <a href="https://www.linkedin.com/in/ruben-hassid/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn</a></div>
-        </div>
-      </div>
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="font-size: 24px; line-height: 1;">&#128218;</div>
-        <div>
-          <h4 style="margin-bottom: 4px; font-size: 15px;">Shelly Palmer</h4>
-          <div style="color: var(--text-dim); font-size: 13px; margin-bottom: 6px;">Daily Newsletter &bull; LinkedIn Top Voice in Tech</div>
-          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.5;">The clearest daily thinking on where AI meets business strategy and policy. Subscribe and never miss a day.</div>
-          <div style="font-size: 13px; margin-top: 6px;"><a href="https://shellypalmer.com/subscribe/" target="_blank" style="color: var(--accent); text-decoration: none;">Newsletter</a> &bull; <a href="https://www.linkedin.com/in/shellypalmer/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn</a></div>
-        </div>
-      </div>
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="font-size: 24px; line-height: 1;">&#129302;</div>
-        <div>
-          <h4 style="margin-bottom: 4px; font-size: 15px;">Pascal Bornet</h4>
-          <div style="color: var(--text-dim); font-size: 13px; margin-bottom: 6px;">IRREPLACEABLE with AI &bull; 1M+ readers</div>
-          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.5;">Two newsletters on intelligent automation and agentic AI. Plus the Agentic Intelligence newsletter.</div>
-          <div style="font-size: 13px; margin-top: 6px;"><a href="https://pascalbornet.substack.com/" target="_blank" style="color: var(--accent); text-decoration: none;">Substack</a> &bull; <a href="https://www.linkedin.com/in/pascalbornet/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn</a></div>
-        </div>
-      </div>
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="font-size: 24px; line-height: 1;">&#128161;</div>
-        <div>
-          <h4 style="margin-bottom: 4px; font-size: 15px;">Ruben Dominguez</h4>
-          <div style="color: var(--text-dim); font-size: 13px; margin-bottom: 6px;">The AI Corner &bull; 322K+ subscribers</div>
-          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.5;">Deep Claude Cowork setup guides, AI tool breakdowns, and practical workflows.</div>
-          <div style="font-size: 13px; margin-top: 6px;"><a href="https://www.the-ai-corner.com/" target="_blank" style="color: var(--accent); text-decoration: none;">Substack</a> &bull; <a href="https://www.linkedin.com/in/rub%C3%A9n-dom%C3%ADnguez-ibar/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn</a></div>
-        </div>
-      </div>
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="font-size: 24px; line-height: 1;">&#127909;</div>
-        <div>
-          <h4 style="margin-bottom: 4px; font-size: 15px;">Jeff Su</h4>
-          <div style="color: var(--text-dim); font-size: 13px; margin-bottom: 6px;">YouTube &bull; 1.6M subscribers</div>
-          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.5;">Actionable AI and productivity tips for busy professionals. The best YouTube channel for making AI practical at work.</div>
-          <div style="font-size: 13px; margin-top: 6px;"><a href="https://www.jeffsu.org/" target="_blank" style="color: var(--accent); text-decoration: none;">Website</a> &bull; <a href="https://www.linkedin.com/in/jsu05/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn</a></div>
-        </div>
-      </div>
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="font-size: 24px; line-height: 1;">&#127891;</div>
-        <div>
-          <h4 style="margin-bottom: 4px; font-size: 15px;">Dr. Jules White</h4>
-          <div style="color: var(--text-dim); font-size: 13px; margin-bottom: 6px;">Vanderbilt University &bull; Coursera</div>
-          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.5;">The definitive prompt engineering courses. 250K+ students. If you want to understand why prompting works, start here.</div>
-          <div style="font-size: 13px; margin-top: 6px;"><a href="https://www.coursera.org/specializations/prompt-engineering" target="_blank" style="color: var(--accent); text-decoration: none;">Coursera</a> &bull; <a href="https://www.linkedin.com/in/jules-white-5717655/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn</a></div>
-        </div>
-      </div>
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="font-size: 24px; line-height: 1;">&#128736;</div>
-        <div>
-          <h4 style="margin-bottom: 4px; font-size: 15px;">Paul J Lipsky</h4>
-          <div style="color: var(--text-dim); font-size: 13px; margin-bottom: 6px;">YouTube &bull; 323K subscribers</div>
-          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.5;">AI tools and software reviews. Built the CoWork OS plugin that powers Steps 5&ndash;8.</div>
-          <div style="font-size: 13px; margin-top: 6px;"><a href="https://pauljlipsky.com/" target="_blank" style="color: var(--accent); text-decoration: none;">YouTube</a> &bull; <a href="https://www.linkedin.com/in/paul-lipsky-71a79548/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn</a></div>
-        </div>
+      <p style="color: var(--text-dim); margin-bottom: 16px;">Keep going:</p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a href="level-2.html" class="hero-cta" style="background: #7b8bd4;">Cowork Advanced &rarr;</a>
+        <a href="workflows.html" class="hero-cta" style="background: #6ab88f; color: #000;">Cowork in Action &rarr;</a>
+        <a href="prompting.html" class="hero-cta" style="background: transparent; border: 2px solid var(--accent); color: var(--accent);">Prompting Guide &rarr;</a>
       </div>
     </div>
   </div>
+
 </div>
 
 <!-- FOOTER -->
