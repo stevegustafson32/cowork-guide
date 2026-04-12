@@ -1017,6 +1017,11 @@ When the user asks you to research a company:
         </div>
 
         <div class="info-box warning">
+          <strong>Watch for the Validation Loop</strong>
+          Persistent memory is powerful, but it comes with a subtle risk. Claude saves your preferences, learns your patterns, and adapts to your style over time. That's the point. But it also means Claude gets increasingly tuned to tell you what you want to hear. MIT researchers have demonstrated that sycophantic AI creates a feedback loop: your belief strengthens because the AI keeps confirming it, not because it's right. The more personalized your setup, the stronger this effect. Counterweights: add a pushback rule to your CLAUDE.md (<em>"Flag gaps in my reasoning directly"</em>), periodically ask Claude to argue the opposite side, and for high-stakes decisions, open a fresh session and present your conclusion without the backstory. A new session has no history of agreeing with you.
+        </div>
+
+        <div class="info-box warning">
           <strong>The 15-20 Message Rule</strong>
           Long conversations are token furnaces. After 15-20 messages, you're spending more tokens re-reading history than generating new output. When a session gets long: ask Claude to summarize everything important, copy that summary, open a new session, paste it as your first message. Clean slate, full context, fraction of the cost. Pro tip: at the end of a session, prompt "Write a session-notes.md with the key decisions and next steps." Next session, start with "Read session-notes.md first."
         </div>

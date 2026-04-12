@@ -1399,10 +1399,16 @@ Examples: ClientX_Proposal_v1.docx, Launch_Deck_v2.pptx
 - Ask questions when the brief is unclear — don't fill gaps with filler
 - Don't over-explain. Deliver the work.
 - Never delete files
+- If my reasoning has gaps or I'm heading in a questionable direction, flag it directly. Don't just agree.
 
 ## Memory System
 Read MEMORY.md at the start of every session. Only write to it
 when I explicitly say "remember this" or "make a note."</div>
+
+        <div class="info-box warning">
+          <strong>Claude's Default Is to Agree With You</strong>
+          AI models are trained on human feedback, and humans reward agreeable responses. The result: Claude's natural instinct is to validate your ideas, not challenge them. MIT researchers have shown that this "sycophancy" can create a feedback loop where your confidence in a direction grows simply because Claude keeps confirming it. The fix is simple: add a rule to your CLAUDE.md like the one above (<em>"If my reasoning has gaps, flag it directly. Don't just agree."</em>) and periodically ask Claude to argue the other side. The best decisions come from an assistant that pushes back, not one that nods along.
+        </div>
 
         <h3>MEMORY.md &mdash; Persistent Notes</h3>
         <p>This is Claude's external brain. It's a simple text file where Claude stores things you ask it to remember between sessions. Unlike regular chat (which forgets everything), MEMORY.md persists.</p>
@@ -1828,6 +1834,11 @@ _Last updated: 2026-03-19_
         <div class="step-card">
           <h4>13. Talk to Claude Like a Colleague, Not a Search Engine</h4>
           <p>Anthropic's own research on large language models shows that Claude develops internal representations that mirror collaborative dynamics. In practice: collaborative, respectful framing produces better outputs than demanding or terse commands. Instead of "Write me a report," try "I need a report on X for my board &mdash; here's the context. Can you draft something and I'll refine it with you?" The difference isn't politeness for its own sake &mdash; it's that collaborative framing gives Claude more context about your intent, audience, and quality bar. Claude works best when you treat it like a sharp colleague, not a vending machine.</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <h4>14. Use "Devil's Advocate" and "Fresh Eyes" for Big Decisions</h4>
+          <p>Before committing to a strategy, direction, or major deliverable, say: <em>"Play devil's advocate. Give me the strongest case against this approach."</em> Claude will shift from validation mode to critique mode. For even more rigor, open a brand new session with no prior conversation history, present your conclusion cold, and ask Claude to evaluate it. The new session has no memory of agreeing with you for the last 20 messages, so it gives you a genuinely independent read. This isn't just token hygiene &mdash; it's cognitive hygiene.</p>
         </div>
       </div>
     </div>
