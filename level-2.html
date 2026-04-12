@@ -1016,6 +1016,11 @@ When the user asks you to research a company:
           Let auto-memory catch the patterns you'd forget to save. Use MEMORY.md for the facts you need to persist with precision. They're complementary, not competing. Auto-memory is your safety net; MEMORY.md is your source of truth.
         </div>
 
+        <div class="info-box warning">
+          <strong>The 15-20 Message Rule</strong>
+          Long conversations are token furnaces. After 15-20 messages, you're spending more tokens re-reading history than generating new output. When a session gets long: ask Claude to summarize everything important, copy that summary, open a new session, paste it as your first message. Clean slate, full context, fraction of the cost. Pro tip: at the end of a session, prompt "Write a session-notes.md with the key decisions and next steps." Next session, start with "Read session-notes.md first."
+        </div>
+
         <h3>Multi-Project Isolation</h3>
         <p>Both native Projects and CoWork OS support project-scoped isolation. Each native Project has its own auto-memory. Each CoWork OS subfolder can have its own CLAUDE.md and MEMORY.md. Your marketing project's Claude has different context than your finance project's Claude.</p>
 
@@ -1074,6 +1079,11 @@ When the user asks you to research a company:
         <div class="info-box key">
           <strong>Start Simple</strong>
           Before building a custom MCP connector, check if one already exists. Cowork's connector directory has 50+ pre-built integrations. Type your tool name in the Customize &rarr; Connectors search. If it's there, you're done in 2 clicks.
+        </div>
+
+        <div class="info-box tip">
+          <strong>Turn Off What You're Not Using</strong>
+          Web search, connectors, and extended thinking all add tokens to every response &mdash; even when you don't need them. Writing your own content? Turn off search. Simple grammar check? Skip extended thinking. And when you <em>do</em> use connectors, be specific: "Search Slack from the last 7 days for messages about the Q2 launch" costs way less than "Search Slack for anything about launches." Features are a dial, not a switch.
         </div>
       </div>
     </div>
@@ -1136,6 +1146,16 @@ When the user asks you to research a company:
           <strong>Token Cost</strong>
           Each sub-agent has its own context window. Running 8 parallel agents uses roughly 8x the tokens of a single agent. This is most effective on Opus or Sonnet where reasoning quality justifies the cost. Don't parallelize trivial tasks.
         </div>
+
+        <div class="info-box tip">
+          <strong>Batch Tasks, Target Edits</strong>
+          Three separate messages = three full context reloads. One message with three tasks = one reload. And when something needs fixing, don't say "redo the report." Say "only redo section 3, keep everything else." Every full regeneration burns the entire output token count again. Point to the specific section. Tell Claude what's wrong with it. Add "No commentary. Just the output." when you know exactly what you want.
+        </div>
+
+        <div class="info-box key">
+          <strong>Match the Model to the Task</strong>
+          Opus + Extended Thinking is your heavy machinery. Don't use it to move a chair. Grammar checks, brainstorming, reformatting, short answers &mdash; Sonnet handles all of this at a fraction of the cost. Rule of thumb: if the task takes Claude less than 30 seconds to answer, it probably doesn't need Opus. Switch models before you start the session &mdash; it takes 2 clicks.
+        </div>
       </div>
     </div>
   </div>
@@ -1164,6 +1184,11 @@ When the user asks you to research a company:
           <tr><td><strong>HTML</strong></td><td>Interactive dashboards, reports, web tools</td><td>"Create a dashboard from this CSV data"</td></tr>
           <tr><td><strong>CSV/Data</strong></td><td>Cleaned data, analysis results, exports</td><td>"Clean this messy CSV and export with headers"</td></tr>
         </table>
+
+        <div class="info-box tip">
+          <strong>Plan in Chat. Build in Cowork.</strong>
+          Chat is cheap. Cowork is powerful. Use Chat to brainstorm, iterate on structure, and nail your requirements. Once you know exactly what you want, move to Cowork and say "Build this exact file." You do the thinking in the cheap product. You do the building in the expensive one. File creation uses more of your limit than regular chat messages &mdash; so arrive in Cowork with a plan, not a brainstorm.
+        </div>
 
         <h3>Power Patterns</h3>
         <div class="step-card highlighted">
@@ -1324,6 +1349,11 @@ When the user asks you to research a company:
         <div class="info-box warning">
           <strong>Requirements &amp; Limitations</strong>
           Available on Pro and Max plans. Your Mac must be awake and Claude Desktop must be open for Dispatch to work. Single thread only &mdash; one task at a time. If your Mac is asleep, the task runs when you open the lid. Desktop must be connected to the internet.
+        </div>
+
+        <div class="info-box tip">
+          <strong>Use "Restart From Here" Instead of Corrections</strong>
+          When Cowork gets something wrong, your instinct is to type "No, I meant..." Every correction stacks on the full conversation history and Claude re-reads all of it. Instead, use "Restart the conversation from here" on an earlier message. The higher up you restart, the more tokens you save. If the whole session went sideways, start fresh with a one-line summary of what you need.
         </div>
       </div>
     </div>

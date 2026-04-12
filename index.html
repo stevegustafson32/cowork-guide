@@ -827,6 +827,11 @@
           Cowork turns Claude from a chatbot into a co-worker. You describe what you need, Claude figures out the steps and executes them &mdash; producing real deliverables you can use immediately.
         </div>
 
+        <div class="info-box warning">
+          <strong>Why Your Usage Limit Disappears</strong>
+          Every time you send a message, Claude re-reads your entire conversation from the top. Message 1 is cheap. Message 30 means Claude is re-reading 29 previous exchanges before it even starts thinking about your new question. That's why long conversations burn through your limit fast. Every tip in this guide that says "start fresh" or "keep it short" comes back to this one thing.
+        </div>
+
         <h3>What Can Cowork Actually Do?</h3>
         <p>Here are real examples of tasks people hand to Cowork daily:</p>
         <div class="two-col">
@@ -1210,6 +1215,11 @@ MEMORY.md                &larr; empty, ready for "remember this" notes</div>
           Start with just <strong>ABOUT ME/</strong> and <strong>CLAUDE OUTPUTS/</strong>. Add TEMPLATES and PROJECTS as you need them. The structure grows with you.
         </div>
 
+        <div class="info-box warning">
+          <strong>Keep Your Workspace Lean</strong>
+          Cowork reads your folder before every task. That's a feature, not a bug &mdash; it's how Claude knows you. But don't dump 50 files in there "just in case." If Claude doesn't need it for your work, it shouldn't be in the workspace. A tight, curated folder means Claude reads fast and reads well. Your About Me, CLAUDE.md, templates, and active project files? Essential. That 47-page PDF from last quarter's board meeting? Move it out until you need it.
+        </div>
+
         <h3>Starting a New Project</h3>
         <p>When you start a new project, just tell Claude: <em>"New project: [Project Name]"</em>. Claude will automatically create:</p>
         <div class="step-card highlighted">
@@ -1339,6 +1349,11 @@ I manage a team of 6 and report directly to the CEO.
         <div class="info-box key">
           <strong>Why This Matters So Much</strong>
           Without an About Me file, every Cowork session starts from scratch &mdash; Claude doesn't know who you are, what you do, or how you like things done. With it, Claude feels like an assistant who's been working with you for months. The 10 minutes you spend writing this file (or importing from ChatGPT) saves hours of explaining yourself in future sessions.
+        </div>
+
+        <div class="info-box warning">
+          <strong>Keep Your About Me Under 2,000 Words</strong>
+          Cowork reads your folder before every single task. If your About Me file is a novel, that's thousands of tokens burned before any real work starts &mdash; every session, every task. Trim it to what Claude actually needs to know to do good work for you. Think resume, not autobiography.
         </div>
       </div>
     </div>
@@ -1616,6 +1631,11 @@ _Last updated: 2026-03-19_
         <div class="info-box key">
           <strong>The Secret to Great Results</strong>
           Be specific. Instead of "make me a presentation," say "make me a 10-slide investor pitch deck for a fintech startup that does payroll-embedded savings. Audience is angel investors. Tone should be confident but not hype-y. Include a financial projection slide." The more context you give, the better the output.
+        </div>
+
+        <div class="info-box tip">
+          <strong>Pro Tip: Convert Files Before Uploading</strong>
+          A single PDF page costs 1,500&ndash;3,000 tokens. Screenshots can hit 1,300 tokens each. Before uploading, extract the text you actually need and paste it into a plain text or markdown file. If you're uploading the same document across multiple sessions, this adds up fast. Quick trick: type <code>doc.new</code> in your browser, paste the text, then download as <code>.md</code>.
         </div>
       </div>
     </div>
