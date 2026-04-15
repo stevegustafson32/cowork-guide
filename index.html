@@ -203,6 +203,7 @@
     font-weight: 700;
     margin-bottom: 4px;
     letter-spacing: -0.5px;
+    color: #fff;
   }
 
   .accordion-subtitle {
@@ -696,9 +697,40 @@
     .accordion-header { padding: 20px 0; }
     .video-card { flex-direction: column; gap: 12px; }
   }
+
+  /* RESOURCE NAV */
+  .resource-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 24px; background: var(--surface); border-bottom: 1px solid var(--border);
+    font-size: 13px; position: relative; z-index: 998;
+  }
+  .resource-nav-brand { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+  .resource-nav-links { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+  .resource-nav-links a {
+    padding: 6px 14px; border-radius: 6px; color: var(--text-muted);
+    text-decoration: none; font-weight: 500; font-size: 13px; transition: all 0.2s; white-space: nowrap;
+  }
+  .resource-nav-links a:hover { color: var(--text); background: var(--surface-2); }
+  .resource-nav-links a.active { color: var(--accent); background: var(--accent-dim); font-weight: 600; }
+  @media (max-width: 640px) {
+    .resource-nav { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .resource-nav-links { gap: 4px; }
+    .resource-nav-links a { padding: 4px 10px; font-size: 12px; }
+  }
 </style>
 </head>
 <body>
+
+<nav class="resource-nav">
+  <div class="resource-nav-brand">Steve's Resources</div>
+  <div class="resource-nav-links">
+    <a href="prompting.html">Prompting Guide</a>
+    <a href="index.html" class="active">Cowork Beginner</a>
+    <a href="level-2.html">Cowork Advanced</a>
+    <a href="workflows.html">Cowork in Action</a>
+    <a href="people.html">People I Learn From</a>
+  </div>
+</nav>
 
 <!-- STICKY NAV (FIX 3) -->
 <div class="sticky-nav" id="stickyNav">
@@ -721,8 +753,8 @@
   <div class="download-banner">
     <div class="banner-icon">&#11015;</div>
     <div>
-      <strong style="color: var(--blue);">Start these two things now &mdash; read while you wait</strong>
-      <span style="color: var(--text-muted);"><strong>1.</strong> Download <a href="https://claude.com/download" target="_blank">Claude Desktop</a> &mdash; the first-time setup includes a ~2GB download that takes a few minutes.<br><strong>2. Coming from ChatGPT?</strong> <a href="https://chatgpt.com" target="_blank">Export your data now</a> (Settings &rarr; Data Controls &rarr; Export). It takes 1&ndash;3 days to arrive by email. Start it now so it's ready when you set up your workspace.</span>
+      <strong style="color: var(--blue);">Start this now &mdash; read while you wait</strong>
+      <span style="color: var(--text-muted);">Download <a href="https://claude.com/download" target="_blank">Claude Desktop</a> &mdash; the first-time setup includes a ~2GB download that takes a few minutes. Get it running, then follow along.</span>
     </div>
   </div>
 
@@ -795,6 +827,11 @@
           Cowork turns Claude from a chatbot into a co-worker. You describe what you need, Claude figures out the steps and executes them &mdash; producing real deliverables you can use immediately.
         </div>
 
+        <div class="info-box warning">
+          <strong>Why Your Usage Limit Disappears</strong>
+          Every time you send a message, Claude re-reads your entire conversation from the top. Message 1 is cheap. Message 30 means Claude is re-reading 29 previous exchanges before it even starts thinking about your new question. That's why long conversations burn through your limit fast. Every tip in this guide that says "start fresh" or "keep it short" comes back to this one thing.
+        </div>
+
         <h3>What Can Cowork Actually Do?</h3>
         <p>Here are real examples of tasks people hand to Cowork daily:</p>
         <div class="two-col">
@@ -822,51 +859,6 @@
             <h4>Organization</h4>
             <p>Manage files, rename documents, extract info from PDFs, merge files.</p>
           </div>
-        </div>
-
-        <h3>Coming from ChatGPT? Your History Is a Head Start</h3>
-        <p>If you've been using ChatGPT for months, you've already done work that makes Claude setup faster. Every time you corrected ChatGPT's tone, told it about your role, explained your preferences, or repeated project context &mdash; that's exactly the information that goes into Claude's setup files (Steps 5&ndash;7). Instead of starting from scratch, you can extract it.</p>
-
-        <div class="info-box warning">
-          <strong>Start Your Export Now &mdash; It Takes 1&ndash;3 Days</strong>
-          ChatGPT's data export is not instant. You request it, then wait for an email. <strong>Kick this off right now</strong> so the file is ready by the time you reach Steps 5&ndash;7. Go to <a href="https://chatgpt.com" target="_blank">chatgpt.com</a> &rarr; profile icon (bottom-left) &rarr; <strong>Settings</strong> &rarr; <strong>Data Controls</strong> &rarr; <strong>Export Data</strong> &rarr; confirm. You'll get an email from <code>noreply@openai.com</code> with a download link (expires in 24 hours). Check spam if you don't see it.
-        </div>
-
-        <h4 style="margin-top: 24px;">Why This Matters for Your Setup</h4>
-        <p>Later in this guide, you'll create three files that make Claude feel like your assistant instead of a generic AI. Your ChatGPT history is the fastest way to fill them out:</p>
-        <table class="migration-table">
-          <tr><th>Claude setup file</th><th>What goes in it</th><th>Where to find it in ChatGPT</th></tr>
-          <tr><td><strong>About Me</strong> (Step 7)</td><td>Who you are, your role, how you work</td><td>Every time you told ChatGPT "I'm a [role] at [company]" or corrected its tone</td></tr>
-          <tr><td><strong>CLAUDE.md</strong> (Step 8)</td><td>Workspace rules, naming conventions, behavior</td><td>Instructions you repeated &mdash; "always format it this way," "don't use bullet points," etc.</td></tr>
-          <tr><td><strong>MEMORY.md</strong> (Step 8)</td><td>Decisions, deadlines, project context</td><td>Facts you kept re-explaining each session &mdash; deadlines, stakeholders, strategies</td></tr>
-          <tr><td><strong>Personal Preferences</strong> (Step 11)</td><td>Communication style, personality</td><td>Times you said "be more direct," "stop over-explaining," "match my tone"</td></tr>
-          <tr><td><strong>TEMPLATES/</strong> (Step 6)</td><td>Reusable document structures</td><td>Prompts you copy-pasted repeatedly &mdash; report formats, email templates, frameworks</td></tr>
-        </table>
-
-        <h4 style="margin-top: 24px;">How to Extract It (Once Your Export Arrives)</h4>
-        <div class="step-card">
-          <div class="step-num">1.1</div>
-          <h4>Open Your Export</h4>
-          <p>Unzip the file from the email. You'll get <code>conversations.json</code> (machine-readable) and <code>chat.html</code> (human-readable). Open <code>chat.html</code> in your browser.</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-num">1.2</div>
-          <h4>Scan for Patterns</h4>
-          <p>Skim your conversations looking for the stuff in the table above: identity info, style corrections, repeated instructions, project context, terminology. You don't need to read every chat &mdash; focus on the ones where you were training ChatGPT to work your way.</p>
-        </div>
-
-        <div class="step-card highlighted">
-          <div class="step-num">1.3</div>
-          <h4>Or Let Claude Do It For You</h4>
-          <p>This is the fastest path. Drop <code>chat.html</code> into your Cowork workspace folder and tell Claude:</p>
-          <p><em>"I just exported my ChatGPT history. It's in chat.html. Read through it and extract: (1) everything it knew about me &mdash; role, company, preferences, (2) instructions I repeated often, (3) recurring projects or topics, (4) key decisions and facts. Use what you find to draft my About Me file and seed my MEMORY.md."</em></p>
-          <p>Claude reads the file, pulls out the patterns, and builds your setup files pre-loaded with months of context. What took you months to teach ChatGPT, Claude gets in one conversation.</p>
-        </div>
-
-        <div class="info-box key">
-          <strong>The Difference</strong>
-          ChatGPT buries your preferences in conversation history you can't see or edit. Claude stores them in files you own &mdash; About Me, CLAUDE.md, MEMORY.md. You can read them, edit them, organize them. When something changes, you update the file. No more re-explaining yourself every session.
         </div>
 
       </div>
@@ -1083,17 +1075,17 @@
 
         <h3>How to Install</h3>
         <div class="step-card highlighted">
-          <div class="step-num">4.1</div>
+          <div class="step-num">5.1</div>
           <h4>Download the Plugin</h4>
           <p>Download the plugin file: <a href="cowork-os-plugin.zip" download><strong>cowork-os-plugin.zip</strong></a> (14 KB). Unzip it anywhere on your computer &mdash; you'll get a folder called <code>cowork-os-plugin</code>.</p>
         </div>
         <div class="step-card">
-          <div class="step-num">4.2</div>
+          <div class="step-num">5.2</div>
           <h4>Install in Cowork</h4>
           <p>Open Cowork &rarr; click <strong>Customize</strong> (top-right) &rarr; <strong>Browse plugins</strong> &rarr; search for <strong>"CoWork OS"</strong>. If you find it in the marketplace, click Install. Otherwise, use the <strong>"Install from folder"</strong> option and point it to the unzipped <code>cowork-os-plugin</code> folder.</p>
         </div>
         <div class="step-card highlighted">
-          <div class="step-num">4.3</div>
+          <div class="step-num">5.3</div>
           <h4>Type <code>/begin</code> &mdash; That's It</h4>
           <p>Open a new Cowork session and type <code>/begin</code> in the chat. CoWork OS takes over from here. You just answer questions.</p>
         </div>
@@ -1223,6 +1215,25 @@ MEMORY.md                &larr; empty, ready for "remember this" notes</div>
           Start with just <strong>ABOUT ME/</strong> and <strong>CLAUDE OUTPUTS/</strong>. Add TEMPLATES and PROJECTS as you need them. The structure grows with you.
         </div>
 
+        <div class="info-box warning">
+          <strong>Keep Your Workspace Lean</strong>
+          Cowork reads your folder before every task. That's a feature, not a bug &mdash; it's how Claude knows you. But don't dump 50 files in there "just in case." If Claude doesn't need it for your work, it shouldn't be in the workspace. A tight, curated folder means Claude reads fast and reads well. Your About Me, CLAUDE.md, templates, and active project files? Essential. That 47-page PDF from last quarter's board meeting? Move it out until you need it.
+        </div>
+
+        <div class="info-box key">
+          <strong>Install Obsidian to Actually Edit Your Folder (Free, 2 Minutes)</strong>
+          Here's the hidden problem with Cowork: it runs on <code>.md</code> files. Double-click one and your computer opens it in TextEdit or Notepad, and you see a mess of hashtags, asterisks, and raw formatting. It's ugly, it's hard to read, and most people quietly stop editing their files. Which means their "Second Brain" never gets smarter.
+          <br><br>
+          Fix it with <a href="https://obsidian.md" target="_blank">Obsidian</a>. It's free for personal use, runs locally on your computer, and renders markdown cleanly (real headers, bold, bullets). Download it, choose <strong>"Open folder as vault"</strong>, and point it at your Cowork folder. Done. Obsidian and Cowork now read and write the same files live. You use Obsidian to browse, search, and edit your context. You use Cowork to generate new work. No syncing, no copy-paste.
+          <br><br>
+          <strong>Why Obsidian and not Notion or Google Docs?</strong> Notion silently corrupts markdown with hidden formatting that breaks Claude. Google Docs needs constant conversion. Code editors like VS Code are too technical. Obsidian is the one tool that just reads your folder without touching it.
+        </div>
+
+        <div class="info-box tip">
+          <strong>Maintenance Tip: Don't Let CLAUDE OUTPUTS Become a Junk Drawer</strong>
+          Every file Claude makes lands in <code>CLAUDE OUTPUTS/</code>. After a few weeks of heavy use, that folder is dozens of drafts deep and Claude starts reading stale work as context. Once a week, prune it. Move finished deliverables into your own archive folder outside the Cowork workspace, delete duds, and keep only the outputs you're actively iterating on. A lean outputs folder keeps Claude fast and keeps the Second Brain navigable.
+        </div>
+
         <h3>Starting a New Project</h3>
         <p>When you start a new project, just tell Claude: <em>"New project: [Project Name]"</em>. Claude will automatically create:</p>
         <div class="step-card highlighted">
@@ -1324,9 +1335,39 @@ I manage a team of 6 and report directly to the CEO.
 - Our competitors: Lattice, Culture Amp, 15Five
 - Brand voice: confident but approachable, never corporate jargon</div>
 
+        <h3>Fast Track: Import from ChatGPT</h3>
+        <p>If you've been using ChatGPT, you've already built up months of context &mdash; your role, preferences, style corrections, project details. Instead of starting from scratch, you can extract all of that and use it to pre-fill your About Me, CLAUDE.md, and MEMORY.md files.</p>
+
+        <div class="info-box warning">
+          <strong>Start Your Export Now &mdash; It Takes 1&ndash;3 Days</strong>
+          ChatGPT's data export is not instant. Go to <a href="https://chatgpt.com" target="_blank">chatgpt.com</a> &rarr; profile icon (bottom-left) &rarr; <strong>Settings</strong> &rarr; <strong>Data Controls</strong> &rarr; <strong>Export Data</strong> &rarr; confirm. You'll get an email from <code>noreply@openai.com</code> with a download link (expires in 24 hours). Check spam if you don't see it.
+        </div>
+
+        <h4 style="margin-top: 24px;">What to Look For in Your Export</h4>
+        <table class="migration-table">
+          <tr><th>Claude setup file</th><th>What goes in it</th><th>Where to find it in ChatGPT</th></tr>
+          <tr><td><strong>About Me</strong></td><td>Who you are, your role, how you work</td><td>Every time you told ChatGPT "I'm a [role] at [company]" or corrected its tone</td></tr>
+          <tr><td><strong>CLAUDE.md</strong></td><td>Workspace rules, naming conventions, behavior</td><td>Instructions you repeated &mdash; "always format it this way," "don't use bullet points," etc.</td></tr>
+          <tr><td><strong>MEMORY.md</strong></td><td>Decisions, deadlines, project context</td><td>Facts you kept re-explaining each session &mdash; deadlines, stakeholders, strategies</td></tr>
+          <tr><td><strong>Personal Preferences</strong></td><td>Communication style, personality</td><td>Times you said "be more direct," "stop over-explaining," "match my tone"</td></tr>
+          <tr><td><strong>TEMPLATES/</strong></td><td>Reusable document structures</td><td>Prompts you copy-pasted repeatedly &mdash; report formats, email templates, frameworks</td></tr>
+        </table>
+
+        <div class="step-card highlighted">
+          <h4>The Fastest Path: Let Claude Do the Extraction</h4>
+          <p>Unzip the export file (you'll get <code>chat.html</code>). Drop it into your Cowork workspace folder and tell Claude:</p>
+          <p><em>"I just exported my ChatGPT history. It's in chat.html. Read through it and extract: (1) everything it knew about me &mdash; role, company, preferences, (2) instructions I repeated often, (3) recurring projects or topics, (4) key decisions and facts. Use what you find to draft my About Me file and seed my MEMORY.md."</em></p>
+          <p>What took you months to teach ChatGPT, Claude gets in one conversation.</p>
+        </div>
+
         <div class="info-box key">
           <strong>Why This Matters So Much</strong>
-          Without an About Me file, every Cowork session starts from scratch &mdash; Claude doesn't know who you are, what you do, or how you like things done. With it, Claude feels like an assistant who's been working with you for months. The 10 minutes you spend writing this file saves hours of explaining yourself in future sessions.
+          Without an About Me file, every Cowork session starts from scratch &mdash; Claude doesn't know who you are, what you do, or how you like things done. With it, Claude feels like an assistant who's been working with you for months. The 10 minutes you spend writing this file (or importing from ChatGPT) saves hours of explaining yourself in future sessions.
+        </div>
+
+        <div class="info-box warning">
+          <strong>Keep Your About Me Under 2,000 Words</strong>
+          Cowork reads your folder before every single task. If your About Me file is a novel, that's thousands of tokens burned before any real work starts &mdash; every session, every task. Trim it to what Claude actually needs to know to do good work for you. Think resume, not autobiography.
         </div>
       </div>
     </div>
@@ -1348,7 +1389,7 @@ I manage a team of 6 and report directly to the CEO.
       <div class="accordion-body">
         <div class="info-box key">
           <strong>You Don't Need to Create These Manually</strong>
-          Just tell Claude: <em>"Create a CLAUDE.md and MEMORY.md for my workspace. Ask me any questions about how I like to work."</em> Claude will interview you and generate both files. Or install the CoWork OS plugin (Step 4) which handles this in a guided setup. The sections below explain what these files do so you understand why they matter.
+          Just tell Claude: <em>"Create a CLAUDE.md and MEMORY.md for my workspace. Ask me any questions about how I like to work."</em> Claude will interview you and generate both files. Or install the CoWork OS plugin (Step 5) which handles this in a guided setup. The sections below explain what these files do so you understand why they matter.
         </div>
 
         <h3>CLAUDE.md &mdash; The Instruction Manual</h3>
@@ -1571,32 +1612,32 @@ _Last updated: 2026-03-19_
     <div class="accordion-content">
       <div class="accordion-body">
         <div class="step-card highlighted">
-          <div class="step-num">9.1</div>
+          <div class="step-num">10.1</div>
           <h4>Easiest: Research a Company</h4>
           <p><em>"Research [Company Name]. Give me a Word doc covering what they do, their business model, key people, recent news, and competitive positioning."</em></p>
           <p style="margin-top: 8px; font-size: 13px; color: var(--green);">Why it's great first: Zero setup needed. Claude uses web search and creates a real .docx file.</p>
         </div>
 
         <div class="step-card">
-          <div class="step-num">9.2</div>
+          <div class="step-num">10.2</div>
           <h4>Simple: Write a Professional Document</h4>
           <p><em>"Write a one-page executive summary of my company for potential investors. Here's what we do: [brief description]. Make it a Word doc."</em></p>
         </div>
 
         <div class="step-card">
-          <div class="step-num">9.3</div>
+          <div class="step-num">10.3</div>
           <h4>Medium: Create a Presentation</h4>
           <p><em>"Create a 10-slide pitch deck for [your company/project]. Include: problem, solution, market size, business model, team, and ask. Make it a .pptx file."</em></p>
         </div>
 
         <div class="step-card">
-          <div class="step-num">9.4</div>
+          <div class="step-num">10.4</div>
           <h4>Medium: Analyze a Spreadsheet</h4>
           <p>Drop a CSV or Excel file into your workspace folder, then ask: <em>"Analyze the data in [filename]. Tell me the key trends and create a summary dashboard."</em></p>
         </div>
 
         <div class="step-card">
-          <div class="step-num">9.5</div>
+          <div class="step-num">10.5</div>
           <h4>Advanced: Multi-Step Project</h4>
           <p><em>"I'm preparing for a meeting with [Company/Person]. Research them, create a briefing doc, and draft 3 talking points I should bring up. Save everything to my project folder."</em></p>
         </div>
@@ -1604,6 +1645,11 @@ _Last updated: 2026-03-19_
         <div class="info-box key">
           <strong>The Secret to Great Results</strong>
           Be specific. Instead of "make me a presentation," say "make me a 10-slide investor pitch deck for a fintech startup that does payroll-embedded savings. Audience is angel investors. Tone should be confident but not hype-y. Include a financial projection slide." The more context you give, the better the output.
+        </div>
+
+        <div class="info-box tip">
+          <strong>Pro Tip: Convert Files Before Uploading</strong>
+          A single PDF page costs 1,500&ndash;3,000 tokens. Screenshots can hit 1,300 tokens each. Before uploading, extract the text you actually need and paste it into a plain text or markdown file. If you're uploading the same document across multiple sessions, this adds up fast. Quick trick: type <code>doc.new</code> in your browser, paste the text, then download as <code>.md</code>.
         </div>
       </div>
     </div>
@@ -1780,7 +1826,7 @@ _Last updated: 2026-03-19_
 
         <div class="step-card">
           <h4>10. Use Claude in Chrome (Browser Extension)</h4>
-          <p>If you skipped this in Step 8, go back and install it. Claude in Chrome lets Claude see and interact with your browser &mdash; research, form filling, screenshots, web automation. It's one of the highest-impact additions you can make.</p>
+          <p>If you skipped this in Step 9, go back and install it. Claude in Chrome lets Claude see and interact with your browser &mdash; research, form filling, screenshots, web automation. It's one of the highest-impact additions you can make.</p>
         </div>
 
         <div class="step-card">
@@ -1791,6 +1837,11 @@ _Last updated: 2026-03-19_
         <div class="step-card">
           <h4>12. Say "New Project" to Stay Organized</h4>
           <p>When starting fresh work, just say "new project: [Name]." Claude creates the folder structure, project-specific memory, and output directory automatically. Everything for that project stays together from day one. See Step 4 for the full workflow.</p>
+        </div>
+
+        <div class="step-card">
+          <h4>13. Talk to Claude Like a Colleague, Not a Search Engine</h4>
+          <p>Anthropic's own research on large language models shows that Claude develops internal representations that mirror collaborative dynamics. In practice: collaborative, respectful framing produces better outputs than demanding or terse commands. Instead of "Write me a report," try "I need a report on X for my board &mdash; here's the context. Can you draft something and I'll refine it with you?" The difference isn't politeness for its own sake &mdash; it's that collaborative framing gives Claude more context about your intent, audience, and quality bar. Claude works best when you treat it like a sharp colleague, not a vending machine.</p>
         </div>
       </div>
     </div>
@@ -1828,16 +1879,14 @@ _Last updated: 2026-03-19_
           <li>Download Claude Desktop from <a href="https://claude.com/download">claude.com/download</a></li>
           <li>Sign up for or verify your paid plan (Pro at minimum)</li>
           <li>Open the app and switch to the Cowork tab</li>
-          <li>Create a workspace folder (e.g. ~/Documents/CoWork)</li>
-          <li>Create the four key folders: ABOUT ME, TEMPLATES, PROJECTS, CLAUDE OUTPUTS</li>
-          <li>Write your about-me.md file</li>
-          <li>Create CLAUDE.md with workspace rules</li>
-          <li>Create an empty MEMORY.md</li>
-          <li>Set Personal Preferences in Claude Settings</li>
-          <li>(Optional) Install CoWork OS plugin</li>
-          <li>(Optional) Connect your apps (Google Drive, Slack, etc.)</li>
-          <li>(Optional) Install job-specific plugins</li>
-          <li>Run your first task!</li>
+          <li>Select a workspace folder (e.g. ~/Documents/CoWork)</li>
+          <li>Create a Project (Step 4)</li>
+          <li><strong>(Recommended)</strong> Install CoWork OS plugin and type <code>/begin</code> &mdash; this handles Steps 6&ndash;8 automatically</li>
+          <li>Or manually: create folder structure, About Me file, CLAUDE.md, MEMORY.md (Steps 6&ndash;8)</li>
+          <li>Connect your apps &mdash; Gmail, Google Calendar, and Claude in Chrome at minimum (Step 9)</li>
+          <li>Set Personal Preferences in Claude Settings (Step 12, Tip 5)</li>
+          <li>(Optional) Install job-specific plugins (Step 9)</li>
+          <li>Run your first real task (Step 10)!</li>
         </ul>
 
         <h3>Common Questions</h3>
@@ -1872,88 +1921,18 @@ _Last updated: 2026-03-19_
 
   <!-- FINAL CTA -->
   <div class="final-cta">
-    <h2>Ready to Start?</h2>
-    <p>Download Claude Desktop, set up your workspace folder, write your About Me file, and give Claude your first task. You'll wonder how you worked without it.</p>
-    <a href="https://claude.com/download" target="_blank" class="hero-cta">Download Claude Desktop</a>
-    <div style="margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border);">
-      <p style="color: var(--text-dim); margin-bottom: 12px;">Already comfortable with the basics?</p>
-      <a href="level-2.html" class="hero-cta" style="background: #7b8bd4;">Level 2: Advanced Techniques &rarr;</a>
+    <h2>You're Set Up &mdash; Now Put It to Work</h2>
+    <p>You've got the workspace, the context files, and the tools connected. The best way to learn Cowork is to use it. Pick a real task from Step 10 and go. When you're ready to level up, the guides below show you what's next.</p>
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px;">
+      <a href="level-2.html" class="hero-cta" style="background: #7b8bd4; color: #fff;">Cowork Advanced &rarr;</a>
+      <a href="workflows.html" class="hero-cta" style="background: #6ab88f; color: #000;">Cowork in Action &rarr;</a>
+    </div>
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <a href="prompting.html" class="hero-cta" style="background: transparent; border: 2px solid var(--accent); color: var(--accent);">Prompting Guide &rarr;</a>
+      <a href="people.html" class="hero-cta" style="background: transparent; border: 2px solid var(--purple); color: var(--purple);">People I Learn From &rarr;</a>
     </div>
   </div>
 
-</div>
-
-<!-- ACKNOWLEDGMENTS -->
-<div class="section" style="padding: 60px 0 40px;">
-  <div class="container">
-    <h3 style="text-align: center; margin-bottom: 8px;">People I Learn From</h3>
-    <p style="text-align: center; color: var(--text-muted); margin-bottom: 32px; max-width: 640px; margin-left: auto; margin-right: auto;">This guide exists because these people share what they know. I follow all of them and assembled much of what's here from their ideas, tools, and content. Go find them.</p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="font-size: 24px; line-height: 1;">&#128640;</div>
-        <div>
-          <h4 style="margin-bottom: 4px; font-size: 15px;">Ruben Hassid</h4>
-          <div style="color: var(--text-dim); font-size: 13px; margin-bottom: 6px;">How to AI &bull; 400K+ subscribers</div>
-          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.5;">Step-by-step AI workflows with screenshots. His Computer Use infographic directly shaped this guide.</div>
-          <div style="font-size: 13px; margin-top: 6px;"><a href="https://ruben.substack.com/" target="_blank" style="color: var(--accent); text-decoration: none;">Substack</a> &bull; <a href="https://www.linkedin.com/in/ruben-hassid/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn</a></div>
-        </div>
-      </div>
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="font-size: 24px; line-height: 1;">&#128218;</div>
-        <div>
-          <h4 style="margin-bottom: 4px; font-size: 15px;">Shelly Palmer</h4>
-          <div style="color: var(--text-dim); font-size: 13px; margin-bottom: 6px;">Daily Newsletter &bull; LinkedIn Top Voice in Tech</div>
-          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.5;">The clearest daily thinking on where AI meets business strategy and policy. Subscribe and never miss a day.</div>
-          <div style="font-size: 13px; margin-top: 6px;"><a href="https://shellypalmer.com/subscribe/" target="_blank" style="color: var(--accent); text-decoration: none;">Newsletter</a> &bull; <a href="https://www.linkedin.com/in/shellypalmer/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn</a></div>
-        </div>
-      </div>
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="font-size: 24px; line-height: 1;">&#129302;</div>
-        <div>
-          <h4 style="margin-bottom: 4px; font-size: 15px;">Pascal Bornet</h4>
-          <div style="color: var(--text-dim); font-size: 13px; margin-bottom: 6px;">IRREPLACEABLE with AI &bull; 1M+ readers</div>
-          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.5;">Two newsletters on intelligent automation and agentic AI. Plus the Agentic Intelligence newsletter.</div>
-          <div style="font-size: 13px; margin-top: 6px;"><a href="https://pascalbornet.substack.com/" target="_blank" style="color: var(--accent); text-decoration: none;">Substack</a> &bull; <a href="https://www.linkedin.com/in/pascalbornet/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn</a></div>
-        </div>
-      </div>
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="font-size: 24px; line-height: 1;">&#128161;</div>
-        <div>
-          <h4 style="margin-bottom: 4px; font-size: 15px;">Ruben Dominguez</h4>
-          <div style="color: var(--text-dim); font-size: 13px; margin-bottom: 6px;">The AI Corner &bull; 322K+ subscribers</div>
-          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.5;">Deep Claude Cowork setup guides, AI tool breakdowns, and practical workflows.</div>
-          <div style="font-size: 13px; margin-top: 6px;"><a href="https://www.the-ai-corner.com/" target="_blank" style="color: var(--accent); text-decoration: none;">Substack</a> &bull; <a href="https://www.linkedin.com/in/rub%C3%A9n-dom%C3%ADnguez-ibar/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn</a></div>
-        </div>
-      </div>
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="font-size: 24px; line-height: 1;">&#127909;</div>
-        <div>
-          <h4 style="margin-bottom: 4px; font-size: 15px;">Jeff Su</h4>
-          <div style="color: var(--text-dim); font-size: 13px; margin-bottom: 6px;">YouTube &bull; 1.6M subscribers</div>
-          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.5;">Actionable AI and productivity tips for busy professionals. The best YouTube channel for making AI practical at work.</div>
-          <div style="font-size: 13px; margin-top: 6px;"><a href="https://www.jeffsu.org/" target="_blank" style="color: var(--accent); text-decoration: none;">Website</a> &bull; <a href="https://www.linkedin.com/in/jsu05/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn</a></div>
-        </div>
-      </div>
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="font-size: 24px; line-height: 1;">&#127891;</div>
-        <div>
-          <h4 style="margin-bottom: 4px; font-size: 15px;">Dr. Jules White</h4>
-          <div style="color: var(--text-dim); font-size: 13px; margin-bottom: 6px;">Vanderbilt University &bull; Coursera</div>
-          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.5;">The definitive prompt engineering courses. 250K+ students. If you want to understand why prompting works, start here.</div>
-          <div style="font-size: 13px; margin-top: 6px;"><a href="https://www.coursera.org/specializations/prompt-engineering" target="_blank" style="color: var(--accent); text-decoration: none;">Coursera</a> &bull; <a href="https://www.linkedin.com/in/jules-white-5717655/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn</a></div>
-        </div>
-      </div>
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="font-size: 24px; line-height: 1;">&#128736;</div>
-        <div>
-          <h4 style="margin-bottom: 4px; font-size: 15px;">Paul J Lipsky</h4>
-          <div style="color: var(--text-dim); font-size: 13px; margin-bottom: 6px;">YouTube &bull; 323K subscribers</div>
-          <div style="color: var(--text-muted); font-size: 13px; line-height: 1.5;">AI tools and software reviews. Built the CoWork OS plugin that powers Steps 5&ndash;8.</div>
-          <div style="font-size: 13px; margin-top: 6px;"><a href="https://pauljlipsky.com/" target="_blank" style="color: var(--accent); text-decoration: none;">YouTube</a> &bull; <a href="https://www.linkedin.com/in/paul-lipsky-71a79548/" target="_blank" style="color: var(--accent); text-decoration: none;">LinkedIn</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- FOOTER -->
