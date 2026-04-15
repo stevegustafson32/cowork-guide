@@ -494,9 +494,40 @@
     .toc-grid { grid-template-columns: 1fr; }
     .video-card { flex-direction: column; gap: 12px; }
   }
+
+  /* RESOURCE NAV */
+  .resource-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 24px; background: var(--surface); border-bottom: 1px solid var(--border);
+    font-size: 13px; position: relative; z-index: 998;
+  }
+  .resource-nav-brand { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+  .resource-nav-links { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+  .resource-nav-links a {
+    padding: 6px 14px; border-radius: 6px; color: var(--text-muted);
+    text-decoration: none; font-weight: 500; font-size: 13px; transition: all 0.2s; white-space: nowrap;
+  }
+  .resource-nav-links a:hover { color: var(--text); background: var(--surface-2); }
+  .resource-nav-links a.active { color: var(--accent); background: var(--accent-dim); font-weight: 600; }
+  @media (max-width: 640px) {
+    .resource-nav { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .resource-nav-links { gap: 4px; }
+    .resource-nav-links a { padding: 4px 10px; font-size: 12px; }
+  }
 </style>
 </head>
 <body>
+
+<nav class="resource-nav">
+  <div class="resource-nav-brand">Steve's Resources</div>
+  <div class="resource-nav-links">
+    <a href="prompting.html">Prompting Guide</a>
+    <a href="index.html">Cowork Beginner</a>
+    <a href="level-2.html" class="active">Cowork Advanced</a>
+    <a href="workflows.html">Cowork in Action</a>
+    <a href="people.html">People I Learn From</a>
+  </div>
+</nav>
 
 <!-- STICKY NAV (FIX 3) -->
 <div class="sticky-nav" id="stickyNav">
@@ -985,6 +1016,16 @@ When the user asks you to research a company:
           Let auto-memory catch the patterns you'd forget to save. Use MEMORY.md for the facts you need to persist with precision. They're complementary, not competing. Auto-memory is your safety net; MEMORY.md is your source of truth.
         </div>
 
+        <div class="info-box warning">
+          <strong>Watch for the Validation Loop</strong>
+          Persistent memory is powerful, but it comes with a subtle risk. Claude saves your preferences, learns your patterns, and adapts to your style over time. That's the point. But it also means Claude gets increasingly tuned to tell you what you want to hear. MIT researchers have demonstrated that sycophantic AI creates a feedback loop: your belief strengthens because the AI keeps confirming it, not because it's right. The more personalized your setup, the stronger this effect. Counterweights: add a pushback rule to your CLAUDE.md (<em>"Flag gaps in my reasoning directly"</em>), periodically ask Claude to argue the opposite side, and for high-stakes decisions, open a fresh session and present your conclusion without the backstory. A new session has no history of agreeing with you.
+        </div>
+
+        <div class="info-box warning">
+          <strong>The 15-20 Message Rule</strong>
+          Long conversations are token furnaces. After 15-20 messages, you're spending more tokens re-reading history than generating new output. When a session gets long: ask Claude to summarize everything important, copy that summary, open a new session, paste it as your first message. Clean slate, full context, fraction of the cost. Pro tip: at the end of a session, prompt "Write a session-notes.md with the key decisions and next steps." Next session, start with "Read session-notes.md first."
+        </div>
+
         <h3>Multi-Project Isolation</h3>
         <p>Both native Projects and CoWork OS support project-scoped isolation. Each native Project has its own auto-memory. Each CoWork OS subfolder can have its own CLAUDE.md and MEMORY.md. Your marketing project's Claude has different context than your finance project's Claude.</p>
 
@@ -1043,6 +1084,11 @@ When the user asks you to research a company:
         <div class="info-box key">
           <strong>Start Simple</strong>
           Before building a custom MCP connector, check if one already exists. Cowork's connector directory has 50+ pre-built integrations. Type your tool name in the Customize &rarr; Connectors search. If it's there, you're done in 2 clicks.
+        </div>
+
+        <div class="info-box tip">
+          <strong>Turn Off What You're Not Using</strong>
+          Web search, connectors, and extended thinking all add tokens to every response &mdash; even when you don't need them. Writing your own content? Turn off search. Simple grammar check? Skip extended thinking. And when you <em>do</em> use connectors, be specific: "Search Slack from the last 7 days for messages about the Q2 launch" costs way less than "Search Slack for anything about launches." Features are a dial, not a switch.
         </div>
       </div>
     </div>
@@ -1105,6 +1151,16 @@ When the user asks you to research a company:
           <strong>Token Cost</strong>
           Each sub-agent has its own context window. Running 8 parallel agents uses roughly 8x the tokens of a single agent. This is most effective on Opus or Sonnet where reasoning quality justifies the cost. Don't parallelize trivial tasks.
         </div>
+
+        <div class="info-box tip">
+          <strong>Batch Tasks, Target Edits</strong>
+          Three separate messages = three full context reloads. One message with three tasks = one reload. And when something needs fixing, don't say "redo the report." Say "only redo section 3, keep everything else." Every full regeneration burns the entire output token count again. Point to the specific section. Tell Claude what's wrong with it. Add "No commentary. Just the output." when you know exactly what you want.
+        </div>
+
+        <div class="info-box key">
+          <strong>Match the Model to the Task</strong>
+          Opus + Extended Thinking is your heavy machinery. Don't use it to move a chair. Grammar checks, brainstorming, reformatting, short answers &mdash; Sonnet handles all of this at a fraction of the cost. Rule of thumb: if the task takes Claude less than 30 seconds to answer, it probably doesn't need Opus. Switch models before you start the session &mdash; it takes 2 clicks.
+        </div>
       </div>
     </div>
   </div>
@@ -1133,6 +1189,11 @@ When the user asks you to research a company:
           <tr><td><strong>HTML</strong></td><td>Interactive dashboards, reports, web tools</td><td>"Create a dashboard from this CSV data"</td></tr>
           <tr><td><strong>CSV/Data</strong></td><td>Cleaned data, analysis results, exports</td><td>"Clean this messy CSV and export with headers"</td></tr>
         </table>
+
+        <div class="info-box tip">
+          <strong>Plan in Chat. Build in Cowork.</strong>
+          Chat is cheap. Cowork is powerful. Use Chat to brainstorm, iterate on structure, and nail your requirements. Once you know exactly what you want, move to Cowork and say "Build this exact file." You do the thinking in the cheap product. You do the building in the expensive one. File creation uses more of your limit than regular chat messages &mdash; so arrive in Cowork with a plan, not a brainstorm.
+        </div>
 
         <h3>Power Patterns</h3>
         <div class="step-card highlighted">
@@ -1294,6 +1355,11 @@ When the user asks you to research a company:
           <strong>Requirements &amp; Limitations</strong>
           Available on Pro and Max plans. Your Mac must be awake and Claude Desktop must be open for Dispatch to work. Single thread only &mdash; one task at a time. If your Mac is asleep, the task runs when you open the lid. Desktop must be connected to the internet.
         </div>
+
+        <div class="info-box tip">
+          <strong>Use "Restart From Here" Instead of Corrections</strong>
+          When Cowork gets something wrong, your instinct is to type "No, I meant..." Every correction stacks on the full conversation history and Claude re-reads all of it. Instead, use "Restart the conversation from here" on an earlier message. The higher up you restart, the more tokens you save. If the whole session went sideways, start fresh with a one-line summary of what you need.
+        </div>
       </div>
     </div>
   </div>
@@ -1309,7 +1375,7 @@ When the user asks you to research a company:
       </div>
       <span class="accordion-chevron"></span>
 
-      <div class="accordion-progress">Section 13 of 14</div>   </button>
+      <div class="accordion-progress">Section 14 of 14</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
         <h3>Must-Read Articles</h3>
@@ -1379,83 +1445,16 @@ When the user asks you to research a company:
   <div class="section" style="text-align: center; padding: 80px 0;">
     <h2 style="margin-bottom: 16px;">You're a Power User Now</h2>
     <p style="color: var(--text-muted); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto;">Build your first skill. Share it with a friend. Automate something you do every week. The difference between "using Claude" and "operating with Claude" is everything on this page.</p>
-    <a href="index.html" class="hero-cta" style="background: var(--orange);">&larr; Back to Level 1</a>
-    <a href="prompting.html" class="hero-cta" style="background: #6ba87b; margin-left: 12px;">The Prompting Playbook &rarr;</a>
-  </div>
-
-</div>
-
-<!-- ACKNOWLEDGMENTS -->
-<div class="section" style="padding: 60px 0 40px;">
-  <div class="container">
-    <h3 style="text-align: center; margin-bottom: 8px;">People I Learn From</h3>
-    <p style="text-align: center; color: var(--text-muted); margin-bottom: 32px; max-width: 640px; margin-left: auto; margin-right: auto;">This guide exists because these people share what they know. I follow all of them and assembled much of what's here from their ideas, tools, and content. Go find them.</p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
-      <a href="https://ruben.substack.com/" target="_blank" class="video-card">
-        <div class="video-icon community">&#128640;</div>
-        <div>
-          <h4>Ruben Hassid</h4>
-          <div class="meta">How to AI &bull; 400K+ subscribers</div>
-          <div class="desc">Step-by-step AI workflows with screenshots. His Computer Use infographic directly shaped Section 5 of this guide.</div>
-          <div class="meta" style="margin-top: 6px;"><a href="https://ruben.substack.com/" target="_blank" style="color: var(--accent);">Substack</a> &bull; <a href="https://www.linkedin.com/in/ruben-hassid/" target="_blank" style="color: var(--accent);">LinkedIn</a></div>
-        </div>
-      </a>
-      <a href="https://shellypalmer.com/subscribe/" target="_blank" class="video-card">
-        <div class="video-icon guide">&#128218;</div>
-        <div>
-          <h4>Shelly Palmer</h4>
-          <div class="meta">Daily Newsletter &bull; LinkedIn Top Voice in Tech</div>
-          <div class="desc">The clearest daily thinking on where AI meets business strategy and policy. Subscribe and never miss a day.</div>
-          <div class="meta" style="margin-top: 6px;"><a href="https://shellypalmer.com/subscribe/" target="_blank" style="color: var(--accent);">Newsletter</a> &bull; <a href="https://www.linkedin.com/in/shellypalmer/" target="_blank" style="color: var(--accent);">LinkedIn</a></div>
-        </div>
-      </a>
-      <a href="https://pascalbornet.substack.com/" target="_blank" class="video-card">
-        <div class="video-icon community">&#129302;</div>
-        <div>
-          <h4>Pascal Bornet</h4>
-          <div class="meta">IRREPLACEABLE with AI &bull; 1M+ readers</div>
-          <div class="desc">Two newsletters on intelligent automation and agentic AI &mdash; where Cowork-style tools are headed. Plus the Agentic Intelligence newsletter.</div>
-          <div class="meta" style="margin-top: 6px;"><a href="https://pascalbornet.substack.com/" target="_blank" style="color: var(--accent);">Substack</a> &bull; <a href="https://www.linkedin.com/in/pascalbornet/" target="_blank" style="color: var(--accent);">LinkedIn</a></div>
-        </div>
-      </a>
-      <a href="https://www.the-ai-corner.com/" target="_blank" class="video-card">
-        <div class="video-icon guide">&#128161;</div>
-        <div>
-          <h4>Ruben Dominguez</h4>
-          <div class="meta">The AI Corner &bull; 322K+ subscribers</div>
-          <div class="desc">Deep Claude Cowork setup guides, AI tool breakdowns, and practical workflows. His Cowork setup guide is essential reading.</div>
-          <div class="meta" style="margin-top: 6px;"><a href="https://www.the-ai-corner.com/" target="_blank" style="color: var(--accent);">Substack</a> &bull; <a href="https://www.linkedin.com/in/rub%C3%A9n-dom%C3%ADnguez-ibar/" target="_blank" style="color: var(--accent);">LinkedIn</a></div>
-        </div>
-      </a>
-      <a href="https://www.jeffsu.org/" target="_blank" class="video-card">
-        <div class="video-icon community">&#127909;</div>
-        <div>
-          <h4>Jeff Su</h4>
-          <div class="meta">YouTube &bull; 1.6M subscribers</div>
-          <div class="desc">Actionable AI and productivity tips for busy professionals. The best YouTube channel for making AI tools practical at work.</div>
-          <div class="meta" style="margin-top: 6px;"><a href="https://www.jeffsu.org/" target="_blank" style="color: var(--accent);">Website</a> &bull; <a href="https://www.linkedin.com/in/jsu05/" target="_blank" style="color: var(--accent);">LinkedIn</a></div>
-        </div>
-      </a>
-      <a href="https://www.coursera.org/instructor/juleswhite" target="_blank" class="video-card">
-        <div class="video-icon guide">&#127891;</div>
-        <div>
-          <h4>Dr. Jules White</h4>
-          <div class="meta">Vanderbilt University &bull; Coursera</div>
-          <div class="desc">Created the definitive prompt engineering courses on Coursera. 250K+ students. If you want to understand why prompting works, start here.</div>
-          <div class="meta" style="margin-top: 6px;"><a href="https://www.coursera.org/specializations/prompt-engineering" target="_blank" style="color: var(--accent);">Coursera</a> &bull; <a href="https://www.linkedin.com/in/jules-white-5717655/" target="_blank" style="color: var(--accent);">LinkedIn</a></div>
-        </div>
-      </a>
-      <a href="https://pauljlipsky.com/" target="_blank" class="video-card">
-        <div class="video-icon community">&#128736;</div>
-        <div>
-          <h4>Paul J Lipsky</h4>
-          <div class="meta">YouTube &bull; 323K subscribers</div>
-          <div class="desc">AI tools and software reviews. Built the CoWork OS plugin that powers Steps 5&ndash;8 of the Getting Started guide.</div>
-          <div class="meta" style="margin-top: 6px;"><a href="https://pauljlipsky.com/" target="_blank" style="color: var(--accent);">YouTube</a> &bull; <a href="https://www.linkedin.com/in/paul-lipsky-71a79548/" target="_blank" style="color: var(--accent);">LinkedIn</a></div>
-        </div>
-      </a>
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px;">
+      <a href="index.html" class="hero-cta" style="background: var(--orange); color: #000;">&larr; Cowork Beginner</a>
+      <a href="workflows.html" class="hero-cta" style="background: #6ab88f; color: #000;">Cowork in Action &rarr;</a>
+    </div>
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <a href="prompting.html" class="hero-cta" style="background: transparent; border: 2px solid var(--accent); color: var(--accent);">Prompting Guide &rarr;</a>
+      <a href="people.html" class="hero-cta" style="background: transparent; border: 2px solid var(--purple); color: var(--purple);">People I Learn From &rarr;</a>
     </div>
   </div>
+
 </div>
 
 <!-- FOOTER -->
