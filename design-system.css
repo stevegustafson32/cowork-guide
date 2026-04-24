@@ -1,0 +1,185 @@
+/* ═══════════════════════════════════════════════════════════════════
+   STEVE'S AI GUIDE — DESIGN SYSTEM
+   Applied sitewide over each page's existing styles.
+   Each guide keeps its own --accent (intentional color-coding),
+   but inherits the shared type system, eyebrow pattern, and card DNA.
+   ═══════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --sg-serif: 'Fraunces', Georgia, serif;
+  --sg-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sg-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --sg-bg-warm: #1a1410;
+}
+
+/* ─── Base type ─── */
+body {
+  font-family: var(--sg-sans) !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Headings to serif ─── */
+.hero h1,
+.hero-title,
+h1.hero-title,
+.accordion-title,
+.section h2,
+h1, h2, h3 {
+  font-family: var(--sg-serif);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.hero h1 {
+  font-weight: 400 !important;
+  font-family: var(--sg-serif) !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.02 !important;
+}
+.hero h1 span {
+  font-family: var(--sg-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent) !important;
+}
+
+/* ─── Eyebrow / tag pattern ─── */
+.hero-badge,
+.toc h2,
+.accordion-label {
+  font-family: var(--sg-sans);
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase;
+}
+
+.hero-badge {
+  border-radius: 9999px !important;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ─── CTAs ─── */
+.hero-cta,
+.hero-cta:link {
+  font-family: var(--sg-sans);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  border-radius: 10px;
+  height: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 22px;
+}
+
+/* ─── Resource nav (subpage nav) — match homepage warmth ─── */
+.resource-nav {
+  background: rgba(15,15,15,0.82) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  position: sticky;
+  top: 0;
+  z-index: 998;
+}
+.resource-nav-brand {
+  font-weight: 800 !important;
+  font-size: 15px !important;
+  letter-spacing: -0.01em;
+}
+.resource-nav-brand::before {
+  content: 'S';
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light, var(--accent)));
+  color: #1a1410;
+  font-family: var(--sg-serif);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 14px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.resource-nav-links a {
+  font-family: var(--sg-sans);
+  font-weight: 500;
+  border-radius: 8px !important;
+  transition: all 180ms ease;
+}
+
+/* ─── Hero warmth ─── */
+.hero {
+  background:
+    radial-gradient(1000px 520px at 50% -100px, rgba(212,149,106,0.06), transparent 60%),
+    linear-gradient(180deg, var(--sg-bg-warm) 0%, var(--bg) 100%) !important;
+}
+
+/* ─── Accordion polish ─── */
+.accordion-title {
+  font-family: var(--sg-serif) !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.1;
+}
+.accordion-badge {
+  font-family: var(--sg-sans);
+  border-radius: 8px;
+}
+
+/* ─── TOC cards ─── */
+.toc-item {
+  transition: all 200ms ease;
+  border-radius: 10px !important;
+}
+.toc-item:hover {
+  transform: translateY(-1px);
+}
+
+/* ─── Person cards (people.html) ─── */
+.person-name {
+  font-family: var(--sg-sans);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.person-role {
+  font-family: var(--sg-mono);
+  font-size: 12px !important;
+  color: var(--accent) !important;
+  letter-spacing: 0.02em;
+}
+.person-card {
+  border-radius: 14px !important;
+  transition: all 220ms ease;
+}
+.person-card:hover {
+  transform: translateY(-3px);
+}
+
+/* ─── Code / mono tweaks ─── */
+code, pre, .mono {
+  font-family: var(--sg-mono) !important;
+}
+
+/* ─── Italic-accent helper (for inline use in page h1/h2) ─── */
+.sg-ital {
+  font-family: var(--sg-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+/* ─── Footer polish ─── */
+.footer {
+  background: var(--sg-bg-warm) !important;
+  border-top: 1px solid var(--border);
+}
+.footer a { color: var(--accent); font-weight: 600; }
+
+/* ─── Smooth edges, better focus ─── */
+button, a {
+  transition: all 180ms ease;
+}
