@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steve's AI Guide - Claude Design + Image AI: The Two-Tool Workflow for Stunning Decks</title>
+<link rel="stylesheet" href="design-system.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface-2: #242424;
+    --surface-3: #2e2e2e;
+    --border: #333;
+    --text: #e8e8e8;
+    --text-muted: #999;
+    --text-dim: #8e8e8e;
+    --accent: #d4956a;
+    --accent-light: #e8b892;
+    --accent-dim: rgba(212,149,106,0.15);
+    --green: #5cb85c;
+    --blue: #5b9bd5;
+    --purple: #9b7ed8;
+    --red: #e06666;
+    --yellow: #f0c040;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    padding: 100px 40px 80px;
+    text-align: center;
+    background: linear-gradient(180deg, #1a1410 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(212,149,106,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 640px;
+    margin: 0 auto 32px;
+  }
+  .hero-cta {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .hero-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+  /* LAYOUT */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* TABLE OF CONTENTS */
+  .toc {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc h2 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .toc-item:hover { border-color: var(--accent); background: var(--surface-2); }
+  .toc-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ACCORDION */
+  .accordion {
+    border-bottom: 1px solid var(--border);
+  }
+  .accordion:last-child { border-bottom: none; }
+
+  .accordion-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 28px 0;
+    background: none;
+    border: none;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+  .accordion-header:hover {
+    border-left-color: var(--accent);
+  }
+  .accordion-header.open {
+    border-left-color: var(--accent);
+  }
+
+  .accordion-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .accordion-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+
+  .accordion-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+    color: #fff;
+  }
+
+  .accordion-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 0;
+  }
+
+  .accordion-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    margin-top: 4px;
+    position: relative;
+  }
+  .accordion-chevron::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    transform: rotate(-45deg);
+    transition: transform 0.3s ease;
+  }
+  .accordion-header.open .accordion-chevron::after {
+    transform: rotate(45deg);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0;
+  }
+  .accordion-content.open {
+    max-height: 10000px;
+  }
+
+  .accordion-body {
+    padding-bottom: 28px;
+  }
+
+  /* SECTIONS */
+  .section p {
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 32px 0 12px;
+  }
+
+  /* STEP CARDS */
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .step-card.highlighted {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--surface) 0%, rgba(212,149,106,0.05) 100%);
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border-radius: 16px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  .step-card h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .step-card p {
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  /* INFO BOXES */
+  .info-box {
+    padding: 20px 24px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .info-box.tip {
+    background: rgba(92,184,92,0.08);
+    border-left: 3px solid var(--green);
+  }
+  .info-box.warning {
+    background: rgba(240,192,64,0.08);
+    border-left: 3px solid var(--yellow);
+  }
+  .info-box.key {
+    background: var(--accent-dim);
+    border-left: 3px solid var(--accent);
+  }
+  .info-box strong { display: block; margin-bottom: 6px; }
+
+  /* CODE BLOCKS */
+  .code-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    overflow-x: auto;
+    margin: 16px 0;
+    white-space: pre;
+  }
+
+  /* VIDEO CARDS */
+  .video-card {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+  }
+  .video-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .video-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  .video-icon.official { background: rgba(91,155,213,0.15); }
+  .video-icon.community { background: rgba(155,126,216,0.15); }
+  .video-icon.guide { background: rgba(92,184,92,0.15); }
+  .video-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .video-card .meta { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+  .video-card .desc { font-size: 13px; color: var(--text-dim); }
+  .video-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .video-tag.must { background: rgba(212,149,106,0.2); color: var(--accent); }
+  .video-tag.rec { background: rgba(91,155,213,0.2); color: var(--blue); }
+  .video-tag.opt { background: rgba(155,126,216,0.2); color: var(--purple); }
+
+  /* COMPARISON TABLE */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  .compare-table th {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .compare-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .compare-table tr:hover td { background: var(--surface); }
+
+  /* CHECKLIST */
+  .checklist {
+    list-style: none;
+    margin: 20px 0;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .checklist li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 2px solid var(--border);
+    margin-top: 2px;
+  }
+
+  /* QUOTE BLOCK */
+  .quote-block {
+    padding: 20px 24px;
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0;
+    margin: 24px 0;
+    font-style: italic;
+    color: var(--text-muted);
+  }
+  .quote-block .attribution {
+    font-style: normal;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-top: 8px;
+  }
+
+  /* TWO COLUMN LAYOUT */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* FOOTER */
+  .footer {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  /* LINK STYLE */
+  a { color: var(--accent); }
+
+  /* SCROLL SMOOTH */
+  html { scroll-behavior: smooth; }
+
+  /* FINAL CTA */
+  .final-cta {
+    text-align: center;
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .final-cta h2 { margin-bottom: 16px; }
+  .final-cta p { color: var(--text-muted); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+  /* STICKY NAV BAR */
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: var(--bg);
+    background-color: rgba(15, 15, 15, 0.95);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    font-size: 13px;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .sticky-nav.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sticky-nav-left { color: var(--text-muted); font-weight: 500; }
+  .sticky-nav-right { color: var(--accent); font-weight: 600; }
+
+  /* BACK TO TOP BUTTON */
+  .back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .back-to-top:hover { background: var(--accent-light); }
+
+  /* PROGRESS INDICATOR */
+  .accordion-progress {
+    position: absolute;
+    top: 28px;
+    right: 0;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+  }
+  .accordion-header.open .accordion-progress {
+    opacity: 1;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .hero { padding: 60px 20px 48px; }
+    .hero h1 { font-size: 28px; }
+    .toc-grid { grid-template-columns: 1fr; }
+    .accordion-header { padding: 20px 0; }
+    .video-card { flex-direction: column; gap: 12px; }
+  }
+
+  /* RESOURCE NAV */
+  .resource-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 24px; background: var(--surface); border-bottom: 1px solid var(--border);
+    font-size: 13px; position: relative; z-index: 998;
+  }
+  .resource-nav-brand { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+  .resource-nav-links { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+  .resource-nav-links a {
+    padding: 6px 14px; border-radius: 6px; color: var(--text-muted);
+    text-decoration: none; font-weight: 500; font-size: 13px; transition: all 0.2s; white-space: nowrap;
+  }
+  .resource-nav-links a:hover { color: var(--text); background: var(--surface-2); }
+  .resource-nav-links a.active { color: var(--accent); background: var(--accent-dim); font-weight: 600; }
+  @media (max-width: 640px) {
+    .resource-nav { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .resource-nav-links { gap: 4px; }
+    .resource-nav-links a { padding: 4px 10px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="resource-nav">
+  <div class="resource-nav-brand">Steve's Resources</div>
+  <div class="resource-nav-links">
+    <a href="prompting.html">Prompting Guide</a>
+    <a href="beginner.html">Cowork Beginner</a>
+    <a href="level-2.html">Cowork Advanced</a>
+    <a href="workflows.html">Cowork in Action</a>
+    <a href="claude-code-2.html">Claude Code 2.0</a>
+    <a href="claude-design.html" class="active">Claude Design</a>
+    <a href="people.html">People I Learn From</a>
+  </div>
+</nav>
+
+<!-- STICKY NAV -->
+<div class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-left">Claude Design</div>
+  <div class="sticky-nav-right"><span id="stickyProgress">Step 1 of 10</span></div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">DECKS, SITES, ONE-PAGERS. UPDATED APRIL 2026</div>
+  <h1>Stop fighting templates.<br><span>Start with an image.</span></h1>
+  <p>The two-tool workflow that made Canva and Figma optional. Brainstorm visually in ChatGPT's image model. Hand the winning concept to Claude Design. Get back working code, polished slides, and on-brand pages in minutes.</p>
+  <button class="hero-cta" id="heroCtaBtn">Start the Workflow ↓</button>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="container">
+
+  <div class="toc">
+    <h2>What's Inside</h2>
+    <div class="toc-grid">
+      <a class="toc-item toc-link" data-accordion="1"><span class="toc-num">1</span> What Claude Design Is</a>
+      <a class="toc-item toc-link" data-accordion="2"><span class="toc-num">2</span> Why Two Tools Beat One</a>
+      <a class="toc-item toc-link" data-accordion="3"><span class="toc-num">3</span> Brainstorm in ChatGPT Images</a>
+      <a class="toc-item toc-link" data-accordion="4"><span class="toc-num">4</span> Hand Off to Claude Design</a>
+      <a class="toc-item toc-link" data-accordion="5"><span class="toc-num">5</span> Decks: Full Walkthrough</a>
+      <a class="toc-item toc-link" data-accordion="6"><span class="toc-num">6</span> Beyond Decks</a>
+      <a class="toc-item toc-link" data-accordion="7"><span class="toc-num">7</span> Brand Consistency</a>
+      <a class="toc-item toc-link" data-accordion="8"><span class="toc-num">8</span> Design vs Canva vs Figma</a>
+      <a class="toc-item toc-link" data-accordion="9"><span class="toc-num">9</span> Limits and Workarounds</a>
+      <a class="toc-item toc-link" data-accordion="10"><span class="toc-num">10</span> Resources and Next Steps</a>
+    </div>
+  </div>
+
+  <!-- SECTION 1: WHAT CLAUDE DESIGN IS -->
+  <div class="accordion" id="accordion1">
+    <button class="accordion-header open">
+      <div class="accordion-badge">1</div>
+      <div>
+        <div class="accordion-label">Step 1</div>
+        <div class="accordion-title">What Claude Design Actually Is</div>
+        <div class="accordion-subtitle">A code-first design tool launched April 17, 2026, that generates working prototypes from text prompts.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 1 of 10</div>
+    </button>
+    <div class="accordion-content open">
+      <div class="accordion-body">
+        <p>Claude Design is an AI-powered visual design tool built on Claude Opus 4.7 (Anthropic's most capable vision model). It launched April 17, 2026, as a research preview for Claude Pro, Max, Team, and Enterprise customers at claude.ai/design. Unlike Canva or Figma, Claude Design generates working frontend code from natural-language prompts. You get interactive prototypes, not editable layers.</p>
+
+        <p>Think of it this way: Canva and Figma are vector editors where you manually position shapes. Claude Design is a coder that reads your description and generates HTML/CSS/JavaScript that works right away.</p>
+
+        <h3>What You Can Build</h3>
+        <div class="two-col">
+          <div class="step-card">
+            <h4>Slide Decks</h4>
+            <p>Presentations with animations. 5 slides or 50. Export as PDF or keep as working HTML.</p>
+          </div>
+          <div class="step-card">
+            <h4>Landing Pages</h4>
+            <p>Marketing sites, one-pagers, sales pages. Clickable, fully interactive.</p>
+          </div>
+          <div class="step-card">
+            <h4>Wireframes</h4>
+            <p>App mockups and component libraries. Ready to hand to developers.</p>
+          </div>
+          <div class="step-card">
+            <h4>Marketing Assets</h4>
+            <p>Email templates, ad creatives, social banners. Fast iteration on multiple concepts.</p>
+          </div>
+        </div>
+
+        <h3>Claude Design vs Everything Else</h3>
+        <table class="compare-table">
+          <tr>
+            <th>Factor</th>
+            <th>Claude Design</th>
+            <th>Canva</th>
+            <th>Figma</th>
+          </tr>
+          <tr>
+            <td>Output Type</td>
+            <td>Working code (HTML/CSS/JS)</td>
+            <td>Editable vector design</td>
+            <td>Editable design system</td>
+          </tr>
+          <tr>
+            <td>Best For</td>
+            <td>Speed, prototypes, code handoff</td>
+            <td>Final polished marketing output</td>
+            <td>Production UI work, team collaboration</td>
+          </tr>
+          <tr>
+            <td>Learning Curve</td>
+            <td>Just describe what you want</td>
+            <td>Drag-and-drop, templates</td>
+            <td>Steep, design skills required</td>
+          </tr>
+          <tr>
+            <td>Team Collaboration</td>
+            <td>Early stage</td>
+            <td>Excellent with comments</td>
+            <td>Industry standard</td>
+          </tr>
+          <tr>
+            <td>Weekly Usage Limit</td>
+            <td>Yes, capped</td>
+            <td>Higher limits for Pro</td>
+            <td>Unlimited (paid plan)</td>
+          </tr>
+          <tr>
+            <td>Brand Integration</td>
+            <td>Upload assets, Claude applies consistently</td>
+            <td>Brand Intelligence system</td>
+            <td>Brand kits with design tokens</td>
+          </tr>
+          <tr>
+            <td>Cost</td>
+            <td>Included with Claude Pro/Max</td>
+            <td>Free to paid plans</td>
+            <td>Paid only</td>
+          </tr>
+        </table>
+
+        <div class="info-box key">
+          <strong>Bottom Line</strong>
+          Claude Design wins on speed and code quality. Canva wins on polish and templates. Figma wins on production and team handoff. The smartest people use all three.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: WHY TWO TOOLS BEAT ONE -->
+  <div class="accordion" id="accordion2">
+    <button class="accordion-header">
+      <div class="accordion-badge">2</div>
+      <div>
+        <div class="accordion-label">Step 2</div>
+        <div class="accordion-title">Why Two Tools Beat One</div>
+        <div class="accordion-subtitle">Divergent thinking plus convergent thinking. Fast exploration plus fast polish.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 2 of 10</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>The core insight: image AI is phenomenal at exploration. Claude Design is phenomenal at polish. Using both in sequence is faster than using either alone.</p>
+
+        <p>Here is what it looks like:</p>
+
+        <div class="step-card highlighted">
+          <div class="step-num">2.1</div>
+          <h4>ChatGPT Images 2.0 (or DALL-E) - Divergent Phase</h4>
+          <p>You want to make a pitch deck. Instead of staring at Canva templates, you generate 4-8 visual directions for the cover. Different aesthetics: brutalist data viz, warm illustration, minimalist tech, editorial photography. You pick one. Takes 2 minutes. Cost: zero. Mental friction: zero.</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <div class="step-num">2.2</div>
+          <h4>Claude Design - Convergent Phase</h4>
+          <p>You take the one image you loved. You upload it to Claude Design. You say "build a 10-slide pitch deck using this visual direction, with my brand colors and logo." Claude generates the entire working deck. Iterate on it. Get it perfect. Export as PDF. Done.</p>
+        </div>
+
+        <div class="info-box tip">
+          <strong>Why This Pattern Works</strong>
+          Image models are not good at picking one thing (they're generalists at many things). Design systems are not good at raw exploration (they're specialists at one thing). By using each at what it does best, you get the speed of exploration and the quality of specialization. You also avoid "template fatigue" (opening Canva and scrolling forever) and "blank canvas paralysis" (opening Figma with no idea where to start).
+        </div>
+
+        <h3>The Real Reason: Claude Design Tokens Are Tight</h3>
+        <p>Here is the unglamorous truth nobody mentions in launch posts. Claude Design is in research preview. The weekly usage cap is small. If you brainstorm visual directions inside Claude Design itself, you will burn through your budget on exploration and run out of credits before you get to the polished deliverable.</p>
+
+        <p>OpenAI's image model is the opposite. Generation is cheap, fast, and effectively unlimited for the way most people use it. Each cover concept takes seconds and pennies.</p>
+
+        <div class="info-box warning">
+          <strong>Budget Math: Why You Brainstorm Outside Claude Design</strong>
+          A Claude Design weekly cap covers roughly one to three polished deliverables. A divergent brainstorm where you explore eight visual directions and reject seven of them is a brutal way to spend that budget. The same brainstorm in ChatGPT or DALL-E costs almost nothing and runs in two minutes. Save Claude Design for what only Claude Design does well: turning one chosen direction into working code, working slides, working layouts.
+        </div>
+
+        <div class="step-card highlighted">
+          <h4>The Rule of Thumb</h4>
+          <p>If a step involves picking between options, do it outside Claude Design. If a step involves producing the final artifact, do it inside Claude Design. Exploration is cheap somewhere else. Polish is what you bought the Claude Design quota for.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: BRAINSTORM IN CHATGPT IMAGES -->
+  <div class="accordion" id="accordion3">
+    <button class="accordion-header">
+      <div class="accordion-badge">3</div>
+      <div>
+        <div class="accordion-label">Step 3</div>
+        <div class="accordion-title">Step One: Brainstorm in ChatGPT Images</div>
+        <div class="accordion-subtitle">Generate 4-8 visual concepts in 2 minutes. Pick the one that feels right.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 3 of 10</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>ChatGPT Images 2.0 (newer, with thinking capability) or DALL-E 3 via ChatGPT is your divergent ideation tool. The goal is not perfect final images. The goal is to explore multiple visual directions so you can pick one that captures the feeling you want.</p>
+
+        <h3>How to Prompt for Exploration</h3>
+        <p>Be specific about the concept, loose about the style. Ask for variation. Here is an example:</p>
+
+        <div class="code-block">Generate four cover concepts for a slide deck titled "$1B in Untapped Payroll Savings".
+
+Try four visual directions:
+1. Financial newspaper (editorial grid, data-forward, 1980s Wall Street Journal aesthetic)
+2. Brutalist data (bold sans-serif typography, minimal color, geometric data visualization)
+3. Warm illustration (soft colors, approachable, human-centered visual metaphor)
+4. Tech startup minimalism (clean, contemporary, 2026 SaaS aesthetic)
+
+Generate all four as horizontal banner images (16:9). Make the title legible in each.</div>
+
+        <p>ChatGPT will generate four images. You open them side-by-side and feel which one resonates. Maybe it's the brutalist data one. Maybe it's the warm illustration. Pick one.</p>
+
+        <div class="step-card">
+          <div class="step-num">3.1</div>
+          <h4>Generate 4-8 directions</h4>
+          <p>Vary the aesthetic, tone, and visual approach. Horizontal (16:9) works best for decks.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3.2</div>
+          <h4>Pick one that feels right</h4>
+          <p>Not the "best" technically. The one that matches the feeling of your message.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3.3</div>
+          <h4>Screenshot or save the image</h4>
+          <p>You'll upload it to Claude Design in the next step.</p>
+        </div>
+
+        <div class="info-box warning">
+          <strong>Don't Iterate Endlessly Here</strong>
+          Image generation can become a black hole. You generate 10 concepts, then 10 more, then you're stuck. Set a hard limit. Usually 4-8 directions is enough to find something you like. If nothing clicks, you picked the wrong topic description. Rewrite the prompt and start over.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: HAND OFF TO CLAUDE DESIGN -->
+  <div class="accordion" id="accordion4">
+    <button class="accordion-header">
+      <div class="accordion-badge">4</div>
+      <div>
+        <div class="accordion-label">Step 4</div>
+        <div class="accordion-title">Step Two: Hand Off to Claude Design</div>
+        <div class="accordion-subtitle">Upload the image. Provide brand. Ask for the full design. Get working code back.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 4 of 10</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>Now you have your visual direction. Take it to Claude Design and hand off the full build. Claude Design can take an image as a reference and apply its visual language (color, typography, proportion) to your entire deck or site.</p>
+
+        <h3>The Handoff Process</h3>
+
+        <div class="step-card highlighted">
+          <div class="step-num">4.1</div>
+          <h4>Open claude.ai/design</h4>
+          <p>Go to claude.ai/design. You'll see an upload area and a text prompt field.</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <div class="step-num">4.2</div>
+          <h4>Upload your reference image</h4>
+          <p>Drag the image you chose from step 3. Claude Design will analyze the colors, typography, mood, and visual approach.</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <div class="step-num">4.3</div>
+          <h4>Provide brand assets</h4>
+          <p>Include in your prompt: hex codes for 3 primary colors, 2 font names (or URLs if custom), and a logo URL if you have one. Example: "Brand colors: #1A1A1A, #D4956A, #E8E8E8. Fonts: Inter and SF Mono. Logo: [URL]"</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <div class="step-num">4.4</div>
+          <h4>Describe the full design</h4>
+          <p>Give Claude the outline and key content. Claude will generate the entire working design in the visual direction of your reference image.</p>
+        </div>
+
+        <h3>Example Prompt</h3>
+
+        <div class="code-block">Build a 10-slide pitch deck in the visual direction of this image. Use brand colors #1A1A1A, #D4956A, #E8E8E8. Font: Inter and SF Mono.
+
+Slide structure:
+1. Title: "$1B in Untapped Payroll Savings" (with subheading)
+2. The Problem (3 key points)
+3. Why it Happens (data-driven explanation)
+4. The Solution (your approach)
+5. Market Size (with a simple chart)
+6. Differentiation (vs competitors)
+7. Traction (metrics or progress)
+8. Business Model (revenue approach)
+9. Team (founder bios)
+10. Call to Action (what you want them to do)
+
+Make it polished, data-forward, and ready for investor meetings. Include subtle animations on data reveals.</div>
+
+        <p>Claude Design will generate a complete, clickable deck. You can iterate: "Change slide 3 to focus more on ROI" or "Add more whitespace on the title slide" or "Make the data visualization more prominent."</p>
+
+        <div class="info-box key">
+          <strong>The Key Difference from Canva</strong>
+          In Canva, you're arranging shapes. In Claude Design, Claude is writing the code. This means the output is clean, semantic HTML that developers can directly hand to a backend team. It also means you can iterate faster because Claude can reason about your whole design system at once.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: DECKS FULL WALKTHROUGH -->
+  <div class="accordion" id="accordion5">
+    <button class="accordion-header">
+      <div class="accordion-badge">5</div>
+      <div>
+        <div class="accordion-label">Step 5</div>
+        <div class="accordion-title">Decks: A Full Walkthrough</div>
+        <div class="accordion-subtitle">From outline to polished, export-ready pitch deck in under an hour.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 5 of 10</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>Here is the exact process we recommend for building a real pitch or sales deck using Claude Design.</p>
+
+        <h3>The Four Phases</h3>
+
+        <div class="step-card highlighted">
+          <div class="step-num">5.1</div>
+          <h4>Phase 1: Build the Outline First (Always)</h4>
+          <p>In Claude Design, your first prompt should not be "build the deck." It should be "outline the deck." Ask for a numbered list of slide titles and one-line descriptions. This takes 30 seconds and gives you a chance to approve the structure before Claude builds the whole thing. You will save dozens of iterations this way.</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <div class="step-num">5.2</div>
+          <h4>Phase 2: Set the Visual Direction (One Reference Image)</h4>
+          <p>Generate one image concept in ChatGPT Images 2.0. Something that visually represents your story. Upload it to Claude Design and reference it in your prompt. Claude will apply its mood and color language to all slides.</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <div class="step-num">5.3</div>
+          <h4>Phase 3: Provide Brand Assets Once</h4>
+          <p>Include at the start: hex codes, font URLs, logo URL. Claude applies these consistently across all slides. Don't change your colors mid-build. Pick 3-4 and stick with them. Consistency beats perfection.</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <div class="step-num">5.4</div>
+          <h4>Phase 4: Iterate Slide by Slide</h4>
+          <p>Once the full deck is built, you can refine. "Slide 6: add a data chart here." "Slide 10: make the CTA button more prominent." Each change is fast because Claude can reason about the whole design system.</p>
+        </div>
+
+        <h3>Export Options</h3>
+        <p>When done, you can export as:</p>
+        <ul class="checklist">
+          <li>PDF (for sending to investors or printing)</li>
+          <li>HTML (for interactive viewing or handing to developers)</li>
+          <li>Screenshot (for Slack or quick sharing)</li>
+          <li>Interactive link (share directly without exporting)</li>
+        </ul>
+
+        <h3>Common Gotchas with Claude Design</h3>
+        <div class="info-box warning">
+          <strong>Slide Animations</strong>
+          Claude Design can add animations, but they render differently in PDF vs HTML. If you export to PDF, animations don't show. Keep them subtle or avoid them for investor decks.
+        </div>
+
+        <div class="info-box warning">
+          <strong>Image Fidelity</strong>
+          If you reference a complex image (like a product screenshot), Claude will interpret it, not embed it. If you need the exact image in a specific slide, you'll need to insert it manually after export.
+        </div>
+
+        <div class="info-box warning">
+          <strong>Non-Web Fonts</strong>
+          Claude Design works best with Google Fonts or system fonts (Inter, SF Pro, etc.). If you have a custom font file, you may need to convert it or use the closest Google Font substitute.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: BEYOND DECKS -->
+  <div class="accordion" id="accordion6">
+    <button class="accordion-header">
+      <div class="accordion-badge">6</div>
+      <div>
+        <div class="accordion-label">Step 6</div>
+        <div class="accordion-title">Beyond Decks: Sites, One-Pagers, Marketing</div>
+        <div class="accordion-subtitle">Claude Design handles more than presentations. Here is what else works.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 6 of 10</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>While Claude Design shines for decks, it handles a wide range of visual design work. Here is the quick reference:</p>
+
+        <div class="two-col">
+          <div class="step-card">
+            <h4>Landing Pages</h4>
+            <p>Product pages, feature overviews, pricing pages. Fully interactive. Use when you want fast iteration and code handoff to developers.</p>
+          </div>
+          <div class="step-card">
+            <h4>One-Pagers</h4>
+            <p>Sales collateral, company overviews, event announcements. Great for PDF export and email.</p>
+          </div>
+          <div class="step-card">
+            <h4>Email Templates</h4>
+            <p>Newsletter layouts, promotional emails. Claude generates responsive HTML you can drop into Mailchimp or Brevo.</p>
+          </div>
+          <div class="step-card">
+            <h4>App Wireframes</h4>
+            <p>Product mockups, dashboard layouts. Clickable prototypes you can hand to developers as a spec.</p>
+          </div>
+          <div class="step-card">
+            <h4>Marketing Assets</h4>
+            <p>Social ad creatives (1:1, 16:9), infographics, data visualizations. Fast variations for A/B testing.</p>
+          </div>
+          <div class="step-card">
+            <h4>Internal Tools</h4>
+            <p>Dashboards, reports, tracking pages. Quick prototypes without building in a framework.</p>
+          </div>
+        </div>
+
+        <div class="info-box key">
+          <strong>When NOT to Use Claude Design</strong>
+          If you need pixel-perfect design with layered assets, use Figma. If you need a massive template library and fast final output, use Canva. Claude Design is best when you want code plus speed plus a human-readable design system.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: BRAND CONSISTENCY -->
+  <div class="accordion" id="accordion7">
+    <button class="accordion-header">
+      <div class="accordion-badge">7</div>
+      <div>
+        <div class="accordion-label">Step 7</div>
+        <div class="accordion-title">Brand Consistency: Upload Once, Use Forever</div>
+        <div class="accordion-subtitle">Set up your brand system one time. Every new project inherits it automatically.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 7 of 10</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>Claude Design lets you upload brand assets through Organization Settings. Once you do, Claude extracts your design system (colors, typography, components, layout patterns) and applies it consistently to every new project.</p>
+
+        <h3>What to Upload</h3>
+        <ul class="checklist">
+          <li>Brand codebases (Figma files, design systems docs)</li>
+          <li>Existing slide decks or PDFs with your brand applied</li>
+          <li>Logo files (SVG or PNG)</li>
+          <li>Color palette (hex codes or a color swatch image)</li>
+          <li>Type specimens (font files or usage examples)</li>
+          <li>Component library (if you have one)</li>
+        </ul>
+
+        <h3>The Process</h3>
+
+        <div class="step-card highlighted">
+          <div class="step-num">7.1</div>
+          <h4>Go to Organization Settings</h4>
+          <p>In claude.ai/design, click your organization name in the top right. Select Settings.</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <div class="step-num">7.2</div>
+          <h4>Upload Brand Assets</h4>
+          <p>You can upload multiple files (PDFs, design files, images). Claude will analyze them automatically.</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <div class="step-num">7.3</div>
+          <h4>Set as Default</h4>
+          <p>Select one design system as your default. Every new project will reference it automatically.</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <div class="step-num">7.4</div>
+          <h4>Done</strong></h4>
+          <p>When you start a new deck or page, just describe it. Claude will apply your brand system without you re-explaining it.</p>
+        </div>
+
+        <div class="info-box tip">
+          <strong>Pro Tip: Update Your Brand System Quarterly</strong>
+          If your brand evolves, re-upload new examples. Claude will extract the updates and apply them to future projects. This scales your design consistency without manual work.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8: COMPARE TABLE (DESIGN VS CANVA VS FIGMA) -->
+  <div class="accordion" id="accordion8">
+    <button class="accordion-header">
+      <div class="accordion-badge">8</div>
+      <div>
+        <div class="accordion-label">Step 8</div>
+        <div class="accordion-title">Claude Design vs Canva vs Figma: Deep Comparison</div>
+        <div class="accordion-subtitle">When to use each. Side-by-side feature breakdown.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 8 of 10</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>All three tools are good. They solve different problems. Here is the detailed breakdown:</p>
+
+        <table class="compare-table">
+          <tr>
+            <th>Feature</th>
+            <th>Claude Design</th>
+            <th>Canva</th>
+            <th>Figma</th>
+          </tr>
+          <tr>
+            <td>Output Type</td>
+            <td>Working HTML/CSS/JS code</td>
+            <td>Editable vector design</td>
+            <td>Editable design files</td>
+          </tr>
+          <tr>
+            <td>Time to First Prototype</td>
+            <td>5 minutes (text prompt)</td>
+            <td>15 minutes (template hunting)</td>
+            <td>30+ minutes (design from scratch)</td>
+          </tr>
+          <tr>
+            <td>Template Library</td>
+            <td>None (AI generates)</td>
+            <td>600K+ templates</td>
+            <td>Community plugins</td>
+          </tr>
+          <tr>
+            <td>Ideal User</td>
+            <td>Founders, PMs, marketers who want code</td>
+            <td>Marketers, social media managers, non-designers</td>
+            <td>Design professionals, UI/UX teams</td>
+          </tr>
+          <tr>
+            <td>Team Collaboration</td>
+            <td>Research preview (limited)</td>
+            <td>Excellent with comments and real-time</td>
+            <td>Industry standard for design teams</td>
+          </tr>
+          <tr>
+            <td>Brand Integration</td>
+            <td>Upload to org settings, applies automatically</td>
+            <td>Brand Intelligence system (new April 2026)</td>
+            <td>Brand kits with design tokens</td>
+          </tr>
+          <tr>
+            <td>Editability After Generation</td>
+            <td>Code (or ask Claude to refine)</td>
+            <td>Full drag-and-drop layer editing</td>
+            <td>Full design system editing</td>
+          </tr>
+          <tr>
+            <td>Weekly Usage Limit</td>
+            <td>Yes (research preview pricing)</td>
+            <td>Generous on Pro ($30/month)</td>
+            <td>Unlimited on paid plans</td>
+          </tr>
+          <tr>
+            <td>Cost</td>
+            <td>Included with Claude Pro/Max ($20/month)</td>
+            <td>$14.99/month individual</td>
+            <td>$12/month individual</td>
+          </tr>
+          <tr>
+            <td>Export Options</td>
+            <td>PDF, HTML, interactive link</td>
+            <td>PNG, JPG, PDF, video, GIF</td>
+            <td>PNG, SVG, CSS, component packages</td>
+          </tr>
+          <tr>
+            <td>Learning Curve</td>
+            <td>Lowest (text prompt)</td>
+            <td>Very low (template familiar)</td>
+            <td>High (design skills required)</td>
+          </tr>
+          <tr>
+            <td>When You'll Wait</td>
+            <td>First generation (60 seconds). Refine in seconds.</td>
+            <td>Template hunting (5+ minutes)</td>
+            <td>Design design design (hours)</td>
+          </tr>
+        </table>
+
+        <h3>Quick Decision Matrix</h3>
+
+        <p><strong>Use Claude Design if:</strong> You want working code, you're not a designer, you like speed over pixel perfection, you want to hand HTML to developers.</p>
+
+        <p><strong>Use Canva if:</strong> You want a polished final visual, you need templates, you're making social content or marketing collateral, you're not tech-savvy.</p>
+
+        <p><strong>Use Figma if:</strong> You're a designer building a team system, you need production-ready component libraries, you work in tech and collaborate with developers daily.</p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 9: LIMITS AND WORKAROUNDS -->
+  <div class="accordion" id="accordion9">
+    <button class="accordion-header">
+      <div class="accordion-badge">9</div>
+      <div>
+        <div class="accordion-label">Step 9</div>
+        <div class="accordion-title">The Limits and What to Use Instead</div>
+        <div class="accordion-subtitle">Claude Design is powerful but not perfect. Here is what you need to know.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 9 of 10</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>Claude Design launched April 2026 as a research preview. It's fast and capable but has real limits. Being honest about them saves you time.</p>
+
+        <div class="info-box warning">
+          <strong>Research Preview Status</strong>
+          This is not a fully released product. Features change. Bugs exist. Prices may shift. Use it for rapid prototyping and iteration, not as your production design tool yet.
+        </div>
+
+        <h3>Specific Limits</h3>
+
+        <div class="info-box warning">
+          <strong>Weekly Usage Caps</strong>
+          You have a limited number of designs you can generate per week. Check your usage in the dashboard. The cap is intentionally capped as the tool scales.
+        </div>
+
+        <div class="info-box warning">
+          <strong>Not a Vector Editor</strong>
+          You cannot import an Illustrator file and edit it in Claude Design. If you have complex vector assets, you need Figma or Adobe. Claude Design works with raster images and code.
+        </div>
+
+        <div class="info-box warning">
+          <strong>Slide Animations Quirks</strong>
+          Animations render in HTML but disappear in PDF export. If you need animations for a presentation, keep them subtle or export as HTML instead of PDF. For investor decks, skip animations.
+        </div>
+
+        <div class="info-box warning">
+          <strong>Image Generation Isn't Built In</strong>
+          You can't ask Claude Design to generate images. That's why the two-tool workflow (ChatGPT Images first) exists. You bring the images, Claude Design applies them to your design.
+        </div>
+
+        <div class="info-box warning">
+          <strong>Font Matching Takes Work</strong>
+          If you reference a deck that uses "Helvetica Neue" (not a web font), Claude will substitute it. Always use Google Fonts or system fonts if consistency matters. Provide font URLs in your prompt.
+        </div>
+
+        <div class="info-box warning">
+          <strong>Complex Interactivity Is Limited</strong>
+          Claude Design can generate basic clickable prototypes and simple forms. If you need complex state management (shopping carts, multi-step workflows), you'll build that in code after Claude generates the base.
+        </div>
+
+        <h3>When to Bail to Another Tool</h3>
+
+        <p><strong>If you need pixel-perfect design:</strong> Use Figma. Hire a designer. Canva templates are good too.</p>
+
+        <p><strong>If you need to edit layers and elements:</strong> Use Canva or Figma. Claude Design outputs are code, not layers.</p>
+
+        <p><strong>If you need a massive template library:</strong> Use Canva. Canva has 600K+ templates. Claude Design has zero templates (it generates instead).</p>
+
+        <p><strong>If you're building production software:</strong> Use Figma for design spec, then Claude Code to implement. Claude Design is a prototype tool, not a production tool.</p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 10: RESOURCES -->
+  <div class="accordion" id="accordion10">
+    <button class="accordion-header">
+      <div class="accordion-badge">10</div>
+      <div>
+        <div class="accordion-label">Step 10</div>
+        <div class="accordion-title">Resources and Next Steps</div>
+        <div class="accordion-subtitle">Where to go from here. Tools, references, and people to follow.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 10 of 10</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+
+        <h3>Official Resources</h3>
+        <ul class="checklist">
+          <li><a href="https://claude.ai/design" target="_blank">claude.ai/design</a> — Launch Claude Design</li>
+          <li><a href="https://www.anthropic.com" target="_blank">Anthropic Blog</a> — Follow for Claude Design launch announcements and deep dives</li>
+          <li><a href="https://openai.com/index/gpt-4o/" target="_blank">ChatGPT Images 2.0</a> — The image generation partner tool</li>
+        </ul>
+
+        <h3>Related Tools</h3>
+        <ul class="checklist">
+          <li><a href="https://www.canva.com" target="_blank">Canva</a> — For polished final marketing output</li>
+          <li><a href="https://www.figma.com" target="_blank">Figma</a> — For production UI design and team collaboration</li>
+        </ul>
+
+        <h3>Creators and Resources</h3>
+        <p>Jack Roberts (@Itssssss_Jack) has published foundational Claude Code 2.0 content:</p>
+        <a href="https://www.youtube.com/watch?v=weNHvvolEds" target="_blank" class="video-card">
+          <div class="video-icon official">▶</div>
+          <div>
+            <h4>Top 5 Claude Code Skills + Tools for Design (April 2026)</h4>
+            <div class="meta">@Itssssss_Jack on YouTube</div>
+            <div class="desc">Practical walkthrough of design workflows with Claude tools</div>
+          </div>
+        </a>
+
+        <h3>Your Next Steps</h3>
+        <ul class="checklist">
+          <li>Open claude.ai/design and create your first test project</li>
+          <li>Generate 4-8 visual concepts in ChatGPT Images 2.0 for a project you're working on</li>
+          <li>Upload your reference image to Claude Design and build a prototype deck</li>
+          <li>Export as PDF and share with colleagues. Get feedback.</li>
+          <li>Iterate. Claude Design is fast enough to try multiple directions</li>
+          <li>Bookmark this guide and revisit Step 2 (the two-tool workflow) whenever you start a new design project</li>
+        </ul>
+
+        <div class="info-box key">
+          <strong>The Real Workflow</strong>
+          Once you've done this 3-4 times, the pattern becomes second nature. Image generation for exploration. Claude Design for polish. Iterate in minutes instead of hours. That is the edge.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Steve's AI Guide. Updated April 2026. Questions? Check the sidebar links for more guides.</p>
+    <p><a href="people.html">People I Learn From</a> includes the creators and resources behind these guides.</p>
+  </div>
+
+</div>
+
+<!-- BACK TO TOP BUTTON -->
+<button class="back-to-top" id="backToTop" title="Back to top">↑</button>
+
+<script>
+// Accordion functionality
+const accordionHeaders = document.querySelectorAll('.accordion-header');
+const tocLinks = document.querySelectorAll('.toc-link');
+const heroCtaBtn = document.getElementById('heroCtaBtn');
+
+function openAccordion(index) {
+  accordionHeaders.forEach((header, i) => {
+    const content = header.nextElementSibling;
+    if (i === index) {
+      header.classList.add('open');
+      content.classList.add('open');
+    } else {
+      header.classList.remove('open');
+      content.classList.remove('open');
+    }
+  });
+  updateProgress(index);
+}
+
+function toggleAccordion(header) {
+  const content = header.nextElementSibling;
+  header.classList.toggle('open');
+  content.classList.toggle('open');
+}
+
+accordionHeaders.forEach((header, index) => {
+  header.addEventListener('click', () => {
+    toggleAccordion(header);
+    updateProgress(index);
+  });
+});
+
+tocLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const accordionIndex = parseInt(link.getAttribute('data-accordion')) - 1;
+    openAccordion(accordionIndex);
+    document.getElementById(`accordion${accordionIndex + 1}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+heroCtaBtn.addEventListener('click', () => {
+  openAccordion(0);
+  document.getElementById('accordion1').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+// Progress and sticky nav
+function updateProgress(index) {
+  const progress = `Step ${index + 1} of 10`;
+  document.getElementById('stickyProgress').textContent = progress;
+}
+
+// Sticky nav visibility
+const stickyNav = document.getElementById('stickyNav');
+window.addEventListener('scroll', () => {
+  stickyNav.classList.toggle('visible', window.scrollY > 100);
+  document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 200);
+});
+
+// Back to top
+document.getElementById('backToTop').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Initialize with first section open
+openAccordion(0);
+</script>
+
+</body>
+</html>

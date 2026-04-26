@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steve's AI Guide - Claude Code 2.0 for Non-Coders</title>
+<link rel="stylesheet" href="design-system.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface-2: #242424;
+    --surface-3: #2e2e2e;
+    --border: #333;
+    --text: #e8e8e8;
+    --text-muted: #999;
+    --text-dim: #8e8e8e;
+    --accent: #d4956a;
+    --accent-light: #e8b892;
+    --accent-dim: rgba(212,149,106,0.15);
+    --green: #5cb85c;
+    --blue: #5b9bd5;
+    --purple: #9b7ed8;
+    --red: #e06666;
+    --yellow: #f0c040;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    position: relative;
+    padding: 100px 40px 80px;
+    text-align: center;
+    background: linear-gradient(180deg, #1a1410 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(212,149,106,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 640px;
+    margin: 0 auto 32px;
+  }
+  .hero-cta {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .hero-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .toc {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc h2 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .toc-item:hover { border-color: var(--accent); background: var(--surface-2); }
+  .toc-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .accordion {
+    border-bottom: 1px solid var(--border);
+  }
+  .accordion:last-child { border-bottom: none; }
+
+  .accordion-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 28px 0;
+    background: none;
+    border: none;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+  .accordion-header:hover {
+    border-left-color: var(--accent);
+  }
+  .accordion-header.open {
+    border-left-color: var(--accent);
+  }
+
+  .accordion-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .accordion-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+
+  .accordion-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+    color: #fff;
+  }
+
+  .accordion-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 0;
+  }
+
+  .accordion-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    margin-top: 4px;
+    position: relative;
+  }
+  .accordion-chevron::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    transform: rotate(-45deg);
+    transition: transform 0.3s ease;
+  }
+  .accordion-header.open .accordion-chevron::after {
+    transform: rotate(45deg);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0;
+  }
+  .accordion-content.open {
+    max-height: 10000px;
+  }
+
+  .accordion-body {
+    padding-bottom: 28px;
+  }
+
+  .section p {
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 32px 0 12px;
+  }
+
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .step-card.highlighted {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--surface) 0%, rgba(212,149,106,0.05) 100%);
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border-radius: 16px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  .step-card h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .step-card p {
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  .info-box {
+    padding: 20px 24px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .info-box.tip {
+    background: rgba(92,184,92,0.08);
+    border-left: 3px solid var(--green);
+  }
+  .info-box.warning {
+    background: rgba(240,192,64,0.08);
+    border-left: 3px solid var(--yellow);
+  }
+  .info-box.key {
+    background: var(--accent-dim);
+    border-left: 3px solid var(--accent);
+  }
+  .info-box strong { display: block; margin-bottom: 6px; }
+
+  .code-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    overflow-x: auto;
+    margin: 16px 0;
+    white-space: pre;
+  }
+
+  .video-card {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+  }
+  .video-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .video-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  .video-icon.official { background: rgba(91,155,213,0.15); }
+  .video-icon.community { background: rgba(155,126,216,0.15); }
+  .video-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .video-card .meta { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+  .video-card .desc { font-size: 13px; color: var(--text-dim); }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  .compare-table th {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .compare-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .compare-table tr:hover td { background: var(--surface); }
+
+  .checklist {
+    list-style: none;
+    margin: 20px 0;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .checklist li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 2px solid var(--border);
+    margin-top: 2px;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  .footer {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  a { color: var(--accent); }
+
+  html { scroll-behavior: smooth; }
+
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: var(--bg);
+    background-color: rgba(15, 15, 15, 0.95);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    font-size: 13px;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .sticky-nav.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sticky-nav-left { color: var(--text-muted); font-weight: 500; }
+  .sticky-nav-right { color: var(--accent); font-weight: 600; }
+
+  .back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .back-to-top:hover { background: var(--accent-light); }
+
+  .accordion-progress {
+    position: absolute;
+    top: 28px;
+    right: 0;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+  }
+  .accordion-header.open .accordion-progress {
+    opacity: 1;
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 60px 20px 48px; }
+    .hero h1 { font-size: 28px; }
+    .toc-grid { grid-template-columns: 1fr; }
+    .accordion-header { padding: 20px 0; }
+    .video-card { flex-direction: column; gap: 12px; }
+  }
+
+  .resource-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 24px; background: var(--surface); border-bottom: 1px solid var(--border);
+    font-size: 13px; position: relative; z-index: 998;
+  }
+  .resource-nav-brand { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+  .resource-nav-links { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+  .resource-nav-links a {
+    padding: 6px 14px; border-radius: 6px; color: var(--text-muted);
+    text-decoration: none; font-weight: 500; font-size: 13px; transition: all 0.2s; white-space: nowrap;
+  }
+  .resource-nav-links a:hover { color: var(--text); background: var(--surface-2); }
+  .resource-nav-links a.active { color: var(--accent); background: var(--accent-dim); font-weight: 600; }
+  @media (max-width: 640px) {
+    .resource-nav { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .resource-nav-links { gap: 4px; }
+    .resource-nav-links a { padding: 4px 10px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="resource-nav">
+  <div class="resource-nav-brand">Steve's Resources</div>
+  <div class="resource-nav-links">
+    <a href="prompting.html">Prompting Guide</a>
+    <a href="beginner.html">Cowork Beginner</a>
+    <a href="level-2.html">Cowork Advanced</a>
+    <a href="workflows.html">Cowork in Action</a>
+    <a href="claude-code-2.html" class="active">Claude Code 2.0</a>
+    <a href="claude-design.html">Claude Design</a>
+    <a href="people.html">People I Learn From</a>
+  </div>
+</nav>
+
+<div class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-left">Claude Code 2.0</div>
+  <div class="sticky-nav-right"><span id="stickyProgress">Step 1 of 9</span></div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">FOR NON-CODERS . UPDATED APRIL 2026</div>
+  <h1>Claude Code<br><span>2.0</span></h1>
+  <h1 style="font-size: clamp(24px, 4vw, 40px); font-weight: 600; margin-top: -8px; color: var(--text-muted);">Yes, this is for you.</h1>
+  <p style="margin-top: 24px;">The April 2026 redesign turned Claude Code from a coder's tool into something anyone can run. Visual interface. No terminal required. Plan Mode means you approve everything before it happens. If you have used Cowork, you can use this.</p>
+  <button class="hero-cta" id="heroCtaBtn">Start the Guide ↓</button>
+</div>
+
+<div class="container">
+
+  <div class="toc">
+    <h2>What's Inside</h2>
+    <div class="toc-grid">
+      <a class="toc-item toc-link" data-accordion="1"><span class="toc-num">1</span> What Changed in 2.0</a>
+      <a class="toc-item toc-link" data-accordion="2"><span class="toc-num">2</span> Five Reasons It's Not Scary</a>
+      <a class="toc-item toc-link" data-accordion="3"><span class="toc-num">3</span> The Six Pieces</a>
+      <a class="toc-item toc-link" data-accordion="4"><span class="toc-num">4</span> Install in Five Minutes</a>
+      <a class="toc-item toc-link" data-accordion="5"><span class="toc-num">5</span> Your First Task</a>
+      <a class="toc-item toc-link" data-accordion="6"><span class="toc-num">6</span> First Day to First Month</a>
+      <a class="toc-item toc-link" data-accordion="7"><span class="toc-num">7</span> Eight Real Use Cases</a>
+      <a class="toc-item toc-link" data-accordion="8"><span class="toc-num">8</span> Common Fears & Answers</a>
+      <a class="toc-item toc-link" data-accordion="9"><span class="toc-num">9</span> Cowork or Code 2.0</a>
+    </div>
+  </div>
+
+  <!-- SECTION 1: WHAT CHANGED IN 2.0 -->
+  <div class="accordion" id="accordion1">
+    <button class="accordion-header open">
+      <div class="accordion-badge">1</div>
+      <div>
+        <div class="accordion-label">Step 1</div>
+        <div class="accordion-title">What Changed in 2.0</div>
+        <div class="accordion-subtitle">April 14, 2026 turned this into a tool for everyone.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 1 of 9</div>
+    </button>
+    <div class="accordion-content open">
+      <div class="accordion-body">
+        <p>Claude Code used to be a developer's tool. You needed a terminal, you needed to understand what a file path was, you needed to be comfortable watching code scroll past. In April 2026, that changed.</p>
+
+        <p>The desktop redesign did something simple but radical. It separated the UI layer from the technical layer. You now see a visual interface that works the way any app on your computer works. Click buttons. Read files. See outputs. No terminal required unless you want it.</p>
+
+        <h3>Side-by-Side Comparison</h3>
+        <table class="compare-table">
+          <tr>
+            <th>Claude Code 1.x</th>
+            <th>Claude Code 2.0 (April 2026)</th>
+          </tr>
+          <tr>
+            <td>Terminal required</td>
+            <td>Visual file browser (like Finder)</td>
+          </tr>
+          <tr>
+            <td>Code output streaming past your eyes</td>
+            <td>Visual diffs. You see what changed.</td>
+          </tr>
+          <tr>
+            <td>One session at a time</td>
+            <td>Multiple sessions side by side</td>
+          </tr>
+          <tr>
+            <td>File editing in terminal</td>
+            <td>Built-in file editor with syntax highlighting</td>
+          </tr>
+          <tr>
+            <td>No preview</td>
+            <td>HTML and PDF preview windows</td>
+          </tr>
+          <tr>
+            <td>Manual task scheduling</td>
+            <td>Routines (cloud-based scheduled tasks)</td>
+          </tr>
+          <tr>
+            <td>Context limit: 200K</td>
+            <td>Opus 4.6 with 1M context window</td>
+          </tr>
+          <tr>
+            <td>One thing at a time</td>
+            <td>Focus View hides noise. See only what matters.</td>
+          </tr>
+        </table>
+
+        <div class="info-box key">
+          <strong>The Real Shift</strong>
+          Claude Code was sold as a developer tool that happened to use AI. It's now an AI tool that happens to run code. The difference is subtle but changes everything about who should use it.
+        </div>
+
+        <p>The old version required you to be fluent in a developer's world. The new version requires you to be able to describe what you want in English. The tool handles the rest.</p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: FIVE REASONS IT'S NOT SCARY -->
+  <div class="accordion" id="accordion2">
+    <button class="accordion-header">
+      <div class="accordion-badge">2</div>
+      <div>
+        <div class="accordion-label">Step 2</div>
+        <div class="accordion-title">Five Reasons It's Not Scary Anymore</div>
+        <div class="accordion-subtitle">Each one addresses a real fear. Each one is built in.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 2 of 9</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+
+        <div class="step-card highlighted">
+          <div class="step-num">1</div>
+          <h4>Plan Mode separates thinking from doing</h4>
+          <p>Type a task. Claude shows you its entire plan before executing anything. You review it. You approve it. Only then does Claude act. This is the safety feature that actually addresses the fear.</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <div class="step-num">2</div>
+          <h4>Visual diffs replace terminal output</h4>
+          <p>When Claude changes a file, you don't see lines of code streaming past. You see a side-by-side comparison. Red lines are removed. Green lines are added. You understand at a glance what changed.</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <div class="step-num">3</div>
+          <h4>Routines run in the cloud, your laptop can be off</h4>
+          <p>New in April 2026. You set up a task once. Claude runs it on schedule (weekly reports, daily backup tasks, whatever). Your computer doesn't need to be on. No more "I have to leave my Mac running overnight."</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <div class="step-num">4</div>
+          <h4>Focus View hides the noise</h4>
+          <p>Press Ctrl+O. Everything disappears except the prompt you gave, Claude's thinking, and the result. All the technical noise is hidden. You focus on what matters.</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <div class="step-num">5</div>
+          <h4>VS Code with the extension looks like a normal app</h4>
+          <p>Claude Code runs inside VS Code, which looks and feels like any Mac or Windows application. You click, you type, you get results. No weird alien interface. No terminal anxiety.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: THE SIX PIECES -->
+  <div class="accordion" id="accordion3">
+    <button class="accordion-header">
+      <div class="accordion-badge">3</div>
+      <div>
+        <div class="accordion-label">Step 3</div>
+        <div class="accordion-title">The Six Pieces (In Plain English)</div>
+        <div class="accordion-subtitle">These six things power everything Claude Code can do.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 3 of 9</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h4>Plan Mode</h4>
+          <p>You tell Claude what to do. Claude explains its strategy before executing. You say yes or no. That approval gate is Plan Mode. It's the thing that makes non-coders feel safe.</p>
+          <p style="margin-top: 8px; font-size: 13px; color: var(--text-dim);">When to use: Every first task. Every time something feels risky. Whenever you want to understand what's about to happen.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h4>Skills</h4>
+          <p>Reusable playbooks you package once and invoke with a slash command. If you find yourself pasting the same instructions into chat repeatedly, turn it into a skill. Type /myskill and Claude loads it automatically.</p>
+          <p style="margin-top: 8px; font-size: 13px; color: var(--text-dim);">When to use: When you discover a task you do weekly or monthly. Build it once, run it a hundred times.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h4>Subagents</h4>
+          <p>Claude clones itself and runs multiple tasks in parallel, each with its own context window. Useful when you have a workflow with many steps and want Claude to manage them independently.</p>
+          <p style="margin-top: 8px; font-size: 13px; color: var(--text-dim);">When to use: Processing 50 files at once. Running parallel workflows. Keeping one task's output separate from another's.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <h4>Hooks</h4>
+          <p>Automation that triggers when something happens. Save a file, a hook runs. Complete a task, a hook reformats your output. Deterministic code that can't hallucinate.</p>
+          <p style="margin-top: 8px; font-size: 13px; color: var(--text-dim);">When to use: Auto-formatting. Running tests automatically. Cleaning up files right after they're created.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">5</div>
+          <h4>MCP (Model Context Protocol)</h4>
+          <p>Integrations that connect Claude to your other tools. Slack, Notion, Gmail, databases, APIs. Claude orchestrates them without you writing code. Just ask Claude to "send this to Slack" and it does.</p>
+          <p style="margin-top: 8px; font-size: 13px; color: var(--text-dim);">When to use: When you want Claude to talk to your existing tools. No API keys. No technical knowledge required.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">6</div>
+          <h4>Routines</h4>
+          <p>Tasks that run on schedule in the cloud. Weekly reports. Daily backups. Monthly audits. You set it up once. Claude runs it automatically. Your computer stays off.</p>
+          <p style="margin-top: 8px; font-size: 13px; color: var(--text-dim);">When to use: Anything that happens on a calendar. Anything that would normally require you to babysit your computer.</p>
+        </div>
+
+        <div class="info-box key">
+          <strong>Learn Them In This Order</strong>
+          Start with Plan Mode (that's just talking to Claude). Move to Skills when you have a task you repeat. Skip Subagents, Hooks, and MCP until you're comfortable. Routines are for power users. Most people never need all six. Plan Mode and Skills cover 80% of real work.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: INSTALL IN FIVE MINUTES -->
+  <div class="accordion" id="accordion4">
+    <button class="accordion-header">
+      <div class="accordion-badge">4</div>
+      <div>
+        <div class="accordion-label">Step 4</div>
+        <div class="accordion-title">Install in Five Minutes</div>
+        <div class="accordion-subtitle">No terminal. No technical knowledge. Just three steps.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 4 of 9</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+
+        <div class="step-card highlighted">
+          <div class="step-num">1</div>
+          <h4>Download VS Code</h4>
+          <p>Go to <a href="https://code.visualstudio.com" target="_blank">code.visualstudio.com</a>. Download it for your Mac or Windows PC. Install it like any normal app.</p>
+          <p style="margin-top: 8px; font-size: 13px; color: var(--text-dim);">This is a free text editor built by Microsoft. It's not a terminal. It's a visual file editor.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h4>Install the Claude Code Extension</h4>
+          <p>Open VS Code. Look on the left sidebar for the Extensions icon (it looks like four squares). Search for "Claude Code". Click Install. That's it.</p>
+          <p style="margin-top: 8px; font-size: 13px; color: var(--text-dim);">The extension is free (if you have a Claude subscription). You sign in with your Anthropic account.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h4>Open a Folder and Start a Task</h4>
+          <p>File > Open Folder. Pick or create a folder on your computer. Open it in VS Code. Click the Claude Code icon on the left sidebar. Type your first task in plain English. You're done.</p>
+          <p style="margin-top: 8px; font-size: 13px; color: var(--text-dim);">VS Code shows you your files on the left. Claude Code shows you the chat on the right. Everything is visible at once.</p>
+        </div>
+
+        <div class="info-box tip">
+          <strong>Don't Touch the Terminal</strong>
+          There is a terminal at the bottom of VS Code. You don't need it. Ignore it. Click the X to close it if it distracts you. Everything Claude does shows up in the VS Code interface visually. No terminal required.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: YOUR FIRST TASK -->
+  <div class="accordion" id="accordion5">
+    <button class="accordion-header">
+      <div class="accordion-badge">5</div>
+      <div>
+        <div class="accordion-label">Step 5</div>
+        <div class="accordion-title">Your First Task (Plan Mode Walkthrough)</div>
+        <div class="accordion-subtitle">A real example. From prompt to result.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 5 of 9</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+
+        <p>Let's do a real task. You have three credit card statements as PDF files. You want to see all your spending organized by category. You have never written code.</p>
+
+        <h3>The Prompt</h3>
+        <p>You type this into Claude Code:</p>
+        <div class="code-block">I have three credit card statement PDFs in this folder: Chase.pdf, Amex.pdf, Discover.pdf. Extract the transaction data from each one and create an Excel spreadsheet that shows: transaction date, amount, category (guess the category from the merchant name), and which card. Total spending by category at the bottom.</div>
+
+        <h3>What Claude Shows Back</h3>
+        <p>Claude reads your prompt and shows you a plan. It looks something like this:</p>
+        <div class="step-card highlighted">
+          <h4>Claude's Plan (Simplified)</h4>
+          <p><strong>Step 1:</strong> Read Chase.pdf using PDF extraction tool. Extract transaction rows.</p>
+          <p><strong>Step 2:</strong> Repeat for Amex.pdf and Discover.pdf.</p>
+          <p><strong>Step 3:</strong> Parse merchant names and assign categories (Starbucks = Coffee, Target = Shopping, etc.)</p>
+          <p><strong>Step 4:</strong> Create Excel file with four columns. Add all transactions. Create summary by category.</p>
+          <p><strong>Step 5:</strong> Save file as Spending_Summary_v1.xlsx</p>
+          <p style="margin-top: 12px; color: var(--accent); font-weight: 600;">Should I proceed?</p>
+        </div>
+
+        <h3>You Approve (or Edit)</h3>
+        <p>You read the plan. You notice Claude will guess categories. You add one line: "For category guessing, ask me about any merchant you're unsure of." You tell Claude: "Yes, proceed. But add that step."</p>
+
+        <p>Claude updates the plan with your feedback. You approve again.</p>
+
+        <h3>Claude Executes</h3>
+        <p>You watch the progress tracker. Claude extracts from PDFs. Claude encounters "BRK HOLDINGS" in the Amex statement and pauses. It shows you: "Found BRK HOLDINGS (amount: $450). Best guess: Investment or Brokerage? Or did you mean something else?" You type "Investments". Claude continues.</p>
+
+        <h3>You Get the Result</h3>
+        <p>30 seconds later, Claude says: "Done. Created Spending_Summary_v1.xlsx with 47 transactions. Total spending across all three cards: $3,847. Largest categories: Food (28%), Utilities (18%), Travel (15%)."</p>
+
+        <p>You open the file in Excel. It's formatted. It has the summary table. It works.</p>
+
+        <div class="info-box key">
+          <strong>What Just Happened</strong>
+          You described a business outcome. Claude broke it into steps. You approved. Claude handled the technical work. You got a working Excel file. You never touched code, never opened a terminal, never felt lost.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: FIRST DAY TO FIRST MONTH -->
+  <div class="accordion" id="accordion6">
+    <button class="accordion-header">
+      <div class="accordion-badge">6</div>
+      <div>
+        <div class="accordion-label">Step 6</div>
+        <div class="accordion-title">First Day, First Week, First Month</div>
+        <div class="accordion-subtitle">What to do at each stage. What to expect.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 6 of 9</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+
+        <div class="two-col">
+          <div class="step-card">
+            <h4>First Day</h4>
+            <p><strong>What to do:</strong> Install VS Code and the extension. Open a folder. Do one small task in Plan Mode. Something that takes 30 seconds max.</p>
+            <p style="margin-top: 12px;"><strong>What to expect:</strong> It will feel a bit unfamiliar. That's normal. You'll probably be surprised it actually worked.</p>
+            <p style="margin-top: 12px;"><strong>Success looks like:</strong> You ran one task. You read the plan. You got a result. You understand how the approval workflow works.</p>
+          </div>
+          <div class="step-card">
+            <h4>First Week</h4>
+            <p><strong>What to do:</strong> Five or six small, single-purpose tasks. Different task types. File organization. Data analysis. Document writing. Get comfortable with Plan Mode.</p>
+            <p style="margin-top: 12px;"><strong>What to expect:</strong> Some tasks will be wrong on the first try. You'll tell Claude "no, adjust this" and it will fix it. You might feel like you're repeating yourself.</p>
+            <p style="margin-top: 12px;"><strong>Success looks like:</strong> You're not nervous anymore. You've approved and executed 5+ tasks. You've edited a plan at least once.</p>
+          </div>
+          <div class="step-card">
+            <h4>First Month</h4>
+            <p><strong>What to do:</strong> Combine multiple steps into one workflow. Create a Skill for something you do weekly. Connect to Slack or Notion if relevant. Start thinking about what repeats in your work.</p>
+            <p style="margin-top: 12px;"><strong>What to expect:</strong> You'll start seeing tasks you could automate. "Wait, Claude could do this every Friday." You'll get ideas faster than you can test them.</p>
+            <p style="margin-top: 12px;"><strong>Success looks like:</strong> You have one automated workflow running. You've saved at least 2 hours on repeated work. You're no longer following guides; you're asking Claude for help with your actual problems.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: EIGHT REAL USE CASES -->
+  <div class="accordion" id="accordion7">
+    <button class="accordion-header">
+      <div class="accordion-badge">7</div>
+      <div>
+        <div class="accordion-label">Step 7</div>
+        <div class="accordion-title">Eight Things People Are Actually Doing</div>
+        <div class="accordion-subtitle">Real work. Real ROI. Real people (not me).</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 7 of 9</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+
+        <div class="two-col">
+          <div class="step-card">
+            <h4>Bulk PDF Extraction</h4>
+            <p>50 invoices as PDFs. Extract amount, date, vendor. Create a spreadsheet. One task. Takes 3 minutes to set up.</p>
+          </div>
+          <div class="step-card">
+            <h4>Expense Categorization</h4>
+            <p>Three credit card statements. Merge them. Categorize. Subtotal by category. Done in seconds instead of an hour of manual work.</p>
+          </div>
+          <div class="step-card">
+            <h4>Weekly Client Reports</h4>
+            <p>Set a Routine. Every Friday at 9am, Claude pulls data from Notion, creates a report, sends it to Slack. No human touching it.</p>
+          </div>
+          <div class="step-card">
+            <h4>Internal Tools That Cost $50K</h4>
+            <p>Expense tracker. Time log analyzer. Customer feedback aggregator. Things that would normally cost 50K to hire someone to build. Claude builds them in a day.</p>
+          </div>
+          <div class="step-card">
+            <h4>Content Calendars</h4>
+            <p>Research five competitor products. Extract key features. Create a comparison table and a marketing angle for each. Spreadsheet ready to share.</p>
+          </div>
+          <div class="step-card">
+            <h4>File Organization by Content</h4>
+            <p>500 files named randomly. Claude reads each file. Sorts them into folders by project, date, or type. Renames them systematically.</p>
+          </div>
+          <div class="step-card">
+            <h4>Automated Competitor Research</h4>
+            <p>Watch a list of competitor websites on schedule. Check for changes. Alert you if something new goes live.</p>
+          </div>
+          <div class="step-card">
+            <h4>Custom Dashboards</h4>
+            <p>Pull data from multiple sources. Create a visual dashboard that updates daily. No SQL knowledge needed. Claude does it.</p>
+          </div>
+        </div>
+
+        <div class="info-box key">
+          <strong>The Pattern</strong>
+          Every single use case starts with a repetitive task you do manually. Claude saves you 1-4 hours per week. Over a year, that's 50-200 hours. That's conservatively 5K-20K in billable time (for anyone who charges for their time).
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8: COMMON FEARS & REAL ANSWERS -->
+  <div class="accordion" id="accordion8">
+    <button class="accordion-header">
+      <div class="accordion-badge">8</div>
+      <div>
+        <div class="accordion-label">Step 8</div>
+        <div class="accordion-title">Common Fears, Real Answers</div>
+        <div class="accordion-subtitle">You're probably thinking one of these. The answers are built in.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 8 of 9</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+
+        <div class="info-box warning">
+          <strong>Fear: Claude will break my files</strong>
+        </div>
+        <div class="info-box tip">
+          <strong>Real answer:</strong> Plan Mode shows you what Claude will change before it happens. You approve first. If you're still nervous, use Git (built into VS Code). Every change is tracked. You can undo anything.
+        </div>
+
+        <div class="info-box warning">
+          <strong>Fear: I don't know what to ask</strong>
+        </div>
+        <div class="info-box tip">
+          <strong>Real answer:</strong> You describe the business outcome. "I want to know my spending by category." Claude asks clarifying questions if it needs them. You don't need to speak in technical terms.
+        </div>
+
+        <div class="info-box warning">
+          <strong>Fear: I'll lose track of what I'm doing</strong>
+        </div>
+        <div class="info-box tip">
+          <strong>Real answer:</strong> Every task is a new conversation or session. Files are created in your folder with clear names (Claude follows naming conventions). You can see everything Claude created.
+        </div>
+
+        <div class="info-box warning">
+          <strong>Fear: Coding is magic I don't understand</strong>
+        </div>
+        <div class="info-box tip">
+          <strong>Real answer:</strong> You don't need to understand code. Claude's plan shows you the thinking in English. You're reading business logic, not syntax. Understanding is optional.
+        </div>
+
+        <div class="info-box warning">
+          <strong>Fear: This will cost me a fortune</strong>
+        </div>
+        <div class="info-box tip">
+          <strong>Real answer:</strong> You need a Claude Pro, Max, Team, or Enterprise subscription (Pro is 20/month). Claude Code is included. Most tasks cost less than 1 cent in API fees. Even heavy users spend under 50/month.
+        </div>
+
+        <div class="info-box warning">
+          <strong>Fear: What if I'm using it wrong</strong>
+        </div>
+        <div class="info-box tip">
+          <strong>Real answer:</strong> Start small. Do one simple task. Expand from there. There's no wrong way. The worst case is Claude gets confused and you ask it to try again. Happens to developers too.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 9: COWORK OR CODE 2.0 -->
+  <div class="accordion" id="accordion9">
+    <button class="accordion-header">
+      <div class="accordion-badge">9</div>
+      <div>
+        <div class="accordion-label">Step 9</div>
+        <div class="accordion-title">Cowork or Code 2.0. Pick the Right One.</div>
+        <div class="accordion-subtitle">They solve different problems. You might use both.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Step 9 of 9</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+
+        <h3>Head-to-Head Comparison</h3>
+        <table class="compare-table">
+          <tr>
+            <th></th>
+            <th>Cowork</th>
+            <th>Claude Code 2.0</th>
+          </tr>
+          <tr>
+            <td><strong>Interface</strong></td>
+            <td>Chat-like. Built into Claude app.</td>
+            <td>VS Code IDE. Shows files and chat together.</td>
+          </tr>
+          <tr>
+            <td><strong>File Management</strong></td>
+            <td>Drag and drop. Projects with memory.</td>
+            <td>Folder structure. Full file visibility.</td>
+          </tr>
+          <tr>
+            <td><strong>What It's Best For</strong></td>
+            <td>Research, writing, brainstorming, building projects over time</td>
+            <td>Data processing, file automation, code execution, build tools</td>
+          </tr>
+          <tr>
+            <td><strong>Terminal Access</strong></td>
+            <td>Limited. Cowork runs commands, not a full shell.</td>
+            <td>Full terminal. VS Code shows output visually.</td>
+          </tr>
+          <tr>
+            <td><strong>Learning Curve</strong></td>
+            <td>Gentler. Most people get it in 5 minutes.</td>
+            <td>Slightly steeper. VS Code is unfamiliar to non-developers. Getting over that hump takes 15 minutes.</td>
+          </tr>
+          <tr>
+            <td><strong>Best Starting Point</strong></td>
+            <td>If you've never used Claude before</td>
+            <td>If you're comfortable with file systems and want more power</td>
+          </tr>
+        </table>
+
+        <h3>Decision Tree</h3>
+        <div class="step-card highlighted">
+          <h4>Start with Cowork if...</h4>
+          <p>You want to ease into AI-assisted work. You're mainly writing, researching, or brainstorming. You like the idea of projects with built-in memory. You want the gentlest learning curve possible.</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <h4>Start with Claude Code if...</h4>
+          <p>You have specific files to process (CSVs, PDFs, databases). You want to set up automated workflows (Routines). You're comfortable with a folder structure. You like seeing the full picture (files and chat together).</p>
+        </div>
+
+        <div class="step-card highlighted">
+          <h4>Use Both If...</h4>
+          <p>You use Cowork for projects and knowledge work. You use Claude Code for data tasks and automation. They're complementary, not competing.</p>
+        </div>
+
+        <div class="info-box key">
+          <strong>Real Talk</strong>
+          You can use both. Use Cowork to write a strategy document. Use Code to process the data. Use Cowork to research. Use Code to build a tool. They're not exclusive. Many power users do exactly this.
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Claude Code 2.0 Guide by Steve Gustafson for non-coders and people intimidated by AI tools.</p>
+    <p>Updated April 2026. <a href="index.html">Back to all guides</a></p>
+  </div>
+
+</div>
+
+<button class="back-to-top" id="backToTopBtn">&uarr;</button>
+
+<script>
+  const accordions = document.querySelectorAll('.accordion');
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const stickyNav = document.getElementById('stickyNav');
+  const stickyProgress = document.getElementById('stickyProgress');
+  const backToTopBtn = document.getElementById('backToTopBtn');
+  const heroCtaBtn = document.getElementById('heroCtaBtn');
+
+  accordions.forEach((accordion, index) => {
+    const header = accordion.querySelector('.accordion-header');
+    const content = accordion.querySelector('.accordion-content');
+    const accordionId = index + 1;
+
+    header.addEventListener('click', () => {
+      const isOpen = content.classList.contains('open');
+
+      accordions.forEach(a => {
+        a.querySelector('.accordion-header').classList.remove('open');
+        a.querySelector('.accordion-content').classList.remove('open');
+      });
+
+      if (!isOpen) {
+        header.classList.add('open');
+        content.classList.add('open');
+        updateStickyNav(accordionId);
+      }
+    });
+  });
+
+  tocLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const accordionId = parseInt(link.getAttribute('data-accordion'));
+      openAccordion(accordionId);
+    });
+  });
+
+  heroCtaBtn.addEventListener('click', () => {
+    openAccordion(1);
+  });
+
+  function openAccordion(id) {
+    const accordion = document.getElementById(`accordion${id}`);
+    if (accordion) {
+      const header = accordion.querySelector('.accordion-header');
+      const content = accordion.querySelector('.accordion-content');
+
+      accordions.forEach(a => {
+        a.querySelector('.accordion-header').classList.remove('open');
+        a.querySelector('.accordion-content').classList.remove('open');
+      });
+
+      header.classList.add('open');
+      content.classList.add('open');
+      accordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      updateStickyNav(id);
+    }
+  }
+
+  function updateStickyNav(step) {
+    stickyProgress.textContent = `Step ${step} of 9`;
+  }
+
+  window.addEventListener('scroll', () => {
+    const scrollPos = window.scrollY;
+    if (scrollPos > 200) {
+      stickyNav.classList.add('visible');
+      backToTopBtn.classList.add('visible');
+    } else {
+      stickyNav.classList.remove('visible');
+      backToTopBtn.classList.remove('visible');
+    }
+
+    const accordionPositions = [];
+    accordions.forEach((accordion, index) => {
+      const rect = accordion.getBoundingClientRect();
+      accordionPositions.push({
+        index: index + 1,
+        distance: Math.abs(rect.top)
+      });
+    });
+
+    accordionPositions.sort((a, b) => a.distance - b.distance);
+    if (accordionPositions.length > 0) {
+      updateStickyNav(accordionPositions[0].index);
+    }
+  });
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
