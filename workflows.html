@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cowork in Action: Six Workflows That Work</title>
+<title>Cowork in Action: Seven Workflows That Work</title>
 <link rel="stylesheet" href="design-system.css">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -561,7 +561,7 @@
 <!-- STICKY NAV -->
 <div class="sticky-nav" id="stickyNav">
   <div class="sticky-nav-left">Cowork Cookbook</div>
-  <div class="sticky-nav-right"><span id="stickyProgress">Workflow 1 of 6</span></div>
+  <div class="sticky-nav-right"><span id="stickyProgress">Workflow 1 of 7</span></div>
 </div>
 
 <!-- RESOURCE NAV -->
@@ -574,6 +574,7 @@
     <a href="workflows.html" class="active">Cowork in Action</a>
     <a href="claude-code-2.html">Claude Code 2.0</a>
     <a href="claude-design.html">Claude Design</a>
+    <a href="claude-office.html">Claude in Office</a>
     <a href="people.html">People I Learn From</a>
   </div>
 </nav>
@@ -595,7 +596,7 @@
   </div>
 
   <div class="toc">
-    <h2>Six Workflows</h2>
+    <h2>Seven Workflows</h2>
     <div class="toc-grid">
       <a class="toc-item toc-link" data-accordion="1"><span class="toc-num">1</span> The 6 AM Dispatch</a>
       <a class="toc-item toc-link" data-accordion="2"><span class="toc-num">2</span> The Essential Three</a>
@@ -603,6 +604,7 @@
       <a class="toc-item toc-link" data-accordion="4"><span class="toc-num">4</span> Deep Research Engine</a>
       <a class="toc-item toc-link" data-accordion="5"><span class="toc-num">5</span> CSV to Dashboard</a>
       <a class="toc-item toc-link" data-accordion="6"><span class="toc-num">6</span> The AI Chief of Staff</a>
+      <a class="toc-item toc-link" data-accordion="7"><span class="toc-num">7</span> Spreadsheet → Board Deck</a>
     </div>
   </div>
 
@@ -617,7 +619,7 @@
         <div class="accordion-subtitle">Queue 5 tasks from your phone before breakfast. Review finished work over coffee.</div>
       </div>
       <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 1 of 6</div>
+      <div class="accordion-progress">Workflow 1 of 7</div>
     </button>
     <div class="accordion-content open">
       <div class="accordion-body">
@@ -681,7 +683,7 @@
         <div class="accordion-subtitle">Three automated tasks that cover 80% of your daily overhead.</div>
       </div>
       <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 2 of 6</div>
+      <div class="accordion-progress">Workflow 2 of 7</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -758,7 +760,7 @@
         <div class="accordion-subtitle">Turn raw briefs into polished reports every time.</div>
       </div>
       <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 3 of 6</div>
+      <div class="accordion-progress">Workflow 3 of 7</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -811,7 +813,7 @@
         <div class="accordion-subtitle">Verified, citation-rich intelligence on any person, company, or market.</div>
       </div>
       <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 4 of 6</div>
+      <div class="accordion-progress">Workflow 4 of 7</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -903,6 +905,7 @@
   </div>
 
   <!-- WORKFLOW 5: CSV TO DASHBOARD -->
+  <span id="csv-dashboard" class="anchor-offset"></span>
   <div class="accordion" id="accordion5">
     <button class="accordion-header">
       <div class="accordion-badge">5</div>
@@ -912,7 +915,7 @@
         <div class="accordion-subtitle">Turn any spreadsheet into an interactive dashboard without code.</div>
       </div>
       <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 5 of 6</div>
+      <div class="accordion-progress">Workflow 5 of 7</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -952,6 +955,24 @@
     </div>
   </div>
 
+  <!-- TOOL SELECTION MATRIX -->
+  <span id="tool-matrix" class="anchor-offset"></span>
+  <div style="padding: 40px 0; border-bottom: 1px solid var(--border);">
+    <h3 style="font-size: 24px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px;">Which Tool, When</h3>
+    <p style="color: var(--text-muted); margin-bottom: 4px;">Claude can touch a spreadsheet or a deck several different ways. Reaching for the wrong one wastes time. Use this map — and see the full <a href="claude-office.html">Claude in Office</a> guide for the why behind each.</p>
+    <table class="compare-table">
+      <tr><th>You want to…</th><th>Use</th><th>Why this one</th></tr>
+      <tr><td>Edit a live workbook / model that already exists</td><td>Claude in Excel (add-in)</td><td>Only this edits real cells and traces dependencies in your open file.</td></tr>
+      <tr><td>Generate a fresh, formatted workbook from data or a brief</td><td>Cowork <code>xlsx</code> skill</td><td>Builds a new .xlsx from scratch with formulas and styling — no add-in needed.</td></tr>
+      <tr><td>Edit / restyle an existing deck slide-by-slide</td><td>Claude in PowerPoint (add-in)</td><td>Works inside your template; keeps layouts and master styles intact.</td></tr>
+      <tr><td>Build a new deck from data, with a narrative</td><td>Cowork <code>pptx</code> / <code>exec-deck</code> skill</td><td>Generates a full .pptx from a spreadsheet; the skill bakes in the blueprint→polish method.</td></tr>
+      <tr><td>A shareable, interactive view of a dataset</td><td><a href="#csv-dashboard">CSV → HTML dashboard</a></td><td>One self-contained HTML file with filters and charts — opens in any browser.</td></tr>
+      <tr><td>A designed, on-brand deck or page</td><td><a href="claude-design.html">Claude Design</a></td><td>Image-led visual polish and working code — when look-and-feel is the point.</td></tr>
+      <tr><td>A finished invoice / report / receipt to send</td><td>PDF agent / <code>invoice-pdf</code> skill</td><td>Layout, totals, and structure handled; returns a shareable PDF.</td></tr>
+    </table>
+    <div class="info-box tip" style="margin-top: 8px;"><strong>Rule of Thumb</strong>Editing something that exists → the Office add-in. Generating something new → a Cowork skill. Sharing a view → a dashboard. Making it look designed → Claude Design.</div>
+  </div>
+
   <!-- WORKFLOW 6: THE AI CHIEF OF STAFF -->
   <span id="chief-of-staff" class="anchor-offset"></span>
   <div class="accordion" id="accordion6">
@@ -963,7 +984,7 @@
         <div class="accordion-subtitle">The full system — from three tasks to a personalized operating layer.</div>
       </div>
       <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 6 of 6</div>
+      <div class="accordion-progress">Workflow 6 of 7</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -1065,10 +1086,77 @@
     </div>
   </div>
 
+  <!-- WORKFLOW 7: SPREADSHEET TO BOARD DECK -->
+  <span id="spreadsheet-to-deck" class="anchor-offset"></span>
+  <div class="accordion" id="accordion7">
+    <button class="accordion-header">
+      <div class="accordion-badge">7</div>
+      <div>
+        <div class="accordion-label">Workflow 7</div>
+        <div class="accordion-title">Spreadsheet → Board Deck</div>
+        <div class="accordion-subtitle">Turn a messy Excel into a board-ready deck — without exporting a single chart.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Workflow 7 of 7</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+
+        <h3>Who This Is For</h3>
+        <p>Founder building the board update. Consultant turning a model into a client readout. Anyone who has the numbers and needs a deck that tells the story, not a wall of pasted charts.</p>
+
+        <h3>The Setup</h3>
+        <div class="step-card">
+          <h4>Source Data File</h4>
+          <p>Drop the source .xlsx or .csv into the project folder — or open it directly with the Claude PowerPoint add-in.</p>
+        </div>
+        <div class="step-card">
+          <h4>Brand Template + Reference Deck</h4>
+          <p>Add a brand template (.pptx) and one strong past deck as a reference so Claude matches your house style.</p>
+        </div>
+        <div class="step-card">
+          <h4>Optional Project Note</h4>
+          <p>"Board audience. Max 12 slides. Every slide scannable in five seconds." A one-line brief sharpens every step that follows.</p>
+        </div>
+
+        <h3>The Prompts — Run in Order</h3>
+
+        <div class="code-block">Read the data file in my project folder. Act as a presentation consultant. Create a blueprint: objective, audience, the single key message, and the recommended number of slides. Don't build anything yet.</div>
+
+        <div class="code-block">Create a slide-by-slide structure — titles plus the purpose of each slide. Sequence it as a narrative: context → key insights → why they matter → recommended actions.</div>
+
+        <div class="code-block">Generate the deck as a .pptx using my brand template. Pull the real numbers from the data file. One chart per slide max, each tied to the slide's point.</div>
+
+        <div class="code-block">Final pass: reduce text, sharpen every headline into a claim, and make each slide scannable in five seconds.</div>
+
+        <h3>What Claude Produces</h3>
+        <p>A branded .pptx where the deck has an argument, the charts are sourced from your actual data, and the headlines state conclusions instead of labeling axes. A first draft you'd edit, not rebuild.</p>
+
+        <div class="info-box key">
+          <strong>Why It Works</strong>
+          The blueprint forces a key message before a single slide exists — which is exactly the step that separates an analyst's deck from an "AI deck." Pulling numbers straight from the file kills copy-paste errors. The five-second pass does the tightening you'd otherwise do at midnight.
+        </div>
+
+        <div class="info-box tip">
+          <strong>Make It Yours</strong>
+          Swap "board" for investor, client, or all-hands and the structure adapts. Point it at a monthly export and pair with a scheduled task for a deck that rebuilds itself each cycle.
+        </div>
+
+        <div class="info-box levelup">
+          <strong>Level Up: Build the exec-deck Skill</strong>
+          If you do this monthly, encode it. Tell Claude: <em>"Build me a skill called 'exec-deck' that turns a spreadsheet into a board-ready deck using the blueprint → narrative → in-place generate → story → executive-polish method. Bake in my template, my slide structure, and the five-second-scan check. Ask me objective and audience first."</em> Then "run exec-deck on Q2 numbers" is the whole prompt. New to skills? See <a href="level-2.html">Cowork Advanced</a>, Section 1.
+        </div>
+
+        <p style="margin-top: 24px; font-size: 13px; color: var(--text-dim);">Method adapted from the Claude &times; Office playbook (Guillermo Flor, PMF) &bull; structured by Steve Gustafson</p>
+
+      </div>
+    </div>
+  </div>
+
   <!-- FINAL CTA -->
   <div class="final-cta">
     <h2>Pick One. Start Today.</h2>
-    <p>You don't need all six. Pick the workflow closest to your daily pain. Set it up. Run it for a week. Then come back for the next one.</p>
+    <p>You don't need all seven. Pick the workflow closest to your daily pain. Set it up. Run it for a week. Then come back for the next one.</p>
     <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px;">
       <a href="beginner.html" class="hero-cta" style="background: var(--orange); color: #000;">&larr; Cowork Beginner</a>
       <a href="level-2.html" class="hero-cta" style="background: var(--blue); color: #fff;">Cowork Advanced &rarr;</a>
@@ -1118,7 +1206,7 @@
           currentWorkflow = index + 1;
         }
       });
-      document.getElementById('stickyProgress').textContent = `Workflow ${currentWorkflow} of 6`;
+      document.getElementById('stickyProgress').textContent = `Workflow ${currentWorkflow} of 7`;
     } else {
       stickyNav.classList.remove('visible');
     }
