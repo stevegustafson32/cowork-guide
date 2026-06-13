@@ -184,3 +184,11 @@ code, pre, .mono {
 button, a {
   transition: all 180ms ease;
 }
+
+/* ─── Path prev/next (added in UX overhaul) ─── */
+.path-nav { max-width: 800px; margin: 0 auto; padding: 36px 24px 4px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.path-nav a { flex: 1 1 220px; display: flex; flex-direction: column; gap: 4px; padding: 16px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; color: var(--text); text-decoration: none; }
+.path-nav a:hover { border-color: var(--accent); background: var(--surface-2); text-decoration: none; }
+.path-nav a.next { text-align: right; align-items: flex-end; }
+.path-nav .pn-label { font-size: 12px; color: var(--accent); font-weight: 600; letter-spacing: 0.04em; }
+.path-nav .pn-title { font-size: 16px; font-weight: 600; }

@@ -34,7 +34,7 @@
     --border: #333;
     --text: #e8e8e8;
     --text-muted: #999;
-    --text-dim: #8e8e8e;
+    --text-dim: #a0a0a0;
     --accent: #5b9bd5;
     --accent-light: #7db0e0;
     --accent-dim: rgba(91,155,213,0.15);
@@ -154,6 +154,14 @@
   .section ul { padding-left: 22px; margin: 12px 0; }
   .section li { margin: 8px 0; color: var(--text); }
 
+  /* IN-PAGE TOC */
+  .office-toc { padding: 40px 0 4px; }
+  .office-toc-title { display: block; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+  .office-toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+  .office-toc-grid a { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 14px; font-weight: 500; }
+  .office-toc-grid a:hover { border-color: var(--accent); background: var(--surface-2); text-decoration: none; }
+  .office-toc-grid a span { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 6px; background: var(--accent-dim); color: var(--accent); font-size: 12px; font-weight: 700; flex-shrink: 0; }
+
   /* CARD GRID */
   .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
   .step-card {
@@ -270,8 +278,22 @@
 
 <div class="container">
 
+  <nav class="office-toc" aria-label="On this page">
+    <span class="office-toc-title">Seven sections</span>
+    <div class="office-toc-grid">
+      <a href="#changed"><span>1</span> What Changed</a>
+      <a href="#setup"><span>2</span> Setup</a>
+      <a href="#excel"><span>3</span> The Excel Agent</a>
+      <a href="#powerpoint"><span>4</span> The PowerPoint Agent</a>
+      <a href="#pdf"><span>5</span> The PDF Agent</a>
+      <a href="#which-tool"><span>6</span> Which Tool, When</a>
+      <a href="#limits"><span>7</span> Limits &amp; Level-Up</a>
+    </div>
+  </nav>
+
+
   <!-- SECTION 1 -->
-  <section class="section">
+  <section class="section" id="changed">
     <div class="sec-kicker">Section 1 — What Actually Changed</div>
     <h2>From "AI that makes a file" to "AI that works in your file"</h2>
     <p class="sub">The distinction is the whole story.</p>
@@ -284,7 +306,7 @@
   </section>
 
   <!-- SECTION 2 -->
-  <section class="section">
+  <section class="section" id="setup">
     <div class="sec-kicker">Section 2 — Setup (5 Minutes)</div>
     <h2>Get Claude running inside Office</h2>
     <p>Claude lives in Microsoft Excel and PowerPoint through Anthropic's official add-ins — a sidebar, not a separate chat window.</p>
@@ -299,7 +321,7 @@
   </section>
 
   <!-- SECTION 3 -->
-  <section class="section">
+  <section class="section" id="excel">
     <div class="sec-kicker">Section 3 — The Excel Agent</div>
     <h2>Ten minutes of work in one prompt</h2>
     <p>Four jobs the Excel agent does well. Click a cell, then ask.</p>
@@ -316,7 +338,7 @@
   </section>
 
   <!-- SECTION 4 -->
-  <section class="section">
+  <section class="section" id="powerpoint">
     <div class="sec-kicker">Section 4 — The PowerPoint Agent</div>
     <h2>Build the deck the way a consultant would</h2>
     <p>Most AI deck tools treat slides as a text problem: generate bullets, export, clean up by hand. The Office agent reasons about why the deck exists and what story the data tells, then builds real slides in your template. The trick is to make it think before it designs. Run these five prompts in order.</p>
@@ -348,7 +370,7 @@
   </section>
 
   <!-- SECTION 5 -->
-  <section class="section">
+  <section class="section" id="pdf">
     <div class="sec-kicker">Section 5 — The PDF Agent</div>
     <h2>Kill the document busywork</h2>
     <p>PDFs are the end state of work — invoices, receipts, reports, statements — and generating them used to mean templates, converters, or manual formatting. Now you describe the document and Claude builds the layout, tables, totals, and structure, then returns a finished PDF.</p>
@@ -359,7 +381,7 @@
   </section>
 
   <!-- SECTION 6 -->
-  <section class="section">
+  <section class="section" id="which-tool">
     <div class="sec-kicker">Section 6 — Which Tool, When</div>
     <h2>Four overlapping tools. One decision.</h2>
     <p>This is the part nobody maps. Claude can touch a spreadsheet or a deck four different ways, and reaching for the wrong one wastes time. Use this:</p>
@@ -380,7 +402,7 @@
   </section>
 
   <!-- SECTION 7 -->
-  <section class="section">
+  <section class="section" id="limits">
     <div class="sec-kicker">Section 7 — Limits, and the Level-Up</div>
     <h2>Know the edges. Then make it repeatable.</h2>
     <div class="info-box warning">
@@ -403,6 +425,11 @@
 </div>
 
 <!-- FOOTER -->
+<nav class="path-nav" aria-label="Guide navigation">
+  <a class="prev" href="claude-design.html"><span class="pn-label">&larr; Previous</span><span class="pn-title">Claude Design</span></a>
+  <a class="next" href="index.html"><span class="pn-label">Next &rarr;</span><span class="pn-title">All Seven Guides</span></a>
+</nav>
+
 <div class="footer">
   <p><strong>Sources &amp; further reading:</strong> Anthropic docs (Claude for Excel / PowerPoint add-ins, current pricing &amp; model). Ethan Mollick on the Excel agent (X, Sep 2025). Guillermo Flor / Product–Market Fit, "Claude × Excel, PowerPoint &amp; PDF Playbook" (Feb 2026).</p>
   <p style="margin-top: 12px;">Steve's AI Guide · written independently, no sponsors · <a href="https://www.linkedin.com/in/steve-j-gustafson/" target="_blank">Steve on LinkedIn</a></p>
