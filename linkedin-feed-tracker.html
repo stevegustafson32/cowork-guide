@@ -170,7 +170,7 @@
 
 <!-- Hero -->
 <div class="hero">
-  <div class="badge">LinkedIn Feed Tracker &mdash; Cowork Plugin</div>
+  <div class="badge">LinkedIn Feed Tracker, Cowork Plugin</div>
   <h1>See what your network is <em>really</em> talking about.</h1>
   <p class="sub">Collect every post from your LinkedIn connections. Claude does the rest: finds trends, spots content gaps, tracks your own post performance, and creates weekly intelligence reports. One setup file. Then just ask questions.</p>
   <button class="cta" onclick="document.getElementById('s2').scrollIntoView({behavior:'smooth'})">Get Started</button>
@@ -208,7 +208,7 @@
         <div class="scraper-grid">
           <div class="scraper-card">
             <h4>Feed Collector</h4>
-            <p>Scrolls your LinkedIn home feed and captures every post&mdash;author, content, engagement counts, timestamps. Deduplicates automatically.</p>
+            <p>Scrolls your LinkedIn home feed and captures every post, author, content, engagement counts, timestamps. Deduplicates automatically.</p>
             <div class="freq">Runs nightly</div>
           </div>
           <div class="scraper-card">
@@ -223,7 +223,7 @@
           </div>
           <div class="scraper-card">
             <h4>Own Post Tracker</h4>
-            <p>Scrapes your own posts' performance&mdash;likes, comments, reposts&mdash;so you can see what's working and track growth over time.</p>
+            <p>Scrapes your own posts' performance, likes, comments, reposts, so you can see what's working and track growth over time.</p>
             <div class="freq">Runs nightly</div>
           </div>
         </div>
@@ -238,7 +238,7 @@
           <div class="feature-card">
             <div class="icon">ð¤</div>
             <h4>Claude Analyzes</h4>
-            <p>Open Cowork and ask anything. Claude queries your database, finds trends, generates dashboards, and writes reports&mdash;all from your own data.</p>
+            <p>Open Cowork and ask anything. Claude queries your database, finds trends, generates dashboards, and writes reports, all from your own data.</p>
           </div>
         </div>
 
@@ -285,7 +285,7 @@
 
         <div class="info-box key">
           <div class="box-label">Node.js 20 is handled automatically</div>
-          <p>The setup files install and configure Node.js 20 via <code>nvm</code> if it's not already on your machine. You don't need to install it manually. A key dependency (<code>better-sqlite3</code>) requires Node 20 specifically&mdash;not 22&mdash;on Apple Silicon Macs.</p>
+          <p>The setup files install and configure Node.js 20 via <code>nvm</code> if it's not already on your machine. You don't need to install it manually. A key dependency (<code>better-sqlite3</code>) requires Node 20 specifically, not 22, on Apple Silicon Macs.</p>
         </div>
 
         <h3>Setup (4 double-clicks)</h3>
@@ -296,21 +296,21 @@
             <div style="background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0;">1</div>
             <div>
               <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Login to LinkedIn.command</div>
-              <div style="color: var(--text-dim); font-size: 14px;">Opens a browser window. Log in to LinkedIn normally. The tool saves your session locally so future runs are headless. If LinkedIn asks for a verification code, complete it in the browser&mdash;same as normal.</div>
+              <div style="color: var(--text-dim); font-size: 14px;">Opens a browser window. Log in to LinkedIn normally. The tool saves your session locally so future runs are headless. If LinkedIn asks for a verification code, complete it in the browser, same as normal.</div>
             </div>
           </div>
           <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
             <div style="background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0;">2</div>
             <div>
               <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Sync Connections.command</div>
-              <div style="color: var(--text-dim); font-size: 14px;">Downloads your full LinkedIn connections list. This powers the profile-scraping feature&mdash;it rotates through 1/7 of your connections every night so everyone gets visited weekly.</div>
+              <div style="color: var(--text-dim); font-size: 14px;">Downloads your full LinkedIn connections list. This powers the profile-scraping feature, it rotates through 1/7 of your connections every night so everyone gets visited weekly.</div>
             </div>
           </div>
           <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
             <div style="background: var(--accent); color: white; width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; flex-shrink: 0;">3</div>
             <div>
               <div style="font-weight: 700; color: var(--text-bright); margin-bottom: 4px;">Collect Now.command</div>
-              <div style="color: var(--text-dim); font-size: 14px;">Runs your first feed collection. Scrolls your LinkedIn feed, parses every post, and saves them to the local database. Takes 1&ndash;2 minutes.</div>
+              <div style="color: var(--text-dim); font-size: 14px;">Runs your first feed collection. Scrolls your LinkedIn feed, parses every post, and saves them to the local database. Takes 1-2 minutes.</div>
             </div>
           </div>
           <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; gap: 16px; align-items: flex-start;">
@@ -328,7 +328,7 @@
         </div>
 
         <h3>Why Step 4 matters</h3>
-        <p>Node.js + SQLite can't run reliably on iCloud Drive&mdash;file locking and sync cause crashes. Step 4 solves this by copying the collector to your <strong>local disk</strong> (<code>~/.linkedin-feed-tracker/</code>) and running from there. After each nightly collection, the script copies the database back to iCloud so Cowork can read it.</p>
+        <p>Node.js + SQLite can't run reliably on iCloud Drive, file locking and sync cause crashes. Step 4 solves this by copying the collector to your <strong>local disk</strong> (<code>~/.linkedin-feed-tracker/</code>) and running from there. After each nightly collection, the script copies the database back to iCloud so Cowork can read it.</p>
 
         <div class="info-box key">
           <div class="box-label">How the nightly pipeline works</div>
@@ -413,7 +413,7 @@
               <div style="font-size: 12px;"><span style="display: inline-block; width: 8px; height: 8px; background: #8b5cf6; border-radius: 50%; margin-right: 6px;"></span><span style="color: #e8e8ed;">Article</span> <span style="color: #8b8d98; float: right;">3%</span></div>
             </div>
           </div>
-          <div style="text-align: center; margin-top: 8px; font-size: 11px; color: #8b8d98;">Example dashboard &mdash; yours is generated live from your data</div>
+          <div style="text-align: center; margin-top: 8px; font-size: 11px; color: #8b8d98;">Example dashboard, yours is generated live from your data</div>
         </div>
 
         <h3>Weekly Intelligence Report</h3>
@@ -476,7 +476,7 @@
               <div style="font-size: 11px;"><span style="color: #8b5cf6; font-weight: 700;">3</span> <span style="color: #e8e8ed; font-weight: 600;">Hiring â join the team</span><br/><span style="color: #8b8d98;">11 likes &middot; 0 comments</span></div>
             </div>
           </div>
-          <div style="text-align: center; margin-top: 8px; font-size: 11px; color: #999;">Example own-post metrics &mdash; yours are generated live from your data</div>
+          <div style="text-align: center; margin-top: 8px; font-size: 11px; color: #999;">Example own-post metrics, yours are generated live from your data</div>
         </div>
 
         <h3>Topic Clusters</h3>
@@ -531,12 +531,12 @@
 
         <div class="convo">
           <div class="msg user">How did my last post perform?</div>
-          <div class="msg claude">Your post about hiring challenges got 42 likes and 11 comments&mdash;that's 35% above your 30-day average. Comments were mostly from HR and recruiting connections. Your question-style hook worked well.</div>
+          <div class="msg claude">Your post about hiring challenges got 42 likes and 11 comments, that's 35% above your 30-day average. Comments were mostly from HR and recruiting connections. Your question-style hook worked well.</div>
         </div>
 
         <div class="convo">
           <div class="msg user">What's trending in HR and Employee Benefits?</div>
-          <div class="msg claude">Top posts in that cluster are about flexible work arrangements, mental health support, and equity compensation. Three of your connections in HR posted about benefits that improve retention&mdash;there might be an angle for you here.</div>
+          <div class="msg claude">Top posts in that cluster are about flexible work arrangements, mental health support, and equity compensation. Three of your connections in HR posted about benefits that improve retention, there might be an angle for you here.</div>
         </div>
 
         <div class="convo">
@@ -546,9 +546,9 @@
 
         <h3>You can also use slash commands</h3>
         <ul>
-          <li><code>/show-dashboard</code> &mdash; Generate and display your analytics dashboard</li>
-          <li><code>/collect-now</code> &mdash; Trigger a manual data collection</li>
-          <li><code>/health-check</code> &mdash; Check system health (database, collection status, errors)</li>
+          <li><code>/show-dashboard</code>, Generate and display your analytics dashboard</li>
+          <li><code>/collect-now</code>, Trigger a manual data collection</li>
+          <li><code>/health-check</code>, Check system health (database, collection status, errors)</li>
         </ul>
 
         <h3>Other things to ask</h3>
@@ -595,11 +595,11 @@
         </ul>
 
         <h3>What about LinkedIn?</h3>
-        <p>The scraper uses a real browser (Playwright with Chromium) and mimics normal browsing. LinkedIn sees standard page visits, not API calls or bulk requests. Your credentials stay in your local browser profile&mdash;they're never transmitted anywhere.</p>
+        <p>The scraper uses a real browser (Playwright with Chromium) and mimics normal browsing. LinkedIn sees standard page visits, not API calls or bulk requests. Your credentials stay in your local browser profile, they're never transmitted anywhere.</p>
 
         <div class="info-box key">
           <div class="box-label">You're in control</div>
-          <p>Delete the database anytime. Pause the nightly schedule anytime. The plugin is open-source&mdash;you can review every line of code on GitHub.</p>
+          <p>Delete the database anytime. Pause the nightly schedule anytime. The plugin is open-source, you can review every line of code on GitHub.</p>
         </div>
       </div>
     </div>
@@ -631,19 +631,19 @@
         <p>Every night at 10 PM automatically via a macOS LaunchAgent. The nightly run syncs code to local disk, collects your feed, visits a batch of connection profiles, and copies the database back to iCloud. If your Mac is asleep at 10 PM, macOS catches up when it wakes.</p>
 
         <h3>What if I have thousands of connections?</h3>
-        <p>The connection sync handles networks up to 5,000+ using a 4-strategy fallback system. For ongoing monitoring, the profile collector uses a 7-day rotation&mdash;it visits ~1/7 of your connections each night so everyone gets covered weekly.</p>
+        <p>The connection sync handles networks up to 5,000+ using a 4-strategy fallback system. For ongoing monitoring, the profile collector uses a 7-day rotation, it visits ~1/7 of your connections each night so everyone gets covered weekly.</p>
 
         <h3>Can I trigger a collection manually?</h3>
         <p>Yes. Either double-click <code>Collect Now.command</code> in the Setup folder, run <code>bash ~/.linkedin-feed-tracker/nightly.sh</code> in Terminal, or tell Claude <code>/collect-now</code> inside Cowork.</p>
 
         <h3>Can I export my data?</h3>
-        <p>Yes. The database is a standard SQLite file&mdash;you can query it with any SQLite tool. You can also ask Claude to generate reports as Word documents, CSVs, or dashboards you can share.</p>
+        <p>Yes. The database is a standard SQLite file, you can query it with any SQLite tool. You can also ask Claude to generate reports as Word documents, CSVs, or dashboards you can share.</p>
 
         <h3>Will this slow down my computer?</h3>
         <p>The scrapers run briefly (a few minutes) and then stop. Outside of collection windows, there's zero background load. The nightly schedule only triggers once at 10 PM.</p>
 
         <h3>Why does the collector run on local disk instead of iCloud?</h3>
-        <p>Node.js + SQLite can't run reliably on iCloud Drive&mdash;file locking and sync cause <code>EAGAIN</code> errors that crash the collector. Step 4 of setup solves this by copying the project to <code>~/.linkedin-feed-tracker/</code> (local disk), running the collector there, and copying <code>feeds.db</code> back to iCloud after each run so Cowork can read it.</p>
+        <p>Node.js + SQLite can't run reliably on iCloud Drive, file locking and sync cause <code>EAGAIN</code> errors that crash the collector. Step 4 of setup solves this by copying the project to <code>~/.linkedin-feed-tracker/</code> (local disk), running the collector there, and copying <code>feeds.db</code> back to iCloud after each run so Cowork can read it.</p>
 
         <h3>Where is my data stored?</h3>
         <p>The primary database lives at <code>~/.linkedin-feed-tracker/app/data/feeds.db</code> on your local disk. After each nightly run, it's copied to two iCloud locations: your LinkedIn Feed Tracker workspace folder and the CLAUDE OUTPUTS backup. Cowork reads from iCloud. Your browser session (LinkedIn cookies) is at <code>~/.linkedin-feed-tracker/browser-profile/</code>.</p>
@@ -652,19 +652,19 @@
         <p>Check today's log: open Terminal and run <code>cat ~/.linkedin-feed-tracker/logs/nightly-$(date +%Y-%m-%d).log</code>. Or run <code>launchctl list | grep com.lft</code> to confirm the LaunchAgent is loaded. You can also ask Claude <code>/health-check</code> inside Cowork.</p>
 
         <h3>How do I change the collection time?</h3>
-        <p>Edit <code>~/Library/LaunchAgents/com.lft.nightly.plist</code>&mdash;change the <code>Hour</code> (0&ndash;23) and <code>Minute</code> (0&ndash;59) values under <code>StartCalendarInterval</code>. Then reload: <code>launchctl unload ~/Library/LaunchAgents/com.lft.nightly.plist && launchctl load ~/Library/LaunchAgents/com.lft.nightly.plist</code></p>
+        <p>Edit <code>~/Library/LaunchAgents/com.lft.nightly.plist</code>, change the <code>Hour</code> (0-23) and <code>Minute</code> (0-59) values under <code>StartCalendarInterval</code>. Then reload: <code>launchctl unload ~/Library/LaunchAgents/com.lft.nightly.plist && launchctl load ~/Library/LaunchAgents/com.lft.nightly.plist</code></p>
 
         <h3>Why Node.js 20 and not 22?</h3>
-        <p>A key dependency (better-sqlite3) doesn't have a prebuilt binary for Node.js 22 on Apple Silicon Macs. The setup file handles this automatically&mdash;it installs Node 20 via nvm and sets it as your default. You don't need to manage versions yourself.</p>
+        <p>A key dependency (better-sqlite3) doesn't have a prebuilt binary for Node.js 22 on Apple Silicon Macs. The setup file handles this automatically, it installs Node 20 via nvm and sets it as your default. You don't need to manage versions yourself.</p>
 
         <h3>Does LinkedIn know I'm scraping?</h3>
-        <p>LinkedIn sees normal browser traffic. The plugin uses a real Chromium browser with your actual session&mdash;it's visiting pages the same way you would manually. There are no API calls or unusual request patterns.</p>
+        <p>LinkedIn sees normal browser traffic. The plugin uses a real Chromium browser with your actual session, it's visiting pages the same way you would manually. There are no API calls or unusual request patterns.</p>
 
         <h3>How much does this cost?</h3>
         <p>The plugin is free and open-source. You need a Cowork subscription for the Claude-powered analysis features, but that's your regular Anthropic subscription.</p>
 
         <h3>What if I get logged out of LinkedIn?</h3>
-        <p>Double-click <code>Login to LinkedIn.command</code> in the Setup folder to re-authenticate. Takes about 30 seconds. Sessions typically last 1&ndash;2 weeks.</p>
+        <p>Double-click <code>Login to LinkedIn.command</code> in the Setup folder to re-authenticate. Takes about 30 seconds. Sessions typically last 1-2 weeks.</p>
 
         <h3>What if the .command file won't open?</h3>
         <p>macOS blocks unsigned scripts by default. Right-click the file, select "Open," then click "Open" in the confirmation dialog. You only have to do this once per file.</p>
@@ -683,7 +683,7 @@
   <div style="margin-top: 32px; padding: 32px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); text-align: center;">
     <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--purple); font-weight: 700; margin-bottom: 8px;">Coming Soon</div>
     <h2 style="font-size: 22px; color: var(--text-bright); font-weight: 700;">This is Plugin 1 of 3.</h2>
-    <p style="color: var(--text-dim); margin-top: 12px; font-size: 15px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.6;">Two more plugins are in development that build on top of your data&mdash;turning network intelligence into content and predictions. More details soon.</p>
+    <p style="color: var(--text-dim); margin-top: 12px; font-size: 15px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.6;">Two more plugins are in development that build on top of your data, turning network intelligence into content and predictions. More details soon.</p>
   </div>
 
   <!-- CTA Section -->
