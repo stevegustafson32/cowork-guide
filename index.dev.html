@@ -602,6 +602,7 @@
 
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+  .tweaks-panel { color: var(--text) !important; }
 </style>
 </head>
 <body data-vibe="editorial">
@@ -1323,5 +1324,57 @@ Respond with ONLY valid JSON, nothing else:
 </script>
 
 <script src="search.js"></script>
+<!-- ─── TWEAKS ─── -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<div id="tweaks-mount"></div>
+<script type="text/babel">
+  const DEFAULTS = /*EDITMODE-BEGIN*/{
+    "vibe": "editorial",
+    "accent": "#d4956a",
+    "showCover": true
+  }/*EDITMODE-END*/;
+
+  function TweaksApp() {
+    const [tw, set] = window.useTweaks(DEFAULTS);
+    React.useEffect(() => {
+      document.body.setAttribute('data-vibe', tw.vibe);
+      document.documentElement.style.setProperty('--accent', tw.accent);
+      const hex = tw.accent.replace('#', '');
+      const r = parseInt(hex.slice(0,2), 16);
+      const g = parseInt(hex.slice(2,4), 16);
+      const b = parseInt(hex.slice(4,6), 16);
+      document.documentElement.style.setProperty('--accent-dim', `rgba(${r},${g},${b},0.15)`);
+      const cov = document.querySelector('.guide-cover');
+      if (cov) cov.style.display = tw.showCover && tw.vibe !== 'dense' ? '' : 'none';
+    }, [tw]);
+
+    return (
+      <window.TweaksPanel title="Tweaks">
+        <window.TweakSection title="Variation">
+          <window.TweakRadio label="Vibe" value={tw.vibe} onChange={v => set({vibe: v})}
+            options={[
+              {value: 'editorial', label: 'Editorial (serif, spacious)'},
+              {value: 'dense', label: 'Dense (sans, documentation)'},
+              {value: 'playful', label: 'Playful (soft, oversized)'}
+            ]} />
+        </window.TweakSection>
+        <window.TweakSection title="Theme">
+          <window.TweakColor label="Accent" value={tw.accent} onChange={v => set({accent: v})} />
+          <window.TweakToggle label="Show guide cover" value={tw.showCover} onChange={v => set({showCover: v})} />
+        </window.TweakSection>
+      </window.TweaksPanel>
+    );
+  }
+  function mountWhenReady() {
+    if (window.TweaksPanel && window.useTweaks) {
+      ReactDOM.createRoot(document.getElementById('tweaks-mount')).render(<TweaksApp />);
+    } else setTimeout(mountWhenReady, 50);
+  }
+  mountWhenReady();
+</script>
+
 </body>
 </html>

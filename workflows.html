@@ -3,7 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cowork in Action: Six Workflows That Work</title>
+<title>Claude in Action: Seven Workflows That Work</title>
+<meta name="description" content="Seven copy-paste Claude workflows Steve runs every week: the 6 AM Dispatch, deep research, CSV dashboards, and spreadsheet to board deck.">
+<link rel="canonical" href="https://stevesaiguide.com/workflows.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="alternate icon" href="/favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Steve's AI Guide">
+<meta property="og:title" content="Claude in Action: Seven Workflows That Work">
+<meta property="og:description" content="Seven copy-paste Claude workflows Steve runs every week: the 6 AM Dispatch, deep research, CSV dashboards, and spreadsheet to board deck.">
+<meta property="og:url" content="https://stevesaiguide.com/workflows.html">
+<meta property="og:image" content="https://stevesaiguide.com/assets/og-workflows.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Claude in Action: Seven Workflows That Work">
+<meta name="twitter:description" content="Seven copy-paste Claude workflows Steve runs every week: the 6 AM Dispatch, deep research, CSV dashboards, and spreadsheet to board deck.">
+<meta name="twitter:image" content="https://stevesaiguide.com/assets/og-workflows.png">
 <link rel="stylesheet" href="design-system.css">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -16,7 +34,7 @@
     --border: #333;
     --text: #e8e8e8;
     --text-muted: #999;
-    --text-dim: #8e8e8e;
+    --text-dim: #a0a0a0;
     --accent: #6ab88f;
     --accent-light: #88cfaa;
     --accent-dim: rgba(106,184,143,0.15);
@@ -560,8 +578,8 @@
 
 <!-- STICKY NAV -->
 <div class="sticky-nav" id="stickyNav">
-  <div class="sticky-nav-left">Cowork Cookbook</div>
-  <div class="sticky-nav-right"><span id="stickyProgress">Workflow 1 of 6</span></div>
+  <div class="sticky-nav-left">Claude in Action</div>
+  <div class="sticky-nav-right"><span id="stickyProgress">Workflow 1 of 7</span></div>
 </div>
 
 <!-- RESOURCE NAV -->
@@ -569,20 +587,21 @@
   <div class="resource-nav-brand">Steve's Resources</div>
   <div class="resource-nav-links">
     <a href="prompting.html">Prompting Guide</a>
-    <a href="beginner.html">Cowork Beginner</a>
-    <a href="level-2.html">Cowork Advanced</a>
-    <a href="workflows.html" class="active">Cowork in Action</a>
+    <a href="beginner.html">Claude Beginner</a>
+    <a href="level-2.html">Claude Advanced</a>
+    <a href="workflows.html" class="active">Claude in Action</a>
     <a href="claude-code-2.html">Claude Code 2.0</a>
     <a href="claude-design.html">Claude Design</a>
+    <a href="claude-office.html">Claude in Office</a>
     <a href="people.html">People I Learn From</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">LEVEL 3 — WORKFLOWS</div>
-  <h1>The Cowork <span>Cookbook</span></h1>
-  <p>Copy-paste prompts and complete setups from people who use Cowork every day. No theory — just what works.</p>
+  <div class="hero-badge">STEP 4 · REAL WORK</div>
+  <h1>Claude <span>in Action</span></h1>
+  <p>Copy-paste prompts and complete setups from people who use Cowork every day. No theory, just what works.</p>
   <button class="hero-cta" id="heroCtaBtn">Start with the first workflow ↓</button>
 </div>
 
@@ -591,11 +610,11 @@
 
   <div class="info-box warning" style="margin-bottom: 40px;">
     <strong>Before You Start</strong>
-    These workflows assume you've completed the <a href="beginner.html">Cowork Beginner</a> setup — or at minimum: Claude Desktop installed, a workspace folder selected, and Gmail + Calendar connected. If you haven't done that yet, <a href="beginner.html">start there</a> and come back.
+    These workflows assume you've completed the <a href="beginner.html">Claude Beginner</a> setup, or at minimum: Claude Desktop installed, a workspace folder selected, and Gmail + Calendar connected. If you haven't done that yet, <a href="beginner.html">start there</a> and come back.
   </div>
 
   <div class="toc">
-    <h2>Six Workflows</h2>
+    <h2>Seven Workflows</h2>
     <div class="toc-grid">
       <a class="toc-item toc-link" data-accordion="1"><span class="toc-num">1</span> The 6 AM Dispatch</a>
       <a class="toc-item toc-link" data-accordion="2"><span class="toc-num">2</span> The Essential Three</a>
@@ -603,6 +622,7 @@
       <a class="toc-item toc-link" data-accordion="4"><span class="toc-num">4</span> Deep Research Engine</a>
       <a class="toc-item toc-link" data-accordion="5"><span class="toc-num">5</span> CSV to Dashboard</a>
       <a class="toc-item toc-link" data-accordion="6"><span class="toc-num">6</span> The AI Chief of Staff</a>
+      <a class="toc-item toc-link" data-accordion="7"><span class="toc-num">7</span> Spreadsheet → Board Deck</a>
     </div>
   </div>
 
@@ -617,7 +637,7 @@
         <div class="accordion-subtitle">Queue 5 tasks from your phone before breakfast. Review finished work over coffee.</div>
       </div>
       <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 1 of 6</div>
+      <div class="accordion-progress">Workflow 1 of 7</div>
     </button>
     <div class="accordion-content open">
       <div class="accordion-body">
@@ -648,7 +668,7 @@
         <div class="code-block">Organize my Downloads folder. Segment [PROJECT] relevant files into that folder. Within the [PROJECT] folder, ensure you have relevant files categorized by customer and task.</div>
 
         <h3>What Claude Produces</h3>
-        <p>Prioritized email drafts ready to send. A content calendar in HTML with story ideas, sourced and themed. Files organized by project and task type — all before you sit down at your desk.</p>
+        <p>Prioritized email drafts ready to send. A content calendar in HTML with story ideas, sourced and themed. Files organized by project and task type, all before you sit down at your desk.</p>
 
         <div class="info-box key">
           <strong>Why It Works</strong>
@@ -662,7 +682,7 @@
 
         <div class="info-box levelup">
           <strong>Level Up: Turn This Into a Skill</strong>
-          If you're running this dispatch every morning, stop copy-pasting the prompt. Tell Claude: <em>"Build me a skill called 'morning-dispatch' that runs my 5 morning tasks. Read my current dispatch prompt and convert it into a reusable skill with my email rules, content platform, and folder structure baked in."</em> Once it's a skill, one sentence triggers the whole thing — and it gets smarter as your MEMORY.md grows. <span style="font-size: 13px; color: var(--text-dim);">New to skills? See <a href="level-2.html">Cowork Advanced</a>, Section 1. Scheduled tasks? Section 6.</span>
+          If you're running this dispatch every morning, stop copy-pasting the prompt. Tell Claude: <em>"Build me a skill called 'morning-dispatch' that runs my 5 morning tasks. Read my current dispatch prompt and convert it into a reusable skill with my email rules, content platform, and folder structure baked in."</em> Once it's a skill, one sentence triggers the whole thing, and it gets smarter as your MEMORY.md grows. <span style="font-size: 13px; color: var(--text-dim);">New to skills? See <a href="level-2.html">Claude Advanced</a>, Section 1. Scheduled tasks? Section 6.</span>
         </div>
 
         <p style="margin-top: 24px; font-size: 13px; color: var(--text-dim);">Inspired by Christian Pean MD, Techy Surgeon</p>
@@ -677,11 +697,11 @@
       <div class="accordion-badge">2</div>
       <div>
         <div class="accordion-label">Workflow 2</div>
-        <div class="accordion-title">The Essential Three — Scheduled Tasks Starter</div>
+        <div class="accordion-title">The Essential Three, Scheduled Tasks Starter</div>
         <div class="accordion-subtitle">Three automated tasks that cover 80% of your daily overhead.</div>
       </div>
       <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 2 of 6</div>
+      <div class="accordion-progress">Workflow 2 of 7</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -739,7 +759,7 @@
 
         <div class="info-box levelup">
           <strong>Level Up: Wrap Your Tasks in a Skill</strong>
-          You've got the scheduled tasks running — now make them smarter. Tell Claude: <em>"Look at my 3 scheduled tasks. Build a skill called 'daily-ops' that combines the briefing, meeting prep, and debrief into one system. Include my email priority rules, meeting types, and output preferences so I don't have to re-specify them."</em> A skill gives your scheduled tasks a shared brain — consistent formatting, your preferences baked in, and better outputs over time.
+          You've got the scheduled tasks running, now make them smarter. Tell Claude: <em>"Look at my 3 scheduled tasks. Build a skill called 'daily-ops' that combines the briefing, meeting prep, and debrief into one system. Include my email priority rules, meeting types, and output preferences so I don't have to re-specify them."</em> A skill gives your scheduled tasks a shared brain, consistent formatting, your preferences baked in, and better outputs over time.
         </div>
 
         <p style="margin-top: 24px; font-size: 13px; color: var(--text-dim);">Inspired by Christian Pean MD, Techy Surgeon</p>
@@ -758,7 +778,7 @@
         <div class="accordion-subtitle">Turn raw briefs into polished reports every time.</div>
       </div>
       <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 3 of 6</div>
+      <div class="accordion-progress">Workflow 3 of 7</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -791,7 +811,7 @@
 
         <div class="info-box levelup">
           <strong>Level Up: Build a Deliverable Skill</strong>
-          If you produce the same type of document more than twice, it should be a skill. Tell Claude: <em>"Build me a skill called 'client-report' that generates [DOCUMENT TYPE] from a brief. Read my template and the last 3 reports I produced. Bake in the structure, formatting rules, and quality checks. The skill should ask me clarifying questions before generating, just like a good junior analyst would."</em> Now one sentence — "run client-report for Acme" — produces a first draft that matches your standards.
+          If you produce the same type of document more than twice, it should be a skill. Tell Claude: <em>"Build me a skill called 'client-report' that generates [DOCUMENT TYPE] from a brief. Read my template and the last 3 reports I produced. Bake in the structure, formatting rules, and quality checks. The skill should ask me clarifying questions before generating, just like a good junior analyst would."</em> Now one sentence, "run client-report for Acme", produces a first draft that matches your standards.
         </div>
 
         <p style="margin-top: 24px; font-size: 13px; color: var(--text-dim);">Inspired by Ruben Hassid, How to AI</p>
@@ -811,7 +831,7 @@
         <div class="accordion-subtitle">Verified, citation-rich intelligence on any person, company, or market.</div>
       </div>
       <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 4 of 6</div>
+      <div class="accordion-progress">Workflow 4 of 7</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -820,7 +840,7 @@
         <p>Founder prepping for investor meetings. Analyst sizing a market. Sales rep researching accounts. Anyone who needs research they can actually trust.</p>
 
         <h3>What Makes This Different</h3>
-        <p>Most people ask Claude to 'research X' and get a generic summary with no sources. This approach uses a recursive research loop — the same methodology behind dedicated research skills that produce 15-30 page cited dossiers. The difference is structure: Claude decomposes the research into sub-questions, probes sources in priority order, tracks confidence on every claim, and separates evidence from inference.</p>
+        <p>Most people ask Claude to 'research X' and get a generic summary with no sources. This approach uses a recursive research loop, the same methodology behind dedicated research skills that produce 15-30 page cited dossiers. The difference is structure: Claude decomposes the research into sub-questions, probes sources in priority order, tracks confidence on every claim, and separates evidence from inference.</p>
 
         <h3>The Research Loop</h3>
 
@@ -879,7 +899,7 @@
         <div class="code-block">Research the [INDUSTRY] market. Probe industry associations, research firms, company filings, government sources, and trade press. Decompose into: market sizing (TAM/SAM/SOM), value chain, competitive landscape, customer segments, technology trends, regulation, risks, and strategic opportunities. Present conflicting estimates as ranges. Cite every figure. Output as a Word doc with a 'So What' section at the end.</div>
 
         <h3>What Claude Produces</h3>
-        <p>A 10-25 page Word document with inline citations, confidence scores, a source pack (12-25 annotated links), comparison tables, and an executive summary. The output quality depends on the prompt structure — the recursive loop and evidence rules are what separate this from a generic 'research X' request.</p>
+        <p>A 10-25 page Word document with inline citations, confidence scores, a source pack (12-25 annotated links), comparison tables, and an executive summary. The output quality depends on the prompt structure, the recursive loop and evidence rules are what separate this from a generic 'research X' request.</p>
 
         <div class="info-box key">
           <strong>Why It Works</strong>
@@ -888,12 +908,12 @@
 
         <div class="info-box tip">
           <strong>Make It Yours</strong>
-          These prompts are starting points — customize the decomposition list for your domain. Add 'focus on [SPECIFIC ANGLE]' to narrow the research. Drop existing research into the project folder for Claude to build on. For recurring research (weekly competitive intel, regulatory monitoring), convert to a scheduled task. Install the person-research, company-research, or industry-research skills for the full automated version.
+          These prompts are starting points, customize the decomposition list for your domain. Add 'focus on [SPECIFIC ANGLE]' to narrow the research. Drop existing research into the project folder for Claude to build on. For recurring research (weekly competitive intel, regulatory monitoring), convert to a scheduled task. Install the person-research, company-research, or industry-research skills for the full automated version.
         </div>
 
         <div class="info-box levelup">
           <strong>Level Up: Build Your Own Research Skill</strong>
-          The prompts above are the manual version. The real power is building a research skill that encodes YOUR methodology permanently. Tell Claude: <em>"Build me a research skill using this framework: probe sources in priority order (official site → social → reviews → press), decompose each topic into 3-6 sub-questions, recurse through each sub-question with citations and confidence scoring (High / Medium / Unconfirmed), then synthesize into a final report. Separate evidence from inference. Include a source pack with 15-25 annotated links. Output as a .docx with an executive brief on page one."</em> Once built, saying "research [person/company/market]" triggers a 15-30 page cited dossier — no prompt engineering required. For recurring intel (weekly competitor scans, regulatory monitoring), pair the skill with a scheduled task.
+          The prompts above are the manual version. The real power is building a research skill that encodes YOUR methodology permanently. Tell Claude: <em>"Build me a research skill using this framework: probe sources in priority order (official site → social → reviews → press), decompose each topic into 3-6 sub-questions, recurse through each sub-question with citations and confidence scoring (High / Medium / Unconfirmed), then synthesize into a final report. Separate evidence from inference. Include a source pack with 15-25 annotated links. Output as a .docx with an executive brief on page one."</em> Once built, saying "research [person/company/market]" triggers a 15-30 page cited dossier, no prompt engineering required. For recurring intel (weekly competitor scans, regulatory monitoring), pair the skill with a scheduled task.
         </div>
 
         <p style="margin-top: 24px; font-size: 13px; color: var(--text-dim);">Research methodology by Steve Gustafson</p>
@@ -903,6 +923,7 @@
   </div>
 
   <!-- WORKFLOW 5: CSV TO DASHBOARD -->
+  <span id="csv-dashboard" class="anchor-offset"></span>
   <div class="accordion" id="accordion5">
     <button class="accordion-header">
       <div class="accordion-badge">5</div>
@@ -912,7 +933,7 @@
         <div class="accordion-subtitle">Turn any spreadsheet into an interactive dashboard without code.</div>
       </div>
       <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 5 of 6</div>
+      <div class="accordion-progress">Workflow 5 of 7</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -945,11 +966,29 @@
 
         <div class="info-box levelup">
           <strong>Level Up: Make This a Scheduled Task</strong>
-          If your data updates regularly (weekly exports, monthly reports), stop doing this manually. Tell Claude: <em>"Create a scheduled task that runs every Monday at 9 AM. It should read the latest CSV in my [PROJECT] folder, generate an updated dashboard with the same layout and filters as last time, and save it as an HTML file with this week's date. Compare to last week's numbers and flag anything that changed more than 10%."</em> Now your dashboard rebuilds itself — and you get anomaly alerts for free.
+          If your data updates regularly (weekly exports, monthly reports), stop doing this manually. Tell Claude: <em>"Create a scheduled task that runs every Monday at 9 AM. It should read the latest CSV in my [PROJECT] folder, generate an updated dashboard with the same layout and filters as last time, and save it as an HTML file with this week's date. Compare to last week's numbers and flag anything that changed more than 10%."</em> Now your dashboard rebuilds itself, and you get anomaly alerts for free.
         </div>
 
       </div>
     </div>
+  </div>
+
+  <!-- TOOL SELECTION MATRIX -->
+  <span id="tool-matrix" class="anchor-offset"></span>
+  <div style="padding: 40px 0; border-bottom: 1px solid var(--border);">
+    <h3 style="font-size: 24px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px;">Which Tool, When</h3>
+    <p style="color: var(--text-muted); margin-bottom: 4px;">Claude can touch a spreadsheet or a deck several different ways. Reaching for the wrong one wastes time. Use this map, and see the full <a href="claude-office.html">Claude in Office</a> guide for the why behind each.</p>
+    <table class="compare-table">
+      <tr><th>You want to…</th><th>Use</th><th>Why this one</th></tr>
+      <tr><td>Edit a live workbook / model that already exists</td><td>Claude in Excel (add-in)</td><td>Only this edits real cells and traces dependencies in your open file.</td></tr>
+      <tr><td>Generate a fresh, formatted workbook from data or a brief</td><td>Cowork <code>xlsx</code> skill</td><td>Builds a new .xlsx from scratch with formulas and styling, no add-in needed.</td></tr>
+      <tr><td>Edit / restyle an existing deck slide-by-slide</td><td>Claude in PowerPoint (add-in)</td><td>Works inside your template; keeps layouts and master styles intact.</td></tr>
+      <tr><td>Build a new deck from data, with a narrative</td><td>Cowork <code>pptx</code> / <code>exec-deck</code> skill</td><td>Generates a full .pptx from a spreadsheet; the skill bakes in the blueprint→polish method.</td></tr>
+      <tr><td>A shareable, interactive view of a dataset</td><td><a href="#csv-dashboard">CSV → HTML dashboard</a></td><td>One self-contained HTML file with filters and charts, opens in any browser.</td></tr>
+      <tr><td>A designed, on-brand deck or page</td><td><a href="claude-design.html">Claude Design</a></td><td>Image-led visual polish and working code, when look-and-feel is the point.</td></tr>
+      <tr><td>A finished invoice / report / receipt to send</td><td>PDF agent / <code>invoice-pdf</code> skill</td><td>Layout, totals, and structure handled; returns a shareable PDF.</td></tr>
+    </table>
+    <div class="info-box tip" style="margin-top: 8px;"><strong>Rule of Thumb</strong>Editing something that exists → the Office add-in. Generating something new → a Cowork skill. Sharing a view → a dashboard. Making it look designed → Claude Design.</div>
   </div>
 
   <!-- WORKFLOW 6: THE AI CHIEF OF STAFF -->
@@ -960,10 +999,10 @@
       <div>
         <div class="accordion-label">Workflow 6</div>
         <div class="accordion-title">The AI Chief of Staff</div>
-        <div class="accordion-subtitle">The full system — from three tasks to a personalized operating layer.</div>
+        <div class="accordion-subtitle">The full system, from three tasks to a personalized operating layer.</div>
       </div>
       <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 6 of 6</div>
+      <div class="accordion-progress">Workflow 6 of 7</div>
     </button>
     <div class="accordion-content">
       <div class="accordion-body">
@@ -972,7 +1011,7 @@
         <p>Executive managing multiple domains. Anyone who wants the complete automated intelligence system. Start with three tasks. By week four, you have a personal operating system.</p>
 
         <h3>The Pattern</h3>
-        <p>This isn't a single workflow — it's what happens when you combine the previous five into a system. Start with the Essential Three (Workflow 2). Add one domain-specific task per week. By week four, you have a personalized operating layer that handles your morning briefing, meeting prep, recurring research, deliverable production, and end-of-day wrap-up — without you re-explaining anything.</p>
+        <p>This isn't a single workflow, it's what happens when you combine the previous five into a system. Start with the Essential Three (Workflow 2). Add one domain-specific task per week. By week four, you have a personalized operating layer that handles your morning briefing, meeting prep, recurring research, deliverable production, and end-of-day wrap-up, without you re-explaining anything.</p>
 
         <h3>The Graduated Rollout</h3>
 
@@ -1036,7 +1075,7 @@
 
         <div class="quote-block">
           "The question is not 'how do I do more?' but 'how do I offload the mechanical work so my limited attention goes to decisions that require judgment?'"
-          <div class="attribution">— Christian Pean MD, Techy Surgeon</div>
+          <div class="attribution">, Christian Pean MD, Techy Surgeon</div>
         </div>
 
         <div class="info-box key">
@@ -1046,12 +1085,12 @@
 
         <div class="info-box warning">
           <strong>The 'Slop at Scale' Warning</strong>
-          Every output requires human review. The value is in first-draft quality and organization — not blind automation. If you're spending more time editing outputs than you saved, that task isn't working. Remove it and try a different one.
+          Every output requires human review. The value is in first-draft quality and organization, not blind automation. If you're spending more time editing outputs than you saved, that task isn't working. Remove it and try a different one.
         </div>
 
         <div class="info-box tip">
           <strong>Make It Yours</strong>
-          The domain tasks above are examples — replace them with whatever recurring work eats your time. The interview prompt is the key unlock: it builds a context file tuned to YOUR work, not generic templates. Run the interview again every quarter as your priorities shift.
+          The domain tasks above are examples, replace them with whatever recurring work eats your time. The interview prompt is the key unlock: it builds a context file tuned to YOUR work, not generic templates. Run the interview again every quarter as your priorities shift.
         </div>
 
         <div class="info-box levelup">
@@ -1065,23 +1104,88 @@
     </div>
   </div>
 
+  <!-- WORKFLOW 7: SPREADSHEET TO BOARD DECK -->
+  <span id="spreadsheet-to-deck" class="anchor-offset"></span>
+  <div class="accordion" id="accordion7">
+    <button class="accordion-header">
+      <div class="accordion-badge">7</div>
+      <div>
+        <div class="accordion-label">Workflow 7</div>
+        <div class="accordion-title">Spreadsheet → Board Deck</div>
+        <div class="accordion-subtitle">Turn a messy Excel into a board-ready deck, without exporting a single chart.</div>
+      </div>
+      <div class="accordion-chevron"></div>
+      <div class="accordion-progress">Workflow 7 of 7</div>
+    </button>
+    <div class="accordion-content">
+      <div class="accordion-body">
+
+        <h3>Who This Is For</h3>
+        <p>Founder building the board update. Consultant turning a model into a client readout. Anyone who has the numbers and needs a deck that tells the story, not a wall of pasted charts.</p>
+
+        <h3>The Setup</h3>
+        <div class="step-card">
+          <h4>Source Data File</h4>
+          <p>Drop the source .xlsx or .csv into the project folder, or open it directly with the Claude PowerPoint add-in.</p>
+        </div>
+        <div class="step-card">
+          <h4>Brand Template + Reference Deck</h4>
+          <p>Add a brand template (.pptx) and one strong past deck as a reference so Claude matches your house style.</p>
+        </div>
+        <div class="step-card">
+          <h4>Optional Project Note</h4>
+          <p>"Board audience. Max 12 slides. Every slide scannable in five seconds." A one-line brief sharpens every step that follows.</p>
+        </div>
+
+        <h3>The Prompts, Run in Order</h3>
+
+        <div class="code-block">Read the data file in my project folder. Act as a presentation consultant. Create a blueprint: objective, audience, the single key message, and the recommended number of slides. Don't build anything yet.</div>
+
+        <div class="code-block">Create a slide-by-slide structure — titles plus the purpose of each slide. Sequence it as a narrative: context → key insights → why they matter → recommended actions.</div>
+
+        <div class="code-block">Generate the deck as a .pptx using my brand template. Pull the real numbers from the data file. One chart per slide max, each tied to the slide's point.</div>
+
+        <div class="code-block">Final pass: reduce text, sharpen every headline into a claim, and make each slide scannable in five seconds.</div>
+
+        <h3>What Claude Produces</h3>
+        <p>A branded .pptx where the deck has an argument, the charts are sourced from your actual data, and the headlines state conclusions instead of labeling axes. A first draft you'd edit, not rebuild.</p>
+
+        <div class="info-box key">
+          <strong>Why It Works</strong>
+          The blueprint forces a key message before a single slide exists, which is exactly the step that separates an analyst's deck from an "AI deck." Pulling numbers straight from the file kills copy-paste errors. The five-second pass does the tightening you'd otherwise do at midnight.
+        </div>
+
+        <div class="info-box tip">
+          <strong>Make It Yours</strong>
+          Swap "board" for investor, client, or all-hands and the structure adapts. Point it at a monthly export and pair with a scheduled task for a deck that rebuilds itself each cycle.
+        </div>
+
+        <div class="info-box levelup">
+          <strong>Level Up: Build the exec-deck Skill</strong>
+          If you do this monthly, encode it. Tell Claude: <em>"Build me a skill called 'exec-deck' that turns a spreadsheet into a board-ready deck using the blueprint → narrative → in-place generate → story → executive-polish method. Bake in my template, my slide structure, and the five-second-scan check. Ask me objective and audience first."</em> Then "run exec-deck on Q2 numbers" is the whole prompt. New to skills? See <a href="level-2.html">Claude Advanced</a>, Section 1.
+        </div>
+
+        <p style="margin-top: 24px; font-size: 13px; color: var(--text-dim);">Method adapted from the Claude &times; Office playbook (Guillermo Flor, PMF) &bull; structured by Steve Gustafson</p>
+
+      </div>
+    </div>
+  </div>
+
   <!-- FINAL CTA -->
   <div class="final-cta">
     <h2>Pick One. Start Today.</h2>
-    <p>You don't need all six. Pick the workflow closest to your daily pain. Set it up. Run it for a week. Then come back for the next one.</p>
-    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px;">
-      <a href="beginner.html" class="hero-cta" style="background: var(--orange); color: #000;">&larr; Cowork Beginner</a>
-      <a href="level-2.html" class="hero-cta" style="background: var(--blue); color: #fff;">Cowork Advanced &rarr;</a>
+    <p>You don't need all seven. Pick the workflow closest to your daily pain. Set it up. Run it for a week. Then come back for the next one.</p>
     </div>
-    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a href="prompting.html" class="hero-cta" style="background: transparent; border: 2px solid var(--accent); color: var(--accent);">Prompting Guide &rarr;</a>
-      <a href="people.html" class="hero-cta" style="background: transparent; border: 2px solid var(--purple); color: var(--purple);">People I Learn From &rarr;</a>
-    </div>
-  </div>
 
 </div>
 
 <!-- FOOTER -->
+<nav class="path-nav" aria-label="Guide navigation">
+  <a class="prev" href="level-2.html"><span class="pn-label">&larr; Previous</span><span class="pn-title">Claude Advanced</span></a>
+  <a class="hub" href="index.html">All guides</a>
+  <a class="next" href="claude-code-2.html"><span class="pn-label">Next &rarr;</span><span class="pn-title">Claude Code 2.0</span></a>
+</nav>
+
 <div class="footer">
   <p>Created by Steve Gustafson &bull; March 2026</p>
   <p style="margin-top: 8px;">Built with Claude Cowork (naturally). Have questions? <a href="mailto:stevegustafson@gmail.com">Reach out</a>.</p>
@@ -1118,7 +1222,7 @@
           currentWorkflow = index + 1;
         }
       });
-      document.getElementById('stickyProgress').textContent = `Workflow ${currentWorkflow} of 6`;
+      document.getElementById('stickyProgress').textContent = `Workflow ${currentWorkflow} of 7`;
     } else {
       stickyNav.classList.remove('visible');
     }
@@ -1232,5 +1336,6 @@
   window.addEventListener('scroll', updateStickyNav);
 </script>
 
+<script src="search.js"></script>
 </body>
 </html>

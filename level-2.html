@@ -3,7 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Claude Cowork Level 2 — Advanced Techniques for Power Users</title>
+<title>Claude Advanced - Techniques for Power Users</title>
+<meta name="description" content="Advanced Claude: projects, connectors, subagents, and the workflow patterns that compound over time. For users past the basics.">
+<link rel="canonical" href="https://stevesaiguide.com/level-2.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="alternate icon" href="/favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Steve's AI Guide">
+<meta property="og:title" content="Claude Advanced - Techniques for Power Users">
+<meta property="og:description" content="Advanced Claude: projects, connectors, subagents, and the workflow patterns that compound over time. For users past the basics.">
+<meta property="og:url" content="https://stevesaiguide.com/level-2.html">
+<meta property="og:image" content="https://stevesaiguide.com/assets/og-level-2.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Claude Advanced - Techniques for Power Users">
+<meta name="twitter:description" content="Advanced Claude: projects, connectors, subagents, and the workflow patterns that compound over time. For users past the basics.">
+<meta name="twitter:image" content="https://stevesaiguide.com/assets/og-level-2.png">
 <link rel="stylesheet" href="design-system.css">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -16,7 +34,7 @@
     --border: #333;
     --text: #e8e8e8;
     --text-muted: #999;
-    --text-dim: #666;
+    --text-dim: #a0a0a0;
     --accent: #7b8bd4;
     --accent-light: #9aa6e0;
     --accent-dim: rgba(123,139,212,0.15);
@@ -523,11 +541,12 @@
   <div class="resource-nav-brand">Steve's Resources</div>
   <div class="resource-nav-links">
     <a href="prompting.html">Prompting Guide</a>
-    <a href="beginner.html">Cowork Beginner</a>
-    <a href="level-2.html" class="active">Cowork Advanced</a>
-    <a href="workflows.html">Cowork in Action</a>
+    <a href="beginner.html">Claude Beginner</a>
+    <a href="level-2.html" class="active">Claude Advanced</a>
+    <a href="workflows.html">Claude in Action</a>
     <a href="claude-code-2.html">Claude Code 2.0</a>
     <a href="claude-design.html">Claude Design</a>
+    <a href="claude-office.html">Claude in Office</a>
     <a href="people.html">People I Learn From</a>
   </div>
 </nav>
@@ -540,7 +559,7 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">ADVANCED GUIDE &mdash; LEVEL 2</div>
+  <div class="hero-badge">ADVANCED GUIDE, LEVEL 2</div>
   <h1>Claude Cowork<br><span>Power User Guide</span></h1>
   <p>You've got the basics. Now learn to build skills, create plugins, automate with Chrome, orchestrate agents, and turn Cowork into your operating system.</p>
   <button class="hero-cta" id="heroCtaBtn">Start Level 2 &darr;</button>
@@ -584,9 +603,9 @@
       <div class="accordion-progress">Section 1 of 14</div>   </button>
     <div class="accordion-content open">
       <div class="accordion-body section">
-        <p>If you followed the Level 1 guide, you've already been using skills without knowing it. When you say "new project" and Claude creates folders, memory files, and output directories &mdash; that's a skill in action. The "new project" workflow, the file naming conventions, the per-project memory &mdash; all of these are patterns that could be (and are) encoded as skills. Now you'll learn to build your own.</p>
+        <p>If you followed the Level 1 guide, you've already been using skills without knowing it. When you say "new project" and Claude creates folders, memory files, and output directories, that's a skill in action. The "new project" workflow, the file naming conventions, the per-project memory, all of these are patterns that could be (and are) encoded as skills. Now you'll learn to build your own.</p>
 
-        <p>A <strong>skill</strong> is a markdown file called <code>SKILL.md</code> that teaches Claude a specific capability. Every time you find yourself giving Claude the same instructions &mdash; "format reports this way," "research companies using this framework," "always check these 5 things" &mdash; that's a skill waiting to be built.</p>
+        <p>A <strong>skill</strong> is a markdown file called <code>SKILL.md</code> that teaches Claude a specific capability. Every time you find yourself giving Claude the same instructions, "format reports this way," "research companies using this framework," "always check these 5 things", that's a skill waiting to be built.</p>
 
         <h3>When to Build a Skill</h3>
         <div class="two-col">
@@ -761,7 +780,7 @@ When the user asks you to research a company:
 
         <div class="info-box tip">
           <strong>Pro Move: Create a Team Plugin</strong>
-          If your team repeatedly does the same workflows, build a plugin that encodes your processes. New team members install it on day one and immediately have your best practices available. No training deck needed &mdash; the skill IS the training.
+          If your team repeatedly does the same workflows, build a plugin that encodes your processes. New team members install it on day one and immediately have your best practices available. No training deck needed, the skill IS the training.
         </div>
       </div>
     </div>
@@ -803,7 +822,7 @@ When the user asks you to research a company:
           </div>
           <div class="step-card">
             <h4>Debug & Development</h4>
-            <p>Claude reads console logs, DOM state, and network requests directly. "Check why the login page is throwing a 403" &mdash; it reads the actual error.</p>
+            <p>Claude reads console logs, DOM state, and network requests directly. "Check why the login page is throwing a 403", it reads the actual error.</p>
           </div>
           <div class="step-card">
             <h4>Scheduled Browser Tasks</h4>
@@ -813,7 +832,7 @@ When the user asks you to research a company:
 
         <div class="info-box warning">
           <strong>Requirements & Limitations</strong>
-          Chrome extension is in beta. Works on Chrome and Edge only (not Brave, Arc, or others). Requires a paid Claude plan. Claude uses your existing login sessions &mdash; it can access anything you're logged into, so be mindful of which tabs are in the Claude group.
+          Chrome extension is in beta. Works on Chrome and Edge only (not Brave, Arc, or others). Requires a paid Claude plan. Claude uses your existing login sessions, it can access anything you're logged into, so be mindful of which tabs are in the Claude group.
         </div>
       </div>
     </div>
@@ -825,7 +844,7 @@ When the user asks you to research a company:
       <span class="accordion-badge">5</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 5</div>
-        <div class="accordion-title">Computer Use &mdash; Desktop Control</div>
+        <div class="accordion-title">Computer Use, Desktop Control</div>
         <div class="accordion-subtitle">Claude controls your mouse and keyboard to operate native apps.</div>
       </div>
       <span class="accordion-chevron"></span>
@@ -833,7 +852,7 @@ When the user asks you to research a company:
     </button>
     <div class="accordion-content">
       <div class="accordion-body section">
-        <p>Chrome extension handles the browser. Connectors handle specific services. But what about everything else &mdash; Finder, Notes, Maps, System Settings, Photoshop, Excel (the desktop app), or any native application? That's <strong>Computer Use</strong>. Claude takes screenshots of your screen, moves the mouse, clicks buttons, and types &mdash; just like a remote coworker sitting at your desk.</p>
+        <p>Chrome extension handles the browser. Connectors handle specific services. But what about everything else, Finder, Notes, Maps, System Settings, Photoshop, Excel (the desktop app), or any native application? That's <strong>Computer Use</strong>. Claude takes screenshots of your screen, moves the mouse, clicks buttons, and types, just like a remote coworker sitting at your desk.</p>
 
         <h3>How Claude Decides What to Use</h3>
         <p>This is the mental model that makes everything click. When you give Claude a task, it picks the fastest, most reliable tool available:</p>
@@ -870,7 +889,7 @@ When the user asks you to research a company:
         <div class="two-col">
           <div class="step-card">
             <h4>Native App Automation</h4>
-            <p>"Organize my Downloads folder &mdash; move PDFs to Documents, images to Photos, delete anything older than 30 days." Claude opens Finder and does it.</p>
+            <p>"Organize my Downloads folder, move PDFs to Documents, images to Photos, delete anything older than 30 days." Claude opens Finder and does it.</p>
           </div>
           <div class="step-card">
             <h4>Cross-App Workflows</h4>
@@ -887,7 +906,7 @@ When the user asks you to research a company:
         </div>
 
         <h3>Steering Claude Mid-Task</h3>
-        <p>Computer Use is live &mdash; you can redirect Claude while it works. These steering prompts are your remote control:</p>
+        <p>Computer Use is live, you can redirect Claude while it works. These steering prompts are your remote control:</p>
         <table class="compare-table">
           <tr><th>Steering Prompt</th><th>What It Does</th></tr>
           <tr><td><code>"Stop. Don't click that yet."</code></td><td>Pauses before a risky action</td></tr>
@@ -903,7 +922,7 @@ When the user asks you to research a company:
 2. Add: "Text me when it's done."
 3. Claude works on your desktop while you're away.
 4. You review the result on your Mac when you're back.</div>
-        <p style="margin-top: 8px; font-size: 14px; color: var(--text-dim);">This works for any Computer Use task. Export a deck to PDF, attach it to a calendar invite, organize files &mdash; all while you're at lunch.</p>
+        <p style="margin-top: 8px; font-size: 14px; color: var(--text-dim);">This works for any Computer Use task. Export a deck to PDF, attach it to a calendar invite, organize files, all while you're at lunch.</p>
 
         <div class="info-box warning">
           <strong>Limitations & Safety</strong>
@@ -927,7 +946,7 @@ When the user asks you to research a company:
     </button>
     <div class="accordion-content">
       <div class="accordion-body section">
-        <p>Cowork can run tasks on a schedule &mdash; daily, weekly, or at specific times. Combined with plugins and Chrome, this is where Cowork becomes an autonomous operator.</p>
+        <p>Cowork can run tasks on a schedule, daily, weekly, or at specific times. Combined with plugins and Chrome, this is where Cowork becomes an autonomous operator.</p>
 
         <h3>Cron Syntax (Simplified)</h3>
         <table class="compare-table">
@@ -974,7 +993,7 @@ When the user asks you to research a company:
       <div class="accordion-progress">Section 7 of 14</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
-        <p>Claude's memory isn't one thing &mdash; it's a hierarchy. With the March 2026 Projects update, there are now <strong>four distinct layers</strong>. Understanding them lets you put the right information in the right place.</p>
+        <p>Claude's memory isn't one thing, it's a hierarchy. With the March 2026 Projects update, there are now <strong>four distinct layers</strong>. Understanding them lets you put the right information in the right place.</p>
 
         <h3>The 4 Layers</h3>
         <div class="step-card highlighted">
@@ -987,29 +1006,29 @@ When the user asks you to research a company:
           <h4>Layer 2: Native Project Instructions &amp; Memory (Built-In)</h4>
           <p><strong>Where:</strong> Project &rarr; Instructions field + automatic <code>memory.md</code><br>
           <strong>Scope:</strong> All tasks within that project<br>
-          <strong>What goes here:</strong> Project-level tone, formatting rules, and key context in the Instructions field. Auto-memory captures decisions and patterns as you work &mdash; Claude decides what's worth saving. First 200 lines (or 25KB) load at the start of each new task.</p>
+          <strong>What goes here:</strong> Project-level tone, formatting rules, and key context in the Instructions field. Auto-memory captures decisions and patterns as you work, Claude decides what's worth saving. First 200 lines (or 25KB) load at the start of each new task.</p>
         </div>
         <div class="step-card">
-          <h4>Layer 3: CLAUDE.md (CoWork OS &mdash; Structured Rules)</h4>
+          <h4>Layer 3: CLAUDE.md (CoWork OS, Structured Rules)</h4>
           <p><strong>Where:</strong> CLAUDE.md file in your workspace folder (or subfolder)<br>
           <strong>Scope:</strong> That specific folder only<br>
-          <strong>What goes here:</strong> Detailed folder protocols, naming conventions, session start behavior, project registry, read-only/write-only rules. More structured and opinionated than native Instructions &mdash; this is your operating system.</p>
+          <strong>What goes here:</strong> Detailed folder protocols, naming conventions, session start behavior, project registry, read-only/write-only rules. More structured and opinionated than native Instructions, this is your operating system.</p>
         </div>
         <div class="step-card">
-          <h4>Layer 4: MEMORY.md (CoWork OS &mdash; Explicit Memory)</h4>
+          <h4>Layer 4: MEMORY.md (CoWork OS, Explicit Memory)</h4>
           <p><strong>Where:</strong> MEMORY.md in your workspace folder<br>
           <strong>Scope:</strong> Persistent across sessions, user-controlled<br>
-          <strong>What goes here:</strong> Decisions, deadlines, status updates &mdash; things you specifically want remembered with your exact wording. Say "remember this" to write; "forget that" to delete. Unlike auto-memory, nothing gets saved unless you ask.</p>
+          <strong>What goes here:</strong> Decisions, deadlines, status updates, things you specifically want remembered with your exact wording. Say "remember this" to write; "forget that" to delete. Unlike auto-memory, nothing gets saved unless you ask.</p>
         </div>
 
         <h3>Native Memory vs. Explicit Memory</h3>
         <p>This is the most common question: "If Projects auto-remember things, why do I need MEMORY.md?" Because they serve different purposes:</p>
         <table class="compare-table">
           <tr><th></th><th>Native Auto-Memory</th><th>MEMORY.md (CoWork OS)</th></tr>
-          <tr><td><strong>Trigger</strong></td><td>Automatic &mdash; Claude decides</td><td>User-triggered &mdash; "remember this"</td></tr>
+          <tr><td><strong>Trigger</strong></td><td>Automatic, Claude decides</td><td>User-triggered, "remember this"</td></tr>
           <tr><td><strong>Content</strong></td><td>Whatever Claude thinks is useful</td><td>Exactly what you told it to save</td></tr>
           <tr><td><strong>Structure</strong></td><td>Unstructured, Claude-formatted</td><td>Your format, your categories</td></tr>
-          <tr><td><strong>Control</strong></td><td>Low &mdash; Claude curates</td><td>High &mdash; you curate</td></tr>
+          <tr><td><strong>Control</strong></td><td>Low, Claude curates</td><td>High, you curate</td></tr>
           <tr><td><strong>Risk</strong></td><td>May save noise or miss critical facts</td><td>You might forget to say "remember this"</td></tr>
           <tr><td><strong>Best for</strong></td><td>Background context, patterns, preferences</td><td>Key decisions, deadlines, exact specifications</td></tr>
         </table>
@@ -1054,7 +1073,7 @@ When the user asks you to research a company:
       <div class="accordion-progress">Section 8 of 14</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
-        <p><strong>MCP (Model Context Protocol)</strong> is how Claude connects to external services. Every connector you use &mdash; Google Drive, Slack, Gmail, GitHub &mdash; is an MCP server under the hood. You can build your own.</p>
+        <p><strong>MCP (Model Context Protocol)</strong> is how Claude connects to external services. Every connector you use, Google Drive, Slack, Gmail, GitHub, is an MCP server under the hood. You can build your own.</p>
 
         <h3>Why Build a Custom MCP Connector?</h3>
         <div class="two-col">
@@ -1091,7 +1110,7 @@ When the user asks you to research a company:
 
         <div class="info-box tip">
           <strong>Turn Off What You're Not Using</strong>
-          Web search, connectors, and extended thinking all add tokens to every response &mdash; even when you don't need them. Writing your own content? Turn off search. Simple grammar check? Skip extended thinking. And when you <em>do</em> use connectors, be specific: "Search Slack from the last 7 days for messages about the Q2 launch" costs way less than "Search Slack for anything about launches." Features are a dial, not a switch.
+          Web search, connectors, and extended thinking all add tokens to every response, even when you don't need them. Writing your own content? Turn off search. Simple grammar check? Skip extended thinking. And when you <em>do</em> use connectors, be specific: "Search Slack from the last 7 days for messages about the Q2 launch" costs way less than "Search Slack for anything about launches." Features are a dial, not a switch.
         </div>
       </div>
     </div>
@@ -1111,7 +1130,7 @@ When the user asks you to research a company:
       <div class="accordion-progress">Section 9 of 14</div>   </button>
     <div class="accordion-content">
       <div class="accordion-body section">
-        <p>When Claude encounters a task that can be broken into independent pieces, it automatically spawns <strong>sub-agents</strong> &mdash; parallel workers that execute simultaneously. This is one of the most powerful features most people never discover.</p>
+        <p>When Claude encounters a task that can be broken into independent pieces, it automatically spawns <strong>sub-agents</strong>, parallel workers that execute simultaneously. This is one of the most powerful features most people never discover.</p>
 
         <h3>How It Works</h3>
         <p>Say you ask: "Research these 8 companies and create a competitive matrix." Instead of researching them one by one (slow), Claude spawns 8 parallel agents that each research one company simultaneously. Results come back in minutes instead of an hour.</p>
@@ -1126,19 +1145,19 @@ When the user asks you to research a company:
         <div class="two-col">
           <div class="step-card">
             <h4>Research Multiple Entities</h4>
-            <p>"Research these 5 companies" &mdash; each company gets its own agent researching simultaneously.</p>
+            <p>"Research these 5 companies", each company gets its own agent researching simultaneously.</p>
           </div>
           <div class="step-card">
             <h4>Multi-File Analysis</h4>
-            <p>"Analyze these 10 spreadsheets and summarize findings" &mdash; each file gets its own agent.</p>
+            <p>"Analyze these 10 spreadsheets and summarize findings", each file gets its own agent.</p>
           </div>
           <div class="step-card">
             <h4>Content at Scale</h4>
-            <p>"Write social posts for each of these 8 topics" &mdash; parallel content generation.</p>
+            <p>"Write social posts for each of these 8 topics", parallel content generation.</p>
           </div>
           <div class="step-card">
             <h4>Code Across Modules</h4>
-            <p>"Update the frontend, backend, and tests for this feature" &mdash; three agents working different parts.</p>
+            <p>"Update the frontend, backend, and tests for this feature", three agents working different parts.</p>
           </div>
         </div>
 
@@ -1162,7 +1181,7 @@ When the user asks you to research a company:
 
         <div class="info-box key">
           <strong>Match the Model to the Task</strong>
-          Opus + Extended Thinking is your heavy machinery. Don't use it to move a chair. Grammar checks, brainstorming, reformatting, short answers &mdash; Sonnet handles all of this at a fraction of the cost. Rule of thumb: if the task takes Claude less than 30 seconds to answer, it probably doesn't need Opus. Switch models before you start the session &mdash; it takes 2 clicks.
+          Opus + Extended Thinking is your heavy machinery. Don't use it to move a chair. Grammar checks, brainstorming, reformatting, short answers, Sonnet handles all of this at a fraction of the cost. Rule of thumb: if the task takes Claude less than 30 seconds to answer, it probably doesn't need Opus. Switch models before you start the session, it takes 2 clicks.
         </div>
       </div>
     </div>
@@ -1175,7 +1194,7 @@ When the user asks you to research a company:
       <div style="flex: 1;">
         <div class="accordion-label">Section 10</div>
         <div class="accordion-title">File Power Moves</div>
-        <div class="accordion-subtitle">Claude creates real, production-quality files &mdash; not just text.</div>
+        <div class="accordion-subtitle">Claude creates real, production-quality files, not just text.</div>
       </div>
       <span class="accordion-chevron"></span>
 
@@ -1195,13 +1214,13 @@ When the user asks you to research a company:
 
         <div class="info-box tip">
           <strong>Plan in Chat. Build in Cowork.</strong>
-          Chat is cheap. Cowork is powerful. Use Chat to brainstorm, iterate on structure, and nail your requirements. Once you know exactly what you want, move to Cowork and say "Build this exact file." You do the thinking in the cheap product. You do the building in the expensive one. File creation uses more of your limit than regular chat messages &mdash; so arrive in Cowork with a plan, not a brainstorm.
+          Chat is cheap. Cowork is powerful. Use Chat to brainstorm, iterate on structure, and nail your requirements. Once you know exactly what you want, move to Cowork and say "Build this exact file." You do the thinking in the cheap product. You do the building in the expensive one. File creation uses more of your limit than regular chat messages, so arrive in Cowork with a plan, not a brainstorm.
         </div>
 
         <h3>Power Patterns</h3>
         <div class="step-card highlighted">
           <h4>CSV &rarr; Interactive Dashboard</h4>
-          <p>Upload a CSV and ask: "Create an interactive HTML dashboard with filters, charts, and a summary table." You get a single-file HTML that works in any browser &mdash; no server needed. Share it with anyone.</p>
+          <p>Upload a CSV and ask: "Create an interactive HTML dashboard with filters, charts, and a summary table." You get a single-file HTML that works in any browser, no server needed. Share it with anyone.</p>
         </div>
         <div class="step-card">
           <h4>Screenshot &rarr; Code</h4>
@@ -1212,12 +1231,12 @@ When the user asks you to research a company:
           <p>Drop 5 research documents into your workspace and ask: "Read all of these and create a one-page executive summary highlighting the key insights and contradictions across them."</p>
         </div>
         <div class="step-card">
-          <h4>Interactive Visualizations (NEW &mdash; March 2026)</h4>
-          <p>Claude can now create <strong>interactive charts, diagrams, and visualizations inline</strong> in its responses. Ask "Show me a chart of our monthly revenue" and get a live, clickable chart right in the conversation &mdash; not just a static image. These can be exported as standalone HTML files you share with anyone.</p>
+          <h4>Interactive Visualizations (NEW, March 2026)</h4>
+          <p>Claude can now create <strong>interactive charts, diagrams, and visualizations inline</strong> in its responses. Ask "Show me a chart of our monthly revenue" and get a live, clickable chart right in the conversation, not just a static image. These can be exported as standalone HTML files you share with anyone.</p>
         </div>
         <div class="step-card">
-          <h4>Excel &amp; PowerPoint Add-ins (NEW &mdash; March 2026)</h4>
-          <p>Claude now lives <strong>inside Excel and PowerPoint</strong> as native add-ins. Ask questions about your spreadsheet, generate formulas, build pivot tables, or create slides &mdash; without leaving the app. Context carries between both add-ins, so Claude understands your data when you switch to building a deck from it. This is a third way to use Claude alongside the desktop app and browser extension.</p>
+          <h4>Excel &amp; PowerPoint Add-ins (NEW, March 2026)</h4>
+          <p>Claude now lives <strong>inside Excel and PowerPoint</strong> as native add-ins. Ask questions about your spreadsheet, generate formulas, build pivot tables, or create slides, without leaving the app. Context carries between both add-ins, so Claude understands your data when you switch to building a deck from it. This is a third way to use Claude alongside the desktop app and browser extension.</p>
         </div>
       </div>
     </div>
@@ -1287,7 +1306,7 @@ When the user asks you to research a company:
         </div>
         <div class="step-card">
           <h4>Org-Managed Plugins</h4>
-          <p>Admins can auto-install plugins across all team members. New hires get your org's skills on day one without any setup. Managed plugins take highest priority &mdash; they override personal settings.</p>
+          <p>Admins can auto-install plugins across all team members. New hires get your org's skills on day one without any setup. Managed plugins take highest priority, they override personal settings.</p>
         </div>
         <div class="step-card">
           <h4>Usage Monitoring</h4>
@@ -1320,7 +1339,7 @@ When the user asks you to research a company:
     </button>
     <div class="accordion-content">
       <div class="accordion-body section">
-        <p><strong>Dispatch</strong> is a persistent thread between your phone and your desktop Claude. Send a task from anywhere &mdash; the airport, a meeting, your kid's soccer game &mdash; and Claude executes it on your Mac using your files, connectors, and plugins. It's not cloud-based: your files never leave your computer.</p>
+        <p><strong>Dispatch</strong> is a persistent thread between your phone and your desktop Claude. Send a task from anywhere, the airport, a meeting, your kid's soccer game, and Claude executes it on your Mac using your files, connectors, and plugins. It's not cloud-based: your files never leave your computer.</p>
 
         <h3>How to Set It Up</h3>
         <div class="step-card highlighted">
@@ -1335,7 +1354,7 @@ When the user asks you to research a company:
         <div class="two-col">
           <div class="step-card">
             <h4>Persistent Context</h4>
-            <p>Unlike starting a new Cowork session, Dispatch maintains a single continuous thread. Claude retains context from your previous tasks &mdash; no re-explaining.</p>
+            <p>Unlike starting a new Cowork session, Dispatch maintains a single continuous thread. Claude retains context from your previous tasks, no re-explaining.</p>
           </div>
           <div class="step-card">
             <h4>Full Desktop Access</h4>
@@ -1347,16 +1366,16 @@ When the user asks you to research a company:
           </div>
           <div class="step-card">
             <h4>The 6 AM Pattern</h4>
-            <p>Queue up 5 tasks before breakfast. Review the results over coffee. Entire morning routines &mdash; email summaries, calendar prep, report generation &mdash; handled before you sit down.</p>
+            <p>Queue up 5 tasks before breakfast. Review the results over coffee. Entire morning routines, email summaries, calendar prep, report generation, handled before you sit down.</p>
           </div>
         </div>
 
         <h3>Mobile App Updates (March 2026)</h3>
-        <p>The Claude mobile app now supports <strong>fully interactive applications</strong> &mdash; live charts, sketch diagrams, and shareable visual assets rendered directly in mobile conversations. It also integrates with work tools like <strong>Figma</strong>, <strong>Canva</strong>, and <strong>Amplitude</strong> from your phone. Combined with Dispatch, this means you can review designs, build interactive dashboards, approve assets, and trigger desktop work from anywhere.</p>
+        <p>The Claude mobile app now supports <strong>fully interactive applications</strong>, live charts, sketch diagrams, and shareable visual assets rendered directly in mobile conversations. It also integrates with work tools like <strong>Figma</strong>, <strong>Canva</strong>, and <strong>Amplitude</strong> from your phone. Combined with Dispatch, this means you can review designs, build interactive dashboards, approve assets, and trigger desktop work from anywhere.</p>
 
         <div class="info-box warning">
           <strong>Requirements &amp; Limitations</strong>
-          Available on Pro and Max plans. Your Mac must be awake and Claude Desktop must be open for Dispatch to work. Single thread only &mdash; one task at a time. If your Mac is asleep, the task runs when you open the lid. Desktop must be connected to the internet.
+          Available on Pro and Max plans. Your Mac must be awake and Claude Desktop must be open for Dispatch to work. Single thread only, one task at a time. If your Mac is asleep, the task runs when you open the lid. Desktop must be connected to the internet.
         </div>
 
         <div class="info-box tip">
@@ -1448,19 +1467,17 @@ When the user asks you to research a company:
   <div class="section" style="text-align: center; padding: 80px 0;">
     <h2 style="margin-bottom: 16px;">You're a Power User Now</h2>
     <p style="color: var(--text-muted); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto;">Build your first skill. Share it with a friend. Automate something you do every week. The difference between "using Claude" and "operating with Claude" is everything on this page.</p>
-    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px;">
-      <a href="beginner.html" class="hero-cta" style="background: var(--orange); color: #000;">&larr; Cowork Beginner</a>
-      <a href="workflows.html" class="hero-cta" style="background: #6ab88f; color: #000;">Cowork in Action &rarr;</a>
     </div>
-    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a href="prompting.html" class="hero-cta" style="background: transparent; border: 2px solid var(--accent); color: var(--accent);">Prompting Guide &rarr;</a>
-      <a href="people.html" class="hero-cta" style="background: transparent; border: 2px solid var(--purple); color: var(--purple);">People I Learn From &rarr;</a>
-    </div>
-  </div>
 
 </div>
 
 <!-- FOOTER -->
+<nav class="path-nav" aria-label="Guide navigation">
+  <a class="prev" href="beginner.html"><span class="pn-label">&larr; Previous</span><span class="pn-title">Claude Beginner</span></a>
+  <a class="hub" href="index.html">All guides</a>
+  <a class="next" href="workflows.html"><span class="pn-label">Next &rarr;</span><span class="pn-title">Claude in Action</span></a>
+</nav>
+
 <div class="footer">
   <p>Created by Steve Gustafson &bull; March 2026</p>
   <p style="margin-top: 8px;">Built with Claude Cowork (naturally). Have questions? <a href="https://www.linkedin.com/in/steve-j-gustafson/" target="_blank">Reach out</a>.</p>
@@ -1612,5 +1629,6 @@ When the user asks you to research a company:
   window.addEventListener('load', updateStickyNav);
 </script>
 
+<script src="search.js"></script>
 </body>
 </html>
