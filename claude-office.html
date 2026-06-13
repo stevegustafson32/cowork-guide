@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Steve's AI Guide — Claude in Office: Excel, PowerPoint & PDF as Agents</title>
+<title>Steve's AI Guide, Claude in Office: Excel, PowerPoint & PDF as Agents</title>
 <meta name="description" content="Claude inside Excel, PowerPoint, and PDF. Edit real cells and slides as an agent, plus a map of which tool to reach for when.">
 <link rel="canonical" href="https://stevesaiguide.com/claude-office.html">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -12,14 +12,14 @@
 <link rel="alternate icon" href="/favicon.ico">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Steve's AI Guide">
-<meta property="og:title" content="Steve's AI Guide — Claude in Office: Excel, PowerPoint &amp; PDF as Agents">
+<meta property="og:title" content="Steve's AI Guide, Claude in Office: Excel, PowerPoint &amp; PDF as Agents">
 <meta property="og:description" content="Claude inside Excel, PowerPoint, and PDF. Edit real cells and slides as an agent, plus a map of which tool to reach for when.">
 <meta property="og:url" content="https://stevesaiguide.com/claude-office.html">
 <meta property="og:image" content="https://stevesaiguide.com/assets/og-claude-office.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Steve's AI Guide — Claude in Office: Excel, PowerPoint &amp; PDF as Agents">
+<meta name="twitter:title" content="Steve's AI Guide, Claude in Office: Excel, PowerPoint &amp; PDF as Agents">
 <meta name="twitter:description" content="Claude inside Excel, PowerPoint, and PDF. Edit real cells and slides as an agent, plus a map of which tool to reach for when.">
 <meta name="twitter:image" content="https://stevesaiguide.com/assets/og-claude-office.png">
 <link rel="stylesheet" href="design-system.css">
@@ -268,7 +268,7 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">STEP 07 — EXECUTE IN THE FILE · UPDATED JUNE 2026</div>
+  <div class="hero-badge">STEP 07, EXECUTE IN THE FILE · UPDATED JUNE 2026</div>
   <h1>Claude in Office: Excel, PowerPoint &amp; PDF as <span>agents</span>.</h1>
   <p class="lede">The other guides build files from a chat. This one is different: Claude now works <em>inside</em> Excel and PowerPoint, editing real cells and slides in the document you already have open. Here's what changed, how to use it, and which tool to reach for when.</p>
   <div class="hero-tags">
@@ -296,52 +296,52 @@
 
   <!-- SECTION 1 -->
   <section class="section" id="changed">
-    <div class="sec-kicker">Section 1 — What Actually Changed</div>
+    <div class="sec-kicker">Section 1, What Actually Changed</div>
     <h2>From "AI that makes a file" to "AI that works in your file"</h2>
     <p class="sub">The distinction is the whole story.</p>
-    <p>Everywhere else in this guide, Claude generates a deliverable: you ask for a Word doc, a dashboard, a deck, and Claude builds one from scratch and hands it back. Useful — but it starts from blank.</p>
-    <p>The Office add-ins do something the file-generation skills can't: they operate <strong>inside</strong> a workbook or deck you already have. Claude reads real formulas (not flattened text), traces dependencies across 40 tabs, edits cells directly, and shows you every change. It treats a slide deck as a sequence with a story, not a pile of text boxes. The reason AI was bad at Excel for years wasn't intelligence — it was context. Operating inside the application is the fix.</p>
+    <p>Everywhere else in this guide, Claude generates a deliverable: you ask for a Word doc, a dashboard, a deck, and Claude builds one from scratch and hands it back. Useful, but it starts from blank.</p>
+    <p>The Office add-ins do something the file-generation skills can't: they operate <strong>inside</strong> a workbook or deck you already have. Claude reads real formulas (not flattened text), traces dependencies across 40 tabs, edits cells directly, and shows you every change. It treats a slide deck as a sequence with a story, not a pile of text boxes. The reason AI was bad at Excel for years wasn't intelligence, it was context. Operating inside the application is the fix.</p>
     <div class="info-box key">
       <span class="lbl">Why it matters</span>
-      When AI moves from <em>assisting</em> to <em>executing inside the system of record</em>, the busywork layer — formatting, cleanup, first-draft models, deck assembly — stops being scarce work. The marginal value of doing it by hand collapses. You still review. You still decide. But you start from a working draft, not a blank sheet.
+      When AI moves from <em>assisting</em> to <em>executing inside the system of record</em>, the busywork layer, formatting, cleanup, first-draft models, deck assembly, stops being scarce work. The marginal value of doing it by hand collapses. You still review. You still decide. But you start from a working draft, not a blank sheet.
     </div>
   </section>
 
   <!-- SECTION 2 -->
   <section class="section" id="setup">
-    <div class="sec-kicker">Section 2 — Setup (5 Minutes)</div>
+    <div class="sec-kicker">Section 2, Setup (5 Minutes)</div>
     <h2>Get Claude running inside Office</h2>
-    <p>Claude lives in Microsoft Excel and PowerPoint through Anthropic's official add-ins — a sidebar, not a separate chat window.</p>
+    <p>Claude lives in Microsoft Excel and PowerPoint through Anthropic's official add-ins, a sidebar, not a separate chat window.</p>
     <ul>
       <li>Open Excel or PowerPoint → <strong>Home → Add-ins</strong></li>
       <li>Search <strong>"Claude by Anthropic"</strong> → <strong>Get it now</strong></li>
       <li>Open the Claude sidebar → sign in → select the latest model</li>
       <li>Authorize file access. Claude only edits what you select.</li>
-      <li>Shortcut to open Claude — Mac: <code>Ctrl + Option + C</code> · Windows: <code>Ctrl + Alt + C</code></li>
+      <li>Shortcut to open Claude, Mac: <code>Ctrl + Option + C</code> · Windows: <code>Ctrl + Alt + C</code></li>
     </ul>
-    <p class="sub">Requires a Claude Pro subscription ($20/month) — the same plan that unlocks Cowork. Confirm the live install steps in Anthropic's docs, since menus shift.</p>
+    <p class="sub">Requires a Claude Pro subscription ($20/month), the same plan that unlocks Cowork. Confirm the live install steps in Anthropic's docs, since menus shift.</p>
   </section>
 
   <!-- SECTION 3 -->
   <section class="section" id="excel">
-    <div class="sec-kicker">Section 3 — The Excel Agent</div>
+    <div class="sec-kicker">Section 3, The Excel Agent</div>
     <h2>Ten minutes of work in one prompt</h2>
     <p>Four jobs the Excel agent does well. Click a cell, then ask.</p>
     <div class="card-grid">
       <div class="step-card"><h4>1 · Understand someone else's sheet</h4><p>"Explain this formula in plain English." "Trace this cell to its source inputs." "Why is this #REF?" "Find every broken formula in the workbook." Claude follows the logic across the whole file, not just the cell you clicked.</p></div>
       <div class="step-card"><h4>2 · Clean messy data</h4><p>"Convert all dates to YYYY-MM-DD." "Remove duplicates, keep most recent." "Strip Inc/LLC/Ltd from company names." "Split address into street/city/state/zip." It edits in place and highlights every touched cell so you can audit it.</p></div>
       <div class="step-card"><h4>3 · Analyze without formulas</h4><p>"What changed this year vs last?" "Which customers drive growth?" "Where are we missing budget?" "Categorize these transactions." You get the insight first; ask for the formulas or pivot only if you want them.</p></div>
-      <div class="step-card"><h4>4 · Build models</h4><p>Forecasts, SaaS metrics, scenario and sensitivity tables, IRR/exit models — from scratch, inside the sheet. Not flawless, but it kills the blank-sheet phase. Treat the output as a first draft to pressure-test.</p></div>
+      <div class="step-card"><h4>4 · Build models</h4><p>Forecasts, SaaS metrics, scenario and sensitivity tables, IRR/exit models, from scratch, inside the sheet. Not flawless, but it kills the blank-sheet phase. Treat the output as a first draft to pressure-test.</p></div>
     </div>
     <div class="info-box warning">
       <span class="lbl">Cited</span>
-      Ethan Mollick, testing the Excel agent: it built a workbook "including 406 formulas, from one prompt (&amp; it's solid)." Strong first drafts, fast — not a substitute for checking the math on anything that matters.
+      Ethan Mollick, testing the Excel agent: it built a workbook "including 406 formulas, from one prompt (&amp; it's solid)." Strong first drafts, fast, not a substitute for checking the math on anything that matters.
     </div>
   </section>
 
   <!-- SECTION 4 -->
   <section class="section" id="powerpoint">
-    <div class="sec-kicker">Section 4 — The PowerPoint Agent</div>
+    <div class="sec-kicker">Section 4, The PowerPoint Agent</div>
     <h2>Build the deck the way a consultant would</h2>
     <p>Most AI deck tools treat slides as a text problem: generate bullets, export, clean up by hand. The Office agent reasons about why the deck exists and what story the data tells, then builds real slides in your template. The trick is to make it think before it designs. Run these five prompts in order.</p>
 
@@ -362,29 +362,29 @@
 
     <div class="info-box key">
       <span class="lbl">Why it works</span>
-      Steps 1–2 force clarity before content — which is where most decks die. The deck stops being isolated pages and becomes a sequence. The five-second-scan pass is the hour of cutting and tightening that normally happens the night before a board meeting, done in minutes.
+      Steps 1–2 force clarity before content, which is where most decks die. The deck stops being isolated pages and becomes a sequence. The five-second-scan pass is the hour of cutting and tightening that normally happens the night before a board meeting, done in minutes.
     </div>
 
     <div class="info-box levelup">
-      <span class="lbl">The breakthrough — spreadsheet → deck</span>
-      Claude can read an Excel or CSV, infer the story, and turn it into a structured deck — no exports, no screenshots. See the full play in <a href="workflows.html#spreadsheet-to-deck">Claude in Action, Workflow 7: Spreadsheet → Board Deck</a>.
+      <span class="lbl">The breakthrough, spreadsheet → deck</span>
+      Claude can read an Excel or CSV, infer the story, and turn it into a structured deck, no exports, no screenshots. See the full play in <a href="workflows.html#spreadsheet-to-deck">Claude in Action, Workflow 7: Spreadsheet → Board Deck</a>.
     </div>
   </section>
 
   <!-- SECTION 5 -->
   <section class="section" id="pdf">
-    <div class="sec-kicker">Section 5 — The PDF Agent</div>
+    <div class="sec-kicker">Section 5, The PDF Agent</div>
     <h2>Kill the document busywork</h2>
-    <p>PDFs are the end state of work — invoices, receipts, reports, statements — and generating them used to mean templates, converters, or manual formatting. Now you describe the document and Claude builds the layout, tables, totals, and structure, then returns a finished PDF.</p>
+    <p>PDFs are the end state of work, invoices, receipts, reports, statements, and generating them used to mean templates, converters, or manual formatting. Now you describe the document and Claude builds the layout, tables, totals, and structure, then returns a finished PDF.</p>
     <div class="card-grid">
       <div class="step-card"><h4>Generate</h4><p>"One-page invoice PDF with line items and totals." "Turn this summary into a formatted report PDF." "Receipt with tax and a final total."</p></div>
-      <div class="step-card"><h4>Extract</h4><p>"Pull this PDF table into Excel." The round-trip — data out of a PDF, into a model, back into a clean document — is the part that used to need three tools.</p></div>
+      <div class="step-card"><h4>Extract</h4><p>"Pull this PDF table into Excel." The round-trip, data out of a PDF, into a model, back into a clean document, is the part that used to need three tools.</p></div>
     </div>
   </section>
 
   <!-- SECTION 6 -->
   <section class="section" id="which-tool">
-    <div class="sec-kicker">Section 6 — Which Tool, When</div>
+    <div class="sec-kicker">Section 6, Which Tool, When</div>
     <h2>Four overlapping tools. One decision.</h2>
     <p>This is the part nobody maps. Claude can touch a spreadsheet or a deck four different ways, and reaching for the wrong one wastes time. Use this:</p>
     <table class="compare-table">
@@ -393,8 +393,8 @@
       <tr><td>Generate a fresh, formatted workbook from data or a brief</td><td>Cowork <code>xlsx</code> skill</td><td>Builds a new .xlsx from scratch with formulas and styling; no Office add-in needed.</td></tr>
       <tr><td>Edit/restyle an existing deck slide-by-slide</td><td>Claude in PowerPoint (add-in)</td><td>Works inside your template; keeps layouts and master styles intact.</td></tr>
       <tr><td>Build a new deck from data with a narrative</td><td>Cowork <code>pptx</code> skill or the <code>exec-deck</code> skill</td><td>Generates a full .pptx from a spreadsheet; the skill bakes in the blueprint→polish method.</td></tr>
-      <tr><td>A shareable, interactive view of a dataset</td><td>CSV → HTML dashboard (<a href="workflows.html#csv-dashboard">Workflow 5</a>)</td><td>One self-contained HTML file with filters and charts — opens in any browser.</td></tr>
-      <tr><td>A designed, on-brand deck or page</td><td>Claude Design (<a href="claude-design.html">Step 06</a>)</td><td>Image-led visual polish and working code — when look-and-feel is the point.</td></tr>
+      <tr><td>A shareable, interactive view of a dataset</td><td>CSV → HTML dashboard (<a href="workflows.html#csv-dashboard">Workflow 5</a>)</td><td>One self-contained HTML file with filters and charts, opens in any browser.</td></tr>
+      <tr><td>A designed, on-brand deck or page</td><td>Claude Design (<a href="claude-design.html">Step 06</a>)</td><td>Image-led visual polish and working code, when look-and-feel is the point.</td></tr>
       <tr><td>A finished invoice/report/receipt to send</td><td>PDF agent or the <code>invoice-pdf</code> skill</td><td>Layout, totals, and structure handled; returns a shareable PDF.</td></tr>
     </table>
     <div class="info-box tip">
@@ -405,18 +405,18 @@
 
   <!-- SECTION 7 -->
   <section class="section" id="limits">
-    <div class="sec-kicker">Section 7 — Limits, and the Level-Up</div>
+    <div class="sec-kicker">Section 7, Limits, and the Level-Up</div>
     <h2>Know the edges. Then make it repeatable.</h2>
     <div class="info-box warning">
       <span class="lbl">What Claude in Office can't do</span>
-      No VBA or macros. No Power Query / Power Pivot. No direct external database connections. And no blind trust for audit-critical or regulated work — you still review the numbers. The baseline moved a lot; it didn't remove your judgment.
+      No VBA or macros. No Power Query / Power Pivot. No direct external database connections. And no blind trust for audit-critical or regulated work, you still review the numbers. The baseline moved a lot; it didn't remove your judgment.
     </div>
 
     <p>If you run the same Office workflow more than twice, stop re-prompting it. Wrap the method in a skill so one sentence triggers it and your preferences stay baked in. Three to build first:</p>
     <div class="card-grid">
       <div class="step-card"><h4>exec-deck</h4><p>Encodes the five-step blueprint→polish method on top of the <code>pptx</code> skill. "Build an exec deck from this data" → board-ready first draft.</p></div>
       <div class="step-card"><h4>financial-model</h4><p>Forecast / SaaS metrics / scenario / sensitivity / IRR on top of <code>xlsx</code>, with every assumption labeled and cited, and a review checklist.</p></div>
-      <div class="step-card"><h4>invoice-pdf</h4><p>Structured invoices, receipts, and report PDFs on top of the <code>pdf</code> skill — consistent layout and totals every time.</p></div>
+      <div class="step-card"><h4>invoice-pdf</h4><p>Structured invoices, receipts, and report PDFs on top of the <code>pdf</code> skill, consistent layout and totals every time.</p></div>
     </div>
     <div class="info-box levelup">
       <span class="lbl">Level up: build the skill</span>
