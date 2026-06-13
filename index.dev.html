@@ -207,11 +207,7 @@
 
   /* ─── path (7 guides) ─── */
   .ramp { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; position: relative; }
-  .ramp::before {
-    content: ''; position: absolute; left: 32px; right: 32px; top: 68px;
-    height: 1px; background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
-    z-index: 0;
-  }
+  .ramp::before { display: none; }
   .ramp-card {
     position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
     padding: 28px 26px 26px; display: flex; flex-direction: column; gap: 12px;
@@ -604,6 +600,8 @@
     .top-cta { display: none; }
   }
 
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
   .tweaks-panel { color: var(--text) !important; }
 </style>
 </head>
