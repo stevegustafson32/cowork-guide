@@ -38,7 +38,12 @@
   ].join("");
 
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
-  function scrollBehavior() { return reduceMotion.matches ? "auto" : "smooth"; }
+  // Smooth over short hops, instant beyond ~3 viewports — Chrome's smooth
+  // scroll takes 2-3s across a 10k+ px page, which reads as lag, not polish.
+  function jumpBehavior(distancePx) {
+    if (reduceMotion.matches) return "auto";
+    return Math.abs(distancePx) > window.innerHeight * 3 ? "auto" : "smooth";
+  }
 
   function sectionLabel(sec) {
     var lab = sec.querySelector(".accordion-label");
@@ -94,7 +99,7 @@
   function buildBackToTop() {
     var b = el("button", "sg-top", "↑");
     b.setAttribute("aria-label", "Back to top");
-    b.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: scrollBehavior() }); });
+    b.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: jumpBehavior(window.pageYOffset) }); });
     document.body.appendChild(b);
     return b;
   }
@@ -111,7 +116,7 @@
       if (!target) return;
       e.preventDefault();
       history.pushState(null, "", a.getAttribute("href"));
-      target.scrollIntoView({ behavior: scrollBehavior(), block: "start" });
+      target.scrollIntoView({ behavior: jumpBehavior(target.getBoundingClientRect().top), block: "start" });
     });
   }
 
@@ -134,7 +139,7 @@
     if (!cta || !sections.length) return;
     cta.addEventListener("click", function (e) {
       e.preventDefault();
-      sections[0].scrollIntoView({ behavior: scrollBehavior(), block: "start" });
+      sections[0].scrollIntoView({ behavior: jumpBehavior(sections[0].getBoundingClientRect().top), block: "start" });
     });
   }
 
