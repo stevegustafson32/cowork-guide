@@ -596,6 +596,26 @@
     .resource-nav-links a { padding: 4px 10px; font-size: 12px; }
   }
 </style>
+<style id="open-sections-override">
+  /* Accordion behavior retired 2026-07: sections are always open.
+     sections.js supplies scroll-spy nav; .open on a header now marks the current section. */
+  .accordion-content { max-height: none !important; overflow: visible !important; }
+  .accordion-header { cursor: default; }
+  .accordion-chevron, .accordion-progress { display: none !important; }
+  .accordion { scroll-margin-top: 84px; }
+  h2.accordion-title { margin: 0 0 4px; }
+  /* Wide code samples were clipped by the old accordion overflow:hidden;
+     now they scroll internally instead of widening the page on mobile. */
+  .accordion-content .code-block, .accordion-content pre { max-width: 100%; overflow-x: auto; }
+  body { overflow-x: clip; }
+  @media (max-width: 520px) {
+    /* Tables wider than a phone scroll internally (they were cut off before). */
+    .accordion-content table { display: block; max-width: 100%; overflow-x: auto; }
+    /* Flex list items laid text out on one unwrappable row; let them wrap. */
+    .accordion-content li { flex-wrap: wrap; }
+    .accordion-content li > * { min-width: 0; }
+  }
+</style>
 </head>
 <body>
 
@@ -633,31 +653,29 @@
   <div class="toc">
     <h2>What's Inside</h2>
     <div class="toc-grid">
-      <a class="toc-item toc-link" data-accordion="1"><span class="toc-num">1</span> What Claude Design Is</a>
-      <a class="toc-item toc-link" data-accordion="2"><span class="toc-num">2</span> Why Two Tools Beat One</a>
-      <a class="toc-item toc-link" data-accordion="3"><span class="toc-num">3</span> Brainstorm in ChatGPT Images</a>
-      <a class="toc-item toc-link" data-accordion="4"><span class="toc-num">4</span> Hand Off to Claude Design</a>
-      <a class="toc-item toc-link" data-accordion="5"><span class="toc-num">5</span> Decks: Full Walkthrough</a>
-      <a class="toc-item toc-link" data-accordion="6"><span class="toc-num">6</span> Beyond Decks</a>
-      <a class="toc-item toc-link" data-accordion="7"><span class="toc-num">7</span> Brand Consistency</a>
-      <a class="toc-item toc-link" data-accordion="8"><span class="toc-num">8</span> Design vs Canva vs Figma</a>
-      <a class="toc-item toc-link" data-accordion="9"><span class="toc-num">9</span> Limits and Workarounds</a>
-      <a class="toc-item toc-link" data-accordion="10"><span class="toc-num">10</span> Resources and Next Steps</a>
+      <a class="toc-item toc-link" href="#what-claude-design-actually-is"><span class="toc-num">1</span> What Claude Design Is</a>
+      <a class="toc-item toc-link" href="#why-two-tools-beat-one"><span class="toc-num">2</span> Why Two Tools Beat One</a>
+      <a class="toc-item toc-link" href="#step-one-brainstorm-in-chatgpt-images"><span class="toc-num">3</span> Brainstorm in ChatGPT Images</a>
+      <a class="toc-item toc-link" href="#step-two-hand-off-to-claude-design"><span class="toc-num">4</span> Hand Off to Claude Design</a>
+      <a class="toc-item toc-link" href="#decks-a-full-walkthrough"><span class="toc-num">5</span> Decks: Full Walkthrough</a>
+      <a class="toc-item toc-link" href="#beyond-decks-sites-one-pagers-marketing"><span class="toc-num">6</span> Beyond Decks</a>
+      <a class="toc-item toc-link" href="#brand-consistency-upload-once-use-forever"><span class="toc-num">7</span> Brand Consistency</a>
+      <a class="toc-item toc-link" href="#claude-design-vs-canva-vs-figma-deep-comparison"><span class="toc-num">8</span> Design vs Canva vs Figma</a>
+      <a class="toc-item toc-link" href="#the-limits-and-what-to-use-instead"><span class="toc-num">9</span> Limits and Workarounds</a>
+      <a class="toc-item toc-link" href="#resources-and-next-steps"><span class="toc-num">10</span> Resources and Next Steps</a>
     </div>
   </div>
 
   <!-- SECTION 1: WHAT CLAUDE DESIGN IS -->
-  <div class="accordion" id="accordion1">
-    <button class="accordion-header open">
+  <div class="accordion" id="what-claude-design-actually-is">
+    <div class="accordion-header">
       <div class="accordion-badge">1</div>
       <div>
         <div class="accordion-label">Step 1</div>
-        <div class="accordion-title">What Claude Design Actually Is</div>
+        <h2 class="accordion-title">What Claude Design Actually Is</h2>
         <div class="accordion-subtitle">A code-first design tool launched April 17, 2026, that generates working prototypes from text prompts.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 1 of 10</div>
-    </button>
+    </div>
     <div class="accordion-content open">
       <div class="accordion-body">
         <p>Claude Design is an AI-powered visual design tool built on Claude Opus 4.7 (Anthropic's most capable vision model). It launched April 17, 2026, as a research preview for Claude Pro, Max, Team, and Enterprise customers at claude.ai/design. Unlike Canva or Figma, Claude Design generates working frontend code from natural-language prompts. You get interactive prototypes, not editable layers.</p>
@@ -746,17 +764,15 @@
   </div>
 
   <!-- SECTION 2: WHY TWO TOOLS BEAT ONE -->
-  <div class="accordion" id="accordion2">
-    <button class="accordion-header">
+  <div class="accordion" id="why-two-tools-beat-one">
+    <div class="accordion-header">
       <div class="accordion-badge">2</div>
       <div>
         <div class="accordion-label">Step 2</div>
-        <div class="accordion-title">Why Two Tools Beat One</div>
+        <h2 class="accordion-title">Why Two Tools Beat One</h2>
         <div class="accordion-subtitle">Divergent thinking plus convergent thinking. Fast exploration plus fast polish.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 2 of 10</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
         <p>The core insight: image AI is phenomenal at exploration. Claude Design is phenomenal at polish. Using both in sequence is faster than using either alone.</p>
@@ -800,17 +816,15 @@
   </div>
 
   <!-- SECTION 3: BRAINSTORM IN CHATGPT IMAGES -->
-  <div class="accordion" id="accordion3">
-    <button class="accordion-header">
+  <div class="accordion" id="step-one-brainstorm-in-chatgpt-images">
+    <div class="accordion-header">
       <div class="accordion-badge">3</div>
       <div>
         <div class="accordion-label">Step 3</div>
-        <div class="accordion-title">Step One: Brainstorm in ChatGPT Images</div>
+        <h2 class="accordion-title">Step One: Brainstorm in ChatGPT Images</h2>
         <div class="accordion-subtitle">Generate 4-8 visual concepts in 2 minutes. Pick the one that feels right.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 3 of 10</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
         <p>ChatGPT Images 2.0 (newer, with thinking capability) or DALL-E 3 via ChatGPT is your divergent ideation tool. The goal is not perfect final images. The goal is to explore multiple visual directions so you can pick one that captures the feeling you want.</p>
@@ -858,17 +872,15 @@ Generate all four as horizontal banner images (16:9). Make the title legible in 
   </div>
 
   <!-- SECTION 4: HAND OFF TO CLAUDE DESIGN -->
-  <div class="accordion" id="accordion4">
-    <button class="accordion-header">
+  <div class="accordion" id="step-two-hand-off-to-claude-design">
+    <div class="accordion-header">
       <div class="accordion-badge">4</div>
       <div>
         <div class="accordion-label">Step 4</div>
-        <div class="accordion-title">Step Two: Hand Off to Claude Design</div>
+        <h2 class="accordion-title">Step Two: Hand Off to Claude Design</h2>
         <div class="accordion-subtitle">Upload the image. Provide brand. Ask for the full design. Get working code back.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 4 of 10</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
         <p>Now you have your visual direction. Take it to Claude Design and hand off the full build. Claude Design can take an image as a reference and apply its visual language (color, typography, proportion) to your entire deck or site.</p>
@@ -929,17 +941,15 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
   </div>
 
   <!-- SECTION 5: DECKS FULL WALKTHROUGH -->
-  <div class="accordion" id="accordion5">
-    <button class="accordion-header">
+  <div class="accordion" id="decks-a-full-walkthrough">
+    <div class="accordion-header">
       <div class="accordion-badge">5</div>
       <div>
         <div class="accordion-label">Step 5</div>
-        <div class="accordion-title">Decks: A Full Walkthrough</div>
+        <h2 class="accordion-title">Decks: A Full Walkthrough</h2>
         <div class="accordion-subtitle">From outline to polished, export-ready pitch deck in under an hour.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 5 of 10</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
         <p>Here is the exact process we recommend for building a real pitch or sales deck using Claude Design.</p>
@@ -1000,17 +1010,15 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
   </div>
 
   <!-- SECTION 6: BEYOND DECKS -->
-  <div class="accordion" id="accordion6">
-    <button class="accordion-header">
+  <div class="accordion" id="beyond-decks-sites-one-pagers-marketing">
+    <div class="accordion-header">
       <div class="accordion-badge">6</div>
       <div>
         <div class="accordion-label">Step 6</div>
-        <div class="accordion-title">Beyond Decks: Sites, One-Pagers, Marketing</div>
+        <h2 class="accordion-title">Beyond Decks: Sites, One-Pagers, Marketing</h2>
         <div class="accordion-subtitle">Claude Design handles more than presentations. Here is what else works.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 6 of 10</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
         <p>While Claude Design shines for decks, it handles a wide range of visual design work. Here is the quick reference:</p>
@@ -1052,17 +1060,15 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
   </div>
 
   <!-- SECTION 7: BRAND CONSISTENCY -->
-  <div class="accordion" id="accordion7">
-    <button class="accordion-header">
+  <div class="accordion" id="brand-consistency-upload-once-use-forever">
+    <div class="accordion-header">
       <div class="accordion-badge">7</div>
       <div>
         <div class="accordion-label">Step 7</div>
-        <div class="accordion-title">Brand Consistency: Upload Once, Use Forever</div>
+        <h2 class="accordion-title">Brand Consistency: Upload Once, Use Forever</h2>
         <div class="accordion-subtitle">Set up your brand system one time. Every new project inherits it automatically.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 7 of 10</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
         <p>Claude Design lets you upload brand assets through Organization Settings. Once you do, Claude extracts your design system (colors, typography, components, layout patterns) and applies it consistently to every new project.</p>
@@ -1113,17 +1119,15 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
   </div>
 
   <!-- SECTION 8: COMPARE TABLE (DESIGN VS CANVA VS FIGMA) -->
-  <div class="accordion" id="accordion8">
-    <button class="accordion-header">
+  <div class="accordion" id="claude-design-vs-canva-vs-figma-deep-comparison">
+    <div class="accordion-header">
       <div class="accordion-badge">8</div>
       <div>
         <div class="accordion-label">Step 8</div>
-        <div class="accordion-title">Claude Design vs Canva vs Figma: Deep Comparison</div>
+        <h2 class="accordion-title">Claude Design vs Canva vs Figma: Deep Comparison</h2>
         <div class="accordion-subtitle">When to use each. Side-by-side feature breakdown.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 8 of 10</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
         <p>All three tools are good. They solve different problems. Here is the detailed breakdown:</p>
@@ -1222,17 +1226,15 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
   </div>
 
   <!-- SECTION 9: LIMITS AND WORKAROUNDS -->
-  <div class="accordion" id="accordion9">
-    <button class="accordion-header">
+  <div class="accordion" id="the-limits-and-what-to-use-instead">
+    <div class="accordion-header">
       <div class="accordion-badge">9</div>
       <div>
         <div class="accordion-label">Step 9</div>
-        <div class="accordion-title">The Limits and What to Use Instead</div>
+        <h2 class="accordion-title">The Limits and What to Use Instead</h2>
         <div class="accordion-subtitle">Claude Design is powerful but not perfect. Here is what you need to know.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 9 of 10</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
         <p>Claude Design launched April 2026 as a research preview. It's fast and capable but has real limits. Being honest about them saves you time.</p>
@@ -1289,17 +1291,15 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
   </div>
 
   <!-- SECTION 10: RESOURCES -->
-  <div class="accordion" id="accordion10">
-    <button class="accordion-header">
+  <div class="accordion" id="resources-and-next-steps">
+    <div class="accordion-header">
       <div class="accordion-badge">10</div>
       <div>
         <div class="accordion-label">Step 10</div>
-        <div class="accordion-title">Resources and Next Steps</div>
+        <h2 class="accordion-title">Resources and Next Steps</h2>
         <div class="accordion-subtitle">Where to go from here. Tools, references, and people to follow.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 10 of 10</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
@@ -1363,74 +1363,7 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
 <!-- BACK TO TOP BUTTON -->
 <button class="back-to-top" id="backToTop" title="Back to top">↑</button>
 
-<script>
-// Accordion functionality
-const accordionHeaders = document.querySelectorAll('.accordion-header');
-const tocLinks = document.querySelectorAll('.toc-link');
-const heroCtaBtn = document.getElementById('heroCtaBtn');
-
-function openAccordion(index) {
-  accordionHeaders.forEach((header, i) => {
-    const content = header.nextElementSibling;
-    if (i === index) {
-      header.classList.add('open');
-      content.classList.add('open');
-    } else {
-      header.classList.remove('open');
-      content.classList.remove('open');
-    }
-  });
-  updateProgress(index);
-}
-
-function toggleAccordion(header) {
-  const content = header.nextElementSibling;
-  header.classList.toggle('open');
-  content.classList.toggle('open');
-}
-
-accordionHeaders.forEach((header, index) => {
-  header.addEventListener('click', () => {
-    toggleAccordion(header);
-    updateProgress(index);
-  });
-});
-
-tocLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const accordionIndex = parseInt(link.getAttribute('data-accordion')) - 1;
-    openAccordion(accordionIndex);
-    document.getElementById(`accordion${accordionIndex + 1}`).scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
-
-heroCtaBtn.addEventListener('click', () => {
-  openAccordion(0);
-  document.getElementById('accordion1').scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
-
-// Progress and sticky nav
-function updateProgress(index) {
-  const progress = `Step ${index + 1} of 10`;
-  document.getElementById('stickyProgress').textContent = progress;
-}
-
-// Sticky nav visibility
-const stickyNav = document.getElementById('stickyNav');
-window.addEventListener('scroll', () => {
-  stickyNav.classList.toggle('visible', window.scrollY > 100);
-  document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 200);
-});
-
-// Back to top
-document.getElementById('backToTop').addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// Initialize with first section open
-openAccordion(0);
-</script>
+<script src="sections.js" defer></script>
 
 <script src="search.js"></script>
 </body>

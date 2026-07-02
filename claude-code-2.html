@@ -539,6 +539,26 @@
     .resource-nav-links a { padding: 4px 10px; font-size: 12px; }
   }
 </style>
+<style id="open-sections-override">
+  /* Accordion behavior retired 2026-07: sections are always open.
+     sections.js supplies scroll-spy nav; .open on a header now marks the current section. */
+  .accordion-content { max-height: none !important; overflow: visible !important; }
+  .accordion-header { cursor: default; }
+  .accordion-chevron, .accordion-progress { display: none !important; }
+  .accordion { scroll-margin-top: 84px; }
+  h2.accordion-title { margin: 0 0 4px; }
+  /* Wide code samples were clipped by the old accordion overflow:hidden;
+     now they scroll internally instead of widening the page on mobile. */
+  .accordion-content .code-block, .accordion-content pre { max-width: 100%; overflow-x: auto; }
+  body { overflow-x: clip; }
+  @media (max-width: 520px) {
+    /* Tables wider than a phone scroll internally (they were cut off before). */
+    .accordion-content table { display: block; max-width: 100%; overflow-x: auto; }
+    /* Flex list items laid text out on one unwrappable row; let them wrap. */
+    .accordion-content li { flex-wrap: wrap; }
+    .accordion-content li > * { min-width: 0; }
+  }
+</style>
 </head>
 <body>
 
@@ -574,30 +594,28 @@
   <div class="toc">
     <h2>What's Inside</h2>
     <div class="toc-grid">
-      <a class="toc-item toc-link" data-accordion="1"><span class="toc-num">1</span> What Changed in 2.0</a>
-      <a class="toc-item toc-link" data-accordion="2"><span class="toc-num">2</span> Five Reasons It's Not Scary</a>
-      <a class="toc-item toc-link" data-accordion="3"><span class="toc-num">3</span> The Six Pieces</a>
-      <a class="toc-item toc-link" data-accordion="4"><span class="toc-num">4</span> Install in Five Minutes</a>
-      <a class="toc-item toc-link" data-accordion="5"><span class="toc-num">5</span> Your First Task</a>
-      <a class="toc-item toc-link" data-accordion="6"><span class="toc-num">6</span> First Day to First Month</a>
-      <a class="toc-item toc-link" data-accordion="7"><span class="toc-num">7</span> Eight Real Use Cases</a>
-      <a class="toc-item toc-link" data-accordion="8"><span class="toc-num">8</span> Common Fears & Answers</a>
-      <a class="toc-item toc-link" data-accordion="9"><span class="toc-num">9</span> Cowork or Code 2.0</a>
+      <a class="toc-item toc-link" href="#what-changed-in-2-0"><span class="toc-num">1</span> What Changed in 2.0</a>
+      <a class="toc-item toc-link" href="#five-reasons-it-s-not-scary-anymore"><span class="toc-num">2</span> Five Reasons It's Not Scary</a>
+      <a class="toc-item toc-link" href="#the-six-pieces-in-plain-english"><span class="toc-num">3</span> The Six Pieces</a>
+      <a class="toc-item toc-link" href="#install-in-five-minutes"><span class="toc-num">4</span> Install in Five Minutes</a>
+      <a class="toc-item toc-link" href="#your-first-task-plan-mode-walkthrough"><span class="toc-num">5</span> Your First Task</a>
+      <a class="toc-item toc-link" href="#first-day-first-week-first-month"><span class="toc-num">6</span> First Day to First Month</a>
+      <a class="toc-item toc-link" href="#eight-things-people-are-actually-doing"><span class="toc-num">7</span> Eight Real Use Cases</a>
+      <a class="toc-item toc-link" href="#common-fears-real-answers"><span class="toc-num">8</span> Common Fears & Answers</a>
+      <a class="toc-item toc-link" href="#cowork-or-code-2-0-pick-the-right-one"><span class="toc-num">9</span> Cowork or Code 2.0</a>
     </div>
   </div>
 
   <!-- SECTION 1: WHAT CHANGED IN 2.0 -->
-  <div class="accordion" id="accordion1">
-    <button class="accordion-header open">
+  <div class="accordion" id="what-changed-in-2-0">
+    <div class="accordion-header">
       <div class="accordion-badge">1</div>
       <div>
         <div class="accordion-label">Step 1</div>
-        <div class="accordion-title">What Changed in 2.0</div>
+        <h2 class="accordion-title">What Changed in 2.0</h2>
         <div class="accordion-subtitle">April 14, 2026 turned this into a tool for everyone.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 1 of 9</div>
-    </button>
+    </div>
     <div class="accordion-content open">
       <div class="accordion-body">
         <p>Claude Code used to be a developer's tool. You needed a terminal, you needed to understand what a file path was, you needed to be comfortable watching code scroll past. In April 2026, that changed.</p>
@@ -656,17 +674,15 @@
   </div>
 
   <!-- SECTION 2: FIVE REASONS IT'S NOT SCARY -->
-  <div class="accordion" id="accordion2">
-    <button class="accordion-header">
+  <div class="accordion" id="five-reasons-it-s-not-scary-anymore">
+    <div class="accordion-header">
       <div class="accordion-badge">2</div>
       <div>
         <div class="accordion-label">Step 2</div>
-        <div class="accordion-title">Five Reasons It's Not Scary Anymore</div>
+        <h2 class="accordion-title">Five Reasons It's Not Scary Anymore</h2>
         <div class="accordion-subtitle">Each one addresses a real fear. Each one is built in.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 2 of 9</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
@@ -705,17 +721,15 @@
   </div>
 
   <!-- SECTION 3: THE SIX PIECES -->
-  <div class="accordion" id="accordion3">
-    <button class="accordion-header">
+  <div class="accordion" id="the-six-pieces-in-plain-english">
+    <div class="accordion-header">
       <div class="accordion-badge">3</div>
       <div>
         <div class="accordion-label">Step 3</div>
-        <div class="accordion-title">The Six Pieces (In Plain English)</div>
+        <h2 class="accordion-title">The Six Pieces (In Plain English)</h2>
         <div class="accordion-subtitle">These six things power everything Claude Code can do.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 3 of 9</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
@@ -777,17 +791,15 @@
   </div>
 
   <!-- SECTION 4: INSTALL IN FIVE MINUTES -->
-  <div class="accordion" id="accordion4">
-    <button class="accordion-header">
+  <div class="accordion" id="install-in-five-minutes">
+    <div class="accordion-header">
       <div class="accordion-badge">4</div>
       <div>
         <div class="accordion-label">Step 4</div>
-        <div class="accordion-title">Install in Five Minutes</div>
+        <h2 class="accordion-title">Install in Five Minutes</h2>
         <div class="accordion-subtitle">No terminal. No technical knowledge. Just three steps.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 4 of 9</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
@@ -822,17 +834,15 @@
   </div>
 
   <!-- SECTION 5: YOUR FIRST TASK -->
-  <div class="accordion" id="accordion5">
-    <button class="accordion-header">
+  <div class="accordion" id="your-first-task-plan-mode-walkthrough">
+    <div class="accordion-header">
       <div class="accordion-badge">5</div>
       <div>
         <div class="accordion-label">Step 5</div>
-        <div class="accordion-title">Your First Task (Plan Mode Walkthrough)</div>
+        <h2 class="accordion-title">Your First Task (Plan Mode Walkthrough)</h2>
         <div class="accordion-subtitle">A real example. From prompt to result.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 5 of 9</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
@@ -877,17 +887,15 @@
   </div>
 
   <!-- SECTION 6: FIRST DAY TO FIRST MONTH -->
-  <div class="accordion" id="accordion6">
-    <button class="accordion-header">
+  <div class="accordion" id="first-day-first-week-first-month">
+    <div class="accordion-header">
       <div class="accordion-badge">6</div>
       <div>
         <div class="accordion-label">Step 6</div>
-        <div class="accordion-title">First Day, First Week, First Month</div>
+        <h2 class="accordion-title">First Day, First Week, First Month</h2>
         <div class="accordion-subtitle">What to do at each stage. What to expect.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 6 of 9</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
@@ -917,17 +925,15 @@
   </div>
 
   <!-- SECTION 7: EIGHT REAL USE CASES -->
-  <div class="accordion" id="accordion7">
-    <button class="accordion-header">
+  <div class="accordion" id="eight-things-people-are-actually-doing">
+    <div class="accordion-header">
       <div class="accordion-badge">7</div>
       <div>
         <div class="accordion-label">Step 7</div>
-        <div class="accordion-title">Eight Things People Are Actually Doing</div>
+        <h2 class="accordion-title">Eight Things People Are Actually Doing</h2>
         <div class="accordion-subtitle">Real work. Real ROI. Real people (not me).</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 7 of 9</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
@@ -976,17 +982,15 @@
   </div>
 
   <!-- SECTION 8: COMMON FEARS & REAL ANSWERS -->
-  <div class="accordion" id="accordion8">
-    <button class="accordion-header">
+  <div class="accordion" id="common-fears-real-answers">
+    <div class="accordion-header">
       <div class="accordion-badge">8</div>
       <div>
         <div class="accordion-label">Step 8</div>
-        <div class="accordion-title">Common Fears, Real Answers</div>
+        <h2 class="accordion-title">Common Fears, Real Answers</h2>
         <div class="accordion-subtitle">You're probably thinking one of these. The answers are built in.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 8 of 9</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
@@ -1037,17 +1041,15 @@
   </div>
 
   <!-- SECTION 9: COWORK OR CODE 2.0 -->
-  <div class="accordion" id="accordion9">
-    <button class="accordion-header">
+  <div class="accordion" id="cowork-or-code-2-0-pick-the-right-one">
+    <div class="accordion-header">
       <div class="accordion-badge">9</div>
       <div>
         <div class="accordion-label">Step 9</div>
-        <div class="accordion-title">Cowork or Code 2.0. Pick the Right One.</div>
+        <h2 class="accordion-title">Cowork or Code 2.0. Pick the Right One.</h2>
         <div class="accordion-subtitle">They solve different problems. You might use both.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Step 9 of 9</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
@@ -1130,98 +1132,7 @@
 
 <button class="back-to-top" id="backToTopBtn">&uarr;</button>
 
-<script>
-  const accordions = document.querySelectorAll('.accordion');
-  const tocLinks = document.querySelectorAll('.toc-link');
-  const stickyNav = document.getElementById('stickyNav');
-  const stickyProgress = document.getElementById('stickyProgress');
-  const backToTopBtn = document.getElementById('backToTopBtn');
-  const heroCtaBtn = document.getElementById('heroCtaBtn');
-
-  accordions.forEach((accordion, index) => {
-    const header = accordion.querySelector('.accordion-header');
-    const content = accordion.querySelector('.accordion-content');
-    const accordionId = index + 1;
-
-    header.addEventListener('click', () => {
-      const isOpen = content.classList.contains('open');
-
-      accordions.forEach(a => {
-        a.querySelector('.accordion-header').classList.remove('open');
-        a.querySelector('.accordion-content').classList.remove('open');
-      });
-
-      if (!isOpen) {
-        header.classList.add('open');
-        content.classList.add('open');
-        updateStickyNav(accordionId);
-      }
-    });
-  });
-
-  tocLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const accordionId = parseInt(link.getAttribute('data-accordion'));
-      openAccordion(accordionId);
-    });
-  });
-
-  heroCtaBtn.addEventListener('click', () => {
-    openAccordion(1);
-  });
-
-  function openAccordion(id) {
-    const accordion = document.getElementById(`accordion${id}`);
-    if (accordion) {
-      const header = accordion.querySelector('.accordion-header');
-      const content = accordion.querySelector('.accordion-content');
-
-      accordions.forEach(a => {
-        a.querySelector('.accordion-header').classList.remove('open');
-        a.querySelector('.accordion-content').classList.remove('open');
-      });
-
-      header.classList.add('open');
-      content.classList.add('open');
-      accordion.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      updateStickyNav(id);
-    }
-  }
-
-  function updateStickyNav(step) {
-    stickyProgress.textContent = `Step ${step} of 9`;
-  }
-
-  window.addEventListener('scroll', () => {
-    const scrollPos = window.scrollY;
-    if (scrollPos > 200) {
-      stickyNav.classList.add('visible');
-      backToTopBtn.classList.add('visible');
-    } else {
-      stickyNav.classList.remove('visible');
-      backToTopBtn.classList.remove('visible');
-    }
-
-    const accordionPositions = [];
-    accordions.forEach((accordion, index) => {
-      const rect = accordion.getBoundingClientRect();
-      accordionPositions.push({
-        index: index + 1,
-        distance: Math.abs(rect.top)
-      });
-    });
-
-    accordionPositions.sort((a, b) => a.distance - b.distance);
-    if (accordionPositions.length > 0) {
-      updateStickyNav(accordionPositions[0].index);
-    }
-  });
-
-  backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-</script>
+<script src="sections.js" defer></script>
 
 <script src="search.js"></script>
 </body>

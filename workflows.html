@@ -573,6 +573,26 @@
     .accordion-header { padding: 20px 0; }
   }
 </style>
+<style id="open-sections-override">
+  /* Accordion behavior retired 2026-07: sections are always open.
+     sections.js supplies scroll-spy nav; .open on a header now marks the current section. */
+  .accordion-content { max-height: none !important; overflow: visible !important; }
+  .accordion-header { cursor: default; }
+  .accordion-chevron, .accordion-progress { display: none !important; }
+  .accordion { scroll-margin-top: 84px; }
+  h2.accordion-title { margin: 0 0 4px; }
+  /* Wide code samples were clipped by the old accordion overflow:hidden;
+     now they scroll internally instead of widening the page on mobile. */
+  .accordion-content .code-block, .accordion-content pre { max-width: 100%; overflow-x: auto; }
+  body { overflow-x: clip; }
+  @media (max-width: 520px) {
+    /* Tables wider than a phone scroll internally (they were cut off before). */
+    .accordion-content table { display: block; max-width: 100%; overflow-x: auto; }
+    /* Flex list items laid text out on one unwrappable row; let them wrap. */
+    .accordion-content li { flex-wrap: wrap; }
+    .accordion-content li > * { min-width: 0; }
+  }
+</style>
 </head>
 <body>
 
@@ -616,30 +636,28 @@
   <div class="toc">
     <h2>Seven Workflows</h2>
     <div class="toc-grid">
-      <a class="toc-item toc-link" data-accordion="1"><span class="toc-num">1</span> The 6 AM Dispatch</a>
-      <a class="toc-item toc-link" data-accordion="2"><span class="toc-num">2</span> The Essential Three</a>
-      <a class="toc-item toc-link" data-accordion="3"><span class="toc-num">3</span> Client Deliverable Factory</a>
-      <a class="toc-item toc-link" data-accordion="4"><span class="toc-num">4</span> Deep Research Engine</a>
-      <a class="toc-item toc-link" data-accordion="5"><span class="toc-num">5</span> CSV to Dashboard</a>
-      <a class="toc-item toc-link" data-accordion="6"><span class="toc-num">6</span> The AI Chief of Staff</a>
-      <a class="toc-item toc-link" data-accordion="7"><span class="toc-num">7</span> Spreadsheet → Board Deck</a>
+      <a class="toc-item toc-link" href="#the-6-am-dispatch"><span class="toc-num">1</span> The 6 AM Dispatch</a>
+      <a class="toc-item toc-link" href="#the-essential-three-scheduled-tasks-starter"><span class="toc-num">2</span> The Essential Three</a>
+      <a class="toc-item toc-link" href="#client-deliverable-factory"><span class="toc-num">3</span> Client Deliverable Factory</a>
+      <a class="toc-item toc-link" href="#deep-research-engine"><span class="toc-num">4</span> Deep Research Engine</a>
+      <a class="toc-item toc-link" href="#csv-to-dashboard"><span class="toc-num">5</span> CSV to Dashboard</a>
+      <a class="toc-item toc-link" href="#the-ai-chief-of-staff"><span class="toc-num">6</span> The AI Chief of Staff</a>
+      <a class="toc-item toc-link" href="#spreadsheet-board-deck"><span class="toc-num">7</span> Spreadsheet → Board Deck</a>
       <a class="toc-item" href="#reliability"><span class="toc-num">&#9888;</span> When Automations Go Wrong</a>
     </div>
   </div>
 
   <!-- WORKFLOW 1: THE 6 AM DISPATCH -->
   <span id="6am-dispatch" class="anchor-offset"></span>
-  <div class="accordion" id="accordion1">
-    <button class="accordion-header open">
+  <div class="accordion" id="the-6-am-dispatch">
+    <div class="accordion-header">
       <div class="accordion-badge">1</div>
       <div>
         <div class="accordion-label">Workflow 1</div>
-        <div class="accordion-title">The 6 AM Dispatch</div>
+        <h2 class="accordion-title">The 6 AM Dispatch</h2>
         <div class="accordion-subtitle">Queue 5 tasks from your phone before breakfast. Review finished work over coffee.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 1 of 7</div>
-    </button>
+    </div>
     <div class="accordion-content open">
       <div class="accordion-body">
 
@@ -693,17 +711,15 @@
   </div>
 
   <!-- WORKFLOW 2: THE ESSENTIAL THREE -->
-  <div class="accordion" id="accordion2">
-    <button class="accordion-header">
+  <div class="accordion" id="the-essential-three-scheduled-tasks-starter">
+    <div class="accordion-header">
       <div class="accordion-badge">2</div>
       <div>
         <div class="accordion-label">Workflow 2</div>
-        <div class="accordion-title">The Essential Three, Scheduled Tasks Starter</div>
+        <h2 class="accordion-title">The Essential Three, Scheduled Tasks Starter</h2>
         <div class="accordion-subtitle">Three automated tasks that cover 80% of your daily overhead.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 2 of 7</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
@@ -775,17 +791,15 @@
   </div>
 
   <!-- WORKFLOW 3: CLIENT DELIVERABLE FACTORY -->
-  <div class="accordion" id="accordion3">
-    <button class="accordion-header">
+  <div class="accordion" id="client-deliverable-factory">
+    <div class="accordion-header">
       <div class="accordion-badge">3</div>
       <div>
         <div class="accordion-label">Workflow 3</div>
-        <div class="accordion-title">Client Deliverable Factory</div>
+        <h2 class="accordion-title">Client Deliverable Factory</h2>
         <div class="accordion-subtitle">Turn raw briefs into polished reports every time.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 3 of 7</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
@@ -828,17 +842,15 @@
 
   <!-- WORKFLOW 4: DEEP RESEARCH ENGINE -->
   <span id="research-digest" class="anchor-offset"></span>
-  <div class="accordion" id="accordion4">
-    <button class="accordion-header">
+  <div class="accordion" id="deep-research-engine">
+    <div class="accordion-header">
       <div class="accordion-badge">4</div>
       <div>
         <div class="accordion-label">Workflow 4</div>
-        <div class="accordion-title">Deep Research Engine</div>
+        <h2 class="accordion-title">Deep Research Engine</h2>
         <div class="accordion-subtitle">Verified, citation-rich intelligence on any person, company, or market.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 4 of 7</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
@@ -930,17 +942,15 @@
 
   <!-- WORKFLOW 5: CSV TO DASHBOARD -->
   <span id="csv-dashboard" class="anchor-offset"></span>
-  <div class="accordion" id="accordion5">
-    <button class="accordion-header">
+  <div class="accordion" id="csv-to-dashboard">
+    <div class="accordion-header">
       <div class="accordion-badge">5</div>
       <div>
         <div class="accordion-label">Workflow 5</div>
-        <div class="accordion-title">CSV to Dashboard</div>
+        <h2 class="accordion-title">CSV to Dashboard</h2>
         <div class="accordion-subtitle">Turn any spreadsheet into an interactive dashboard without code.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 5 of 7</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
@@ -999,17 +1009,15 @@
 
   <!-- WORKFLOW 6: THE AI CHIEF OF STAFF -->
   <span id="chief-of-staff" class="anchor-offset"></span>
-  <div class="accordion" id="accordion6">
-    <button class="accordion-header">
+  <div class="accordion" id="the-ai-chief-of-staff">
+    <div class="accordion-header">
       <div class="accordion-badge">6</div>
       <div>
         <div class="accordion-label">Workflow 6</div>
-        <div class="accordion-title">The AI Chief of Staff</div>
+        <h2 class="accordion-title">The AI Chief of Staff</h2>
         <div class="accordion-subtitle">The full system, from three tasks to a personalized operating layer.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 6 of 7</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
@@ -1117,17 +1125,15 @@
 
   <!-- WORKFLOW 7: SPREADSHEET TO BOARD DECK -->
   <span id="spreadsheet-to-deck" class="anchor-offset"></span>
-  <div class="accordion" id="accordion7">
-    <button class="accordion-header">
+  <div class="accordion" id="spreadsheet-board-deck">
+    <div class="accordion-header">
       <div class="accordion-badge">7</div>
       <div>
         <div class="accordion-label">Workflow 7</div>
-        <div class="accordion-title">Spreadsheet → Board Deck</div>
+        <h2 class="accordion-title">Spreadsheet → Board Deck</h2>
         <div class="accordion-subtitle">Turn a messy Excel into a board-ready deck, without exporting a single chart.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Workflow 7 of 7</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body">
 
@@ -1232,149 +1238,7 @@
   <p style="margin-top: 16px; color: var(--text-dim);">Claude and Cowork are products of <a href="https://anthropic.com" target="_blank">Anthropic</a>. This is an independent guide, not official Anthropic documentation.</p>
 </div>
 
-<script>
-  // Select all accordion headers and TOC links
-  const headers = document.querySelectorAll('.accordion-header');
-  const tocLinks = document.querySelectorAll('.toc-link');
-  const heroCtaBtn = document.getElementById('heroCtaBtn');
-  const stickyNav = document.getElementById('stickyNav');
-
-  function scrollToHeader(header) {
-    const headerRect = header.getBoundingClientRect();
-    const offset = 60; // Adjust for sticky nav height
-    const scrollTop = window.scrollY + headerRect.top - offset;
-    window.scrollTo({ top: scrollTop, behavior: 'smooth' });
-  }
-
-  // Update sticky nav progress
-  function updateStickyNav() {
-    const scrollTop = window.scrollY;
-    const heroHeight = document.querySelector('.hero').offsetHeight;
-
-    // Show sticky nav after hero
-    if (scrollTop > heroHeight - 100) {
-      stickyNav.classList.add('visible');
-
-      // Update progress based on which accordion is open
-      let currentWorkflow = 1;
-      headers.forEach((header, index) => {
-        if (header.classList.contains('open')) {
-          currentWorkflow = index + 1;
-        }
-      });
-      document.getElementById('stickyProgress').textContent = `Workflow ${currentWorkflow} of 7`;
-    } else {
-      stickyNav.classList.remove('visible');
-    }
-
-    // Show/hide back-to-top button
-    const backToTopBtn = document.getElementById('backToTopBtn');
-    if (scrollTop > 300) {
-      backToTopBtn.classList.add('visible');
-    } else {
-      backToTopBtn.classList.remove('visible');
-    }
-  }
-
-  // FIX 1: Hero CTA button - open accordion1 and scroll to it
-  if (heroCtaBtn) {
-    heroCtaBtn.addEventListener('click', function() {
-      const accordion = document.getElementById('accordion1');
-      if (accordion) {
-        const header = accordion.querySelector('.accordion-header');
-        const content = accordion.querySelector('.accordion-content');
-
-        // Close all other accordions
-        headers.forEach(h => {
-          h.classList.remove('open');
-          h.closest('.accordion').querySelector('.accordion-content').classList.remove('open');
-        });
-
-        // Open accordion1
-        header.classList.add('open');
-        content.classList.add('open');
-
-        // Scroll header to top of viewport
-        scrollToHeader(header);
-        updateStickyNav();
-      }
-    });
-  }
-
-  // FIX 2: Create and add back-to-top button
-  const backToTopContainer = document.createElement('button');
-  backToTopContainer.id = 'backToTopBtn';
-  backToTopContainer.className = 'back-to-top';
-  backToTopContainer.innerHTML = '↑';
-  document.body.appendChild(backToTopContainer);
-
-  backToTopContainer.addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // Toggle accordion on header click
-  headers.forEach((header, index) => {
-    header.addEventListener('click', function() {
-      const accordion = this.closest('.accordion');
-      const content = accordion.querySelector('.accordion-content');
-      const isOpen = this.classList.contains('open');
-
-      // Close all other accordions
-      headers.forEach((h, i) => {
-        if (i !== index) {
-          h.classList.remove('open');
-          h.closest('.accordion').querySelector('.accordion-content').classList.remove('open');
-        }
-      });
-
-      // Toggle current accordion
-      this.classList.toggle('open');
-      content.classList.toggle('open');
-
-      // Update sticky nav when accordion changes
-      updateStickyNav();
-
-      // Scroll to top of this section when opening
-      if (!isOpen) {
-        scrollToHeader(this);
-      }
-    });
-  });
-
-  // TOC link click functionality
-  tocLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const accordionId = this.getAttribute('data-accordion');
-      const accordion = document.getElementById('accordion' + accordionId);
-
-      if (accordion) {
-        const header = accordion.querySelector('.accordion-header');
-        const content = accordion.querySelector('.accordion-content');
-
-        // Close all other accordions
-        headers.forEach(h => {
-          h.classList.remove('open');
-          h.closest('.accordion').querySelector('.accordion-content').classList.remove('open');
-        });
-
-        // Open target accordion
-        header.classList.add('open');
-        content.classList.add('open');
-
-        // Update sticky nav when accordion changes
-        updateStickyNav();
-
-        // Scroll header to top of viewport
-        scrollToHeader(header);
-      }
-    });
-  });
-
-  // Initialize on page load
-  window.addEventListener('load', updateStickyNav);
-  window.addEventListener('scroll', updateStickyNav);
-</script>
+<script src="sections.js" defer></script>
 
 <script src="search.js"></script>
 </body>

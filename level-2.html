@@ -534,6 +534,26 @@
     .resource-nav-links a { padding: 4px 10px; font-size: 12px; }
   }
 </style>
+<style id="open-sections-override">
+  /* Accordion behavior retired 2026-07: sections are always open.
+     sections.js supplies scroll-spy nav; .open on a header now marks the current section. */
+  .accordion-content { max-height: none !important; overflow: visible !important; }
+  .accordion-header { cursor: default; }
+  .accordion-chevron, .accordion-progress { display: none !important; }
+  .accordion { scroll-margin-top: 84px; }
+  h2.accordion-title { margin: 0 0 4px; }
+  /* Wide code samples were clipped by the old accordion overflow:hidden;
+     now they scroll internally instead of widening the page on mobile. */
+  .accordion-content .code-block, .accordion-content pre { max-width: 100%; overflow-x: auto; }
+  body { overflow-x: clip; }
+  @media (max-width: 520px) {
+    /* Tables wider than a phone scroll internally (they were cut off before). */
+    .accordion-content table { display: block; max-width: 100%; overflow-x: auto; }
+    /* Flex list items laid text out on one unwrappable row; let them wrap. */
+    .accordion-content li { flex-wrap: wrap; }
+    .accordion-content li > * { min-width: 0; }
+  }
+</style>
 </head>
 <body>
 
@@ -572,35 +592,33 @@
   <div class="toc">
     <h2>What's Inside</h2>
     <div class="toc-grid">
-      <a class="toc-item toc-link" data-accordion="1"><span class="toc-num">1</span> Build Your Own Skills</a>
-      <a class="toc-item toc-link" data-accordion="2"><span class="toc-num">2</span> Create & Share Plugins</a>
-      <a class="toc-item toc-link" data-accordion="3"><span class="toc-num">3</span> Share With Your Network</a>
-      <a class="toc-item toc-link" data-accordion="4"><span class="toc-num">4</span> Chrome Power Moves</a>
-      <a class="toc-item toc-link" data-accordion="5"><span class="toc-num">5</span> Computer Use</a>
-      <a class="toc-item toc-link" data-accordion="6"><span class="toc-num">6</span> Scheduled Automation</a>
-      <a class="toc-item toc-link" data-accordion="7"><span class="toc-num">7</span> Memory Architecture</a>
-      <a class="toc-item toc-link" data-accordion="8"><span class="toc-num">8</span> MCP: Connect Anything</a>
-      <a class="toc-item toc-link" data-accordion="9"><span class="toc-num">9</span> Parallel Agents</a>
-      <a class="toc-item toc-link" data-accordion="10"><span class="toc-num">10</span> File Power Moves</a>
-      <a class="toc-item toc-link" data-accordion="11"><span class="toc-num">11</span> Domain Playbooks</a>
-      <a class="toc-item toc-link" data-accordion="12"><span class="toc-num">12</span> Enterprise & Teams</a>
-      <a class="toc-item toc-link" data-accordion="13"><span class="toc-num">13</span> Dispatch & Mobile</a>
-      <a class="toc-item toc-link" data-accordion="14"><span class="toc-num">14</span> Advanced Resources</a>
+      <a class="toc-item toc-link" href="#build-your-own-skills"><span class="toc-num">1</span> Build Your Own Skills</a>
+      <a class="toc-item toc-link" href="#create-distribute-plugins"><span class="toc-num">2</span> Create & Share Plugins</a>
+      <a class="toc-item toc-link" href="#share-skills-with-your-network"><span class="toc-num">3</span> Share With Your Network</a>
+      <a class="toc-item toc-link" href="#chrome-extension-power-moves"><span class="toc-num">4</span> Chrome Power Moves</a>
+      <a class="toc-item toc-link" href="#computer-use-desktop-control"><span class="toc-num">5</span> Computer Use</a>
+      <a class="toc-item toc-link" href="#scheduled-tasks-recurring-automation"><span class="toc-num">6</span> Scheduled Automation</a>
+      <a class="toc-item toc-link" href="#memory-architecture-mastery"><span class="toc-num">7</span> Memory Architecture</a>
+      <a class="toc-item toc-link" href="#mcp-connect-anything"><span class="toc-num">8</span> MCP: Connect Anything</a>
+      <a class="toc-item toc-link" href="#parallel-agents"><span class="toc-num">9</span> Parallel Agents</a>
+      <a class="toc-item toc-link" href="#file-power-moves"><span class="toc-num">10</span> File Power Moves</a>
+      <a class="toc-item toc-link" href="#domain-playbooks"><span class="toc-num">11</span> Domain Playbooks</a>
+      <a class="toc-item toc-link" href="#enterprise-team-features"><span class="toc-num">12</span> Enterprise & Teams</a>
+      <a class="toc-item toc-link" href="#dispatch-amp-mobile-control"><span class="toc-num">13</span> Dispatch & Mobile</a>
+      <a class="toc-item toc-link" href="#advanced-resources"><span class="toc-num">14</span> Advanced Resources</a>
     </div>
   </div>
 
   <!-- ACCORDION 1: BUILD YOUR OWN SKILLS -->
-  <div class="accordion" id="accordion1">
-    <button class="accordion-header open">
+  <div class="accordion" id="build-your-own-skills">
+    <div class="accordion-header">
       <span class="accordion-badge">1</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 1</div>
-        <div class="accordion-title">Build Your Own Skills</div>
+        <h2 class="accordion-title">Build Your Own Skills</h2>
         <div class="accordion-subtitle">Turn your repeated instructions into reusable, auto-triggering capabilities.</div>
       </div>
-      <span class="accordion-chevron"></span>
- 
-      <div class="accordion-progress">Section 1 of 14</div>   </button>
+      <span class="accordion-chevron"></span>   </div>
     <div class="accordion-content open">
       <div class="accordion-body section">
         <p>If you followed the Level 1 guide, you've already been using skills without knowing it. When you say "new project" and Claude creates folders, memory files, and output directories, that's a skill in action. The "new project" workflow, the file naming conventions, the per-project memory, all of these are patterns that could be (and are) encoded as skills. Now you'll learn to build your own.</p>
@@ -678,17 +696,16 @@ When the user asks you to research a company:
   </div>
 
   <!-- ACCORDION 2: CREATE & SHARE PLUGINS -->
-  <div class="accordion" id="accordion2">
-    <button class="accordion-header">
+  <div class="accordion" id="create-distribute-plugins">
+    <div class="accordion-header">
       <span class="accordion-badge">2</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 2</div>
-        <div class="accordion-title">Create & Distribute Plugins</div>
+        <h2 class="accordion-title">Create & Distribute Plugins</h2>
         <div class="accordion-subtitle">Bundle your skills, connectors, and commands into shareable packages.</div>
       </div>
       <span class="accordion-chevron"></span>
-      <div class="accordion-progress">Section 2 of 14</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>A <strong>plugin</strong> is a folder that bundles skills, commands, and connector configurations into a single installable package. If skills are individual tools, plugins are the toolbox.</p>
@@ -739,17 +756,16 @@ When the user asks you to research a company:
   </div>
 
   <!-- ACCORDION 3: SHARE WITH NETWORK -->
-  <div class="accordion" id="accordion3">
-    <button class="accordion-header">
+  <div class="accordion" id="share-skills-with-your-network">
+    <div class="accordion-header">
       <span class="accordion-badge">3</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 3</div>
-        <div class="accordion-title">Share Skills With Your Network</div>
+        <h2 class="accordion-title">Share Skills With Your Network</h2>
         <div class="accordion-subtitle">Your best workflows shouldn't die on your laptop.</div>
       </div>
       <span class="accordion-chevron"></span>
-      <div class="accordion-progress">Section 3 of 14</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>Once you've built skills or plugins that work well, sharing them is straightforward.</p>
@@ -787,17 +803,16 @@ When the user asks you to research a company:
   </div>
 
   <!-- ACCORDION 4: CHROME POWER MOVES -->
-  <div class="accordion" id="accordion4">
-    <button class="accordion-header">
+  <div class="accordion" id="chrome-extension-power-moves">
+    <div class="accordion-header">
       <span class="accordion-badge">4</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 4</div>
-        <div class="accordion-title">Chrome Extension Power Moves</div>
+        <h2 class="accordion-title">Chrome Extension Power Moves</h2>
         <div class="accordion-subtitle">Turn your browser into an autonomous agent.</div>
       </div>
       <span class="accordion-chevron"></span>
-      <div class="accordion-progress">Section 4 of 14</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>Claude in Chrome lets Claude see, click, type, navigate, and interact with anything in your browser. It goes far beyond basic web search.</p>
@@ -839,17 +854,16 @@ When the user asks you to research a company:
   </div>
 
   <!-- ACCORDION 5: COMPUTER USE -->
-  <div class="accordion" id="accordion5">
-    <button class="accordion-header">
+  <div class="accordion" id="computer-use-desktop-control">
+    <div class="accordion-header">
       <span class="accordion-badge">5</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 5</div>
-        <div class="accordion-title">Computer Use, Desktop Control</div>
+        <h2 class="accordion-title">Computer Use, Desktop Control</h2>
         <div class="accordion-subtitle">Claude controls your mouse and keyboard to operate native apps.</div>
       </div>
       <span class="accordion-chevron"></span>
-      <div class="accordion-progress">Section 5 of 14</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>Chrome extension handles the browser. Connectors handle specific services. But what about everything else, Finder, Notes, Maps, System Settings, Photoshop, Excel (the desktop app), or any native application? That's <strong>Computer Use</strong>. Claude takes screenshots of your screen, moves the mouse, clicks buttons, and types, just like a remote coworker sitting at your desk.</p>
@@ -933,17 +947,16 @@ When the user asks you to research a company:
   </div>
 
   <!-- ACCORDION 6: SCHEDULED AUTOMATION -->
-  <div class="accordion" id="accordion6">
-    <button class="accordion-header">
+  <div class="accordion" id="scheduled-tasks-recurring-automation">
+    <div class="accordion-header">
       <span class="accordion-badge">6</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 6</div>
-        <div class="accordion-title">Scheduled Tasks & Recurring Automation</div>
+        <h2 class="accordion-title">Scheduled Tasks & Recurring Automation</h2>
         <div class="accordion-subtitle">Set it once, it runs forever.</div>
       </div>
       <span class="accordion-chevron"></span>
-      <div class="accordion-progress">Section 6 of 14</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>Cowork can run tasks on a schedule, daily, weekly, or at specific times. Combined with plugins and Chrome, this is where Cowork becomes an autonomous operator.</p>
@@ -980,17 +993,15 @@ When the user asks you to research a company:
   </div>
 
   <!-- ACCORDION 7: MEMORY ARCHITECTURE -->
-  <div class="accordion" id="accordion7">
-    <button class="accordion-header">
+  <div class="accordion" id="memory-architecture-mastery">
+    <div class="accordion-header">
       <span class="accordion-badge">7</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 7</div>
-        <div class="accordion-title">Memory Architecture Mastery</div>
+        <h2 class="accordion-title">Memory Architecture Mastery</h2>
         <div class="accordion-subtitle">The 4-layer system that makes Claude feel like a long-term colleague.</div>
       </div>
-      <span class="accordion-chevron"></span>
-
-      <div class="accordion-progress">Section 7 of 14</div>   </button>
+      <span class="accordion-chevron"></span>   </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>Claude's memory isn't one thing, it's a hierarchy. With the March 2026 Projects update, there are now <strong>four distinct layers</strong>. Understanding them lets you put the right information in the right place.</p>
@@ -1070,17 +1081,15 @@ When the user asks you to research a company:
   </div>
 
   <!-- ACCORDION 8: MCP -->
-  <div class="accordion" id="accordion8">
-    <button class="accordion-header">
+  <div class="accordion" id="mcp-connect-anything">
+    <div class="accordion-header">
       <span class="accordion-badge">8</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 8</div>
-        <div class="accordion-title">MCP: Connect Anything</div>
+        <h2 class="accordion-title">MCP: Connect Anything</h2>
         <div class="accordion-subtitle">The protocol that lets Claude talk to any tool, database, or API.</div>
       </div>
-      <span class="accordion-chevron"></span>
-
-      <div class="accordion-progress">Section 8 of 14</div>   </button>
+      <span class="accordion-chevron"></span>   </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p><strong>MCP (Model Context Protocol)</strong> is how Claude connects to external services. Every connector you use, Google Drive, Slack, Gmail, GitHub, is an MCP server under the hood. You can build your own.</p>
@@ -1127,17 +1136,15 @@ When the user asks you to research a company:
   </div>
 
   <!-- ACCORDION 9: PARALLEL AGENTS -->
-  <div class="accordion" id="accordion9">
-    <button class="accordion-header">
+  <div class="accordion" id="parallel-agents">
+    <div class="accordion-header">
       <span class="accordion-badge">9</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 9</div>
-        <div class="accordion-title">Parallel Agents</div>
+        <h2 class="accordion-title">Parallel Agents</h2>
         <div class="accordion-subtitle">Claude doesn't just do one thing at a time. It can split into teams.</div>
       </div>
-      <span class="accordion-chevron"></span>
-
-      <div class="accordion-progress">Section 9 of 14</div>   </button>
+      <span class="accordion-chevron"></span>   </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>When Claude encounters a task that can be broken into independent pieces, it automatically spawns <strong>sub-agents</strong>, parallel workers that execute simultaneously. This is one of the most powerful features most people never discover.</p>
@@ -1198,17 +1205,15 @@ When the user asks you to research a company:
   </div>
 
   <!-- ACCORDION 10: FILE POWER MOVES -->
-  <div class="accordion" id="accordion10">
-    <button class="accordion-header">
+  <div class="accordion" id="file-power-moves">
+    <div class="accordion-header">
       <span class="accordion-badge">10</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 10</div>
-        <div class="accordion-title">File Power Moves</div>
+        <h2 class="accordion-title">File Power Moves</h2>
         <div class="accordion-subtitle">Claude creates real, production-quality files, not just text.</div>
       </div>
-      <span class="accordion-chevron"></span>
-
-      <div class="accordion-progress">Section 10 of 14</div>   </button>
+      <span class="accordion-chevron"></span>   </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <h3>What Claude Can Create</h3>
@@ -1253,17 +1258,15 @@ When the user asks you to research a company:
   </div>
 
   <!-- ACCORDION 11: DOMAIN PLAYBOOKS -->
-  <div class="accordion" id="accordion11">
-    <button class="accordion-header">
+  <div class="accordion" id="domain-playbooks">
+    <div class="accordion-header">
       <span class="accordion-badge">11</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 11</div>
-        <div class="accordion-title">Domain Playbooks</div>
+        <h2 class="accordion-title">Domain Playbooks</h2>
         <div class="accordion-subtitle">What each plugin category actually unlocks.</div>
       </div>
-      <span class="accordion-chevron"></span>
-
-      <div class="accordion-progress">Section 11 of 14</div>   </button>
+      <span class="accordion-chevron"></span>   </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>Each plugin category transforms Claude from a generalist into a domain specialist. Here's what the major categories enable:</p>
@@ -1297,17 +1300,15 @@ When the user asks you to research a company:
   </div>
 
   <!-- ACCORDION 12: ENTERPRISE & TEAMS -->
-  <div class="accordion" id="accordion12">
-    <button class="accordion-header">
+  <div class="accordion" id="enterprise-team-features">
+    <div class="accordion-header">
       <span class="accordion-badge">12</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 12</div>
-        <div class="accordion-title">Enterprise & Team Features</div>
+        <h2 class="accordion-title">Enterprise & Team Features</h2>
         <div class="accordion-subtitle">For organizations scaling Cowork across teams.</div>
       </div>
-      <span class="accordion-chevron"></span>
-
-      <div class="accordion-progress">Section 12 of 14</div>   </button>
+      <span class="accordion-chevron"></span>   </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <div class="step-card">
@@ -1336,17 +1337,16 @@ When the user asks you to research a company:
   </div>
 
   <!-- ACCORDION 13: DISPATCH & MOBILE -->
-  <div class="accordion" id="accordion13">
-    <button class="accordion-header">
+  <div class="accordion" id="dispatch-amp-mobile-control">
+    <div class="accordion-header">
       <span class="accordion-badge">13</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 13</div>
-        <div class="accordion-title">Dispatch &amp; Mobile Control</div>
+        <h2 class="accordion-title">Dispatch &amp; Mobile Control</h2>
         <div class="accordion-subtitle">Control Cowork from your phone. Your desktop does the work.</div>
       </div>
       <span class="accordion-chevron"></span>
-      <div class="accordion-progress">Section 13 of 14</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p><strong>Dispatch</strong> is a persistent thread between your phone and your desktop Claude. Send a task from anywhere, the airport, a meeting, your kid's soccer game, and Claude executes it on your Mac using your files, connectors, and plugins. It's not cloud-based: your files never leave your computer.</p>
@@ -1397,17 +1397,15 @@ When the user asks you to research a company:
   </div>
 
   <!-- ACCORDION 14: ADVANCED RESOURCES -->
-  <div class="accordion" id="accordion14">
-    <button class="accordion-header">
+  <div class="accordion" id="advanced-resources">
+    <div class="accordion-header">
       <span class="accordion-badge">14</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 14</div>
-        <div class="accordion-title">Advanced Resources</div>
+        <h2 class="accordion-title">Advanced Resources</h2>
         <div class="accordion-subtitle">The best articles, repos, and references for going deeper.</div>
       </div>
-      <span class="accordion-chevron"></span>
-
-      <div class="accordion-progress">Section 14 of 14</div>   </button>
+      <span class="accordion-chevron"></span>   </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <h3>Must-Read Articles</h3>
@@ -1494,150 +1492,7 @@ When the user asks you to research a company:
   <p style="margin-top: 16px; color: var(--text-dim);">Claude and Cowork are products of <a href="https://anthropic.com" target="_blank">Anthropic</a>. This is an independent guide, not official Anthropic documentation.</p>
 </div>
 
-<script>
-  // Accordion toggle functionality
-  const headers = document.querySelectorAll('.accordion-header');
-  const tocLinks = document.querySelectorAll('.toc-link');
-  const stickyNav = document.getElementById('stickyNav');
-  const stickyProgress = document.getElementById('stickyProgress');
-  const heroCtaBtn = document.getElementById('heroCtaBtn');
-
-  // Get TOC section to know when to show sticky nav
-  const tocSection = document.querySelector('.toc');
-
-  function scrollToHeader(header) {
-    // Wait for accordion CSS transition to finish (300ms) before calculating position
-    setTimeout(() => {
-      const y = header.getBoundingClientRect().top + window.pageYOffset - 60;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }, 350);
-  }
-
-  function updateStickyNav() {
-    // FIX 3: Update sticky nav visibility and content based on scroll position
-    if (window.scrollY > tocSection.offsetTop) {
-      stickyNav.classList.add('visible');
-      // Find which accordion is open and update progress
-      headers.forEach((header, index) => {
-        if (header.classList.contains('open')) {
-          const sectionNum = index + 1;
-          stickyProgress.textContent = `Section ${sectionNum} of 14`;
-        }
-      });
-    } else {
-      stickyNav.classList.remove('visible');
-    }
-
-    // FIX 2: Show back-to-top button when scrolled down more than 400px
-    const backToTopBtn = document.getElementById('backToTopBtn');
-    if (backToTopBtn) {
-      if (window.scrollY > 400) {
-        backToTopBtn.classList.add('visible');
-      } else {
-        backToTopBtn.classList.remove('visible');
-      }
-    }
-  }
-
-  window.addEventListener('scroll', updateStickyNav);
-
-  // FIX 1: Hero CTA button - open accordion1 and scroll to it
-  if (heroCtaBtn) {
-    heroCtaBtn.addEventListener('click', function() {
-      const accordion = document.getElementById('accordion1');
-      if (accordion) {
-        const header = accordion.querySelector('.accordion-header');
-        const content = accordion.querySelector('.accordion-content');
-
-        // Close all other accordions
-        headers.forEach(h => {
-          h.classList.remove('open');
-          h.closest('.accordion').querySelector('.accordion-content').classList.remove('open');
-        });
-
-        // Open accordion1
-        header.classList.add('open');
-        content.classList.add('open');
-
-        // Scroll header to top of viewport
-        scrollToHeader(header);
-      }
-    });
-  }
-
-  // FIX 2: Create and add back-to-top button
-  const backToTopContainer = document.createElement('button');
-  backToTopContainer.id = 'backToTopBtn';
-  backToTopContainer.className = 'back-to-top';
-  backToTopContainer.innerHTML = '↑';
-  document.body.appendChild(backToTopContainer);
-
-  backToTopContainer.addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // Toggle accordion on header click
-  headers.forEach((header, index) => {
-    header.addEventListener('click', function() {
-      const accordion = this.closest('.accordion');
-      const content = accordion.querySelector('.accordion-content');
-      const isOpen = this.classList.contains('open');
-
-      // Close all other accordions
-      headers.forEach((h, i) => {
-        if (i !== index) {
-          h.classList.remove('open');
-          h.closest('.accordion').querySelector('.accordion-content').classList.remove('open');
-        }
-      });
-
-      // Toggle current accordion
-      this.classList.toggle('open');
-      content.classList.toggle('open');
-
-      // Update sticky nav when accordion changes
-      updateStickyNav();
-
-      // Scroll to top of this section when opening
-      if (!isOpen) {
-        scrollToHeader(this);
-      }
-    });
-  });
-
-  // TOC link click functionality
-  tocLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const accordionNum = this.getAttribute('data-accordion');
-      const accordion = document.getElementById('accordion' + accordionNum);
-
-      if (accordion) {
-        const header = accordion.querySelector('.accordion-header');
-        const content = accordion.querySelector('.accordion-content');
-
-        // Close all other accordions
-        headers.forEach(h => {
-          h.classList.remove('open');
-          h.closest('.accordion').querySelector('.accordion-content').classList.remove('open');
-        });
-
-        // Open target accordion
-        header.classList.add('open');
-        content.classList.add('open');
-
-        // Update sticky nav when accordion changes
-        updateStickyNav();
-
-        // Scroll header to top of viewport
-        scrollToHeader(header);
-      }
-    });
-  });
-
-  // Initialize on page load
-  window.addEventListener('load', updateStickyNav);
-</script>
+<script src="sections.js" defer></script>
 
 <script src="search.js"></script>
 </body>

@@ -745,6 +745,26 @@
     .resource-nav-links a { padding: 4px 10px; font-size: 12px; }
   }
 </style>
+<style id="open-sections-override">
+  /* Accordion behavior retired 2026-07: sections are always open.
+     sections.js supplies scroll-spy nav; .open on a header now marks the current section. */
+  .accordion-content { max-height: none !important; overflow: visible !important; }
+  .accordion-header { cursor: default; }
+  .accordion-chevron, .accordion-progress { display: none !important; }
+  .accordion { scroll-margin-top: 84px; }
+  h2.accordion-title { margin: 0 0 4px; }
+  /* Wide code samples were clipped by the old accordion overflow:hidden;
+     now they scroll internally instead of widening the page on mobile. */
+  .accordion-content .code-block, .accordion-content pre { max-width: 100%; overflow-x: auto; }
+  body { overflow-x: clip; }
+  @media (max-width: 520px) {
+    /* Tables wider than a phone scroll internally (they were cut off before). */
+    .accordion-content table { display: block; max-width: 100%; overflow-x: auto; }
+    /* Flex list items laid text out on one unwrappable row; let them wrap. */
+    .accordion-content li { flex-wrap: wrap; }
+    .accordion-content li > * { min-width: 0; }
+  }
+</style>
 </head>
 <body>
 
@@ -794,51 +814,51 @@
   <div class="toc">
     <h2>Contents</h2>
     <div class="toc-grid">
-      <a class="toc-item toc-link" data-accordion="1">
+      <a class="toc-item toc-link" href="#stop-googling-start-prompting">
         <div class="toc-num">1</div>
         <span>Stop Googling, Start Prompting</span>
       </a>
-      <a class="toc-item toc-link" data-accordion="2">
+      <a class="toc-item toc-link" href="#the-minimum-viable-prompt">
         <div class="toc-num">2</div>
         <span>The Minimum Viable Prompt</span>
       </a>
-      <a class="toc-item toc-link" data-accordion="3">
+      <a class="toc-item toc-link" href="#frameworks-that-actually-work">
         <div class="toc-num">3</div>
         <span>Frameworks That Actually Work</span>
       </a>
-      <a class="toc-item toc-link" data-accordion="4">
+      <a class="toc-item toc-link" href="#enhance-the-role">
         <div class="toc-num">4</div>
         <span>Enhance the Role</span>
       </a>
-      <a class="toc-item toc-link" data-accordion="5">
+      <a class="toc-item toc-link" href="#enhance-the-task">
         <div class="toc-num">5</div>
         <span>Enhance the Task</span>
       </a>
-      <a class="toc-item toc-link" data-accordion="6">
+      <a class="toc-item toc-link" href="#enhance-the-output">
         <div class="toc-num">6</div>
         <span>Enhance the Output</span>
       </a>
-      <a class="toc-item toc-link" data-accordion="7">
+      <a class="toc-item toc-link" href="#what-not-to-do">
         <div class="toc-num">7</div>
         <span>What NOT to Do</span>
       </a>
-      <a class="toc-item toc-link" data-accordion="8">
+      <a class="toc-item toc-link" href="#psychological-forcing-functions">
         <div class="toc-num">8</div>
         <span>Psychological Forcing Functions</span>
       </a>
-      <a class="toc-item toc-link" data-accordion="9">
+      <a class="toc-item toc-link" href="#recursive-iterative-prompting">
         <div class="toc-num">9</div>
         <span>Recursive & Iterative Prompting</span>
       </a>
-      <a class="toc-item toc-link" data-accordion="10">
+      <a class="toc-item toc-link" href="#context-engineering">
         <div class="toc-num">10</div>
         <span>Context Engineering</span>
       </a>
-      <a class="toc-item toc-link" data-accordion="11">
+      <a class="toc-item toc-link" href="#one-page-cheat-sheet">
         <div class="toc-num">11</div>
         <span>One-Page Cheat Sheet</span>
       </a>
-      <a class="toc-item toc-link" data-accordion="12">
+      <a class="toc-item toc-link" href="#additional-resources-practice">
         <div class="toc-num">12</div>
         <span>Additional Resources & Practice</span>
       </a>
@@ -846,17 +866,15 @@
   </div>
 
   <!-- SECTION 1 -->
-  <div class="accordion" id="accordion1">
-    <button class="accordion-header">
+  <div class="accordion" id="stop-googling-start-prompting">
+    <div class="accordion-header">
       <div class="accordion-badge">1</div>
       <div style="flex: 1;">
         <div class="accordion-label">MINDSET SHIFT</div>
-        <div class="accordion-title">Stop Googling, Start Prompting</div>
+        <h2 class="accordion-title">Stop Googling, Start Prompting</h2>
         <div class="accordion-subtitle">The #1 mistake people make with AI is treating it like a search engine.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Section 1 of 12</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <div class="info-box key">
@@ -915,17 +933,15 @@
   </div>
 
   <!-- SECTION 2 -->
-  <div class="accordion" id="accordion2">
-    <button class="accordion-header">
+  <div class="accordion" id="the-minimum-viable-prompt">
+    <div class="accordion-header">
       <div class="accordion-badge">2</div>
       <div style="flex: 1;">
         <div class="accordion-label">CORE FORMULA</div>
-        <div class="accordion-title">The Minimum Viable Prompt</div>
+        <h2 class="accordion-title">The Minimum Viable Prompt</h2>
         <div class="accordion-subtitle">Every good prompt has three parts. Miss one and quality drops.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Section 2 of 12</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <div class="info-box key">
@@ -989,17 +1005,15 @@ OUTPUT: Format as [structure]. Include [requirements]. Keep to [length].</div>
   </div>
 
   <!-- SECTION 3 -->
-  <div class="accordion" id="accordion3">
-    <button class="accordion-header">
+  <div class="accordion" id="frameworks-that-actually-work">
+    <div class="accordion-header">
       <div class="accordion-badge">3</div>
       <div style="flex: 1;">
         <div class="accordion-label">PROMPT FRAMEWORKS</div>
-        <div class="accordion-title">Frameworks That Actually Work</div>
+        <h2 class="accordion-title">Frameworks That Actually Work</h2>
         <div class="accordion-subtitle">RTO is the floor. These frameworks raise the ceiling.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Section 3 of 12</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>RTO is simple and effective for most tasks. But there are other frameworks designed for specific challenges. Here are the ones that actually move the needle:</p>
@@ -1101,17 +1115,15 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
   </div>
 
   <!-- SECTION 4 -->
-  <div class="accordion" id="accordion4">
-    <button class="accordion-header">
+  <div class="accordion" id="enhance-the-role">
+    <div class="accordion-header">
       <div class="accordion-badge">4</div>
       <div style="flex: 1;">
         <div class="accordion-label">ENHANCING THE ROLE</div>
-        <div class="accordion-title">Enhance the Role</div>
+        <h2 class="accordion-title">Enhance the Role</h2>
         <div class="accordion-subtitle">The more specific the persona, the better the output.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Section 4 of 12</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <div class="info-box key">
@@ -1175,17 +1187,15 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
   </div>
 
   <!-- SECTION 5 -->
-  <div class="accordion" id="accordion5">
-    <button class="accordion-header">
+  <div class="accordion" id="enhance-the-task">
+    <div class="accordion-header">
       <div class="accordion-badge">5</div>
       <div style="flex: 1;">
         <div class="accordion-label">ENHANCING THE TASK</div>
-        <div class="accordion-title">Enhance the Task</div>
+        <h2 class="accordion-title">Enhance the Task</h2>
         <div class="accordion-subtitle">Vague tasks get vague results. Specific tasks get specific results.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Section 5 of 12</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>A great persona with a vague task still produces vague output. You need to define the task clearly.</p>
@@ -1262,17 +1272,15 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
   </div>
 
   <!-- SECTION 6 -->
-  <div class="accordion" id="accordion6">
-    <button class="accordion-header">
+  <div class="accordion" id="enhance-the-output">
+    <div class="accordion-header">
       <div class="accordion-badge">6</div>
       <div style="flex: 1;">
         <div class="accordion-label">ENHANCING THE OUTPUT</div>
-        <div class="accordion-title">Enhance the Output</div>
+        <h2 class="accordion-title">Enhance the Output</h2>
         <div class="accordion-subtitle">Control the shape of the response and you control the quality.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Section 6 of 12</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>Even with a good role and task, the AI still has choices about format. Your job is to remove those choices.</p>
@@ -1321,17 +1329,15 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
   </div>
 
   <!-- SECTION 7 -->
-  <div class="accordion" id="accordion7">
-    <button class="accordion-header">
+  <div class="accordion" id="what-not-to-do">
+    <div class="accordion-header">
       <div class="accordion-badge">7</div>
       <div style="flex: 1;">
         <div class="accordion-label">COMMON MISTAKES</div>
-        <div class="accordion-title">What NOT to Do</div>
+        <h2 class="accordion-title">What NOT to Do</h2>
         <div class="accordion-subtitle">What NOT to do matters as much as what to do.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Section 7 of 12</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>Good prompting isn't just about what you add. It's about what you remove or prevent.</p>
@@ -1404,17 +1410,15 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
   </div>
 
   <!-- SECTION 8 -->
-  <div class="accordion" id="accordion8">
-    <button class="accordion-header">
+  <div class="accordion" id="psychological-forcing-functions">
+    <div class="accordion-header">
       <div class="accordion-badge">8</div>
       <div style="flex: 1;">
         <div class="accordion-label">PSYCHOLOGICAL TRIGGERS</div>
-        <div class="accordion-title">Psychological Forcing Functions</div>
+        <h2 class="accordion-title">Psychological Forcing Functions</h2>
         <div class="accordion-subtitle">Research-backed phrases that measurably improve AI output quality.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Section 8 of 12</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <div class="info-box key">
@@ -1546,17 +1550,15 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
   </div>
 
   <!-- SECTION 9 -->
-  <div class="accordion" id="accordion9">
-    <button class="accordion-header">
+  <div class="accordion" id="recursive-iterative-prompting">
+    <div class="accordion-header">
       <div class="accordion-badge">9</div>
       <div style="flex: 1;">
         <div class="accordion-label">RECURSIVE PROMPTING</div>
-        <div class="accordion-title">Recursive & Iterative Prompting</div>
+        <h2 class="accordion-title">Recursive & Iterative Prompting</h2>
         <div class="accordion-subtitle">One prompt rarely gets it right. The best results come from conversation.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Section 9 of 12</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>Recursive prompting is where you break a big task into multiple smaller prompts, or repeatedly refine a single prompt through multiple rounds of feedback. This is how you get from 70% to 95%.</p>
@@ -1645,17 +1647,15 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
   </div>
 
   <!-- SECTION 10 -->
-  <div class="accordion" id="accordion10">
-    <button class="accordion-header">
+  <div class="accordion" id="context-engineering">
+    <div class="accordion-header">
       <div class="accordion-badge">10</div>
       <div style="flex: 1;">
         <div class="accordion-label">CONTEXT ENGINEERING</div>
-        <div class="accordion-title">Context Engineering</div>
+        <h2 class="accordion-title">Context Engineering</h2>
         <div class="accordion-subtitle">The future isn't better prompts. It's better context.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Section 10 of 12</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <div class="info-box key">
@@ -1740,17 +1740,15 @@ Then execute the task.</div>
   </div>
 
   <!-- SECTION 11 -->
-  <div class="accordion" id="accordion11">
-    <button class="accordion-header">
+  <div class="accordion" id="one-page-cheat-sheet">
+    <div class="accordion-header">
       <div class="accordion-badge">11</div>
       <div style="flex: 1;">
         <div class="accordion-label">QUICK REFERENCE</div>
-        <div class="accordion-title">One-Page Cheat Sheet</div>
+        <h2 class="accordion-title">One-Page Cheat Sheet</h2>
         <div class="accordion-subtitle">Print this. Pin it. Reference it daily until it's second nature.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Section 11 of 12</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <button class="print-btn" onclick="window.print()">🖨️ Print This Cheat Sheet</button>
@@ -1871,17 +1869,15 @@ OUTPUT: [SPECIFIC STRUCTURE]. Include [REQUIRED ELEMENTS].</div>
   </div>
 
   <!-- SECTION 12 -->
-  <div class="accordion" id="accordion12">
-    <button class="accordion-header">
+  <div class="accordion" id="additional-resources-practice">
+    <div class="accordion-header">
       <div class="accordion-badge">12</div>
       <div style="flex: 1;">
         <div class="accordion-label">GO DEEPER</div>
-        <div class="accordion-title">Additional Resources & Practice</div>
+        <h2 class="accordion-title">Additional Resources & Practice</h2>
         <div class="accordion-subtitle">Where we got this and where to go deeper.</div>
       </div>
-      <div class="accordion-chevron"></div>
-      <div class="accordion-progress">Section 12 of 12</div>
-    </button>
+    </div>
     <div class="accordion-content">
       <div class="accordion-body section">
         <p>Everything here is either original research, battle-tested practice, or curated from the best sources in prompt engineering. Here's where to go deeper.</p>
@@ -2056,308 +2052,7 @@ OUTPUT: [SPECIFIC STRUCTURE]. Include [REQUIRED ELEMENTS].</div>
   <p style="margin-top: 8px; color: var(--text-dim);">Research-backed, battle-tested, and optimized for getting real work done with AI.</p>
 </div>
 
-<script>
-  // Accordion toggle functionality
-  const headers = document.querySelectorAll('.accordion-header');
-  const tocLinks = document.querySelectorAll('.toc-link');
-  const stickyNav = document.getElementById('stickyNav');
-  const stickyProgress = document.getElementById('stickyProgress');
-  const heroCtaBtn = document.getElementById('heroCtaBtn');
-
-  // Get TOC section to know when to show sticky nav
-  const tocSection = document.querySelector('.toc');
-
-  function scrollToHeader(header) {
-    const offset = 70;
-    const elementPosition = header.getBoundingClientRect().top + window.pageYOffset;
-    window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
-  }
-
-  function copyTryIt(btn) {
-    const box = btn.closest('.try-it-box');
-    const textarea = box.querySelector('textarea');
-    navigator.clipboard.writeText(textarea.value).then(() => {
-      const orig = btn.textContent;
-      btn.textContent = 'Copied!';
-      setTimeout(() => btn.textContent = orig, 2000);
-    });
-  }
-
-  // ── PROMPT COACH ENGINE ──
-  function analyzePrompt(btn) {
-    const box = btn.closest('.try-it-box');
-    const textarea = box.querySelector('textarea');
-    const panel = box.querySelector('.feedback-panel');
-    const text = textarea.value.trim();
-    const section = box.getAttribute('data-coach');
-
-    if (!text || text.length < 10) {
-      panel.innerHTML = '<div class="feedback-item"><span class="fail">✗</span> Type a prompt first — at least a sentence or two so I can give useful feedback.</div>';
-      panel.classList.add('visible');
-      return;
-    }
-
-    const lower = text.toLowerCase();
-    const words = text.split(/\s+/).length;
-    let checks = [];
-    let score = 0;
-    let maxScore = 0;
-
-    // ── UNIVERSAL CHECKS (apply to all sections) ──
-    function check(pass, passMsg, failMsg, weight) {
-      weight = weight || 1;
-      maxScore += weight;
-      if (pass) { score += weight; checks.push({s:'pass', m:passMsg}); }
-      else { checks.push({s:'fail', m:failMsg}); }
-    }
-    function tip(msg) { checks.push({s:'tip', m:msg}); }
-
-    // Length check
-    check(words >= 15, 'Good length — enough detail to work with (' + words + ' words).', 'Very short (' + words + ' words). Longer prompts with more context typically get better results.', 1);
-
-    // Vague verb detection
-    const vagueVerbs = ['help me', 'assist me', 'can you', 'could you', 'i need help', 'do something'];
-    const hasVague = vagueVerbs.some(v => lower.includes(v));
-    check(!hasVague, 'No vague verbs detected — using direct language.', 'Found vague phrasing ("' + vagueVerbs.find(v => lower.includes(v)) + '"). Replace with a specific action verb: analyze, draft, compare, create, evaluate, summarize.', 1);
-
-    // ── SECTION-SPECIFIC CHECKS ──
-    if (section === 'section1') {
-      // Section 1: Stop Googling — checks if it's a conversation vs a search query
-      check(words >= 20, 'This reads like a conversation, not a search query. Good shift.', 'This still looks search-engine short. AI works best when you give it context and specifics — write more like you\'re briefing a colleague.', 2);
-
-      const hasContext = lower.includes('context') || lower.includes('background') || lower.includes('because') || lower.includes('the situation') || lower.includes('i\'m working on') || lower.includes('we are') || lower.includes('my company') || lower.includes('our');
-      check(hasContext, 'You\'re giving context — the AI can tailor its response to your situation.', 'Add context. Why do you need this? What\'s the situation? "Context:" or "Background:" helps the AI personalize its answer instead of giving generic advice.', 2);
-
-      const hasRole = /you are|act as|as a|you\'re a/i.test(text);
-      check(hasRole, 'You\'re assigning a role — smart move for a first prompt.', 'Try adding a role: "You are a [specific expert]." This shifts the AI from general-purpose to specialist.', 1);
-
-      const isQuestion = text.includes('?') && words < 15;
-      if (isQuestion) tip('This looks like a question you\'d type into Google. Try rephrasing as: "You are a [role]. I need you to [task]. Here\'s the context: [details]."');
-    }
-
-    else if (section === 'section2') {
-      // Section 2: MVP Prompt — checks for RTO framework
-      const hasRole = /you are|act as|as a|you\'re a|role:/i.test(text);
-      const hasTask = /\b(analyze|draft|create|write|build|compare|evaluate|summarize|design|develop|plan|review|outline|generate|prepare|assess|identify|recommend|list|explain)\b/i.test(text);
-      const hasOutput = /format|output|structure|bullet|table|markdown|json|list of|word count|keep.*(short|brief|under)|no more than|page|paragraph/i.test(text);
-
-      check(hasRole, '✓ ROLE detected — you\'re telling the AI who to be.', '✗ Missing ROLE. Start with "You are a [specific expert]..." This is the R in RTO.', 2);
-      check(hasTask, '✓ TASK detected — clear action verb found.', '✗ Missing clear TASK. Use a specific action verb: analyze, draft, create, compare, evaluate. This is the T in RTO.', 2);
-      check(hasOutput, '✓ OUTPUT format specified — the AI knows what shape to deliver.', '✗ Missing OUTPUT format. Tell the AI: "Format as [bullets/table/memo/JSON]" or "Keep to [length]." This is the O in RTO.', 2);
-
-      if (hasRole && hasTask && hasOutput) tip('All three RTO components present. This is a solid minimum viable prompt. Now try enhancing each piece using Sections 4-6.');
-      if (hasRole && hasTask && !hasOutput) tip('You\'re 2/3 of the way. Adding output format is often the biggest quality unlock — it eliminates guessing.');
-    }
-
-    else if (section === 'section4') {
-      // Section 4: Enhance the Role — persona depth
-      const hasRole = /you are|act as|you\'re a/i.test(text);
-      const hasYears = /\d+\s*(year|yr)/i.test(text);
-      const hasSpecialty = /speciali|focus|expert in|known for|background in/i.test(text);
-      const hasBias = /bias toward|prefer|lean toward|philosophy|approach is|style is|believe in/i.test(text);
-      const hasTitle = /director|manager|ceo|cto|vp|analyst|engineer|consultant|strategist|architect|designer|lead|senior|head of|chief/i.test(text);
-      const hasIndustry = /saas|b2b|b2c|healthcare|fintech|ecommerce|startup|enterprise|agency|consulting|retail|tech/i.test(text);
-
-      check(hasRole, 'Role assignment detected.', 'Start with "You are a..." to establish the persona.', 1);
-      check(hasTitle, 'Specific job title found — much better than a generic "expert."', 'Add a specific title (e.g., "marketing director" not just "marketer"). Specificity activates better patterns.', 2);
-      check(hasYears, 'Experience level specified — this calibrates seniority of the output.', 'Add years of experience: "with 15 years in..." This calibrates whether you get junior vs. senior-level thinking.', 1);
-      check(hasSpecialty, 'Specialty or focus area defined — narrows the expertise.', 'Add a specialty: "You specialize in [niche]." Generic roles get generic answers.', 2);
-      check(hasBias || hasIndustry, 'Domain context or perspective specified.', 'Add industry context or a perspective bias: "in B2B SaaS" or "with a bias toward data-driven decisions." This shapes the lens.', 1);
-
-      if (words > 40) tip('Great depth on this persona. Consider saving it as a reusable template for similar tasks.');
-    }
-
-    else if (section === 'section5') {
-      // Section 5: Enhance the Task — precision & constraints
-      const hasActionVerb = /\b(analyze|draft|create|write|build|compare|evaluate|summarize|design|develop|plan|review|outline|generate|prepare|assess|identify|recommend|audit|map|prioritize|diagnose|benchmark|forecast|calculate)\b/i.test(text);
-      const hasScope = /\b(for|about|covering|focused on|limited to|specifically|only|between|from .* to)\b/i.test(text);
-      const hasConstraints = /\b(must|should|don't|do not|avoid|never|always|ensure|make sure|include|exclude|no more than|at least|maximum|minimum)\b/i.test(text);
-      const hasAudience = /\b(audience|reader|for .*(team|exec|board|client|customer|stakeholder|beginner|expert))\b/i.test(text);
-      const hasSuccess = /\b(success|criteria|goal|objective|measure|outcome|deliverable|result should)\b/i.test(text);
-      const hasEdgeCases = /\b(if .*then|edge case|exception|fallback|missing|unknown|unclear|when .* isn't)\b/i.test(text);
-
-      check(hasActionVerb, 'Specific action verb found — clear direction.', 'Use a specific action verb instead of "help with" or "work on." Try: analyze, draft, compare, evaluate, audit, prioritize.', 2);
-      check(hasScope, 'Scope detected — the task has boundaries.', 'Add scope: What specifically? Which timeframe? How many? Unbounded tasks get unfocused results.', 2);
-      check(hasConstraints, 'Constraints found — you\'re telling the AI what to include or avoid.', 'Add constraints: "Must include...", "Don\'t include...", "Keep under..." Constraints force precision.', 1);
-      check(hasAudience, 'Audience specified — output will be calibrated.', 'Specify the audience: "This is for [senior executives / technical team / new hires]." Same task, totally different output.', 1);
-      check(hasSuccess || hasEdgeCases, 'Success criteria or edge case handling detected.', 'Define what "good" looks like: "A good result would include..." or handle edge cases: "If data is missing, then..."', 1);
-    }
-
-    else if (section === 'section9') {
-      // Section 9: Recursive — multi-round prompting
-      const rounds = text.split(/\n\n|\nround\s*\d|step\s*\d|\nthen\b/i);
-      const hasMultipleRounds = rounds.length >= 2 || /round\s*[2-9]|step\s*[2-9]|then\b|next\b|now\b.*revise|now\b.*critique|follow.?up/i.test(lower);
-      const hasCritique = /critique|review|what's wrong|what's missing|what's weak|evaluate|assess|grade|score|improve/i.test(lower);
-      const hasRevision = /revise|rewrite|improve|refine|update|adjust|fix|make it|change the|try again/i.test(lower);
-      const hasSpecificFeedback = /tone|format|length|too (formal|casual|long|short|vague|generic)|more (specific|detail|concise|actionable)|less (wordy|formal)/i.test(lower);
-      const hasLockStep = /save|template|reuse|lock|final version|keep this/i.test(lower);
-
-      check(hasMultipleRounds, 'Multiple rounds detected — you\'re iterating, not one-shotting.', 'Write at least two rounds. Round 1: your initial prompt. Round 2: your refinement feedback (e.g., "Now critique this for..." or "Revise the tone to...").', 2);
-      check(hasCritique, 'Critique/evaluation step found — you\'re asking the AI to self-assess.', 'Add a critique step: "Now review what you wrote. What\'s weak? What\'s missing?" Self-critique before revision dramatically improves output.', 2);
-      check(hasRevision, 'Revision instruction detected — closing the feedback loop.', 'Add a revision step: "Now revise based on your critique" or "Rewrite with these changes:..." This is where quality jumps happen.', 1);
-      check(hasSpecificFeedback, 'Specific feedback criteria found — not just "make it better."', 'Be specific about what to change: "The tone is too formal" or "Add more data points." Vague feedback gets vague revisions.', 1);
-
-      if (hasLockStep) tip('Smart — you\'re saving the pattern for reuse. This is how you build a prompt library over time.');
-      if (!hasMultipleRounds) tip('The power of recursive prompting is in the iteration. Try: Round 1 (draft), Round 2 (critique), Round 3 (revise). Compare Round 1 vs Round 3.');
-    }
-
-    // ── SCORE & RENDER ──
-    const pct = Math.round((score / maxScore) * 100);
-    let color = pct >= 80 ? 'var(--green)' : pct >= 50 ? 'var(--yellow)' : 'var(--red)';
-    let verdict = pct >= 80 ? 'Strong prompt' : pct >= 50 ? 'Getting there' : 'Needs work';
-
-    let html = '<div class="feedback-score"><div class="feedback-score-num" style="color:' + color + '">' + pct + '%</div><div><div style="font-weight:600;">' + verdict + '</div><div class="feedback-score-label">' + score + ' of ' + maxScore + ' checks passed</div></div></div>';
-    html += '<div class="feedback-score-bar"><div class="feedback-score-fill" style="width:' + pct + '%;background:' + color + '"></div></div>';
-
-    checks.forEach(function(c) {
-      const icon = c.s === 'pass' ? '<span class="pass">✓</span>' : c.s === 'fail' ? '<span class="fail">✗</span>' : '<span class="tip">💡</span>';
-      html += '<div class="feedback-item">' + icon + ' ' + c.m + '</div>';
-    });
-
-    html += '<div class="feedback-cta">Improve your prompt based on the feedback above, then click <strong>Analyze</strong> again — or <strong>Copy to Clipboard</strong> and go test it in Claude.</div>';
-
-    panel.innerHTML = html;
-    panel.classList.add('visible');
-
-    // Animate the score bar
-    const fill = panel.querySelector('.feedback-score-fill');
-    fill.style.width = '0%';
-    requestAnimationFrame(() => { fill.style.width = pct + '%'; });
-  }
-
-  function updateStickyNav() {
-    // Update sticky nav visibility and content based on scroll position
-    if (window.scrollY > tocSection.offsetTop) {
-      stickyNav.classList.add('visible');
-      // Find which accordion is open and update progress
-      headers.forEach((header, index) => {
-        if (header.classList.contains('open')) {
-          const stepNum = index + 1;
-          stickyProgress.textContent = `Section ${stepNum} of 12`;
-        }
-      });
-    } else {
-      stickyNav.classList.remove('visible');
-    }
-
-    // Show back-to-top button when scrolled down more than 400px
-    const backToTopBtn = document.getElementById('backToTopBtn');
-    if (backToTopBtn) {
-      if (window.scrollY > 400) {
-        backToTopBtn.classList.add('visible');
-      } else {
-        backToTopBtn.classList.remove('visible');
-      }
-    }
-  }
-
-  window.addEventListener('scroll', updateStickyNav);
-
-  // Hero CTA button - open accordion1 and scroll to it
-  if (heroCtaBtn) {
-    heroCtaBtn.addEventListener('click', function() {
-      const accordion = document.getElementById('accordion1');
-      if (accordion) {
-        const header = accordion.querySelector('.accordion-header');
-        const content = accordion.querySelector('.accordion-content');
-
-        // Close all other accordions
-        headers.forEach(h => {
-          h.classList.remove('open');
-          h.closest('.accordion').querySelector('.accordion-content').classList.remove('open');
-        });
-
-        // Open accordion1
-        header.classList.add('open');
-        content.classList.add('open');
-
-        // Scroll header to top of viewport using requestAnimationFrame
-        requestAnimationFrame(() => scrollToHeader(header));
-      }
-    });
-  }
-
-  // Create and add back-to-top button
-  const backToTopContainer = document.createElement('button');
-  backToTopContainer.id = 'backToTopBtn';
-  backToTopContainer.className = 'back-to-top';
-  backToTopContainer.innerHTML = '↑';
-  document.body.appendChild(backToTopContainer);
-
-  backToTopContainer.addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  // Toggle accordion on header click
-  headers.forEach((header, index) => {
-    header.addEventListener('click', function() {
-      const accordion = this.closest('.accordion');
-      const content = accordion.querySelector('.accordion-content');
-      const isOpen = this.classList.contains('open');
-
-      // Close all other accordions
-      headers.forEach((h, i) => {
-        if (i !== index) {
-          h.classList.remove('open');
-          h.closest('.accordion').querySelector('.accordion-content').classList.remove('open');
-        }
-      });
-
-      // Toggle current accordion
-      this.classList.toggle('open');
-      content.classList.toggle('open');
-
-      // Update sticky nav when accordion changes
-      updateStickyNav();
-
-      // Scroll to top of this section when opening using requestAnimationFrame
-      if (!isOpen) {
-        requestAnimationFrame(() => scrollToHeader(this));
-      }
-    });
-  });
-
-  // TOC link click functionality
-  tocLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const accordionId = this.getAttribute('data-accordion');
-      const accordion = document.getElementById('accordion' + accordionId);
-
-      if (accordion) {
-        const header = accordion.querySelector('.accordion-header');
-        const content = accordion.querySelector('.accordion-content');
-
-        // Close all other accordions instantly (no transition) so scroll calc is accurate
-        headers.forEach(h => {
-          const c = h.closest('.accordion').querySelector('.accordion-content');
-          h.classList.remove('open');
-          c.style.transition = 'none';
-          c.classList.remove('open');
-        });
-
-        // Force reflow so instant close takes effect
-        void accordion.offsetHeight;
-
-        // Restore transitions and open target accordion
-        headers.forEach(h => {
-          h.closest('.accordion').querySelector('.accordion-content').style.transition = '';
-        });
-        header.classList.add('open');
-        content.classList.add('open');
-
-        // Update sticky nav when accordion changes
-        updateStickyNav();
-
-        // Scroll header to top of viewport — positions are now accurate
-        requestAnimationFrame(() => scrollToHeader(header));
-      }
-    });
-  });
-
-  // Initialize on page load
-  window.addEventListener('load', updateStickyNav);
-</script>
+<script src="sections.js" defer></script>
 
 <script src="search.js"></script>
 </body>
