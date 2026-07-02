@@ -550,7 +550,7 @@
   /* Wide code samples were clipped by the old accordion overflow:hidden;
      now they scroll internally instead of widening the page on mobile. */
   .accordion-content .code-block, .accordion-content pre { max-width: 100%; overflow-x: auto; }
-  body { overflow-x: clip; }
+  html { overflow-x: hidden; } /* NOT clip: visible+clip pairing computes both axes to clip and kills page scroll */
   @media (max-width: 520px) {
     /* Tables wider than a phone scroll internally (they were cut off before). */
     .accordion-content table { display: block; max-width: 100%; overflow-x: auto; }
