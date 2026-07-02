@@ -1043,6 +1043,11 @@ When the user asks you to research a company:
           Persistent memory is powerful, but it comes with a subtle risk. Claude saves your preferences, learns your patterns, and adapts to your style over time. That's the point. But it also means Claude gets increasingly tuned to tell you what you want to hear. MIT researchers have demonstrated that sycophantic AI creates a feedback loop: your belief strengthens because the AI keeps confirming it, not because it's right. The more personalized your setup, the stronger this effect. Counterweights: add a pushback rule to your CLAUDE.md (<em>"Flag gaps in my reasoning directly"</em>), periodically ask Claude to argue the opposite side, and for high-stakes decisions, open a fresh session and present your conclusion without the backstory. A new session has no history of agreeing with you.
         </div>
 
+        <div class="info-box tip">
+          <strong>The Cold-Read Review</strong>
+          Your best editor is a copy of Claude that has never seen your work. Open a new session with no project, paste only the draft or the code, and ask: is this good, and what is weak? Because the fresh session has no memory of agreeing with you, it catches what your main thread waves through. Use it on anything that matters before it leaves your hands.
+        </div>
+
         <div class="info-box warning">
           <strong>The 15-20 Message Rule</strong>
           Long conversations are token furnaces. After 15-20 messages, you're spending more tokens re-reading history than generating new output. When a session gets long: ask Claude to summarize everything important, copy that summary, open a new session, paste it as your first message. Clean slate, full context, fraction of the cost. Pro tip: at the end of a session, prompt "Write a session-notes.md with the key decisions and next steps." Next session, start with "Read session-notes.md first."
@@ -1054,6 +1059,11 @@ When the user asks you to research a company:
         <div class="info-box tip">
           <strong>Keep CLAUDE.md Under 200 Lines</strong>
           Claude reads the entire CLAUDE.md at the start of every session. If it's 500+ lines, you're eating context window for instructions instead of actual work. Move detailed reference material into separate files that Claude can read when needed.
+        </div>
+
+        <div class="info-box tip">
+          <strong>Split a Big CLAUDE.md Into Parts</strong>
+          Once your CLAUDE.md passes a few hundred lines, break it into named files: identity, writing rules, project context. Pull them in with an <code>@include</code> line so the main file stays a short table of contents. The deeper habit is separating what from how: keep your reusable instructions in files, keep one-off asks in the chat. When the two blur, both get harder to fix.
         </div>
       </div>
     </div>

@@ -1417,6 +1417,11 @@ I manage a team of 6 and report directly to the CEO.
         <h3>CLAUDE.md, The Instruction Manual</h3>
         <p>This file lives in the root of your workspace. It tells Claude the rules of your workspace: what folders exist, how to name files, where to save outputs, and any specific behaviors you want. Claude reads this automatically at the start of every session.</p>
 
+        <div class="info-box tip">
+          <strong>Why this file matters more than any prompt</strong>
+          Claude reads your CLAUDE.md before it reads your request, so it sets the direction for everything after. Think of it as a launch angle: a small change at the start moves where the whole session lands. When output feels off, fix this file before you re-word your prompt.
+        </div>
+
         <div class="code-block"># My Workspace
 
 ## Folder Structure

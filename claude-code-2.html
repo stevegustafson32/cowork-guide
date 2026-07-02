@@ -752,6 +752,7 @@
           <h4>MCP (Model Context Protocol)</h4>
           <p>Integrations that connect Claude to your other tools. Slack, Notion, Gmail, databases, APIs. Claude orchestrates them without you writing code. Just ask Claude to "send this to Slack" and it does.</p>
           <p style="margin-top: 8px; font-size: 13px; color: var(--text-dim);">When to use: When you want Claude to talk to your existing tools. No API keys. No technical knowledge required.</p>
+          <p style="margin-top: 8px; font-size: 13px; color: var(--text-dim);">Picking a good one: favor connectors that are actively maintained, ask only for the permissions they need, and ship real docs. The MCP land rush produced a lot of junk. A bad connector is worse than none.</p>
         </div>
 
         <div class="step-card">
@@ -764,6 +765,11 @@
         <div class="info-box key">
           <strong>Learn Them In This Order</strong>
           Start with Plan Mode (that's just talking to Claude). Move to Skills when you have a task you repeat. Skip Subagents, Hooks, and MCP until you're comfortable. Routines are for power users. Most people never need all six. Plan Mode and Skills cover 80% of real work.
+        </div>
+
+        <div class="info-box tip">
+          <strong>Make Routines Reliable</strong>
+          A routine you cannot trust is worse than no routine. Three habits fix that. Open each task with a freshness check so it stops when its input is empty. Give it a state file so it remembers its last run and stops repeating itself. Track whether you actually read the output, because a report nobody opens is cost, not progress. The <a href="workflows.html#reliability">When Automations Go Wrong</a> section walks through all three.
         </div>
 
       </div>

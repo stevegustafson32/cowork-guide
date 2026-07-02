@@ -623,6 +623,7 @@
       <a class="toc-item toc-link" data-accordion="5"><span class="toc-num">5</span> CSV to Dashboard</a>
       <a class="toc-item toc-link" data-accordion="6"><span class="toc-num">6</span> The AI Chief of Staff</a>
       <a class="toc-item toc-link" data-accordion="7"><span class="toc-num">7</span> Spreadsheet → Board Deck</a>
+      <a class="toc-item" href="#reliability"><span class="toc-num">&#9888;</span> When Automations Go Wrong</a>
     </div>
   </div>
 
@@ -750,6 +751,11 @@
         <div class="info-box warning">
           <strong>Keep Your Mac Awake</strong>
           Scheduled tasks only run while your Mac is on and Claude Desktop is open. If your Mac is asleep at the scheduled time, the task runs when you wake it.
+        </div>
+
+        <div class="info-box tip">
+          <strong>Add a Freshness Check</strong>
+          Put one line at the top of every scheduled task: before you run, confirm the input still exists and has new data since last time. If nothing changed, say so and stop. This kills the quiet failure where a task runs for weeks over a dead folder and nobody notices. More on this in <a href="#reliability">When Automations Go Wrong</a>, below.
         </div>
 
         <div class="info-box tip">
@@ -1089,6 +1095,11 @@
         </div>
 
         <div class="info-box tip">
+          <strong>Make Your Tasks Learn</strong>
+          A scheduled task with no memory repeats itself. It re-reports the same "news" every day because it does not know what it already sent. Fix it with a small state file: the task reads what it reported last time, skips repeats, and logs anything that broke so the next run is sharper. Good automations improve with each run, they do not just run. See <a href="#reliability">When Automations Go Wrong</a>, below.
+        </div>
+
+        <div class="info-box tip">
           <strong>Make It Yours</strong>
           The domain tasks above are examples, replace them with whatever recurring work eats your time. The interview prompt is the key unlock: it builds a context file tuned to YOUR work, not generic templates. Run the interview again every quarter as your priorities shift.
         </div>
@@ -1169,6 +1180,35 @@
 
       </div>
     </div>
+  </div>
+
+  <!-- RELIABILITY CAPSTONE -->
+  <span id="reliability" class="anchor-offset"></span>
+  <div class="container" style="margin-top: 8px; margin-bottom: 40px;">
+    <h2 style="font-size: clamp(26px, 3.4vw, 34px); margin-bottom: 10px;">When Automations Go Wrong</h2>
+    <p style="color: var(--text-muted); margin-bottom: 24px;">Every workflow above teaches you how to build something. Almost nothing online teaches you what to do when one quietly breaks. Three failure modes cover most of it. Here is each, and the fix.</p>
+
+    <div class="info-box warning">
+      <strong>1. Dead input</strong>
+      The source folder empties, a connector logs out, an export stops landing. The task keeps firing and produces nothing, or worse, a confident summary of nothing. Fix: a freshness check at the top of every task. Confirm the input exists and has new data. If not, report that and stop.
+    </div>
+
+    <div class="info-box warning">
+      <strong>2. Stale repetition</strong>
+      A task with no memory re-reports the same items every run. Day 20 looks like day 1. Fix: a state file. The task reads what it reported last time, does not repeat it, and logs what broke so the next run is smarter. This is self-healing, and it is the gap between a task that runs and a task that improves.
+    </div>
+
+    <div class="info-box warning">
+      <strong>3. Unread output</strong>
+      The task fires on schedule, the email lands, nobody opens it. Delivery is not the goal. Reading is. Fix: track whether you actually read the output. Anything unread two weeks running earns a demotion or a delete. An automation that produces unread work is not a win, it is noise.
+    </div>
+
+    <div class="info-box key">
+      <strong>The three-question test</strong>
+      Before you trust any recurring task, ask three things. Does it check its own inputs? Does it remember its last run? Do you actually read what it sends? If any answer is no, that is where it will fail.
+    </div>
+
+    <p style="margin-top: 24px; font-size: 13px; color: var(--text-dim);">Inspired by Nick Saraev, Maker School</p>
   </div>
 
   <!-- FINAL CTA -->
