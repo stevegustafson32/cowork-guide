@@ -545,6 +545,8 @@
   .accordion-content { max-height: none !important; overflow: visible !important; }
   .accordion-header { cursor: default; }
   .accordion-chevron, .accordion-progress { display: none !important; }
+  /* Hidden sticky nav must not hold keyboard focus (it is opacity:0, which stays tabbable). */
+  .sticky-nav:not(.visible) { visibility: hidden; }
   .accordion { scroll-margin-top: 84px; }
   h2.accordion-title { margin: 0 0 4px; }
   /* Wide code samples were clipped by the old accordion overflow:hidden;

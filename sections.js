@@ -179,7 +179,14 @@
         if (sections[k].getBoundingClientRect().top + y <= line) idx = k; else break;
       }
       setCurrent(idx);
-      if (stickyNav) stickyNav.classList.toggle("visible", sections.length && y > sections[0].getBoundingClientRect().top + y - window.innerHeight * 0.6);
+      // Show the sticky bar as soon as the static top nav scrolls out — a
+      // later threshold leaves a no-nav gap that keyboard tabbing lands in
+      // (Tab scrolls the hero CTA / TOC links into view on short windows).
+      if (stickyNav) {
+        var topNav = document.querySelector(".resource-nav");
+        var showAt = topNav ? topNav.offsetTop + topNav.offsetHeight : 80;
+        stickyNav.classList.toggle("visible", y > showAt);
+      }
       if (topBtn) topBtn.classList.toggle("visible", y > 500);
       if (jumpOpen && y !== lastY) setJump(false);
       lastY = y;
