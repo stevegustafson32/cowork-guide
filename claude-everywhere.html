@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steve's AI Guide - Claude Everywhere: Cowork on Mobile, Web & Cloud</title>
+<meta name="description" content="Cowork now runs on mobile, web, and in the cloud. The one mental model that keeps you out of trouble: what syncs, what doesn't, and why connectors are the bridge.">
+<link rel="canonical" href="https://stevesaiguide.com/claude-everywhere.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="alternate icon" href="/favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Steve's AI Guide">
+<meta property="og:title" content="Steve's AI Guide - Claude Everywhere: Cowork on Mobile, Web & Cloud">
+<meta property="og:description" content="Cowork now runs on mobile, web, and in the cloud. The one mental model that keeps you out of trouble: what syncs, what doesn't, and why connectors are the bridge.">
+<meta property="og:url" content="https://stevesaiguide.com/claude-everywhere.html">
+<meta property="og:image" content="https://stevesaiguide.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Steve's AI Guide - Claude Everywhere: Cowork on Mobile, Web & Cloud">
+<meta name="twitter:description" content="Cowork now runs on mobile, web, and in the cloud. The one mental model that keeps you out of trouble: what syncs, what doesn't, and why connectors are the bridge.">
+<meta name="twitter:image" content="https://stevesaiguide.com/assets/og-image.png">
+<link rel="stylesheet" href="design-system.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface-2: #242424;
+    --surface-3: #2e2e2e;
+    --border: #333;
+    --text: #e8e8e8;
+    --text-muted: #999;
+    --text-dim: #a0a0a0;
+    --accent: #d4956a;
+    --accent-light: #e8b892;
+    --accent-dim: rgba(212,149,106,0.15);
+    --green: #5cb85c;
+    --blue: #5b9bd5;
+    --purple: #9b7ed8;
+    --red: #e06666;
+    --yellow: #f0c040;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    position: relative;
+    padding: 100px 40px 80px;
+    text-align: center;
+    background: linear-gradient(180deg, #1a1410 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(212,149,106,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 640px;
+    margin: 0 auto 32px;
+  }
+  .hero-cta {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .hero-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .toc {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc h2 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .toc-item:hover { border-color: var(--accent); background: var(--surface-2); }
+  .toc-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .accordion {
+    border-bottom: 1px solid var(--border);
+  }
+  .accordion:last-child { border-bottom: none; }
+
+  .accordion-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 28px 0;
+    background: none;
+    border: none;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+  .accordion-header:hover {
+    border-left-color: var(--accent);
+  }
+  .accordion-header.open {
+    border-left-color: var(--accent);
+  }
+
+  .accordion-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .accordion-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+
+  .accordion-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+    color: #fff;
+  }
+
+  .accordion-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 0;
+  }
+
+  .accordion-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    margin-top: 4px;
+    position: relative;
+  }
+  .accordion-chevron::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    transform: rotate(-45deg);
+    transition: transform 0.3s ease;
+  }
+  .accordion-header.open .accordion-chevron::after {
+    transform: rotate(45deg);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0;
+  }
+  .accordion-content.open {
+    max-height: 10000px;
+  }
+
+  .accordion-body {
+    padding-bottom: 28px;
+  }
+
+  .section p {
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 32px 0 12px;
+  }
+
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .step-card.highlighted {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--surface) 0%, rgba(212,149,106,0.05) 100%);
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border-radius: 16px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  .step-card h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .step-card p {
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  .info-box {
+    padding: 20px 24px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .info-box.tip {
+    background: rgba(92,184,92,0.08);
+    border-left: 3px solid var(--green);
+  }
+  .info-box.warning {
+    background: rgba(240,192,64,0.08);
+    border-left: 3px solid var(--yellow);
+  }
+  .info-box.key {
+    background: var(--accent-dim);
+    border-left: 3px solid var(--accent);
+  }
+  .info-box strong { display: block; margin-bottom: 6px; }
+
+  .code-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    overflow-x: auto;
+    margin: 16px 0;
+    white-space: pre;
+  }
+
+  .video-card {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+  }
+  .video-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .video-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  .video-icon.official { background: rgba(91,155,213,0.15); }
+  .video-icon.community { background: rgba(155,126,216,0.15); }
+  .video-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .video-card .meta { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+  .video-card .desc { font-size: 13px; color: var(--text-dim); }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  .compare-table th {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .compare-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .compare-table tr:hover td { background: var(--surface); }
+
+  .checklist {
+    list-style: none;
+    margin: 20px 0;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .checklist li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 2px solid var(--border);
+    margin-top: 2px;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  .footer {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  a { color: var(--accent); }
+
+  html { scroll-behavior: smooth; }
+
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: var(--bg);
+    background-color: rgba(15, 15, 15, 0.95);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    font-size: 13px;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .sticky-nav.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sticky-nav-left { color: var(--text-muted); font-weight: 500; }
+  .sticky-nav-right { color: var(--accent); font-weight: 600; }
+
+  .back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .back-to-top:hover { background: var(--accent-light); }
+
+  .accordion-progress {
+    position: absolute;
+    top: 28px;
+    right: 0;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+  }
+  .accordion-header.open .accordion-progress {
+    opacity: 1;
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 60px 20px 48px; }
+    .hero h1 { font-size: 28px; }
+    .toc-grid { grid-template-columns: 1fr; }
+    .accordion-header { padding: 20px 0; }
+    .video-card { flex-direction: column; gap: 12px; }
+  }
+
+  .resource-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 24px; background: var(--surface); border-bottom: 1px solid var(--border);
+    font-size: 13px; position: relative; z-index: 998;
+  }
+  .resource-nav-brand { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+  .resource-nav-links { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+  .resource-nav-links a {
+    padding: 6px 14px; border-radius: 6px; color: var(--text-muted);
+    text-decoration: none; font-weight: 500; font-size: 13px; transition: all 0.2s; white-space: nowrap;
+  }
+  .resource-nav-links a:hover { color: var(--text); background: var(--surface-2); }
+  .resource-nav-links a.active { color: var(--accent); background: var(--accent-dim); font-weight: 600; }
+  @media (max-width: 640px) {
+    .resource-nav { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .resource-nav-links { gap: 4px; }
+    .resource-nav-links a { padding: 4px 10px; font-size: 12px; }
+  }
+</style>
+<style id="open-sections-override">
+  /* Accordion behavior retired 2026-07: sections are always open.
+     sections.js supplies scroll-spy nav; .open on a header now marks the current section. */
+  .accordion-content { max-height: none !important; overflow: visible !important; }
+  .accordion-header { cursor: default; }
+  .accordion-chevron, .accordion-progress { display: none !important; }
+  /* Hidden sticky nav must not hold keyboard focus (it is opacity:0, which stays tabbable). */
+  .sticky-nav:not(.visible) { visibility: hidden; }
+  .accordion { scroll-margin-top: 84px; }
+  h2.accordion-title { margin: 0 0 4px; }
+  /* Wide code samples were clipped by the old accordion overflow:hidden;
+     now they scroll internally instead of widening the page on mobile. */
+  .accordion-content .code-block, .accordion-content pre { max-width: 100%; overflow-x: auto; }
+  html { overflow-x: hidden; } /* NOT clip: visible+clip pairing computes both axes to clip and kills page scroll */
+  @media (max-width: 520px) {
+    /* Tables wider than a phone scroll internally (they were cut off before). */
+    .accordion-content table { display: block; max-width: 100%; overflow-x: auto; }
+    /* Flex list items laid text out on one unwrappable row; let them wrap. */
+    .accordion-content li { flex-wrap: wrap; }
+    .accordion-content li > * { min-width: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="resource-nav">
+  <div class="resource-nav-brand">Steve's Resources</div>
+  <div class="resource-nav-links">
+    <a href="prompting.html">Prompting Guide</a>
+    <a href="beginner.html">Claude Beginner</a>
+    <a href="level-2.html">Claude Advanced</a>
+    <a href="workflows.html">Claude in Action</a>
+    <a href="claude-code-2.html">Claude Code 2.0</a>
+    <a href="claude-design.html">Claude Design</a>
+    <a href="claude-office.html">Claude in Office</a>
+    <a href="claude-everywhere.html" class="active">Claude Everywhere</a>
+    <a href="people.html">People I Learn From</a>
+  </div>
+</nav>
+
+<div class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-left">Claude Everywhere</div>
+  <div class="sticky-nav-right"><span id="stickyProgress">Step 1 of 7</span></div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">NEW . THE JULY 2026 MOBILE + CLOUD RELEASE</div>
+  <h1>Claude <span>Everywhere</span></h1>
+  <h1 style="font-size: clamp(24px, 4vw, 40px); font-weight: 600; margin-top: -8px; color: var(--text-muted);">Cowork on your phone, the web, and the cloud.</h1>
+  <p style="margin-top: 24px;">In July 2026 Cowork left the desktop. Sessions and scheduled tasks now run in the cloud, and you reach them from your phone, the web, or your Mac. Hand Claude a task at your desk, pick up the finished work on the train. One idea keeps you out of trouble: the cloud is visible everywhere, your desktop is a one-way mirror.</p>
+  <button class="hero-cta" id="heroCtaBtn">Start the Guide ↓</button>
+</div>
+
+<div class="container">
+
+  <div class="toc">
+    <h2>What's Inside</h2>
+    <div class="toc-grid">
+      <a class="toc-item toc-link" href="#what-changed"><span class="toc-num">1</span> What Changed in July 2026</a>
+      <a class="toc-item toc-link" href="#one-way-mirror"><span class="toc-num">2</span> The One-Way Mirror</a>
+      <a class="toc-item toc-link" href="#cloud-vs-local"><span class="toc-num">3</span> Cloud vs Local: Which Is Which</a>
+      <a class="toc-item toc-link" href="#connectors-bridge"><span class="toc-num">4</span> Connectors Are the Bridge</a>
+      <a class="toc-item toc-link" href="#cloud-or-local"><span class="toc-num">5</span> Cloud-First or Local-First?</a>
+      <a class="toc-item toc-link" href="#limits"><span class="toc-num">6</span> What Doesn't Work Yet</a>
+      <a class="toc-item toc-link" href="#rework-workflows"><span class="toc-num">7</span> Rework Your Workflows</a>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="accordion" id="what-changed">
+    <div class="accordion-header">
+      <div class="accordion-badge">1</div>
+      <div>
+        <div class="accordion-label">Step 1</div>
+        <h2 class="accordion-title">What Changed in July 2026</h2>
+        <div class="accordion-subtitle">Cowork went from one screen to three, plus a cloud underneath.</div>
+      </div>
+    </div>
+    <div class="accordion-content open">
+      <div class="accordion-body">
+        <p>Until July 2026, Cowork lived on your desktop. If you wanted a scheduled task to fire, the Mac had to be awake and the app open. Close the laptop and everything stopped.</p>
+        <p>The release changed three things at once. Cowork now runs on <strong>mobile</strong> and <strong>web</strong>, not just the desktop app. Sessions you start on your phone or the web run on Anthropic's servers, so they keep going after you close the laptop. And <strong>scheduled tasks moved to the cloud</strong>, so they fire on time whether or not your computer is on.</p>
+        <h3>Before and After</h3>
+        <table class="compare-table">
+          <tr><th>Before (desktop only)</th><th>After (July 2026)</th></tr>
+          <tr><td>One surface: the desktop app</td><td>Three surfaces: desktop, web, mobile</td></tr>
+          <tr><td>Scheduled tasks need the Mac awake</td><td>Scheduled tasks run in the cloud, laptop closed</td></tr>
+          <tr><td>A session lives on the machine you started it on</td><td>Cloud sessions sync to every device</td></tr>
+          <tr><td>Connectors set up per machine</td><td>Connectors shared across desktop, web, and mobile</td></tr>
+        </table>
+        <div class="info-box key">
+          <strong>The One Thing to Remember</strong>
+          Not everything moved to the cloud. Work that touches files on your actual computer still runs locally on the desktop. The next two sections are about telling the two apart, because that is where every confusion with this release comes from.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="accordion" id="one-way-mirror">
+    <div class="accordion-header">
+      <div class="accordion-badge">2</div>
+      <div>
+        <div class="accordion-label">Step 2</div>
+        <h2 class="accordion-title">The One-Way Mirror</h2>
+        <div class="accordion-subtitle">The mental model that keeps you out of trouble.</div>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>There are two kinds of session behind the three screens. A <strong>cloud session</strong> is one you start on your phone or the web, plus every scheduled task. A <strong>local session</strong> is one you start on the desktop app, working inside a folder on your actual computer.</p>
+        <p>Sync runs one way. Anything that happens in the cloud shows up everywhere: phone, web, and desktop. Anything you do in a local desktop session stays on the desktop. Your phone will never see it.</p>
+        <div class="info-box key">
+          <strong>Say It Like This</strong>
+          The cloud is visible everywhere. Your desktop is a one-way mirror: it can see the cloud, but the cloud cannot see it.
+        </div>
+        <h3>Who Can See What</h3>
+        <table class="compare-table">
+          <tr><th>Where you started the work</th><th>Shows up on desktop?</th><th>Shows up on phone / web?</th></tr>
+          <tr><td>Phone or web (cloud session)</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>Scheduled task (cloud)</td><td>Yes</td><td>Yes</td></tr>
+          <tr><td>Desktop, inside a local folder</td><td>Yes</td><td>No</td></tr>
+        </table>
+        <div class="info-box tip">
+          <strong>Test It Yourself</strong>
+          Start a session on your phone and watch it appear on the desktop. Then do some local folder work on the desktop and check your phone. It won't be there. Sixty seconds, and the model sticks for good.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="accordion" id="cloud-vs-local">
+    <div class="accordion-header">
+      <div class="accordion-badge">3</div>
+      <div>
+        <div class="accordion-label">Step 3</div>
+        <h2 class="accordion-title">Cloud vs Local: Which Is Which</h2>
+        <div class="accordion-subtitle">Sort any task in five seconds.</div>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>The question that decides whether a task runs with your laptop closed is simple: does it touch a file on your actual computer? If it only reads and writes connectors, it runs in the cloud. If it reaches into a local folder, it needs the Mac.</p>
+        <table class="compare-table">
+          <tr><th>Task type</th><th>Runs in the cloud? (laptop can be off)</th></tr>
+          <tr><td>Scheduled task reading Gmail / Calendar and writing a briefing</td><td>Yes</td></tr>
+          <tr><td>A session you start on phone or web</td><td>Yes</td></tr>
+          <tr><td>Research that pulls from the web and a connector</td><td>Yes</td></tr>
+          <tr><td>Organizing or renaming files in a local folder</td><td>No, needs the Mac</td></tr>
+          <tr><td>Reading a local .xlsx or .docx off your desktop</td><td>No, needs the Mac</td></tr>
+        </table>
+        <div class="info-box warning">
+          <strong>The Trap</strong>
+          A task can be half-and-half: it reads Gmail (cloud) but saves the output to a local "Today's Work" folder (desktop). That task runs fine, but the result only lands on your Mac. You'll stare at your phone wondering where it went. The fix is the next section.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="accordion" id="connectors-bridge">
+    <div class="accordion-header">
+      <div class="accordion-badge">4</div>
+      <div>
+        <div class="accordion-label">Step 4</div>
+        <h2 class="accordion-title">Connectors Are the Bridge</h2>
+        <div class="accordion-subtitle">Where you store the output decides which devices can reach it.</div>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>This is the part the launch-day videos skip. Because a cloud session can't touch your local folders, the only way to make a workflow's output reach your phone is to store it in a <strong>connector</strong>: Google Drive, Notion, Slack, Gmail. The connector is the shared shelf all three surfaces can read from.</p>
+        <p>That reframes connectors. They are no longer an optional step-nine nicety. They are the thing that decides whether your finished work follows you out of the building.</p>
+        <div class="info-box key">
+          <strong>The Rule</strong>
+          Local folder output = desktop only. Connector output = everywhere. If you want it on your phone, don't save it to your Mac; save it to Drive or Notion.
+        </div>
+        <div class="info-box tip">
+          <strong>Make Your Morning Briefing Portable</strong>
+          A briefing that reads Gmail and Calendar is already pure-cloud. Have it write the HTML to a Google Drive folder instead of a local one, and it lands on your phone at 8 AM whether or not you opened your laptop. New to connectors? See <a href="beginner.html">Claude Beginner</a>, Section 9.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="accordion" id="cloud-or-local">
+    <div class="accordion-header">
+      <div class="accordion-badge">5</div>
+      <div>
+        <div class="accordion-label">Step 5</div>
+        <h2 class="accordion-title">Cloud-First or Local-First?</h2>
+        <div class="accordion-subtitle">A decision you make once per workflow.</div>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>Every workflow you build now carries a design choice: should it live in the cloud so you can run and review it anywhere, or on the desktop where it has the full file tree? Use this to decide.</p>
+        <table class="compare-table">
+          <tr><th>Build it CLOUD-first when...</th><th>Build it LOCAL when...</th></tr>
+          <tr><td>Inputs and outputs live in connectors (email, calendar, Drive, Notion, CRM)</td><td>You're organizing, renaming, or reading files on your own machine</td></tr>
+          <tr><td>You want to trigger it and review it from your phone</td><td>The work is heavy file processing or code you watch run</td></tr>
+          <tr><td>It's a scheduled task that should run while you sleep</td><td>You want the full desktop workspace and local file tree</td></tr>
+        </table>
+        <div class="info-box tip">
+          <strong>Write It Into Your CLAUDE.md</strong>
+          Set a storage default so you don't decide twice. Something like: "Outputs I want on mobile go to Drive; local file-wrangling stays on the desktop." Every future workflow inherits the right choice.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="accordion" id="limits">
+    <div class="accordion-header">
+      <div class="accordion-badge">6</div>
+      <div>
+        <div class="accordion-label">Step 6</div>
+        <h2 class="accordion-title">What Doesn't Work Yet</h2>
+        <div class="accordion-subtitle">Honest limitations, dated so you know when they expire.</div>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>No hype here. As of July 2026, three gaps are worth knowing before you rebuild your whole setup around mobile.</p>
+        <div class="info-box warning">
+          <strong>Known Limitations (as of July 2026)</strong>
+          <strong>1. Web can't pick a local folder.</strong> The web app has no way to select a folder on your computer yet, so folder-based work still means the desktop.<br>
+          <strong>2. Local desktop work doesn't reach mobile.</strong> The one-way mirror. Anything you do in a local session stays on the Mac.<br>
+          <strong>3. No promoting a local session to the cloud.</strong> You can't take a session you started on the desktop and continue it on your phone. Start it in the cloud if you want it there.
+        </div>
+        <div class="info-box tip">
+          <strong>Why the Date Matters</strong>
+          Anthropic is shipping fast. When one of these gets fixed, it's a one-line edit here, not a rewrite. Check the date before you trust the limitation.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="accordion" id="rework-workflows">
+    <div class="accordion-header">
+      <div class="accordion-badge">7</div>
+      <div>
+        <div class="accordion-label">Step 7</div>
+        <h2 class="accordion-title">Rework Your Workflows for Mobile</h2>
+        <div class="accordion-subtitle">The same plays, now with a storage decision.</div>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>Your existing workflows don't need replacing. They need one thing added: a storage decision, because storage now decides device reach.</p>
+        <h3>The 6 AM Dispatch, reborn</h3>
+        <p>The old version queued tasks from your phone for the Mac to run. The new version runs the work itself in a cloud session, laptop closed, reviewable from any device. Point its outputs at Drive or Notion instead of a local folder, and the finished work is on your phone with your coffee. Full setup in <a href="workflows.html">Claude in Action</a>, Workflow 1.</p>
+        <h3>The Essential Three, freed</h3>
+        <p>Morning briefing, meeting prep, evening debrief all read connectors and write a briefing. That makes them pure-cloud: they fire on schedule and land on your phone whether or not you opened your laptop. See <a href="workflows.html">Claude in Action</a>, Workflow 2.</p>
+        <div class="info-box key">
+          <strong>The Takeaway</strong>
+          The release didn't add new workflows. It changed where your existing ones can run and where their output can land. Decide cloud or local per workflow, route mobile-bound output to a connector, and Claude follows you across every screen.
+        </div>
+        <div class="info-box levelup">
+          <strong>Level Up: Audit Your Own Setup</strong>
+          Tell Claude: <em>"List my scheduled tasks. For each, say whether it touches a local folder or only connectors, and flag the ones that need the Mac awake. For anything I'd want on my phone, rewrite it to save output to Drive instead of a local folder."</em> Ten minutes, and your whole automation layer knows which side of the mirror it's on.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="path-nav" aria-label="Guide navigation">
+  <a class="prev" href="claude-office.html"><span class="pn-label">&larr; Previous</span><span class="pn-title">Claude in Office</span></a>
+  <a class="hub" href="index.html">All guides</a>
+  <a class="next" href="people.html"><span class="pn-label">Next &rarr;</span><span class="pn-title">People I Learn From</span></a>
+</nav>
+
+  <div class="footer">
+    <p>Claude Everywhere by Steve Gustafson. The mobile, web, and cloud release of Cowork, explained without the hype.</p>
+    <p>Updated July 2026. <a href="index.html">Back to all guides</a></p>
+  </div>
+
+</div>
+
+<button class="back-to-top" id="backToTopBtn">&uarr;</button>
+
+<script src="sections.js" defer></script>
+
+<script src="search.js"></script>
+</body>
+</html>

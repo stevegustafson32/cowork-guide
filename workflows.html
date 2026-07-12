@@ -615,6 +615,7 @@
     <a href="claude-code-2.html">Claude Code 2.0</a>
     <a href="claude-design.html">Claude Design</a>
     <a href="claude-office.html">Claude in Office</a>
+    <a href="claude-everywhere.html">Claude Everywhere</a>
     <a href="people.html">People I Learn From</a>
   </div>
 </nav>
@@ -676,8 +677,8 @@
           <p>Connect your email and calendar. Claude can now read incoming messages and your day's schedule to prioritize intelligently.</p>
         </div>
         <div class="step-card">
-          <h4>Dispatch Connected on Phone</h4>
-          <p>Install Claude on your phone. You can message Claude from Dispatch at 6 AM and watch the queue build. Desktop handles execution while you shower.</p>
+          <h4>Claude on Your Phone</h4>
+          <p>Install Claude on your phone. As of the July 2026 mobile release, you can start the whole session from your phone at 6 AM and it runs in the cloud — your Mac can be closed. The catch: a cloud session can't touch your local desktop folders. Route these outputs to a connector (Drive, Notion) if you want to review them on your phone. See the note below.</p>
         </div>
 
         <h3>The Prompts</h3>
@@ -693,7 +694,12 @@
 
         <div class="info-box key">
           <strong>Why It Works</strong>
-          Dispatch lets you fire 5 tasks from your phone in 5 minutes while your Mac executes in parallel. You queue, walk away, review outputs over coffee. No waiting. No context switching.
+          You fire 5 tasks from your phone in 5 minutes and they run in the cloud — no Mac left running, no laptop open. You queue, walk away, review outputs over coffee from any device. No waiting. No context switching.
+        </div>
+
+        <div class="info-box warning">
+          <strong>One-Way Mirror: Where This Work Lives</strong>
+          A session you start on your phone runs in the cloud and shows up everywhere — phone, web, and desktop. But work you do in a <em>local</em> desktop session stays on the desktop; your phone never sees it. Rule of thumb: the cloud is visible everywhere, your desktop is a one-way mirror. So if a task writes to a local folder (like "Today's Work"), you'll only see those files on your Mac. Point the output at a connector — Google Drive, Notion — and the finished work follows you to your phone.
         </div>
 
         <div class="info-box tip">
@@ -766,9 +772,9 @@
           Start small. Three tasks. One week. You'll feel the difference before you add anything else. These three cover: morning focus, meeting readiness, and end-of-day clarity. That's the foundation.
         </div>
 
-        <div class="info-box warning">
-          <strong>Keep Your Mac Awake</strong>
-          Scheduled tasks only run while your Mac is on and Claude Desktop is open. If your Mac is asleep at the scheduled time, the task runs when you wake it.
+        <div class="info-box key">
+          <strong>These Run in the Cloud — Laptop Can Be Closed</strong>
+          Since the July 2026 release, scheduled tasks run in the cloud on Anthropic's servers. Your Mac can be asleep or shut. The three tasks here are pure-connector (they read Gmail and Calendar and write an HTML briefing), so they fire on schedule and land on your phone whether or not you opened your laptop. The one exception: a task that reads or writes a <em>local</em> desktop folder still needs the Mac awake and the desktop app open, because the cloud can't see your local files.
         </div>
 
         <div class="info-box tip">
