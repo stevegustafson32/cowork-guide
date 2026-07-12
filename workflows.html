@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Claude in Action: Seven Workflows That Work</title>
-<meta name="description" content="Seven copy-paste Claude workflows Steve runs every week: the 6 AM Dispatch, deep research, CSV dashboards, and spreadsheet to board deck.">
+<title>Claude in Action: Eight Workflows That Work</title>
+<meta name="description" content="Eight copy-paste Claude workflows Steve runs every week: the 6 AM Dispatch, deep research, CSV dashboards, board decks, and meeting follow-ups.">
 <link rel="canonical" href="https://stevesaiguide.com/workflows.html">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
@@ -12,15 +12,15 @@
 <link rel="alternate icon" href="/favicon.ico">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Steve's AI Guide">
-<meta property="og:title" content="Claude in Action: Seven Workflows That Work">
-<meta property="og:description" content="Seven copy-paste Claude workflows Steve runs every week: the 6 AM Dispatch, deep research, CSV dashboards, and spreadsheet to board deck.">
+<meta property="og:title" content="Claude in Action: Eight Workflows That Work">
+<meta property="og:description" content="Eight copy-paste Claude workflows Steve runs every week: the 6 AM Dispatch, deep research, CSV dashboards, board decks, and meeting follow-ups.">
 <meta property="og:url" content="https://stevesaiguide.com/workflows.html">
 <meta property="og:image" content="https://stevesaiguide.com/assets/og-workflows.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Claude in Action: Seven Workflows That Work">
-<meta name="twitter:description" content="Seven copy-paste Claude workflows Steve runs every week: the 6 AM Dispatch, deep research, CSV dashboards, and spreadsheet to board deck.">
+<meta name="twitter:title" content="Claude in Action: Eight Workflows That Work">
+<meta name="twitter:description" content="Eight copy-paste Claude workflows Steve runs every week: the 6 AM Dispatch, deep research, CSV dashboards, board decks, and meeting follow-ups.">
 <meta name="twitter:image" content="https://stevesaiguide.com/assets/og-workflows.png">
 <link rel="stylesheet" href="design-system.css">
 <style>
@@ -601,7 +601,7 @@
 <!-- STICKY NAV -->
 <div class="sticky-nav" id="stickyNav">
   <div class="sticky-nav-left">Claude in Action</div>
-  <div class="sticky-nav-right"><span id="stickyProgress">Workflow 1 of 7</span></div>
+  <div class="sticky-nav-right"><span id="stickyProgress">Workflow 1 of 8</span></div>
 </div>
 
 <!-- RESOURCE NAV -->
@@ -637,7 +637,7 @@
   </div>
 
   <div class="toc">
-    <h2>Seven Workflows</h2>
+    <h2>Eight Workflows</h2>
     <div class="toc-grid">
       <a class="toc-item toc-link" href="#the-6-am-dispatch"><span class="toc-num">1</span> The 6 AM Dispatch</a>
       <a class="toc-item toc-link" href="#the-essential-three-scheduled-tasks-starter"><span class="toc-num">2</span> The Essential Three</a>
@@ -646,6 +646,7 @@
       <a class="toc-item toc-link" href="#csv-to-dashboard"><span class="toc-num">5</span> CSV to Dashboard</a>
       <a class="toc-item toc-link" href="#the-ai-chief-of-staff"><span class="toc-num">6</span> The AI Chief of Staff</a>
       <a class="toc-item toc-link" href="#spreadsheet-board-deck"><span class="toc-num">7</span> Spreadsheet → Board Deck</a>
+      <a class="toc-item toc-link" href="#meeting-follow-up-engine"><span class="toc-num">8</span> Meeting Follow-Up Engine</a>
       <a class="toc-item" href="#reliability"><span class="toc-num">&#9888;</span> When Automations Go Wrong</a>
     </div>
   </div>
@@ -1191,6 +1192,73 @@
         </div>
 
         <p style="margin-top: 24px; font-size: 13px; color: var(--text-dim);">Method adapted from the Claude &times; Office playbook (Guillermo Flor, PMF) &bull; structured by Steve Gustafson</p>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion" id="meeting-follow-up-engine">
+    <div class="accordion-header">
+      <div class="accordion-badge">8</div>
+      <div>
+        <div class="accordion-label">Workflow 8</div>
+        <h2 class="accordion-title">The Meeting Follow-Up Engine</h2>
+        <div class="accordion-subtitle">The recap email, in your voice, drafted before you close the meeting tab.</div>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+
+        <h3>Who This Is For</h3>
+        <p>Anyone who runs back-to-back calls and loses the thread on follow-ups. Consultants who owe every prospect a recap. Founders who decide five things in a meeting and remember two by evening. The email that should go out in ten minutes instead goes out in three days, or never.</p>
+
+        <h3>The Setup</h3>
+        <div class="step-card">
+          <h4>Your Voice Profile (do this once)</h4>
+          <p>Claude writes a profile of how you actually email, then follows it every time. You build it once and reuse it forever. The prompt is below.</p>
+        </div>
+        <div class="step-card">
+          <h4>Granola, the meeting memory</h4>
+          <p>Download it at <strong>granola.ai</strong>. It's a notepad, not a bot, nothing joins your call. It transcribes in the background on Zoom, Meet, and Teams, then hands you clean notes when the meeting ends. In Claude, go to <strong>Settings &rarr; Connectors</strong>, search for <strong>Granola</strong>, and connect it. Now Claude can read any meeting you've had.</p>
+        </div>
+        <div class="step-card">
+          <h4>Gmail Connector</h4>
+          <p><strong>Settings &rarr; Connectors &rarr; Gmail.</strong> This is how Claude reads your sent mail to learn your voice, and drops the finished draft where you'll find it.</p>
+        </div>
+
+        <h3>The Prompts, Run in Order</h3>
+
+        <p style="margin-bottom: 8px;"><strong>First, build your voice profile (once):</strong></p>
+        <div class="code-block">Read my last 30 sent emails in Gmail. Write my voice profile: how I greet, how I sign off, my sentence length, my go-to phrases, the words I never use. Format it as writing instructions to follow when drafting as me.</div>
+        <p>Save that output as project instructions. This is the step that makes your emails sound like you and not like a chatbot.</p>
+
+        <p style="margin-bottom: 8px; margin-top: 20px;"><strong>Then, after every meeting:</strong></p>
+        <div class="code-block">Pull my last meeting from Granola. Draft the follow-up using my voice profile: what we decided, action items with owners, one clear next step. Keep it as short as I keep mine. Create it as a Gmail draft to the attendees.</div>
+
+        <h3>What Claude Produces</h3>
+        <p>A draft sitting in Gmail, attendees already in the To field, written in your voice: what you decided, who owns what, the single next step. You read it once and send. The email is waiting before your coffee gets cold.</p>
+
+        <div class="info-box tip">
+          <strong>You Still Hit Send</strong>
+          Claude drafts. It cannot send. Nothing leaves your outbox without your click. Your clients still talk to you, just faster, and nobody on the other end can tell an "AI email" from a fast one, because there's no such thing. There are emails that sound like you and emails that don't.
+        </div>
+
+        <div class="info-box key">
+          <strong>Why It Works</strong>
+          The voice profile removes the tell. Granola removes the "what did we actually decide" scramble by remembering every meeting for you. And moving the drafting to right-after-the-call, while it's fresh, is what turns a recap you keep meaning to write into one that's already done.
+        </div>
+
+        <div class="info-box tip">
+          <strong>Make It Yours</strong>
+          The real unlock isn't one email, it's the memory. Ask Claude: <em>"Which action items from this week's meetings are still waiting on me?"</em> Granola remembers every meeting you've had, so your recaps quietly become your to-do list. Don't use Granola? Paste your own notes into the second prompt instead, the voice profile and the draft-in-Gmail steps work the same.
+        </div>
+
+        <div class="info-box levelup">
+          <strong>Level Up: Build the meeting-recap Skill</strong>
+          If you do this after every call, encode it. Tell Claude: <em>"Build me a skill called 'meeting-recap' that pulls my last Granola meeting and drafts the follow-up in my voice: decisions, action items with owners, one next step, kept short, saved as a Gmail draft to the attendees. Use my saved voice profile."</em> Then "run meeting-recap" is the whole prompt. New to skills? See <a href="level-2.html">Claude Advanced</a>, Section 1.
+        </div>
+
+        <p style="margin-top: 24px; font-size: 13px; color: var(--text-dim);">Method from Ruben Hassid's meeting-email framework (How to AI) &bull; Granola is a third-party tool (granola.ai) &bull; structured by Steve Gustafson</p>
 
       </div>
     </div>
