@@ -183,7 +183,7 @@
     position: relative;
   }
   .accordion-header:hover {
-    border-left-color: var(--accent);
+    border-left-color: transparent;
   }
   .accordion-header.open {
     border-left-color: var(--accent);
@@ -315,8 +315,8 @@
     padding: 20px 24px;
     border-radius: 10px;
     margin: 20px 0;
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 15px;
+    line-height: 1.65;
   }
   .info-box.tip {
     background: rgba(92,184,92,0.08);
@@ -338,9 +338,9 @@
     border-radius: 10px;
     padding: 20px 24px;
     font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-    font-size: 13px;
-    line-height: 1.7;
-    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.65;
+    color: #cdcdcd;
     overflow-x: auto;
     margin: 16px 0;
     white-space: pre;
@@ -528,7 +528,7 @@
   .resource-nav-brand { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
   .resource-nav-links { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
   .resource-nav-links a {
-    padding: 6px 14px; border-radius: 6px; color: var(--text-muted);
+    padding: 9px 14px; border-radius: 6px; color: var(--text-muted);
     text-decoration: none; font-weight: 500; font-size: 13px; transition: all 0.2s; white-space: nowrap;
   }
   .resource-nav-links a:hover { color: var(--text); background: var(--surface-2); }
@@ -536,7 +536,7 @@
   @media (max-width: 640px) {
     .resource-nav { flex-direction: column; gap: 8px; align-items: flex-start; }
     .resource-nav-links { gap: 4px; }
-    .resource-nav-links a { padding: 4px 10px; font-size: 12px; }
+    .resource-nav-links a { padding: 8px 12px; font-size: 13px; }
   }
 </style>
 <style id="open-sections-override">

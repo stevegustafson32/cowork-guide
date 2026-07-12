@@ -6,7 +6,7 @@
 
   var css = [
     ".wfs-btn{position:fixed;left:20px;bottom:20px;z-index:9998;display:inline-flex;align-items:center;gap:8px;",
-    "padding:10px 16px;border-radius:9999px;background:var(--accent,#d4956a);color:#1a1410;font-weight:700;",
+    "padding:13px 18px;border-radius:9999px;background:var(--accent,#d4956a);color:#1a1410;font-weight:700;",
     "font-size:13px;border:none;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.4);font-family:inherit}",
     ".wfs-btn:hover{filter:brightness(1.06)}",
     ".wfs-btn kbd{background:rgba(26,20,16,.25);border-radius:4px;padding:1px 6px;font-size:11px;font-weight:700}",

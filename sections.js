@@ -18,7 +18,7 @@
     ".sec-anchor{opacity:0;margin-left:10px;font-size:17px;font-weight:400;text-decoration:none;",
     "color:var(--accent,#d4956a);transition:opacity .15s;vertical-align:middle}",
     "h2.accordion-title:hover .sec-anchor,.sec-anchor:focus{opacity:1}",
-    "#stickyProgress{cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:6px;",
+    "#stickyProgress{cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 2px;",
     "max-width:60vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}",
     "#stickyProgress .sg-caret{font-size:9px;opacity:.7}",
     ".sg-jump{position:fixed;top:52px;right:16px;z-index:9997;min-width:260px;max-width:88vw;max-height:60vh;",
