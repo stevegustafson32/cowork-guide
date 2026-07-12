@@ -115,7 +115,7 @@
 
   /* LAYOUT */
   .container {
-    max-width: 800px;
+    max-width: 720px;
     margin: 0 auto;
     padding: 0 24px;
   }
@@ -220,7 +220,7 @@
   }
 
   .accordion-title {
-    font-size: 28px;
+    font-size: clamp(24px, 3.5vw, 30px);
     font-weight: 800;
     margin-bottom: 6px;
     letter-spacing: -0.5px;
@@ -280,7 +280,7 @@
     line-height: 1.7;
   }
   .section h3 {
-    font-size: 19px;
+    font-size: 21px;
     font-weight: 700;
     margin: 32px 0 12px;
     color: #fff;
@@ -759,6 +759,7 @@
   /* Wide code samples were clipped by the old accordion overflow:hidden;
      now they scroll internally instead of widening the page on mobile. */
   .accordion-content .code-block, .accordion-content pre { max-width: 100%; overflow-x: auto; }
+  .accordion-content table { display: block; max-width: 100%; overflow-x: auto; }
   html { overflow-x: hidden; } /* NOT clip: visible+clip pairing computes both axes to clip and kills page scroll */
   @media (max-width: 520px) {
     /* Tables wider than a phone scroll internally (they were cut off before). */
