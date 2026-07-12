@@ -202,3 +202,6 @@ button, a {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
+
+/* "NEW" badge for recently-added nav / ramp items */
+.nav-new{display:inline-block;margin-left:6px;padding:1px 5px;border-radius:4px;background:var(--accent);color:#141017;font-size:9px;font-weight:800;letter-spacing:.05em;line-height:1.5;vertical-align:middle;text-transform:uppercase;}
