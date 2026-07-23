@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Steve's AI Guide - Claude Everywhere: Cowork on Mobile, Web & Cloud</title>
+<title>Steve's AI Guide - Claude Everywhere: Mobile, Web & Cloud</title>
 <meta name="description" content="Cowork now runs on mobile, web, and in the cloud. The one mental model that keeps you out of trouble: what syncs, what doesn't, and why connectors are the bridge.">
 <link rel="canonical" href="https://stevesaiguide.com/claude-everywhere.html">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -12,14 +12,14 @@
 <link rel="alternate icon" href="/favicon.ico">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Steve's AI Guide">
-<meta property="og:title" content="Steve's AI Guide - Claude Everywhere: Cowork on Mobile, Web & Cloud">
+<meta property="og:title" content="Steve's AI Guide - Claude Everywhere: Mobile, Web & Cloud">
 <meta property="og:description" content="Cowork now runs on mobile, web, and in the cloud. The one mental model that keeps you out of trouble: what syncs, what doesn't, and why connectors are the bridge.">
 <meta property="og:url" content="https://stevesaiguide.com/claude-everywhere.html">
 <meta property="og:image" content="https://stevesaiguide.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Steve's AI Guide - Claude Everywhere: Cowork on Mobile, Web & Cloud">
+<meta name="twitter:title" content="Steve's AI Guide - Claude Everywhere: Mobile, Web & Cloud">
 <meta name="twitter:description" content="Cowork now runs on mobile, web, and in the cloud. The one mental model that keeps you out of trouble: what syncs, what doesn't, and why connectors are the bridge.">
 <meta name="twitter:image" content="https://stevesaiguide.com/assets/og-image.png">
 <link rel="stylesheet" href="design-system.css">
@@ -494,6 +494,8 @@
     opacity: 1;
     pointer-events: auto;
   }
+  /* keyboard: invisible button must leave the tab order (pointer-events:none does not) */
+  .back-to-top:not(.visible) { visibility: hidden; }
   .back-to-top:hover { background: var(--accent-light); }
 
   .accordion-progress {

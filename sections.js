@@ -34,6 +34,7 @@
     "background:#22242b;color:#e8e8e8;border:1px solid #3a3a3a;font-size:18px;cursor:pointer;",
     "opacity:0;pointer-events:none;transition:opacity .2s;box-shadow:0 6px 20px rgba(0,0,0,.4)}",
     ".sg-top.visible{opacity:1;pointer-events:auto}",
+    ".sg-top:not(.visible){visibility:hidden}",
     ".sg-top:hover{filter:brightness(1.2)}"
   ].join("");
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Steve's AI Guide - Claude Design + Image AI: The Two-Tool Workflow for Stunning Decks</title>
+<title>Steve's AI Guide - Claude Design: The Two-Tool Workflow</title>
 <meta name="description" content="The two-tool workflow for stunning decks: brainstorm in ChatGPT Images, polish in Claude Design. Skip Canva and Figma when you can.">
 <link rel="canonical" href="https://stevesaiguide.com/claude-design.html">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -12,14 +12,14 @@
 <link rel="alternate icon" href="/favicon.ico">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Steve's AI Guide">
-<meta property="og:title" content="Steve's AI Guide - Claude Design + Image AI: The Two-Tool Workflow for Stunning Decks">
+<meta property="og:title" content="Steve's AI Guide - Claude Design: The Two-Tool Workflow">
 <meta property="og:description" content="The two-tool workflow for stunning decks: brainstorm in ChatGPT Images, polish in Claude Design. Skip Canva and Figma when you can.">
 <meta property="og:url" content="https://stevesaiguide.com/claude-design.html">
 <meta property="og:image" content="https://stevesaiguide.com/assets/og-claude-design.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Steve's AI Guide - Claude Design + Image AI: The Two-Tool Workflow for Stunning Decks">
+<meta name="twitter:title" content="Steve's AI Guide - Claude Design: The Two-Tool Workflow">
 <meta name="twitter:description" content="The two-tool workflow for stunning decks: brainstorm in ChatGPT Images, polish in Claude Design. Skip Canva and Figma when you can.">
 <meta name="twitter:image" content="https://stevesaiguide.com/assets/og-claude-design.png">
 <link rel="stylesheet" href="design-system.css">
@@ -548,6 +548,8 @@
     opacity: 1;
     pointer-events: auto;
   }
+  /* keyboard: invisible button must leave the tab order (pointer-events:none does not) */
+  .back-to-top:not(.visible) { visibility: hidden; }
   .back-to-top:hover { background: var(--accent-light); }
 
   /* PROGRESS INDICATOR */
@@ -620,6 +622,10 @@
     .accordion-content li { flex-wrap: wrap; }
     .accordion-content li > * { min-width: 0; }
   }
+
+  /* a11y: step-card/footer headings promoted h4 -> h3 to remove the h2->h4 level skip.
+     Explicit rule keeps the rendered appearance byte-identical. */
+  .step-card h3 { font-size:18px;font-weight:600;color:#e8e8e8;margin:0 0 8px; }
 </style>
 </head>
 <body>
@@ -692,19 +698,19 @@
         <h3>What You Can Build</h3>
         <div class="two-col">
           <div class="step-card">
-            <h4>Slide Decks</h4>
+            <h3>Slide Decks</h3>
             <p>Presentations with animations. 5 slides or 50. Export as PDF or keep as working HTML.</p>
           </div>
           <div class="step-card">
-            <h4>Landing Pages</h4>
+            <h3>Landing Pages</h3>
             <p>Marketing sites, one-pagers, sales pages. Clickable, fully interactive.</p>
           </div>
           <div class="step-card">
-            <h4>Wireframes</h4>
+            <h3>Wireframes</h3>
             <p>App mockups and component libraries. Ready to hand to developers.</p>
           </div>
           <div class="step-card">
-            <h4>Marketing Assets</h4>
+            <h3>Marketing Assets</h3>
             <p>Email templates, ad creatives, social banners. Fast iteration on multiple concepts.</p>
           </div>
         </div>
@@ -788,13 +794,13 @@
 
         <div class="step-card highlighted">
           <div class="step-num">2.1</div>
-          <h4>ChatGPT Images 2.0 (or DALL-E) - Divergent Phase</h4>
+          <h3>ChatGPT Images 2.0 (or DALL-E) - Divergent Phase</h3>
           <p>You want to make a pitch deck. Instead of staring at Canva templates, you generate 4-8 visual directions for the cover. Different aesthetics: brutalist data viz, warm illustration, minimalist tech, editorial photography. You pick one. Takes 2 minutes. Cost: zero. Mental friction: zero.</p>
         </div>
 
         <div class="step-card highlighted">
           <div class="step-num">2.2</div>
-          <h4>Claude Design - Convergent Phase</h4>
+          <h3>Claude Design - Convergent Phase</h3>
           <p>You take the one image you loved. You upload it to Claude Design. You say "build a 10-slide pitch deck using this visual direction, with my brand colors and logo." Claude generates the entire working deck. Iterate on it. Get it perfect. Export as PDF. Done.</p>
         </div>
 
@@ -814,7 +820,7 @@
         </div>
 
         <div class="step-card highlighted">
-          <h4>The Rule of Thumb</h4>
+          <h3>The Rule of Thumb</h3>
           <p>If a step involves picking between options, do it outside Claude Design. If a step involves producing the final artifact, do it inside Claude Design. Exploration is cheap somewhere else. Polish is what you bought the Claude Design quota for.</p>
         </div>
 
@@ -853,19 +859,19 @@ Generate all four as horizontal banner images (16:9). Make the title legible in 
 
         <div class="step-card">
           <div class="step-num">3.1</div>
-          <h4>Generate 4-8 directions</h4>
+          <h3>Generate 4-8 directions</h3>
           <p>Vary the aesthetic, tone, and visual approach. Horizontal (16:9) works best for decks.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">3.2</div>
-          <h4>Pick one that feels right</h4>
+          <h3>Pick one that feels right</h3>
           <p>Not the "best" technically. The one that matches the feeling of your message.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">3.3</div>
-          <h4>Screenshot or save the image</h4>
+          <h3>Screenshot or save the image</h3>
           <p>You'll upload it to Claude Design in the next step.</p>
         </div>
 
@@ -896,25 +902,25 @@ Generate all four as horizontal banner images (16:9). Make the title legible in 
 
         <div class="step-card highlighted">
           <div class="step-num">4.1</div>
-          <h4>Open claude.ai/design</h4>
+          <h3>Open claude.ai/design</h3>
           <p>Go to claude.ai/design. You'll see an upload area and a text prompt field.</p>
         </div>
 
         <div class="step-card highlighted">
           <div class="step-num">4.2</div>
-          <h4>Upload your reference image</h4>
+          <h3>Upload your reference image</h3>
           <p>Drag the image you chose from step 3. Claude Design will analyze the colors, typography, mood, and visual approach.</p>
         </div>
 
         <div class="step-card highlighted">
           <div class="step-num">4.3</div>
-          <h4>Provide brand assets</h4>
+          <h3>Provide brand assets</h3>
           <p>Include in your prompt: hex codes for 3 primary colors, 2 font names (or URLs if custom), and a logo URL if you have one. Example: "Brand colors: #1A1A1A, #D4956A, #E8E8E8. Fonts: Inter and SF Mono. Logo: [URL]"</p>
         </div>
 
         <div class="step-card highlighted">
           <div class="step-num">4.4</div>
-          <h4>Describe the full design</h4>
+          <h3>Describe the full design</h3>
           <p>Give Claude the outline and key content. Claude will generate the entire working design in the visual direction of your reference image.</p>
         </div>
 
@@ -965,25 +971,25 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
 
         <div class="step-card highlighted">
           <div class="step-num">5.1</div>
-          <h4>Phase 1: Build the Outline First (Always)</h4>
+          <h3>Phase 1: Build the Outline First (Always)</h3>
           <p>In Claude Design, your first prompt should not be "build the deck." It should be "outline the deck." Ask for a numbered list of slide titles and one-line descriptions. This takes 30 seconds and gives you a chance to approve the structure before Claude builds the whole thing. You will save dozens of iterations this way.</p>
         </div>
 
         <div class="step-card highlighted">
           <div class="step-num">5.2</div>
-          <h4>Phase 2: Set the Visual Direction (One Reference Image)</h4>
+          <h3>Phase 2: Set the Visual Direction (One Reference Image)</h3>
           <p>Generate one image concept in ChatGPT Images 2.0. Something that visually represents your story. Upload it to Claude Design and reference it in your prompt. Claude will apply its mood and color language to all slides.</p>
         </div>
 
         <div class="step-card highlighted">
           <div class="step-num">5.3</div>
-          <h4>Phase 3: Provide Brand Assets Once</h4>
+          <h3>Phase 3: Provide Brand Assets Once</h3>
           <p>Include at the start: hex codes, font URLs, logo URL. Claude applies these consistently across all slides. Don't change your colors mid-build. Pick 3-4 and stick with them. Consistency beats perfection.</p>
         </div>
 
         <div class="step-card highlighted">
           <div class="step-num">5.4</div>
-          <h4>Phase 4: Iterate Slide by Slide</h4>
+          <h3>Phase 4: Iterate Slide by Slide</h3>
           <p>Once the full deck is built, you can refine. "Slide 6: add a data chart here." "Slide 10: make the CTA button more prominent." Each change is fast because Claude can reason about the whole design system.</p>
         </div>
 
@@ -1032,27 +1038,27 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
 
         <div class="two-col">
           <div class="step-card">
-            <h4>Landing Pages</h4>
+            <h3>Landing Pages</h3>
             <p>Product pages, feature overviews, pricing pages. Fully interactive. Use when you want fast iteration and code handoff to developers.</p>
           </div>
           <div class="step-card">
-            <h4>One-Pagers</h4>
+            <h3>One-Pagers</h3>
             <p>Sales collateral, company overviews, event announcements. Great for PDF export and email.</p>
           </div>
           <div class="step-card">
-            <h4>Email Templates</h4>
+            <h3>Email Templates</h3>
             <p>Newsletter layouts, promotional emails. Claude generates responsive HTML you can drop into Mailchimp or Brevo.</p>
           </div>
           <div class="step-card">
-            <h4>App Wireframes</h4>
+            <h3>App Wireframes</h3>
             <p>Product mockups, dashboard layouts. Clickable prototypes you can hand to developers as a spec.</p>
           </div>
           <div class="step-card">
-            <h4>Marketing Assets</h4>
+            <h3>Marketing Assets</h3>
             <p>Social ad creatives (1:1, 16:9), infographics, data visualizations. Fast variations for A/B testing.</p>
           </div>
           <div class="step-card">
-            <h4>Internal Tools</h4>
+            <h3>Internal Tools</h3>
             <p>Dashboards, reports, tracking pages. Quick prototypes without building in a framework.</p>
           </div>
         </div>
@@ -1094,25 +1100,25 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
 
         <div class="step-card highlighted">
           <div class="step-num">7.1</div>
-          <h4>Go to Organization Settings</h4>
+          <h3>Go to Organization Settings</h3>
           <p>In claude.ai/design, click your organization name in the top right. Select Settings.</p>
         </div>
 
         <div class="step-card highlighted">
           <div class="step-num">7.2</div>
-          <h4>Upload Brand Assets</h4>
+          <h3>Upload Brand Assets</h3>
           <p>You can upload multiple files (PDFs, design files, images). Claude will analyze them automatically.</p>
         </div>
 
         <div class="step-card highlighted">
           <div class="step-num">7.3</div>
-          <h4>Set as Default</h4>
+          <h3>Set as Default</h3>
           <p>Select one design system as your default. Every new project will reference it automatically.</p>
         </div>
 
         <div class="step-card highlighted">
           <div class="step-num">7.4</div>
-          <h4>Done</strong></h4>
+          <h3>Done</strong></h3>
           <p>When you start a new deck or page, just describe it. Claude will apply your brand system without you re-explaining it.</p>
         </div>
 
@@ -1312,20 +1318,20 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
 
         <h3>Official Resources</h3>
         <ul class="checklist">
-          <li><a href="https://claude.ai/design" target="_blank">claude.ai/design</a>, Launch Claude Design</li>
-          <li><a href="https://www.anthropic.com" target="_blank">Anthropic Blog</a>, Follow for Claude Design launch announcements and deep dives</li>
-          <li><a href="https://openai.com/index/gpt-4o/" target="_blank">ChatGPT Images 2.0</a>, The image generation partner tool</li>
+          <li><a href="https://claude.ai/design" target="_blank" rel="noopener">claude.ai/design</a>, Launch Claude Design</li>
+          <li><a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic Blog</a>, Follow for Claude Design launch announcements and deep dives</li>
+          <li><a href="https://openai.com/index/gpt-4o/" target="_blank" rel="noopener">ChatGPT Images 2.0</a>, The image generation partner tool</li>
         </ul>
 
         <h3>Related Tools</h3>
         <ul class="checklist">
-          <li><a href="https://www.canva.com" target="_blank">Canva</a>, For polished final marketing output</li>
-          <li><a href="https://www.figma.com" target="_blank">Figma</a>, For production UI design and team collaboration</li>
+          <li><a href="https://www.canva.com" target="_blank" rel="noopener">Canva</a>, For polished final marketing output</li>
+          <li><a href="https://www.figma.com" target="_blank" rel="noopener">Figma</a>, For production UI design and team collaboration</li>
         </ul>
 
         <h3>Creators and Resources</h3>
         <p>Jack Roberts (@Itssssss_Jack) has published foundational Claude Code 2.0 content:</p>
-        <a href="https://www.youtube.com/watch?v=weNHvvolEds" target="_blank" class="video-card">
+        <a href="https://www.youtube.com/watch?v=weNHvvolEds" target="_blank" class="video-card" rel="noopener">
           <div class="video-icon official">▶</div>
           <div>
             <h4>Top 5 Claude Code Skills + Tools for Design (April 2026)</h4>

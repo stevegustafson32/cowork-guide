@@ -523,8 +523,8 @@
     font-weight: 600;
   }
   .video-tag.must { background: rgba(212,149,106,0.2); color: var(--accent); }
-  .video-tag.rec { background: rgba(91,155,213,0.2); color: var(--blue); }
-  .video-tag.opt { background: rgba(155,126,216,0.2); color: var(--purple); }
+  .video-tag.rec { background: rgba(91,155,213,0.2); color: #8fc4f0; } /* was var(--blue) 4.31:1, now 6.88:1 */
+  .video-tag.opt { background: rgba(155,126,216,0.2); color: #c3aef0; } /* was var(--purple) 3.96:1, now 6.61:1 */
 
   /* COMPARISON TABLE */
   .compare-table {
@@ -689,6 +689,8 @@
     opacity: 1;
     pointer-events: auto;
   }
+  /* keyboard: invisible button must leave the tab order (pointer-events:none does not) */
+  .back-to-top:not(.visible) { visibility: hidden; }
   .back-to-top:hover { background: var(--accent-light); }
 
   /* PROGRESS INDICATOR (FIX 5) */
@@ -761,6 +763,10 @@
     .accordion-content li { flex-wrap: wrap; }
     .accordion-content li > * { min-width: 0; }
   }
+
+  /* a11y: step-card/footer headings promoted h4 -> h3 to remove the h2->h4 level skip.
+     Explicit rule keeps the rendered appearance byte-identical. */
+  .step-card h3 { font-size:18px;font-weight:600;color:#e8e8e8;margin:0 0 8px; }
 </style>
 </head>
 <body>
@@ -803,7 +809,7 @@
     <div class="banner-icon">&#11015;</div>
     <div>
       <strong style="color: var(--blue);">Start this now, read while you wait</strong>
-      <span style="color: var(--text-muted);">Download <a href="https://claude.com/download" target="_blank">Claude Desktop</a>, the first-time setup includes a ~2GB download that takes a few minutes. Get it running, then follow along.</span>
+      <span style="color: var(--text-muted);">Download <a href="https://claude.com/download" target="_blank" rel="noopener">Claude Desktop</a>, the first-time setup includes a ~2GB download that takes a few minutes. Get it running, then follow along.</span>
     </div>
   </div>
 
@@ -883,27 +889,27 @@
         <p>Here are real examples of tasks people hand to Cowork daily:</p>
         <div class="two-col">
           <div class="step-card">
-            <h4>Documents & Writing</h4>
+            <h3>Documents & Writing</h3>
             <p>Write memos, proposals, reports, blog posts, emails, and LinkedIn content as polished Word docs or PDFs.</p>
           </div>
           <div class="step-card">
-            <h4>Research</h4>
+            <h3>Research</h3>
             <p>Deep-dive a company, person, or topic and get a professional research document with sources.</p>
           </div>
           <div class="step-card">
-            <h4>Presentations</h4>
+            <h3>Presentations</h3>
             <p>Create real PowerPoint decks you can open in Microsoft PowerPoint or Google Slides.</p>
           </div>
           <div class="step-card">
-            <h4>Spreadsheets & Data</h4>
+            <h3>Spreadsheets & Data</h3>
             <p>Build Excel files with formulas, charts, and analysis. Analyze CSVs. Create dashboards.</p>
           </div>
           <div class="step-card">
-            <h4>Code & Automation</h4>
+            <h3>Code & Automation</h3>
             <p>Write scripts, fix bugs, automate repetitive tasks, build web tools.</p>
           </div>
           <div class="step-card">
-            <h4>Organization</h4>
+            <h3>Organization</h3>
             <p>Manage files, rename documents, extract info from PDFs, merge files.</p>
           </div>
         </div>
@@ -933,26 +939,26 @@
 
         <div class="step-card highlighted">
           <div class="step-num">2.1</div>
-          <h4>Download the Claude Desktop App</h4>
-          <p>Go to <a href="https://claude.com/download" target="_blank"><strong>claude.com/download</strong></a> and download the app for your computer (Mac or Windows). Install it like any normal app, drag to Applications on Mac, or run the installer on Windows.</p>
+          <h3>Download the Claude Desktop App</h3>
+          <p>Go to <a href="https://claude.com/download" target="_blank" rel="noopener"><strong>claude.com/download</strong></a> and download the app for your computer (Mac or Windows). Install it like any normal app, drag to Applications on Mac, or run the installer on Windows.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">2.2</div>
-          <h4>Sign In</h4>
-          <p>Open the Claude app and sign in with your Anthropic account. If you don't have a paid plan yet, you'll need to upgrade at <a href="https://claude.ai" target="_blank">claude.ai</a> first.</p>
+          <h3>Sign In</h3>
+          <p>Open the Claude app and sign in with your Anthropic account. If you don't have a paid plan yet, you'll need to upgrade at <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> first.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">2.3</div>
-          <h4>Find the Cowork Tab</h4>
+          <h3>Find the Cowork Tab</h3>
           <p>Once you're signed in, look at the <strong>top of the app window</strong>. You'll see tabs for <strong>Chat</strong>, <strong>Cowork</strong>, and <strong>Code</strong>. Click <strong>Cowork</strong> to switch. (You can ignore the Code tab, that's for software developers.)</p>
           <p style="margin-top:8px; color: var(--text-muted); font-size: 13px;"><strong style="display:inline; color: var(--yellow);">Heads up:</strong> The first time you open Cowork, it downloads a ~2GB Linux environment. This only happens once but can take 5-10 minutes on slower connections. Let it finish before moving on.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">2.4</div>
-          <h4>Select a Folder (put it in your cloud drive)</h4>
+          <h3>Select a Folder (put it in your cloud drive)</h3>
           <p>Cowork will ask you to select a folder on your computer. This is the one setup choice worth thirty seconds of thought, because moving it later is a chore: <strong>create the folder inside your cloud-synced drive, not a plain local folder.</strong> Something like <code>Google Drive/CoWork OS</code>. Use whichever service your work already runs on, Google Drive, Dropbox, OneDrive/SharePoint, or Box. We'll organize the inside of it in Step 6. Claude can only see files inside this folder, not your whole computer.</p>
         </div>
 
@@ -991,22 +997,22 @@
         <h3>How a Session Works</h3>
         <div class="step-card">
           <div class="step-num">3.1</div>
-          <h4>You describe what you want</h4>
+          <h3>You describe what you want</h3>
           <p>Type your request in plain English. Be as specific as you can. For example: <em>"Write a one-page executive summary of WuunderFund for potential investors. Make it a Word doc."</em></p>
         </div>
         <div class="step-card">
           <div class="step-num">3.2</div>
-          <h4>Claude asks clarifying questions (sometimes)</h4>
+          <h3>Claude asks clarifying questions (sometimes)</h3>
           <p>If your request is ambiguous, Claude will ask before starting, just like a real colleague would. Answer the questions and Claude begins work.</p>
         </div>
         <div class="step-card">
           <div class="step-num">3.3</div>
-          <h4>Claude works through the task</h4>
+          <h3>Claude works through the task</h3>
           <p>You'll see a progress tracker showing what Claude is doing: reading files, searching the web, writing code, creating documents. You can watch or switch to another app, Claude keeps working.</p>
         </div>
         <div class="step-card">
           <div class="step-num">3.4</div>
-          <h4>Claude delivers the output</h4>
+          <h3>Claude delivers the output</h3>
           <p>When done, Claude will provide a link to the file it created in your workspace folder. Click it to open. The file is already on your computer, no downloading needed.</p>
         </div>
 
@@ -1045,22 +1051,22 @@
         <h3>How to Create a Project</h3>
         <div class="step-card">
           <div class="step-num">4.1</div>
-          <h4>Open the Projects panel</h4>
+          <h3>Open the Projects panel</h3>
           <p>In Claude Desktop, click <strong>Projects</strong> in the left sidebar. Click <strong>New Project</strong>.</p>
         </div>
         <div class="step-card">
           <div class="step-num">4.2</div>
-          <h4>Name it and add instructions</h4>
+          <h3>Name it and add instructions</h3>
           <p>Give your project a clear name (e.g., "WuunderFund" or "Q2 Marketing"). In the <strong>Instructions</strong> field, add rules for how Claude should work in this project, tone, formatting, key context. These apply to every task in the project.</p>
         </div>
         <div class="step-card">
           <div class="step-num">4.3</div>
-          <h4>Attach context</h4>
+          <h3>Attach context</h3>
           <p>Add a <strong>local folder</strong> from your computer, link a <strong>chat project</strong> from regular Claude, or paste a <strong>URL</strong> for Claude to reference. This is the information Claude draws from when working on tasks in this project.</p>
         </div>
         <div class="step-card">
           <div class="step-num">4.4</div>
-          <h4>Start a task</h4>
+          <h3>Start a task</h3>
           <p>Click into the project and type your first request. Claude now has your instructions and context loaded automatically.</p>
         </div>
 
@@ -1079,19 +1085,19 @@
         <h3>What Projects Don't Do (Yet)</h3>
         <p>Projects are a great foundation, but they don't give you everything. Here's where the rest of this guide comes in:</p>
         <div class="step-card">
-          <h4>No structured output management</h4>
+          <h3>No structured output management</h3>
           <p>Projects don't separate where Claude reads from vs. where it writes. Without a system, files pile up in one folder. <strong>Steps 5-6</strong> solve this with a read-only/write-only folder structure.</p>
         </div>
         <div class="step-card">
-          <h4>No identity document</h4>
+          <h3>No identity document</h3>
           <p>The instructions field is great for project-specific rules, but there's no dedicated place for "who you are" context that spans all projects. <strong>Step 7</strong> creates your About Me file.</p>
         </div>
         <div class="step-card">
-          <h4>No explicit memory control</h4>
+          <h3>No explicit memory control</h3>
           <p>Auto-memory is convenient but imprecise, Claude decides what to save. If you want to guarantee specific facts persist with your exact wording, you need user-triggered memory. <strong>Step 8</strong> covers this with CLAUDE.md and MEMORY.md.</p>
         </div>
         <div class="step-card">
-          <h4>No cloud sync</h4>
+          <h3>No cloud sync</h3>
           <p>Projects are stored locally. No sharing, no sync across devices. This is a known limitation, plan accordingly.</p>
         </div>
 
@@ -1125,17 +1131,17 @@
         <h3>How to Install</h3>
         <div class="step-card highlighted">
           <div class="step-num">5.1</div>
-          <h4>Download the Plugin</h4>
+          <h3>Download the Plugin</h3>
           <p>Download the plugin file: <a href="cowork-os-plugin.zip" download><strong>cowork-os-plugin.zip</strong></a> (14 KB). Unzip it anywhere on your computer, you'll get a folder called <code>cowork-os-plugin</code>.</p>
         </div>
         <div class="step-card">
           <div class="step-num">5.2</div>
-          <h4>Install in Cowork</h4>
+          <h3>Install in Cowork</h3>
           <p>Open Cowork &rarr; click <strong>Customize</strong> (top-right) &rarr; <strong>Browse plugins</strong> &rarr; search for <strong>"CoWork OS"</strong>. If you find it in the marketplace, click Install. Otherwise, use the <strong>"Install from folder"</strong> option and point it to the unzipped <code>cowork-os-plugin</code> folder.</p>
         </div>
         <div class="step-card highlighted">
           <div class="step-num">5.3</div>
-          <h4>Type <code>/begin</code>, That's It</h4>
+          <h3>Type <code>/begin</code>, That's It</h3>
           <p>Open a new Cowork session and type <code>/begin</code> in the chat. CoWork OS takes over from here. You just answer questions.</p>
         </div>
 
@@ -1176,7 +1182,7 @@ MEMORY.md                &larr; empty, ready for "remember this" notes</div>
 
         <div class="info-box key">
           <strong>CoWork OS on GitHub</strong>
-          The plugin is open source. You can explore the code, see how skills are built, and modify it for your own needs. Check the <a href="https://github.com" target="_blank">CoWork OS repository</a> to see how <code>SKILL.md</code> files work, how commands are defined, and how memory isolation is handled across subfolders.
+          The plugin is open source. You can explore the code, see how skills are built, and modify it for your own needs. Check the <a href="https://github.com" target="_blank" rel="noopener">CoWork OS repository</a> to see how <code>SKILL.md</code> files work, how commands are defined, and how memory isolation is handled across subfolders.
         </div>
       </div>
     </div>
@@ -1243,22 +1249,22 @@ MEMORY.md                &larr; empty, ready for "remember this" notes</div>
         <h3>The Four Key Folders</h3>
 
         <div class="step-card highlighted">
-          <h4>ABOUT ME/, Your Identity File</h4>
+          <h3>ABOUT ME/, Your Identity File</h3>
           <p>A simple text file that tells Claude who you are, what you do, and how you like to work. Claude reads this at the start of every session. <strong>This is what makes Claude feel like YOUR assistant instead of a generic AI.</strong> We'll set this up in Step 7.</p>
         </div>
 
         <div class="step-card">
-          <h4>TEMPLATES/, Reusable Patterns</h4>
+          <h3>TEMPLATES/, Reusable Patterns</h3>
           <p>Drop in any document structure you want Claude to follow. A report format, an email style, a slide deck structure. Claude will study the pattern and apply it, without copying the content. Start empty; add templates as you discover patterns you reuse.</p>
         </div>
 
         <div class="step-card">
-          <h4>PROJECTS/, Your Reference Materials</h4>
+          <h3>PROJECTS/, Your Reference Materials</h3>
           <p>This is where you put context Claude needs to do good work: briefs, research, decks, past work. Organize by project. Claude reads from here but never writes to it, your originals stay untouched.</p>
         </div>
 
         <div class="step-card">
-          <h4>CLAUDE OUTPUTS/, Where Claude Delivers Work</h4>
+          <h3>CLAUDE OUTPUTS/, Where Claude Delivers Work</h3>
           <p>Every file Claude creates goes here, organized by project (mirroring your PROJECTS folder). This keeps your workspace clean and makes it easy to find what Claude built.</p>
         </div>
 
@@ -1276,7 +1282,7 @@ MEMORY.md                &larr; empty, ready for "remember this" notes</div>
           <strong>Install Obsidian to Actually Edit Your Folder (Free, 2 Minutes)</strong>
           Here's the hidden problem with Cowork: it runs on <code>.md</code> files. Double-click one and your computer opens it in TextEdit or Notepad, and you see a mess of hashtags, asterisks, and raw formatting. It's ugly, it's hard to read, and most people quietly stop editing their files. Which means their "Second Brain" never gets smarter.
           <br><br>
-          Fix it with <a href="https://obsidian.md" target="_blank">Obsidian</a>. It's free for personal use, runs locally on your computer, and renders markdown cleanly (real headers, bold, bullets). Download it, choose <strong>"Open folder as vault"</strong>, and point it at your Cowork folder. Done. Obsidian and Cowork now read and write the same files live. You use Obsidian to browse, search, and edit your context. You use Cowork to generate new work. No syncing, no copy-paste.
+          Fix it with <a href="https://obsidian.md" target="_blank" rel="noopener">Obsidian</a>. It's free for personal use, runs locally on your computer, and renders markdown cleanly (real headers, bold, bullets). Download it, choose <strong>"Open folder as vault"</strong>, and point it at your Cowork folder. Done. Obsidian and Cowork now read and write the same files live. You use Obsidian to browse, search, and edit your context. You use Cowork to generate new work. No syncing, no copy-paste.
           <br><br>
           <strong>Why Obsidian and not Notion or Google Docs?</strong> Notion silently corrupts markdown with hidden formatting that breaks Claude. Google Docs needs constant conversion. Code editors like VS Code are too technical. Obsidian is the one tool that just reads your folder without touching it.
         </div>
@@ -1289,7 +1295,7 @@ MEMORY.md                &larr; empty, ready for "remember this" notes</div>
         <h3>Starting a New Project</h3>
         <p>When you start a new project, just tell Claude: <em>"New project: [Project Name]"</em>. Claude will automatically create:</p>
         <div class="step-card highlighted">
-          <h4>What happens when you say "New Project"</h4>
+          <h3>What happens when you say "New Project"</h3>
           <p>
             1. A <strong>PROJECTS/[Project Name]/</strong> folder for your reference materials (briefs, docs, research)<br>
             2. A <strong>CLAUDE OUTPUTS/[Project Name]/</strong> folder where Claude delivers all work for that project<br>
@@ -1390,7 +1396,7 @@ I manage a team of 6 and report directly to the CEO.
 
         <div class="info-box warning">
           <strong>Start Your Export Now, It Takes 1-3 Days</strong>
-          ChatGPT's data export is not instant. Go to <a href="https://chatgpt.com" target="_blank">chatgpt.com</a> &rarr; profile icon (bottom-left) &rarr; <strong>Settings</strong> &rarr; <strong>Data Controls</strong> &rarr; <strong>Export Data</strong> &rarr; confirm. You'll get an email from <code>noreply@openai.com</code> with a download link (expires in 24 hours). Check spam if you don't see it.
+          ChatGPT's data export is not instant. Go to <a href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com</a> &rarr; profile icon (bottom-left) &rarr; <strong>Settings</strong> &rarr; <strong>Data Controls</strong> &rarr; <strong>Export Data</strong> &rarr; confirm. You'll get an email from <code>noreply@openai.com</code> with a download link (expires in 24 hours). Check spam if you don't see it.
         </div>
 
         <h4 style="margin-top: 24px;">What to Look For in Your Export</h4>
@@ -1404,7 +1410,7 @@ I manage a team of 6 and report directly to the CEO.
         </table>
 
         <div class="step-card highlighted">
-          <h4>The Fastest Path: Let Claude Do the Extraction</h4>
+          <h3>The Fastest Path: Let Claude Do the Extraction</h3>
           <p>Unzip the export file (you'll get <code>chat.html</code>). Drop it into your Cowork workspace folder and tell Claude:</p>
           <p><em>"I just exported my ChatGPT history. It's in chat.html. Read through it and extract: (1) everything it knew about me, role, company, preferences, (2) instructions I repeated often, (3) recurring projects or topics, (4) key decisions and facts. Use what you find to draft my About Me file and seed my MEMORY.md."</em></p>
           <p>What took you months to teach ChatGPT, Claude gets in one conversation.</p>
@@ -1507,11 +1513,11 @@ _Last updated: 2026-03-19_
         <p>When you create a new project (see Step 4), each project gets its own MEMORY.md. This is powerful because:</p>
         <div class="two-col">
           <div class="step-card">
-            <h4>Global MEMORY.md (workspace root)</h4>
+            <h3>Global MEMORY.md (workspace root)</h3>
             <p>Cross-project stuff: your role, recurring contacts, preferences, tool accounts, things that are always true regardless of project.</p>
           </div>
           <div class="step-card">
-            <h4>Project MEMORY.md (inside project folder)</h4>
+            <h3>Project MEMORY.md (inside project folder)</h3>
             <p>Project-scoped notes: this project's deadlines, decisions, status updates, stakeholder feedback, version history. Stays isolated from other projects.</p>
           </div>
         </div>
@@ -1557,9 +1563,9 @@ _Last updated: 2026-03-19_
         <p>Before connectors and plugins, there's one capability worth setting up immediately: <strong>Claude in Chrome</strong>. It's a browser extension that lets Claude see and interact with your browser, fill out forms, navigate websites, take screenshots, pull data from pages, and automate web tasks.</p>
         <div class="step-card highlighted">
           <div class="step-num">&#9733;</div>
-          <h4>Why this matters</h4>
+          <h3>Why this matters</h3>
           <p>When Claude can see your browser, it can research things live, reference what you're looking at, and do web-based tasks without you copy-pasting content back and forth. It's especially powerful combined with Cowork, you can say <em>"look at this page and write a competitive analysis"</em> and Claude reads the live page, then creates a Word doc.</p>
-          <p style="margin-top: 8px;"><strong>To install:</strong> Search for "Claude" in the <a href="https://chromewebstore.google.com" target="_blank">Chrome Web Store</a> or look for the Claude in Chrome option in your Claude Desktop settings.</p>
+          <p style="margin-top: 8px;"><strong>To install:</strong> Search for "Claude" in the <a href="https://chromewebstore.google.com" target="_blank" rel="noopener">Chrome Web Store</a> or look for the Claude in Chrome option in your Claude Desktop settings.</p>
         </div>
 
         <h3>Connectors (Connect Your Apps)</h3>
@@ -1580,7 +1586,7 @@ _Last updated: 2026-03-19_
           <tr><td><strong>Airtable</strong></td><td>Read and query your Airtable bases and records</td></tr>
         </table>
 
-        <p style="font-size: 13px; color: var(--text-muted);">Full directory at <a href="https://claude.com/connectors" target="_blank">claude.com/connectors</a>, categories include communication, data, design, finance, productivity, sales, and more. All connectors are free.</p>
+        <p style="font-size: 13px; color: var(--text-muted);">Full directory at <a href="https://claude.com/connectors" target="_blank" rel="noopener">claude.com/connectors</a>, categories include communication, data, design, finance, productivity, sales, and more. All connectors are free.</p>
 
         <p><strong>To add a connector:</strong> Go to Cowork &rarr; Customize &rarr; Connectors &rarr; browse or search &rarr; click "Connect" and authorize access.</p>
 
@@ -1589,43 +1595,43 @@ _Last updated: 2026-03-19_
 
         <div class="two-col">
           <div class="step-card">
-            <h4>Productivity</h4>
+            <h3>Productivity</h3>
             <p>Task management, memory system, daily workflow. The foundation plugin, pairs well with everything else.</p>
           </div>
           <div class="step-card">
-            <h4>Sales</h4>
+            <h3>Sales</h3>
             <p>Account research, call prep, outreach drafting, pipeline review, competitive battlecards, forecasting.</p>
           </div>
           <div class="step-card">
-            <h4>Marketing</h4>
+            <h3>Marketing</h3>
             <p>Content creation, campaign planning, SEO audits, brand voice review, email sequences, performance reports.</p>
           </div>
           <div class="step-card">
-            <h4>Finance</h4>
+            <h3>Finance</h3>
             <p>Journal entries, reconciliation, variance analysis, financial statements, SOX compliance, close management.</p>
           </div>
           <div class="step-card">
-            <h4>Legal</h4>
+            <h3>Legal</h3>
             <p>Contract review, NDA triage, compliance tracking, risk assessment, DPA review, meeting briefings.</p>
           </div>
           <div class="step-card">
-            <h4>Product Management</h4>
+            <h3>Product Management</h3>
             <p>PRDs and specs, roadmaps, stakeholder updates, competitive analysis, user research synthesis, metrics tracking.</p>
           </div>
           <div class="step-card">
-            <h4>Data</h4>
+            <h3>Data</h3>
             <p>SQL queries, data exploration, visualization, interactive dashboards, statistical analysis, data validation.</p>
           </div>
           <div class="step-card">
-            <h4>Operations</h4>
+            <h3>Operations</h3>
             <p>Process documentation, risk assessment, vendor management, compliance tracking, change management, resource planning.</p>
           </div>
           <div class="step-card">
-            <h4>Design</h4>
+            <h3>Design</h3>
             <p>Design critique, accessibility audits, UX writing, design system management, developer handoff specs, user research.</p>
           </div>
           <div class="step-card">
-            <h4>Enterprise Search</h4>
+            <h3>Enterprise Search</h3>
             <p>Search across all your connected tools at once, email, Slack, docs, wikis. Daily and weekly digests.</p>
           </div>
         </div>
@@ -1649,7 +1655,7 @@ _Last updated: 2026-03-19_
         <h3>What Are Skills? (The Building Blocks)</h3>
         <p>Under the hood, every plugin is made up of <strong>skills</strong>, small instruction files that teach Claude how to do one thing really well. A skill might teach Claude how to write a contract review, build an Excel dashboard, or research a company using a specific framework.</p>
 
-        <p>You don't need to know this to use Cowork, plugins handle it for you. But understanding skills matters because you can eventually <strong>create your own</strong>. If you find yourself giving Claude the same instructions repeatedly ("always format reports this way" or "research companies using this framework"), that's a skill waiting to be built. We cover this in the <a href="https://stevegustafson32.github.io/cowork-guide/level-2" target="_blank">Level 2 Advanced Guide</a>.</p>
+        <p>You don't need to know this to use Cowork, plugins handle it for you. But understanding skills matters because you can eventually <strong>create your own</strong>. If you find yourself giving Claude the same instructions repeatedly ("always format reports this way" or "research companies using this framework"), that's a skill waiting to be built. We cover this in the <a href="https://stevegustafson32.github.io/cowork-guide/level-2" target="_blank" rel="noopener">Level 2 Advanced Guide</a>.</p>
       </div>
     </div>
   </div>
@@ -1668,32 +1674,32 @@ _Last updated: 2026-03-19_
       <div class="accordion-body">
         <div class="step-card highlighted">
           <div class="step-num">10.1</div>
-          <h4>Easiest: Research a Company</h4>
+          <h3>Easiest: Research a Company</h3>
           <p><em>"Research [Company Name]. Give me a Word doc covering what they do, their business model, key people, recent news, and competitive positioning."</em></p>
           <p style="margin-top: 8px; font-size: 13px; color: var(--green);">Why it's great first: Zero setup needed. Claude uses web search and creates a real .docx file.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">10.2</div>
-          <h4>Simple: Write a Professional Document</h4>
+          <h3>Simple: Write a Professional Document</h3>
           <p><em>"Write a one-page executive summary of my company for potential investors. Here's what we do: [brief description]. Make it a Word doc."</em></p>
         </div>
 
         <div class="step-card">
           <div class="step-num">10.3</div>
-          <h4>Medium: Create a Presentation</h4>
+          <h3>Medium: Create a Presentation</h3>
           <p><em>"Create a 10-slide pitch deck for [your company/project]. Include: problem, solution, market size, business model, team, and ask. Make it a .pptx file."</em></p>
         </div>
 
         <div class="step-card">
           <div class="step-num">10.4</div>
-          <h4>Medium: Analyze a Spreadsheet</h4>
+          <h3>Medium: Analyze a Spreadsheet</h3>
           <p>Drop a CSV or Excel file into your workspace folder, then ask: <em>"Analyze the data in [filename]. Tell me the key trends and create a summary dashboard."</em></p>
         </div>
 
         <div class="step-card">
           <div class="step-num">10.5</div>
-          <h4>Advanced: Multi-Step Project</h4>
+          <h3>Advanced: Multi-Step Project</h3>
           <p><em>"I'm preparing for a meeting with [Company/Person]. Research them, create a briefing doc, and draft 3 talking points I should bring up. Save everything to my project folder."</em></p>
         </div>
 
@@ -1724,7 +1730,7 @@ _Last updated: 2026-03-19_
       <div class="accordion-body">
         <h3>Essential Viewing (Start Here)</h3>
 
-        <a href="https://www.anthropic.com/webinars/future-of-ai-at-work-introducing-cowork" target="_blank" class="video-card">
+        <a href="https://www.anthropic.com/webinars/future-of-ai-at-work-introducing-cowork" target="_blank" class="video-card" rel="noopener">
           <div class="video-icon official">&#9654;</div>
           <div>
             <h4>The Future of AI at Work: Introducing Cowork <span class="video-tag must">MUST WATCH</span></h4>
@@ -1733,7 +1739,7 @@ _Last updated: 2026-03-19_
           </div>
         </a>
 
-        <a href="https://support.claude.com/en/articles/13345190-get-started-with-cowork" target="_blank" class="video-card">
+        <a href="https://support.claude.com/en/articles/13345190-get-started-with-cowork" target="_blank" class="video-card" rel="noopener">
           <div class="video-icon official">&#128214;</div>
           <div>
             <h4>Get Started with Cowork, Official Help Center <span class="video-tag must">MUST READ</span></h4>
@@ -1742,7 +1748,7 @@ _Last updated: 2026-03-19_
           </div>
         </a>
 
-        <a href="https://talk.macpowerusers.com/t/video-how-to-use-claude-cowork-by-one-of-the-engineers-who-created-it/44305" target="_blank" class="video-card">
+        <a href="https://talk.macpowerusers.com/t/video-how-to-use-claude-cowork-by-one-of-the-engineers-who-created-it/44305" target="_blank" class="video-card" rel="noopener">
           <div class="video-icon official">&#9654;</div>
           <div>
             <h4>How to Use Claude Cowork, By One of the Engineers Who Built It <span class="video-tag must">MUST WATCH</span></h4>
@@ -1753,7 +1759,7 @@ _Last updated: 2026-03-19_
 
         <h3>Deep Dives (After You're Comfortable)</h3>
 
-        <a href="https://www.datacamp.com/tutorial/claude-cowork-tutorial" target="_blank" class="video-card">
+        <a href="https://www.datacamp.com/tutorial/claude-cowork-tutorial" target="_blank" class="video-card" rel="noopener">
           <div class="video-icon guide">&#128218;</div>
           <div>
             <h4>Claude Cowork Tutorial, DataCamp <span class="video-tag rec">RECOMMENDED</span></h4>
@@ -1762,7 +1768,7 @@ _Last updated: 2026-03-19_
           </div>
         </a>
 
-        <a href="https://thesignal.substack.com/p/how-to-properly-set-up-claude-cowork" target="_blank" class="video-card">
+        <a href="https://thesignal.substack.com/p/how-to-properly-set-up-claude-cowork" target="_blank" class="video-card" rel="noopener">
           <div class="video-icon guide">&#128218;</div>
           <div>
             <h4>How to Properly Set Up Claude Cowork, Alex Banks <span class="video-tag rec">RECOMMENDED</span></h4>
@@ -1771,7 +1777,7 @@ _Last updated: 2026-03-19_
           </div>
         </a>
 
-        <a href="https://www.the-ai-corner.com/p/claude-cowork-setup-guide" target="_blank" class="video-card">
+        <a href="https://www.the-ai-corner.com/p/claude-cowork-setup-guide" target="_blank" class="video-card" rel="noopener">
           <div class="video-icon guide">&#128218;</div>
           <div>
             <h4>Claude Cowork Setup Guide: Context Files, Plugins, Workflows <span class="video-tag rec">RECOMMENDED</span></h4>
@@ -1782,7 +1788,7 @@ _Last updated: 2026-03-19_
 
         <h3>Power User Content (For When You're Ready)</h3>
 
-        <a href="https://claudiaplusai.substack.com/p/claude-cowork-starter-guide-30-examples" target="_blank" class="video-card">
+        <a href="https://claudiaplusai.substack.com/p/claude-cowork-starter-guide-30-examples" target="_blank" class="video-card" rel="noopener">
           <div class="video-icon community">&#128161;</div>
           <div>
             <h4>Claude Cowork Starter Guide + 30 Real Examples <span class="video-tag opt">OPTIONAL</span></h4>
@@ -1791,7 +1797,7 @@ _Last updated: 2026-03-19_
           </div>
         </a>
 
-        <a href="https://karozieminski.substack.com/p/claude-cowork-guide-plugins-memory-sub-agents-tips" target="_blank" class="video-card">
+        <a href="https://karozieminski.substack.com/p/claude-cowork-guide-plugins-memory-sub-agents-tips" target="_blank" class="video-card" rel="noopener">
           <div class="video-icon community">&#128161;</div>
           <div>
             <h4>Cowork Guide for Power Users, 50+ Tips <span class="video-tag opt">OPTIONAL</span></h4>
@@ -1800,7 +1806,7 @@ _Last updated: 2026-03-19_
           </div>
         </a>
 
-        <a href="https://aiblewmymind.substack.com/p/claude-cowork-use-cases-guide" target="_blank" class="video-card">
+        <a href="https://aiblewmymind.substack.com/p/claude-cowork-use-cases-guide" target="_blank" class="video-card" rel="noopener">
           <div class="video-icon community">&#128161;</div>
           <div>
             <h4>10 Use Cases I Tested + 67 More by Profession <span class="video-tag opt">OPTIONAL</span></h4>
@@ -1825,22 +1831,22 @@ _Last updated: 2026-03-19_
     <div class="accordion-content">
       <div class="accordion-body">
         <div class="step-card highlighted">
-          <h4>1. Think "Context Engineering," Not "Prompt Engineering"</h4>
+          <h3>1. Think "Context Engineering," Not "Prompt Engineering"</h3>
           <p>The biggest mindset shift for Cowork: <strong>stop trying to write the perfect prompt and start giving Claude the right context.</strong> That's what the folder structure, About Me file, CLAUDE.md, and MEMORY.md are doing, they're building a context layer that makes every conversation better. A mediocre prompt with great context beats a perfect prompt with zero context every time. This is why the setup in Steps 5-7 matters so much.</p>
         </div>
 
         <div class="step-card highlighted">
-          <h4>2. End Every Request With "Ask Me Any Questions"</h4>
+          <h3>2. End Every Request With "Ask Me Any Questions"</h3>
           <p>This is the single easiest way to get better results. Instead of just stating what you want, close your prompt with <em>"ask me any questions to give better context before you start."</em> Claude will then interview you, asking about audience, tone, scope, format, and details you didn't think to mention. The 30 seconds you spend answering saves you from getting something wrong on the first pass.</p>
         </div>
 
         <div class="step-card">
-          <h4>3. Say "Think Hard" for Complex Tasks</h4>
+          <h3>3. Say "Think Hard" for Complex Tasks</h3>
           <p>When you're asking Claude to do something that requires deep reasoning, strategy, analysis, debugging, research synthesis, include <strong>"think hard"</strong> in your request. This activates Claude's extended thinking mode, where it spends more time reasoning through the problem before responding. The difference is significant on complex tasks. You can also say "think step by step" or "take your time with this."</p>
         </div>
 
         <div class="step-card">
-          <h4>4. Choose the Right Model</h4>
+          <h3>4. Choose the Right Model</h3>
           <p>Claude comes in four models. You pick your model in the Cowork interface. From fastest to most capable:</p>
           <p style="margin-top: 8px;">
             <strong>Haiku 4.5</strong>, The fastest and cheapest. Reach for it on quick, simple jobs: reformatting text, a one-line question, organizing files, fast back-and-forth. Uses the fewest tokens, so it's the one to run when you're doing something high-volume.<br>
@@ -1852,47 +1858,47 @@ _Last updated: 2026-03-19_
         </div>
 
         <div class="step-card">
-          <h4>5. Set Personal Preferences in Claude Settings</h4>
+          <h3>5. Set Personal Preferences in Claude Settings</h3>
           <p>Go to <strong>Claude Desktop &rarr; Settings &rarr; Personal Preferences</strong>. Paste a block that describes your name, role, working style, and communication preferences. Unlike the About Me file (which only works in one folder), Personal Preferences apply to <em>every</em> Claude session, Chat and Cowork. This is where you tell Claude your personality expectations.</p>
         </div>
 
         <div class="step-card">
-          <h4>6. Use Subfolders for Different Projects</h4>
+          <h3>6. Use Subfolders for Different Projects</h3>
           <p>Each project can have its own CLAUDE.md and MEMORY.md. This means Claude can have different instructions and memory for different projects. A marketing folder can have Claude act as a content strategist; a finance folder can have Claude act as an analyst.</p>
         </div>
 
         <div class="step-card">
-          <h4>7. Tell Claude to "Remember This"</h4>
+          <h3>7. Tell Claude to "Remember This"</h3>
           <p>Whenever something important comes up, a decision, a deadline change, a new contact, say "remember this: [fact]." Claude will write it to MEMORY.md. Next session, it'll already know.</p>
         </div>
 
         <div class="step-card">
-          <h4>8. Schedule Recurring Tasks</h4>
+          <h3>8. Schedule Recurring Tasks</h3>
           <p>Cowork can run tasks on a schedule. Example: "Every Monday at 9am, compile a summary of my unread emails and create a priorities list." Set this up once, get it delivered automatically.</p>
         </div>
 
         <div class="step-card">
-          <h4>9. Upload Files for Context</h4>
+          <h3>9. Upload Files for Context</h3>
           <p>Drop files directly into the chat or put them in your workspace folder. Claude can read PDFs, Word docs, Excel sheets, CSVs, images, and more. The more context Claude has, the better the output.</p>
         </div>
 
         <div class="step-card">
-          <h4>10. Use Claude in Chrome (Browser Extension)</h4>
+          <h3>10. Use Claude in Chrome (Browser Extension)</h3>
           <p>If you skipped this in Step 9, go back and install it. Claude in Chrome lets Claude see and interact with your browser, research, form filling, screenshots, web automation. It's one of the highest-impact additions you can make.</p>
         </div>
 
         <div class="step-card">
-          <h4>11. Be Specific About Output Format</h4>
+          <h3>11. Be Specific About Output Format</h3>
           <p>Always tell Claude what format you want: "Make it a Word doc," "Create a .pptx," "Give me an Excel file," "Build an HTML page." Claude can create nearly any file type, but only if you ask.</p>
         </div>
 
         <div class="step-card">
-          <h4>12. Say "New Project" to Stay Organized</h4>
+          <h3>12. Say "New Project" to Stay Organized</h3>
           <p>When starting fresh work, just say "new project: [Name]." Claude creates the folder structure, project-specific memory, and output directory automatically. Everything for that project stays together from day one. See Step 4 for the full workflow.</p>
         </div>
 
         <div class="step-card">
-          <h4>13. Talk to Claude Like a Colleague, Not a Search Engine</h4>
+          <h3>13. Talk to Claude Like a Colleague, Not a Search Engine</h3>
           <p>Anthropic's own research on large language models shows that Claude develops internal representations that mirror collaborative dynamics. In practice: collaborative, respectful framing produces better outputs than demanding or terse commands. Instead of "Write me a report," try "I need a report on X for my board, here's the context. Can you draft something and I'll refine it with you?" The difference isn't politeness for its own sake. It's that collaborative framing gives Claude more context about your intent, audience, and quality bar. Claude works best when you treat it like a sharp colleague, not a vending machine.</p>
         </div>
       </div>
@@ -1914,14 +1920,14 @@ _Last updated: 2026-03-19_
         <h3>Official Links</h3>
         <table class="compare-table">
           <tr><th>Resource</th><th>URL</th></tr>
-          <tr><td>Download Claude Desktop</td><td><a href="https://claude.com/download" target="_blank">claude.com/download</a></td></tr>
-          <tr><td>Getting Started Guide</td><td><a href="https://support.claude.com/en/articles/13345190-get-started-with-cowork" target="_blank">Cowork Help Center</a></td></tr>
-          <tr><td>Safety Guidelines</td><td><a href="https://support.claude.com/en/articles/13364135-use-cowork-safely" target="_blank">Using Cowork Safely</a></td></tr>
-          <tr><td>Plugins Guide</td><td><a href="https://support.claude.com/en/articles/13837440-use-plugins-in-cowork" target="_blank">Using Plugins</a></td></tr>
-          <tr><td>Scheduling Tasks</td><td><a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-cowork" target="_blank">Recurring Tasks</a></td></tr>
-          <tr><td>Connectors</td><td><a href="https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities" target="_blank">Extending Capabilities</a></td></tr>
-          <tr><td>Skills Documentation</td><td><a href="https://docs.claude.com/en/docs/claude-code/skills" target="_blank">Building Skills</a></td></tr>
-          <tr><td>Cowork Product Page</td><td><a href="https://claude.com/product/cowork" target="_blank">claude.com/product/cowork</a></td></tr>
+          <tr><td>Download Claude Desktop</td><td><a href="https://claude.com/download" target="_blank" rel="noopener">claude.com/download</a></td></tr>
+          <tr><td>Getting Started Guide</td><td><a href="https://support.claude.com/en/articles/13345190-get-started-with-cowork" target="_blank" rel="noopener">Cowork Help Center</a></td></tr>
+          <tr><td>Safety Guidelines</td><td><a href="https://support.claude.com/en/articles/13364135-use-cowork-safely" target="_blank" rel="noopener">Using Cowork Safely</a></td></tr>
+          <tr><td>Plugins Guide</td><td><a href="https://support.claude.com/en/articles/13837440-use-plugins-in-cowork" target="_blank" rel="noopener">Using Plugins</a></td></tr>
+          <tr><td>Scheduling Tasks</td><td><a href="https://support.claude.com/en/articles/13854387-schedule-recurring-tasks-in-cowork" target="_blank" rel="noopener">Recurring Tasks</a></td></tr>
+          <tr><td>Connectors</td><td><a href="https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities" target="_blank" rel="noopener">Extending Capabilities</a></td></tr>
+          <tr><td>Skills Documentation</td><td><a href="https://docs.claude.com/en/docs/claude-code/skills" target="_blank" rel="noopener">Building Skills</a></td></tr>
+          <tr><td>Cowork Product Page</td><td><a href="https://claude.com/product/cowork" target="_blank" rel="noopener">claude.com/product/cowork</a></td></tr>
         </table>
 
         <h3>Your Setup Checklist</h3>
@@ -1942,27 +1948,27 @@ _Last updated: 2026-03-19_
         <h3>Common Questions</h3>
 
         <div class="step-card">
-          <h4>Do I need to know how to code?</h4>
+          <h3>Do I need to know how to code?</h3>
           <p>No. Cowork is designed for non-technical users. You describe what you want in plain English. Claude handles the technical execution.</p>
         </div>
         <div class="step-card">
-          <h4>Can Claude see all my files?</h4>
+          <h3>Can Claude see all my files?</h3>
           <p>No. Claude can only see files in the specific folder you selected. It cannot access your entire computer, your browser history, passwords, or anything outside that folder.</p>
         </div>
         <div class="step-card">
-          <h4>Is my data safe?</h4>
+          <h3>Is my data safe?</h3>
           <p>Files stay on your computer. Claude processes them locally in a sandboxed environment. However, text from your conversations and files may be sent to Anthropic's servers for processing. Review Anthropic's privacy policy for details.</p>
         </div>
         <div class="step-card">
-          <h4>What happens if I close the app mid-task?</h4>
+          <h3>What happens if I close the app mid-task?</h3>
           <p>The task stops. Files created up to that point are saved, but the task won't resume automatically. You'd need to ask Claude to continue where it left off.</p>
         </div>
         <div class="step-card">
-          <h4>How much does it cost?</h4>
+          <h3>How much does it cost?</h3>
           <p>Claude Pro is $20/month and includes Cowork. Max ($100/month) gives you more usage. Team and Enterprise plans also include Cowork with additional features.</p>
         </div>
         <div class="step-card">
-          <h4>Can I use Cowork on my phone?</h4>
+          <h3>Can I use Cowork on my phone?</h3>
           <p>Yes. As of the July 2026 release, Cowork runs on mobile and web, not just the desktop app. The catch is what it can <em>see</em>: a cloud session can't reach a folder sitting on your Mac. If you put your workspace in a cloud drive with a Claude connector (Google Drive, Dropbox, OneDrive/SharePoint, Box, per Step 2.4), Cowork on your phone can reach that work through the connector. Anything saved only to a local folder stays on the desktop. Full detail in <a href="claude-everywhere.html">Claude Everywhere</a>.</p>
         </div>
       </div>
@@ -1987,7 +1993,7 @@ _Last updated: 2026-03-19_
 <div class="footer">
   <p>Created by Steve Gustafson &bull; March 2026</p>
   <p style="margin-top: 8px;">Built with Claude Cowork (naturally). Have questions? <a href="mailto:stevegustafson@gmail.com">Reach out</a>.</p>
-  <p style="margin-top: 16px; color: var(--text-dim);">Claude and Cowork are products of <a href="https://anthropic.com" target="_blank">Anthropic</a>. This is an independent guide, not official Anthropic documentation.</p>
+  <p style="margin-top: 16px; color: var(--text-dim);">Claude and Cowork are products of <a href="https://anthropic.com" target="_blank" rel="noopener">Anthropic</a>. This is an independent guide, not official Anthropic documentation.</p>
 </div>
 
 <script src="sections.js" defer></script>

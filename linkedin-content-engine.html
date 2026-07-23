@@ -150,6 +150,11 @@
     .toc { grid-template-columns: 1fr; }
     .hero { padding: 48px 16px 36px; }
   }
+
+  /* a11y: card headings promoted h4 -> h3 to remove the h2->h4 level skip.
+     Explicit rules keep the rendered appearance byte-identical. */
+  .feature-card h3 { font-size:14px;font-weight:700;color:#fff;margin:0 0 4px; }
+  .ecosystem-card h3 { font-size:15px;font-weight:700;color:#fff;margin:0 0 4px; }
 </style>
 </head>
 <body>
@@ -202,19 +207,19 @@
         <h3>Relevance score tiers</h3>
         <div class="feature-grid">
           <div class="feature-card">
-            <h4>Score 5, Bullseye</h4>
+            <h3>Score 5, Bullseye</h3>
             <p>Directly hits your focus areas. These become your strongest content inspiration.</p>
           </div>
           <div class="feature-card">
-            <h4>Score 4, Strong</h4>
+            <h3>Score 4, Strong</h3>
             <p>Clear multi-area relevance. Great for cross-topic posts.</p>
           </div>
           <div class="feature-card">
-            <h4>Score 3, Meaningful</h4>
+            <h3>Score 3, Meaningful</h3>
             <p>Solid signal worth writing about. The minimum threshold for idea generation.</p>
           </div>
           <div class="feature-card">
-            <h4>Scores 0-2</h4>
+            <h3>Scores 0-2</h3>
             <p>Filtered out. Low-relevance posts don't become content suggestions.</p>
           </div>
         </div>
@@ -427,23 +432,23 @@
 
         <div class="feature-grid" style="grid-template-columns: 1fr;">
           <div class="feature-card">
-            <h4><code>/setup-content-engine</code></h4>
+            <h3><code>/setup-content-engine</code></h3>
             <p>First-run setup. Configure voice, authority topics, posts per week. Creates database tables and generates first batch of ideas.</p>
           </div>
           <div class="feature-card">
-            <h4><code>/generate</code></h4>
+            <h3><code>/generate</code></h3>
             <p>The main command. Pulls top-scoring posts from Plugin 1, generates ideas, and writes 3 draft variations per idea with different hooks.</p>
           </div>
           <div class="feature-card">
-            <h4><code>/review</code></h4>
+            <h3><code>/review</code></h3>
             <p>After posting, tracks your actual performance. Matches drafts to own_posts data. Updates learning loop so next generation improves.</p>
           </div>
           <div class="feature-card">
-            <h4><code>/configure</code></h4>
+            <h3><code>/configure</code></h3>
             <p>Change voice, authority topics, posts per week, or upload a custom voice document. Changes take effect on next /generate.</p>
           </div>
           <div class="feature-card">
-            <h4><code>/calendar</code></h4>
+            <h3><code>/calendar</code></h3>
             <p>View your content pipeline. See ready ideas, drafted variations, posted content, and generation history.</p>
           </div>
         </div>
@@ -478,22 +483,22 @@
 
         <div class="ecosystem-grid">
           <a class="ecosystem-card" href="https://stevegustafson32.github.io/cowork-guide/linkedin-feed-tracker.html">
-            <h4>Plugin 1: Feed Tracker</h4>
+            <h3>Plugin 1: Feed Tracker</h3>
             <p>Collects network posts, scores by relevance, tracks your own post performance. The data layer.</p>
             <div class="badge">Live</div>
           </a>
           <div class="ecosystem-card" style="border-color: var(--accent);">
-            <h4>Plugin 2: Content Engine</h4>
+            <h3>Plugin 2: Content Engine</h3>
             <p>Turns scored feed data into post ideas and 3 draft variations per idea. You're here.</p>
             <div class="badge" style="color: var(--green);">You are here</div>
           </div>
           <a class="ecosystem-card" href="https://stevegustafson32.github.io/cowork-guide/linkedin-audience-simulator.html">
-            <h4>Plugin 3: Audience Simulator</h4>
+            <h3>Plugin 3: Audience Simulator</h3>
             <p>Predicts which variation will perform best with your specific audience.</p>
             <div class="badge">Coming soon</div>
           </a>
           <div class="ecosystem-card">
-            <h4>The Loop</h4>
+            <h3>The Loop</h3>
             <p>Post &rarr; Plugin 1 tracks performance &rarr; Plugin 2 learns &rarr; better ideas next cycle.</p>
             <div class="badge">Automatic</div>
           </div>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Steve's AI Guide - Claude in Office: Excel, PowerPoint & PDF as Agents</title>
+<title>Steve's AI Guide - Claude in Office: Excel, PowerPoint, PDF</title>
 <meta name="description" content="Claude inside Excel, PowerPoint, and PDF. Edit real cells and slides as an agent, plus a map of which tool to reach for when.">
 <link rel="canonical" href="https://stevesaiguide.com/claude-office.html">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -12,14 +12,14 @@
 <link rel="alternate icon" href="/favicon.ico">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Steve's AI Guide">
-<meta property="og:title" content="Steve's AI Guide - Claude in Office: Excel, PowerPoint &amp; PDF as Agents">
+<meta property="og:title" content="Steve's AI Guide - Claude in Office: Excel, PowerPoint, PDF">
 <meta property="og:description" content="Claude inside Excel, PowerPoint, and PDF. Edit real cells and slides as an agent, plus a map of which tool to reach for when.">
 <meta property="og:url" content="https://stevesaiguide.com/claude-office.html">
 <meta property="og:image" content="https://stevesaiguide.com/assets/og-claude-office.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Steve's AI Guide - Claude in Office: Excel, PowerPoint &amp; PDF as Agents">
+<meta name="twitter:title" content="Steve's AI Guide - Claude in Office: Excel, PowerPoint, PDF">
 <meta name="twitter:description" content="Claude inside Excel, PowerPoint, and PDF. Edit real cells and slides as an agent, plus a map of which tool to reach for when.">
 <meta name="twitter:image" content="https://stevesaiguide.com/assets/og-claude-office.png">
 <link rel="stylesheet" href="design-system.css">
@@ -236,6 +236,8 @@
     border: none;
   }
   .back-to-top.visible { opacity: 1; pointer-events: auto; }
+  /* keyboard: invisible button must leave the tab order (pointer-events:none does not) */
+  .back-to-top:not(.visible) { visibility: hidden; }
   .back-to-top:hover { background: var(--accent-light); text-decoration: none; }
 
   @media (max-width: 720px) {
@@ -260,6 +262,19 @@
 .path-nav .hub:hover { color: var(--accent); }
 @media (max-width: 560px) { .path-nav .hub { order: 3; flex: 1 1 100%; padding: 10px 0; } }
 
+  /* ── responsive guards (this page previously had none: the compare table
+        dragged the whole document sideways on phones) ── */
+  html { overflow-x: hidden; } /* NOT clip: visible+clip pairing computes both axes to clip and kills page scroll */
+  .compare-table { display: block; max-width: 100%; overflow-x: auto; }
+  .code-block, pre { max-width: 100%; overflow-x: auto; }
+  @media (max-width: 560px) {
+    .container { padding: 0 16px; }
+  }
+
+
+  /* a11y: step-card/footer headings promoted h4 -> h3 to remove the h2->h4 level skip.
+     Explicit rule keeps the rendered appearance byte-identical. */
+  .step-card h3 { font-size:16px;font-weight:600;color:#e8e8e8;margin:0 0 8px; }
 </style>
 </head>
 <body>
@@ -343,10 +358,10 @@
     <h2>Ten minutes of work in one prompt</h2>
     <p>Four jobs the Excel agent does well. Click a cell, then ask.</p>
     <div class="card-grid">
-      <div class="step-card"><h4>1 · Understand someone else's sheet</h4><p>"Explain this formula in plain English." "Trace this cell to its source inputs." "Why is this #REF?" "Find every broken formula in the workbook." Claude follows the logic across the whole file, not just the cell you clicked.</p></div>
-      <div class="step-card"><h4>2 · Clean messy data</h4><p>"Convert all dates to YYYY-MM-DD." "Remove duplicates, keep most recent." "Strip Inc/LLC/Ltd from company names." "Split address into street/city/state/zip." It edits in place and highlights every touched cell so you can audit it.</p></div>
-      <div class="step-card"><h4>3 · Analyze without formulas</h4><p>"What changed this year vs last?" "Which customers drive growth?" "Where are we missing budget?" "Categorize these transactions." You get the insight first; ask for the formulas or pivot only if you want them.</p></div>
-      <div class="step-card"><h4>4 · Build models</h4><p>Forecasts, SaaS metrics, scenario and sensitivity tables, IRR/exit models, from scratch, inside the sheet. Not flawless, but it kills the blank-sheet phase. Treat the output as a first draft to pressure-test.</p></div>
+      <div class="step-card"><h3>1 · Understand someone else's sheet</h3><p>"Explain this formula in plain English." "Trace this cell to its source inputs." "Why is this #REF?" "Find every broken formula in the workbook." Claude follows the logic across the whole file, not just the cell you clicked.</p></div>
+      <div class="step-card"><h3>2 · Clean messy data</h3><p>"Convert all dates to YYYY-MM-DD." "Remove duplicates, keep most recent." "Strip Inc/LLC/Ltd from company names." "Split address into street/city/state/zip." It edits in place and highlights every touched cell so you can audit it.</p></div>
+      <div class="step-card"><h3>3 · Analyze without formulas</h3><p>"What changed this year vs last?" "Which customers drive growth?" "Where are we missing budget?" "Categorize these transactions." You get the insight first; ask for the formulas or pivot only if you want them.</p></div>
+      <div class="step-card"><h3>4 · Build models</h3><p>Forecasts, SaaS metrics, scenario and sensitivity tables, IRR/exit models, from scratch, inside the sheet. Not flawless, but it kills the blank-sheet phase. Treat the output as a first draft to pressure-test.</p></div>
     </div>
     <div class="info-box warning">
       <span class="lbl">Cited</span>
@@ -392,8 +407,8 @@
     <h2>Kill the document busywork</h2>
     <p>PDFs are the end state of work, invoices, receipts, reports, statements, and generating them used to mean templates, converters, or manual formatting. Now you describe the document and Claude builds the layout, tables, totals, and structure, then returns a finished PDF.</p>
     <div class="card-grid">
-      <div class="step-card"><h4>Generate</h4><p>"One-page invoice PDF with line items and totals." "Turn this summary into a formatted report PDF." "Receipt with tax and a final total."</p></div>
-      <div class="step-card"><h4>Extract</h4><p>"Pull this PDF table into Excel." The round-trip, data out of a PDF, into a model, back into a clean document, is the part that used to need three tools.</p></div>
+      <div class="step-card"><h3>Generate</h3><p>"One-page invoice PDF with line items and totals." "Turn this summary into a formatted report PDF." "Receipt with tax and a final total."</p></div>
+      <div class="step-card"><h3>Extract</h3><p>"Pull this PDF table into Excel." The round-trip, data out of a PDF, into a model, back into a clean document, is the part that used to need three tools.</p></div>
     </div>
   </section>
 
@@ -429,9 +444,9 @@
 
     <p>If you run the same Office workflow more than twice, stop re-prompting it. Wrap the method in a skill so one sentence triggers it and your preferences stay baked in. Three to build first:</p>
     <div class="card-grid">
-      <div class="step-card"><h4>exec-deck</h4><p>Encodes the five-step blueprint→polish method on top of the <code>pptx</code> skill. "Build an exec deck from this data" → board-ready first draft.</p></div>
-      <div class="step-card"><h4>financial-model</h4><p>Forecast / SaaS metrics / scenario / sensitivity / IRR on top of <code>xlsx</code>, with every assumption labeled and cited, and a review checklist.</p></div>
-      <div class="step-card"><h4>invoice-pdf</h4><p>Structured invoices, receipts, and report PDFs on top of the <code>pdf</code> skill, consistent layout and totals every time.</p></div>
+      <div class="step-card"><h3>exec-deck</h3><p>Encodes the five-step blueprint→polish method on top of the <code>pptx</code> skill. "Build an exec deck from this data" → board-ready first draft.</p></div>
+      <div class="step-card"><h3>financial-model</h3><p>Forecast / SaaS metrics / scenario / sensitivity / IRR on top of <code>xlsx</code>, with every assumption labeled and cited, and a review checklist.</p></div>
+      <div class="step-card"><h3>invoice-pdf</h3><p>Structured invoices, receipts, and report PDFs on top of the <code>pdf</code> skill, consistent layout and totals every time.</p></div>
     </div>
     <div class="info-box levelup">
       <span class="lbl">Level up: build the skill</span>
@@ -450,7 +465,7 @@
 
 <div class="footer">
   <p><strong>Sources &amp; further reading:</strong> Anthropic docs (Claude for Excel / PowerPoint add-ins, current pricing &amp; model). Ethan Mollick on the Excel agent (X, Sep 2025). Guillermo Flor / Product-Market Fit, "Claude × Excel, PowerPoint &amp; PDF Playbook" (Feb 2026).</p>
-  <p style="margin-top: 12px;">Steve's AI Guide · written independently, no sponsors · <a href="https://www.linkedin.com/in/steve-j-gustafson/" target="_blank">Steve on LinkedIn</a></p>
+  <p style="margin-top: 12px;">Steve's AI Guide · written independently, no sponsors · <a href="https://www.linkedin.com/in/steve-j-gustafson/" target="_blank" rel="noopener">Steve on LinkedIn</a></p>
 </div>
 
 <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">↑</button>

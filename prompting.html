@@ -700,6 +700,8 @@
     opacity: 1;
     pointer-events: auto;
   }
+  /* keyboard: invisible button must leave the tab order (pointer-events:none does not) */
+  .back-to-top:not(.visible) { visibility: hidden; }
   .back-to-top:hover { background: var(--accent-light); }
 
   /* PROGRESS INDICATOR */
@@ -769,6 +771,14 @@
     .accordion-content li { flex-wrap: wrap; }
     .accordion-content li > * { min-width: 0; }
   }
+
+  /* a11y: step-card/footer headings promoted h4 -> h3 to remove the h2->h4 level skip.
+     Explicit rule keeps the rendered appearance byte-identical. */
+  .step-card h3 { font-size:18px;font-weight:700;color:#fff;margin:0 0 8px; }
+
+  /* a11y: try-it-box heading promoted h5 -> h4 to remove the h3->h5 level skip.
+     Explicit rule keeps the rendered appearance byte-identical. */
+  .try-it-box h4 { font-size:13px;font-weight:600;color:var(--accent);margin:0 0 12px;letter-spacing:1px;text-transform:uppercase; }
 </style>
 </head>
 <body>
@@ -910,7 +920,7 @@
 
         <div class="step-card highlighted">
           <div class="step-num">1.1</div>
-          <h4>The Mindset Shift</h4>
+          <h3>The Mindset Shift</h3>
           <p>AI is a capable new hire on their first day. Brilliant but lacking YOUR context. Your job isn't to ask better questions. Your job is to give better briefs.</p>
         </div>
 
@@ -919,12 +929,12 @@
 
         <div class="step-card">
           <div class="step-num">1.2</div>
-          <h4>Exercise: Rewrite Your Last Searches</h4>
+          <h3>Exercise: Rewrite Your Last Searches</h3>
           <p>Take your last 3 Google searches. For each one, rewrite it as an AI prompt. Start with: "You are a [specific expert]. I need you to [task]. Here's the context: [what I'm doing, who it's for, what success looks like]. Output as [format]."</p>
         </div>
 
         <div class="try-it-box" data-coach="section1">
-          <h5>🧠 Prompt Coach</h5>
+          <h4>🧠 Prompt Coach</h4>
           <textarea placeholder="Rewrite one of your recent Google searches as an AI prompt. Try: You are a [expert]. I need you to [task]. Context: [details]. Output as [format]."></textarea>
           <div class="try-it-btn-row">
             <button class="try-it-btn analyze-btn" onclick="analyzePrompt(this)">Analyze My Prompt</button>
@@ -970,20 +980,20 @@ OUTPUT: Format as [structure]. Include [requirements]. Keep to [length].</div>
         <div class="two-col">
           <div class="step-card">
             <div class="step-num" style="background: var(--red);">✗</div>
-            <h4>Bad: Vague and Generic</h4>
+            <h3>Bad: Vague and Generic</h3>
             <p style="font-size: 14px; margin-top: 8px;">"Help me with my resume"</p>
             <p style="color: var(--text-dim); font-size: 13px; margin-top: 8px;">Missing: role, specificity, output format. This will generate okay advice but nothing tailored to your situation.</p>
           </div>
           <div class="step-card highlighted">
             <div class="step-num">✓</div>
-            <h4>Good: Specific and Actionable</h4>
+            <h3>Good: Specific and Actionable</h3>
             <p style="font-size: 14px; margin-top: 8px;">"You are a senior recruiter at a Fortune 500 tech company. Review my resume. Identify the 3 weakest bullet points and rewrite each using the STAR method. Format as a before/after table."</p>
           </div>
         </div>
 
         <div class="step-card">
           <div class="step-num">2.1</div>
-          <h4>Breaking Down the Good Example</h4>
+          <h3>Breaking Down the Good Example</h3>
           <p><strong>ROLE:</strong> Senior recruiter at Fortune 500 tech, this activates expertise-specific patterns</p>
           <p><strong>TASK:</strong> Review resume, identify 3 weakest points, rewrite using STAR, this is concrete and bounded</p>
           <p><strong>OUTPUT:</strong> Before/after table, this controls the format and makes comparison easy</p>
@@ -991,12 +1001,12 @@ OUTPUT: Format as [structure]. Include [requirements]. Keep to [length].</div>
 
         <div class="step-card">
           <div class="step-num">2.2</div>
-          <h4>Exercise: Write 3 Prompts Using RTO</h4>
+          <h3>Exercise: Write 3 Prompts Using RTO</h3>
           <p>Pick 3 tasks you'll do this week. For each one, write a complete RTO prompt. Don't overthink it. Just fill in the three blanks. Get comfortable with the template.</p>
         </div>
 
         <div class="try-it-box" data-coach="section2">
-          <h5>🧠 Prompt Coach</h5>
+          <h4>🧠 Prompt Coach</h4>
           <textarea placeholder="Write a prompt using the RTO framework: ROLE: You are a... TASK: [specific action]... OUTPUT: Format as..."></textarea>
           <div class="try-it-btn-row">
             <button class="try-it-btn analyze-btn" onclick="analyzePrompt(this)">Analyze My Prompt</button>
@@ -1112,7 +1122,7 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
 
         <div class="step-card">
           <div class="step-num">3.1</div>
-          <h4>Exercise: Same Task, Different Frameworks</h4>
+          <h3>Exercise: Same Task, Different Frameworks</h3>
           <p>Pick a task you need to do. Write it using RTO. Then rewrite it using COSTAR. Run both. Compare the outputs. You'll see why framework choice matters.</p>
         </div>
 
@@ -1142,21 +1152,21 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
 
         <div class="step-card">
           <div class="step-num">4.1</div>
-          <h4>Basic Persona</h4>
+          <h3>Basic Persona</h3>
           <p>"You are a marketer"</p>
           <p style="color: var(--text-dim); font-size: 13px; margin-top: 8px;">This is too generic. Marketers vary wildly. You'll get generic output.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">4.2</div>
-          <h4>Better Persona</h4>
+          <h3>Better Persona</h3>
           <p>"You are a B2B SaaS marketing director"</p>
           <p style="color: var(--text-dim); font-size: 13px; margin-top: 8px;">Better. Now the model knows the domain (B2B SaaS) and the level (director). Output will be more relevant.</p>
         </div>
 
         <div class="step-card highlighted">
           <div class="step-num">4.3</div>
-          <h4>Best Persona</h4>
+          <h3>Best Persona</h3>
           <p>"You are a B2B SaaS marketing director with 10 years experience at companies scaling from $2M to $20M ARR. You specialize in content-led growth and have a bias toward data-driven decisions over hunches."</p>
           <p style="color: var(--text-dim); font-size: 13px; margin-top: 8px;">Now you're cooking. The model has a clear picture. Experience range, specialization, decision-making style. Output will be specific and sharp.</p>
         </div>
@@ -1173,12 +1183,12 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
 
         <div class="step-card">
           <div class="step-num">4.4</div>
-          <h4>Exercise: Build 3 Expert Personas</h4>
+          <h3>Exercise: Build 3 Expert Personas</h3>
           <p>Think of 3 experts you wish you had access to. For each, write a detailed persona: title, years of experience, domain, specialization, decision-making style. These become templates you reuse.</p>
         </div>
 
         <div class="try-it-box" data-coach="section4">
-          <h5>🧠 Prompt Coach</h5>
+          <h4>🧠 Prompt Coach</h4>
           <textarea placeholder="Write a detailed persona: You are a [title] with [X] years experience in [domain]. You specialize in [specialty] and have a bias toward [approach]."></textarea>
           <div class="try-it-btn-row">
             <button class="try-it-btn analyze-btn" onclick="analyzePrompt(this)">Analyze My Prompt</button>
@@ -1211,19 +1221,19 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
 
         <div class="step-card">
           <div class="step-num">5.1</div>
-          <h4>Vague</h4>
+          <h3>Vague</h3>
           <p>"Help me with my business strategy"</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">5.2</div>
-          <h4>Better</h4>
+          <h3>Better</h3>
           <p>"Create a go-to-market strategy for our new product"</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">5.3</div>
-          <h4>Specific</h4>
+          <h3>Specific</h3>
           <p>"Create a 90-day go-to-market strategy for our new feature (AI-powered contract analysis). Our ICP is in-house legal teams at mid-market companies (500-5000 employees). We have no case studies yet. Budget: $50k. Constraints: no enterprise sales team. Output: a phased timeline with specific milestones and success metrics for each phase."</p>
         </div>
 
@@ -1246,24 +1256,24 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
         <div class="two-col">
           <div class="step-card">
             <div class="step-num" style="background: var(--red);">✗</div>
-            <h4>Bad: Too Vague</h4>
+            <h3>Bad: Too Vague</h3>
             <p style="font-size: 14px; margin-top: 8px;">"Help me improve our onboarding"</p>
           </div>
           <div class="step-card highlighted">
             <div class="step-num">✓</div>
-            <h4>Good: Specific</h4>
+            <h3>Good: Specific</h3>
             <p style="font-size: 14px; margin-top: 8px;">"Audit our current 7-day onboarding for enterprise software. Identify the top 3 drop-off points. For each, propose a specific intervention. Format as a prioritized list with estimated effort to implement."</p>
           </div>
         </div>
 
         <div class="step-card">
           <div class="step-num">5.4</div>
-          <h4>Exercise: Add Precision to an Old Prompt</h4>
+          <h3>Exercise: Add Precision to an Old Prompt</h3>
           <p>Find a prompt you've used before. Rewrite it with: specific action verb, clear scope boundaries, stated constraints, and success criteria. Run it. See the difference.</p>
         </div>
 
         <div class="try-it-box" data-coach="section5">
-          <h5>🧠 Prompt Coach</h5>
+          <h4>🧠 Prompt Coach</h4>
           <textarea placeholder="Write a precise task prompt: Replace 'help me with' with a specific verb, add scope, define success criteria, and specify constraints."></textarea>
           <div class="try-it-btn-row">
             <button class="try-it-btn analyze-btn" onclick="analyzePrompt(this)">Analyze My Prompt</button>
@@ -1326,7 +1336,7 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
 
         <div class="step-card">
           <div class="step-num">6.1</div>
-          <h4>Exercise: Write a Prompt with Full Output Specs</h4>
+          <h3>Exercise: Write a Prompt with Full Output Specs</h3>
           <p>Take a task you need done. Write a prompt that specifies: format, length, tone, what to include, what to exclude, and optionally provide an anchor (the first row/section). Run it. Compare to a prompt without these specs.</p>
         </div>
 
@@ -1353,43 +1363,43 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
 
         <div class="step-card">
           <div class="step-num">7.1</div>
-          <h4>Don't Use "Help Me With"</h4>
+          <h3>Don't Use "Help Me With"</h3>
           <p>Replace with specific verbs: analyze, compare, draft, evaluate, summarize. "Help me with my budget" becomes "Create a zero-based budget for Q2 with line items for [departments]."</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">7.2</div>
-          <h4>Don't Dump Your Entire Brain</h4>
+          <h3>Don't Dump Your Entire Brain</h3>
           <p>Be selective with context. More isn't always better. Give the AI what it needs to know, not everything you know. Relevant information beats volume.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">7.3</div>
-          <h4>Don't Ask Multiple Unrelated Questions</h4>
+          <h3>Don't Ask Multiple Unrelated Questions</h3>
           <p>One prompt = one clear objective. If you need multiple things, send multiple prompts. The AI's attention gets scattered otherwise.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">7.4</div>
-          <h4>Don't Forget to Specify the Audience</h4>
+          <h3>Don't Forget to Specify the Audience</h3>
           <p>Always include: "This is for [audience]." CEOs think differently than individual contributors. Customers think differently than investors. Make it explicit.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">7.5</div>
-          <h4>Don't Accept the First Output</h4>
+          <h3>Don't Accept the First Output</h3>
           <p>Iteration is where quality lives. The first output is usually 70% there. Refine it. Tell the AI what to change. Push back. That's when you get 90%+.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">7.6</div>
-          <h4>Don't Copy-Paste AI Output Without Review</h4>
+          <h3>Don't Copy-Paste AI Output Without Review</h3>
           <p>AI is a tool, not a replacement for judgment. Read what it produces. Fact-check claims. Adjust tone. Make it yours. This takes 10% extra time and prevents 90% of problems.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">7.7</div>
-          <h4>Don't Skip Examples When Format Matters</h4>
+          <h3>Don't Skip Examples When Format Matters</h3>
           <p>If consistent formatting is important, show the AI an example. One good example beats 100 words of instruction.</p>
         </div>
 
@@ -1528,10 +1538,10 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
         <div class="info-box tip">
           <strong>Original Studies:</strong>
           <ul style="margin-top: 8px; margin-left: 16px;">
-            <li>"Take a deep breath": Yang et al., Google DeepMind (2023), <a href="https://arxiv.org/abs/2309.03409" target="_blank">arxiv.org/abs/2309.03409</a></li>
-            <li>"$200 tip" + 26 principles: Bsharat et al. (2023), <a href="https://arxiv.org/abs/2312.16171" target="_blank">arxiv.org/abs/2312.16171</a></li>
-            <li>EmotionPrompt (+8-115%): Li et al., Microsoft (2023), <a href="https://arxiv.org/abs/2307.11760" target="_blank">arxiv.org/abs/2307.11760</a></li>
-            <li>Practical application: ichigoSan (2024), <a href="https://medium.com/@ichigoSan/i-accidentally-made-claude-45-smarter-heres-how-23ad0bf91ccf" target="_blank">Medium article</a></li>
+            <li>"Take a deep breath": Yang et al., Google DeepMind (2023), <a href="https://arxiv.org/abs/2309.03409" target="_blank" rel="noopener">arxiv.org/abs/2309.03409</a></li>
+            <li>"$200 tip" + 26 principles: Bsharat et al. (2023), <a href="https://arxiv.org/abs/2312.16171" target="_blank" rel="noopener">arxiv.org/abs/2312.16171</a></li>
+            <li>EmotionPrompt (+8-115%): Li et al., Microsoft (2023), <a href="https://arxiv.org/abs/2307.11760" target="_blank" rel="noopener">arxiv.org/abs/2307.11760</a></li>
+            <li>Practical application: ichigoSan (2024), <a href="https://medium.com/@ichigoSan/i-accidentally-made-claude-45-smarter-heres-how-23ad0bf91ccf" target="_blank" rel="noopener">Medium article</a></li>
           </ul>
         </div>
 
@@ -1547,7 +1557,7 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
 
         <div class="step-card">
           <div class="step-num">8.1</div>
-          <h4>Exercise: Test These Triggers</h4>
+          <h3>Exercise: Test These Triggers</h3>
           <p>Take a task you'd normally do. Write two versions of the prompt: one with no psychological triggers, one with 1-2 triggers that fit naturally. Compare the outputs. You'll see measurable differences.</p>
         </div>
 
@@ -1574,31 +1584,31 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
 
         <div class="step-card">
           <div class="step-num">9.1</div>
-          <h4>Initial Prompt</h4>
+          <h3>Initial Prompt</h3>
           <p>Broad, clear context. Good scope but room for refinement.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">9.2</div>
-          <h4>Evaluate the Response</h4>
+          <h3>Evaluate the Response</h3>
           <p>What's good? What's missing? What's wrong? What needs adjustment?</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">9.3</div>
-          <h4>Refine with Specific Feedback</h4>
+          <h3>Refine with Specific Feedback</h3>
           <p>"The tone is too formal. Make it conversational." or "Add more specifics about timeline." or "This feels generic. Add actual examples from our company."</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">9.4</div>
-          <h4>Evaluate Again</h4>
+          <h3>Evaluate Again</h3>
           <p>Better? If not, repeat. If yes, move on.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">9.5</div>
-          <h4>Lock in the Pattern</h4>
+          <h3>Lock in the Pattern</h3>
           <p>Once you have it right, save the final prompt. You now have a reusable template for this type of task.</p>
         </div>
 
@@ -1626,19 +1636,19 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
         <h3>The Science: Recursive Language Models</h3>
 
         <div class="info-box key">
-          <strong>MIT CSAIL Research (Zhang, Kraska, & Khattab, 2025)</strong> developed Recursive Language Models (RLMs) that decompose complex problems into smaller subproblems, solve each one, and combine the results. Their findings: RLMs handled inputs 100x beyond normal context window limits while outperforming base models by 28-58% on reasoning tasks. The paper is at <a href="https://arxiv.org/abs/2512.24601" target="_blank" style="color: var(--accent);">arxiv.org/abs/2512.24601</a>.
+          <strong>MIT CSAIL Research (Zhang, Kraska, & Khattab, 2025)</strong> developed Recursive Language Models (RLMs) that decompose complex problems into smaller subproblems, solve each one, and combine the results. Their findings: RLMs handled inputs 100x beyond normal context window limits while outperforming base models by 28-58% on reasoning tasks. The paper is at <a href="https://arxiv.org/abs/2512.24601" target="_blank" style="color: var(--accent);" rel="noopener">arxiv.org/abs/2512.24601</a>.
         </div>
 
         <p>You don't need to build an RLM. But the principle translates directly to how you prompt: instead of one massive prompt, decompose your task into sequential steps. Each step builds on the last. The AI processes a smaller, clearer problem each round, just like the research shows works best.</p>
 
         <div class="step-card">
           <div class="step-num">9.6</div>
-          <h4>Exercise: Go Three Rounds</h4>
+          <h3>Exercise: Go Three Rounds</h3>
           <p>Pick a task. Prompt it once. Evaluate. Refine with specific feedback. Run again. Refine once more. Compare Round 1 vs Round 3. You'll see dramatic improvement.</p>
         </div>
 
         <div class="try-it-box" data-coach="section9">
-          <h5>🧠 Prompt Coach</h5>
+          <h4>🧠 Prompt Coach</h4>
           <textarea placeholder="Write Round 1 of a recursive prompt. Then below it, write your Round 2 refinement feedback (e.g. 'Now critique this for...' or 'Revise the tone to...')"></textarea>
           <div class="try-it-btn-row">
             <button class="try-it-btn analyze-btn" onclick="analyzePrompt(this)">Analyze My Prompt</button>
@@ -1673,7 +1683,7 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
 
         <div class="step-card">
           <div class="step-num">10.1</div>
-          <h4>System Context</h4>
+          <h3>System Context</h3>
           <p>Who the AI is, how it behaves. In Cowork, this is your CLAUDE.md file.</p>
         </div>
 
@@ -1684,25 +1694,25 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
 
         <div class="step-card">
           <div class="step-num">10.2</div>
-          <h4>Domain Context</h4>
+          <h3>Domain Context</h3>
           <p>Background knowledge, terminology, industry. In Cowork, this is your ABOUT ME file and reference docs.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">10.3</div>
-          <h4>Task Context</h4>
+          <h3>Task Context</h3>
           <p>The specific job, constraints, goals, success criteria. This is your prompt.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">10.4</div>
-          <h4>Memory Context</h4>
+          <h3>Memory Context</h3>
           <p>Past decisions, ongoing projects, preferences. In Cowork, this is your MEMORY.md file.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">10.5</div>
-          <h4>Environmental Context</h4>
+          <h3>Environmental Context</h3>
           <p>Tools available, files accessible, connected services. Cowork integrations, available connectors.</p>
         </div>
 
@@ -1737,7 +1747,7 @@ Then execute the task.</div>
 
         <div class="step-card">
           <div class="step-num">10.6</div>
-          <h4>Exercise: Set Up Your Context Stack</h4>
+          <h3>Exercise: Set Up Your Context Stack</h3>
           <p>In Cowork, create or update: your ABOUT ME file (who you are, how you think), a CLAUDE.md file with your preferences, and a PROJECT MEMORY file for ongoing work. Then run the same prompt with and without that context. Notice the difference.</p>
         </div>
 
@@ -1761,7 +1771,7 @@ Then execute the task.</div>
         <button class="print-btn" onclick="window.print()">🖨️ Print This Cheat Sheet</button>
         <div id="cheat-sheet-print">
         <div class="step-card highlighted">
-          <h4 style="font-size: 18px; margin-bottom: 16px;">THE FORMULA</h4>
+          <h3 style="font-size: 18px; margin-bottom: 16px;">THE FORMULA</h3>
           <p style="margin-bottom: 8px;"><strong>Minimum viable prompt:</strong></p>
           <p><strong>ROLE:</strong> You are a [specific expert] with experience in [domain].</p>
           <p><strong>TASK:</strong> [Action verb] + [clear scope] + [constraints].</p>
@@ -1769,7 +1779,7 @@ Then execute the task.</div>
         </div>
 
         <div class="step-card">
-          <h4 style="font-size: 18px; margin-bottom: 16px;">ENHANCE THE ROLE</h4>
+          <h3 style="font-size: 18px; margin-bottom: 16px;">ENHANCE THE ROLE</h3>
           <p style="margin-bottom: 8px;">Go from vague to specific:</p>
           <p style="margin-bottom: 8px;">❌ "You are a marketer"</p>
           <p style="margin-bottom: 8px;">✓ "You are a B2B SaaS marketing director with 10 years at companies scaling $2M-$20M ARR. You specialize in content-led growth."</p>
@@ -1777,7 +1787,7 @@ Then execute the task.</div>
         </div>
 
         <div class="step-card">
-          <h4 style="font-size: 18px; margin-bottom: 16px;">ENHANCE THE TASK</h4>
+          <h3 style="font-size: 18px; margin-bottom: 16px;">ENHANCE THE TASK</h3>
           <p style="margin-bottom: 8px;">Checklist:</p>
           <p style="margin-bottom: 4px;">☐ Action verb is specific (not "help with")</p>
           <p style="margin-bottom: 4px;">☐ Scope is bounded (which? when? how many?)</p>
@@ -1787,7 +1797,7 @@ Then execute the task.</div>
         </div>
 
         <div class="step-card">
-          <h4 style="font-size: 18px; margin-bottom: 16px;">ENHANCE THE OUTPUT</h4>
+          <h3 style="font-size: 18px; margin-bottom: 16px;">ENHANCE THE OUTPUT</h3>
           <p style="margin-bottom: 8px;"><strong>Tell the AI explicitly:</strong></p>
           <p style="margin-bottom: 4px;">• Format: [table / bullets / JSON / markdown]</p>
           <p style="margin-bottom: 4px;">• Length: [word count / page count]</p>
@@ -1797,7 +1807,7 @@ Then execute the task.</div>
         </div>
 
         <div class="step-card">
-          <h4 style="font-size: 18px; margin-bottom: 16px;">POWER-UPS (Use Strategically)</h4>
+          <h3 style="font-size: 18px; margin-bottom: 16px;">POWER-UPS (Use Strategically)</h3>
           <p style="margin-bottom: 4px;">• "Take a deep breath and work step by step"</p>
           <p style="margin-bottom: 4px;">• "This is important for [high stakes]"</p>
           <p style="margin-bottom: 4px;">• "I'll tip $200 for a thorough analysis"</p>
@@ -1806,7 +1816,7 @@ Then execute the task.</div>
         </div>
 
         <div class="step-card">
-          <h4 style="font-size: 18px; margin-bottom: 16px;">DON'TS (Critical)</h4>
+          <h3 style="font-size: 18px; margin-bottom: 16px;">DON'TS (Critical)</h3>
           <p style="margin-bottom: 4px;">❌ Don't use "help me with", use specific verbs</p>
           <p style="margin-bottom: 4px;">❌ Don't dump your entire brain, be selective</p>
           <p style="margin-bottom: 4px;">❌ Don't ask multiple unrelated questions at once</p>
@@ -1817,7 +1827,7 @@ Then execute the task.</div>
         </div>
 
         <div class="step-card">
-          <h4 style="font-size: 18px; margin-bottom: 16px;">ITERATE</h4>
+          <h3 style="font-size: 18px; margin-bottom: 16px;">ITERATE</h3>
           <p style="margin-bottom: 8px;"><strong>Round 1:</strong> Draft, get something down</p>
           <p style="margin-bottom: 8px;"><strong>Round 2:</strong> Critique, what's missing? What's weak?</p>
           <p style="margin-bottom: 8px;"><strong>Round 3:</strong> Revise, fix it</p>
@@ -1825,7 +1835,7 @@ Then execute the task.</div>
         </div>
 
         <div class="step-card highlighted">
-          <h4 style="font-size: 18px; margin-bottom: 16px;">CONTEXT > PROMPTS</h4>
+          <h3 style="font-size: 18px; margin-bottom: 16px;">CONTEXT > PROMPTS</h3>
           <p style="margin-bottom: 8px;">A mediocre prompt with great context beats a brilliant prompt with no context.</p>
           <p style="margin-bottom: 4px;">Feed the AI:</p>
           <p style="margin-bottom: 4px;">• Your ABOUT ME (who you are)</p>
@@ -1901,22 +1911,22 @@ OUTPUT: [SPECIFIC STRUCTURE]. Include [REQUIRED ELEMENTS].</div>
           </thead>
           <tbody>
             <tr>
-              <td><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank">Anthropic Prompting Best Practices</a></td>
+              <td><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" target="_blank" rel="noopener">Anthropic Prompting Best Practices</a></td>
               <td>Official Claude guide, most comprehensive</td>
               <td>Everyone</td>
             </tr>
             <tr>
-              <td><a href="https://developers.openai.com/api/docs/guides/prompt-engineering" target="_blank">OpenAI Prompt Engineering Guide</a></td>
+              <td><a href="https://developers.openai.com/api/docs/guides/prompt-engineering" target="_blank" rel="noopener">OpenAI Prompt Engineering Guide</a></td>
               <td>GPT-specific, strong on structured output</td>
               <td>GPT users</td>
             </tr>
             <tr>
-              <td><a href="https://ai.google.dev/gemini-api/docs/prompting-strategies" target="_blank">Google Gemini Prompting Strategies</a></td>
+              <td><a href="https://ai.google.dev/gemini-api/docs/prompting-strategies" target="_blank" rel="noopener">Google Gemini Prompting Strategies</a></td>
               <td>Direct, example-heavy, multimodal</td>
               <td>Gemini users</td>
             </tr>
             <tr>
-              <td><a href="https://www.promptingguide.ai/" target="_blank">Prompt Engineering Guide (Community)</a></td>
+              <td><a href="https://www.promptingguide.ai/" target="_blank" rel="noopener">Prompt Engineering Guide (Community)</a></td>
               <td>Deep technical reference, framework heavy</td>
               <td>Advanced users</td>
             </tr>
@@ -1937,22 +1947,22 @@ OUTPUT: [SPECIFIC STRUCTURE]. Include [REQUIRED ELEMENTS].</div>
             <tr>
               <td>Shelly Palmer: Mastering Prompt Engineering</td>
               <td>Frameworks and meta-prompting for business</td>
-              <td><a href="https://shellypalmer.com/2024/11/mastering-the-art-of-prompt-engineering/" target="_blank">shellypalmer.com</a></td>
+              <td><a href="https://shellypalmer.com/2024/11/mastering-the-art-of-prompt-engineering/" target="_blank" rel="noopener">shellypalmer.com</a></td>
             </tr>
             <tr>
               <td>MIT Sloan: Effective Prompts for AI</td>
               <td>Academic but highly practical</td>
-              <td><a href="https://mitsloanedtech.mit.edu/ai/basics/effective-prompts/" target="_blank">mitsloanedtech.mit.edu</a></td>
+              <td><a href="https://mitsloanedtech.mit.edu/ai/basics/effective-prompts/" target="_blank" rel="noopener">mitsloanedtech.mit.edu</a></td>
             </tr>
             <tr>
               <td>IBM Prompt Engineering Guide 2026</td>
               <td>Enterprise perspective, structured approach</td>
-              <td><a href="https://www.ibm.com/think/prompt-engineering" target="_blank">ibm.com</a></td>
+              <td><a href="https://www.ibm.com/think/prompt-engineering" target="_blank" rel="noopener">ibm.com</a></td>
             </tr>
             <tr>
               <td>DreamHost: 25 Claude Prompt Techniques</td>
               <td>Empirical testing of what works</td>
-              <td><a href="https://www.dreamhost.com/blog/claude-prompt-engineering/" target="_blank">dreamhost.com</a></td>
+              <td><a href="https://www.dreamhost.com/blog/claude-prompt-engineering/" target="_blank" rel="noopener">dreamhost.com</a></td>
             </tr>
           </tbody>
         </table>
@@ -1971,22 +1981,22 @@ OUTPUT: [SPECIFIC STRUCTURE]. Include [REQUIRED ELEMENTS].</div>
             <tr>
               <td>"Take a Deep Breath" (Yang et al.)</td>
               <td>+9% accuracy improvement just from phrasing</td>
-              <td><a href="https://arxiv.org/abs/2309.03409" target="_blank">arxiv.org/abs/2309.03409</a></td>
+              <td><a href="https://arxiv.org/abs/2309.03409" target="_blank" rel="noopener">arxiv.org/abs/2309.03409</a></td>
             </tr>
             <tr>
               <td>Monetary Framing (Bsharat et al.)</td>
               <td>Up to 45% improvement in output quality</td>
-              <td><a href="https://arxiv.org/abs/2312.16171" target="_blank">arxiv.org/abs/2312.16171</a></td>
+              <td><a href="https://arxiv.org/abs/2312.16171" target="_blank" rel="noopener">arxiv.org/abs/2312.16171</a></td>
             </tr>
             <tr>
               <td>Recursive Language Models (Zhang et al., MIT)</td>
               <td>Handle 100x larger inputs, 28-58% better outputs</td>
-              <td><a href="https://arxiv.org/abs/2512.24601" target="_blank">arxiv.org/abs/2512.24601</a></td>
+              <td><a href="https://arxiv.org/abs/2512.24601" target="_blank" rel="noopener">arxiv.org/abs/2512.24601</a></td>
             </tr>
             <tr>
               <td>Anthropic Context Engineering</td>
               <td>How to design full context stacks for AI agents</td>
-              <td><a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank">anthropic.com</a></td>
+              <td><a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">anthropic.com</a></td>
             </tr>
           </tbody>
         </table>
@@ -2005,17 +2015,17 @@ OUTPUT: [SPECIFIC STRUCTURE]. Include [REQUIRED ELEMENTS].</div>
             <tr>
               <td>"I Accidentally Made Claude 45% Smarter"</td>
               <td>Real-world application of psychological prompting</td>
-              <td><a href="https://medium.com/@ichigoSan/i-accidentally-made-claude-45-smarter-heres-how-23ad0bf91ccf" target="_blank">medium.com</a></td>
+              <td><a href="https://medium.com/@ichigoSan/i-accidentally-made-claude-45-smarter-heres-how-23ad0bf91ccf" target="_blank" rel="noopener">medium.com</a></td>
             </tr>
             <tr>
               <td>Neil Sahota: Recursive Prompting</td>
               <td>Practical recursive workflow guide</td>
-              <td><a href="https://www.neilsahota.com/recursive-prompting/" target="_blank">neilsahota.com</a></td>
+              <td><a href="https://www.neilsahota.com/recursive-prompting/" target="_blank" rel="noopener">neilsahota.com</a></td>
             </tr>
             <tr>
               <td>Harvard IIS: Cognitive Forcing Functions</td>
               <td>Research on disrupting automation bias</td>
-              <td><a href="https://iis.seas.harvard.edu/papers/2021/bucinca21trust.pdf" target="_blank">harvard.edu</a></td>
+              <td><a href="https://iis.seas.harvard.edu/papers/2021/bucinca21trust.pdf" target="_blank" rel="noopener">harvard.edu</a></td>
             </tr>
           </tbody>
         </table>
@@ -2043,7 +2053,7 @@ OUTPUT: [SPECIFIC STRUCTURE]. Include [REQUIRED ELEMENTS].</div>
 <div class="final-cta">
   <h2>Next Step: Practice</h2>
   <p>Read this guide once. Then go back to Section 2, Section 4, and Section 11. Those are your working references. Practice one framework per week until it becomes muscle memory. Then teach someone else.</p>
-  <p style="margin-top: 16px; color: var(--text-dim);">Questions? <a href="https://www.linkedin.com/in/steve-j-gustafson/" target="_blank">Reach out</a>.</p>
+  <p style="margin-top: 16px; color: var(--text-dim);">Questions? <a href="https://www.linkedin.com/in/steve-j-gustafson/" target="_blank" rel="noopener">Reach out</a>.</p>
 </div>
 
 <!-- FOOTER -->

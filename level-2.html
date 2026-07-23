@@ -102,7 +102,7 @@
     display: inline-block;
     padding: 14px 32px;
     background: var(--accent);
-    color: #fff;
+    color: #141017; /* was #fff: 3.24:1 on the periwinkle accent, fails AA. Now 5.81:1 */
     font-weight: 700;
     font-size: 15px;
     border-radius: 8px;
@@ -488,6 +488,8 @@
     opacity: 1;
     pointer-events: auto;
   }
+  /* keyboard: invisible button must leave the tab order (pointer-events:none does not) */
+  .back-to-top:not(.visible) { visibility: hidden; }
   .back-to-top:hover { background: var(--accent-light); }
 
   /* PROGRESS INDICATOR (FIX 5) */
@@ -558,6 +560,10 @@
     .accordion-content li { flex-wrap: wrap; }
     .accordion-content li > * { min-width: 0; }
   }
+
+  /* a11y: step-card/footer headings promoted h4 -> h3 to remove the h2->h4 level skip.
+     Explicit rule keeps the rendered appearance byte-identical. */
+  .step-card h3 { font-size:18px;font-weight:700;color:#fff;margin:0 0 8px; }
 </style>
 </head>
 <body>
@@ -635,11 +641,11 @@
         <h3>When to Build a Skill</h3>
         <div class="two-col">
           <div class="step-card">
-            <h4>You should build a skill when:</h4>
+            <h3>You should build a skill when:</h3>
             <p>You give the same instructions 3+ times. You have a specific workflow or framework. You want consistent output quality across sessions. You want to share a process with colleagues.</p>
           </div>
           <div class="step-card">
-            <h4>You don't need a skill when:</h4>
+            <h3>You don't need a skill when:</h3>
             <p>It's a one-time task. The instructions are simple enough to type each time. The process changes frequently and isn't standardized yet.</p>
           </div>
         </div>
@@ -747,15 +753,15 @@ When the user asks you to research a company:
 
         <h3>Distribution Methods</h3>
         <div class="step-card highlighted">
-          <h4>1. GitHub (Recommended)</h4>
+          <h3>1. GitHub (Recommended)</h3>
           <p>Push your plugin folder to a GitHub repo. Anyone installs with: <code>/plugin marketplace add your-username/your-repo</code>. Free, versioned, and easy to update.</p>
         </div>
         <div class="step-card">
-          <h4>2. Direct File Sharing</h4>
+          <h3>2. Direct File Sharing</h3>
           <p>Zip the plugin folder as a <code>.plugin</code> file and email or share it. Recipients drop it into their Cowork plugins folder.</p>
         </div>
         <div class="step-card">
-          <h4>3. Official Anthropic Marketplace</h4>
+          <h3>3. Official Anthropic Marketplace</h3>
           <p>Submit through Anthropic's review process for broad distribution. Must pass security and quality standards.</p>
         </div>
       </div>
@@ -793,11 +799,11 @@ When the user asks you to research a company:
         <p>The Claude skills community is growing fast. Here are places to find and share skills:</p>
 
         <div class="step-card">
-          <h4>anthropics/knowledge-work-plugins</h4>
+          <h3>anthropics/knowledge-work-plugins</h3>
           <p>Official Anthropic plugins repo on GitHub. Sales, Finance, Legal, Marketing, Product, Data, Design, Operations plugins with full source code. Great reference for building your own.</p>
         </div>
         <div class="step-card">
-          <h4>travisvn/awesome-claude-skills</h4>
+          <h3>travisvn/awesome-claude-skills</h3>
           <p>Community-curated list of 37+ skills and growing. Covers coding, research, writing, and workflow automation. Fork it, add yours, submit a PR.</p>
         </div>
 
@@ -827,27 +833,27 @@ When the user asks you to research a company:
         <h3>What You Can Actually Do</h3>
         <div class="two-col">
           <div class="step-card">
-            <h4>Multi-Tab Orchestration</h4>
+            <h3>Multi-Tab Orchestration</h3>
             <p>Claude manages multiple tabs simultaneously. Drag tabs into Claude's group, and it can read and act across all of them. "Compare pricing across these 5 competitor websites."</p>
           </div>
           <div class="step-card">
-            <h4>Form Filling & Data Entry</h4>
+            <h3>Form Filling & Data Entry</h3>
             <p>Claude fills forms using context it already has. "Fill out this vendor registration form using our company details." Works with any web form.</p>
           </div>
           <div class="step-card">
-            <h4>Web Scraping & Data Extraction</h4>
+            <h3>Web Scraping & Data Extraction</h3>
             <p>"Go to LinkedIn and pull the last 20 posts from these 5 people into a spreadsheet." Claude navigates, reads, extracts, and organizes.</p>
           </div>
           <div class="step-card">
-            <h4>GIF Recording</h4>
+            <h3>GIF Recording</h3>
             <p>Record browser interactions as GIF animations with click indicators and action labels. Perfect for creating demos, tutorials, and documentation.</p>
           </div>
           <div class="step-card">
-            <h4>Debug & Development</h4>
+            <h3>Debug & Development</h3>
             <p>Claude reads console logs, DOM state, and network requests directly. "Check why the login page is throwing a 403", it reads the actual error.</p>
           </div>
           <div class="step-card">
-            <h4>Scheduled Browser Tasks</h4>
+            <h3>Scheduled Browser Tasks</h3>
             <p>Combine Chrome extension with scheduled tasks. "Every morning at 9am, check these 3 dashboards and summarize what changed."</p>
           </div>
         </div>
@@ -879,7 +885,7 @@ When the user asks you to research a company:
         <p>This is the mental model that makes everything click. When you give Claude a task, it picks the fastest, most reliable tool available:</p>
 
         <div class="step-card highlighted" style="text-align: center;">
-          <h4 style="margin-bottom: 12px;">The 3-Tier Decision Hierarchy</h4>
+          <h3 style="margin-bottom: 12px;">The 3-Tier Decision Hierarchy</h3>
           <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
             <div style="background: var(--accent-dim); border: 1px solid var(--accent); border-radius: 8px; padding: 12px 20px; min-width: 180px;">
               <strong style="color: var(--accent); display: block; font-size: 13px; margin-bottom: 4px;">1. CONNECTORS FIRST</strong>
@@ -909,19 +915,19 @@ When the user asks you to research a company:
         <h3>What You Can Do With It</h3>
         <div class="two-col">
           <div class="step-card">
-            <h4>Native App Automation</h4>
+            <h3>Native App Automation</h3>
             <p>"Organize my Downloads folder, move PDFs to Documents, images to Photos, delete anything older than 30 days." Claude opens Finder and does it.</p>
           </div>
           <div class="step-card">
-            <h4>Cross-App Workflows</h4>
+            <h3>Cross-App Workflows</h3>
             <p>"Pull the metrics from this dashboard in Chrome, drop them into the Excel spreadsheet on my desktop, then email the updated file." Three apps, one prompt.</p>
           </div>
           <div class="step-card">
-            <h4>Fill Desktop Forms</h4>
+            <h3>Fill Desktop Forms</h3>
             <p>"Fill out this insurance application in Preview using my info from the About Me file." Claude reads your context and types into native form fields.</p>
           </div>
           <div class="step-card">
-            <h4>System Management</h4>
+            <h3>System Management</h3>
             <p>"Check my disk space, clear the trash, and tell me what's taking up the most storage." Claude navigates System Settings and Finder to investigate.</p>
           </div>
         </div>
@@ -979,15 +985,15 @@ When the user asks you to research a company:
 
         <h3>Real-World Examples</h3>
         <div class="step-card highlighted">
-          <h4>Morning Briefing</h4>
+          <h3>Morning Briefing</h3>
           <p>Daily at 9am: summarize unread emails, check calendar, create a priorities list with talking points for today's meetings. Outputs a markdown file you review with coffee.</p>
         </div>
         <div class="step-card">
-          <h4>Weekly Invoice Cleanup</h4>
+          <h3>Weekly Invoice Cleanup</h3>
           <p>Fridays at 5pm: scan email for invoices received this week, extract amounts and vendors, add to a tracking spreadsheet, flag anything over $5K for review.</p>
         </div>
         <div class="step-card">
-          <h4>Competitor Monitor</h4>
+          <h3>Competitor Monitor</h3>
           <p>Every Monday: check 5 competitor websites for pricing changes, new features, or blog posts. Compile a diff report showing what changed since last week.</p>
         </div>
 
@@ -1015,25 +1021,25 @@ When the user asks you to research a company:
 
         <h3>The 4 Layers</h3>
         <div class="step-card highlighted">
-          <h4>Layer 1: Personal Preferences (Global)</h4>
+          <h3>Layer 1: Personal Preferences (Global)</h3>
           <p><strong>Where:</strong> Claude Desktop &rarr; Settings &rarr; Personal Preferences<br>
           <strong>Scope:</strong> Every conversation, every project, every session<br>
           <strong>What goes here:</strong> Your name, role, communication style, personality preferences, behavioral rules. Things that are always true about how you want Claude to work.</p>
         </div>
         <div class="step-card">
-          <h4>Layer 2: Native Project Instructions &amp; Memory (Built-In)</h4>
+          <h3>Layer 2: Native Project Instructions &amp; Memory (Built-In)</h3>
           <p><strong>Where:</strong> Project &rarr; Instructions field + automatic <code>memory.md</code><br>
           <strong>Scope:</strong> All tasks within that project<br>
           <strong>What goes here:</strong> Project-level tone, formatting rules, and key context in the Instructions field. Auto-memory captures decisions and patterns as you work, Claude decides what's worth saving. First 200 lines (or 25KB) load at the start of each new task.</p>
         </div>
         <div class="step-card">
-          <h4>Layer 3: CLAUDE.md (CoWork OS, Structured Rules)</h4>
+          <h3>Layer 3: CLAUDE.md (CoWork OS, Structured Rules)</h3>
           <p><strong>Where:</strong> CLAUDE.md file in your workspace folder (or subfolder)<br>
           <strong>Scope:</strong> That specific folder only<br>
           <strong>What goes here:</strong> Detailed folder protocols, naming conventions, session start behavior, project registry, read-only/write-only rules. More structured and opinionated than native Instructions, this is your operating system.</p>
         </div>
         <div class="step-card">
-          <h4>Layer 4: MEMORY.md (CoWork OS, Explicit Memory)</h4>
+          <h3>Layer 4: MEMORY.md (CoWork OS, Explicit Memory)</h3>
           <p><strong>Where:</strong> MEMORY.md in your workspace folder<br>
           <strong>Scope:</strong> Persistent across sessions, user-controlled<br>
           <strong>What goes here:</strong> Decisions, deadlines, status updates, things you specifically want remembered with your exact wording. Say "remember this" to write; "forget that" to delete. Unlike auto-memory, nothing gets saved unless you ask.</p>
@@ -1104,11 +1110,11 @@ When the user asks you to research a company:
         <h3>Why Build a Custom MCP Connector?</h3>
         <div class="two-col">
           <div class="step-card">
-            <h4>Connect Internal Tools</h4>
+            <h3>Connect Internal Tools</h3>
             <p>Your company's CRM, ticketing system, internal wiki, or custom database. If it has an API, Claude can connect to it.</p>
           </div>
           <div class="step-card">
-            <h4>Automate Proprietary Workflows</h4>
+            <h3>Automate Proprietary Workflows</h3>
             <p>"Pull this week's support tickets from Zendesk, categorize them, and create a summary for the team standup." Requires a Zendesk MCP connector.</p>
           </div>
         </div>
@@ -1161,26 +1167,26 @@ When the user asks you to research a company:
 
         <h3>When to Trigger Parallel Agents</h3>
         <div class="step-card highlighted">
-          <h4>The Magic Phrase: "Use parallel agents wherever possible"</h4>
+          <h3>The Magic Phrase: "Use parallel agents wherever possible"</h3>
           <p>Include this in your request when the task involves multiple independent workstreams. Claude will automatically identify what can run in parallel and split the work. You can also include this in your Personal Preferences or CLAUDE.md so Claude always looks for parallelization opportunities.</p>
         </div>
 
         <h3>Great Tasks for Parallel Agents</h3>
         <div class="two-col">
           <div class="step-card">
-            <h4>Research Multiple Entities</h4>
+            <h3>Research Multiple Entities</h3>
             <p>"Research these 5 companies", each company gets its own agent researching simultaneously.</p>
           </div>
           <div class="step-card">
-            <h4>Multi-File Analysis</h4>
+            <h3>Multi-File Analysis</h3>
             <p>"Analyze these 10 spreadsheets and summarize findings", each file gets its own agent.</p>
           </div>
           <div class="step-card">
-            <h4>Content at Scale</h4>
+            <h3>Content at Scale</h3>
             <p>"Write social posts for each of these 8 topics", parallel content generation.</p>
           </div>
           <div class="step-card">
-            <h4>Code Across Modules</h4>
+            <h3>Code Across Modules</h3>
             <p>"Update the frontend, backend, and tests for this feature", three agents working different parts.</p>
           </div>
         </div>
@@ -1241,23 +1247,23 @@ When the user asks you to research a company:
 
         <h3>Power Patterns</h3>
         <div class="step-card highlighted">
-          <h4>CSV &rarr; Interactive Dashboard</h4>
+          <h3>CSV &rarr; Interactive Dashboard</h3>
           <p>Upload a CSV and ask: "Create an interactive HTML dashboard with filters, charts, and a summary table." You get a single-file HTML that works in any browser, no server needed. Share it with anyone.</p>
         </div>
         <div class="step-card">
-          <h4>Screenshot &rarr; Code</h4>
+          <h3>Screenshot &rarr; Code</h3>
           <p>Upload a screenshot of a design mockup and ask: "Convert this to a working React component." Claude's vision analyzes the layout, colors, and spacing and produces functional code.</p>
         </div>
         <div class="step-card">
-          <h4>Multiple Documents &rarr; Executive Summary</h4>
+          <h3>Multiple Documents &rarr; Executive Summary</h3>
           <p>Drop 5 research documents into your workspace and ask: "Read all of these and create a one-page executive summary highlighting the key insights and contradictions across them."</p>
         </div>
         <div class="step-card">
-          <h4>Interactive Visualizations (NEW, March 2026)</h4>
+          <h3>Interactive Visualizations (NEW, March 2026)</h3>
           <p>Claude can now create <strong>interactive charts, diagrams, and visualizations inline</strong> in its responses. Ask "Show me a chart of our monthly revenue" and get a live, clickable chart right in the conversation, not just a static image. These can be exported as standalone HTML files you share with anyone.</p>
         </div>
         <div class="step-card">
-          <h4>Excel &amp; PowerPoint Add-ins (NEW, March 2026)</h4>
+          <h3>Excel &amp; PowerPoint Add-ins (NEW, March 2026)</h3>
           <p>Claude now lives <strong>inside Excel and PowerPoint</strong> as native add-ins. Ask questions about your spreadsheet, generate formulas, build pivot tables, or create slides, without leaving the app. Context carries between both add-ins, so Claude understands your data when you switch to building a deck from it. This is a third way to use Claude alongside the desktop app and browser extension.</p>
         </div>
       </div>
@@ -1279,27 +1285,27 @@ When the user asks you to research a company:
         <p>Each plugin category transforms Claude from a generalist into a domain specialist. Here's what the major categories enable:</p>
 
         <div class="step-card">
-          <h4>Sales</h4>
+          <h3>Sales</h3>
           <p><strong>Account research</strong> that pulls web data + CRM context into a one-page brief. <strong>Call prep</strong> that builds agendas with attendee research. <strong>Competitive battlecards</strong> as interactive HTML with comparison matrices. <strong>Pipeline review</strong> that flags at-risk deals and creates weekly action plans. <strong>Outreach drafting</strong> with personalization from research data.</p>
         </div>
         <div class="step-card">
-          <h4>Finance</h4>
+          <h3>Finance</h3>
           <p><strong>Journal entries</strong> with proper debits/credits and supporting detail. <strong>Account reconciliation</strong> matching GL to subledger/bank. <strong>Variance analysis</strong> decomposing budget-vs-actual into drivers. <strong>Financial statements</strong> with GAAP presentation and period-over-period comparison. <strong>SOX compliance</strong> testing workpapers and sample selection.</p>
         </div>
         <div class="step-card">
-          <h4>Legal</h4>
+          <h3>Legal</h3>
           <p><strong>Contract review</strong> against your negotiation playbook with clause-by-clause analysis. <strong>NDA triage</strong> classifying as GREEN/YELLOW/RED in seconds. <strong>Compliance tracking</strong> for GDPR, CCPA, and data subject requests. <strong>Risk assessment</strong> with severity-by-likelihood framework.</p>
         </div>
         <div class="step-card">
-          <h4>Marketing</h4>
+          <h3>Marketing</h3>
           <p><strong>Campaign planning</strong> with objectives, channel strategy, and content calendars. <strong>SEO audits</strong> covering keyword research, on-page analysis, and competitor comparison. <strong>Email sequences</strong> for nurture flows and onboarding. <strong>Brand voice review</strong> checking content against your style guide. <strong>Performance reports</strong> with KPIs and optimization recommendations.</p>
         </div>
         <div class="step-card">
-          <h4>Product Management</h4>
+          <h3>Product Management</h3>
           <p><strong>PRDs</strong> with problem statements, user stories, and acceptance criteria. <strong>Roadmap management</strong> using RICE, MoSCoW, or ICE frameworks. <strong>User research synthesis</strong> turning interview notes into themes and opportunity areas. <strong>Stakeholder updates</strong> tailored to audience (exec, engineering, customers). <strong>Competitive analysis</strong> with feature comparison matrices.</p>
         </div>
         <div class="step-card">
-          <h4>Data</h4>
+          <h3>Data</h3>
           <p><strong>SQL queries</strong> optimized for your warehouse dialect (Snowflake, BigQuery, Postgres). <strong>Data exploration</strong> profiling datasets for quality, distributions, and outliers. <strong>Visualization</strong> with matplotlib, seaborn, or plotly. <strong>Interactive dashboards</strong> as self-contained HTML with Chart.js filters. <strong>Statistical analysis</strong> including hypothesis testing and trend detection.</p>
         </div>
       </div>
@@ -1319,19 +1325,19 @@ When the user asks you to research a company:
     <div class="accordion-content">
       <div class="accordion-body section">
         <div class="step-card">
-          <h4>Private Plugin Marketplaces</h4>
+          <h3>Private Plugin Marketplaces</h3>
           <p>Create a private GitHub repo as your org's plugin marketplace. Team members install from it directly. Control which plugins are available, which are auto-installed, and which are hidden.</p>
         </div>
         <div class="step-card">
-          <h4>Org-Managed Plugins</h4>
+          <h3>Org-Managed Plugins</h3>
           <p>Admins can auto-install plugins across all team members. New hires get your org's skills on day one without any setup. Managed plugins take highest priority, they override personal settings.</p>
         </div>
         <div class="step-card">
-          <h4>Usage Monitoring</h4>
+          <h3>Usage Monitoring</h3>
           <p>Track usage, costs, and tool activity per team via OpenTelemetry integration. See which skills get used most, which teams are heaviest users, and where to invest in more automation.</p>
         </div>
         <div class="step-card">
-          <h4>Custom Branding</h4>
+          <h3>Custom Branding</h3>
           <p>Customize the Cowork home screen with your company logo and branded experience.</p>
         </div>
 
@@ -1360,7 +1366,7 @@ When the user asks you to research a company:
 
         <h3>How to Set It Up</h3>
         <div class="step-card highlighted">
-          <h4>4 Steps</h4>
+          <h3>4 Steps</h3>
           <p>1. Open Claude Desktop app on your Mac<br>
           2. Click <strong>Dispatch</strong> in the left sidebar<br>
           3. Connect your phone (iOS or Android) via the Claude mobile app<br>
@@ -1370,19 +1376,19 @@ When the user asks you to research a company:
         <h3>What Makes Dispatch Powerful</h3>
         <div class="two-col">
           <div class="step-card">
-            <h4>Persistent Context</h4>
+            <h3>Persistent Context</h3>
             <p>Unlike starting a new Cowork session, Dispatch maintains a single continuous thread. Claude retains context from your previous tasks, no re-explaining.</p>
           </div>
           <div class="step-card">
-            <h4>Full Desktop Access</h4>
+            <h3>Full Desktop Access</h3>
             <p>Since March 2026, Dispatch includes Computer Use. Claude can open apps, move files, fill forms, and navigate your desktop while you're away.</p>
           </div>
           <div class="step-card">
-            <h4>Fire &amp; Forget</h4>
+            <h3>Fire &amp; Forget</h3>
             <p>"Export the pitch deck as PDF and attach it to my 2pm meeting invite." Send it, pocket your phone. Claude opens the app, exports, attaches. Done.</p>
           </div>
           <div class="step-card">
-            <h4>The 6 AM Pattern</h4>
+            <h3>The 6 AM Pattern</h3>
             <p>Queue up 5 tasks before breakfast. Review the results over coffee. Entire morning routines, email summaries, calendar prep, report generation, handled before you sit down.</p>
           </div>
         </div>
@@ -1417,7 +1423,7 @@ When the user asks you to research a company:
       <div class="accordion-body section">
         <h3>Must-Read Articles</h3>
 
-        <a href="https://karozieminski.substack.com/p/claude-cowork-guide-plugins-memory-sub-agents-tips" target="_blank" class="video-card">
+        <a href="https://karozieminski.substack.com/p/claude-cowork-guide-plugins-memory-sub-agents-tips" target="_blank" class="video-card" rel="noopener">
           <div class="video-icon community">&#128161;</div>
           <div>
             <h4>Claude Cowork Guide: 50+ Tested Tips</h4>
@@ -1426,7 +1432,7 @@ When the user asks you to research a company:
           </div>
         </a>
 
-        <a href="https://leehanchung.github.io/blogs/2025/10/26/claude-skills-deep-dive/" target="_blank" class="video-card">
+        <a href="https://leehanchung.github.io/blogs/2025/10/26/claude-skills-deep-dive/" target="_blank" class="video-card" rel="noopener">
           <div class="video-icon guide">&#128218;</div>
           <div>
             <h4>Claude Agent Skills: A First Principles Deep Dive</h4>
@@ -1435,7 +1441,7 @@ When the user asks you to research a company:
           </div>
         </a>
 
-        <a href="https://aiblewmymind.substack.com/p/claude-cowork-plugins-guide" target="_blank" class="video-card">
+        <a href="https://aiblewmymind.substack.com/p/claude-cowork-plugins-guide" target="_blank" class="video-card" rel="noopener">
           <div class="video-icon guide">&#128218;</div>
           <div>
             <h4>Claude Cowork Plugins: What They Are, How to Build One</h4>
@@ -1444,7 +1450,7 @@ When the user asks you to research a company:
           </div>
         </a>
 
-        <a href="https://aimaker.substack.com/p/claude-chrome-extension-browser-automation-guide" target="_blank" class="video-card">
+        <a href="https://aimaker.substack.com/p/claude-chrome-extension-browser-automation-guide" target="_blank" class="video-card" rel="noopener">
           <div class="video-icon community">&#128161;</div>
           <div>
             <h4>Claude in Chrome: The Browser Extension Guide</h4>
@@ -1456,23 +1462,23 @@ When the user asks you to research a company:
         <h3>GitHub Repositories</h3>
         <table class="compare-table">
           <tr><th>Repository</th><th>What It Has</th></tr>
-          <tr><td><a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank">anthropics/knowledge-work-plugins</a></td><td>Official Anthropic plugins: Sales, Finance, Legal, Marketing, Product, Data, Design, Operations</td></tr>
-          <tr><td><a href="https://github.com/anthropics/skills" target="_blank">anthropics/skills</a></td><td>Official skills reference and examples</td></tr>
-          <tr><td><a href="https://github.com/travisvn/awesome-claude-skills" target="_blank">travisvn/awesome-claude-skills</a></td><td>Community-curated list of 37+ skills</td></tr>
-          <tr><td><a href="https://github.com/ykdojo/claude-code-tips" target="_blank">ykdojo/claude-code-tips</a></td><td>45 tips for getting the most out of Claude Code</td></tr>
+          <tr><td><a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noopener">anthropics/knowledge-work-plugins</a></td><td>Official Anthropic plugins: Sales, Finance, Legal, Marketing, Product, Data, Design, Operations</td></tr>
+          <tr><td><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">anthropics/skills</a></td><td>Official skills reference and examples</td></tr>
+          <tr><td><a href="https://github.com/travisvn/awesome-claude-skills" target="_blank" rel="noopener">travisvn/awesome-claude-skills</a></td><td>Community-curated list of 37+ skills</td></tr>
+          <tr><td><a href="https://github.com/ykdojo/claude-code-tips" target="_blank" rel="noopener">ykdojo/claude-code-tips</a></td><td>45 tips for getting the most out of Claude Code</td></tr>
         </table>
 
         <h3>Official Documentation</h3>
         <table class="compare-table">
           <tr><th>Topic</th><th>Link</th></tr>
-          <tr><td>Skills Documentation</td><td><a href="https://docs.claude.com/en/docs/claude-code/skills" target="_blank">docs.claude.com/skills</a></td></tr>
-          <tr><td>Plugin Development</td><td><a href="https://docs.claude.com/en/docs/claude-code/plugins" target="_blank">docs.claude.com/plugins</a></td></tr>
-          <tr><td>Chrome Extension</td><td><a href="https://code.claude.com/docs/en/chrome" target="_blank">code.claude.com/chrome</a></td></tr>
-          <tr><td>Scheduled Tasks</td><td><a href="https://code.claude.com/docs/en/scheduled-tasks" target="_blank">code.claude.com/scheduled-tasks</a></td></tr>
-          <tr><td>Memory System</td><td><a href="https://code.claude.com/docs/en/memory" target="_blank">code.claude.com/memory</a></td></tr>
-          <tr><td>Hooks & Automation</td><td><a href="https://code.claude.com/docs/en/hooks-guide" target="_blank">code.claude.com/hooks</a></td></tr>
-          <tr><td>Agent Teams</td><td><a href="https://code.claude.com/docs/en/agent-teams" target="_blank">code.claude.com/agent-teams</a></td></tr>
-          <tr><td>MCP Connectors</td><td><a href="https://modelcontextprotocol.io" target="_blank">modelcontextprotocol.io</a></td></tr>
+          <tr><td>Skills Documentation</td><td><a href="https://docs.claude.com/en/docs/claude-code/skills" target="_blank" rel="noopener">docs.claude.com/skills</a></td></tr>
+          <tr><td>Plugin Development</td><td><a href="https://docs.claude.com/en/docs/claude-code/plugins" target="_blank" rel="noopener">docs.claude.com/plugins</a></td></tr>
+          <tr><td>Chrome Extension</td><td><a href="https://code.claude.com/docs/en/chrome" target="_blank" rel="noopener">code.claude.com/chrome</a></td></tr>
+          <tr><td>Scheduled Tasks</td><td><a href="https://code.claude.com/docs/en/scheduled-tasks" target="_blank" rel="noopener">code.claude.com/scheduled-tasks</a></td></tr>
+          <tr><td>Memory System</td><td><a href="https://code.claude.com/docs/en/memory" target="_blank" rel="noopener">code.claude.com/memory</a></td></tr>
+          <tr><td>Hooks & Automation</td><td><a href="https://code.claude.com/docs/en/hooks-guide" target="_blank" rel="noopener">code.claude.com/hooks</a></td></tr>
+          <tr><td>Agent Teams</td><td><a href="https://code.claude.com/docs/en/agent-teams" target="_blank" rel="noopener">code.claude.com/agent-teams</a></td></tr>
+          <tr><td>MCP Connectors</td><td><a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">modelcontextprotocol.io</a></td></tr>
         </table>
       </div>
     </div>
@@ -1495,8 +1501,8 @@ When the user asks you to research a company:
 
 <div class="footer">
   <p>Created by Steve Gustafson &bull; March 2026</p>
-  <p style="margin-top: 8px;">Built with Claude Cowork (naturally). Have questions? <a href="https://www.linkedin.com/in/steve-j-gustafson/" target="_blank">Reach out</a>.</p>
-  <p style="margin-top: 16px; color: var(--text-dim);">Claude and Cowork are products of <a href="https://anthropic.com" target="_blank">Anthropic</a>. This is an independent guide, not official Anthropic documentation.</p>
+  <p style="margin-top: 8px;">Built with Claude Cowork (naturally). Have questions? <a href="https://www.linkedin.com/in/steve-j-gustafson/" target="_blank" rel="noopener">Reach out</a>.</p>
+  <p style="margin-top: 16px; color: var(--text-dim);">Claude and Cowork are products of <a href="https://anthropic.com" target="_blank" rel="noopener">Anthropic</a>. This is an independent guide, not official Anthropic documentation.</p>
 </div>
 
 <script src="sections.js" defer></script>
