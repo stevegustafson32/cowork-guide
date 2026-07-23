@@ -724,6 +724,11 @@
           <strong>Make Your Morning Briefing Portable</strong>
           A briefing that reads Gmail and Calendar is already pure-cloud. Have it write the HTML to a Google Drive folder instead of a local one, and it lands on your phone at 8 AM whether or not you opened your laptop. New to connectors? See <a href="beginner.html">Claude Beginner</a>, Section 9.
         </div>
+
+        <div class="info-box warning">
+          <strong>"Everywhere" Has Two Meanings, and It Decides Your File Format</strong>
+          Worth separating these before you build anything. <strong>You</strong> can open anything you drop in the cloud folder from your phone, HTML, markdown, whatever, using the Drive or Dropbox app. <strong>Claude</strong> on your phone is stricter: the Drive connector reads Google Docs, Sheets, Slides, PDFs, images, and Office files. It does not read <code>.md</code> or <code>.txt</code>. So the briefing above is fine as HTML you read yourself, but if you want Claude on your phone to pick a file back up and work with it, save it as <code>.docx</code>, <code>.pdf</code>, or a Google Doc. Same reason your <code>CLAUDE.md</code> and <code>MEMORY.md</code> stay a desktop concern, which is fine, the desktop reads them straight off the folder. Checked against Anthropic's Google Workspace connectors documentation, May 2026.
+        </div>
       </div>
     </div>
   </div>
@@ -749,7 +754,7 @@
         </table>
         <div class="info-box tip">
           <strong>Write It Into Your CLAUDE.md</strong>
-          Set a storage default so you don't decide twice. Something like: "Outputs I want on mobile go to Drive; local file-wrangling stays on the desktop." Every future workflow inherits the right choice.
+          Set a storage default so you don't decide twice. Something like: "Outputs I want on mobile go to Drive as .docx or PDF, never .md; local file-wrangling stays on the desktop." Every future workflow inherits the right choice, format included.
         </div>
       </div>
     </div>
