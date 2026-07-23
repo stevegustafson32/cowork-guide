@@ -951,13 +951,23 @@
 
         <div class="step-card">
           <div class="step-num">2.4</div>
-          <h4>Select a Folder</h4>
-          <p>Cowork will ask you to select a folder on your computer. <strong>Don't overthink this</strong>, just pick or create a folder like <code>~/Documents/CoWork</code> or <code>~/Claude-Workspace</code>. We'll organize it properly in Step 6. Claude can only see files inside this folder (not your whole computer).</p>
+          <h4>Select a Folder (put it in your cloud drive)</h4>
+          <p>Cowork will ask you to select a folder on your computer. This is the one setup choice worth thirty seconds of thought, because moving it later is a chore: <strong>create the folder inside your cloud-synced drive, not a plain local folder.</strong> Something like <code>Google Drive/CoWork OS</code>. Use whichever service your work already runs on, Google Drive, Dropbox, OneDrive/SharePoint, or Box. We'll organize the inside of it in Step 6. Claude can only see files inside this folder, not your whole computer.</p>
+        </div>
+
+        <div class="info-box key">
+          <strong>Why the Cloud Drive, Specifically</strong>
+          Your Mac still treats it as an ordinary local folder, so nothing about daily Cowork changes. But the same files now sit in a service Claude has a <em>connector</em> for, and that is what lets Cowork on your phone or the web reach your work at all. A plain local folder is desktop-only forever. So is iCloud, which syncs your files between your own devices but has no Claude connector, so Claude on your phone still can't see it. Google Drive, Dropbox, OneDrive/SharePoint, and Box all have connectors. See <a href="claude-everywhere.html#connectors-bridge">Claude Everywhere</a> for the full rule.
         </div>
 
         <div class="info-box tip">
-          <strong>Pro Tip: Use iCloud or OneDrive</strong>
-          If you put your workspace folder inside iCloud Drive or OneDrive, your files will sync across devices and you can access Claude's outputs from your phone or other computers.
+          <strong>What Your Phone Can Actually Read</strong>
+          One nuance worth knowing now instead of discovering later. The Drive connector reads Google Docs, Sheets, Slides, PDFs, and Office files. It does <strong>not</strong> read <code>.md</code>, so your context files (<code>CLAUDE.md</code>, <code>MEMORY.md</code>, <code>about-me.md</code>) aren't readable from a phone session. That's fine, they're the desktop's brain and the desktop reads them straight from the folder. The rule that matters: if you want a <em>deliverable</em> you can pull up on your phone, save it as <code>.docx</code>, <code>.pdf</code>, or a Google Doc, not as markdown.
+        </div>
+
+        <div class="info-box warning">
+          <strong>One Setting to Change in Google Drive</strong>
+          Google Drive for desktop streams files by default, meaning they're online-only placeholders that aren't really on your disk until opened, and Cowork can fail to read them. Right-click your CoWork folder in Finder and choose <strong>Available offline</strong> (or switch Drive to Mirror mode) so the files are genuinely local. Dropbox calls the same setting "Make available offline."
         </div>
       </div>
     </div>
@@ -1197,6 +1207,11 @@ MEMORY.md                &larr; empty, ready for "remember this" notes</div>
       <div class="accordion-body">
         <p>Think of your workspace folder as Claude's desk. The better organized it is, the better Claude performs.</p>
 
+        <div class="info-box tip">
+          <strong>Where This Lives</strong>
+          Everything below goes inside the cloud-drive folder you picked in Step 2.4, for example <code>Google Drive/CoWork OS/</code> (or your Dropbox, OneDrive/SharePoint, or Box equivalent). Build it there from the start and your workspace follows you to every device. Build it in a plain local folder and it's desktop-only.
+        </div>
+
         <div class="info-box key">
           <strong>The Easy Way: Just Ask Claude to Do It</strong>
           Here's the secret, <strong>you don't have to create any of this manually.</strong> Once you're in Cowork, just type: <em>"Set up my workspace with an ABOUT ME folder, TEMPLATES folder, PROJECTS folder, and CLAUDE OUTPUTS folder."</em> Claude will create all the folders for you. You can also install the CoWork OS plugin (Step 5) which does this automatically. The section below explains what each folder is for, but Claude handles the creation.
@@ -1205,7 +1220,7 @@ MEMORY.md                &larr; empty, ready for "remember this" notes</div>
         <p>Here's the proven folder structure used by power users:</p>
 
         <div class="file-tree">
-<span class="folder">My Workspace/</span>
+<span class="folder">Google Drive/CoWork OS/</span>   <span class="comment">&larr; your cloud drive, not a local folder</span>
 <span class="folder">  ABOUT ME/</span>
 <span class="file">    about-me.md</span>              <span class="comment">&larr; Who you are, your role, your style</span>
 <span class="folder">  TEMPLATES/</span>
@@ -1947,7 +1962,7 @@ _Last updated: 2026-03-19_
         </div>
         <div class="step-card">
           <h4>Can I use Cowork on my phone?</h4>
-          <p>Cowork requires the desktop app (Mac or Windows). However, Pro and Max users can message Claude from their phone while the desktop handles execution. Your output files sync via iCloud/OneDrive if you set up your workspace in a synced folder.</p>
+          <p>Yes. As of the July 2026 release, Cowork runs on mobile and web, not just the desktop app. The catch is what it can <em>see</em>: a cloud session can't reach a folder sitting on your Mac. If you put your workspace in a cloud drive with a Claude connector (Google Drive, Dropbox, OneDrive/SharePoint, Box, per Step 2.4), Cowork on your phone can reach that work through the connector. Anything saved only to a local folder stays on the desktop. Full detail in <a href="claude-everywhere.html">Claude Everywhere</a>.</p>
         </div>
       </div>
     </div>
