@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steve's AI Guide - Claude Writing: Sound Like You, Not Like AI</title>
+<meta name="description" content="Claude's default voice is recognizable in about two sentences. The eight tells, the banned list, the swap table, the sniff tests, and how to teach Claude to write the way you actually write.">
+<link rel="canonical" href="https://stevesaiguide.com/claude-writing.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="alternate icon" href="/favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Steve's AI Guide">
+<meta property="og:title" content="Steve's AI Guide - Claude Writing: Sound Like You, Not Like AI">
+<meta property="og:description" content="Claude's default voice is recognizable in about two sentences. The eight tells, the banned list, the swap table, the sniff tests, and how to teach Claude to write the way you actually write.">
+<meta property="og:url" content="https://stevesaiguide.com/claude-writing.html">
+<meta property="og:image" content="https://stevesaiguide.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Steve's AI Guide - Claude Writing: Sound Like You, Not Like AI">
+<meta name="twitter:description" content="Claude's default voice is recognizable in about two sentences. The eight tells, the banned list, the swap table, the sniff tests, and how to teach Claude to write the way you actually write.">
+<meta name="twitter:image" content="https://stevesaiguide.com/assets/og-image.png">
+<link rel="stylesheet" href="design-system.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface-2: #242424;
+    --surface-3: #2e2e2e;
+    --border: #333;
+    --text: #e8e8e8;
+    --text-muted: #999;
+    --text-dim: #a0a0a0;
+    --accent: #d4956a;
+    --accent-light: #e8b892;
+    --accent-dim: rgba(212,149,106,0.15);
+    --green: #5cb85c;
+    --blue: #5b9bd5;
+    --purple: #9b7ed8;
+    --red: #e06666;
+    --yellow: #f0c040;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    position: relative;
+    padding: 100px 40px 80px;
+    text-align: center;
+    background: linear-gradient(180deg, #1a1410 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(212,149,106,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 640px;
+    margin: 0 auto 32px;
+  }
+  .hero-cta {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .hero-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .toc {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc h2 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 24px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .toc-item:hover { border-color: var(--accent); background: var(--surface-2); }
+  .toc-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .accordion {
+    border-bottom: 1px solid var(--border);
+  }
+  .accordion:last-child { border-bottom: none; }
+
+  .accordion-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 28px 0;
+    background: none;
+    border: none;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+  .accordion-header:hover {
+    border-left-color: transparent;
+  }
+  .accordion-header.open {
+    border-left-color: var(--accent);
+  }
+
+  .accordion-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .accordion-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+
+  .accordion-title {
+    font-size: clamp(24px, 3.5vw, 30px);
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+    color: #fff;
+  }
+
+  .accordion-content h3 { font-size: 21px; }  /* real content sub-heading selector (was dead .section h3) */
+  .accordion-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 0;
+  }
+
+  .accordion-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    margin-top: 4px;
+    position: relative;
+  }
+  .accordion-chevron::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    transform: rotate(-45deg);
+    transition: transform 0.3s ease;
+  }
+  .accordion-header.open .accordion-chevron::after {
+    transform: rotate(45deg);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0;
+  }
+  .accordion-content.open {
+    max-height: 10000px;
+  }
+
+  .accordion-body {
+    padding-bottom: 28px;
+  }
+
+  .section p {
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .section h3 {
+    font-size: 21px;
+    font-weight: 600;
+    margin: 32px 0 12px;
+  }
+
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .step-card.highlighted {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--surface) 0%, rgba(212,149,106,0.05) 100%);
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    border-radius: 16px;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  .step-card h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .step-card p {
+    color: var(--text-muted);
+    font-size: 15px;
+  }
+
+  .info-box {
+    padding: 20px 24px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .info-box.tip {
+    background: rgba(92,184,92,0.08);
+    border-left: 3px solid var(--green);
+  }
+  .info-box.warning {
+    background: rgba(240,192,64,0.08);
+    border-left: 3px solid var(--yellow);
+  }
+  .info-box.key {
+    background: var(--accent-dim);
+    border-left: 3px solid var(--accent);
+  }
+  .info-box strong { display: block; margin-bottom: 6px; }
+
+  .code-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 15px;
+    line-height: 1.65;
+    color: #cdcdcd;
+    overflow-x: auto;
+    margin: 16px 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .video-card {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+  }
+  .video-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .video-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  .video-icon.official { background: rgba(91,155,213,0.15); }
+  .video-icon.community { background: rgba(155,126,216,0.15); }
+  .video-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .video-card .meta { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+  .video-card .desc { font-size: 13px; color: var(--text-dim); }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  .compare-table th {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .compare-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .compare-table tr:hover td { background: var(--surface); }
+
+  .checklist {
+    list-style: none;
+    margin: 20px 0;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .checklist li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 2px solid var(--border);
+    margin-top: 2px;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  .footer {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  a { color: var(--accent); }
+
+  html { scroll-behavior: smooth; }
+
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: var(--bg);
+    background-color: rgba(15, 15, 15, 0.95);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    font-size: 13px;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .sticky-nav.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sticky-nav-left { color: var(--text-muted); font-weight: 500; }
+  .sticky-nav-right { color: var(--accent); font-weight: 600; }
+
+  .back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .back-to-top:hover { background: var(--accent-light); }
+
+  .accordion-progress {
+    position: absolute;
+    top: 28px;
+    right: 0;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+  }
+  .accordion-header.open .accordion-progress {
+    opacity: 1;
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 60px 20px 48px; }
+    .hero h1 { font-size: 28px; }
+    .toc-grid { grid-template-columns: 1fr; }
+    .accordion-header { padding: 20px 0; }
+    .video-card { flex-direction: column; gap: 12px; }
+  }
+
+  .resource-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 24px; background: var(--surface); border-bottom: 1px solid var(--border);
+    font-size: 13px; position: relative; z-index: 998;
+  }
+  .resource-nav-brand { font-weight: 700; color: var(--text); font-size: 14px; white-space: nowrap; }
+  .resource-nav-links { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+  .resource-nav-links a {
+    padding: 9px 14px; border-radius: 6px; color: var(--text-muted);
+    text-decoration: none; font-weight: 500; font-size: 13px; transition: all 0.2s; white-space: nowrap;
+  }
+  .resource-nav-links a:hover { color: var(--text); background: var(--surface-2); }
+  .resource-nav-links a.active { color: var(--accent); background: var(--accent-dim); font-weight: 600; }
+  @media (max-width: 640px) {
+    .resource-nav { flex-direction: column; gap: 8px; align-items: flex-start; }
+    .resource-nav-links { gap: 4px; }
+    .resource-nav-links a { padding: 8px 12px; font-size: 13px; }
+  }
+</style>
+<style id="open-sections-override">
+  /* Accordion behavior retired 2026-07: sections are always open.
+     sections.js supplies scroll-spy nav; .open on a header now marks the current section. */
+  .accordion-content { max-height: none !important; overflow: visible !important; }
+  .accordion-header { cursor: default; }
+  .accordion-chevron, .accordion-progress { display: none !important; }
+  /* Hidden sticky nav must not hold keyboard focus (it is opacity:0, which stays tabbable). */
+  .sticky-nav:not(.visible) { visibility: hidden; }
+  .accordion { scroll-margin-top: 84px; }
+  h2.accordion-title { margin: 0 0 4px; }
+  /* Wide code samples were clipped by the old accordion overflow:hidden;
+     now they scroll internally instead of widening the page on mobile. */
+  .accordion-content .code-block, .accordion-content pre { max-width: 100%; overflow-x: auto; }
+  .accordion-content table { display: block; max-width: 100%; overflow-x: auto; }
+  html { overflow-x: hidden; } /* NOT clip: visible+clip pairing computes both axes to clip and kills page scroll */
+  @media (max-width: 520px) {
+    /* Tables wider than a phone scroll internally (they were cut off before). */
+    .accordion-content table { display: block; max-width: 100%; overflow-x: auto; }
+    /* Flex list items laid text out on one unwrappable row; let them wrap. */
+    .accordion-content li { flex-wrap: wrap; }
+    .accordion-content li > * { min-width: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="resource-nav">
+  <div class="resource-nav-brand">Steve's Resources</div>
+  <div class="resource-nav-links">
+    <a href="prompting.html">Prompting Guide</a>
+    <a href="beginner.html">Claude Beginner</a>
+    <a href="level-2.html">Claude Advanced</a>
+    <a href="workflows.html">Claude in Action</a>
+    <a href="claude-code-2.html">Claude Code 2.0</a>
+    <a href="claude-design.html">Claude Design</a>
+    <a href="claude-office.html">Claude in Office</a>
+    <a href="claude-writing.html" class="active">Claude Writing<span class="nav-new">NEW</span></a>
+    <a href="claude-everywhere.html">Claude Everywhere</a>
+    <a href="people.html">People I Learn From</a>
+  </div>
+</nav>
+
+<div class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-left">Claude Writing</div>
+  <div class="sticky-nav-right"><span id="stickyProgress">Step 1 of 8</span></div>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">NEW . WRITE LIKE A PERSON, NOT LIKE A MODEL</div>
+  <h1>Claude <span>Writing</span></h1>
+  <h1 style="font-size: clamp(24px, 4vw, 40px); font-weight: 600; margin-top: -8px; color: var(--text-muted);">Sound like you, not like AI.</h1>
+  <p style="margin-top: 24px;">Claude can write. That was never the problem. The problem is that its default voice is recognizable in about two sentences &mdash; hedged, evenly paced, allergic to a real claim &mdash; and once a reader clocks it, they stop trusting the content. This is the fix I use on everything that goes out under my name: the tells to cut, the words to ban, the swaps to run, and how to get Claude writing the way you already write.</p>
+  <button class="hero-cta" id="heroCtaBtn">Start the Guide &darr;</button>
+</div>
+
+<div class="container">
+
+  <div class="toc">
+    <h2>What's Inside</h2>
+    <div class="toc-grid">
+      <a class="toc-item toc-link" href="#the-tells"><span class="toc-num">1</span> The Eight Tells</a>
+      <a class="toc-item toc-link" href="#banned-list"><span class="toc-num">2</span> The Banned List</a>
+      <a class="toc-item toc-link" href="#swap-list"><span class="toc-num">3</span> The Swap List</a>
+      <a class="toc-item toc-link" href="#six-laws"><span class="toc-num">4</span> The Six Laws</a>
+      <a class="toc-item toc-link" href="#teach-your-voice"><span class="toc-num">5</span> Teach Claude Your Voice</a>
+      <a class="toc-item toc-link" href="#writing-rules-file"><span class="toc-num">6</span> Your Writing Rules File</a>
+      <a class="toc-item toc-link" href="#sniff-tests"><span class="toc-num">7</span> The Sniff Tests</a>
+      <a class="toc-item toc-link" href="#cheat-sheet"><span class="toc-num">8</span> The Cheat Sheet</a>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="accordion" id="the-tells">
+    <div class="accordion-header">
+      <div class="accordion-badge">1</div>
+      <div>
+        <div class="accordion-label">Step 1</div>
+        <h2 class="accordion-title">The Eight Tells</h2>
+        <div class="accordion-subtitle">What gives it away, sorted into categories that outlive the word lists.</div>
+      </div>
+    </div>
+    <div class="accordion-content open">
+      <div class="accordion-body">
+        <p>Stop treating this as a vocabulary problem. The words are downstream. Claude hedges because it was trained to be safe. It writes three-item lists because three-item lists score well on average. It uses transitions because it can't trust you to follow without them. Fix the structure and most of the vocabulary fixes itself.</p>
+        <p>Every tell lands in one of eight categories. Learn the categories, not the word lists. The specific words shift every few months. The categories haven't moved in three years.</p>
+
+        <h3>1&ndash;3. The three waves of vocabulary</h3>
+        <p><strong>The burned words.</strong> If these survive into a final draft, nobody edited it: <em>delve, tapestry, testament, realm, landscape, paradigm, robust, leverage, utilize, facilitate, harness, unlock, elevate, foster, embark, underscore, multifaceted, holistic, seamless, paramount, meticulous, pivotal, crucial.</em></p>
+        <p><strong>The quiet wave.</strong> Less obvious, equally fatal, and they leak across a whole draft: <em>"that said," "at its core," "when it comes to," "in today's fast-paced world," "game-changer," "in the realm of," "by doing X, you can Y," "whether you're A or B," "it's worth noting."</em></p>
+        <p><strong>The compensation wave.</strong> This is the 2026 one, and it fools people who know the first two lists cold. The models learned that the burned words get caught, so they overcorrect into manufactured casualness. "Honestly," dropped in for false intimacy. "Look," as an opener. "Here's the thing:" as a transition. "Hot take:" in front of an opinion the model doesn't hold. Fake I-learned-this-the-hard-way stories with no specifics in them.</p>
+
+        <h3>4. Sentence-level tells</h3>
+        <ul>
+          <li>The three-item compulsion: "innovative, scalable, and sustainable." Two items or four would read more naturally. Three scores better.</li>
+          <li>"It's not just X, it's Y." Once per piece, maximum.</li>
+          <li>"While X is true, Y matters more." False balance, staged so the model looks even-handed before committing.</li>
+          <li>Em-dash chains &mdash; two or three per sentence &mdash; where a real writer uses one.</li>
+          <li>Rhetorical question answered on the spot. "Does this matter? Absolutely." Cut the question. Make the claim.</li>
+          <li>Sermon repetition: "We need speed. We need clarity. We need commitment."</li>
+        </ul>
+
+        <h3>5. Structure tells</h3>
+        <ul>
+          <li>A heading every 80 to 120 words. Real writing runs further between signposts.</li>
+          <li>Bullets doing work that prose should be doing.</li>
+          <li>Bold scattered through the body. Real bold is rare and earns its place.</li>
+          <li>A "Key Takeaways" or "In Summary" block bolted onto the end. Trust the reader.</li>
+          <li>Every paragraph exactly three or four sentences.</li>
+        </ul>
+
+        <h3>6. Rhetoric tells</h3>
+        <ul>
+          <li>The hedge stack: "It's important to note that, in many cases, this could potentially..."</li>
+          <li>Both-sidesing. Refusing to pick a winner when you asked for one.</li>
+          <li>"It depends" with no framework behind it.</li>
+          <li>Vague benefits &mdash; "improved productivity," "better outcomes." If you can't put a number on it, it isn't a claim.</li>
+        </ul>
+
+        <h3>7. Voice tells</h3>
+        <ul>
+          <li>LinkedIn-guru shape: hook, three numbered lessons, motivational close.</li>
+          <li>Coach voice. "You've got this." "Let's level up."</li>
+          <li>Fake vulnerability with nothing specific in it. Real vulnerability has names, dates, and dollar amounts.</li>
+          <li>Tonal whiplash &mdash; a formal sentence sitting next to a forced-casual one. The clearest sign of a model trying to sound human.</li>
+        </ul>
+
+        <h3>8. Punctuation micro-tells</h3>
+        <ul>
+          <li>More than about one em-dash per 125 words.</li>
+          <li>Title Case On Every Heading.</li>
+          <li>Perfect Oxford comma compliance. People drift. Models don't.</li>
+          <li>En-dashes correct in every numeric range. Almost nobody does that by hand.</li>
+        </ul>
+
+        <div class="info-box key">
+          <strong>The One Thing to Remember</strong>
+          Readers don't catch AI writing by spotting a word. They catch it by rhythm &mdash; every sentence the same length, every paragraph the same shape, nothing at risk. You can strip every banned word on this page and still get caught if the cadence never changes.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="accordion" id="banned-list">
+    <div class="accordion-header">
+      <div class="accordion-badge">2</div>
+      <div>
+        <div class="accordion-label">Step 2</div>
+        <h2 class="accordion-title">The Banned List</h2>
+        <div class="accordion-subtitle">Cut on sight. This is the kill list.</div>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>None of these words are bad on their own. They're banned because they've been used so heavily that they now read as a handshake between one model and another. Cut them unless you have a specific reason to keep one.</p>
+
+        <h3>Banned words</h3>
+        <div class="code-block">delve, leverage, utilize, facilitate, robust, seamless, paramount,
+multifaceted, holistic, ever-evolving, pivotal, crucial, meticulous,
+harness, unlock, elevate, foster, embark, underscore, arguably,
+notably, interestingly, ultimately, furthermore, moreover, additionally</div>
+
+        <h3>Banned phrases</h3>
+        <div class="code-block">"in today's fast-paced world"      "it's important to note"
+"it's worth mentioning"            "that said"
+"at its core"                      "when it comes to"
+"in the realm of"                  "navigate the landscape"
+"paradigm shift"                   "game-changer"
+"a tapestry of"                    "a testament to"
+"by doing X you can Y"             "whether you're A or B"
+"dive deep"                        "uncover insights"
+"unleash the power of"             "at the end of the day"
+"it goes without saying"           "in conclusion"</div>
+
+        <h3>Soft ban &mdash; once per 1,000 words, maximum</h3>
+        <p><em>However. Therefore. Thus. Hence. Indeed. In essence. In summary. In short.</em> Plus <em>significant</em>, <em>substantial</em>, and <em>notable</em> any time there's no number attached to them.</p>
+
+        <div class="info-box warning">
+          <strong>Where This Goes Wrong</strong>
+          Banning words without changing structure trades one machine voice for another. Strip every "furthermore" and inject "like, honestly" everywhere and you haven't fixed anything &mdash; you've cosplayed casualness. The fix is structural: shorter sentences, real specifics, real claims. Tone follows.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="accordion" id="swap-list">
+    <div class="accordion-header">
+      <div class="accordion-badge">3</div>
+      <div>
+        <div class="accordion-label">Step 3</div>
+        <h2 class="accordion-title">The Swap List</h2>
+        <div class="accordion-subtitle">Write this, not that. Run it as a find-and-replace before anything else.</div>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>Banning a word is only half the job. You need somewhere to go. These are the substitutions I run first, before touching structure, because they're mechanical and they take about ninety seconds.</p>
+
+        <h3>Word swaps</h3>
+        <table class="compare-table">
+          <tr><th>Instead of</th><th>Write</th></tr>
+          <tr><td>delve</td><td>examine, dig into, look at</td></tr>
+          <tr><td>leverage (as a verb)</td><td>use, build on, apply</td></tr>
+          <tr><td>utilize</td><td>use</td></tr>
+          <tr><td>facilitate</td><td>run, lead, help, set up</td></tr>
+          <tr><td>harness</td><td>use, apply</td></tr>
+          <tr><td>unlock</td><td>access, open, get to</td></tr>
+          <tr><td>elevate</td><td>raise, improve, upgrade</td></tr>
+          <tr><td>foster</td><td>build, grow, encourage</td></tr>
+          <tr><td>embark</td><td>start, begin</td></tr>
+          <tr><td>underscore</td><td>stress, repeat, emphasize</td></tr>
+          <tr><td>paramount</td><td>most important, top priority</td></tr>
+          <tr><td>meticulous</td><td>careful, precise, exact</td></tr>
+          <tr><td>robust</td><td>strong, solid, holds up</td></tr>
+          <tr><td>seamless</td><td>smooth, no friction</td></tr>
+          <tr><td>multifaceted</td><td>name the facets</td></tr>
+          <tr><td>holistic</td><td>whole-system, end-to-end</td></tr>
+          <tr><td>pivotal</td><td>key, decisive</td></tr>
+          <tr><td>crucial, critical</td><td>must, required, key</td></tr>
+          <tr><td>arguably, notably, interestingly, ultimately</td><td>cut entirely</td></tr>
+          <tr><td>furthermore, additionally</td><td>and, also</td></tr>
+          <tr><td>moreover</td><td>cut entirely</td></tr>
+        </table>
+
+        <h3>Phrase swaps</h3>
+        <table class="compare-table">
+          <tr><th>Instead of</th><th>Write</th></tr>
+          <tr><td>in today's fast-paced world</td><td>cut entirely</td></tr>
+          <tr><td>it's important to note that</td><td>cut it and just say the thing</td></tr>
+          <tr><td>it's worth mentioning that</td><td>cut entirely</td></tr>
+          <tr><td>that said</td><td>but, still</td></tr>
+          <tr><td>at its core</td><td>fundamentally, the basic issue</td></tr>
+          <tr><td>when it comes to</td><td>for, on, in</td></tr>
+          <tr><td>in the realm of</td><td>in</td></tr>
+          <tr><td>a tapestry of</td><td>a mix of, a set of</td></tr>
+          <tr><td>a testament to</td><td>proof of, shows</td></tr>
+          <tr><td>navigate the landscape</td><td>deal with, work through</td></tr>
+          <tr><td>paradigm shift</td><td>rethink, change in approach</td></tr>
+          <tr><td>game-changer</td><td>cut it and describe what changes</td></tr>
+          <tr><td>a plethora of</td><td>a lot of, or an actual number</td></tr>
+          <tr><td>by doing X, you can Y</td><td>X gets you Y</td></tr>
+          <tr><td>whether you're A or B</td><td>for both A and B</td></tr>
+          <tr><td>dive deep into</td><td>look at, study</td></tr>
+          <tr><td>uncover insights</td><td>find out, discover</td></tr>
+          <tr><td>unleash the power of</td><td>use</td></tr>
+          <tr><td>at the end of the day</td><td>in the end, or cut</td></tr>
+          <tr><td>it goes without saying</td><td>cut entirely</td></tr>
+          <tr><td>in conclusion</td><td>cut it and let the ending land</td></tr>
+        </table>
+
+        <h3>Whole sentences, before and after</h3>
+        <table class="compare-table">
+          <tr><th>AI version</th><th>Human version</th></tr>
+          <tr><td>leverage our strengths</td><td>use what we're good at</td></tr>
+          <tr><td>delve into the data</td><td>look at the numbers</td></tr>
+          <tr><td>seamless integration</td><td>fits in cleanly</td></tr>
+          <tr><td>meticulous attention to detail</td><td>careful work</td></tr>
+          <tr><td>harness the power of AI</td><td>use AI</td></tr>
+          <tr><td>foster collaboration</td><td>get people working together</td></tr>
+          <tr><td>by leveraging automation, you can save time</td><td>automation saves time</td></tr>
+          <tr><td>navigate the competitive landscape</td><td>compete</td></tr>
+          <tr><td>a holistic view</td><td>the full picture</td></tr>
+          <tr><td>interestingly, the data revealed</td><td>the data shows</td></tr>
+          <tr><td>in conclusion, we recommend</td><td>we recommend</td></tr>
+        </table>
+
+        <div class="info-box tip">
+          <strong>Make Claude Run It</strong>
+          You don't have to do this by hand. Paste a draft and say: <em>"Run a find-and-replace pass on this using the swap list from my writing rules. Change nothing else &mdash; no restructuring, no rewriting. Show me the result."</em> Do the structural work in a second pass. Cut before you add.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="accordion" id="six-laws">
+    <div class="accordion-header">
+      <div class="accordion-badge">4</div>
+      <div>
+        <div class="accordion-label">Step 4</div>
+        <h2 class="accordion-title">The Six Laws of Human Prose</h2>
+        <div class="accordion-subtitle">Word swaps get you to neutral. These are what make writing sound alive.</div>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>Everything in the two previous sections is subtraction. Subtraction alone produces clean, competent, forgettable prose. These six laws are the addition side, and they're where the actual voice comes from.</p>
+
+        <h3>Law 1 &mdash; Specificity beats generality, every time</h3>
+        <p>Numbers, names, dates, places, dollar amounts, exact quotes. "Many companies struggle with hiring" is dead on the page. "We posted the PM role, interviewed 43 people, three of the top five turned us down over comp, filled it in six weeks from our own network" is alive. Specificity is the cheapest and fastest signal that a person wrote this.</p>
+
+        <h3>Law 2 &mdash; Rhythm has to vary or the prose dies</h3>
+        <p>AI writes 15-to-18-word sentences at a metronome pace. People cluster: four words, eight words, thirty-two words, six words. Vary the length, the opening, the structure. If you can clap a steady beat through three paragraphs, a machine wrote them.</p>
+
+        <h3>Law 3 &mdash; Make claims, take sides</h3>
+        <p>AI hedges because it was trained not to be wrong. People rank things, judge things, name names, and put their reputation behind it. Every paragraph should carry at least one claim someone could argue with.</p>
+
+        <h3>Law 4 &mdash; Break rules on purpose</h3>
+        <p>Fragments. Sentences that open with a conjunction. One-word paragraphs. Run-ons that build pressure. AI breaks rules by accident and inconsistently. People break them with intent, and the break carries the meaning.</p>
+
+        <h3>Law 5 &mdash; Show the friction</h3>
+        <p>Real thinking is messy. Writers reverse themselves mid-paragraph, drop a clause, leave a contradiction standing, end on a question. Prose that's perfectly smooth and fully resolved reads as machine-finished. Leave some seams visible.</p>
+
+        <h3>Law 6 &mdash; Lean into your obsessions</h3>
+        <p>AI writes about every subject the same way. You don't. You return to certain ideas, certain framings, certain words. Don't sand that down. The repetitions <em>are</em> the voice.</p>
+
+        <div class="info-box tip">
+          <strong>Ten Moves That Inject Voice</strong>
+          One per 200 words is a reasonable baseline. Add a number, name, or date. Insert a contradiction. Use an idiosyncratic word &mdash; load-bearing, the hinge, non-negotiable. Drop a fragment after three full sentences. Cite a real source by name. Admit you don't know something. Add a one-line aside in parentheses. Use a temporal reference: "that was the SaaS-era playbook." Repeat a word for emphasis. End on a question you haven't answered.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="accordion" id="teach-your-voice">
+    <div class="accordion-header">
+      <div class="accordion-badge">5</div>
+      <div>
+        <div class="accordion-label">Step 5</div>
+        <h2 class="accordion-title">Teach Claude Your Voice</h2>
+        <div class="accordion-subtitle">Stop describing how you write. Make Claude derive it from what you've already written.</div>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>Most people try to explain their voice to Claude in a sentence or two. "Write it casual but professional." That produces nothing, because you're describing a feeling and Claude needs patterns &mdash; how long your sentences run, how you open, how you sign off, the words you reach for and the ones you never touch.</p>
+        <p>You already have thousands of samples of your own writing. Point Claude at them.</p>
+
+        <h3>The voice profile prompt</h3>
+        <p>Connect Gmail (or Outlook), then run this once:</p>
+        <div class="code-block">Read my last 30 sent emails in Gmail. Write my voice profile: how I greet,
+how I sign off, my sentence length, my go-to phrases, the words I never use.
+Format it as writing instructions to follow when drafting as me.</div>
+        <p>Thirty is roughly the floor. Below that Claude picks up noise instead of pattern. Sent mail beats anything else you could feed it, because it's writing you actually shipped to a real person under a real deadline, rather than writing you polished for an audience.</p>
+
+        <h3>Read it before you save it</h3>
+        <p>The profile comes back as a list of observations, and this is the part people skip. Read it. Some of what it finds will be habits you don't want reinforced &mdash; I had a stretch of over-apologizing in email that Claude dutifully wrote down as a signature move. Delete those lines. What's left is your voice, minus the tics.</p>
+
+        <h3>Save it where Claude will actually read it</h3>
+        <p>A voice profile sitting in a chat window is worth nothing next week. Put it in the file Claude loads at the start of every session &mdash; the next section covers exactly where that lives and what else belongs in it.</p>
+
+        <div class="info-box tip">
+          <strong>Other Sources Worth Feeding It</strong>
+          Sent email is the best single source, but not the only one. Slack messages to your team catch how you write when you're moving fast. Your last twenty LinkedIn posts catch your public register, which is usually different. If you write in two distinct modes &mdash; internal versus external &mdash; build two profiles and tell Claude which one to use.
+        </div>
+
+        <div class="info-box key">
+          <strong>Already Using This in a Workflow</strong>
+          The Meeting Follow-Up Engine in <a href="workflows.html#meeting-follow-up-engine">Claude in Action</a> runs this same voice profile against meeting transcripts to draft recap emails that sound like you wrote them. Build the profile here once, and that workflow gets better for free.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="accordion" id="writing-rules-file">
+    <div class="accordion-header">
+      <div class="accordion-badge">6</div>
+      <div>
+        <div class="accordion-label">Step 6</div>
+        <h2 class="accordion-title">Your Writing Rules File</h2>
+        <div class="accordion-subtitle">Set it once so you stop re-typing the rules in every session.</div>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>Everything above is worthless if you have to remember it each time. The point of a rules file is that Claude reads it before it writes a word, every session, without you asking.</p>
+
+        <h3>Where it goes</h3>
+        <ul>
+          <li><strong>Cowork:</strong> a <code>CLAUDE.md</code> file at the root of your project folder. Loaded automatically at the start of every session in that folder.</li>
+          <li><strong>Claude Projects (web or mobile):</strong> paste it into the project's custom instructions.</li>
+          <li><strong>Neither of those:</strong> keep it in a note and paste it at the top of any session where the writing matters.</li>
+        </ul>
+
+        <h3>The starter block</h3>
+        <p>Copy this whole thing. Swap in your own voice profile from Step 5 where marked.</p>
+        <div class="code-block">## Writing Rules
+
+Apply these to every draft you write for me.
+
+**Banned words.** delve, leverage, utilize, facilitate, robust, seamless,
+paramount, multifaceted, holistic, ever-evolving, pivotal, crucial,
+furthermore, moreover, additionally
+
+**Banned phrases.** "in today's fast-paced world," "it's important to note,"
+"that said," "at its core," "when it comes to," "navigate the landscape,"
+"paradigm shift," "game-changer," "by doing X you can Y," "in conclusion"
+
+**Four laws.**
+1. Specificity over generality. A number, name, or date in every paragraph.
+2. Vary rhythm. Never three same-length sentences in a row.
+3. Make claims. Take sides. Name names.
+4. Cut connectors. Use a period instead.
+
+**Structure.** No "Key Takeaways" section. No heading every 80 words.
+No three-item lists by default. One em-dash per 125 words, maximum.
+
+**My voice.** [PASTE YOUR VOICE PROFILE FROM STEP 5 HERE]
+
+Never tell me a draft is done. Tell me what you'd cut next.</div>
+
+        <h3>The one-off version</h3>
+        <p>For a session where you don't want to set anything up, this does most of the work on its own:</p>
+        <div class="code-block">Write [TASK]. Hard rules:
+- No banned words: leverage, delve, robust, utilize, facilitate, seamless,
+  paramount, holistic, pivotal, crucial
+- Cut every "however," "furthermore," "moreover," "additionally" and use a period
+- Vary sentence length wildly: at least two under 8 words, at least one over 25
+- Every paragraph needs a specific number, name, or date
+- No three-item lists. No "it's not just X, it's Y." No rhetorical questions
+  that you answer in the next sentence.
+- Sound like a tired senior operator texting, not a brand voice.</div>
+
+        <div class="info-box tip">
+          <strong>The Line That Does the Most Work</strong>
+          "Sound like a tired senior operator texting, not a brand voice." One sentence, and it fixes more than the whole banned list &mdash; because it's a target rather than a prohibition. Claude is better at writing toward something than at avoiding things.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="accordion" id="sniff-tests">
+    <div class="accordion-header">
+      <div class="accordion-badge">7</div>
+      <div>
+        <div class="accordion-label">Step 7</div>
+        <h2 class="accordion-title">The Sniff Tests</h2>
+        <div class="accordion-subtitle">Twelve checks on a finished draft. None takes more than a minute.</div>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>Run these on anything going out under your name. Most drafts fail two or three, and fixing those two or three is usually the whole job.</p>
+
+        <table class="compare-table">
+          <tr><th>Test</th><th>How to run it</th></tr>
+          <tr><td>Em-dash count</td><td>Per 500 words. AI averages 4&ndash;9, people average 1&ndash;3. Over 5 means half need to become commas or periods.</td></tr>
+          <tr><td>Hedge count</td><td>Count "it's important to note," "however," "arguably," "could," "may," "in many cases" per 500 words. Three or more is the AI hedge pattern.</td></tr>
+          <tr><td>Subject-first ratio</td><td>How many sentences open with "The," "This," "It," or "Our"? AI runs 60%+. People run 30&ndash;40%. Reorder until you're under 50%.</td></tr>
+          <tr><td>Paragraph variance</td><td>All paragraphs three or four sentences? That's the AI default. People cluster 1, 2, 5, 1, 7.</td></tr>
+          <tr><td>Connector density</td><td>"furthermore," "moreover," "additionally," "in conclusion." One or more per paragraph reads as AI.</td></tr>
+          <tr><td>Adverb density</td><td>Words ending in -ly. AI runs 2&ndash;3 per paragraph. Target 0&ndash;1. Cut "significantly," "ultimately," "essentially," "basically" first.</td></tr>
+          <tr><td>Passive ratio</td><td>"is / was / been / are" plus a past participle. AI runs 20&ndash;30%. Target under 10%.</td></tr>
+          <tr><td>Three-item count</td><td>Count the "A, B, and C" lists. Convert at least one to a pair, or split it into separate sentences.</td></tr>
+          <tr><td>Vague-noun audit</td><td>"area," "space," "landscape," "realm," "domain," "opportunity" with nothing specific attached. Each one needs a name, a number, or an example.</td></tr>
+          <tr><td>Claim-to-evidence ratio</td><td>Every claim should have evidence next to it &mdash; a number, a name, an anecdote. AI drifts to three claims per piece of evidence.</td></tr>
+          <tr><td>The Slack test</td><td>Paste a paragraph into Slack to a colleague. Would they reply "...what?" If so, it's too formal.</td></tr>
+          <tr><td>The reorder test</td><td>Shuffle three paragraphs. If the new order reads as well as the old one, the prose has no rhythm.</td></tr>
+        </table>
+
+        <h3>Have Claude grade its own draft</h3>
+        <div class="code-block">Score this draft against the twelve sniff tests in my writing rules.
+For each test, give the actual count and pass or fail. Then rewrite only
+the sentences that caused the failures. Don't touch anything that passed.</div>
+
+        <div class="info-box warning">
+          <strong>The Read-Aloud Test Beats All Twelve</strong>
+          Read the draft out loud at speaking pace. Mark every sentence that trips you, sounds canned, or you'd never say to a person. Rewrite those. It catches things no counting exercise will, and it takes about as long as the piece takes to read.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="accordion" id="cheat-sheet">
+    <div class="accordion-header">
+      <div class="accordion-badge">8</div>
+      <div>
+        <div class="accordion-label">Step 8</div>
+        <h2 class="accordion-title">The Cheat Sheet</h2>
+        <div class="accordion-subtitle">One screen. Everything on this page, compressed.</div>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+        <p>If you read nothing else here, read this.</p>
+
+        <h3>The nine-pass edit, in order</h3>
+        <p>Don't try to fix a draft in one pass. Cut before you add, structure before you polish.</p>
+        <table class="compare-table">
+          <tr><th>Pass</th><th>What you're hunting</th></tr>
+          <tr><td>1. Hedge cut</td><td>Every weakening qualifier. If the sentence becomes a confident claim without it, the cut was right.</td></tr>
+          <tr><td>2. Banned-word swap</td><td>Run the swap list. If there's no clean replacement, cut the sentence.</td></tr>
+          <tr><td>3. Connector cull</td><td>Delete 60% of the "howevers" and "furthermores." Replace with a period.</td></tr>
+          <tr><td>4. Opening variation</td><td>Read the first three words of every sentence. Three in a row starting the same way? Rewrite one.</td></tr>
+          <tr><td>5. Length burst</td><td>Add at least two sentences under 8 words and one over 28.</td></tr>
+          <tr><td>6. Specificity injection</td><td>Every vague noun and metric-free claim gets a name, number, or date.</td></tr>
+          <tr><td>7. Claim density</td><td>Every paragraph needs one arguable claim. Pure-background paragraphs get folded in or killed.</td></tr>
+          <tr><td>8. Voice injection</td><td>One human signal per 200 words. A fragment, a contradiction, a specific story.</td></tr>
+          <tr><td>9. Read aloud</td><td>Rewrite everything that trips.</td></tr>
+        </table>
+
+        <h3>The four rules worth memorizing</h3>
+        <ul>
+          <li>Put a number, name, or date in every paragraph.</li>
+          <li>Never write three same-length sentences in a row.</li>
+          <li>Make a claim someone could argue with.</li>
+          <li>Cut the connector. Use a period.</li>
+        </ul>
+
+        <h3>The prompt that does the most in one line</h3>
+        <div class="code-block">Rewrite this so the final version is 30% shorter and 100% more specific.
+Every sentence you cut was either hedging, repeating a claim, or adding no fact.
+Sound like a tired senior operator texting, not a brand voice.</div>
+
+        <div class="info-box key">
+          <strong>The Takeaway</strong>
+          None of this makes Claude write for you. It makes Claude stop writing like Claude, which is a different and more useful thing. The specifics still have to come from you &mdash; the number, the name, the thing that actually happened. Claude can't invent those, and every tell on this page is really just Claude covering for the fact that it doesn't have them.
+        </div>
+
+        <div class="info-box tip">
+          <strong>Next Step</strong>
+          Build your voice profile from Step 5, paste it into the rules file in Step 6, and run your next real draft through the sniff tests in Step 7. That's about twenty minutes, and it's the last time you'll have to think about any of this.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="path-nav" aria-label="Guide navigation">
+  <a class="prev" href="claude-office.html"><span class="pn-label">&larr; Previous</span><span class="pn-title">Claude in Office</span></a>
+  <a class="hub" href="index.html">All guides</a>
+  <a class="next" href="claude-everywhere.html"><span class="pn-label">Next &rarr;</span><span class="pn-title">Claude Everywhere</span></a>
+</nav>
+
+  <div class="footer">
+    <p>Claude Writing by Steve Gustafson. How to stop Claude sounding like Claude, written by a human who edits a lot of drafts.</p>
+    <p>Updated July 2026. <a href="index.html">Back to all guides</a></p>
+  </div>
+
+</div>
+
+<button class="back-to-top" id="backToTopBtn">&uarr;</button>
+
+<script src="sections.js" defer></script>
+
+<script src="search.js"></script>
+</body>
+</html>
