@@ -1594,13 +1594,61 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
         <h3>Practical Recursive Patterns</h3>
 
         <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Pattern 1: Draft → Critique → Revise</h4>
-        <p>Round 1: "Write a draft proposal for..." Round 2: "Now critique this for [specific criteria]. What's weak? What's missing?" Round 3: "Now revise based on your critique."</p>
+        <p>Round 1: "Write a draft proposal for..." Round 2: "Now critique this for [specific criteria]. What's weak? What's missing?" Round 3: "Now revise based on your critique." This is fine for sharpening structure and tone. For catching factual errors it is the weakest option, and the hierarchy below explains why.</p>
 
         <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Pattern 2: Expand → Contract</h4>
         <p>Round 1: "Give me 20 ideas for..." Round 2: "Now rank the top 5. Which are most feasible?" Round 3: "Develop the #1 idea in detail."</p>
 
         <h4 style="font-size: 16px; margin-top: 20px; margin-bottom: 12px;">Pattern 3: Multi-Perspective</h4>
         <p>Round 1: "Analyze this from the customer's perspective." Round 2: "Now analyze from the CFO's perspective." Round 3: "Synthesize both views into a balanced recommendation."</p>
+
+        <h3>The Verification Hierarchy: What Actually Catches Errors</h3>
+
+        <p>Iterating to improve structure, tone or completeness works, and the three patterns above do it well. Catching factual errors is a different job, and here the version most guides teach, Pattern 1 above, is the weakest one there is. Asking a model to "critique your answer and try again" in the same chat is the floor, not the ceiling. The check gets stronger the further you move it from the model that wrote the draft.</p>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Strength</th>
+              <th>Where the check comes from</th>
+              <th>Why it works</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Strongest</strong></td>
+              <td>External ground truth: run the code, open the source, check the number yourself</td>
+              <td>Nothing to bias. Reality decides, not the model.</td>
+            </tr>
+            <tr>
+              <td>Strong</td>
+              <td>A different model, fresh context, blind to the drafting conversation</td>
+              <td>It shares none of the first model's assumptions.</td>
+            </tr>
+            <tr>
+              <td>Useful</td>
+              <td>The same model, a fresh chat, handed only the artifact: "you are a reviewer, here is a document"</td>
+              <td>The wrong claim is no longer in the model's own voice. Moving a byte-identical wrong answer out of the model's own turn into a document it reviews is worth +23 to +93 points; Llama-3.3-70B went from 0% to 87% on one test.</td>
+            </tr>
+            <tr>
+              <td><strong>Weakest</strong></td>
+              <td>The same model, the same conversation: "critique your answer and revise"</td>
+              <td>The failed draft is still sitting in the context, and it drags the next attempt toward the same mistake.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="info-box warning">
+          <strong>The bad draft in your history is not neutral. It is contamination.</strong>
+          A 2026 study of this effect, which the authors call Contextual Drag (arXiv:2602.04288), found that failed attempts left in context bias later generations toward structurally similar errors, costing 10 to 20 percent across 11 models. This is the hard reason the fresh-window rule beats the same-chat retry: you are not just failing to fix the error, you are teaching the next draft to repeat it.
+        </div>
+
+        <p>The model vendors now say the same thing. Anthropic's Opus 5 guidance tells you to remove explicit "double-check your work" instructions outright, on the grounds that they waste tokens with no gain in quality. Anthropic's Fable 5 page adds that separate, fresh-context verifier agents tend to beat self-critique. Both point the same direction: do not ask a model to grade its own turn. Hand the work to a fresh reviewer, ideally a different one.</p>
+
+        <div class="info-box tip">
+          <strong>Know when to stop</strong>
+          The returns flatten fast. Huang et al. (ICLR 2024) found GPT-4 losing 6.5 points on GSM8K by the second round of self-revision. Past about round 3, more iteration usually moves things sideways, not forward. If three rounds have not fixed it, the problem is the approach, not the number of tries.
+        </div>
 
         <h3>The "Ask Me" Technique</h3>
 
@@ -1623,7 +1671,7 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
         <div class="step-card">
           <div class="step-num">9.6</div>
           <h3>Exercise: Go Three Rounds</h3>
-          <p>Pick a task. Prompt it once. Evaluate. Refine with specific feedback. Run again. Refine once more. Compare Round 1 vs Round 3. You'll see dramatic improvement.</p>
+          <p>Pick a task. Prompt it once. Evaluate. Refine with specific feedback. Run again. Refine once more. Compare Round 1 vs Round 3. Most of the gain lands in the first two rounds; if round 3 is not clearly better, stop and change the approach rather than iterating further.</p>
         </div>
 
         <div class="try-it-box" data-coach="section9">
