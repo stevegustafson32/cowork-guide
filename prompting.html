@@ -2213,5 +2213,152 @@ OUTPUT: [SPECIFIC STRUCTURE]. Include [REQUIRED ELEMENTS].</div>
 <script src="sections.js" defer></script>
 
 <script src="search.js"></script>
+<script>
+  // ── PROMPT COACH ENGINE (restored; lost in the b40442f open-sections migration) ──
+  function copyTryIt(btn) {
+    const box = btn.closest('.try-it-box');
+    const textarea = box.querySelector('textarea');
+    navigator.clipboard.writeText(textarea.value).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = orig, 2000);
+    });
+  }
+
+  function analyzePrompt(btn) {
+    const box = btn.closest('.try-it-box');
+    const textarea = box.querySelector('textarea');
+    const panel = box.querySelector('.feedback-panel');
+    const text = textarea.value.trim();
+    const section = box.getAttribute('data-coach');
+
+    if (!text || text.length < 10) {
+      panel.innerHTML = '<div class="feedback-item"><span class="fail">✗</span> Type a prompt first, at least a sentence or two so I can give useful feedback.</div>';
+      panel.classList.add('visible');
+      return;
+    }
+
+    const lower = text.toLowerCase();
+    const words = text.split(/\s+/).length;
+    let checks = [];
+    let score = 0;
+    let maxScore = 0;
+
+    function check(pass, passMsg, failMsg, weight) {
+      weight = weight || 1;
+      maxScore += weight;
+      if (pass) { score += weight; checks.push({s:'pass', m:passMsg}); }
+      else { checks.push({s:'fail', m:failMsg}); }
+    }
+    function tip(msg) { checks.push({s:'tip', m:msg}); }
+
+    // Length check
+    check(words >= 15, 'Good length. Enough detail to work with (' + words + ' words).', 'Very short (' + words + ' words). Longer prompts with more context typically get better results.', 1);
+
+    // Vague verb detection
+    const vagueVerbs = ['help me', 'assist me', 'can you', 'could you', 'i need help', 'do something'];
+    const hasVague = vagueVerbs.some(v => lower.includes(v));
+    check(!hasVague, 'No vague verbs detected. Direct language.', 'Found vague phrasing ("' + vagueVerbs.find(v => lower.includes(v)) + '"). Replace with a specific action verb: analyze, draft, compare, create, evaluate, summarize.', 1);
+
+    if (section === 'section1') {
+      check(words >= 20, 'This reads like a conversation, not a search query. Good shift.', 'This still looks search-engine short. AI works best when you give it context and specifics, so write more like you are briefing a colleague.', 2);
+
+      const hasContext = lower.includes('context') || lower.includes('background') || lower.includes('because') || lower.includes('the situation') || lower.includes('i\'m working on') || lower.includes('we are') || lower.includes('my company') || lower.includes('our');
+      check(hasContext, 'You are giving context, so the AI can tailor its response to your situation.', 'Add context. Why do you need this? What is the situation? "Context:" or "Background:" helps the AI personalize its answer instead of giving generic advice.', 2);
+
+      const hasRole = /you are|act as|as a|you\'re a/i.test(text);
+      check(hasRole, 'You are assigning a role, a smart move for a first prompt.', 'Try adding a role: "You are a [specific expert]." This shifts the AI from general-purpose to specialist.', 1);
+
+      const isQuestion = text.includes('?') && words < 15;
+      if (isQuestion) tip('This looks like a question you would type into Google. Try rephrasing as: "You are a [role]. I need you to [task]. Here is the context: [details]."');
+    }
+
+    else if (section === 'section2') {
+      const hasRole = /you are|act as|as a|you\'re a|role:/i.test(text);
+      const hasTask = /\b(analyze|draft|create|write|build|compare|evaluate|summarize|design|develop|plan|review|outline|generate|prepare|assess|identify|recommend|list|explain)\b/i.test(text);
+      const hasOutput = /format|output|structure|bullet|table|markdown|json|list of|word count|keep.*(short|brief|under)|no more than|page|paragraph/i.test(text);
+
+      check(hasRole, '✓ ROLE detected. You are telling the AI who to be.', '✗ Missing ROLE. Start with "You are a [specific expert]..." This is the R in RTO.', 2);
+      check(hasTask, '✓ TASK detected. Clear action verb found.', '✗ Missing clear TASK. Use a specific action verb: analyze, draft, create, compare, evaluate. This is the T in RTO.', 2);
+      check(hasOutput, '✓ OUTPUT format specified. The AI knows what shape to deliver.', '✗ Missing OUTPUT format. Tell the AI: "Format as [bullets/table/memo/JSON]" or "Keep to [length]." This is the O in RTO.', 2);
+
+      if (hasRole && hasTask && hasOutput) tip('All three RTO components present. This is a solid minimum viable prompt. Now try enhancing each piece using Sections 4-6.');
+      if (hasRole && hasTask && !hasOutput) tip('You are 2/3 of the way. Adding output format is often the biggest quality unlock. It removes guessing.');
+    }
+
+    else if (section === 'section4') {
+      const hasRole = /you are|act as|you\'re a/i.test(text);
+      const hasYears = /\d+\s*(year|yr)/i.test(text);
+      const hasSpecialty = /speciali|focus|expert in|known for|background in/i.test(text);
+      const hasBias = /bias toward|prefer|lean toward|philosophy|approach is|style is|believe in|writing for|briefing/i.test(text);
+      const hasTitle = /director|manager|ceo|cto|vp|analyst|engineer|consultant|strategist|architect|designer|lead|senior|head of|chief|editor|reviewer/i.test(text);
+      const hasIndustry = /saas|b2b|b2c|healthcare|fintech|ecommerce|startup|enterprise|agency|consulting|retail|tech/i.test(text);
+
+      check(hasRole, 'Role assignment detected.', 'Start with "You are a..." to establish the persona.', 1);
+      check(hasTitle, 'Specific role found, much better than a generic "expert."', 'Add a specific role like "marketing director" instead of "marketer." A sharper role gives a sharper voice.', 2);
+      check(hasYears, 'Experience level specified. This sets the register of the output.', 'Add years of experience: "with 15 years in..." This shapes whether the voice reads junior or senior.', 1);
+      check(hasSpecialty, 'Specialty or focus area defined. It narrows the lens.', 'Add a specialty: "You specialize in [niche]." Generic roles get generic voices.', 2);
+      check(hasBias || hasIndustry, 'Perspective or audience specified.', 'Add a perspective or audience: "writing for a client who does not read spreadsheets" or "with a bias toward plain language." This is what persona actually controls.', 1);
+
+      if (words > 40) tip('Good depth on this persona. Remember persona shapes voice and perspective, not accuracy. Save it as a reusable template.');
+    }
+
+    else if (section === 'section5') {
+      const hasActionVerb = /\b(analyze|draft|create|write|build|compare|evaluate|summarize|design|develop|plan|review|outline|generate|prepare|assess|identify|recommend|audit|map|prioritize|diagnose|benchmark|forecast|calculate)\b/i.test(text);
+      const hasScope = /\b(for|about|covering|focused on|limited to|specifically|only|between|from .* to)\b/i.test(text);
+      const hasConstraints = /\b(must|should|don't|do not|avoid|never|always|ensure|make sure|include|exclude|no more than|at least|maximum|minimum)\b/i.test(text);
+      const hasAudience = /\b(audience|reader|for .*(team|exec|board|client|customer|stakeholder|beginner|expert))\b/i.test(text);
+      const hasSuccess = /\b(success|criteria|goal|objective|measure|outcome|deliverable|result should)\b/i.test(text);
+      const hasEdgeCases = /\b(if .*then|edge case|exception|fallback|missing|unknown|unclear|when .* isn't)\b/i.test(text);
+
+      check(hasActionVerb, 'Specific action verb found. Clear direction.', 'Use a specific action verb instead of "help with" or "work on." Try: analyze, draft, compare, evaluate, audit, prioritize.', 2);
+      check(hasScope, 'Scope detected. The task has boundaries.', 'Add scope: What specifically? Which timeframe? How many? Unbounded tasks get unfocused results.', 2);
+      check(hasConstraints, 'Constraints found. You are telling the AI what to include or avoid.', 'Add constraints: "Must include...", "Do not include...", "Keep under..." Constraints force precision.', 1);
+      check(hasAudience, 'Audience specified. Output will be calibrated.', 'Specify the audience: "This is for [senior executives / technical team / new hires]." Same task, very different output.', 1);
+      check(hasSuccess || hasEdgeCases, 'Success criteria or edge case handling detected.', 'Define what "good" looks like: "A good result would include..." or handle edge cases: "If data is missing, then..."', 1);
+    }
+
+    else if (section === 'section9') {
+      const rounds = text.split(/\n\n|\nround\s*\d|step\s*\d|\nthen\b/i);
+      const hasMultipleRounds = rounds.length >= 2 || /round\s*[2-9]|step\s*[2-9]|then\b|next\b|now\b.*revise|now\b.*critique|follow.?up/i.test(lower);
+      const hasCritique = /critique|review|what's wrong|what's missing|what's weak|evaluate|assess|grade|score|improve|verify|fresh chat|different model/i.test(lower);
+      const hasRevision = /revise|rewrite|improve|refine|update|adjust|fix|make it|change the|try again/i.test(lower);
+      const hasSpecificFeedback = /tone|format|length|too (formal|casual|long|short|vague|generic)|more (specific|detail|concise|actionable)|less (wordy|formal)/i.test(lower);
+      const hasLockStep = /save|template|reuse|lock|final version|keep this/i.test(lower);
+
+      check(hasMultipleRounds, 'Multiple rounds detected. You are iterating, not one-shotting.', 'Write at least two rounds. Round 1: your initial prompt. Round 2: your refinement feedback (e.g., "Now critique this for..." or "Revise the tone to...").', 2);
+      check(hasCritique, 'Critique step found. To catch factual errors, run the check in a fresh chat or a different model, not the same thread.', 'Add a critique step. For refining structure, "review this and tell me what is weak" works in the same chat. To catch errors, paste the draft into a fresh chat as a reviewer instead of asking the same thread to grade itself.', 2);
+      check(hasRevision, 'Revision instruction detected. You are closing the loop.', 'Add a revision step: "Now revise based on that critique" or "Rewrite with these changes:..." This is where quality jumps happen.', 1);
+      check(hasSpecificFeedback, 'Specific feedback criteria found, not just "make it better."', 'Be specific about what to change: "The tone is too formal" or "Add more data points." Vague feedback gets vague revisions.', 1);
+
+      if (hasLockStep) tip('Smart. You are saving the pattern for reuse, which is how you build a prompt library over time.');
+      if (!hasMultipleRounds) tip('The power of recursive prompting is iteration. Try Round 1 (draft), Round 2 (critique), Round 3 (revise). To verify correctness rather than polish, move the check to a fresh window.');
+    }
+
+    // ── SCORE & RENDER ──
+    const pct = Math.round((score / maxScore) * 100);
+    let color = pct >= 80 ? 'var(--green)' : pct >= 50 ? 'var(--yellow)' : 'var(--red)';
+    let verdict = pct >= 80 ? 'Strong prompt' : pct >= 50 ? 'Getting there' : 'Needs work';
+
+    let html = '<div class="feedback-score"><div class="feedback-score-num" style="color:' + color + '">' + pct + '%</div><div><div style="font-weight:600;">' + verdict + '</div><div class="feedback-score-label">' + score + ' of ' + maxScore + ' checks passed</div></div></div>';
+    html += '<div class="feedback-score-bar"><div class="feedback-score-fill" style="width:' + pct + '%;background:' + color + '"></div></div>';
+
+    checks.forEach(function(c) {
+      const icon = c.s === 'pass' ? '<span class="pass">✓</span>' : c.s === 'fail' ? '<span class="fail">✗</span>' : '<span class="tip">💡</span>';
+      html += '<div class="feedback-item">' + icon + ' ' + c.m + '</div>';
+    });
+
+    html += '<div class="feedback-cta">Improve your prompt based on the feedback above, then click <strong>Analyze</strong> again, or <strong>Copy to Clipboard</strong> and go test it in Claude.</div>';
+
+    panel.innerHTML = html;
+    panel.classList.add('visible');
+
+    const fill = panel.querySelector('.feedback-score-fill');
+    fill.style.width = '0%';
+    requestAnimationFrame(() => { fill.style.width = pct + '%'; });
+    // Fallback: if rAF is throttled (background tab), still settle at the right width.
+    setTimeout(() => { fill.style.width = pct + '%'; }, 60);
+  }
+</script>
 </body>
 </html>
