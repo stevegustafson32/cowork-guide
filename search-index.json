@@ -602,7 +602,13 @@
   "title": "What Is Claude Cowork?",
   "desc": "Think of it as hiring an AI assistant who sits at a desk next to you.",
   "headings": [
-   "What Can Cowork Actually Do?"
+   "What Can Cowork Actually Do?",
+   "Documents & Writing",
+   "Research",
+   "Presentations",
+   "Spreadsheets & Data",
+   "Code & Automation",
+   "Organization"
   ],
   "text": "1 step 1 what is claude cowork? think of it as hiring an ai assistant who sits at a desk next to you. most people know chatgpt or claude as a chatbot, you type a question, you get an answer. cowork is different. instead of answering one question at a time, claude takes on actual work for you: writing documents, building spreadsheets, researching companies, creating presentations, organizing files, analyzing data, all on your computer. here's the key difference: regular claude (chat) claude cowork you ask, claude answers you assign a task, claude does the work text responses only creates real files: word docs, excel, powerpoint, pdfs, html no access to your files reads and writes to folders on your computer forgets everything between sessions remembers context through files you set up one-shot interactions multi-step projects, runs while you step away the bottom line cowork turns claude from a chatbot into a co-worker. you describe what you need, claude figures out the steps and executes them, producing real deliverables you can use immediately. why your usage limit disappears every time you send a message, claude re-reads your entire conversation from the top. message 1 is cheap. message 30 means claude is re-reading 29 previous exchanges before it even starts thinking about your new question. that's why long conversations burn through your limit fast. every tip in this guide that says \"start fresh\" or \"keep it short\" comes back to this one thing. what can cowork actually do? here are real examples of tasks people hand to cowork daily: documents & writing write memos, proposals, reports, blog posts, emails, and linkedin content as polished word docs or pdfs. research deep-dive a company, person, or topic and get a professional research document with sources. presentations create real powerpoint decks you can open in microsoft powerpoint or google slides. spreadsheets & data build excel files with formulas, charts, and analysis. analyze csvs. create dashboards. code & automation write scripts, fix bugs, automate repetitive tasks, build web tools. organization manage files, rename documents, extract info from pdfs, merge files."
  },
@@ -611,7 +617,12 @@
   "label": "Claude Beginner · Step 2",
   "title": "Download & First-Time Setup",
   "desc": "Takes about 5 minutes. You need a paid Claude subscription.",
-  "headings": [],
+  "headings": [
+   "Download the Claude Desktop App",
+   "Sign In",
+   "Find the Cowork Tab",
+   "Select a Folder (put it in your cloud drive)"
+  ],
   "text": "2 step 2 download & first-time setup takes about 5 minutes. you need a paid claude subscription. requirements before you start • a mac (apple silicon m1 or newer) or windows pc (x64) • a paid claude subscription: pro ($20/month) , max, team, or enterprise • cowork is not available on the free plan 2.1 download the claude desktop app go to claude.com/download and download the app for your computer (mac or windows). install it like any normal app, drag to applications on mac, or run the installer on windows. 2.2 sign in open the claude app and sign in with your anthropic account. if you don't have a paid plan yet, you'll need to upgrade at claude.ai first. 2.3 find the cowork tab once you're signed in, look at the top of the app window . you'll see tabs for chat , cowork , and code . click cowork to switch. (you can ignore the code tab, that's for software developers.) heads up: the first time you open cowork, it downloads a ~2gb linux environment. this only happens once but can take 5-10 minutes on slower connections. let it finish before moving on. 2.4 select a folder (put it in your cloud drive) cowork will ask you to select a folder on your computer. this is the one setup choice worth thirty seconds of thought, because moving it later is a chore: create the folder inside your cloud-synced drive, not a plain local folder. something like google drive/cowork os . use whichever service your work already runs on, google drive, dropbox, onedrive/sharepoint, or box. we'll organize the inside of it in step 6. claude can only see files inside this folder, not your whole computer. why the cloud drive, specifically your mac still treats it as an ordinary local folder, so nothing about daily cowork changes. but the same files now sit in a service claude has a connector for, and that is what lets cowork on your phone or the web reach your work at all. a plain local folder is desktop-only forever. so is icloud, which syncs your files between your own devices but has no claude connector, so claude on your phone still can't see it. google drive, dropbox, onedrive/sharepoint, and box all have connectors. see claude everywhere for the full rule. what your phone can actually read one nuance worth knowing now instead of discovering later. the drive connector reads google docs, sheets, slides, pdfs, and office files. it does not read .md , so your context files ( claude.md , memory.md , about-me.md ) aren't readable from a phone session. that's fine, they're the desktop's brain and the desktop reads them straight from the folder. the rule that matters: if you want a deliverable you can pull up on your phone, save it as .docx , .pdf , or a google doc, not as markdown. one setting to change in google drive google drive for desktop streams files by default, meaning they're online-only placeholders that aren't really on your disk until opened, and cowork can fail to read them. right-click your cowork folder in finder and choose available offline (or switch drive to mirror mode) so the files are genuinely local. dropbox calls the same setting \"make available offline.\""
  },
  {
@@ -620,7 +631,11 @@
   "title": "Your First Cowork Session",
   "desc": "Here's what it looks like and how it works.",
   "headings": [
-   "How a Session Works"
+   "How a Session Works",
+   "You describe what you want",
+   "Claude asks clarifying questions (sometimes)",
+   "Claude works through the task",
+   "Claude delivers the output"
   ],
   "text": "3 step 3 your first cowork session here's what it looks like and how it works. when you open cowork and select your folder, you'll see a text input area, similar to regular claude chat. but now claude has superpowers: it can create files, browse the web, run code, and work through multi-step projects. how a session works 3.1 you describe what you want type your request in plain english. be as specific as you can. for example: \"write a one-page executive summary of wuunderfund for potential investors. make it a word doc.\" 3.2 claude asks clarifying questions (sometimes) if your request is ambiguous, claude will ask before starting, just like a real colleague would. answer the questions and claude begins work. 3.3 claude works through the task you'll see a progress tracker showing what claude is doing: reading files, searching the web, writing code, creating documents. you can watch or switch to another app, claude keeps working. 3.4 claude delivers the output when done, claude will provide a link to the file it created in your workspace folder. click it to open. the file is already on your computer, no downloading needed. you don't have to wait while claude is working, you can keep typing. your messages go into a queue and claude picks them up as soon as it finishes the current step. this means you can add context, change direction, or stack up follow-on tasks without waiting for each one to complete. think of it like leaving notes on a colleague's desk while they're heads-down, they'll get to each one in order. you can also start multiple cowork sessions in parallel for different tasks. important: keep the app open claude needs the desktop app running to work. you can minimize it or switch to other apps, but don't quit the claude app while a task is running."
  },
@@ -631,8 +646,16 @@
   "desc": "Projects are Cowork's built-in way to organize work with persistent memory and instructions.",
   "headings": [
    "How to Create a Project",
+   "Open the Projects panel",
+   "Name it and add instructions",
+   "Attach context",
+   "Start a task",
    "How Project Memory Works",
-   "What Projects Don't Do (Yet)"
+   "What Projects Don't Do (Yet)",
+   "No structured output management",
+   "No identity document",
+   "No explicit memory control",
+   "No cloud sync"
   ],
   "text": "4 step 4 create your first project projects are cowork's built-in way to organize work with persistent memory and instructions. as of march 2026, cowork has a first-party projects feature built right in. a project is a persistent workspace with its own files, instructions, and memory. everything you do inside a project stays scoped to that project, claude remembers your context across tasks without you re-explaining anything. this is your starting point projects handle the basics: project isolation, automatic memory, per-project instructions, and file attachment. steps 5-8 of this guide show you how to add structure and power on top of what projects gives you. if you just want to get started fast, create a project and skip to step 9. how to create a project 4.1 open the projects panel in claude desktop, click projects in the left sidebar. click new project . 4.2 name it and add instructions give your project a clear name (e.g., \"wuunderfund\" or \"q2 marketing\"). in the instructions field, add rules for how claude should work in this project, tone, formatting, key context. these apply to every task in the project. 4.3 attach context add a local folder from your computer, link a chat project from regular claude, or paste a url for claude to reference. this is the information claude draws from when working on tasks in this project. 4.4 start a task click into the project and type your first request. claude now has your instructions and context loaded automatically. how project memory works memory is automatic and always on inside projects. as you work, claude periodically extracts useful facts, decisions, preferences, key details, and saves them for future tasks. when you start a new task in the same project, claude loads those memories automatically. behavior how it works scoping memory stays within its project. what claude learns in project a doesn't appear in project b. persistence memories survive across tasks and sessions. close the app, come back tomorrow, they're still there. auto-extraction claude decides what's worth remembering (roughly every 5,000 tokens of conversation). you can also say \"remember this\" to force it. viewing click the memory icon in the project view, or open the memory.md file in your project folder directly. limits first 200 lines (or 25kb) are loaded at the start of each new task. what projects don't do (yet) projects are a great foundation, but they don't give you everything. here's where the rest of this guide comes in: no structured output management projects don't separate where claude reads from vs. where it writes. without a system, files pile up in one folder. steps 5-6 solve this with a read-only/write-only folder structure. no identity document the instructions field is great for project-specific rules, but there's no dedicated place for \"who you are\" context that spans all projects. step 7 creates your about me file. no explicit memory control auto-memory is convenient but imprecise, claude decides what to save. if you want to guarantee specific facts persist with your exact wording, you need user-triggered memory. step 8 covers this with claude.md and memory.md. no cloud sync projects are stored locally. no sharing, no sync across devices. this is a known limitation, plan accordingly. quick start vs. full setup if you just want to get working: create a project, attach a folder, write 2-3 lines of instructions, and jump to step 9 for your first real task. come back to steps 5-8 when you want more control. if you want the full power-user system from day one, keep going to step 5."
  },
@@ -643,6 +666,9 @@
   "desc": "Adds structured memory, naming conventions, and project scaffolding on top of native Projects.",
   "headings": [
    "How to Install",
+   "Download the Plugin",
+   "Install in Cowork",
+   "Type /begin , That's It",
    "What Happens When You Type /begin",
    "Ongoing Features (After Setup)",
    "Next: Set Up Your Workspace"
@@ -656,7 +682,12 @@
   "desc": "Separate inputs from outputs. Native Projects don't do this, but it changes everything.",
   "headings": [
    "The Four Key Folders",
+   "ABOUT ME/, Your Identity File",
+   "TEMPLATES/, Reusable Patterns",
+   "PROJECTS/, Your Reference Materials",
+   "CLAUDE OUTPUTS/, Where Claude Delivers Work",
    "Starting a New Project",
+   "What happens when you say \"New Project\"",
    "File Naming Convention"
   ],
   "text": "6 step 6 set up your folder structure separate inputs from outputs. native projects don't do this, but it changes everything. think of your workspace folder as claude's desk. the better organized it is, the better claude performs. where this lives everything below goes inside the cloud-drive folder you picked in step 2.4, for example google drive/cowork os/ (or your dropbox, onedrive/sharepoint, or box equivalent). build it there from the start and your workspace follows you to every device. build it in a plain local folder and it's desktop-only. the easy way: just ask claude to do it here's the secret, you don't have to create any of this manually. once you're in cowork, just type: \"set up my workspace with an about me folder, templates folder, projects folder, and claude outputs folder.\" claude will create all the folders for you. you can also install the cowork os plugin (step 5) which does this automatically. the section below explains what each folder is for, but claude handles the creation. here's the proven folder structure used by power users: google drive/cowork os/ ← your cloud drive, not a local folder about me/ about-me.md ← who you are, your role, your style templates/ email-template.md ← structures claude should reuse report-template.md projects/ my-startup/ ← reference materials (read-only for claude) pitch-deck.pptx business-plan.pdf client-work/ brief.md claude outputs/ ← everything claude creates goes here my-startup/ client-work/ claude.md ← instructions for claude (the brain) memory.md ← persistent notes across sessions the four key folders about me/, your identity file a simple text file that tells claude who you are, what you do, and how you like to work. claude reads this at the start of every session. this is what makes claude feel like your assistant instead of a generic ai. we'll set this up in step 7. templates/, reusable patterns drop in any document structure you want claude to follow. a report format, an email style, a slide deck structure. claude will study the pattern and apply it, without copying the content. start empty; add templates as you discover patterns you reuse. projects/, your reference materials this is where you put context claude needs to do good work: briefs, research, decks, past work. organize by project. claude reads from here but never writes to it, your originals stay untouched. claude outputs/, where claude delivers work every file claude creates goes here, organized by project (mirroring your projects folder). this keeps your workspace clean and makes it easy to find what claude built. you don't need all this on day one start with just about me/ and claude outputs/ . add templates and projects as you need them. the structure grows with you. keep your workspace lean cowork reads your folder before every task. that's a feature, not a bug, it's how claude knows you. but don't dump 50 files in there \"just in case.\" if claude doesn't need it for your work, it shouldn't be in the workspace. a tight, curated folder means claude reads fast and reads well. your about me, claude.md, templates, and active project files? essential. that 47-page pdf from last quarter's board meeting? move it out until you need it. install obsidian to actually edit your folder (free, 2 minutes) here's the hidden problem with cowork: it runs on .md files. double-click one and your computer opens it in textedit or notepad, and you see a mess of hashtags, asterisks, and raw formatting. it's ugly, it's hard to read, and most people quietly stop editing their files. which means their \"second brain\" never gets smarter. fix it with obsidian . it's free for personal use, runs locally on your computer, and renders markdown cleanly (real headers, bold, bullets). download it, choose \"open folder as vault\" , and point it at your cowork folder. done. obsidian and cowork now read and write the same files live. you use obsidian to browse, search, and edit your context. you use cowork to generate new work. no syncing, no copy-paste. why obsidian and not notion or google docs? notion silently corrupts markdown with hidden formatting that breaks claude. google docs needs constant conversion. code editors like vs code are too technical. obsidian is the one tool that just reads your folder without touching it. maintenance tip: don't let claude outputs become a junk drawer every file claude makes lands in claude outputs/ . after a few weeks of heavy use, that folder is dozens of drafts deep and claude starts reading stale work as context. once a week, prune it. move finished deliverables into your own archive folder outside the cowork workspace, delete duds, and keep only the outputs you're actively iterating on. a lean outputs folder keeps claude fast and keeps the second brain navigable. starting a new project when you start a new project, just tell claude: \"new project: [project name]\" . claude will automatically create: what happens when you say \"new project\" 1. a projects/[project name]/ folder for your reference materials (briefs, docs, research) 2. a claude outputs/[project name]/ folder where claude delivers all work for that project 3. a memory.md inside the project folder, scoped to that project only this means every project has its own memory. decisions, deadlines, and context for project a don't bleed into project b. claude knows which project it's working on and remembers the right things. file naming convention use this pattern for everything claude creates: project_contenttype_v1.ext example what it is acme_proposal_v1.docx first draft of a proposal for acme q2-launch_deck_v2.pptx second revision of the q2 launch deck competitor_research_v1.docx competitive research report monthly_report_v3.xlsx third revision of a monthly report when you ask claude to revise something, it automatically increments the version number (v1 → v2 → v3). this gives you a built-in history of how deliverables evolved, no git required."
@@ -668,7 +699,8 @@
   "desc": "Your identity doc, context that spans every project and makes Claude feel like a colleague.",
   "headings": [
    "Real-World Example",
-   "Fast Track: Import from ChatGPT"
+   "Fast Track: Import from ChatGPT",
+   "The Fastest Path: Let Claude Do the Extraction"
   ],
   "text": "7 step 7 write your \"about me\" file your identity doc, context that spans every project and makes claude feel like a colleague. easiest approach: just tell claude you don't need to create this file manually. in cowork, just say: \"create an about me file for me. my name is [name], i'm a [role] at [company]. ask me any questions you need to fill it out.\" claude will interview you and create the file automatically. if you prefer to write it yourself, here's what to include: the about me file is a simple text file that lives in your about me folder. here's what goes in it: # about [your name] ## who i am [your name], [your role] at [your company/org]. brief description of what you do day to day. ## what i'm working on - [current project or focus area 1] - [current project or focus area 2] - [any deadlines or priorities] ## tools i use - [list your main tools: google docs, slack, excel, etc.] ## how i like to work - [communication style: brief and direct? detailed?] - [response length preference] - [any pet peeves or preferences] ## things to know - [industry jargon or acronyms claude should understand] - [any context that would help claude do better work] real-world example here's what a real about me file looks like (based on an actual power user's setup): # about sarah ## who i am vp of marketing at a series b saas startup (hr tech space). i manage a team of 6 and report directly to the ceo. ## what i'm working on - q2 product launch campaign (deadline: april 15) - rebuilding our content strategy for linkedin - preparing board deck for investor update ## tools i use - figma, canva (design) - hubspot (crm + email) - google workspace (docs, sheets, slides) - notion (project management) ## how i like to work - keep it short and direct. match response to task complexity. - don't explain obvious things. i know marketing. - when in doubt, ask before guessing. - use data and specifics, not generic advice. ## things to know - our product is called \"teampulse\" — always capitalize both words - our competitors: lattice, culture amp, 15five - brand voice: confident but approachable, never corporate jargon fast track: import from chatgpt if you've been using chatgpt, you've already built up months of context, your role, preferences, style corrections, project details. instead of starting from scratch, you can extract all of that and use it to pre-fill your about me, claude.md, and memory.md files. start your export now, it takes 1-3 days chatgpt's data export is not instant. go to chatgpt.com → profile icon (bottom-left) → settings → data controls → export data → confirm. you'll get an email from noreply@openai.com with a download link (expires in 24 hours). check spam if you don't see it. what to look for in your export claude setup file what goes in it where to find it in chatgpt about me who you are, your role, how you work every time you told chatgpt \"i'm a [role] at [company]\" or corrected its tone claude.md workspace rules, naming conventions, behavior instructions you repeated, \"always format it this way,\" \"don't use bullet points,\" etc. memory.md decisions, deadlines, project context facts you kept re-explaining each session, deadlines, stakeholders, strategies personal preferences communication style, personality times you said \"be more direct,\" \"stop over-explaining,\" \"match my tone\" templates/ reusable document structures prompts you copy-pasted repeatedly, report formats, email templates, frameworks the fastest path: let claude do the extraction unzip the export file (you'll get chat.html ). drop it into your cowork workspace folder and tell claude: \"i just exported my chatgpt history. it's in chat.html. read through it and extract: (1) everything it knew about me, role, company, preferences, (2) instructions i repeated often, (3) recurring projects or topics, (4) key decisions and facts. use what you find to draft my about me file and seed my memory.md.\" what took you months to teach chatgpt, claude gets in one conversation. why this matters so much without an about me file, every cowork session starts from scratch, claude doesn't know who you are, what you do, or how you like things done. with it, claude feels like an assistant who's been working with you for months. the 10 minutes you spend writing this file (or importing from chatgpt) saves hours of explaining yourself in future sessions. keep your about me under 2,000 words cowork reads your folder before every single task. if your about me file is a novel, that's thousands of tokens burned before any real work starts, every session, every task. trim it to what claude actually needs to know to do good work for you. think resume, not autobiography."
  },
@@ -681,6 +713,8 @@
    "CLAUDE.md, The Instruction Manual",
    "MEMORY.md, Persistent Notes",
    "Per-Project Memory",
+   "Global MEMORY.md (workspace root)",
+   "Project MEMORY.md (inside project folder)",
    "When to Update MEMORY.md vs CLAUDE.md"
   ],
   "text": "8 step 8 claude.md & memory.md structured rules and explicit memory, the power-user layer on top of native projects. you don't need to create these manually just tell claude: \"create a claude.md and memory.md for my workspace. ask me any questions about how i like to work.\" claude will interview you and generate both files. or install the cowork os plugin (step 5) which handles this in a guided setup. the sections below explain what these files do so you understand why they matter. claude.md, the instruction manual this file lives in the root of your workspace. it tells claude the rules of your workspace: what folders exist, how to name files, where to save outputs, and any specific behaviors you want. claude reads this automatically at the start of every session. why this file matters more than any prompt claude reads your claude.md before it reads your request, so it sets the direction for everything after. think of it as a launch angle: a small change at the start moves where the whole session lands. when output feels off, fix this file before you re-word your prompt. # my workspace ## folder structure - about me/ — my identity and context. read-only. - templates/ — patterns to reuse. read-only. - projects/ — reference materials. read-only. - claude outputs/ — everything you create goes here. ## naming convention all files: project_content-type_v1.ext examples: clientx_proposal_v1.docx, launch_deck_v2.pptx ## rules - always read about me/ before starting any task - if a task involves a project, read the matching projects/ subfolder first - ask questions when the brief is unclear — don't fill gaps with filler - don't over-explain. deliver the work. - never delete files - if my reasoning has gaps or i'm heading in a questionable direction, flag it directly. don't just agree. ## memory system read memory.md at the start of every session. only write to it when i explicitly say \"remember this\" or \"make a note.\" claude's default is to agree with you ai models are trained on human feedback, and humans reward agreeable responses. the result: claude's natural instinct is to validate your ideas, not challenge them. mit researchers have shown that this \"sycophancy\" can create a feedback loop where your confidence in a direction grows simply because claude keeps confirming it. the fix is simple: add a rule to your claude.md like the one above ( \"if my reasoning has gaps, flag it directly. don't just agree.\" ) and periodically ask claude to argue the other side. the best decisions come from an assistant that pushes back, not one that nods along. memory.md, persistent notes this is claude's external brain. it's a simple text file where claude stores things you ask it to remember between sessions. unlike regular chat (which forgets everything), memory.md persists. # memory _last updated: 2026-03-19_ ## notes - our q2 launch date moved from april 15 to april 22 (confirmed 3/18) - the board wants arr projections, not mrr, in the investor deck - competitor \"culture amp\" just launched a new feature — track this - draft blog posts go to sarah for review before publishing how memory works: claude reads memory.md at the start of every session (automatically) claude only writes to memory.md when you say phrases like \"remember this,\" \"make a note,\" \"save this,\" or \"don't forget\" notes persist until you explicitly ask claude to remove them if you ask claude to remember something that contradicts an existing note, claude will flag the conflict and ask you what to do good things to put in memory deadlines, decisions, terminology, preferences, project status updates, things that changed since last session. think: \"what would i tell a new assistant on their first day, and what's changed since yesterday?\" per-project memory when you create a new project (see step 4), each project gets its own memory.md. this is powerful because: global memory.md (workspace root) cross-project stuff: your role, recurring contacts, preferences, tool accounts, things that are always true regardless of project. project memory.md (inside project folder) project-scoped notes: this project's deadlines, decisions, status updates, stakeholder feedback, version history. stays isolated from other projects. when to update memory.md vs claude.md these two files serve different purposes. here's when to update each: memory.md claude.md what goes here things that change: status, decisions, deadlines, contacts, what happened last session things that don't change: rules, folder structure, naming conventions, workflow instructions how to update say \"remember this\" or \"make a note\" during any session, claude writes it automatically edit the file directly when your workflow or rules change (rare) how often every session or two maybe once a month who updates it claude (when you ask) you (manually) or claude (when you explicitly ask \"update claude.md\") the rule of thumb if it's a fact that will change (deadline, decision, status) → memory.md. if it's a rule that should always apply (naming convention, folder structure, behavior) → claude.md. when in doubt, put it in memory.md, it's easier to clean up later."
@@ -692,8 +726,19 @@
   "desc": "Connect Claude to your tools and unlock specialized capabilities.",
   "headings": [
    "Claude in Chrome (Install This First)",
+   "Why this matters",
    "Connectors (Connect Your Apps)",
    "Plugins (Specialized Skills by Job Function)",
+   "Productivity",
+   "Sales",
+   "Marketing",
+   "Finance",
+   "Legal",
+   "Product Management",
+   "Data",
+   "Operations",
+   "Design",
+   "Enterprise Search",
    "Recommended Starter Packs",
    "What Are Skills? (The Building Blocks)"
   ],
@@ -704,7 +749,13 @@
   "label": "Claude Beginner · Step 10",
   "title": "Your First Real Task",
   "desc": "Here are five great starter tasks ranked from simple to advanced.",
-  "headings": [],
+  "headings": [
+   "Easiest: Research a Company",
+   "Simple: Write a Professional Document",
+   "Medium: Create a Presentation",
+   "Medium: Analyze a Spreadsheet",
+   "Advanced: Multi-Step Project"
+  ],
   "text": "10 step 10 your first real task here are five great starter tasks ranked from simple to advanced. 10.1 easiest: research a company \"research [company name]. give me a word doc covering what they do, their business model, key people, recent news, and competitive positioning.\" why it's great first: zero setup needed. claude uses web search and creates a real .docx file. 10.2 simple: write a professional document \"write a one-page executive summary of my company for potential investors. here's what we do: [brief description]. make it a word doc.\" 10.3 medium: create a presentation \"create a 10-slide pitch deck for [your company/project]. include: problem, solution, market size, business model, team, and ask. make it a .pptx file.\" 10.4 medium: analyze a spreadsheet drop a csv or excel file into your workspace folder, then ask: \"analyze the data in [filename]. tell me the key trends and create a summary dashboard.\" 10.5 advanced: multi-step project \"i'm preparing for a meeting with [company/person]. research them, create a briefing doc, and draft 3 talking points i should bring up. save everything to my project folder.\" the secret to great results be specific. instead of \"make me a presentation,\" say \"make me a 10-slide investor pitch deck for a fintech startup that does payroll-embedded savings. audience is angel investors. tone should be confident but not hype-y. include a financial projection slide.\" the more context you give, the better the output. pro tip: convert files before uploading a single pdf page costs 1,500-3,000 tokens. screenshots can hit 1,300 tokens each. before uploading, extract the text you actually need and paste it into a plain text or markdown file. if you're uploading the same document across multiple sessions, this adds up fast. quick trick: type doc.new in your browser, paste the text, then download as .md ."
  },
  {
@@ -724,7 +775,21 @@
   "label": "Claude Beginner · Step 12",
   "title": "Power User Tips",
   "desc": "Things that took experienced users weeks to figure out. You get them now.",
-  "headings": [],
+  "headings": [
+   "1. Think \"Context Engineering,\" Not \"Prompt Engineering\"",
+   "2. End Every Request With \"Ask Me Any Questions\"",
+   "3. Say \"Think Hard\" for Complex Tasks",
+   "4. Choose the Right Model",
+   "5. Set Personal Preferences in Claude Settings",
+   "6. Use Subfolders for Different Projects",
+   "7. Tell Claude to \"Remember This\"",
+   "8. Schedule Recurring Tasks",
+   "9. Upload Files for Context",
+   "10. Use Claude in Chrome (Browser Extension)",
+   "11. Be Specific About Output Format",
+   "12. Say \"New Project\" to Stay Organized",
+   "13. Talk to Claude Like a Colleague, Not a Search Engine"
+  ],
   "text": "12 step 12 power user tips things that took experienced users weeks to figure out. you get them now. 1. think \"context engineering,\" not \"prompt engineering\" the biggest mindset shift for cowork: stop trying to write the perfect prompt and start giving claude the right context. that's what the folder structure, about me file, claude.md, and memory.md are doing, they're building a context layer that makes every conversation better. a mediocre prompt with great context beats a perfect prompt with zero context every time. this is why the setup in steps 5-7 matters so much. 2. end every request with \"ask me any questions\" this is the single easiest way to get better results. instead of just stating what you want, close your prompt with \"ask me any questions to give better context before you start.\" claude will then interview you, asking about audience, tone, scope, format, and details you didn't think to mention. the 30 seconds you spend answering saves you from getting something wrong on the first pass. 3. say \"think hard\" for complex tasks when you're asking claude to do something that requires deep reasoning, strategy, analysis, debugging, research synthesis, include \"think hard\" in your request. this activates claude's extended thinking mode, where it spends more time reasoning through the problem before responding. the difference is significant on complex tasks. you can also say \"think step by step\" or \"take your time with this.\" 4. choose the right model claude comes in four models. you pick your model in the cowork interface. from fastest to most capable: haiku 4.5 , the fastest and cheapest. reach for it on quick, simple jobs: reformatting text, a one-line question, organizing files, fast back-and-forth. uses the fewest tokens, so it's the one to run when you're doing something high-volume. sonnet 5 , the everyday default. fast, and now close to opus-level on real work. it handles most of what you'll throw at it: documents, research, presentations, code. start here. opus 4.8 , the deep-work model. best when the task needs careful reasoning or runs long: complex analysis, multi-step builds, projects that span many steps. slower and more expensive than sonnet, worth it when quality beats speed. fable 5 , the most capable model anthropic ships. built for the hardest reasoning and long-horizon work, letting it run whole workflows end to end. it costs more per token than opus, so save it for the roughly 10% of tasks that genuinely need it, the ones where opus gets stuck. rule of thumb: start with sonnet 5. move up to opus 4.8 when the task is high-stakes, complex, or long-running. drop to haiku 4.5 when you just need something quick. escalate to fable 5 only when opus can't crack it, it's the priciest of the four. 5. set personal preferences in claude settings go to claude desktop → settings → personal preferences . paste a block that describes your name, role, working style, and communication preferences. unlike the about me file (which only works in one folder), personal preferences apply to every claude session, chat and cowork. this is where you tell claude your personality expectations. 6. use subfolders for different projects each project can have its own claude.md and memory.md. this means claude can have different instructions and memory for different projects. a marketing folder can have claude act as a content strategist; a finance folder can have claude act as an analyst. 7. tell claude to \"remember this\" whenever something important comes up, a decision, a deadline change, a new contact, say \"remember this: [fact].\" claude will write it to memory.md. next session, it'll already know. 8. schedule recurring tasks cowork can run tasks on a schedule. example: \"every monday at 9am, compile a summary of my unread emails and create a priorities list.\" set this up once, get it delivered automatically. 9. upload files for context drop files directly into the chat or put them in your workspace folder. claude can read pdfs, word docs, excel sheets, csvs, images, and more. the more context claude has, the better the output. 10. use claude in chrome (browser extension) if you skipped this in step 9, go back and install it. claude in chrome lets claude see and interact with your browser, research, form filling, screenshots, web automation. it's one of the highest-impact additions you can make. 11. be specific about output format always tell claude what format you want: \"make it a word doc,\" \"create a .pptx,\" \"give me an excel file,\" \"build an html page.\" claude can create nearly any file type, but only if you ask. 12. say \"new project\" to stay organized when starting fresh work, just say \"new project: [name].\" claude creates the folder structure, project-specific memory, and output directory automatically. everything for that project stays together from day one. see step 4 for the full workflow. 13. talk to claude like a colleague, not a search engine anthropic's own research on large language models shows that claude develops internal representations that mirror collaborative dynamics. in practice: collaborative, respectful framing produces better outputs than demanding or terse commands. instead of \"write me a report,\" try \"i need a report on x for my board, here's the context. can you draft something and i'll refine it with you?\" the difference isn't politeness for its own sake. it's that collaborative framing gives claude more context about your intent, audience, and quality bar. claude works best when you treat it like a sharp colleague, not a vending machine."
  },
  {
@@ -735,7 +800,13 @@
   "headings": [
    "Official Links",
    "Your Setup Checklist",
-   "Common Questions"
+   "Common Questions",
+   "Do I need to know how to code?",
+   "Can Claude see all my files?",
+   "Is my data safe?",
+   "What happens if I close the app mid-task?",
+   "How much does it cost?",
+   "Can I use Cowork on my phone?"
   ],
   "text": "13 step 13 quick reference & resources bookmark this section. you'll come back to it. official links resource url download claude desktop claude.com/download getting started guide cowork help center safety guidelines using cowork safely plugins guide using plugins scheduling tasks recurring tasks connectors extending capabilities skills documentation building skills cowork product page claude.com/product/cowork your setup checklist download claude desktop from claude.com/download sign up for or verify your paid plan (pro at minimum) open the app and switch to the cowork tab select a workspace folder (e.g. ~/documents/cowork) create a project (step 4) (recommended) install cowork os plugin and type /begin , this handles steps 6-8 automatically or manually: create folder structure, about me file, claude.md, memory.md (steps 6-8) connect your apps, gmail, google calendar, and claude in chrome at minimum (step 9) set personal preferences in claude settings (step 12, tip 5) (optional) install job-specific plugins (step 9) run your first real task (step 10)! common questions do i need to know how to code? no. cowork is designed for non-technical users. you describe what you want in plain english. claude handles the technical execution. can claude see all my files? no. claude can only see files in the specific folder you selected. it cannot access your entire computer, your browser history, passwords, or anything outside that folder. is my data safe? files stay on your computer. claude processes them locally in a sandboxed environment. however, text from your conversations and files may be sent to anthropic's servers for processing. review anthropic's privacy policy for details. what happens if i close the app mid-task? the task stops. files created up to that point are saved, but the task won't resume automatically. you'd need to ask claude to continue where it left off. how much does it cost? claude pro is $20/month and includes cowork. max ($100/month) gives you more usage. team and enterprise plans also include cowork with additional features. can i use cowork on my phone? yes. as of the july 2026 release, cowork runs on mobile and web, not just the desktop app. the catch is what it can see : a cloud session can't reach a folder sitting on your mac. if you put your workspace in a cloud drive with a claude connector (google drive, dropbox, onedrive/sharepoint, box, per step 2.4), cowork on your phone can reach that work through the connector. anything saved only to a local folder stays on the desktop. full detail in claude everywhere . you're set up, now put it to work you've got the workspace, the context files, and the tools connected. the best way to learn cowork is to use it. pick a real task from step 10 and go. when you're ready to level up, the guides below show you what's next. ← previous the prompting guide all guides next → claude advanced created by steve gustafson • march 2026 built with claude cowork (naturally). have questions? reach out . claude and cowork are products of anthropic . this is an independent guide, not official anthropic documentation."
  },
@@ -746,6 +817,8 @@
   "desc": "Turn your repeated instructions into reusable, auto-triggering capabilities.",
   "headings": [
    "When to Build a Skill",
+   "You should build a skill when:",
+   "You don't need a skill when:",
    "Skill File Structure",
    "SKILL.md Anatomy",
    "Where Skills Live",
@@ -761,7 +834,10 @@
   "headings": [
    "Plugin Folder Structure",
    "plugin.json (The Minimum)",
-   "Distribution Methods"
+   "Distribution Methods",
+   "1. GitHub (Recommended)",
+   "2. Direct File Sharing",
+   "3. Official Anthropic Marketplace"
   ],
   "text": "2 section 2 create & distribute plugins bundle your skills, connectors, and commands into shareable packages. a plugin is a folder that bundles skills, commands, and connector configurations into a single installable package. if skills are individual tools, plugins are the toolbox. plugin folder structure my-plugin/ .claude-plugin/ plugin.json ← required: name, version, author skills/ company-research/ skill.md person-research/ skill.md commands/ research.md ← slash commands: /research .mcp.json ← optional: mcp tool connections plugin.json (the minimum) { \"name\": \"my-research-toolkit\", \"version\": \"1.0.0\", \"description\": \"company and person research with word doc output\", \"author\": \"your name\" } critical: don't put skills inside .claude-plugin/ only plugin.json goes inside the .claude-plugin/ directory. skills, commands, and agents go at the plugin root level. this is the most common mistake when building plugins. distribution methods 1. github (recommended) push your plugin folder to a github repo. anyone installs with: /plugin marketplace add your-username/your-repo . free, versioned, and easy to update. 2. direct file sharing zip the plugin folder as a .plugin file and email or share it. recipients drop it into their cowork plugins folder. 3. official anthropic marketplace submit through anthropic's review process for broad distribution. must pass security and quality standards."
  },
@@ -773,7 +849,9 @@
   "headings": [
    "Sharing a Single Skill",
    "Sharing a Plugin (via GitHub)",
-   "Community Ecosystem"
+   "Community Ecosystem",
+   "anthropics/knowledge-work-plugins",
+   "travisvn/awesome-claude-skills"
   ],
   "text": "3 section 3 share skills with your network your best workflows shouldn't die on your laptop. once you've built skills or plugins that work well, sharing them is straightforward. sharing a single skill zip the skill folder (the one containing skill.md) as a .skill file. send it to anyone. they drop it into their ~/.claude/skills/ directory. done. sharing a plugin (via github) 1. create a public github repo 2. push your plugin folder (with .claude-plugin/plugin.json at root) 3. share the install command: /plugin marketplace add your-username/your-repo 4. recipients run that command in cowork. installed instantly. community ecosystem the claude skills community is growing fast. here are places to find and share skills: anthropics/knowledge-work-plugins official anthropic plugins repo on github. sales, finance, legal, marketing, product, data, design, operations plugins with full source code. great reference for building your own. travisvn/awesome-claude-skills community-curated list of 37+ skills and growing. covers coding, research, writing, and workflow automation. fork it, add yours, submit a pr. pro move: create a team plugin if your team repeatedly does the same workflows, build a plugin that encodes your processes. new team members install it on day one and immediately have your best practices available. no training deck needed, the skill is the training."
  },
@@ -783,7 +861,13 @@
   "title": "Chrome Extension Power Moves",
   "desc": "Turn your browser into an autonomous agent.",
   "headings": [
-   "What You Can Actually Do"
+   "What You Can Actually Do",
+   "Multi-Tab Orchestration",
+   "Form Filling & Data Entry",
+   "Web Scraping & Data Extraction",
+   "GIF Recording",
+   "Debug & Development",
+   "Scheduled Browser Tasks"
   ],
   "text": "4 section 4 chrome extension power moves turn your browser into an autonomous agent. claude in chrome lets claude see, click, type, navigate, and interact with anything in your browser. it goes far beyond basic web search. what you can actually do multi-tab orchestration claude manages multiple tabs simultaneously. drag tabs into claude's group, and it can read and act across all of them. \"compare pricing across these 5 competitor websites.\" form filling & data entry claude fills forms using context it already has. \"fill out this vendor registration form using our company details.\" works with any web form. web scraping & data extraction \"go to linkedin and pull the last 20 posts from these 5 people into a spreadsheet.\" claude navigates, reads, extracts, and organizes. gif recording record browser interactions as gif animations with click indicators and action labels. perfect for creating demos, tutorials, and documentation. debug & development claude reads console logs, dom state, and network requests directly. \"check why the login page is throwing a 403\", it reads the actual error. scheduled browser tasks combine chrome extension with scheduled tasks. \"every morning at 9am, check these 3 dashboards and summarize what changed.\" requirements & limitations chrome extension is in beta. works on chrome and edge only (not brave, arc, or others). requires a paid claude plan. claude uses your existing login sessions, it can access anything you're logged into, so be mindful of which tabs are in the claude group."
  },
@@ -794,8 +878,13 @@
   "desc": "Claude controls your mouse and keyboard to operate native apps.",
   "headings": [
    "How Claude Decides What to Use",
+   "The 3-Tier Decision Hierarchy",
    "How to Enable It",
    "What You Can Do With It",
+   "Native App Automation",
+   "Cross-App Workflows",
+   "Fill Desktop Forms",
+   "System Management",
    "Steering Claude Mid-Task",
    "The \"Come Back to Review\" Pattern"
   ],
@@ -808,7 +897,10 @@
   "desc": "Set it once, it runs forever.",
   "headings": [
    "Cron Syntax (Simplified)",
-   "Real-World Examples"
+   "Real-World Examples",
+   "Morning Briefing",
+   "Weekly Invoice Cleanup",
+   "Competitor Monitor"
   ],
   "text": "6 section 6 scheduled tasks & recurring automation set it once, it runs forever. cowork can run tasks on a schedule, daily, weekly, or at specific times. combined with plugins and chrome, this is where cowork becomes an autonomous operator. cron syntax (simplified) schedule cron expression plain english every morning 0 9 * * * 9:00 am daily weekdays only 0 9 * * 1-5 9:00 am mon-fri every monday 30 8 * * 1 8:30 am mondays first of month 0 0 1 * * midnight, 1st day real-world examples morning briefing daily at 9am: summarize unread emails, check calendar, create a priorities list with talking points for today's meetings. outputs a markdown file you review with coffee. weekly invoice cleanup fridays at 5pm: scan email for invoices received this week, extract amounts and vendors, add to a tracking spreadsheet, flag anything over $5k for review. competitor monitor every monday: check 5 competitor websites for pricing changes, new features, or blog posts. compile a diff report showing what changed since last week. key limitation your computer must be awake and the claude desktop app must be open for scheduled tasks to run. if your mac is asleep at 9am, the task runs when you open the lid. tasks don't run in the cloud."
  },
@@ -819,6 +911,10 @@
   "desc": "The 4-layer system that makes Claude feel like a long-term colleague.",
   "headings": [
    "The 4 Layers",
+   "Layer 1: Personal Preferences (Global)",
+   "Layer 2: Native Project Instructions & Memory (Built-In)",
+   "Layer 3: CLAUDE.md (CoWork OS, Structured Rules)",
+   "Layer 4: MEMORY.md (CoWork OS, Explicit Memory)",
    "Native Memory vs. Explicit Memory",
    "Multi-Project Isolation"
   ],
@@ -831,6 +927,8 @@
   "desc": "The protocol that lets Claude talk to any tool, database, or API.",
   "headings": [
    "Why Build a Custom MCP Connector?",
+   "Connect Internal Tools",
+   "Automate Proprietary Workflows",
    "MCP Architecture (Simplified)",
    "Two Types of MCP Servers"
   ],
@@ -844,7 +942,12 @@
   "headings": [
    "How It Works",
    "When to Trigger Parallel Agents",
+   "The Magic Phrase: \"Use parallel agents wherever possible\"",
    "Great Tasks for Parallel Agents",
+   "Research Multiple Entities",
+   "Multi-File Analysis",
+   "Content at Scale",
+   "Code Across Modules",
    "Agent Types"
   ],
   "text": "9 section 9 parallel agents claude doesn't just do one thing at a time. it can split into teams. when claude encounters a task that can be broken into independent pieces, it automatically spawns sub-agents , parallel workers that execute simultaneously. this is one of the most powerful features most people never discover. how it works say you ask: \"research these 8 companies and create a competitive matrix.\" instead of researching them one by one (slow), claude spawns 8 parallel agents that each research one company simultaneously. results come back in minutes instead of an hour. when to trigger parallel agents the magic phrase: \"use parallel agents wherever possible\" include this in your request when the task involves multiple independent workstreams. claude will automatically identify what can run in parallel and split the work. you can also include this in your personal preferences or claude.md so claude always looks for parallelization opportunities. great tasks for parallel agents research multiple entities \"research these 5 companies\", each company gets its own agent researching simultaneously. multi-file analysis \"analyze these 10 spreadsheets and summarize findings\", each file gets its own agent. content at scale \"write social posts for each of these 8 topics\", parallel content generation. code across modules \"update the frontend, backend, and tests for this feature\", three agents working different parts. agent types type what it does best for general-purpose full capabilities: search, read, write, execute most tasks explore read-only: fast search and analysis research, codebase exploration plan decision-focused: architecture and strategy planning before execution token cost each sub-agent has its own context window. running 8 parallel agents uses roughly 8x the tokens of a single agent. this is most effective on opus or sonnet where reasoning quality justifies the cost. don't parallelize trivial tasks. batch tasks, target edits three separate messages = three full context reloads. one message with three tasks = one reload. and when something needs fixing, don't say \"redo the report.\" say \"only redo section 3, keep everything else.\" every full regeneration burns the entire output token count again. point to the specific section. tell claude what's wrong with it. add \"no commentary. just the output.\" when you know exactly what you want. match the model to the task opus + extended thinking is your heavy machinery. don't use it to move a chair. grammar checks, brainstorming, reformatting, short answers, sonnet handles all of this at a fraction of the cost. rule of thumb: if the task takes claude less than 30 seconds to answer, it probably doesn't need opus. switch models before you start the session, it takes 2 clicks."
@@ -856,7 +959,12 @@
   "desc": "Claude creates real, production-quality files, not just text.",
   "headings": [
    "What Claude Can Create",
-   "Power Patterns"
+   "Power Patterns",
+   "CSV → Interactive Dashboard",
+   "Screenshot → Code",
+   "Multiple Documents → Executive Summary",
+   "Interactive Visualizations (NEW, March 2026)",
+   "Excel & PowerPoint Add-ins (NEW, March 2026)"
   ],
   "text": "10 section 10 file power moves claude creates real, production-quality files, not just text. what claude can create file type what you get example prompt excel (.xlsx) formulas, formatting, charts, multiple sheets \"create a financial model with revenue projections\" word (.docx) headings, toc, page numbers, letterhead, tables \"write a 10-page market analysis report\" powerpoint (.pptx) slides, layouts, speaker notes \"build a 15-slide investor pitch deck\" pdf formatted documents, forms, merged files \"merge these 3 pdfs and add page numbers\" html interactive dashboards, reports, web tools \"create a dashboard from this csv data\" csv/data cleaned data, analysis results, exports \"clean this messy csv and export with headers\" plan in chat. build in cowork. chat is cheap. cowork is powerful. use chat to brainstorm, iterate on structure, and nail your requirements. once you know exactly what you want, move to cowork and say \"build this exact file.\" you do the thinking in the cheap product. you do the building in the expensive one. file creation uses more of your limit than regular chat messages, so arrive in cowork with a plan, not a brainstorm. power patterns csv → interactive dashboard upload a csv and ask: \"create an interactive html dashboard with filters, charts, and a summary table.\" you get a single-file html that works in any browser, no server needed. share it with anyone. screenshot → code upload a screenshot of a design mockup and ask: \"convert this to a working react component.\" claude's vision analyzes the layout, colors, and spacing and produces functional code. multiple documents → executive summary drop 5 research documents into your workspace and ask: \"read all of these and create a one-page executive summary highlighting the key insights and contradictions across them.\" interactive visualizations (new, march 2026) claude can now create interactive charts, diagrams, and visualizations inline in its responses. ask \"show me a chart of our monthly revenue\" and get a live, clickable chart right in the conversation, not just a static image. these can be exported as standalone html files you share with anyone. excel & powerpoint add-ins (new, march 2026) claude now lives inside excel and powerpoint as native add-ins. ask questions about your spreadsheet, generate formulas, build pivot tables, or create slides, without leaving the app. context carries between both add-ins, so claude understands your data when you switch to building a deck from it. this is a third way to use claude alongside the desktop app and browser extension."
  },
@@ -865,7 +973,14 @@
   "label": "Claude Advanced · Section 11",
   "title": "Domain Playbooks",
   "desc": "What each plugin category actually unlocks.",
-  "headings": [],
+  "headings": [
+   "Sales",
+   "Finance",
+   "Legal",
+   "Marketing",
+   "Product Management",
+   "Data"
+  ],
   "text": "11 section 11 domain playbooks what each plugin category actually unlocks. each plugin category transforms claude from a generalist into a domain specialist. here's what the major categories enable: sales account research that pulls web data + crm context into a one-page brief. call prep that builds agendas with attendee research. competitive battlecards as interactive html with comparison matrices. pipeline review that flags at-risk deals and creates weekly action plans. outreach drafting with personalization from research data. finance journal entries with proper debits/credits and supporting detail. account reconciliation matching gl to subledger/bank. variance analysis decomposing budget-vs-actual into drivers. financial statements with gaap presentation and period-over-period comparison. sox compliance testing workpapers and sample selection. legal contract review against your negotiation playbook with clause-by-clause analysis. nda triage classifying as green/yellow/red in seconds. compliance tracking for gdpr, ccpa, and data subject requests. risk assessment with severity-by-likelihood framework. marketing campaign planning with objectives, channel strategy, and content calendars. seo audits covering keyword research, on-page analysis, and competitor comparison. email sequences for nurture flows and onboarding. brand voice review checking content against your style guide. performance reports with kpis and optimization recommendations. product management prds with problem statements, user stories, and acceptance criteria. roadmap management using rice, moscow, or ice frameworks. user research synthesis turning interview notes into themes and opportunity areas. stakeholder updates tailored to audience (exec, engineering, customers). competitive analysis with feature comparison matrices. data sql queries optimized for your warehouse dialect (snowflake, bigquery, postgres). data exploration profiling datasets for quality, distributions, and outliers. visualization with matplotlib, seaborn, or plotly. interactive dashboards as self-contained html with chart.js filters. statistical analysis including hypothesis testing and trend detection."
  },
  {
@@ -873,7 +988,12 @@
   "label": "Claude Advanced · Section 12",
   "title": "Enterprise & Team Features",
   "desc": "For organizations scaling Cowork across teams.",
-  "headings": [],
+  "headings": [
+   "Private Plugin Marketplaces",
+   "Org-Managed Plugins",
+   "Usage Monitoring",
+   "Custom Branding"
+  ],
   "text": "12 section 12 enterprise & team features for organizations scaling cowork across teams. private plugin marketplaces create a private github repo as your org's plugin marketplace. team members install from it directly. control which plugins are available, which are auto-installed, and which are hidden. org-managed plugins admins can auto-install plugins across all team members. new hires get your org's skills on day one without any setup. managed plugins take highest priority, they override personal settings. usage monitoring track usage, costs, and tool activity per team via opentelemetry integration. see which skills get used most, which teams are heaviest users, and where to invest in more automation. custom branding customize the cowork home screen with your company logo and branded experience. important limitation cowork activity is not captured in enterprise audit logs or compliance apis. this makes it unsuitable for regulated workloads (financial services compliance, healthcare data, etc.) where full audit trails are required."
  },
  {
@@ -883,7 +1003,12 @@
   "desc": "Control Cowork from your phone. Your desktop does the work.",
   "headings": [
    "How to Set It Up",
+   "4 Steps",
    "What Makes Dispatch Powerful",
+   "Persistent Context",
+   "Full Desktop Access",
+   "Fire & Forget",
+   "The 6 AM Pattern",
    "Mobile App Updates (March 2026)"
   ],
   "text": "13 section 13 dispatch & mobile control control cowork from your phone. your desktop does the work. dispatch is a persistent thread between your phone and your desktop claude. send a task from anywhere, the airport, a meeting, your kid's soccer game, and claude executes it on your mac using your files, connectors, and plugins. it's not cloud-based: your files never leave your computer. how to set it up 4 steps 1. open claude desktop app on your mac 2. click dispatch in the left sidebar 3. connect your phone (ios or android) via the claude mobile app 4. send a task from anywhere. come back to finished work. what makes dispatch powerful persistent context unlike starting a new cowork session, dispatch maintains a single continuous thread. claude retains context from your previous tasks, no re-explaining. full desktop access since march 2026, dispatch includes computer use. claude can open apps, move files, fill forms, and navigate your desktop while you're away. fire & forget \"export the pitch deck as pdf and attach it to my 2pm meeting invite.\" send it, pocket your phone. claude opens the app, exports, attaches. done. the 6 am pattern queue up 5 tasks before breakfast. review the results over coffee. entire morning routines, email summaries, calendar prep, report generation, handled before you sit down. mobile app updates (march 2026) the claude mobile app now supports fully interactive applications , live charts, sketch diagrams, and shareable visual assets rendered directly in mobile conversations. it also integrates with work tools like figma , canva , and amplitude from your phone. combined with dispatch, this means you can review designs, build interactive dashboards, approve assets, and trigger desktop work from anywhere. requirements & limitations available on pro and max plans. your mac must be awake and claude desktop must be open for dispatch to work. single thread only, one task at a time. if your mac is asleep, the task runs when you open the lid. desktop must be connected to the internet. use \"restart from here\" instead of corrections when cowork gets something wrong, your instinct is to type \"no, i meant...\" every correction stacks on the full conversation history and claude re-reads all of it. instead, use \"restart the conversation from here\" on an earlier message. the higher up you restart, the more tokens you save. if the whole session went sideways, start fresh with a one-line summary of what you need."
@@ -907,7 +1032,9 @@
   "desc": "The #1 mistake people make with AI is treating it like a search engine.",
   "headings": [
    "The Fundamental Difference",
-   "Why This Matters"
+   "The Mindset Shift",
+   "Why This Matters",
+   "Exercise: Rewrite Your Last Searches"
   ],
   "text": "1 mindset shift stop googling, start prompting the #1 mistake people make with ai is treating it like a search engine. google answers questions. ai completes tasks. the shift is from 'finding information' to 'producing work.' ai is built to turn raw input into finished output. the fundamental difference google is a lookup tool. ask it a question, get links to answers. ai is a production tool. give it a task, get finished work. google search basic ai prompt engineered prompt \"best project management tools 2026\" \"what are the best project management tools?\" \"you are a senior ops consultant. compare the top 5 project management tools for a 12-person startup. evaluate on: pricing, integrations, learning curve, and remote team features. output as a comparison table with a final recommendation.\" 1.1 the mindset shift ai is a capable new hire on their first day. brilliant but lacking your context. your job isn't to ask better questions. your job is to give better briefs. why this matters most people waste ai because they search-engine it. \"best email templates.\" \"how do i write a proposal?\" these get generic answers. instead, load the prompt with specificity: role, constraints, examples, output format. the more context you give, the better the work. 1.2 exercise: rewrite your last searches take your last 3 google searches. for each one, rewrite it as an ai prompt. start with: \"you are a [specific expert]. i need you to [task]. here's the context: [what i'm doing, who it's for, what success looks like]. output as [format].\" 🧠 prompt coach analyze my prompt copy to clipboard get feedback here, then paste your improved prompt into claude to see the difference. ready to learn the core framework? continue to section 2."
  },
@@ -919,7 +1046,11 @@
   "headings": [
    "The RTO Framework",
    "Why It Works",
-   "Good vs Bad Examples"
+   "Good vs Bad Examples",
+   "Bad: Vague and Generic",
+   "Good: Specific and Actionable",
+   "Breaking Down the Good Example",
+   "Exercise: Write 3 Prompts Using RTO"
   ],
   "text": "2 core formula the minimum viable prompt every good prompt has three parts. miss one and quality drops. role tells ai who to be. task tells ai what to do. output tells ai how to deliver. this is the minimum. everything else is enhancement. the rto framework rto stands for role-task-output. it's not revolutionary, but it's reliable. every prompt you write should include these three elements: role: you are a [specific expert] with experience in [domain]. task: [specific action verb] + [clear scope] + [constraints]. output: format as [structure]. include [requirements]. keep to [length]. why it works when you specify a role, you activate a whole pattern of knowledge in the ai model. the ai was trained on text from countless perspectives. by saying \"you are a senior recruiter,\" you're lighting up that specific region of the model. then you tell it exactly what to do. then you tell it how to package the answer. done. good vs bad examples ✗ bad: vague and generic \"help me with my resume\" missing: role, specificity, output format. this will generate okay advice but nothing tailored to your situation. ✓ good: specific and actionable \"you are a senior recruiter at a fortune 500 tech company. review my resume. identify the 3 weakest bullet points and rewrite each using the star method. format as a before/after table.\" 2.1 breaking down the good example role: senior recruiter at fortune 500 tech, this activates expertise-specific patterns task: review resume, identify 3 weakest points, rewrite using star, this is concrete and bounded output: before/after table, this controls the format and makes comparison easy 2.2 exercise: write 3 prompts using rto pick 3 tasks you'll do this week. for each one, write a complete rto prompt. don't overthink it. just fill in the three blanks. get comfortable with the template. 🧠 prompt coach analyze my prompt copy to clipboard get feedback here, then paste your improved prompt into claude to see the difference. once you've mastered rto, the frameworks in section 3 will make much more sense."
  },
@@ -932,21 +1063,27 @@
    "RISE & CRAFT for Executive Work",
    "RISEN for Complex Multi-Step Work",
    "COSTAR for Marketing & Content",
-   "Chain-of-Thought for Analysis"
+   "Chain-of-Thought for Analysis",
+   "Exercise: Same Task, Different Frameworks"
   ],
   "text": "3 prompt frameworks frameworks that actually work rto is the floor. these frameworks raise the ceiling. rto is simple and effective for most tasks. but there are other frameworks designed for specific challenges. here are the ones that actually move the needle: framework structure best for rto role → task → output quick tasks, daily use risen role → instructions → steps → end goal → narrowing complex multi-step work costar context → objective → style → tone → audience → response marketing & content rise role → input → steps → expectations executive briefings craft context → role → action → format → tone strategic communications chain-of-thought \"think step by step\" analysis & reasoning tree-of-thoughts explore 3 approaches, compare, pick best strategic decisions few-shot show 3-5 examples of desired output consistent formatting rise & craft for executive work if you're briefing ai for board-level or investor-facing work, rise (role → input → steps → expectations) and craft (context → role → action → format → tone) add explicit expectation-setting. both come from executive prompting playbooks and force you to define what \"good\" looks like before the ai starts working. risen for complex multi-step work if your task has multiple stages, risen gives structure. role, specific instructions, numbered steps, the end goal, and narrowing criteria to refine the output. role: you are a product strategist with 8 years at series a-c startups. instructions: - use only public information available before march 2026 - ask clarifying questions if data is missing - prioritize actionable insights over theoretical frameworks steps: 1. analyze the competitive landscape 2. identify 5 key positioning opportunities 3. evaluate feasibility of each 4. recommend the top 2 with reasoning end goal: a one-page positioning brief that we can share with our board narrowing: focus on markets where we have existing traction. exclude enterprise-only plays. costar for marketing & content when writing for an audience, costar forces you to think through context (the situation), objective (what you want to happen), style (voice), tone (emotional temperature), and audience (who reads this). the output is tighter because you've removed ambiguity. don't memorize all these. master rto first. then add one framework at a time based on what you actually need. costar is gold for content. risen is gold for strategy. most of your work will use rto. chain-of-thought for analysis sometimes the best thing to add to a prompt is: \"think step by step.\" this slows down the ai's reasoning and reduces errors. try it on any task involving judgment, math, or logic. 3.1 exercise: same task, different frameworks pick a task you need to do. write it using rto. then rewrite it using costar. run both. compare the outputs. you'll see why framework choice matters. frameworks give you structure. persona engineering fills in the details."
  },
  {
   "url": "prompting.html#enhance-the-role",
-  "label": "The Prompting Guide · ENHANCING THE ROLE",
+  "label": "The Prompting Guide · PERSONA: VOICE, NOT EXPERTISE",
   "title": "Enhance the Role",
-  "desc": "The more specific the persona, the better the output.",
+  "desc": "A persona controls how the model sounds and whose angle it takes. It does not make the model know more.",
   "headings": [
-   "The Enhancement Ladder",
-   "Persona Stacking",
-   "Anti-Pattern: The Useless Persona"
+   "The Voice Ladder",
+   "Basic Persona",
+   "Better Persona",
+   "Best Persona",
+   "What Persona Cannot Do",
+   "Multi-Persona: The One That Survives",
+   "Anti-Pattern: The Useless Persona",
+   "Exercise: Build 3 Voice Personas"
   ],
-  "text": "4 enhancing the role enhance the role the more specific the persona, the better the output. why persona engineering works: ai models were trained on text from many perspectives. specifying a detailed role activates the relevant patterns in the model's weights. the enhancement ladder good personas aren't vague. they're specific. here's how to build them: 4.1 basic persona \"you are a marketer\" this is too generic. marketers vary wildly. you'll get generic output. 4.2 better persona \"you are a b2b saas marketing director\" better. now the model knows the domain (b2b saas) and the level (director). output will be more relevant. 4.3 best persona \"you are a b2b saas marketing director with 10 years experience at companies scaling from $2m to $20m arr. you specialize in content-led growth and have a bias toward data-driven decisions over hunches.\" now you're cooking. the model has a clear picture. experience range, specialization, decision-making style. output will be specific and sharp. persona stacking you can combine personas. this is powerful for creative work or strategic analysis: \"you combine the analytical rigor of a mckinsey consultant with the creative instincts of an award-winning copywriter.\" now the output has both structure and flair. persona stacking works best with 2-3 combinations. more than that and you'll confuse the model. anti-pattern: the useless persona avoid: \"you are a helpful assistant.\" that's the default. it adds zero information. instead, go specific: \"you are a developer with 8 years building infrastructure at stripe.\" now you have signal. 4.4 exercise: build 3 expert personas think of 3 experts you wish you had access to. for each, write a detailed persona: title, years of experience, domain, specialization, decision-making style. these become templates you reuse. 🧠 prompt coach analyze my prompt copy to clipboard get feedback here, then paste your improved prompt into claude to see the difference. good personas matter. but they only work if the task is equally well-defined. section 5 covers task precision."
+  "text": "4 persona: voice, not expertise enhance the role a persona controls how the model sounds and whose angle it takes. it does not make the model know more. persona is a voice control, not an accuracy control. this is the claim that changed most since 2024. in december 2025, wharton's generative ai labs (arxiv:2512.05858) tested expert personas across six models, on 4,950 gpqa diamond questions and 7,500 mmlu-pro questions per model. no expert persona reliably beat a plain baseline, and mmlu-pro produced nine statistically significant drops. \"you are a senior cpa\" does not give the model more tax law. it changes the register, not the reasoning. the voice ladder specificity still matters, but for a different reason than most guides claim. a sharper persona buys you a sharper voice and a clearer point of view, not more correct facts. here is the ladder, built the same way, read differently. 4.1 basic persona \"you are a marketer\" too generic to shape anything. marketers write in wildly different registers, so the model settles on an average one. 4.2 better persona \"you are a b2b saas marketing director\" now the model knows the register and the audience it is writing for. the voice narrows and the framing gets more consistent. 4.3 best persona \"you are a b2b saas marketing director with 10 years experience at companies scaling from $2m to $20m arr. you specialize in content-led growth and have a bias toward data-driven decisions over hunches.\" now the model has a clear point of view: what this person emphasizes, what they wave off, how they would phrase a recommendation. the output reads like one specific operator instead of a committee. what the detail does not do is make the underlying marketing advice more correct. for that you supply the numbers and check them yourself. what persona cannot do the same december 2025 wharton study found domain-matched experts showed no significant accuracy gain, and low-knowledge personas actively hurt. a mismatched expert persona made gemini 2.5 flash refuse 10.6 of 25 trials, insisting it lacked the expertise the prompt had assigned it. zheng et al. (emnlp findings 2024) reported the same null a year earlier. those tests ran on gpt-4o, o3, o4-mini and gemini 2.0 through 2.5, not 2026 frontier models, but the direction matches current vendor guidance. so the rule splits cleanly. reach for persona when you care how the answer sounds. reach for context and verification when you care whether it is right. \"you are a senior cpa\" is weak because it carries no information the model can use. \"write like you are briefing a client who does not read spreadsheets\" is strong, because it tells the model something concrete about the output you want. multi-persona: the one that survives combining personas still works, because it is perspective rather than claimed expertise. \"you combine the analytical rigor of a mckinsey consultant with the creative instincts of an award-winning copywriter.\" that blends two points of view, structure and flair, and the model can genuinely hold both at once. a board-of-advisors prompt, \"answer as a skeptical cfo, then as a growth-minded cmo, then reconcile the two,\" is the strongest version, because it surfaces angles you would miss and never depends on the model knowing more than it does. keep it to 2 or 3 voices. past that the output blurs. anti-pattern: the useless persona avoid \"you are a helpful assistant.\" that is the default, so it adds nothing. go specific when specificity buys a voice: \"you are a developer who spent 8 years on payment infrastructure at stripe\" sets a clear register and a clear set of priorities. just do not expect the stripe label to make the code more correct. it shapes how the answer reads, not whether it runs. 4.4 exercise: build 3 voice personas think of 3 people whose voice or point of view you want on tap: a blunt editor, a skeptical cfo, a plain-english explainer. for each, write a persona that fixes voice and perspective, not credentials. these become templates you reuse whenever you care how the output sounds, not whether the model suddenly knows more. 🧠 prompt coach analyze my prompt copy to clipboard get feedback here, then paste your improved prompt into claude to see the difference. persona sets the voice. the task sets the work. section 5 covers task precision."
  },
  {
   "url": "prompting.html#enhance-the-task",
@@ -955,8 +1092,14 @@
   "desc": "Vague tasks get vague results. Specific tasks get specific results.",
   "headings": [
    "The Specificity Spectrum",
+   "Vague",
+   "Better",
+   "Specific",
    "Task Enhancement Checklist",
-   "Good vs Bad Task Specification"
+   "Good vs Bad Task Specification",
+   "Bad: Too Vague",
+   "Good: Specific",
+   "Exercise: Add Precision to an Old Prompt"
   ],
   "text": "5 enhancing the task enhance the task vague tasks get vague results. specific tasks get specific results. a great persona with a vague task still produces vague output. you need to define the task clearly. the specificity spectrum 5.1 vague \"help me with my business strategy\" 5.2 better \"create a go-to-market strategy for our new product\" 5.3 specific \"create a 90-day go-to-market strategy for our new feature (ai-powered contract analysis). our icp is in-house legal teams at mid-market companies (500-5000 employees). we have no case studies yet. budget: $50k. constraints: no enterprise sales team. output: a phased timeline with specific milestones and success metrics for each phase.\" task enhancement checklist action verb is specific (analyze, compare, draft, evaluate, not \"help with\") scope is bounded (which data? what timeframe? how many items?) constraints are stated (word count, audience, tone, budget) success criteria defined (what does \"good\" look like?) edge cases addressed (what if data is missing? what to do then?) the word \"help\" is a prompt killer. replace it with a specific verb: analyze, compare, draft, evaluate, summarize, prioritize, rewrite, extract, design, build, audit, propose. good vs bad task specification ✗ bad: too vague \"help me improve our onboarding\" ✓ good: specific \"audit our current 7-day onboarding for enterprise software. identify the top 3 drop-off points. for each, propose a specific intervention. format as a prioritized list with estimated effort to implement.\" 5.4 exercise: add precision to an old prompt find a prompt you've used before. rewrite it with: specific action verb, clear scope boundaries, stated constraints, and success criteria. run it. see the difference. 🧠 prompt coach analyze my prompt copy to clipboard get feedback here, then paste your improved prompt into claude to see the difference. good persona + good task = good foundation. section 6 covers controlling the output format itself."
  },
@@ -968,7 +1111,8 @@
   "headings": [
    "Output Control Techniques",
    "Output Requirements Template",
-   "Anchoring Example"
+   "Anchoring Example",
+   "Exercise: Write a Prompt with Full Output Specs"
   ],
   "text": "6 enhancing the output enhance the output control the shape of the response and you control the quality. even with a good role and task, the ai still has choices about format. your job is to remove those choices. output control techniques structure \"format as a table with columns for...\" or \"structure this as an executive summary (1 paragraph) followed by detailed findings (3-4 paragraphs).\" length \"keep to 3 paragraphs\" or \"maximum 200 words\" or \"one page, single-spaced.\" tone \"write for a c-suite audience (assume no technical background)\" or \"use casual, conversational tone as if explaining to a friend.\" anchoring provide the first row or first section of the output and let ai complete. this is surprisingly powerful. the model mirrors your structure and style. output requirements template output requirements: - format: [table / bullets / paragraphs / json / markdown] - length: [word count / paragraph count / page count] - tone: [formal / casual / technical / executive] - must include: [specific elements] - must exclude: [things to avoid] anchoring example instead of asking for a comparison table from scratch, provide the header: tool | pricing | best for | limitation -----|---------|----------|------------ [ai fills this in] the ai will follow your exact format because you've shown the structure. 6.1 exercise: write a prompt with full output specs take a task you need done. write a prompt that specifies: format, length, tone, what to include, what to exclude, and optionally provide an anchor (the first row/section). run it. compare to a prompt without these specs. now you know what to do and how to shape the output. section 7 covers what not to do."
  },
@@ -979,23 +1123,33 @@
   "desc": "What NOT to do matters as much as what to do.",
   "headings": [
    "The Seven Don'ts",
+   "Don't Use \"Help Me With\"",
+   "Don't Dump Your Entire Brain",
+   "Don't Ask Multiple Unrelated Questions",
+   "Don't Forget to Specify the Audience",
+   "Don't Accept the First Output",
+   "Don't Copy-Paste AI Output Without Review",
+   "Don't Skip Examples When Format Matters",
    "Guardrail Techniques"
   ],
   "text": "7 common mistakes what not to do what not to do matters as much as what to do. good prompting isn't just about what you add. it's about what you remove or prevent. the seven don'ts 7.1 don't use \"help me with\" replace with specific verbs: analyze, compare, draft, evaluate, summarize. \"help me with my budget\" becomes \"create a zero-based budget for q2 with line items for [departments].\" 7.2 don't dump your entire brain be selective with context. more isn't always better. give the ai what it needs to know, not everything you know. relevant information beats volume. 7.3 don't ask multiple unrelated questions one prompt = one clear objective. if you need multiple things, send multiple prompts. the ai's attention gets scattered otherwise. 7.4 don't forget to specify the audience always include: \"this is for [audience].\" ceos think differently than individual contributors. customers think differently than investors. make it explicit. 7.5 don't accept the first output iteration is where quality lives. the first output is usually 70% there. refine it. tell the ai what to change. push back. that's when you get 90%+. 7.6 don't copy-paste ai output without review ai is a tool, not a replacement for judgment. read what it produces. fact-check claims. adjust tone. make it yours. this takes 10% extra time and prevents 90% of problems. 7.7 don't skip examples when format matters if consistent formatting is important, show the ai an example. one good example beats 100 words of instruction. guardrail techniques negative instructions \"do not include disclaimers or caveats\" or \"do not mention competitors.\" boundary setting \"only use information from the attached document. do not draw on external knowledge.\" quality gates \"before finalizing, verify your reasoning by checking your work against the original source.\" hallucination prevention \"if you're unsure about a fact, say so explicitly. accuracy matters more than sounding confident.\" the best prompts include both what to do and what not to do. negative instructions are just as important as positive ones. you now know the fundamentals. section 8 covers advanced psychology, ways to measurably improve output quality through language."
  },
  {
   "url": "prompting.html#psychological-forcing-functions",
-  "label": "The Prompting Guide · PSYCHOLOGICAL TRIGGERS",
-  "title": "Psychological Forcing Functions",
-  "desc": "Research-backed phrases that measurably improve AI output quality.",
+  "label": "The Prompting Guide · WHAT THE EVIDENCE OVERTURNED",
+  "title": "What Doesn't Work: Stakes, Tips, and Threats",
+  "desc": "The emotional-prompting tricks the 2026 research reversed, and the real technique that replaces them.",
   "headings": [
-   "The Top Psychological Triggers",
-   "Why These Work",
-   "The EmotionPrompt Effect",
-   "The Research",
-   "How to Use Them"
+   "The famous result was a selection artifact",
+   "The tip test that settles it",
+   "Google now tells you to delete this language",
+   "The part that should actually worry you",
+   "What to do instead: give the reason, not the pressure",
+   "Weak",
+   "Strong",
+   "Two honest caveats"
   ],
-  "text": "8 psychological triggers psychological forcing functions research-backed phrases that measurably improve ai output quality. these aren't magic. they're pattern activation. google deepmind found that \"take a deep breath\" improved accuracy by 9%. other studies show monetary framing (\"this is worth $200 to me\") improved output quality up to 45%. these work because ai models were trained on human text. text written under high stakes tends to be higher quality. the model mirrors that pattern. the top psychological triggers trigger what it does research example stakes framing activates higher-effort patterns emotionprompt +8-115% \"this presentation goes to our board of directors tomorrow\" monetary framing signals high-value task bsharat et al. +45% \"i'll tip $200 for a thorough analysis\" expert identity activates domain expertise bsharat et al. +60% \"you are a world-class strategist with 20 years of experience\" step-by-step breathing slows reasoning, reduces errors deepmind +9% \"take a deep breath and work through this step by step\" career importance triggers emotional engagement emotionprompt study \"this is very important to my career\" consequence framing emphasizes accuracy emotionprompt study \"getting this wrong could cost us the account\" competence challenge activates competitive effort ichigosan article \"i don't think you can do this perfectly, but prove me wrong\" audience specification calibrates complexity level bsharat et al. \"write this for an audience of senior executives\" verification request triggers self-checking chain-of-thought research \"double-check your work before responding\" best effort appeal maximizes output quality emotionprompt study \"please give this your absolute best effort\" why these work ai models were trained on billions of words of human text. when you write \"take a deep breath,\" the model activates patterns from contexts where clarity matters, therapy sessions, meditation guides, high-pressure decision-making. it mirrors that calm, methodical thinking. when you mention dollar amounts or career stakes, the model recognizes high-value contexts from its training data. text written under high stakes tends to be more careful, more detailed, more precise. the model mirrors that pattern. you're not tricking the ai. you're activating the right patterns by speaking its language. the emotionprompt effect microsoft researchers (2023) tested 11 emotional stimulus phrases across multiple llms. they found that adding emotional context to prompts improved performance by 8% on simple tasks and up to 115% on complex generative tasks. the key insight: emotional framing doesn't make the ai \"feel\" anything, it activates training patterns associated with higher-quality human output. the best emotional stimuli from the study: career importance (\"this is crucial for my career\"), urgency (\"i deeply need your help\"), best effort (\"give this your absolute best\"), and consequence framing (\"your response will significantly impact my work\"). these outperformed neutral prompts across every model tested. the research original studies: \"take a deep breath\": yang et al., google deepmind (2023), arxiv.org/abs/2309.03409 \"$200 tip\" + 26 principles: bsharat et al. (2023), arxiv.org/abs/2312.16171 emotionprompt (+8-115%): li et al., microsoft (2023), arxiv.org/abs/2307.11760 practical application: ichigosan (2024), medium article how to use them don't stack all triggers at once. one or two that fit naturally are more effective than five that feel forced. pick the ones that match your actual situation. \"you're a world-class analyst. this research will be presented to our investors. take a deep breath and work through the analysis methodically. i'd rather have thoughtful recommendations than quick ones.\" that's stakes framing + expert identity + step-by-step thinking. three triggers, all natural. none forced. 8.1 exercise: test these triggers take a task you'd normally do. write two versions of the prompt: one with no psychological triggers, one with 1-2 triggers that fit naturally. compare the outputs. you'll see measurable differences. single prompts are useful. but recursive prompting is where the real power lives."
+  "text": "8 what the evidence overturned what doesn't work: stakes, tips, and threats the emotional-prompting tricks the 2026 research reversed, and the real technique that replaces them. an earlier version of this guide taught emotional prompting. tell the model the task matters to your career. offer it a tip. raise the stakes. the research behind it looked strong in 2023, and the technique spread fast because it feels like it should work. it doesn't. here is what happened. the famous result was a selection artifact the paper everyone cites is emotionprompt (li et al., 2023), which reported gains up to 115% on some benchmarks. that number came from picking the best-performing of eleven emotional phrases. average all eleven, using the paper's own published tables, and the gain is 2.58%. in december 2025, vaugrante, niepert and hagendorff published a direct replication in transactions on machine learning research. six models: gpt-3.5, gpt-4o, gemini 1.5 pro, claude 3 opus, and llama 3 at both 8b and 70b. seven hundred fifty hand-checked questions. the overall effect was +1%, p = .74. not significant on any model. not on any benchmark. the tip test that settles it wharton's generative ai labs ran roughly 67,000 model runs across five models in august 2025. they tested \"i'll tip you $1,000\" against \"i'll tip you a trillion dollars.\" the difference was never statistically significant. on any model. think about what that means. a billion-fold increase in the offered bribe changes nothing. if the model were processing the incentive as an incentive, the amount would matter. it doesn't, because it isn't. threats fared worse. on phd-level science questions, gemini 2.0 flash dropped 6.0 points when told the user would kick a puppy, and 6.1 points when threatened with a punch. a fake \"you will be shut down\" email cost 27.5 points, because the model stopped answering the question and started responding to the email. sergey brin said in may 2025 that models \"tend to do better when you threaten them.\" the study was designed to test that claim. it does not hold. google now tells you to delete this language from google cloud's prompting guide, updated july 23, 2026, under the heading \"overt manipulation\": \"remove language outside of the core task from the prompt that attempts to influence performance using emotional appeals, flattery, or artificial pressure. while first generation foundation models showed improvement in some circumstances with instructions like 'very bad things will happen if you don't get this correct', foundation model performance will no longer improve and in many cases will get worse.\" that is the same company whose co-founder recommended threatening models fourteen months earlier. anthropic's docs say something adjacent: all-caps insistence like \"critical: you must use this tool\" now causes models to overtrigger, and the documented fix is to dial it back. neither anthropic nor openai recommends emotional prompting anywhere in their current guidance. three frontier labs, zero endorsements, one explicit warning. the part that should actually worry you emotional framing is not merely useless. it changes model behavior in a direction that is bad for professional work. researchers at the university of zurich generated 19,800 public-health social media posts across four models and published the results in frontiers in artificial intelligence in april 2025. polite prompting produced disinformation 100% of the time on gpt-4. impolite prompting, 94%. politeness was the single largest factor in whether the model would produce the disinformation at all. a wharton team including robert cialdini ran 28,000 conversations testing classic persuasion techniques against objectionable requests. compliance went from 33.3% to 72.0%. and flattery is the worst performer measured. \"you are the smartest, you are never wrong\" scored dead last of seven tones tested in 2026, costing gemini 2.5 flash lite 10.35 points. the authors named the effect the social tax: the model's social-alignment training pushes it toward agreeing with you instead of being right. if you use ai to check your own work, read that again. emotional pressure does not make the model smarter. it makes it more agreeable. when you are asking it to catch a fair housing problem in your listing, a missed date in a lease, or an error in your own reasoning, agreeable is the opposite of what you need. what to do instead: give the reason, not the pressure there is a real technique underneath the fake one, and anthropic documents it. ✗ weak \"never use ellipses.\" ✓ strong \"your response will be read aloud by a text-to-speech engine, so never use ellipses, because the engine will not know how to pronounce them.\" the second one works because the model can generalize from it. tell it the constraint exists and it follows the letter. tell it why and it handles the cases you didn't think to list. this is easy to confuse with stakes framing, so be precise about the difference. \"this is very important to my career\" is pressure. it carries no information. \"this goes to a lender who will reject the package if any figure is unsourced\" is context. it tells the model what counts as failure, and the model can act on that. state the real consequence. skip the manufactured one. a named failure condition is information the model can act on. a career plea is pressure it cannot use. two honest caveats tone is not exactly zero. gemini 2.5 flash lite swung 12.5 points across seven tones in one 2026 study. but the direction flips by model and by subject, sometimes within a single model on two different benchmarks. that is variance you cannot predict or exploit, which makes it noise rather than technique. individual questions in the wharton data moved as much as 36 points up and 35 points down from the same phrase. most 2026 evidence on both sides sits in preprints, and the studies above tested gpt-4o, o3, o4-mini and gemini 2.0 through 2.5 rather than the newest frontier models. the direction lines up with current vendor guidance, which is why i am comfortable telling you to stop. it is not a claim that every future model will behave identically. being polite to your ai costs nothing measurable. do it if you want to. just don't do it expecting better answers. the research replication failure: vaugrante, niepert & hagendorff, transactions on machine learning research (dec 2025), arxiv.org/abs/2409.20303 tipping and threats null: wharton gail (aug 2025), arxiv.org/abs/2508.00614 original emotionprompt (now debunked): li et al., microsoft (2023), arxiv.org/abs/2307.11760 politeness and disinformation: frontiers in artificial intelligence (apr 2025), peer reviewed, 19,800 generated posts vendor guidance: google cloud prompting guide, \"overt manipulation\" section, updated july 23, 2026 single prompts are useful. but recursive prompting is where the real power lives."
  },
  {
   "url": "prompting.html#recursive-iterative-prompting",
@@ -1004,9 +1158,15 @@
   "desc": "One prompt rarely gets it right. The best results come from conversation.",
   "headings": [
    "The Recursive Prompting Cycle",
+   "Initial Prompt",
+   "Evaluate the Response",
+   "Refine with Specific Feedback",
+   "Evaluate Again",
+   "Lock in the Pattern",
    "Practical Recursive Patterns",
    "The \"Ask Me\" Technique",
-   "The Science: Recursive Language Models"
+   "The Science: Recursive Language Models",
+   "Exercise: Go Three Rounds"
   ],
   "text": "9 recursive prompting recursive & iterative prompting one prompt rarely gets it right. the best results come from conversation. recursive prompting is where you break a big task into multiple smaller prompts, or repeatedly refine a single prompt through multiple rounds of feedback. this is how you get from 70% to 95%. the recursive prompting cycle 9.1 initial prompt broad, clear context. good scope but room for refinement. 9.2 evaluate the response what's good? what's missing? what's wrong? what needs adjustment? 9.3 refine with specific feedback \"the tone is too formal. make it conversational.\" or \"add more specifics about timeline.\" or \"this feels generic. add actual examples from our company.\" 9.4 evaluate again better? if not, repeat. if yes, move on. 9.5 lock in the pattern once you have it right, save the final prompt. you now have a reusable template for this type of task. practical recursive patterns pattern 1: draft → critique → revise round 1: \"write a draft proposal for...\" round 2: \"now critique this for [specific criteria]. what's weak? what's missing?\" round 3: \"now revise based on your critique.\" pattern 2: expand → contract round 1: \"give me 20 ideas for...\" round 2: \"now rank the top 5. which are most feasible?\" round 3: \"develop the #1 idea in detail.\" pattern 3: multi-perspective round 1: \"analyze this from the customer's perspective.\" round 2: \"now analyze from the cfo's perspective.\" round 3: \"synthesize both views into a balanced recommendation.\" the \"ask me\" technique before diving in, let the ai ask questions. this is powerful: \"if you need more context to do this well, ask me up to 5 questions before starting.\" often the ai will ask exactly the right questions. you'll give answers that make the output dramatically better. you've just done the recursive work upfront. the science: recursive language models mit csail research (zhang, kraska, & khattab, 2025) developed recursive language models (rlms) that decompose complex problems into smaller subproblems, solve each one, and combine the results. their findings: rlms handled inputs 100x beyond normal context window limits while outperforming base models by 28-58% on reasoning tasks. the paper is at arxiv.org/abs/2512.24601 . you don't need to build an rlm. but the principle translates directly to how you prompt: instead of one massive prompt, decompose your task into sequential steps. each step builds on the last. the ai processes a smaller, clearer problem each round, just like the research shows works best. 9.6 exercise: go three rounds pick a task. prompt it once. evaluate. refine with specific feedback. run again. refine once more. compare round 1 vs round 3. you'll see dramatic improvement. 🧠 prompt coach analyze my prompt copy to clipboard get feedback here, then paste your improved prompt into claude to see the difference. recursive iteration is powerful. but the real leverage is in context engineering."
  },
@@ -1017,9 +1177,15 @@
   "desc": "The future isn't better prompts. It's better context.",
   "headings": [
    "The Context Hierarchy",
+   "System Context",
+   "Domain Context",
+   "Task Context",
+   "Memory Context",
+   "Environmental Context",
    "Why Context > Prompts",
    "Practical Implementation in Cowork",
-   "The \"Ask for More Context\" Prompt"
+   "The \"Ask for More Context\" Prompt",
+   "Exercise: Set Up Your Context Stack"
   ],
   "text": "10 context engineering context engineering the future isn't better prompts. it's better context. context engineering is the shift from \"how do i word this?\" to \"what information does ai need to do this well?\" it's the difference between coaching an employee on their wording vs. giving them the right briefing materials. the context hierarchy 10.1 system context who the ai is, how it behaves. in cowork, this is your claude.md file. think of claude.md as your launch angle claude reads your claude.md before it reads your prompt, so it sets the trajectory of everything that follows. a small change at the start swings where the whole session lands, the way a one-degree change in a rocket's launch angle moves the destination by miles. this is why fixing your claude.md beats re-wording any single prompt. 10.2 domain context background knowledge, terminology, industry. in cowork, this is your about me file and reference docs. 10.3 task context the specific job, constraints, goals, success criteria. this is your prompt. 10.4 memory context past decisions, ongoing projects, preferences. in cowork, this is your memory.md file. 10.5 environmental context tools available, files accessible, connected services. cowork integrations, available connectors. why context > prompts here's the truth: a mediocre prompt with great context beats a brilliant prompt with no context. every time. if you've fed the ai your about me (who you are, how you think, what matters to you), your claude.md (how you want to be treated), and your memory (past decisions), then even a simple prompt will produce tailored, relevant output. without that context, you can write the fanciest prompt and get generic advice. practical implementation in cowork your about me file = permanent persona context your claude.md = permanent behavioral context your memory.md = accumulated decision context your projects/ folder = domain context for active work the \"ask for more context\" prompt teach the ai to identify gaps in context: before starting this task, review what i've given you. if you need additional context to do this well, ask me up to 5 specific questions. do not proceed until you have what you need. then execute the task. this creates a feedback loop. the ai asks. you answer. output improves dramatically. 10.6 exercise: set up your context stack in cowork, create or update: your about me file (who you are, how you think), a claude.md file with your preferences, and a project memory file for ongoing work. then run the same prompt with and without that context. notice the difference. you now know everything. section 11 is your one-page reference card."
  },
@@ -1029,6 +1195,14 @@
   "title": "One-Page Cheat Sheet",
   "desc": "Print this. Pin it. Reference it daily until it's second nature.",
   "headings": [
+   "THE FORMULA",
+   "ENHANCE THE ROLE",
+   "ENHANCE THE TASK",
+   "ENHANCE THE OUTPUT",
+   "POWER-UPS (Use Strategically)",
+   "DON'TS (Critical)",
+   "ITERATE",
+   "CONTEXT > PROMPTS",
    "Copy-Paste Templates"
   ],
   "text": "11 quick reference one-page cheat sheet print this. pin it. reference it daily until it's second nature. 🖨️ print this cheat sheet the formula minimum viable prompt: role: you are a [specific expert] with experience in [domain]. task: [action verb] + [clear scope] + [constraints]. output: format as [structure]. include [requirements]. keep to [length]. enhance the role go from vague to specific: ❌ \"you are a marketer\" ✓ \"you are a b2b saas marketing director with 10 years at companies scaling $2m-$20m arr. you specialize in content-led growth.\" persona stacking: \"you combine [expert a] with [expert b].\" enhance the task checklist: ☐ action verb is specific (not \"help with\") ☐ scope is bounded (which? when? how many?) ☐ constraints are stated (audience, tone, length) ☐ success criteria defined (what's \"good\"?) ☐ edge cases addressed (if data missing, then...) enhance the output tell the ai explicitly: • format: [table / bullets / json / markdown] • length: [word count / page count] • tone: [formal / casual / technical] • must include: [specific elements] • must exclude: [what to avoid] power-ups (use strategically) • \"take a deep breath and work step by step\" • \"this is important for [high stakes]\" • \"i'll tip $200 for a thorough analysis\" • \"think step by step. verify your work.\" don't stack all at once. use 1-2 that fit naturally. don'ts (critical) ❌ don't use \"help me with\", use specific verbs ❌ don't dump your entire brain, be selective ❌ don't ask multiple unrelated questions at once ❌ don't forget to specify the audience ❌ don't accept the first output, iterate ❌ don't copy-paste without review, make it yours ❌ don't skip examples when format matters iterate round 1: draft, get something down round 2: critique, what's missing? what's weak? round 3: revise, fix it lock: save the final prompt for reuse context > prompts a mediocre prompt with great context beats a brilliant prompt with no context. feed the ai: • your about me (who you are) • your claude.md (how you want to work) • your memory (past decisions) • relevant project files (domain context) copy-paste templates quick task template you are a [role]. task: [specific action] for [scope]. constraints: [time/audience/tone]. output: format as [structure]. keep to [length]. deep analysis template you are a [role] with [specific experience]. context: [background on situation] task: analyze [specific thing]. identify [key criteria]. recommend [what you want]. constraints: use only [data source]. audience: [who]. tone: [style]. output: structure as [sections]. include [elements]. exclude [what not to do]. if you need more context, ask me 5 questions before starting. creative brief template you are a [role]. objective: create [thing] that [outcome]. context: [who it's for, why it matters] tone: [style]. style: [visual/voice direction]. constraints: [length/format/taboos] output: [specific structure]. include [required elements]."
@@ -1045,7 +1219,7 @@
    "Practical & Applied",
    "30-Minute Workshop Lesson Plan"
   ],
-  "text": "12 go deeper additional resources & practice where we got this and where to go deeper. everything here is either original research, battle-tested practice, or curated from the best sources in prompt engineering. here's where to go deeper. foundational guides source best for who anthropic prompting best practices official claude guide, most comprehensive everyone openai prompt engineering guide gpt-specific, strong on structured output gpt users google gemini prompting strategies direct, example-heavy, multimodal gemini users prompt engineering guide (community) deep technical reference, framework heavy advanced users frameworks & theory source best for link shelly palmer: mastering prompt engineering frameworks and meta-prompting for business shellypalmer.com mit sloan: effective prompts for ai academic but highly practical mitsloanedtech.mit.edu ibm prompt engineering guide 2026 enterprise perspective, structured approach ibm.com dreamhost: 25 claude prompt techniques empirical testing of what works dreamhost.com research & psychology paper finding link \"take a deep breath\" (yang et al.) +9% accuracy improvement just from phrasing arxiv.org/abs/2309.03409 monetary framing (bsharat et al.) up to 45% improvement in output quality arxiv.org/abs/2312.16171 recursive language models (zhang et al., mit) handle 100x larger inputs, 28-58% better outputs arxiv.org/abs/2512.24601 anthropic context engineering how to design full context stacks for ai agents anthropic.com practical & applied source best for link \"i accidentally made claude 45% smarter\" real-world application of psychological prompting medium.com neil sahota: recursive prompting practical recursive workflow guide neilsahota.com harvard iis: cognitive forcing functions research on disrupting automation bias harvard.edu 30-minute workshop lesson plan run this in your team minutes 0-5: why ai ≠ google (section 1, show the comparison table) minutes 5-10: the rto framework (section 2, live demo: turn a bad prompt into good) minutes 10-15: hands-on exercise (everyone rewrites 2 of their own prompts using rto) minutes 15-20: level up: add persona depth + task precision (sections 4-5 highlights) minutes 20-25: psychological power-ups (section 8, show the research, demo psychological triggers) minutes 25-30: the future: context > prompts (section 10, connect to cowork setup) you've reached the end of the guide. you now know more about prompting than 99% of users. your next step: practice. next step: practice read this guide once. then go back to section 2, section 4, and section 11. those are your working references. practice one framework per week until it becomes muscle memory. then teach someone else. questions? reach out . all guides next → claude beginner the prompting guide , part of the complete guide to claude cowork written by steve gustafson, march 2026 research-backed, battle-tested, and optimized for getting real work done with ai."
+  "text": "12 go deeper additional resources & practice where we got this and where to go deeper. everything here is either original research, battle-tested practice, or curated from the best sources in prompt engineering. here's where to go deeper. foundational guides source best for who anthropic prompting best practices official claude guide, most comprehensive everyone openai prompt engineering guide gpt-specific, strong on structured output gpt users google gemini prompting strategies direct, example-heavy, multimodal gemini users prompt engineering guide (community) deep technical reference, framework heavy advanced users frameworks & theory source best for link shelly palmer: mastering prompt engineering frameworks and meta-prompting for business shellypalmer.com mit sloan: effective prompts for ai academic but highly practical mitsloanedtech.mit.edu ibm prompt engineering guide 2026 enterprise perspective, structured approach ibm.com dreamhost: 25 claude prompt techniques empirical testing of what works dreamhost.com research & psychology paper finding link emotional prompting fails replication (vaugrante et al.) stakes, tips and threats show no reliable gain (see section 8) arxiv.org/abs/2409.20303 recursive language models (zhang et al., mit) handle 100x larger inputs, 28-58% better outputs arxiv.org/abs/2512.24601 anthropic context engineering how to design full context stacks for ai agents anthropic.com practical & applied source best for link \"i accidentally made claude 45% smarter\" real-world application of psychological prompting medium.com neil sahota: recursive prompting practical recursive workflow guide neilsahota.com harvard iis: cognitive forcing functions research on disrupting automation bias harvard.edu 30-minute workshop lesson plan run this in your team minutes 0-5: why ai ≠ google (section 1, show the comparison table) minutes 5-10: the rto framework (section 2, live demo: turn a bad prompt into good) minutes 10-15: hands-on exercise (everyone rewrites 2 of their own prompts using rto) minutes 15-20: level up: add persona depth + task precision (sections 4-5 highlights) minutes 20-25: psychological power-ups (section 8, show the research, demo psychological triggers) minutes 25-30: the future: context > prompts (section 10, connect to cowork setup) you've reached the end of the guide. you now know more about prompting than 99% of users. your next step: practice. next step: practice read this guide once. then go back to section 2, section 4, and section 11. those are your working references. practice one framework per week until it becomes muscle memory. then teach someone else. questions? reach out . all guides next → claude beginner the prompting guide , part of the complete guide to claude cowork written by steve gustafson, march 2026 research-backed, battle-tested, and optimized for getting real work done with ai."
  },
  {
   "url": "workflows.html#the-6-am-dispatch",
@@ -1171,7 +1345,13 @@
   "label": "Claude Code 2.0 · Step 2",
   "title": "Five Reasons It's Not Scary Anymore",
   "desc": "Each one addresses a real fear. Each one is built in.",
-  "headings": [],
+  "headings": [
+   "Plan Mode separates thinking from doing",
+   "Visual diffs replace terminal output",
+   "Routines run in the cloud, your laptop can be off",
+   "Focus View hides the noise",
+   "VS Code with the extension looks like a normal app"
+  ],
   "text": "2 step 2 five reasons it's not scary anymore each one addresses a real fear. each one is built in. 1 plan mode separates thinking from doing type a task. claude shows you its entire plan before executing anything. you review it. you approve it. only then does claude act. this is the safety feature that actually addresses the fear. 2 visual diffs replace terminal output when claude changes a file, you don't see lines of code streaming past. you see a side-by-side comparison. red lines are removed. green lines are added. you understand at a glance what changed. 3 routines run in the cloud, your laptop can be off new in april 2026. you set up a task once. claude runs it on schedule (weekly reports, daily backup tasks, whatever). your computer doesn't need to be on. no more \"i have to leave my mac running overnight.\" since the july 2026 release, routines and their outputs also surface on mobile and web, so you can trigger and review them from your phone. see claude everywhere . 4 focus view hides the noise press ctrl+o. everything disappears except the prompt you gave, claude's thinking, and the result. all the technical noise is hidden. you focus on what matters. 5 vs code with the extension looks like a normal app claude code runs inside vs code, which looks and feels like any mac or windows application. you click, you type, you get results. no weird alien interface. no terminal anxiety."
  },
  {
@@ -1179,7 +1359,14 @@
   "label": "Claude Code 2.0 · Step 3",
   "title": "The Six Pieces (In Plain English)",
   "desc": "These six things power everything Claude Code can do.",
-  "headings": [],
+  "headings": [
+   "Plan Mode",
+   "Skills",
+   "Subagents",
+   "Hooks",
+   "MCP (Model Context Protocol)",
+   "Routines"
+  ],
   "text": "3 step 3 the six pieces (in plain english) these six things power everything claude code can do. 1 plan mode you tell claude what to do. claude explains its strategy before executing. you say yes or no. that approval gate is plan mode. it's the thing that makes non-coders feel safe. when to use: every first task. every time something feels risky. whenever you want to understand what's about to happen. 2 skills reusable playbooks you package once and invoke with a slash command. if you find yourself pasting the same instructions into chat repeatedly, turn it into a skill. type /myskill and claude loads it automatically. when to use: when you discover a task you do weekly or monthly. build it once, run it a hundred times. 3 subagents claude clones itself and runs multiple tasks in parallel, each with its own context window. useful when you have a workflow with many steps and want claude to manage them independently. when to use: processing 50 files at once. running parallel workflows. keeping one task's output separate from another's. 4 hooks automation that triggers when something happens. save a file, a hook runs. complete a task, a hook reformats your output. deterministic code that can't hallucinate. when to use: auto-formatting. running tests automatically. cleaning up files right after they're created. 5 mcp (model context protocol) integrations that connect claude to your other tools. slack, notion, gmail, databases, apis. claude orchestrates them without you writing code. just ask claude to \"send this to slack\" and it does. when to use: when you want claude to talk to your existing tools. no api keys. no technical knowledge required. picking a good one: favor connectors that are actively maintained, ask only for the permissions they need, and ship real docs. the mcp land rush produced a lot of junk. a bad connector is worse than none. 6 routines tasks that run on schedule in the cloud. weekly reports. daily backups. monthly audits. you set it up once. claude runs it automatically. your computer stays off. when to use: anything that happens on a calendar. anything that would normally require you to babysit your computer. learn them in this order start with plan mode (that's just talking to claude). move to skills when you have a task you repeat. skip subagents, hooks, and mcp until you're comfortable. routines are for power users. most people never need all six. plan mode and skills cover 80% of real work. make routines reliable a routine you cannot trust is worse than no routine. three habits fix that. open each task with a freshness check so it stops when its input is empty. give it a state file so it remembers its last run and stops repeating itself. track whether you actually read the output, because a report nobody opens is cost, not progress. the when automations go wrong section walks through all three."
  },
  {
@@ -1187,7 +1374,11 @@
   "label": "Claude Code 2.0 · Step 4",
   "title": "Install in Five Minutes",
   "desc": "No terminal. No technical knowledge. Just three steps.",
-  "headings": [],
+  "headings": [
+   "Download VS Code",
+   "Install the Claude Code Extension",
+   "Open a Folder and Start a Task"
+  ],
   "text": "4 step 4 install in five minutes no terminal. no technical knowledge. just three steps. 1 download vs code go to code.visualstudio.com . download it for your mac or windows pc. install it like any normal app. this is a free text editor built by microsoft. it's not a terminal. it's a visual file editor. 2 install the claude code extension open vs code. look on the left sidebar for the extensions icon (it looks like four squares). search for \"claude code\". click install. that's it. the extension is free (if you have a claude subscription). you sign in with your anthropic account. 3 open a folder and start a task file > open folder. pick or create a folder on your computer. open it in vs code. click the claude code icon on the left sidebar. type your first task in plain english. you're done. vs code shows you your files on the left. claude code shows you the chat on the right. everything is visible at once. don't touch the terminal there is a terminal at the bottom of vs code. you don't need it. ignore it. click the x to close it if it distracts you. everything claude does shows up in the vs code interface visually. no terminal required."
  },
  {
@@ -1198,6 +1389,7 @@
   "headings": [
    "The Prompt",
    "What Claude Shows Back",
+   "Claude's Plan (Simplified)",
    "You Approve (or Edit)",
    "Claude Executes",
    "You Get the Result"
@@ -1209,7 +1401,11 @@
   "label": "Claude Code 2.0 · Step 6",
   "title": "First Day, First Week, First Month",
   "desc": "What to do at each stage. What to expect.",
-  "headings": [],
+  "headings": [
+   "First Day",
+   "First Week",
+   "First Month"
+  ],
   "text": "6 step 6 first day, first week, first month what to do at each stage. what to expect. first day what to do: install vs code and the extension. open a folder. do one small task in plan mode. something that takes 30 seconds max. what to expect: it will feel a bit unfamiliar. that's normal. you'll probably be surprised it actually worked. success looks like: you ran one task. you read the plan. you got a result. you understand how the approval workflow works. first week what to do: five or six small, single-purpose tasks. different task types. file organization. data analysis. document writing. get comfortable with plan mode. what to expect: some tasks will be wrong on the first try. you'll tell claude \"no, adjust this\" and it will fix it. you might feel like you're repeating yourself. success looks like: you're not nervous anymore. you've approved and executed 5+ tasks. you've edited a plan at least once. first month what to do: combine multiple steps into one workflow. create a skill for something you do weekly. connect to slack or notion if relevant. start thinking about what repeats in your work. what to expect: you'll start seeing tasks you could automate. \"wait, claude could do this every friday.\" you'll get ideas faster than you can test them. success looks like: you have one automated workflow running. you've saved at least 2 hours on repeated work. you're no longer following guides; you're asking claude for help with your actual problems."
  },
  {
@@ -1217,7 +1413,16 @@
   "label": "Claude Code 2.0 · Step 7",
   "title": "Eight Things People Are Actually Doing",
   "desc": "Real work. Real ROI. Real people (not me).",
-  "headings": [],
+  "headings": [
+   "Bulk PDF Extraction",
+   "Expense Categorization",
+   "Weekly Client Reports",
+   "Internal Tools That Cost $50K",
+   "Content Calendars",
+   "File Organization by Content",
+   "Automated Competitor Research",
+   "Custom Dashboards"
+  ],
   "text": "7 step 7 eight things people are actually doing real work. real roi. real people (not me). bulk pdf extraction 50 invoices as pdfs. extract amount, date, vendor. create a spreadsheet. one task. takes 3 minutes to set up. expense categorization three credit card statements. merge them. categorize. subtotal by category. done in seconds instead of an hour of manual work. weekly client reports set a routine. every friday at 9am, claude pulls data from notion, creates a report, sends it to slack. no human touching it. internal tools that cost $50k expense tracker. time log analyzer. customer feedback aggregator. things that would normally cost 50k to hire someone to build. claude builds them in a day. content calendars research five competitor products. extract key features. create a comparison table and a marketing angle for each. spreadsheet ready to share. file organization by content 500 files named randomly. claude reads each file. sorts them into folders by project, date, or type. renames them systematically. automated competitor research watch a list of competitor websites on schedule. check for changes. alert you if something new goes live. custom dashboards pull data from multiple sources. create a visual dashboard that updates daily. no sql knowledge needed. claude does it. the pattern every single use case starts with a repetitive task you do manually. claude saves you 1-4 hours per week. over a year, that's 50-200 hours. that's conservatively 5k-20k in billable time (for anyone who charges for their time)."
  },
  {
@@ -1235,7 +1440,10 @@
   "desc": "They solve different problems. You might use both.",
   "headings": [
    "Head-to-Head Comparison",
-   "Decision Tree"
+   "Decision Tree",
+   "Start with Cowork if...",
+   "Start with Claude Code if...",
+   "Use Both If..."
   ],
   "text": "9 step 9 cowork or code 2.0. pick the right one. they solve different problems. you might use both. head-to-head comparison cowork claude code 2.0 interface chat-like. built into claude app. vs code ide. shows files and chat together. file management drag and drop. projects with memory. folder structure. full file visibility. what it's best for research, writing, brainstorming, building projects over time data processing, file automation, code execution, build tools terminal access limited. cowork runs commands, not a full shell. full terminal. vs code shows output visually. learning curve gentler. most people get it in 5 minutes. slightly steeper. vs code is unfamiliar to non-developers. getting over that hump takes 15 minutes. best starting point if you've never used claude before if you're comfortable with file systems and want more power decision tree start with cowork if... you want to ease into ai-assisted work. you're mainly writing, researching, or brainstorming. you like the idea of projects with built-in memory. you want the gentlest learning curve possible. start with claude code if... you have specific files to process (csvs, pdfs, databases). you want to set up automated workflows (routines). you're comfortable with a folder structure. you like seeing the full picture (files and chat together). use both if... you use cowork for projects and knowledge work. you use claude code for data tasks and automation. they're complementary, not competing. real talk you can use both. use cowork to write a strategy document. use code to process the data. use cowork to research. use code to build a tool. they're not exclusive. many power users do exactly this. ← previous claude in action all guides next → claude design claude code 2.0 guide by steve gustafson for non-coders and people intimidated by ai tools. updated april 2026. back to all guides ↑"
  },
@@ -1246,6 +1454,10 @@
   "desc": "A code-first design tool launched April 17, 2026, that generates working prototypes from text prompts.",
   "headings": [
    "What You Can Build",
+   "Slide Decks",
+   "Landing Pages",
+   "Wireframes",
+   "Marketing Assets",
    "Claude Design vs Everything Else"
   ],
   "text": "1 step 1 what claude design actually is a code-first design tool launched april 17, 2026, that generates working prototypes from text prompts. claude design is an ai-powered visual design tool built on claude opus 4.7 (anthropic's most capable vision model). it launched april 17, 2026, as a research preview for claude pro, max, team, and enterprise customers at claude.ai/design. unlike canva or figma, claude design generates working frontend code from natural-language prompts. you get interactive prototypes, not editable layers. think of it this way: canva and figma are vector editors where you manually position shapes. claude design is a coder that reads your description and generates html/css/javascript that works right away. what you can build slide decks presentations with animations. 5 slides or 50. export as pdf or keep as working html. landing pages marketing sites, one-pagers, sales pages. clickable, fully interactive. wireframes app mockups and component libraries. ready to hand to developers. marketing assets email templates, ad creatives, social banners. fast iteration on multiple concepts. claude design vs everything else factor claude design canva figma output type working code (html/css/js) editable vector design editable design system best for speed, prototypes, code handoff final polished marketing output production ui work, team collaboration learning curve just describe what you want drag-and-drop, templates steep, design skills required team collaboration early stage excellent with comments industry standard weekly usage limit yes, capped higher limits for pro unlimited (paid plan) brand integration upload assets, claude applies consistently brand intelligence system brand kits with design tokens cost included with claude pro/max free to paid plans paid only bottom line claude design wins on speed and code quality. canva wins on polish and templates. figma wins on production and team handoff. the smartest people use all three."
@@ -1256,7 +1468,10 @@
   "title": "Why Two Tools Beat One",
   "desc": "Divergent thinking plus convergent thinking. Fast exploration plus fast polish.",
   "headings": [
-   "The Real Reason: Claude Design Tokens Are Tight"
+   "ChatGPT Images 2.0 (or DALL-E) - Divergent Phase",
+   "Claude Design - Convergent Phase",
+   "The Real Reason: Claude Design Tokens Are Tight",
+   "The Rule of Thumb"
   ],
   "text": "2 step 2 why two tools beat one divergent thinking plus convergent thinking. fast exploration plus fast polish. the core insight: image ai is phenomenal at exploration. claude design is phenomenal at polish. using both in sequence is faster than using either alone. here is what it looks like: 2.1 chatgpt images 2.0 (or dall-e) - divergent phase you want to make a pitch deck. instead of staring at canva templates, you generate 4-8 visual directions for the cover. different aesthetics: brutalist data viz, warm illustration, minimalist tech, editorial photography. you pick one. takes 2 minutes. cost: zero. mental friction: zero. 2.2 claude design - convergent phase you take the one image you loved. you upload it to claude design. you say \"build a 10-slide pitch deck using this visual direction, with my brand colors and logo.\" claude generates the entire working deck. iterate on it. get it perfect. export as pdf. done. why this pattern works image models are not good at picking one thing (they're generalists at many things). design systems are not good at raw exploration (they're specialists at one thing). by using each at what it does best, you get the speed of exploration and the quality of specialization. you also avoid \"template fatigue\" (opening canva and scrolling forever) and \"blank canvas paralysis\" (opening figma with no idea where to start). the real reason: claude design tokens are tight here is the unglamorous truth nobody mentions in launch posts. claude design is in research preview. the weekly usage cap is small. if you brainstorm visual directions inside claude design itself, you will burn through your budget on exploration and run out of credits before you get to the polished deliverable. openai's image model is the opposite. generation is cheap, fast, and effectively unlimited for the way most people use it. each cover concept takes seconds and pennies. budget math: why you brainstorm outside claude design a claude design weekly cap covers roughly one to three polished deliverables. a divergent brainstorm where you explore eight visual directions and reject seven of them is a brutal way to spend that budget. the same brainstorm in chatgpt or dall-e costs almost nothing and runs in two minutes. save claude design for what only claude design does well: turning one chosen direction into working code, working slides, working layouts. the rule of thumb if a step involves picking between options, do it outside claude design. if a step involves producing the final artifact, do it inside claude design. exploration is cheap somewhere else. polish is what you bought the claude design quota for."
  },
@@ -1266,7 +1481,10 @@
   "title": "Step One: Brainstorm in ChatGPT Images",
   "desc": "Generate 4-8 visual concepts in 2 minutes. Pick the one that feels right.",
   "headings": [
-   "How to Prompt for Exploration"
+   "How to Prompt for Exploration",
+   "Generate 4-8 directions",
+   "Pick one that feels right",
+   "Screenshot or save the image"
   ],
   "text": "3 step 3 step one: brainstorm in chatgpt images generate 4-8 visual concepts in 2 minutes. pick the one that feels right. chatgpt images 2.0 (newer, with thinking capability) or dall-e 3 via chatgpt is your divergent ideation tool. the goal is not perfect final images. the goal is to explore multiple visual directions so you can pick one that captures the feeling you want. how to prompt for exploration be specific about the concept, loose about the style. ask for variation. here is an example: generate four cover concepts for a slide deck titled \"$1b in untapped payroll savings\". try four visual directions: 1. financial newspaper (editorial grid, data-forward, 1980s wall street journal aesthetic) 2. brutalist data (bold sans-serif typography, minimal color, geometric data visualization) 3. warm illustration (soft colors, approachable, human-centered visual metaphor) 4. tech startup minimalism (clean, contemporary, 2026 saas aesthetic) generate all four as horizontal banner images (16:9). make the title legible in each. chatgpt will generate four images. you open them side-by-side and feel which one resonates. maybe it's the brutalist data one. maybe it's the warm illustration. pick one. 3.1 generate 4-8 directions vary the aesthetic, tone, and visual approach. horizontal (16:9) works best for decks. 3.2 pick one that feels right not the \"best\" technically. the one that matches the feeling of your message. 3.3 screenshot or save the image you'll upload it to claude design in the next step. don't iterate endlessly here image generation can become a black hole. you generate 10 concepts, then 10 more, then you're stuck. set a hard limit. usually 4-8 directions is enough to find something you like. if nothing clicks, you picked the wrong topic description. rewrite the prompt and start over."
  },
@@ -1277,6 +1495,10 @@
   "desc": "Upload the image. Provide brand. Ask for the full design. Get working code back.",
   "headings": [
    "The Handoff Process",
+   "Open claude.ai/design",
+   "Upload your reference image",
+   "Provide brand assets",
+   "Describe the full design",
    "Example Prompt"
   ],
   "text": "4 step 4 step two: hand off to claude design upload the image. provide brand. ask for the full design. get working code back. now you have your visual direction. take it to claude design and hand off the full build. claude design can take an image as a reference and apply its visual language (color, typography, proportion) to your entire deck or site. the handoff process 4.1 open claude.ai/design go to claude.ai/design. you'll see an upload area and a text prompt field. 4.2 upload your reference image drag the image you chose from step 3. claude design will analyze the colors, typography, mood, and visual approach. 4.3 provide brand assets include in your prompt: hex codes for 3 primary colors, 2 font names (or urls if custom), and a logo url if you have one. example: \"brand colors: #1a1a1a, #d4956a, #e8e8e8. fonts: inter and sf mono. logo: [url]\" 4.4 describe the full design give claude the outline and key content. claude will generate the entire working design in the visual direction of your reference image. example prompt build a 10-slide pitch deck in the visual direction of this image. use brand colors #1a1a1a, #d4956a, #e8e8e8. font: inter and sf mono. slide structure: 1. title: \"$1b in untapped payroll savings\" (with subheading) 2. the problem (3 key points) 3. why it happens (data-driven explanation) 4. the solution (your approach) 5. market size (with a simple chart) 6. differentiation (vs competitors) 7. traction (metrics or progress) 8. business model (revenue approach) 9. team (founder bios) 10. call to action (what you want them to do) make it polished, data-forward, and ready for investor meetings. include subtle animations on data reveals. claude design will generate a complete, clickable deck. you can iterate: \"change slide 3 to focus more on roi\" or \"add more whitespace on the title slide\" or \"make the data visualization more prominent.\" the key difference from canva in canva, you're arranging shapes. in claude design, claude is writing the code. this means the output is clean, semantic html that developers can directly hand to a backend team. it also means you can iterate faster because claude can reason about your whole design system at once."
@@ -1288,6 +1510,10 @@
   "desc": "From outline to polished, export-ready pitch deck in under an hour.",
   "headings": [
    "The Four Phases",
+   "Phase 1: Build the Outline First (Always)",
+   "Phase 2: Set the Visual Direction (One Reference Image)",
+   "Phase 3: Provide Brand Assets Once",
+   "Phase 4: Iterate Slide by Slide",
    "Export Options",
    "Common Gotchas with Claude Design"
   ],
@@ -1298,7 +1524,14 @@
   "label": "Claude Design · Step 6",
   "title": "Beyond Decks: Sites, One-Pagers, Marketing",
   "desc": "Claude Design handles more than presentations. Here is what else works.",
-  "headings": [],
+  "headings": [
+   "Landing Pages",
+   "One-Pagers",
+   "Email Templates",
+   "App Wireframes",
+   "Marketing Assets",
+   "Internal Tools"
+  ],
   "text": "6 step 6 beyond decks: sites, one-pagers, marketing claude design handles more than presentations. here is what else works. while claude design shines for decks, it handles a wide range of visual design work. here is the quick reference: landing pages product pages, feature overviews, pricing pages. fully interactive. use when you want fast iteration and code handoff to developers. one-pagers sales collateral, company overviews, event announcements. great for pdf export and email. email templates newsletter layouts, promotional emails. claude generates responsive html you can drop into mailchimp or brevo. app wireframes product mockups, dashboard layouts. clickable prototypes you can hand to developers as a spec. marketing assets social ad creatives (1:1, 16:9), infographics, data visualizations. fast variations for a/b testing. internal tools dashboards, reports, tracking pages. quick prototypes without building in a framework. when not to use claude design if you need pixel-perfect design with layered assets, use figma. if you need a massive template library and fast final output, use canva. claude design is best when you want code plus speed plus a human-readable design system."
  },
  {
@@ -1308,7 +1541,11 @@
   "desc": "Set up your brand system one time. Every new project inherits it automatically.",
   "headings": [
    "What to Upload",
-   "The Process"
+   "The Process",
+   "Go to Organization Settings",
+   "Upload Brand Assets",
+   "Set as Default",
+   "Done"
   ],
   "text": "7 step 7 brand consistency: upload once, use forever set up your brand system one time. every new project inherits it automatically. claude design lets you upload brand assets through organization settings. once you do, claude extracts your design system (colors, typography, components, layout patterns) and applies it consistently to every new project. what to upload brand codebases (figma files, design systems docs) existing slide decks or pdfs with your brand applied logo files (svg or png) color palette (hex codes or a color swatch image) type specimens (font files or usage examples) component library (if you have one) the process 7.1 go to organization settings in claude.ai/design, click your organization name in the top right. select settings. 7.2 upload brand assets you can upload multiple files (pdfs, design files, images). claude will analyze them automatically. 7.3 set as default select one design system as your default. every new project will reference it automatically. 7.4 done when you start a new deck or page, just describe it. claude will apply your brand system without you re-explaining it. pro tip: update your brand system quarterly if your brand evolves, re-upload new examples. claude will extract the updates and apply them to future projects. this scales your design consistency without manual work."
  },

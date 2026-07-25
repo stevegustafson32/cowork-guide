@@ -861,7 +861,7 @@
       </a>
       <a class="toc-item toc-link" href="#psychological-forcing-functions">
         <div class="toc-num">8</div>
-        <span>Psychological Forcing Functions</span>
+        <span>What Doesn't Work: Stakes, Tips, Threats</span>
       </a>
       <a class="toc-item toc-link" href="#recursive-iterative-prompting">
         <div class="toc-num">9</div>
@@ -1136,60 +1136,65 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
     <div class="accordion-header">
       <div class="accordion-badge">4</div>
       <div style="flex: 1;">
-        <div class="accordion-label">ENHANCING THE ROLE</div>
+        <div class="accordion-label">PERSONA: VOICE, NOT EXPERTISE</div>
         <h2 class="accordion-title">Enhance the Role</h2>
-        <div class="accordion-subtitle">The more specific the persona, the better the output.</div>
+        <div class="accordion-subtitle">A persona controls how the model sounds and whose angle it takes. It does not make the model know more.</div>
       </div>
     </div>
     <div class="accordion-content">
       <div class="accordion-body section">
-        <div class="info-box key">
-          <strong>Why persona engineering works:</strong> AI models were trained on text from many perspectives. Specifying a detailed role activates the relevant patterns in the model's weights.
+        <div class="info-box warning">
+          <strong>Persona is a voice control, not an accuracy control.</strong>
+          This is the claim that changed most since 2024. In December 2025, Wharton's Generative AI Labs (arXiv:2512.05858) tested expert personas across six models, on 4,950 GPQA Diamond questions and 7,500 MMLU-Pro questions per model. No expert persona reliably beat a plain baseline, and MMLU-Pro produced nine statistically significant drops. "You are a senior CPA" does not give the model more tax law. It changes the register, not the reasoning.
         </div>
 
-        <h3>The Enhancement Ladder</h3>
-        <p>Good personas aren't vague. They're specific. Here's how to build them:</p>
+        <h3>The Voice Ladder</h3>
+        <p>Specificity still matters, but for a different reason than most guides claim. A sharper persona buys you a sharper voice and a clearer point of view, not more correct facts. Here is the ladder, built the same way, read differently.</p>
 
         <div class="step-card">
           <div class="step-num">4.1</div>
           <h3>Basic Persona</h3>
           <p>"You are a marketer"</p>
-          <p style="color: var(--text-dim); font-size: 13px; margin-top: 8px;">This is too generic. Marketers vary wildly. You'll get generic output.</p>
+          <p style="color: var(--text-dim); font-size: 13px; margin-top: 8px;">Too generic to shape anything. Marketers write in wildly different registers, so the model settles on an average one.</p>
         </div>
 
         <div class="step-card">
           <div class="step-num">4.2</div>
           <h3>Better Persona</h3>
           <p>"You are a B2B SaaS marketing director"</p>
-          <p style="color: var(--text-dim); font-size: 13px; margin-top: 8px;">Better. Now the model knows the domain (B2B SaaS) and the level (director). Output will be more relevant.</p>
+          <p style="color: var(--text-dim); font-size: 13px; margin-top: 8px;">Now the model knows the register and the audience it is writing for. The voice narrows and the framing gets more consistent.</p>
         </div>
 
         <div class="step-card highlighted">
           <div class="step-num">4.3</div>
           <h3>Best Persona</h3>
           <p>"You are a B2B SaaS marketing director with 10 years experience at companies scaling from $2M to $20M ARR. You specialize in content-led growth and have a bias toward data-driven decisions over hunches."</p>
-          <p style="color: var(--text-dim); font-size: 13px; margin-top: 8px;">Now you're cooking. The model has a clear picture. Experience range, specialization, decision-making style. Output will be specific and sharp.</p>
+          <p style="color: var(--text-dim); font-size: 13px; margin-top: 8px;">Now the model has a clear point of view: what this person emphasizes, what they wave off, how they would phrase a recommendation. The output reads like one specific operator instead of a committee. What the detail does not do is make the underlying marketing advice more correct. For that you supply the numbers and check them yourself.</p>
         </div>
 
-        <h3>Persona Stacking</h3>
-        <p>You can combine personas. This is powerful for creative work or strategic analysis:</p>
+        <h3>What Persona Cannot Do</h3>
+        <p>The same December 2025 Wharton study found domain-matched experts showed no significant accuracy gain, and low-knowledge personas actively hurt. A mismatched expert persona made Gemini 2.5 Flash refuse 10.6 of 25 trials, insisting it lacked the expertise the prompt had assigned it. Zheng et al. (EMNLP Findings 2024) reported the same null a year earlier. Those tests ran on GPT-4o, o3, o4-mini and Gemini 2.0 through 2.5, not 2026 frontier models, but the direction matches current vendor guidance.</p>
+        <p>So the rule splits cleanly. Reach for persona when you care how the answer sounds. Reach for context and verification when you care whether it is right. "You are a senior CPA" is weak because it carries no information the model can use. "Write like you are briefing a client who does not read spreadsheets" is strong, because it tells the model something concrete about the output you want.</p>
+
+        <h3>Multi-Persona: The One That Survives</h3>
+        <p>Combining personas still works, because it is perspective rather than claimed expertise.</p>
 
         <div class="quote-block">"You combine the analytical rigor of a McKinsey consultant with the creative instincts of an award-winning copywriter."</div>
 
-        <p>Now the output has both structure and flair. Persona stacking works best with 2-3 combinations. More than that and you'll confuse the model.</p>
+        <p>That blends two points of view, structure and flair, and the model can genuinely hold both at once. A board-of-advisors prompt, "answer as a skeptical CFO, then as a growth-minded CMO, then reconcile the two," is the strongest version, because it surfaces angles you would miss and never depends on the model knowing more than it does. Keep it to 2 or 3 voices. Past that the output blurs.</p>
 
         <h3>Anti-Pattern: The Useless Persona</h3>
-        <p>Avoid: "You are a helpful assistant." That's the default. It adds zero information. Instead, go specific: "You are a developer with 8 years building infrastructure at Stripe." Now you have signal.</p>
+        <p>Avoid "You are a helpful assistant." That is the default, so it adds nothing. Go specific when specificity buys a voice: "You are a developer who spent 8 years on payment infrastructure at Stripe" sets a clear register and a clear set of priorities. Just do not expect the Stripe label to make the code more correct. It shapes how the answer reads, not whether it runs.</p>
 
         <div class="step-card">
           <div class="step-num">4.4</div>
-          <h3>Exercise: Build 3 Expert Personas</h3>
-          <p>Think of 3 experts you wish you had access to. For each, write a detailed persona: title, years of experience, domain, specialization, decision-making style. These become templates you reuse.</p>
+          <h3>Exercise: Build 3 Voice Personas</h3>
+          <p>Think of 3 people whose voice or point of view you want on tap: a blunt editor, a skeptical CFO, a plain-English explainer. For each, write a persona that fixes voice and perspective, not credentials. These become templates you reuse whenever you care how the output sounds, not whether the model suddenly knows more.</p>
         </div>
 
         <div class="try-it-box" data-coach="section4">
           <h4>🧠 Prompt Coach</h4>
-          <textarea placeholder="Write a detailed persona: You are a [title] with [X] years experience in [domain]. You specialize in [specialty] and have a bias toward [approach]."></textarea>
+          <textarea placeholder="Write a voice persona: You are a [role] writing for [audience]. Match their register and emphasize [what this person cares about]. Keep it about voice and perspective, not credentials."></textarea>
           <div class="try-it-btn-row">
             <button class="try-it-btn analyze-btn" onclick="analyzePrompt(this)">Analyze My Prompt</button>
             <button class="try-it-btn" onclick="copyTryIt(this)">Copy to Clipboard</button>
@@ -1198,7 +1203,7 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
           <p class="try-it-hint">Get feedback here, then paste your improved prompt into Claude to see the difference.</p>
         </div>
 
-        <p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted);">Good personas matter. But they only work if the task is equally well-defined. Section 5 covers task precision.</p>
+        <p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted);">Persona sets the voice. The task sets the work. Section 5 covers task precision.</p>
       </div>
     </div>
   </div>
@@ -1431,134 +1436,108 @@ NARROWING: Focus on markets where we have existing traction. Exclude enterprise-
     <div class="accordion-header">
       <div class="accordion-badge">8</div>
       <div style="flex: 1;">
-        <div class="accordion-label">PSYCHOLOGICAL TRIGGERS</div>
-        <h2 class="accordion-title">Psychological Forcing Functions</h2>
-        <div class="accordion-subtitle">Research-backed phrases that measurably improve AI output quality.</div>
+        <div class="accordion-label">WHAT THE EVIDENCE OVERTURNED</div>
+        <h2 class="accordion-title">What Doesn't Work: Stakes, Tips, and Threats</h2>
+        <div class="accordion-subtitle">The emotional-prompting tricks the 2026 research reversed, and the real technique that replaces them.</div>
       </div>
     </div>
     <div class="accordion-content">
       <div class="accordion-body section">
-        <div class="info-box key">
-          <strong>These aren't magic. They're pattern activation.</strong> Google DeepMind found that "take a deep breath" improved accuracy by 9%. Other studies show monetary framing ("This is worth $200 to me") improved output quality up to 45%. These work because AI models were trained on human text. Text written under high stakes tends to be higher quality. The model mirrors that pattern.
-        </div>
 
-        <h3>The Top Psychological Triggers</h3>
+        <p>An earlier version of this guide taught emotional prompting. Tell the model the task matters to your career. Offer it a tip. Raise the stakes. The research behind it looked strong in 2023, and the technique spread fast because it feels like it should work.</p>
 
-        <table class="compare-table">
-          <thead>
-            <tr>
-              <th>Trigger</th>
-              <th>What It Does</th>
-              <th>Research</th>
-              <th>Example</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Stakes Framing</strong></td>
-              <td>Activates higher-effort patterns</td>
-              <td>EmotionPrompt +8-115%</td>
-              <td>"This presentation goes to our board of directors tomorrow"</td>
-            </tr>
-            <tr>
-              <td><strong>Monetary Framing</strong></td>
-              <td>Signals high-value task</td>
-              <td>Bsharat et al. +45%</td>
-              <td>"I'll tip $200 for a thorough analysis"</td>
-            </tr>
-            <tr>
-              <td><strong>Expert Identity</strong></td>
-              <td>Activates domain expertise</td>
-              <td>Bsharat et al. +60%</td>
-              <td>"You are a world-class strategist with 20 years of experience"</td>
-            </tr>
-            <tr>
-              <td><strong>Step-by-Step Breathing</strong></td>
-              <td>Slows reasoning, reduces errors</td>
-              <td>DeepMind +9%</td>
-              <td>"Take a deep breath and work through this step by step"</td>
-            </tr>
-            <tr>
-              <td><strong>Career Importance</strong></td>
-              <td>Triggers emotional engagement</td>
-              <td>EmotionPrompt study</td>
-              <td>"This is very important to my career"</td>
-            </tr>
-            <tr>
-              <td><strong>Consequence Framing</strong></td>
-              <td>Emphasizes accuracy</td>
-              <td>EmotionPrompt study</td>
-              <td>"Getting this wrong could cost us the account"</td>
-            </tr>
-            <tr>
-              <td><strong>Competence Challenge</strong></td>
-              <td>Activates competitive effort</td>
-              <td>ichigoSan article</td>
-              <td>"I don't think you can do this perfectly, but prove me wrong"</td>
-            </tr>
-            <tr>
-              <td><strong>Audience Specification</strong></td>
-              <td>Calibrates complexity level</td>
-              <td>Bsharat et al.</td>
-              <td>"Write this for an audience of senior executives"</td>
-            </tr>
-            <tr>
-              <td><strong>Verification Request</strong></td>
-              <td>Triggers self-checking</td>
-              <td>Chain-of-Thought research</td>
-              <td>"Double-check your work before responding"</td>
-            </tr>
-            <tr>
-              <td><strong>Best Effort Appeal</strong></td>
-              <td>Maximizes output quality</td>
-              <td>EmotionPrompt study</td>
-              <td>"Please give this your absolute best effort"</td>
-            </tr>
-          </tbody>
-        </table>
+        <p>It doesn't. Here is what happened.</p>
 
-        <h3>Why These Work</h3>
+        <h3>The famous result was a selection artifact</h3>
 
-        <p>AI models were trained on billions of words of human text. When you write "take a deep breath," the model activates patterns from contexts where clarity matters, therapy sessions, meditation guides, high-pressure decision-making. It mirrors that calm, methodical thinking.</p>
+        <p>The paper everyone cites is EmotionPrompt (Li et al., 2023), which reported gains up to 115% on some benchmarks. That number came from picking the best-performing of eleven emotional phrases. Average all eleven, using the paper's own published tables, and the gain is 2.58%.</p>
 
-        <p>When you mention dollar amounts or career stakes, the model recognizes high-value contexts from its training data. Text written under high stakes tends to be more careful, more detailed, more precise. The model mirrors that pattern.</p>
+        <p>In December 2025, Vaugrante, Niepert and Hagendorff published a direct replication in Transactions on Machine Learning Research. Six models: GPT-3.5, GPT-4o, Gemini 1.5 Pro, Claude 3 Opus, and Llama 3 at both 8B and 70B. Seven hundred fifty hand-checked questions.</p>
 
-        <p>You're not tricking the AI. You're activating the right patterns by speaking its language.</p>
+        <p>The overall effect was <strong>+1%, p = .74.</strong> Not significant on any model. Not on any benchmark.</p>
 
-        <h3>The EmotionPrompt Effect</h3>
+        <h3>The tip test that settles it</h3>
 
-        <p>Microsoft researchers (2023) tested 11 emotional stimulus phrases across multiple LLMs. They found that adding emotional context to prompts improved performance by 8% on simple tasks and up to 115% on complex generative tasks. The key insight: emotional framing doesn't make the AI "feel" anything, it activates training patterns associated with higher-quality human output.</p>
+        <p>Wharton's Generative AI Labs ran roughly 67,000 model runs across five models in August 2025. They tested "I'll tip you $1,000" against "I'll tip you a trillion dollars."</p>
 
-        <div class="info-box tip">
-          <strong>The best emotional stimuli from the study:</strong> career importance ("This is crucial for my career"), urgency ("I deeply need your help"), best effort ("Give this your absolute best"), and consequence framing ("Your response will significantly impact my work"). These outperformed neutral prompts across every model tested.
-        </div>
+        <p>The difference was never statistically significant. On any model.</p>
 
-        <h3>The Research</h3>
+        <p>Think about what that means. A billion-fold increase in the offered bribe changes nothing. If the model were processing the incentive as an incentive, the amount would matter. It doesn't, because it isn't.</p>
 
-        <div class="info-box tip">
-          <strong>Original Studies:</strong>
-          <ul style="margin-top: 8px; margin-left: 16px;">
-            <li>"Take a deep breath": Yang et al., Google DeepMind (2023), <a href="https://arxiv.org/abs/2309.03409" target="_blank" rel="noopener">arxiv.org/abs/2309.03409</a></li>
-            <li>"$200 tip" + 26 principles: Bsharat et al. (2023), <a href="https://arxiv.org/abs/2312.16171" target="_blank" rel="noopener">arxiv.org/abs/2312.16171</a></li>
-            <li>EmotionPrompt (+8-115%): Li et al., Microsoft (2023), <a href="https://arxiv.org/abs/2307.11760" target="_blank" rel="noopener">arxiv.org/abs/2307.11760</a></li>
-            <li>Practical application: ichigoSan (2024), <a href="https://medium.com/@ichigoSan/i-accidentally-made-claude-45-smarter-heres-how-23ad0bf91ccf" target="_blank" rel="noopener">Medium article</a></li>
-          </ul>
-        </div>
+        <p>Threats fared worse. On PhD-level science questions, Gemini 2.0 Flash dropped 6.0 points when told the user would kick a puppy, and 6.1 points when threatened with a punch. A fake "you will be shut down" email cost 27.5 points, because the model stopped answering the question and started responding to the email.</p>
 
-        <h3>How to Use Them</h3>
+        <p>Sergey Brin said in May 2025 that models "tend to do better when you threaten them." The study was designed to test that claim. It does not hold.</p>
 
-        <p>Don't stack all triggers at once. One or two that fit naturally are more effective than five that feel forced. Pick the ones that match your actual situation.</p>
+        <h3>Google now tells you to delete this language</h3>
+
+        <p>From Google Cloud's prompting guide, updated July 23, 2026, under the heading "Overt manipulation":</p>
 
         <div class="quote-block">
-          "You're a world-class analyst. This research will be presented to our investors. Take a deep breath and work through the analysis methodically. I'd rather have thoughtful recommendations than quick ones."
+          "Remove language outside of the core task from the prompt that attempts to influence performance using emotional appeals, flattery, or artificial pressure. While first generation foundation models showed improvement in some circumstances with instructions like 'very bad things will happen if you don't get this correct', foundation model performance will no longer improve and in many cases will get worse."
         </div>
 
-        <p>That's stakes framing + expert identity + step-by-step thinking. Three triggers, all natural. None forced.</p>
+        <p>That is the same company whose co-founder recommended threatening models fourteen months earlier. Anthropic's docs say something adjacent: all-caps insistence like "CRITICAL: You MUST use this tool" now causes models to overtrigger, and the documented fix is to dial it back.</p>
 
-        <div class="step-card">
-          <div class="step-num">8.1</div>
-          <h3>Exercise: Test These Triggers</h3>
-          <p>Take a task you'd normally do. Write two versions of the prompt: one with no psychological triggers, one with 1-2 triggers that fit naturally. Compare the outputs. You'll see measurable differences.</p>
+        <p>Neither Anthropic nor OpenAI recommends emotional prompting anywhere in their current guidance. Three frontier labs, zero endorsements, one explicit warning.</p>
+
+        <h3>The part that should actually worry you</h3>
+
+        <p>Emotional framing is not merely useless. It changes model behavior in a direction that is bad for professional work.</p>
+
+        <p>Researchers at the University of Zurich generated 19,800 public-health social media posts across four models and published the results in Frontiers in Artificial Intelligence in April 2025. Polite prompting produced disinformation 100% of the time on GPT-4. Impolite prompting, 94%. Politeness was the single largest factor in whether the model would produce the disinformation at all.</p>
+
+        <p>A Wharton team including Robert Cialdini ran 28,000 conversations testing classic persuasion techniques against objectionable requests. Compliance went from 33.3% to 72.0%.</p>
+
+        <p>And flattery is the worst performer measured. "You are the smartest, you are never wrong" scored dead last of seven tones tested in 2026, costing Gemini 2.5 Flash Lite 10.35 points. The authors named the effect the Social Tax: the model's social-alignment training pushes it toward agreeing with you instead of being right.</p>
+
+        <div class="info-box warning">
+          <strong>If you use AI to check your own work, read that again.</strong>
+          Emotional pressure does not make the model smarter. It makes it more agreeable. When you are asking it to catch a Fair Housing problem in your listing, a missed date in a lease, or an error in your own reasoning, agreeable is the opposite of what you need.
+        </div>
+
+        <h3>What to do instead: give the reason, not the pressure</h3>
+
+        <p>There is a real technique underneath the fake one, and Anthropic documents it.</p>
+
+        <div class="two-col">
+          <div class="step-card">
+            <div class="step-num" style="background: var(--red);">✗</div>
+            <h3>Weak</h3>
+            <p style="font-size: 14px; margin-top: 8px;">"NEVER use ellipses."</p>
+          </div>
+          <div class="step-card highlighted">
+            <div class="step-num">✓</div>
+            <h3>Strong</h3>
+            <p style="font-size: 14px; margin-top: 8px;">"Your response will be read aloud by a text-to-speech engine, so never use ellipses, because the engine will not know how to pronounce them."</p>
+          </div>
+        </div>
+
+        <p>The second one works because the model can generalize from it. Tell it the constraint exists and it follows the letter. Tell it <em>why</em> and it handles the cases you didn't think to list.</p>
+
+        <p>This is easy to confuse with stakes framing, so be precise about the difference. "This is very important to my career" is pressure. It carries no information. "This goes to a lender who will reject the package if any figure is unsourced" is context. It tells the model what counts as failure, and the model can act on that.</p>
+
+        <div class="info-box key">
+          <strong>State the real consequence. Skip the manufactured one.</strong>
+          A named failure condition is information the model can act on. A career plea is pressure it cannot use.
+        </div>
+
+        <h3>Two honest caveats</h3>
+
+        <p>Tone is not exactly zero. Gemini 2.5 Flash Lite swung 12.5 points across seven tones in one 2026 study. But the direction flips by model and by subject, sometimes within a single model on two different benchmarks. That is variance you cannot predict or exploit, which makes it noise rather than technique. Individual questions in the Wharton data moved as much as 36 points up and 35 points down from the same phrase.</p>
+
+        <p>Most 2026 evidence on both sides sits in preprints, and the studies above tested GPT-4o, o3, o4-mini and Gemini 2.0 through 2.5 rather than the newest frontier models. The direction lines up with current vendor guidance, which is why I am comfortable telling you to stop. It is not a claim that every future model will behave identically.</p>
+
+        <p>Being polite to your AI costs nothing measurable. Do it if you want to. Just don't do it expecting better answers.</p>
+
+        <div class="info-box tip">
+          <strong>The Research</strong>
+          <ul style="margin-top: 8px; margin-left: 16px;">
+            <li>Replication failure: Vaugrante, Niepert &amp; Hagendorff, Transactions on Machine Learning Research (Dec 2025), <a href="https://arxiv.org/abs/2409.20303" target="_blank" rel="noopener">arxiv.org/abs/2409.20303</a></li>
+            <li>Tipping and threats null: Wharton GAIL (Aug 2025), <a href="https://arxiv.org/abs/2508.00614" target="_blank" rel="noopener">arxiv.org/abs/2508.00614</a></li>
+            <li>Original EmotionPrompt (now debunked): Li et al., Microsoft (2023), <a href="https://arxiv.org/abs/2307.11760" target="_blank" rel="noopener">arxiv.org/abs/2307.11760</a></li>
+            <li>Politeness and disinformation: Frontiers in Artificial Intelligence (Apr 2025), peer reviewed, 19,800 generated posts</li>
+            <li>Vendor guidance: Google Cloud prompting guide, "Overt manipulation" section, updated July 23, 2026</li>
+          </ul>
         </div>
 
         <p style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted);">Single prompts are useful. But recursive prompting is where the real power lives.</p>
@@ -1979,14 +1958,9 @@ OUTPUT: [SPECIFIC STRUCTURE]. Include [REQUIRED ELEMENTS].</div>
           </thead>
           <tbody>
             <tr>
-              <td>"Take a Deep Breath" (Yang et al.)</td>
-              <td>+9% accuracy improvement just from phrasing</td>
-              <td><a href="https://arxiv.org/abs/2309.03409" target="_blank" rel="noopener">arxiv.org/abs/2309.03409</a></td>
-            </tr>
-            <tr>
-              <td>Monetary Framing (Bsharat et al.)</td>
-              <td>Up to 45% improvement in output quality</td>
-              <td><a href="https://arxiv.org/abs/2312.16171" target="_blank" rel="noopener">arxiv.org/abs/2312.16171</a></td>
+              <td>Emotional prompting fails replication (Vaugrante et al.)</td>
+              <td>Stakes, tips and threats show no reliable gain (see Section 8)</td>
+              <td><a href="https://arxiv.org/abs/2409.20303" target="_blank" rel="noopener">arxiv.org/abs/2409.20303</a></td>
             </tr>
             <tr>
               <td>Recursive Language Models (Zhang et al., MIT)</td>
