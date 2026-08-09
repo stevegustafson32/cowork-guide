@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /index.dev.html
 
 Sitemap: https://stevesaiguide.com/sitemap.xml
