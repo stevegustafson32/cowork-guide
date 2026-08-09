@@ -613,13 +613,14 @@
       <a class="toc-item toc-link" href="#computer-use-desktop-control"><span class="toc-num">5</span> Computer Use</a>
       <a class="toc-item toc-link" href="#scheduled-tasks-recurring-automation"><span class="toc-num">6</span> Scheduled Automation</a>
       <a class="toc-item toc-link" href="#memory-architecture-mastery"><span class="toc-num">7</span> Memory Architecture</a>
-      <a class="toc-item toc-link" href="#mcp-connect-anything"><span class="toc-num">8</span> MCP: Connect Anything</a>
-      <a class="toc-item toc-link" href="#parallel-agents"><span class="toc-num">9</span> Parallel Agents</a>
-      <a class="toc-item toc-link" href="#file-power-moves"><span class="toc-num">10</span> File Power Moves</a>
-      <a class="toc-item toc-link" href="#domain-playbooks"><span class="toc-num">11</span> Domain Playbooks</a>
-      <a class="toc-item toc-link" href="#enterprise-team-features"><span class="toc-num">12</span> Enterprise & Teams</a>
-      <a class="toc-item toc-link" href="#dispatch-amp-mobile-control"><span class="toc-num">13</span> Dispatch & Mobile</a>
-      <a class="toc-item toc-link" href="#advanced-resources"><span class="toc-num">14</span> Advanced Resources</a>
+      <a class="toc-item toc-link" href="#manual-workspace-setup"><span class="toc-num">8</span> Manual Workspace Setup</a>
+      <a class="toc-item toc-link" href="#mcp-connect-anything"><span class="toc-num">9</span> MCP: Connect Anything</a>
+      <a class="toc-item toc-link" href="#parallel-agents"><span class="toc-num">10</span> Parallel Agents</a>
+      <a class="toc-item toc-link" href="#file-power-moves"><span class="toc-num">11</span> File Power Moves</a>
+      <a class="toc-item toc-link" href="#domain-playbooks"><span class="toc-num">12</span> Domain Playbooks</a>
+      <a class="toc-item toc-link" href="#enterprise-team-features"><span class="toc-num">13</span> Enterprise & Teams</a>
+      <a class="toc-item toc-link" href="#dispatch-amp-mobile-control"><span class="toc-num">14</span> Dispatch & Mobile</a>
+      <a class="toc-item toc-link" href="#advanced-resources"><span class="toc-num">15</span> Advanced Resources</a>
     </div>
   </div>
 
@@ -1094,12 +1095,131 @@ When the user asks you to research a company:
     </div>
   </div>
 
-  <!-- ACCORDION 8: MCP -->
-  <div class="accordion" id="mcp-connect-anything">
+  <!-- ACCORDION 8: MANUAL WORKSPACE SETUP (moved from beginner) -->
+  <div class="accordion" id="manual-workspace-setup">
     <div class="accordion-header">
       <span class="accordion-badge">8</span>
       <div style="flex: 1;">
         <div class="accordion-label">Section 8</div>
+        <h2 class="accordion-title">Set Up the Workspace by Hand</h2>
+        <div class="accordion-subtitle">The folder architecture and identity file the /begin plugin builds for you, explained so you can build and tune them yourself.</div>
+      </div>
+      <span class="accordion-chevron"></span>   </div>
+    <div class="accordion-content">
+      <div class="accordion-body section">
+        <p>The <a href="beginner.html#install-the-cowork-os-plugin">CoWork OS plugin</a> scaffolds all of this in one <code>/begin</code> command, and most people should let it. This section is for when you want to understand exactly what it builds, or set it up manually and tune every piece. The memory layer that sits on top, CLAUDE.md and MEMORY.md, is covered in <a href="#memory-architecture-mastery">Memory Architecture Mastery</a> above; this is the folders and the identity file underneath it.</p>
+
+        <h3>The Folder Architecture</h3>
+        <p>The core idea is one separation: <strong>where Claude reads from</strong> versus <strong>where Claude writes to</strong>. Native Projects don't enforce this, so without a structure your inputs and outputs pile into one folder. Here's the layout power users run, all of it inside the cloud-synced drive you picked during setup:</p>
+
+        <div class="file-tree">
+<span class="folder">Google Drive/CoWork OS/</span>   <span class="comment">&larr; your cloud drive, not a local folder</span>
+<span class="folder">  ABOUT ME/</span>
+<span class="file">    about-me.md</span>              <span class="comment">&larr; Who you are, your role, your style</span>
+<span class="folder">  TEMPLATES/</span>
+<span class="file">    report-template.md</span>          <span class="comment">&larr; Structures Claude should reuse</span>
+<span class="folder">  PROJECTS/</span>                   <span class="comment">&larr; Reference materials (Claude reads, never writes)</span>
+<span class="folder">    My-Startup/</span>
+<span class="file">      pitch-deck.pptx</span>
+<span class="folder">  CLAUDE OUTPUTS/</span>            <span class="comment">&larr; Everything Claude creates goes HERE</span>
+<span class="folder">    My-Startup/</span>
+<span class="file">  CLAUDE.md</span>                    <span class="comment">&larr; Instructions for Claude (the brain)</span>
+<span class="file">  MEMORY.md</span>                    <span class="comment">&larr; Persistent notes across sessions</span>
+        </div>
+
+        <div class="two-col">
+          <div class="step-card highlighted">
+            <h3>ABOUT ME/</h3>
+            <p>Your identity file. Claude reads it at the start of every session. This is what makes Claude feel like <em>your</em> assistant instead of a generic AI. Detailed below.</p>
+          </div>
+          <div class="step-card">
+            <h3>TEMPLATES/</h3>
+            <p>Document structures Claude should follow: a report format, an email style, a deck skeleton. Claude studies the pattern and applies it without copying the content. Start empty; add as you find patterns you reuse.</p>
+          </div>
+          <div class="step-card">
+            <h3>PROJECTS/</h3>
+            <p>Context Claude needs: briefs, research, past work, organized by project. Claude reads from here but never writes to it, so your originals stay untouched.</p>
+          </div>
+          <div class="step-card">
+            <h3>CLAUDE OUTPUTS/</h3>
+            <p>Every file Claude creates lands here, mirroring your PROJECTS folders. Keeps the workspace clean and makes deliverables easy to find.</p>
+          </div>
+        </div>
+
+        <div class="info-box tip">
+          <strong>You Don't Build It Manually</strong>
+          You never have to create these by hand. In a session, say <em>"Set up my workspace with an ABOUT ME folder, TEMPLATES folder, PROJECTS folder, and CLAUDE OUTPUTS folder,"</em> and Claude creates them. Saying <em>"new project: [name]"</em> then adds a <code>PROJECTS/[name]/</code> and a matching <code>CLAUDE OUTPUTS/[name]/</code> with its own project-scoped memory.
+        </div>
+
+        <h3>File Naming Convention</h3>
+        <p>Use one pattern for everything Claude creates: <code>Project_ContentType_v1.ext</code></p>
+        <table class="compare-table">
+          <tr><th>Example</th><th>What It Is</th></tr>
+          <tr><td><code>Acme_Proposal_v1.docx</code></td><td>First draft of a proposal for Acme</td></tr>
+          <tr><td><code>Q2-Launch_Deck_v2.pptx</code></td><td>Second revision of the Q2 launch deck</td></tr>
+          <tr><td><code>Monthly_Report_v3.xlsx</code></td><td>Third revision of a monthly report</td></tr>
+        </table>
+        <p style="font-size: 14px; color: var(--text-dim);">Ask Claude to revise something and it increments the version (v1 &rarr; v2 &rarr; v3), giving you a built-in history with no git required.</p>
+
+        <div class="info-box key">
+          <strong>Install Obsidian to Actually Edit Your Folder (Free, 2 Minutes)</strong>
+          Cowork runs on <code>.md</code> files. Double-click one and it opens in TextEdit as a mess of hashtags and asterisks, so most people quietly stop editing their context, and their setup never gets smarter. Fix it with <a href="https://obsidian.md" target="_blank" rel="noopener">Obsidian</a>: free for personal use, runs locally, renders markdown cleanly. Download it, choose <strong>"Open folder as vault"</strong>, point it at your Cowork folder. Now you browse and edit context in Obsidian and generate new work in Cowork, same files, no syncing. Not Notion (it corrupts markdown with hidden formatting) and not Google Docs (constant conversion). Obsidian just reads your folder without touching it.
+        </div>
+
+        <div class="info-box warning">
+          <strong>Keep the Workspace Lean</strong>
+          Cowork reads your folder before every task. That's how Claude knows you, but don't dump 50 files in "just in case." Your About Me, CLAUDE.md, templates, and active project files are essential. Last quarter's 47-page board PDF is not, move it out until you need it. And prune <code>CLAUDE OUTPUTS/</code> weekly, or Claude starts reading stale drafts as context.
+        </div>
+
+        <h3>The Identity File (About Me)</h3>
+        <p>A plain text file in <code>ABOUT ME/</code> that tells Claude who you are and how you work. Without it, every session starts cold. With it, Claude works like a colleague who's known you for months. The structure:</p>
+
+        <div class="code-block"># About [Your Name]
+
+## Who I Am
+[Your name], [role] at [company]. What you do day to day.
+
+## What I'm Working On
+- [Current focus, projects, deadlines]
+
+## Tools I Use
+- [Google Docs, Slack, Excel, etc.]
+
+## How I Like to Work
+- [Brief and direct? Detailed? Response-length preference?]
+
+## Things to Know
+- [Jargon, acronyms, context that helps Claude do better work]</div>
+
+        <div class="info-box warning">
+          <strong>Keep It Under 2,000 Words</strong>
+          Cowork reads this before every single task. If it's a novel, that's thousands of tokens burned before any work starts, every time. Trim to what Claude needs to do good work for you. Think resume, not autobiography.
+        </div>
+
+        <h3>Fast Track: Import Your Context From ChatGPT</h3>
+        <p>If you've used ChatGPT for months, you've already built up your role, preferences, and corrections. Extract it instead of starting from scratch.</p>
+
+        <div class="info-box warning">
+          <strong>Start the Export Now, It Takes 1-3 Days</strong>
+          ChatGPT's data export isn't instant. Go to <a href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com</a> &rarr; profile icon &rarr; <strong>Settings</strong> &rarr; <strong>Data Controls</strong> &rarr; <strong>Export Data</strong> &rarr; confirm. You'll get an email from <code>noreply@openai.com</code> with a link that expires in 24 hours. Check spam.
+        </div>
+
+        <div class="step-card highlighted">
+          <h3>Let Claude Do the Extraction</h3>
+          <p>Unzip the export (you'll get <code>chat.html</code>), drop it in your workspace, and tell Claude:</p>
+          <p><em>"I just exported my ChatGPT history. It's in chat.html. Read through it and extract: (1) everything it knew about me, role, company, preferences, (2) instructions I repeated often, (3) recurring projects, (4) key decisions and facts. Use what you find to draft my About Me and seed my MEMORY.md."</em></p>
+          <p>What took months to teach ChatGPT, Claude picks up in one conversation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACCORDION 9: MCP -->
+  <div class="accordion" id="mcp-connect-anything">
+    <div class="accordion-header">
+      <span class="accordion-badge">9</span>
+      <div style="flex: 1;">
+        <div class="accordion-label">Section 9</div>
         <h2 class="accordion-title">MCP: Connect Anything</h2>
         <div class="accordion-subtitle">The protocol that lets Claude talk to any tool, database, or API.</div>
       </div>
@@ -1152,9 +1272,9 @@ When the user asks you to research a company:
   <!-- ACCORDION 9: PARALLEL AGENTS -->
   <div class="accordion" id="parallel-agents">
     <div class="accordion-header">
-      <span class="accordion-badge">9</span>
+      <span class="accordion-badge">10</span>
       <div style="flex: 1;">
-        <div class="accordion-label">Section 9</div>
+        <div class="accordion-label">Section 10</div>
         <h2 class="accordion-title">Parallel Agents</h2>
         <div class="accordion-subtitle">Claude doesn't just do one thing at a time. It can split into teams.</div>
       </div>
@@ -1221,9 +1341,9 @@ When the user asks you to research a company:
   <!-- ACCORDION 10: FILE POWER MOVES -->
   <div class="accordion" id="file-power-moves">
     <div class="accordion-header">
-      <span class="accordion-badge">10</span>
+      <span class="accordion-badge">11</span>
       <div style="flex: 1;">
-        <div class="accordion-label">Section 10</div>
+        <div class="accordion-label">Section 11</div>
         <h2 class="accordion-title">File Power Moves</h2>
         <div class="accordion-subtitle">Claude creates real, production-quality files, not just text.</div>
       </div>
@@ -1274,9 +1394,9 @@ When the user asks you to research a company:
   <!-- ACCORDION 11: DOMAIN PLAYBOOKS -->
   <div class="accordion" id="domain-playbooks">
     <div class="accordion-header">
-      <span class="accordion-badge">11</span>
+      <span class="accordion-badge">12</span>
       <div style="flex: 1;">
-        <div class="accordion-label">Section 11</div>
+        <div class="accordion-label">Section 12</div>
         <h2 class="accordion-title">Domain Playbooks</h2>
         <div class="accordion-subtitle">What each plugin category actually unlocks.</div>
       </div>
@@ -1316,9 +1436,9 @@ When the user asks you to research a company:
   <!-- ACCORDION 12: ENTERPRISE & TEAMS -->
   <div class="accordion" id="enterprise-team-features">
     <div class="accordion-header">
-      <span class="accordion-badge">12</span>
+      <span class="accordion-badge">13</span>
       <div style="flex: 1;">
-        <div class="accordion-label">Section 12</div>
+        <div class="accordion-label">Section 13</div>
         <h2 class="accordion-title">Enterprise & Team Features</h2>
         <div class="accordion-subtitle">For organizations scaling Cowork across teams.</div>
       </div>
@@ -1353,9 +1473,9 @@ When the user asks you to research a company:
   <!-- ACCORDION 13: DISPATCH & MOBILE -->
   <div class="accordion" id="dispatch-amp-mobile-control">
     <div class="accordion-header">
-      <span class="accordion-badge">13</span>
+      <span class="accordion-badge">14</span>
       <div style="flex: 1;">
-        <div class="accordion-label">Section 13</div>
+        <div class="accordion-label">Section 14</div>
         <h2 class="accordion-title">Dispatch &amp; Mobile Control</h2>
         <div class="accordion-subtitle">Control Cowork from your phone. Your desktop does the work.</div>
       </div>
@@ -1413,9 +1533,9 @@ When the user asks you to research a company:
   <!-- ACCORDION 14: ADVANCED RESOURCES -->
   <div class="accordion" id="advanced-resources">
     <div class="accordion-header">
-      <span class="accordion-badge">14</span>
+      <span class="accordion-badge">15</span>
       <div style="flex: 1;">
-        <div class="accordion-label">Section 14</div>
+        <div class="accordion-label">Section 15</div>
         <h2 class="accordion-title">Advanced Resources</h2>
         <div class="accordion-subtitle">The best articles, repos, and references for going deeper.</div>
       </div>
@@ -1496,7 +1616,7 @@ When the user asks you to research a company:
 <!-- FOOTER -->
 <nav class="path-nav" aria-label="Guide navigation">
   <a class="prev" href="beginner.html"><span class="pn-label">&larr; Previous</span><span class="pn-title">Claude Beginner</span></a>
-  <a class="hub" href="index.html">All guides</a>
+  <a class="hub" href="/">All guides</a>
   <a class="next" href="workflows.html"><span class="pn-label">Next &rarr;</span><span class="pn-title">Claude in Action</span></a>
 </nav>
 
