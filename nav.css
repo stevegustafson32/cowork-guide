@@ -369,7 +369,10 @@ body.sag-has-nav .wfs-btn { display: none !important; }
   :root { --sag-h: 56px; }
   .sag-nav-inner { gap: 12px; padding: 0 16px; }
   .sag-menu, .sag-cta, .sag-search kbd { display: none; }
-  .sag-burger { display: grid; }
+  /* 44x44 minimum. These are the only two nav controls on a phone, and at
+     38x38 and 34x30 they sat under both Apple HIG and Material guidance. */
+  .sag-burger { display: grid; width: 44px; height: 44px; }
+  .sag-search { min-width: 44px; min-height: 44px; justify-content: center; padding: 0 12px; }
   .sag-brand-text { font-size: 14.5px; }
   .sag-rail-inner { padding: 8px 16px; gap: 10px; }
   .sag-rail-title, .sag-rail-next { display: none; }
