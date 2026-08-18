@@ -106,7 +106,7 @@
     var raw = input.value.trim().toLowerCase();
     if (!raw) {
       results = idx.slice();
-      list.innerHTML = '<div class="wfs-empty">Type to search 7 guides, workflows, and plugin docs.</div>';
+      list.innerHTML = '<div class="wfs-empty">Type to search 9 guides, workflows, and plugin docs.</div>';
       return;
     }
     var terms = raw.split(/\s+/);

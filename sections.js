@@ -184,7 +184,7 @@
       // later threshold leaves a no-nav gap that keyboard tabbing lands in
       // (Tab scrolls the hero CTA / TOC links into view on short windows).
       if (stickyNav) {
-        var topNav = document.querySelector(".resource-nav");
+        var topNav = document.querySelector(".sag-rail") || document.querySelector(".sag-nav");
         var showAt = topNav ? topNav.offsetTop + topNav.offsetHeight : 80;
         stickyNav.classList.toggle("visible", y > showAt);
       }

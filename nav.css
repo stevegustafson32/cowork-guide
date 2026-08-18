@@ -1,0 +1,384 @@
+/* ===========================================================================
+   Steve's AI Guide — unified site navigation
+   Generated markup lives between the SAG-NAV markers in every .html file.
+   Edit build-nav.py (markup) or this file (styles). Never hand-edit the
+   injected block: the next build-nav.py run overwrites it.
+
+   Everything is prefixed .sag- so it cannot collide with the per-page
+   styles that already exist in the 15 pages.
+   =========================================================================== */
+
+/* The header is site chrome, not page content, so it does NOT inherit the
+   per-page --accent. Nine pages define six different accents (level-2 is
+   periwinkle, workflows green, claude-office blue, linkedin-feed-tracker
+   LinkedIn blue) and a CTA that recolors per page reads as six sites, not
+   one. Page accents stay in the body, where they answer "which guide am I
+   in." These values are literal for the same reason. */
+:root {
+  --sag-bg: #1a1a1a;
+  --sag-page-bg: #0f0f0f;
+  --sag-border: #333;
+  --sag-text: #e8e8e8;
+  --sag-muted: #999;
+  --sag-dim: #a0a0a0;
+  --sag-accent: #d4956a;
+  --sag-accent-dim: rgba(212, 149, 106, 0.15);
+  --sag-surface-2: #242424;
+  --sag-ink: #1a1008;
+  --sag-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --sag-serif: 'Fraunces', Georgia, serif;
+  --sag-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --sag-h: 60px;
+}
+
+.sag-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+  font-family: var(--sag-sans);
+  background: color-mix(in srgb, var(--sag-bg) 88%, transparent);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--sag-border);
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .sag-nav { background: var(--sag-bg); }
+}
+
+.sag-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: var(--sag-h);
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/* ---------- brand ---------- */
+.sag-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--sag-text);
+  font-size: 15px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.sag-brand-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: var(--sag-accent);
+  color: var(--sag-ink);
+  display: grid;
+  place-items: center;
+  font-family: var(--sag-serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.sag-brand-text b { font-weight: 700; }
+.sag-brand-text i { font-style: italic; font-family: var(--sag-serif); color: var(--sag-accent); }
+
+/* ---------- primary menu ---------- */
+.sag-menu { display: flex; align-items: center; gap: 2px; margin-right: auto; }
+
+.sag-link,
+.sag-dd-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  border-radius: 7px;
+  border: 0;
+  background: none;
+  color: var(--sag-muted);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color .15s, background .15s;
+}
+.sag-link:hover,
+.sag-dd-btn:hover,
+.sag-dd.open .sag-dd-btn { color: var(--sag-text); background: var(--sag-surface-2); }
+.sag-link.active { color: var(--sag-accent); background: var(--sag-accent-dim); font-weight: 600; }
+.sag-dd-btn svg { transition: transform .18s; opacity: .75; }
+.sag-dd.open .sag-dd-btn svg { transform: rotate(180deg); }
+
+/* ---------- dropdowns ---------- */
+.sag-dd { position: relative; }
+.sag-dd-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 1205;
+  background: var(--sag-bg);
+  border: 1px solid var(--sag-border);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, .55);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity .16s, transform .16s, visibility .16s;
+}
+.sag-dd.open .sag-dd-panel { opacity: 1; visibility: visible; transform: translateY(0); }
+
+.sag-dd-head {
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--sag-dim);
+  font-weight: 600;
+  padding: 2px 10px 10px;
+}
+
+/* guides: two columns, numbered, with read times */
+.sag-dd-guides { width: 560px; }
+.sag-dd-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 10px; }
+.sag-g {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--sag-muted);
+  font-size: 13.5px;
+  transition: background .14s, color .14s;
+}
+.sag-g:hover { background: var(--sag-surface-2); color: var(--sag-text); }
+.sag-g em {
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--sag-dim);
+  letter-spacing: .04em;
+}
+.sag-g i { font-style: normal; font-size: 11px; color: var(--sag-dim); white-space: nowrap; }
+.sag-g.active { background: var(--sag-accent-dim); color: var(--sag-accent); font-weight: 600; }
+.sag-g.active em, .sag-g.active i { color: var(--sag-accent); }
+
+/* apps: name + audience */
+.sag-dd-apps { width: 330px; }
+.sag-a {
+  display: block;
+  padding: 9px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background .14s;
+}
+.sag-a:hover { background: var(--sag-surface-2); }
+.sag-a strong { display: block; color: var(--sag-text); font-size: 13.5px; font-weight: 600; }
+/* Direct child only: the NEW badge is a <span> nested inside <strong>, and a
+   bare `.sag-a span` outranks `.sag-new` and stretches the badge full width. */
+.sag-a > span { display: block; color: var(--sag-dim); font-size: 11.5px; margin-top: 1px; }
+
+.sag-new {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--sag-accent);
+  color: var(--sag-ink);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  vertical-align: 1px;
+}
+
+/* ---------- right cluster ---------- */
+.sag-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
+.sag-search {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px 7px 11px;
+  border-radius: 8px;
+  border: 1px solid var(--sag-border);
+  background: none;
+  color: var(--sag-muted);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.sag-search:hover { border-color: var(--sag-accent); color: var(--sag-text); }
+.sag-search kbd {
+  font-family: var(--sag-mono);
+  font-size: 10.5px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: var(--sag-surface-2);
+  border: 1px solid var(--sag-border);
+  color: var(--sag-dim);
+}
+
+.sag-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 15px;
+  border-radius: 8px;
+  background: var(--sag-accent);
+  color: var(--sag-ink);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: filter .15s;
+}
+.sag-cta:hover { filter: brightness(1.08); }
+
+.sag-burger {
+  display: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1px solid var(--sag-border);
+  background: none;
+  color: var(--sag-text);
+  cursor: pointer;
+  padding: 0;
+  place-items: center;
+}
+.sag-burger:hover { border-color: var(--sag-accent); }
+
+/* ---------- progress rail (sequenced guide pages only) ---------- */
+/* Static, not sticky. The guide pages already run a section-level
+   .sticky-nav that docks under the header while you read; stacking the
+   rail as well would put 134px of permanent chrome over the article.
+   The rail answers "where am I in the path", which you read once. */
+.sag-rail {
+  position: relative;
+  z-index: 1190;
+  background: var(--sag-page-bg);
+  border-bottom: 1px solid var(--sag-border);
+  font-family: var(--sag-sans);
+}
+
+/* sections.js pins .sticky-nav at top:0; slot it below the header instead.
+   Scoped through body.sag-has-nav so it outranks the per-page inline CSS
+   without resorting to !important. */
+body.sag-has-nav .sticky-nav { top: var(--sag-h); }
+.sag-rail-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 9px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12.5px;
+  color: var(--sag-dim);
+}
+.sag-rail-pos { font-weight: 600; color: var(--sag-muted); white-space: nowrap; }
+.sag-rail-title { color: var(--sag-text); font-weight: 600; white-space: nowrap; }
+.sag-rail-title i { font-style: italic; font-family: var(--sag-serif); color: var(--sag-accent); }
+.sag-rail-bar {
+  flex: 1;
+  min-width: 40px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--sag-surface-2);
+  overflow: hidden;
+}
+.sag-rail-bar span { display: block; height: 100%; border-radius: 2px; background: var(--sag-accent); }
+.sag-rail-next {
+  color: var(--sag-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  font-weight: 500;
+  transition: color .15s;
+}
+.sag-rail-next:hover { color: var(--sag-accent); }
+
+/* ---------- mobile sheet ---------- */
+.sag-sheet {
+  display: none;
+  position: fixed;
+  inset: var(--sag-h) 0 0;
+  z-index: 1210;
+  background: var(--sag-page-bg);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 20px 48px;
+}
+.sag-sheet.open { display: block; }
+.sag-sheet-group {
+  display: block;
+  font-size: 10.5px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--sag-dim);
+  font-weight: 600;
+  padding: 20px 4px 8px;
+  border-bottom: 1px solid var(--sag-border);
+  margin-bottom: 6px;
+}
+.sag-sheet a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 4px;
+  color: var(--sag-muted);
+  text-decoration: none;
+  font-size: 15px;
+  border-radius: 8px;
+}
+.sag-sheet a:active { background: var(--sag-surface-2); }
+.sag-sheet a.active { color: var(--sag-accent); font-weight: 600; }
+.sag-sheet a em {
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sag-dim);
+  min-width: 20px;
+}
+.sag-sheet a small { margin-left: auto; font-size: 11.5px; color: var(--sag-dim); }
+.sag-sheet .sag-sheet-cta {
+  justify-content: center;
+  margin-top: 26px;
+  background: var(--sag-accent);
+  color: var(--sag-ink);
+  font-weight: 600;
+  padding: 14px;
+}
+
+/* search.js ships its own floating pill; the header button replaces it. */
+body.sag-has-nav .wfs-btn { display: none !important; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1080px) {
+  .sag-search span { display: none; }
+  .sag-search { padding: 7px 9px; }
+}
+@media (max-width: 900px) {
+  /* On :root, not .sag-nav — the rail and the sheet are siblings of the
+     header and would otherwise still offset by the desktop 60px. */
+  :root { --sag-h: 56px; }
+  .sag-nav-inner { gap: 12px; padding: 0 16px; }
+  .sag-menu, .sag-cta, .sag-search kbd { display: none; }
+  .sag-burger { display: grid; }
+  .sag-brand-text { font-size: 14.5px; }
+  .sag-rail-inner { padding: 8px 16px; gap: 10px; }
+  .sag-rail-title, .sag-rail-next { display: none; }
+}
+@media (max-width: 420px) {
+  .sag-brand-text { font-size: 13.5px; }
+  .sag-nav-inner { gap: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sag-dd-panel, .sag-dd-btn svg, .sag-link, .sag-cta { transition: none; }
+}

@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Steve's AI Guide - Claude for Knowledge Work</title>
-<meta name="description" content="A free, no-hype guide to using Claude for real knowledge work. Nine guides: prompting, Excel, PowerPoint, automated workflows, writing in your voice, and mobile.">
+<meta name="description" content="A no-hype guide to using Claude for real knowledge work. Nine guides: prompting, Excel, PowerPoint, automated workflows, writing in your voice, and mobile.">
 <link rel="canonical" href="https://stevesaiguide.com/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
@@ -13,14 +13,14 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Steve's AI Guide">
 <meta property="og:title" content="Steve's AI Guide - Claude for Knowledge Work">
-<meta property="og:description" content="A free, no-hype guide to using Claude for real knowledge work. Nine guides: prompting, Excel, PowerPoint, automated workflows, writing in your voice, and mobile.">
+<meta property="og:description" content="A no-hype guide to using Claude for real knowledge work. Nine guides: prompting, Excel, PowerPoint, automated workflows, writing in your voice, and mobile.">
 <meta property="og:url" content="https://stevesaiguide.com/">
 <meta property="og:image" content="https://stevesaiguide.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Steve's AI Guide - Claude for Knowledge Work">
-<meta name="twitter:description" content="A free, no-hype guide to using Claude for real knowledge work. Nine guides: prompting, Excel, PowerPoint, automated workflows, writing in your voice, and mobile.">
+<meta name="twitter:description" content="A no-hype guide to using Claude for real knowledge work. Nine guides: prompting, Excel, PowerPoint, automated workflows, writing in your voice, and mobile.">
 <meta name="twitter:image" content="https://stevesaiguide.com/assets/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,16 +67,6 @@
   .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
   .serif { font-family: var(--serif); letter-spacing: -0.01em; }
   .mono { font-family: var(--mono); }
-
-  /* ─── NAV ─── */
-  nav.top {
-    position: sticky; top: 0; z-index: 40;
-    background: rgba(15,15,15,0.82);
-    -webkit-backdrop-filter: blur(14px) saturate(160%);
-    backdrop-filter: blur(14px) saturate(160%);
-    border-bottom: 1px solid var(--border);
-  }
-  .top-inner { height: 64px; display: flex; align-items: center; gap: 24px; }
   .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px; letter-spacing: -0.01em; }
   .brand-mark {
     width: 30px; height: 30px; border-radius: 8px;
@@ -86,35 +76,7 @@
   }
   .brand b { color: #fff; }
   .brand i { font-family: var(--serif); font-style: italic; font-weight: 500; color: var(--accent); }
-  .top-nav { display: flex; gap: 2px; margin-left: 24px; }
-  .top-nav a {
-    padding: 8px 14px; border-radius: 8px;
-    color: var(--text-muted); font-weight: 500; font-size: 14px;
-    transition: all 180ms ease;
-  }
-  .top-nav a:hover { color: var(--text); background: var(--surface); }
-  .top-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
-  .top-cta {
-    display: inline-flex; align-items: center; gap: 8px;
-    height: 38px; padding: 0 16px; border-radius: 8px;
-    background: var(--accent); color: #1a1410; font-weight: 700; font-size: 13.5px;
-    transition: all 180ms ease;
-  }
-    .top-apps { display: inline-flex; align-items: center; height: 38px; padding: 0 14px; margin-right: 8px; border-radius: 8px; border: 1px solid var(--line, rgba(255,255,255,.16)); color: var(--text, #eee); font-weight: 600; font-size: 13.5px; white-space: nowrap; transition: all 180ms ease; }
-    .top-apps:hover { border-color: var(--accent); color: var(--accent); }
-    @media (max-width: 520px) { .top-cta { display: none; } .top-apps { margin-right: 4px; } }
-
-  .top-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
-  .nav-toggle {
-    display: none; width: 40px; height: 40px; border-radius: 8px;
-    background: var(--surface); border: 1px solid var(--border-2); color: var(--text);
-    font-size: 18px; align-items: center; justify-content: center; cursor: pointer;
-  }
-  .nav-toggle:hover { border-color: var(--accent); color: var(--accent); }
-  .mobile-menu { display: none; }
-  .mobile-menu .mm-group { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 700; padding: 12px 8px 4px; }
-  .mobile-menu a { padding: 9px 10px; border-radius: 8px; color: var(--text-muted); font-weight: 500; font-size: 14px; }
-  .mobile-menu a:hover { background: var(--surface); color: var(--text); }
+    
 
   /* ─── HERO ─── */
   .hero {
@@ -211,6 +173,10 @@
 
   /* ─── path (9 guides) ─── */
   .ramp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; position: relative; }
+  /* Five app cards: 6-col track so row 1 holds 3 and row 2 holds 2 wider ones. */
+  .ramp-apps { grid-template-columns: repeat(6, 1fr); }
+  .ramp-apps > * { grid-column: span 2; }
+  .ramp-apps > *:nth-last-child(-n+2) { grid-column: span 3; }
   .ramp::before { display: none; }
   .ramp-card {
     position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
@@ -575,7 +541,6 @@
   body[data-vibe="playful"] .ramp-card, body[data-vibe="playful"] .example-card, body[data-vibe="playful"] .trainer-card, body[data-vibe="playful"] .person-card { border-radius: 24px; }
   body[data-vibe="playful"] .btn-primary { border-radius: 9999px; height: 52px; padding: 0 24px; }
   body[data-vibe="playful"] .btn-ghost { border-radius: 9999px; height: 52px; padding: 0 24px; }
-  body[data-vibe="playful"] .top-cta { border-radius: 9999px; }
   body[data-vibe="playful"] .hero-eyebrow { border-radius: 9999px; }
   body[data-vibe="playful"] .eyebrow { background: var(--accent-dim); color: var(--accent); padding: 5px 12px; border-radius: 9999px; display: inline-block; border: 1px solid rgba(232,166,104,0.25); }
   body[data-vibe="playful"] .example-visual { height: 220px; }
@@ -588,21 +553,19 @@
   @media (max-width: 1020px) {
     .hero-grid, .trainer-grid, .about-grid { grid-template-columns: 1fr; gap: 48px; }
     .ramp { grid-template-columns: 1fr 1fr; }
+    .ramp-apps { grid-template-columns: 1fr 1fr; }
+    .ramp-apps > *, .ramp-apps > *:nth-last-child(-n+2) { grid-column: auto; }
     .ramp::before { display: none; }
     .examples-grid { grid-template-columns: 1fr 1fr; }
     .people-grid { grid-template-columns: 1fr 1fr; }
     .foot-grid { grid-template-columns: 1fr 1fr; }
-    .top-nav { display: none; }
-    .nav-toggle { display: inline-flex; }
-    .mobile-menu { display: none; flex-direction: column; gap: 2px; padding: 8px 0 14px; border-top: 1px solid var(--border); }
-    .mobile-menu.open { display: flex; }
     .guide-cover { transform: none; max-width: 360px; margin: 0 auto; }
   }
   @media (max-width: 640px) {
     .wrap { padding: 0 20px; }
     .section, .trainer-section, .people-band { padding: 64px 0; }
-    .ramp, .examples-grid, .people-grid { grid-template-columns: 1fr; }
-    .top-cta { display: none; }
+    .ramp, .ramp-apps, .examples-grid, .people-grid { grid-template-columns: 1fr; }
+    .ramp-apps > *, .ramp-apps > *:nth-last-child(-n+2) { grid-column: auto; }
   }
 
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
@@ -612,60 +575,93 @@
      Explicit rule keeps the rendered appearance byte-identical. */
   .foot-col h3 { font-size:11px;font-weight:700;color:var(--accent);margin:0 0 18px;letter-spacing:.08em;text-transform:uppercase; }
 </style>
+  <link rel="stylesheet" href="nav.css">
 </head>
 <body data-vibe="editorial">
-
-<!-- ─── NAV ─── -->
-<nav class="top">
-  <div class="wrap top-inner">
-    <a href="#" class="brand" aria-label="Steve's AI Guide">
-      <span class="brand-mark">S</span>
-      <span><b>Steve's</b> <i>AI</i> <b>Guide</b></span>
+<!-- SAG-NAV:START — generated by build-nav.py, do not hand-edit -->
+<header class="sag-nav">
+  <div class="sag-nav-inner">
+    <a class="sag-brand" href="#" aria-label="Steve's AI Guide, home">
+      <span class="sag-brand-mark" aria-hidden="true">S</span>
+      <span class="sag-brand-text"><b>Steve's</b> <i>AI</i> <b>Guide</b></span>
     </a>
-    <div class="top-nav">
-      <a href="#path">The Path</a>
-      <a href="#apps">The Apps<span class="nav-new">NEW</span></a>
-      <a href="#examples">Examples</a>
-      <a href="#trainer">Prompt Trainer</a>
-      <a href="#people">People</a>
-    </div>
-    <div class="top-right">
-      <a class="top-apps" href="#apps">The Apps</a>
-      <a class="top-cta" href="prompting.html">Read the guide →</a>
-      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+
+    <nav class="sag-menu" aria-label="Main">
+      <div class="sag-dd">
+        <button class="sag-dd-btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="sagGuides">Guides <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="sag-dd-panel sag-dd-guides" id="sagGuides" role="menu">
+          <span class="sag-dd-head">The path &middot; nine guides, in order</span>
+          <div class="sag-dd-cols">
+            <a class="sag-g" role="menuitem" href="prompting.html"><em>01</em><span>The Prompting Guide</span><i>45 min</i></a>
+            <a class="sag-g" role="menuitem" href="beginner.html"><em>02</em><span>Claude Beginner</span><i>35 min</i></a>
+            <a class="sag-g" role="menuitem" href="level-2.html"><em>03</em><span>Claude Advanced</span><i>50 min</i></a>
+            <a class="sag-g" role="menuitem" href="workflows.html"><em>04</em><span>Claude in Action</span><i>30 min</i></a>
+            <a class="sag-g" role="menuitem" href="claude-code-2.html"><em>05</em><span>Claude Code 2.0</span><i>40 min</i></a>
+            <a class="sag-g" role="menuitem" href="claude-design.html"><em>06</em><span>Claude Design</span><i>35 min</i></a>
+            <a class="sag-g" role="menuitem" href="claude-office.html"><em>07</em><span>Claude in Office</span><i>30 min</i></a>
+            <a class="sag-g" role="menuitem" href="claude-writing.html"><em>08</em><span>Claude Writing<span class="sag-new">NEW</span></span><i>25 min</i></a>
+            <a class="sag-g" role="menuitem" href="claude-everywhere.html"><em>09</em><span>Claude Everywhere</span><i>20 min</i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sag-dd">
+        <button class="sag-dd-btn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="sagApps">Apps <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="sag-dd-panel sag-dd-apps" id="sagApps" role="menu">
+          <span class="sag-dd-head">Five working tools</span>
+          <a class="sag-a" role="menuitem" href="https://keyroom.stevesaiguide.com"><strong>Keyroom</strong><span>Residential real estate</span></a>
+          <a class="sag-a" role="menuitem" href="https://boardroom.stevesaiguide.com"><strong>Boardroom</strong><span>Commercial real estate</span></a>
+          <a class="sag-a" role="menuitem" href="https://toolroom.stevesaiguide.com"><strong>Toolroom</strong><span>Builders &amp; GCs</span></a>
+          <a class="sag-a" role="menuitem" href="https://righthand.stevesaiguide.com"><strong>Righthand<span class="sag-new">NEW</span></strong><span>Executive assistants</span></a>
+          <a class="sag-a" role="menuitem" href="https://students.stevesaiguide.com"><strong>Recall<span class="sag-new">NEW</span></strong><span>Students</span></a>
+        </div>
+      </div>
+
+      <a class="sag-link" href="#trainer">Trainer</a>
+      <a class="sag-link" href="people.html">About</a>
+    </nav>
+
+    <div class="sag-right">
+      <button class="sag-search" type="button" aria-label="Search the guides"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><span>Search</span><kbd>&#8984;K</kbd></button>
+      <a class="sag-cta" href="prompting.html">Read the guide &rarr;</a>
+      <button class="sag-burger" type="button" id="sagBurger" aria-label="Open menu" aria-expanded="false" aria-controls="sagSheet"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
     </div>
   </div>
-  <div class="wrap">
-    <div class="mobile-menu" id="mobileMenu">
-      <span class="mm-group">The Guides</span>
-      <a href="prompting.html">The Prompting Guide</a>
-      <a href="beginner.html">Claude Beginner</a>
-      <a href="level-2.html">Claude Advanced</a>
-      <a href="workflows.html">Claude in Action</a>
-      <a href="claude-code-2.html">Claude Code 2.0</a>
-      <a href="claude-design.html">Claude Design</a>
-      <a href="claude-office.html">Claude in Office</a>
-      <a href="claude-writing.html">Claude Writing<span class="nav-new">NEW</span></a>
-      <a href="claude-everywhere.html">Claude Everywhere</a>
-      <span class="mm-group">The Apps</span>
-      <a href="https://keyroom.stevesaiguide.com">Keyroom &middot; residential real estate</a>
-      <a href="https://boardroom.stevesaiguide.com">Boardroom &middot; commercial real estate</a>
-      <a href="https://toolroom.stevesaiguide.com">Toolroom &middot; builders &amp; GCs</a>
-      <span class="mm-group">On this page</span>
-      <a href="#path">The Path</a>
-      <a href="#apps">The Apps</a>
-      <a href="#examples">Examples</a>
+
+</header>
+
+<!-- The sheet is a SIBLING of the header, not a child: .sag-nav sets
+     backdrop-filter, which makes it the containing block for any
+     position:fixed descendant, and the sheet collapsed to nav height. -->
+<div class="sag-sheet" id="sagSheet">
+  <span class="sag-sheet-group">The path &middot; nine guides, in order</span>
+      <a href="prompting.html"><em>01</em>The Prompting Guide<small>45 min</small></a>
+        <a href="beginner.html"><em>02</em>Claude Beginner<small>35 min</small></a>
+        <a href="level-2.html"><em>03</em>Claude Advanced<small>50 min</small></a>
+        <a href="workflows.html"><em>04</em>Claude in Action<small>30 min</small></a>
+        <a href="claude-code-2.html"><em>05</em>Claude Code 2.0<small>40 min</small></a>
+        <a href="claude-design.html"><em>06</em>Claude Design<small>35 min</small></a>
+        <a href="claude-office.html"><em>07</em>Claude in Office<small>30 min</small></a>
+        <a href="claude-writing.html"><em>08</em>Claude Writing<span class="sag-new">NEW</span><small>25 min</small></a>
+        <a href="claude-everywhere.html"><em>09</em>Claude Everywhere<small>20 min</small></a>
+  <span class="sag-sheet-group">The apps</span>
+      <a href="https://keyroom.stevesaiguide.com">Keyroom<small>Residential real estate</small></a>
+        <a href="https://boardroom.stevesaiguide.com">Boardroom<small>Commercial real estate</small></a>
+        <a href="https://toolroom.stevesaiguide.com">Toolroom<small>Builders &amp; GCs</small></a>
+        <a href="https://righthand.stevesaiguide.com">Righthand<span class="sag-new">NEW</span><small>Executive assistants</small></a>
+        <a href="https://students.stevesaiguide.com">Recall<span class="sag-new">NEW</span><small>Students</small></a>
+  <span class="sag-sheet-group">More</span>
       <a href="#trainer">Prompt Trainer</a>
-      <a href="#people">People</a>
-    </div>
-  </div>
-</nav>
+      <a href="people.html">People I learn from</a>
+      <a class="sag-sheet-cta" href="prompting.html">Read the guide &rarr;</a>
+</div>
+<!-- SAG-NAV:END -->
 
 <!-- ─── HERO ─── -->
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="hero-eyebrow"><span class="dot"></span> Updated June 2026 · 30,000+ words · Free forever</span>
+      <span class="hero-eyebrow"><span class="dot"></span> Updated August 2026 · 30,000+ words</span>
       <h1 class="hero-title">The complete guide to <i>Claude for knowledge work</i>, from zero to power user.</h1>
       <p class="hero-sub">
         Practical, research-backed writing on prompting, context, and real workflows, so you stop Googling and start shipping. <strong>Written by a human, aimed at humans.</strong>
@@ -687,7 +683,7 @@
 
     <div class="guide-cover" aria-hidden="true">
       <div class="cover-top">
-        <span>Vol. 01 · March 2026</span>
+        <span>Vol. 01 · August 2026</span>
         <span class="cover-mark">S</span>
       </div>
       <div class="cover-mid">
@@ -710,15 +706,15 @@
         <span class="eyebrow">▸ The Apps</span>
         <h2 class="sec-title">The guides teach it. <i>These do it.</i></h2>
       </div>
-      <p class="sec-sub">Three working tools built on the same discipline this guide teaches: describe the task in plain words, get a draft grounded in your own facts, and see the move behind it. Free to try, no signup for the first runs.</p>
+      <p class="sec-sub">Five tools built on the same discipline this guide teaches: describe the task in plain words, keep every output grounded in real facts, and see the move behind it.</p>
     </div>
-    <div class="ramp">
+    <div class="ramp ramp-apps">
       <a href="https://keyroom.stevesaiguide.com" class="ramp-card">
         <div class="ramp-dot"></div>
         <span class="ramp-level">For residential real estate</span>
         <h3 class="ramp-title"><i>Keyroom</i></h3>
         <p class="ramp-desc">Listings, follow-ups, and posts drafted in your phrasing, with steering language flagged before it reaches the MLS. Fair Housing discipline in every output.</p>
-        <div class="ramp-meta"><strong>Agents &amp; brokerages</strong><span>·</span><span>Free to start</span></div>
+        <div class="ramp-meta"><strong>Agents &amp; brokerages</strong></div>
         <span class="ramp-link">Open Keyroom</span>
       </a>
       <a href="https://boardroom.stevesaiguide.com" class="ramp-card">
@@ -726,7 +722,7 @@
         <span class="ramp-level">For commercial real estate</span>
         <h3 class="ramp-title"><i>Boardroom</i></h3>
         <p class="ramp-desc">Underwriting, lease abstracts, OMs, and rent rolls. Every figure traces to your input or is marked UNKNOWN, so nothing is invented to sound complete.</p>
-        <div class="ramp-meta"><strong>Brokers, developers, investors</strong><span>·</span><span>Free to start</span></div>
+        <div class="ramp-meta"><strong>Brokers, developers, investors</strong></div>
         <span class="ramp-link">Open Boardroom</span>
       </a>
       <a href="https://toolroom.stevesaiguide.com" class="ramp-card">
@@ -734,8 +730,24 @@
         <span class="ramp-level">For builders &amp; GCs</span>
         <h3 class="ramp-title"><i>Toolroom</i></h3>
         <p class="ramp-desc">Change orders, client updates, daily logs, and collections letters, off your evenings. It never invents a price, a quantity, or a code, and it never replaces your license.</p>
-        <div class="ramp-meta"><strong>GCs, remodelers, custom builders</strong><span>·</span><span>Free to start</span></div>
+        <div class="ramp-meta"><strong>GCs, remodelers, custom builders</strong></div>
         <span class="ramp-link">Open Toolroom</span>
+      </a>
+      <a href="https://righthand.stevesaiguide.com" class="ramp-card">
+        <div class="ramp-dot"></div>
+        <span class="ramp-level">For executive assistants</span>
+        <h3 class="ramp-title"><i>Righthand</i></h3>
+        <p class="ramp-desc">Meeting packets, minutes and action tables, inbox triage, and the Monday dashboard. One hard rule: it never invents a time, a commitment, an owner, or a fact about a person.</p>
+        <div class="ramp-meta"><strong>EAs, office managers, chiefs of staff</strong></div>
+        <span class="ramp-link">Open Righthand</span>
+      </a>
+      <a href="https://students.stevesaiguide.com" class="ramp-card">
+        <div class="ramp-dot"></div>
+        <span class="ramp-level">For students</span>
+        <h3 class="ramp-title"><i>Recall</i></h3>
+        <p class="ramp-desc">24 study prompts that quiz you, find your gaps, and attack your draft. Every one makes the AI ask, check, or argue &mdash; none of them write the assignment for you.</p>
+        <div class="ramp-meta"><strong>High school &amp; university</strong></div>
+        <span class="ramp-link">Open Recall</span>
       </a>
     </div>
   </div>
@@ -1098,7 +1110,7 @@
     <div>
       <span class="eyebrow">▸ Who's writing</span>
       <p class="about-quote" style="margin-top: 14px;">
-        "I kept watching smart people give up on AI because the first thing they found was a LinkedIn thread with 47 'prompt hacks.' <b>This is what I wish I'd had.</b>"
+        "Too many capable people quit AI in week one. They search 'how to prompt,' land on a LinkedIn thread with 47 hacks, and decide it isn't for them. <b>So I wrote the guide I wanted.</b>"
       </p>
       <div class="about-byline">
         <strong>Steve Gustafson</strong>
@@ -1107,7 +1119,7 @@
         <span>·</span>
         <a href="https://www.linkedin.com/in/steve-j-gustafson/" target="_blank" rel="noopener">LinkedIn →</a>
       </div>
-      <p class="about-trust">No sponsors, no affiliate links, no paywall. Just what I wish I had when I started.</p>
+      <p class="about-trust">No sponsors. No affiliate links. Nothing here is a paid placement.</p>
     </div>
   </div>
 </section>
@@ -1116,7 +1128,7 @@
 <section class="final-cta">
   <div class="wrap">
     <h2>Read it once. <i>Come back when you need it.</i></h2>
-    <p>No paywall, no login, no "join the course." Open the Prompting Guide and start at the top, or pick a section from the contents.</p>
+    <p>Open the Prompting Guide and start at the top, or pick a section from the contents.</p>
     <a class="btn-primary" href="prompting.html" style="height: 56px; padding: 0 28px; font-size: 15px;">
       Open the Prompting Guide
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14m-5-6 6 6-6 6"/></svg>
@@ -1174,7 +1186,7 @@
       tag: 'lesson 1 / 4',
       eyebrow: '▸ Lesson 01 · The Role',
       title: 'Assign a <i>specific</i> role, not a generic one.',
-      body: '<b>"You are a helpful assistant"</b> gives you a helpful assistant. <b>"You\'re a senior B2B marketer who writes for skeptical CTOs"</b> gives you tone, audience, and priorities — for free. Specificity in the role is the cheapest lift in all of prompting.',
+      body: '<b>"You are a helpful assistant"</b> gives you a helpful assistant. <b>"You\'re a senior B2B marketer who writes for skeptical CTOs"</b> gives you tone, audience, and priorities in one line. Specificity in the role is the cheapest lift in all of prompting.',
       example: 'You\'re a <span class="placeholder">senior B2B marketer</span> who writes for <span class="placeholder">skeptical CTOs at Series B companies</span>.',
       task: 'Write a prompt to draft a cold outreach email to a <b>VP of Engineering</b>. Use a specific role.',
       hint: 'Who is Claude being? Be exact — seniority, domain, audience. One sentence is enough.',
@@ -1398,5 +1410,6 @@ Respond with ONLY valid JSON, nothing else:
 </script>
 
 <script src="search.js"></script>
+<script src="nav.js" defer></script>
 </body>
 </html>
