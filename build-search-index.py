@@ -12,7 +12,7 @@ import json, re, html as htmllib, pathlib
 REPO = pathlib.Path(__file__).parent
 GUIDE_PAGES = ["beginner.html", "level-2.html", "prompting.html",
                "workflows.html", "claude-code-2.html", "claude-design.html",
-               "claude-everywhere.html", "claude-writing.html"]
+               "claude-everywhere.html", "claude-writing.html", "claude-office.html"]
 
 def strip_tags(s):
     s = re.sub(r"<(script|style)\b.*?</\1>", " ", s, flags=re.S | re.I)

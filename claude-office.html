@@ -248,7 +248,160 @@
   /* a11y: step-card/footer headings promoted h4 -> h3 to remove the h2->h4 level skip.
      Explicit rule keeps the rendered appearance byte-identical. */
   .step-card h3 { font-size:16px;font-weight:600;color:#e8e8e8;margin:0 0 8px; }
+
+  /* accordion + sticky-nav (added for the accordion restructure) */
+  .accordion {
+    border-bottom: 1px solid var(--border);
+  }
+  .accordion:last-child { border-bottom: none; }
+
+  .accordion-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 28px 0;
+    background: none;
+    border: none;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+  .accordion-header:hover {
+    border-left-color: transparent;
+  }
+  .accordion-header.open {
+    border-left-color: var(--accent);
+  }
+
+  .accordion-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .accordion-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+
+  .accordion-title {
+    font-size: clamp(24px, 3.5vw, 30px);
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+    color: #fff;
+  }
+
+  .accordion-content h3 { font-size: 21px; }  /* real content sub-heading selector (was dead .section h3) */
+  .accordion-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 0;
+  }
+
+  .accordion-chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    margin-top: 4px;
+    position: relative;
+  }
+  .accordion-chevron::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    transform: rotate(-45deg);
+    transition: transform 0.3s ease;
+  }
+  .accordion-header.open .accordion-chevron::after {
+    transform: rotate(45deg);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0;
+  }
+  .accordion-content.open {
+    max-height: 10000px;
+  }
+
+  .accordion-body {
+    padding-bottom: 28px;
+  }
+  .sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: var(--bg);
+    background-color: rgba(15, 15, 15, 0.95);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    font-size: 13px;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .sticky-nav.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sticky-nav-left { color: var(--text-muted); font-weight: 500; }
+  .sticky-nav-right { color: var(--accent); font-weight: 600; }
 </style>
+<style id="open-sections-override">
+  /* Accordion behavior retired 2026-07: sections are always open.
+     sections.js supplies scroll-spy nav; .open on a header now marks the current section. */
+  .accordion-content { max-height: none !important; overflow: visible !important; }
+  .accordion-header { cursor: default; }
+  .accordion-chevron, .accordion-progress { display: none !important; }
+  /* Hidden sticky nav must not hold keyboard focus (it is opacity:0, which stays tabbable). */
+  .sticky-nav:not(.visible) { visibility: hidden; }
+  .accordion { scroll-margin-top: 84px; }
+  h2.accordion-title { margin: 0 0 4px; }
+  /* Wide code samples were clipped by the old accordion overflow:hidden;
+     now they scroll internally instead of widening the page on mobile. */
+  .accordion-content .code-block, .accordion-content pre { max-width: 100%; overflow-x: auto; }
+  .accordion-content table { display: block; max-width: 100%; overflow-x: auto; }
+  html { overflow-x: hidden; } /* NOT clip: visible+clip pairing computes both axes to clip and kills page scroll */
+  @media (max-width: 520px) {
+    /* Tables wider than a phone scroll internally (they were cut off before). */
+    .accordion-content table { display: block; max-width: 100%; overflow-x: auto; }
+    /* Flex list items laid text out on one unwrappable row; let them wrap. */
+    .accordion-content li { flex-wrap: wrap; }
+    .accordion-content li > * { min-width: 0; }
+  }
+</style>
+
   <link rel="stylesheet" href="nav.css">
 </head>
 <body>
@@ -341,6 +494,11 @@
 
 <!-- RESOURCE NAV -->
 <!-- HERO -->
+<div class="sticky-nav" id="stickyNav">
+  <div class="sticky-nav-left">Claude in Office</div>
+  <div class="sticky-nav-right"><span id="stickyProgress">Section 1 of 7</span></div>
+</div>
+
 <div class="hero">
   <div class="hero-badge">STEP 07, EXECUTE IN THE FILE · UPDATED AUGUST 2026</div>
   <h1>Claude in Office: Excel, PowerPoint &amp; PDF as <span>agents</span>.</h1>
@@ -369,22 +527,41 @@
 
 
   <!-- SECTION 1 -->
-  <section class="section" id="changed">
-    <div class="sec-kicker">Section 1, What Actually Changed</div>
-    <h2>From "AI that makes a file" to "AI that works in your file"</h2>
-    <p class="sub">The distinction is the whole story.</p>
+    <div class="accordion" id="changed">
+    <div class="accordion-header">
+      <div class="accordion-badge">1</div>
+      <div style="flex:1;">
+        <div class="accordion-label">Section 1, What Actually Changed</div>
+        <h2 class="accordion-title">From "AI that makes a file" to "AI that works in your file"</h2>
+        <div class="accordion-subtitle">The distinction is the whole story.</div>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
     <p>Everywhere else in this guide, Claude generates a deliverable: you ask for a Word doc, a dashboard, a deck, and Claude builds one from scratch and hands it back. Useful, but it starts from blank.</p>
     <p>The Office add-ins do something the file-generation skills can't: they operate <strong>inside</strong> a workbook or deck you already have. Claude reads real formulas (not flattened text), traces dependencies across 40 tabs, edits cells directly, and shows you every change. It treats a slide deck as a sequence with a story, not a pile of text boxes. The reason AI was bad at Excel for years wasn't intelligence, it was context. Operating inside the application is the fix.</p>
     <div class="info-box key">
       <span class="lbl">Why it matters</span>
       When AI moves from <em>assisting</em> to <em>executing inside the system of record</em>, the busywork layer, formatting, cleanup, first-draft models, deck assembly, stops being scarce work. The marginal value of doing it by hand collapses. You still review. You still decide. But you start from a working draft, not a blank sheet.
     </div>
-  </section>
+  
+      </div>
+    </div>
+  </div>
 
   <!-- SECTION 2 -->
-  <section class="section" id="setup">
-    <div class="sec-kicker">Section 2, Setup (5 Minutes)</div>
-    <h2>Get Claude running inside Office</h2>
+    <div class="accordion" id="setup">
+    <div class="accordion-header">
+      <div class="accordion-badge">2</div>
+      <div style="flex:1;">
+        <div class="accordion-label">Section 2, Setup (5 Minutes)</div>
+        <h2 class="accordion-title">Get Claude running inside Office</h2>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+    
+    
     <p>Claude lives in Microsoft Excel and PowerPoint through Anthropic's official add-ins, a sidebar, not a separate chat window.</p>
     <ul>
       <li>Open Excel or PowerPoint → <strong>Home → Add-ins</strong></li>
@@ -394,12 +571,24 @@
       <li>Shortcut to open Claude, Mac: <code>Ctrl + Option + C</code> · Windows: <code>Ctrl + Alt + C</code></li>
     </ul>
     <p class="sub">Requires a Claude Pro subscription ($20/month), the same plan that unlocks Cowork. Confirm the live install steps in Anthropic's docs, since menus shift.</p>
-  </section>
+  
+      </div>
+    </div>
+  </div>
 
   <!-- SECTION 3 -->
-  <section class="section" id="excel">
-    <div class="sec-kicker">Section 3, The Excel Agent</div>
-    <h2>Ten minutes of work in one prompt</h2>
+    <div class="accordion" id="excel">
+    <div class="accordion-header">
+      <div class="accordion-badge">3</div>
+      <div style="flex:1;">
+        <div class="accordion-label">Section 3, The Excel Agent</div>
+        <h2 class="accordion-title">Ten minutes of work in one prompt</h2>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+    
+    
     <p>Four jobs the Excel agent does well. Click a cell, then ask.</p>
     <div class="card-grid">
       <div class="step-card"><h3>1 · Understand someone else's sheet</h3><p>"Explain this formula in plain English." "Trace this cell to its source inputs." "Why is this #REF?" "Find every broken formula in the workbook." Claude follows the logic across the whole file, not just the cell you clicked.</p></div>
@@ -411,12 +600,24 @@
       <span class="lbl">Cited</span>
       Ethan Mollick, testing the Excel agent: it built a workbook "including 406 formulas, from one prompt (&amp; it's solid)." Strong first drafts, fast, not a substitute for checking the math on anything that matters.
     </div>
-  </section>
+  
+      </div>
+    </div>
+  </div>
 
   <!-- SECTION 4 -->
-  <section class="section" id="powerpoint">
-    <div class="sec-kicker">Section 4, The PowerPoint Agent</div>
-    <h2>Build the deck the way a consultant would</h2>
+    <div class="accordion" id="powerpoint">
+    <div class="accordion-header">
+      <div class="accordion-badge">4</div>
+      <div style="flex:1;">
+        <div class="accordion-label">Section 4, The PowerPoint Agent</div>
+        <h2 class="accordion-title">Build the deck the way a consultant would</h2>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+    
+    
     <p>Most AI deck tools treat slides as a text problem: generate bullets, export, clean up by hand. The Office agent reasons about why the deck exists and what story the data tells, then builds real slides in your template. The trick is to make it think before it designs. Run these five prompts in order.</p>
 
     <h3>1 · Blueprint, not slides</h3>
@@ -443,23 +644,47 @@
       <span class="lbl">The breakthrough, spreadsheet → deck</span>
       Claude can read an Excel or CSV, infer the story, and turn it into a structured deck, no exports, no screenshots. See the full play in <a href="workflows.html#spreadsheet-to-deck">Claude in Action, Workflow 7: Spreadsheet → Board Deck</a>.
     </div>
-  </section>
+  
+      </div>
+    </div>
+  </div>
 
   <!-- SECTION 5 -->
-  <section class="section" id="pdf">
-    <div class="sec-kicker">Section 5, The PDF Agent</div>
-    <h2>Kill the document busywork</h2>
+    <div class="accordion" id="pdf">
+    <div class="accordion-header">
+      <div class="accordion-badge">5</div>
+      <div style="flex:1;">
+        <div class="accordion-label">Section 5, The PDF Agent</div>
+        <h2 class="accordion-title">Kill the document busywork</h2>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+    
+    
     <p>PDFs are the end state of work, invoices, receipts, reports, statements, and generating them used to mean templates, converters, or manual formatting. Now you describe the document and Claude builds the layout, tables, totals, and structure, then returns a finished PDF.</p>
     <div class="card-grid">
       <div class="step-card"><h3>Generate</h3><p>"One-page invoice PDF with line items and totals." "Turn this summary into a formatted report PDF." "Receipt with tax and a final total."</p></div>
       <div class="step-card"><h3>Extract</h3><p>"Pull this PDF table into Excel." The round-trip, data out of a PDF, into a model, back into a clean document, is the part that used to need three tools.</p></div>
     </div>
-  </section>
+  
+      </div>
+    </div>
+  </div>
 
   <!-- SECTION 6 -->
-  <section class="section" id="which-tool">
-    <div class="sec-kicker">Section 6, Which Tool, When</div>
-    <h2>Four overlapping tools. One decision.</h2>
+    <div class="accordion" id="which-tool">
+    <div class="accordion-header">
+      <div class="accordion-badge">6</div>
+      <div style="flex:1;">
+        <div class="accordion-label">Section 6, Which Tool, When</div>
+        <h2 class="accordion-title">Four overlapping tools. One decision.</h2>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+    
+    
     <p>This is the part nobody maps. Claude can touch a spreadsheet or a deck four different ways, and reaching for the wrong one wastes time. Use this:</p>
     <table class="compare-table">
       <tr><th>You want to…</th><th>Use</th><th>Why this one</th></tr>
@@ -475,12 +700,24 @@
       <span class="lbl">Rule of thumb</span>
       Editing something that exists → the Office add-in. Generating something new → a Cowork skill. Sharing a view → a dashboard. Making it look designed → Claude Design.
     </div>
-  </section>
+  
+      </div>
+    </div>
+  </div>
 
   <!-- SECTION 7 -->
-  <section class="section" id="limits">
-    <div class="sec-kicker">Section 7, Limits, and the Level-Up</div>
-    <h2>Know the edges. Then make it repeatable.</h2>
+    <div class="accordion" id="limits">
+    <div class="accordion-header">
+      <div class="accordion-badge">7</div>
+      <div style="flex:1;">
+        <div class="accordion-label">Section 7, Limits, and the Level-Up</div>
+        <h2 class="accordion-title">Know the edges. Then make it repeatable.</h2>
+      </div>
+    </div>
+    <div class="accordion-content">
+      <div class="accordion-body">
+    
+    
     <div class="info-box warning">
       <span class="lbl">What Claude in Office can't do</span>
       No VBA or macros. No Power Query / Power Pivot. No direct external database connections. And no blind trust for audit-critical or regulated work, you still review the numbers. The baseline moved a lot; it didn't remove your judgment.
@@ -496,7 +733,10 @@
       <span class="lbl">Level up: build the skill</span>
       Tell Claude: <em>"Build me a skill called 'exec-deck' that turns a spreadsheet into a board-ready deck. Use the blueprint → narrative → in-place generate → story → executive-polish method. Bake in my brand, my slide structure, and a five-second-scan check. Ask me the objective and audience before building."</em> Once it exists, "run exec-deck on Q2 numbers" produces the first draft. New to skills? See <a href="level-2.html">Claude Advanced</a>, Section 1.
     </div>
-  </section>
+  
+      </div>
+    </div>
+  </div>
 
 </div>
 
@@ -514,15 +754,8 @@
 
 <button class="back-to-top" id="backToTopBtn" aria-label="Back to top">↑</button>
 
-<script>
-  const backToTopBtn = document.getElementById('backToTopBtn');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) backToTopBtn.classList.add('visible');
-    else backToTopBtn.classList.remove('visible');
-  });
-  backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-</script>
 
+<script src="sections.js" defer></script>
 <script src="search.js"></script>
 <script src="nav.js" defer></script>
 </body>

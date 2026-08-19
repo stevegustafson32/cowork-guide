@@ -1665,5 +1665,79 @@
    "The prompt that does the most in one line"
   ],
   "text": "8 step 8 the cheat sheet one screen. everything on this page, compressed. if you read nothing else here, read this. the nine-pass edit, in order don't try to fix a draft in one pass. cut before you add, structure before you polish. pass what you're hunting 1. hedge cut every weakening qualifier. if the sentence becomes a confident claim without it, the cut was right. 2. banned-word swap run the swap list. if there's no clean replacement, cut the sentence. 3. connector cull delete 60% of the \"howevers\" and \"furthermores.\" replace with a period. 4. opening variation read the first three words of every sentence. three in a row starting the same way? rewrite one. 5. length burst add at least two sentences under 8 words and one over 28. 6. specificity injection every vague noun and metric-free claim gets a name, number, or date. 7. claim density every paragraph needs one arguable claim. pure-background paragraphs get folded in or killed. 8. voice injection one human signal per 200 words. a fragment, a contradiction, a specific story. 9. read aloud rewrite everything that trips. the four rules worth memorizing put a number, name, or date in every paragraph. never write three same-length sentences in a row. make a claim someone could argue with. cut the connector. use a period. the prompt that does the most in one line rewrite this so the final version is 30% shorter and 100% more specific. every sentence you cut was either hedging, repeating a claim, or adding no fact. sound like a tired senior operator texting, not a brand voice. the takeaway none of this makes claude write for you. it makes claude stop writing like claude, which is a different and more useful thing. the specifics still have to come from you — the number, the name, the thing that actually happened. claude can't invent those, and every tell on this page is really just claude covering for the fact that it doesn't have them. next step build your voice profile from step 5, paste it into the rules file in step 6, and run your next real draft through the sniff tests in step 7. that's about twenty minutes, and it's the last time you'll have to think about any of this. ← previous claude in office all guides next → claude everywhere claude writing by steve gustafson. how to stop claude sounding like claude, written by a human who edits a lot of drafts. updated august 2026. back to all guides ↑"
+ },
+ {
+  "url": "claude-office.html#changed",
+  "label": "Claude in Office · Section 1, What Actually Changed",
+  "title": "From \"AI that makes a file\" to \"AI that works in your file\"",
+  "desc": "The distinction is the whole story.",
+  "headings": [],
+  "text": "1 section 1, what actually changed from \"ai that makes a file\" to \"ai that works in your file\" the distinction is the whole story. everywhere else in this guide, claude generates a deliverable: you ask for a word doc, a dashboard, a deck, and claude builds one from scratch and hands it back. useful, but it starts from blank. the office add-ins do something the file-generation skills can't: they operate inside a workbook or deck you already have. claude reads real formulas (not flattened text), traces dependencies across 40 tabs, edits cells directly, and shows you every change. it treats a slide deck as a sequence with a story, not a pile of text boxes. the reason ai was bad at excel for years wasn't intelligence, it was context. operating inside the application is the fix. why it matters when ai moves from assisting to executing inside the system of record , the busywork layer, formatting, cleanup, first-draft models, deck assembly, stops being scarce work. the marginal value of doing it by hand collapses. you still review. you still decide. but you start from a working draft, not a blank sheet."
+ },
+ {
+  "url": "claude-office.html#setup",
+  "label": "Claude in Office · Section 2, Setup (5 Minutes)",
+  "title": "Get Claude running inside Office",
+  "desc": "",
+  "headings": [],
+  "text": "2 section 2, setup (5 minutes) get claude running inside office claude lives in microsoft excel and powerpoint through anthropic's official add-ins, a sidebar, not a separate chat window. open excel or powerpoint → home → add-ins search \"claude by anthropic\" → get it now open the claude sidebar → sign in → select the latest model authorize file access. claude only edits what you select. shortcut to open claude, mac: ctrl + option + c · windows: ctrl + alt + c requires a claude pro subscription ($20/month), the same plan that unlocks cowork. confirm the live install steps in anthropic's docs, since menus shift."
+ },
+ {
+  "url": "claude-office.html#excel",
+  "label": "Claude in Office · Section 3, The Excel Agent",
+  "title": "Ten minutes of work in one prompt",
+  "desc": "",
+  "headings": [
+   "1 · Understand someone else's sheet",
+   "2 · Clean messy data",
+   "3 · Analyze without formulas",
+   "4 · Build models"
+  ],
+  "text": "3 section 3, the excel agent ten minutes of work in one prompt four jobs the excel agent does well. click a cell, then ask. 1 · understand someone else's sheet \"explain this formula in plain english.\" \"trace this cell to its source inputs.\" \"why is this #ref?\" \"find every broken formula in the workbook.\" claude follows the logic across the whole file, not just the cell you clicked. 2 · clean messy data \"convert all dates to yyyy-mm-dd.\" \"remove duplicates, keep most recent.\" \"strip inc/llc/ltd from company names.\" \"split address into street/city/state/zip.\" it edits in place and highlights every touched cell so you can audit it. 3 · analyze without formulas \"what changed this year vs last?\" \"which customers drive growth?\" \"where are we missing budget?\" \"categorize these transactions.\" you get the insight first; ask for the formulas or pivot only if you want them. 4 · build models forecasts, saas metrics, scenario and sensitivity tables, irr/exit models, from scratch, inside the sheet. not flawless, but it kills the blank-sheet phase. treat the output as a first draft to pressure-test. cited ethan mollick, testing the excel agent: it built a workbook \"including 406 formulas, from one prompt (& it's solid).\" strong first drafts, fast, not a substitute for checking the math on anything that matters."
+ },
+ {
+  "url": "claude-office.html#powerpoint",
+  "label": "Claude in Office · Section 4, The PowerPoint Agent",
+  "title": "Build the deck the way a consultant would",
+  "desc": "",
+  "headings": [
+   "1 · Blueprint, not slides",
+   "2 · Lock the narrative",
+   "3 · Generate in-place",
+   "4 · Add the story layer",
+   "5 · Executive polish"
+  ],
+  "text": "4 section 4, the powerpoint agent build the deck the way a consultant would most ai deck tools treat slides as a text problem: generate bullets, export, clean up by hand. the office agent reasons about why the deck exists and what story the data tells, then builds real slides in your template. the trick is to make it think before it designs. run these five prompts in order. 1 · blueprint, not slides review this data and act as a professional presentation consultant. create a presentation blueprint: objective, target audience, key message, and recommended number of slides. 2 · lock the narrative create a slide-by-slide structure with titles and the purpose of each slide. 3 · generate in-place generate presentation-ready content for each slide and add the slides directly in this deck, using the existing template, layouts, and styles. 4 · add the story layer rewrite this presentation to follow a clear narrative: context → key insights → why they matter → recommended actions. 5 · executive polish reduce text, sharpen headlines, and make each slide scannable in five seconds. why it works steps 1-2 force clarity before content, which is where most decks die. the deck stops being isolated pages and becomes a sequence. the five-second-scan pass is the hour of cutting and tightening that normally happens the night before a board meeting, done in minutes. the breakthrough, spreadsheet → deck claude can read an excel or csv, infer the story, and turn it into a structured deck, no exports, no screenshots. see the full play in claude in action, workflow 7: spreadsheet → board deck ."
+ },
+ {
+  "url": "claude-office.html#pdf",
+  "label": "Claude in Office · Section 5, The PDF Agent",
+  "title": "Kill the document busywork",
+  "desc": "",
+  "headings": [
+   "Generate",
+   "Extract"
+  ],
+  "text": "5 section 5, the pdf agent kill the document busywork pdfs are the end state of work, invoices, receipts, reports, statements, and generating them used to mean templates, converters, or manual formatting. now you describe the document and claude builds the layout, tables, totals, and structure, then returns a finished pdf. generate \"one-page invoice pdf with line items and totals.\" \"turn this summary into a formatted report pdf.\" \"receipt with tax and a final total.\" extract \"pull this pdf table into excel.\" the round-trip, data out of a pdf, into a model, back into a clean document, is the part that used to need three tools."
+ },
+ {
+  "url": "claude-office.html#which-tool",
+  "label": "Claude in Office · Section 6, Which Tool, When",
+  "title": "Four overlapping tools. One decision.",
+  "desc": "",
+  "headings": [],
+  "text": "6 section 6, which tool, when four overlapping tools. one decision. this is the part nobody maps. claude can touch a spreadsheet or a deck four different ways, and reaching for the wrong one wastes time. use this: you want to… use why this one edit a live workbook/model that already exists claude in excel (add-in) only this edits real cells and traces dependencies in your open file. generate a fresh, formatted workbook from data or a brief cowork xlsx skill builds a new .xlsx from scratch with formulas and styling; no office add-in needed. edit/restyle an existing deck slide-by-slide claude in powerpoint (add-in) works inside your template; keeps layouts and master styles intact. build a new deck from data with a narrative cowork pptx skill or the exec-deck skill generates a full .pptx from a spreadsheet; the skill bakes in the blueprint→polish method. a shareable, interactive view of a dataset csv → html dashboard ( workflow 5 ) one self-contained html file with filters and charts, opens in any browser. a designed, on-brand deck or page claude design ( step 06 ) image-led visual polish and working code, when look-and-feel is the point. a finished invoice/report/receipt to send pdf agent or the invoice-pdf skill layout, totals, and structure handled; returns a shareable pdf. rule of thumb editing something that exists → the office add-in. generating something new → a cowork skill. sharing a view → a dashboard. making it look designed → claude design."
+ },
+ {
+  "url": "claude-office.html#limits",
+  "label": "Claude in Office · Section 7, Limits, and the Level-Up",
+  "title": "Know the edges. Then make it repeatable.",
+  "desc": "",
+  "headings": [
+   "exec-deck",
+   "financial-model",
+   "invoice-pdf"
+  ],
+  "text": "7 section 7, limits, and the level-up know the edges. then make it repeatable. what claude in office can't do no vba or macros. no power query / power pivot. no direct external database connections. and no blind trust for audit-critical or regulated work, you still review the numbers. the baseline moved a lot; it didn't remove your judgment. if you run the same office workflow more than twice, stop re-prompting it. wrap the method in a skill so one sentence triggers it and your preferences stay baked in. three to build first: exec-deck encodes the five-step blueprint→polish method on top of the pptx skill. \"build an exec deck from this data\" → board-ready first draft. financial-model forecast / saas metrics / scenario / sensitivity / irr on top of xlsx , with every assumption labeled and cited, and a review checklist. invoice-pdf structured invoices, receipts, and report pdfs on top of the pdf skill, consistent layout and totals every time. level up: build the skill tell claude: \"build me a skill called 'exec-deck' that turns a spreadsheet into a board-ready deck. use the blueprint → narrative → in-place generate → story → executive-polish method. bake in my brand, my slide structure, and a five-second-scan check. ask me the objective and audience before building.\" once it exists, \"run exec-deck on q2 numbers\" produces the first draft. new to skills? see claude advanced , section 1. ← previous claude design all guides next → claude writing sources & further reading: anthropic docs (claude for excel / powerpoint add-ins, current pricing & model). ethan mollick on the excel agent (x, sep 2025). guillermo flor / product-market fit, \"claude × excel, powerpoint & pdf playbook\" (feb 2026). steve's ai guide · written independently, no sponsors · steve on linkedin ↑"
  }
 ]
