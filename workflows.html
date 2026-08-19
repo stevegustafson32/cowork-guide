@@ -392,7 +392,7 @@
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-size: 14px;
+    font-size: 15px;
   }
   .compare-table th {
     text-align: left;
@@ -400,7 +400,7 @@
     border-bottom: 2px solid var(--border);
     color: var(--text-muted);
     font-weight: 600;
-    font-size: 12px;
+    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
@@ -534,10 +534,13 @@
      now they scroll internally instead of widening the page on mobile. */
   .accordion-content .code-block, .accordion-content pre { max-width: 100%; overflow-x: auto; }
   .accordion-content table { display: block; max-width: 100%; overflow-x: auto; }
+  /* This page has one comparison table OUTSIDE .accordion-content, so the
+     rule above never reached it and it widened the page on a phone. */
+  .container table { display: block; max-width: 100%; overflow-x: auto; }
   html { overflow-x: hidden; } /* NOT clip: visible+clip pairing computes both axes to clip and kills page scroll */
   @media (max-width: 520px) {
     /* Tables wider than a phone scroll internally (they were cut off before). */
-    .accordion-content table { display: block; max-width: 100%; overflow-x: auto; }
+    .accordion-content table, .container table { display: block; max-width: 100%; overflow-x: auto; }
     /* Flex list items laid text out on one unwrappable row; let them wrap. */
     .accordion-content li { flex-wrap: wrap; }
     .accordion-content li > * { min-width: 0; }
