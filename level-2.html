@@ -881,7 +881,7 @@ When the user asks you to research a company:
     </div>
     <div class="accordion-content">
       <div class="accordion-body section">
-        <p>Claude in Chrome lets Claude see, click, type, navigate, and interact with anything in your browser. It goes far beyond basic web search.</p>
+        <p>On August 12, 2026, Claude in Chrome stopped being a separate extension. The side panel is now a full Cowork session, the same one you run on desktop, web, and mobile. Your skills and connectors work inside it, which they did not before. Start a task in Chrome, finish it on your desktop, the context carries over. Claude still sees, clicks, types, and navigates any page. It does that as Cowork now, not as a bolt-on tool.</p>
 
         <h3>What You Can Actually Do</h3>
         <div class="two-col">
@@ -907,13 +907,13 @@ When the user asks you to research a company:
           </div>
           <div class="step-card">
             <h3>Scheduled Browser Tasks</h3>
-            <p>Combine Chrome extension with scheduled tasks. "Every morning at 9am, check these 3 dashboards and summarize what changed."</p>
+            <p>Combine Cowork in Chrome with scheduled tasks. "Every morning at 9am, check these 3 dashboards and summarize what changed."</p>
           </div>
         </div>
 
         <div class="info-box warning">
           <strong>Requirements & Limitations</strong>
-          Chrome extension is in beta. Works on Chrome and Edge only (not Brave, Arc, or others). Requires a paid Claude plan. Claude uses your existing login sessions, it can access anything you're logged into, so be mindful of which tabs are in the Claude group.
+          Out of beta as of August 2026. Works on Chrome and Edge, not Brave or Arc. Available now on Max and Team, rolling out to Pro. Enterprise stays off by default, and admins can limit it to approved domains. Claude uses your existing logins, so it can reach anything you are signed into. Be deliberate about which tabs sit in the Claude group. A newer check reviews consequential actions, form submits, sends, and downloads, against what you first asked before it goes ahead.
         </div>
       </div>
     </div>
@@ -932,7 +932,7 @@ When the user asks you to research a company:
     </div>
     <div class="accordion-content">
       <div class="accordion-body section">
-        <p>Chrome extension handles the browser. Connectors handle specific services. But what about everything else, Finder, Notes, Maps, System Settings, Photoshop, Excel (the desktop app), or any native application? That's <strong>Computer Use</strong>. Claude takes screenshots of your screen, moves the mouse, clicks buttons, and types, just like a remote coworker sitting at your desk.</p>
+        <p>Cowork reaches a service through a connector when that service has one. It drives the page through Chrome when the service does not. But what about everything else, Finder, Notes, Maps, System Settings, Photoshop, Excel (the desktop app), or any native application? That's <strong>Computer Use</strong>. Claude takes screenshots of your screen, moves the mouse, clicks buttons, and types, just like a remote coworker sitting at your desk.</p>
 
         <h3>How Claude Decides What to Use</h3>
         <p>This is the mental model that makes everything click. When you give Claude a task, it picks the fastest, most reliable tool available:</p>
@@ -947,7 +947,7 @@ When the user asks you to research a company:
             <span style="color: var(--text-dim); font-size: 20px;">&rarr;</span>
             <div style="background: rgba(91,155,213,0.12); border: 1px solid var(--blue); border-radius: 8px; padding: 12px 20px; min-width: 180px;">
               <strong style="color: var(--blue); display: block; font-size: 13px; margin-bottom: 4px;">2. BROWSER SECOND</strong>
-              <span style="font-size: 14px; color: var(--text-muted);">Chrome extension for web apps</span>
+              <span style="font-size: 14px; color: var(--text-muted);">Cowork in Chrome for web apps</span>
             </div>
             <span style="color: var(--text-dim); font-size: 20px;">&rarr;</span>
             <div style="background: rgba(155,126,216,0.12); border: 1px solid var(--purple); border-radius: 8px; padding: 12px 20px; min-width: 180px;">
@@ -955,7 +955,7 @@ When the user asks you to research a company:
               <span style="font-size: 14px; color: var(--text-muted);">Mouse + keyboard for native apps</span>
             </div>
           </div>
-          <p style="margin-top: 16px; font-size: 15px; color: var(--text-dim);">Connectors are fast and precise (API-backed). Chrome is DOM-aware and reliable. Screen control is the fallback that handles everything else.</p>
+          <p style="margin-top: 16px; font-size: 15px; color: var(--text-dim);">Connectors are fast and precise, they use each service's API. Chrome is that same Cowork session driving a web page, for apps without a connector. Screen control is the fallback for everything else.</p>
         </div>
 
         <h3>How to Enable It</h3>
