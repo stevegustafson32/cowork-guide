@@ -1115,65 +1115,59 @@
       <div class="accordion-badge">5</div>
       <div>
         <div class="accordion-label">Step 5 &middot; Optional</div>
-        <h2 class="accordion-title">Power Up in One Command</h2>
-        <div class="accordion-subtitle">A free plugin builds a full workspace for you, so you never set one up by hand.</div>
+        <h2 class="accordion-title">Power Up With One Prompt</h2>
+        <div class="accordion-subtitle">One pasted prompt has Claude build a full workspace for you, so you never set one up by hand.</div>
       </div>
     </div>
     <div class="accordion-content">
       <div class="accordion-body">
-        <p>Projects handle the basics. If you want a fuller system, an identity file that spans every project, reusable templates, a clean split between what Claude reads and what it writes, explicit memory you control, you have two options: build it by hand, or let a plugin do it in one command. Start with the plugin.</p>
+        <p>Projects handle the basics. If you want a fuller system, an identity file that spans every project, a folder for each area of your work, rules Claude reads before every task, explicit memory you control, you have two options: build it by hand, or let Claude build it from one pasted prompt. Start with the prompt.</p>
 
         <div class="info-box key">
-          <strong>Install Once, Type <code>/begin</code>, Done</strong>
-          <strong>CoWork OS</strong> is a free plugin (by Paul J Lipsky) that sets up your whole workspace through a short conversation. Install it, open a new session, type <code>/begin</code>, and answer a few questions. About five minutes later you have folders, an identity file, workspace rules, and a memory system, all built for you.
+          <strong>Paste One Prompt, Answer Six Questions</strong>
+          Paul J Lipsky's <strong>Cowork OS setup prompt</strong> turns the setup into a short interview. You paste it in, Claude asks six plain-English questions, shows you the folder list before it creates anything, then builds the workspace from your answers. About five minutes.
         </div>
 
-        <h3 id="how-to-install-a-plugin">Get CoWork OS and Install It</h3>
-        <p>Download the plugin, then point Claude at it. About two minutes.</p>
-
-        <div class="download-card">
-          <div class="download-icon">&#128230;</div>
-          <div class="download-name">cowork-os-plugin.zip</div>
-          <a class="download-btn" href="cowork-os-plugin.zip" download>Download the Plugin</a>
-          <div class="download-note">By Paul J Lipsky. We host a copy here so the link never breaks.</div>
-        </div>
+        <h3 id="how-to-install-a-plugin">Get the Prompt and Run It</h3>
 
         <div class="step-card">
           <div class="step-num">1</div>
-          <h3>Download the file</h3>
-          <p>Click the button above. Keep the zip exactly as it downloads. You do not need to unzip it.</p>
+          <h3>Copy Paul's prompt</h3>
+          <p>Open <a href="https://docs.google.com/document/d/1fi1pSlkBjZzvZA9r2oa-Nwud_cjz48E8xYv5S05zVdc/edit?usp=sharing" target="_blank" rel="noopener"><strong>the Cowork OS setup prompt</strong></a> and copy all of it. He walks through it in <a href="https://www.youtube.com/watch?v=NjYZW-1bLMo" target="_blank" rel="noopener">this 16-minute video</a> from June 2026, which is worth watching once.</p>
         </div>
         <div class="step-card">
           <div class="step-num">2</div>
-          <h3>Add it under Customize</h3>
-          <p>Click <strong>Customize</strong> in the sidebar, open the <strong>Plugins</strong> tab, then click <strong>Add</strong>. Choose <strong>Upload plugin</strong> and pick the zip you downloaded. A preview shows the plugin's name. Click <strong>Upload</strong>. The red notice on that screen says Anthropic has not checked uploaded plugins, which is true of any upload. This one holds one command and three skills, and nothing that runs on your computer.</p>
+          <h3>Start a new conversation in your folder</h3>
+          <p>Open the Claude desktop app with the cloud folder you chose in Step 2 selected. The prompt tells Claude to build inside "the folder you have access to," so the folder has to be connected first.</p>
+          <!-- SAG-ROLLOUT:line --><p class="sag-rollout">Message box shows a Chat / Cowork switch? Pick <strong>Cowork</strong> for this. <a href="whats-changed.html#c-2026-09-16-cowork-and-chat-are-one-claude">Why</a>.</p><!-- /SAG-ROLLOUT -->
         </div>
         <div class="step-card">
           <div class="step-num">3</div>
-          <h3>Open a new session and type <code>/begin</code></h3>
-          <p>The plugin registers its commands. Type <code>/begin</code> and answer the questions. It may be listed as <code>/cowork-os:begin</code>. If neither appears, start a new session.</p>
+          <h3>Paste it and answer</h3>
+          <p>Claude introduces itself and asks its questions in small batches. Before it writes anything, it shows you the folder list. Change what you want, then tell it to go ahead.</p>
         </div>
 
-        <div class="info-box tip">
-          <strong>Installing Other Plugins</strong>
-          The plugins elsewhere on this site come as a single <code>.plugin</code> file instead of a folder. For those: download the file, then drag it into the Claude desktop app or double-click it, and click Install. If a plugin lives in a GitHub repo, add it with <code>/plugin marketplace add [user]/[repo]</code>, then <code>/plugin install [name]</code>. Since August 2026 you can also point the marketplace at the web address of a plugin zip.
-        </div>
-
-        <h3>What <code>/begin</code> Asks, and Builds</h3>
+        <h3>What It Asks, and Builds</h3>
         <table class="compare-table">
           <tr><th>Claude asks you&hellip;</th><th>What it builds</th></tr>
-          <tr><td>Your name and role?</td><td>An identity file so Claude knows who you are on every task</td></tr>
-          <tr><td>Your company, and what you do day to day?</td><td>Context so Claude understands your world</td></tr>
-          <tr><td>What tools do you use?</td><td>So Claude knows which formats to create</td></tr>
-          <tr><td>How do you like to work?</td><td>Behavior rules: direct vs detailed, short vs thorough</td></tr>
-          <tr><td>Any projects you're on right now?</td><td>A folder with isolated memory for each one</td></tr>
+          <tr><td>What should I call you?</td><td>A name and personality, written into the main <code>CLAUDE.md</code></td></tr>
+          <tr><td>Your name and what you do?</td><td><code>About Me/Profile.md</code>, so Claude knows who it is helping</td></tr>
+          <tr><td>Which areas do you want help with?</td><td>One subfolder per area, each with its own <code>CLAUDE.md</code></td></tr>
+          <tr><td>How should I talk to you?</td><td><code>About Me/Voice.md</code></td></tr>
+          <tr><td>Anything I should never do?</td><td><code>About Me/Rules.md</code></td></tr>
+          <tr><td>What would make this useful?</td><td>The priorities in your main <code>CLAUDE.md</code></td></tr>
         </table>
 
-        <p style="margin-top: 16px;">When it finishes, your cloud folder holds an identity file, a templates folder, per-project folders, a place for everything Claude creates, workspace rules, and a memory file, all filled in from your answers. From then on, <em>"remember this: [fact]"</em> saves a note that persists, and <em>"new project: [name]"</em> spins up an isolated folder and memory in one line.</p>
+        <p style="margin-top: 16px;">When it finishes, your cloud folder holds a main <code>CLAUDE.md</code> that points to everything else, a <code>MEMORY.md</code> index, an <code>About Me</code> folder with three files, and a subfolder for each area you picked. From then on, <em>"remember this: [fact]"</em> gets saved to memory, and <em>"add an area for [name]"</em> gets you a new subfolder with its own instructions.</p>
+
+        <div class="info-box tip">
+          <strong>Used the Earlier Plugin?</strong>
+          Until October 2026 this step installed Paul's CoWork OS plugin and ran <code>/begin</code>. If you set up that way, it still works and you do not need to redo anything. The <a href="cowork-os-plugin.zip" download>March 2026 plugin file</a> is still here. For plugins in general, see <a href="claude-plugins.html">Claude Plugins</a>.
+        </div>
 
         <div class="info-box tip">
           <strong>Want to Understand or Build It by Hand?</strong>
-          You don't need to, the plugin handles it. But if you want to know exactly what each piece does, or set it up manually and tune it, that's power-user territory. The <a href="level-2.html">Advanced Guide</a> covers the folder architecture, the identity file, and the CLAUDE.md + MEMORY.md system in full.
+          You don't need to, the prompt handles it. But if you want to know exactly what each piece does, or set it up manually and tune it, that's power-user territory. The <a href="level-2.html">Advanced Guide</a> covers the folder architecture, the identity file, and the CLAUDE.md + MEMORY.md system in full.
         </div>
       </div>
     </div>

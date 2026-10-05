@@ -55,6 +55,7 @@ STALE_ALLOWED = [
     re.compile(r"Introducing Cowork"),
     re.compile(r"Get Started with Cowork"),
     re.compile(r"called Cowork"),            # dated history: the mode's old name
+    re.compile(r"Cowork OS setup prompt"),   # Paul J Lipsky's name for his method
     re.compile(r"Claude Cowork Guide: 50\+ Tested Tips"),
     re.compile(r"Anthropic's Opus 5 guidance"),  # cites the guidance as published
     re.compile(r"Claude Cowork Plugins: What They Are"),

@@ -756,7 +756,7 @@ When the user asks you to research a company:
         </table>
 
         <h3>The Easy Way: Use /skill-creator</h3>
-        <p>If you have the CoWork OS plugin installed, type <code>/skill-creator</code> in any session. Claude will interview you about what you want the skill to do, write the SKILL.md for you, test it, and optimize the description for reliable triggering. You don't need to write YAML by hand.</p>
+        <p>Type <code>/skill-creator</code> in any session, or ask Claude to help you build a skill. It is a skill from Anthropic. Claude will interview you about what you want the skill to do, write the SKILL.md for you, test it, and optimize the description for reliable triggering. You don't need to write YAML by hand.</p>
 
         <div class="info-box tip">
           <strong>Advanced: Dynamic Context Injection</strong>
@@ -1096,13 +1096,13 @@ When the user asks you to research a company:
           <strong>What goes here:</strong> Project-level tone, formatting rules, and key context in the Instructions field. Auto-memory captures decisions and patterns as you work, Claude decides what's worth saving. First 200 lines (or 25KB) load at the start of each new task.</p>
         </div>
         <div class="step-card">
-          <h3>Layer 3: CLAUDE.md (CoWork OS, Structured Rules)</h3>
+          <h3>Layer 3: CLAUDE.md (Your Workspace, Structured Rules)</h3>
           <p><strong>Where:</strong> CLAUDE.md file in your workspace folder (or subfolder)<br>
           <strong>Scope:</strong> That specific folder only<br>
           <strong>What goes here:</strong> Detailed folder protocols, naming conventions, session start behavior, project registry, read-only/write-only rules. More structured and opinionated than native Instructions, this is your operating system.</p>
         </div>
         <div class="step-card">
-          <h3>Layer 4: MEMORY.md (CoWork OS, Explicit Memory)</h3>
+          <h3>Layer 4: MEMORY.md (Your Workspace, Explicit Memory)</h3>
           <p><strong>Where:</strong> MEMORY.md in your workspace folder<br>
           <strong>Scope:</strong> Persistent across sessions, user-controlled<br>
           <strong>What goes here:</strong> Decisions, deadlines, status updates, things you specifically want remembered with your exact wording. Say "remember this" to write; "forget that" to delete. Unlike auto-memory, nothing gets saved unless you ask.</p>
@@ -1111,7 +1111,7 @@ When the user asks you to research a company:
         <h3>Native Memory vs. Explicit Memory</h3>
         <p>This is the most common question: "If Projects auto-remember things, why do I need MEMORY.md?" Because they serve different purposes:</p>
         <table class="compare-table">
-          <tr><th></th><th>Native Auto-Memory</th><th>MEMORY.md (CoWork OS)</th></tr>
+          <tr><th></th><th>Native Auto-Memory</th><th>MEMORY.md (your workspace)</th></tr>
           <tr><td><strong>Trigger</strong></td><td>Automatic, Claude decides</td><td>User-triggered, "remember this"</td></tr>
           <tr><td><strong>Content</strong></td><td>Whatever Claude thinks is useful</td><td>Exactly what you told it to save</td></tr>
           <tr><td><strong>Structure</strong></td><td>Sorted into Topics you can open in Settings &rarr; Memory</td><td>Your format, your categories</td></tr>
@@ -1141,7 +1141,7 @@ When the user asks you to research a company:
         </div>
 
         <h3>Multi-Project Isolation</h3>
-        <p>Both native Projects and CoWork OS support project-scoped isolation. Each native Project has its own auto-memory. Each CoWork OS subfolder can have its own CLAUDE.md and MEMORY.md. Your marketing project's Claude has different context than your finance project's Claude.</p>
+        <p>Both native Projects and a workspace folder support project-scoped isolation. Each native Project has its own auto-memory. Each workspace subfolder can have its own CLAUDE.md and MEMORY.md. Your marketing project's Claude has different context than your finance project's Claude.</p>
 
         <div class="info-box tip">
           <strong>Keep CLAUDE.md Under 200 Lines</strong>
@@ -1163,12 +1163,12 @@ When the user asks you to research a company:
       <div style="flex: 1;">
         <div class="accordion-label">Section 8</div>
         <h2 class="accordion-title">Set Up the Workspace by Hand</h2>
-        <div class="accordion-subtitle">The folder architecture and identity file the /begin plugin builds for you, explained so you can build and tune them yourself.</div>
+        <div class="accordion-subtitle">The folder architecture and identity files a setup prompt builds for you, explained so you can build and tune them yourself.</div>
       </div>
       <span class="accordion-chevron"></span>   </div>
     <div class="accordion-content">
       <div class="accordion-body section">
-        <p>The <a href="beginner.html#install-the-cowork-os-plugin">CoWork OS plugin</a> scaffolds all of this in one <code>/begin</code> command, and most people should let it. This section is for when you want to understand exactly what it builds, or set it up manually and tune every piece. The memory layer that sits on top, CLAUDE.md and MEMORY.md, is covered in <a href="#memory-architecture-mastery">Memory Architecture Mastery</a> above; this is the folders and the identity file underneath it.</p>
+        <p>The <a href="beginner.html#install-the-cowork-os-plugin">setup prompt in the Beginner guide</a> scaffolds a version of this in one conversation, and most people should let it. This section is for when you want to understand exactly what it builds, or set it up manually and tune every piece. The memory layer that sits on top, CLAUDE.md and MEMORY.md, is covered in <a href="#memory-architecture-mastery">Memory Architecture Mastery</a> above; this is the folders and the identity file underneath it.</p>
 
         <h3>The Folder Architecture</h3>
         <p>The core idea is one separation: <strong>where Claude reads from</strong> versus <strong>where Claude writes to</strong>. Native Projects don't enforce this, so without a structure your inputs and outputs pile into one folder. Here's the layout power users run, all of it inside the cloud-synced drive you picked during setup:</p>
