@@ -283,7 +283,7 @@
     </div>
     <div class="accordion-content">
       <div class="accordion-body">
-        <p>LinkedIn Feed Tracker is a <strong>Claude hybrid plugin</strong>. Automated scrapers collect data from your LinkedIn every night. Claude analyzes everything inside Claude. All data stays on your Mac.</p>
+        <p>LinkedIn Feed Tracker is a <strong>Claude hybrid plugin</strong>. Automated scrapers collect data from your LinkedIn every night. Claude analyzes everything in the desktop app. All data stays on your Mac.</p>
 
         <h3>The collection layer</h3>
         <p>Four scrapers run on your Mac (via a nightly schedule) and capture different slices of your LinkedIn world:</p>
@@ -445,7 +445,7 @@
     </div>
     <div class="accordion-content">
       <div class="accordion-body">
-        <p>Once data is flowing, Claude can answer any question you ask inside Claude. Here's what the plugin gives you:</p>
+        <p>Once data is flowing, Claude can answer any question you ask. Here's what the plugin gives you:</p>
 
         <h3>Interactive Dashboard</h3>
         <p>Ask Claude: <strong>"Show me my dashboard"</strong></p>
@@ -674,7 +674,7 @@
         <h3>Who sees it</h3>
         <ul>
           <li>You</li>
-          <li>Claude (only when you ask questions inside Claude)</li>
+          <li>Claude (only when you ask it a question)</li>
           <li>No one else</li>
         </ul>
 
@@ -718,7 +718,7 @@
         <p>The connection sync handles networks up to 5,000+ using a 4-strategy fallback system. For ongoing monitoring, the profile collector uses a 7-day rotation, it visits ~1/7 of your connections each night so everyone gets covered weekly.</p>
 
         <h3>Can I trigger a collection manually?</h3>
-        <p>Yes. Either double-click <code>Collect Now.command</code> in the Setup folder, run <code>bash ~/.linkedin-feed-tracker/nightly.sh</code> in Terminal, or tell Claude <code>/collect-now</code> inside Claude.</p>
+        <p>Yes. Either double-click <code>Collect Now.command</code> in the Setup folder, run <code>bash ~/.linkedin-feed-tracker/nightly.sh</code> in Terminal, or type <code>/collect-now</code> in Claude.</p>
 
         <h3>Can I export my data?</h3>
         <p>Yes. The database is a standard SQLite file, you can query it with any SQLite tool. You can also ask Claude to generate reports as Word documents, CSVs, or dashboards you can share.</p>
@@ -733,7 +733,7 @@
         <p>The primary database lives at <code>~/.linkedin-feed-tracker/app/data/feeds.db</code> on your local disk. After each nightly run, it's copied to two iCloud locations: your LinkedIn Feed Tracker workspace folder and the CLAUDE OUTPUTS backup. Claude reads from iCloud. Your browser session (LinkedIn cookies) is at <code>~/.linkedin-feed-tracker/browser-profile/</code>.</p>
 
         <h3>How do I check if the nightly collection is working?</h3>
-        <p>Check today's log: open Terminal and run <code>cat ~/.linkedin-feed-tracker/logs/nightly-$(date +%Y-%m-%d).log</code>. Or run <code>launchctl list | grep com.lft</code> to confirm the LaunchAgent is loaded. You can also ask Claude <code>/health-check</code> inside Claude.</p>
+        <p>Check today's log: open Terminal and run <code>cat ~/.linkedin-feed-tracker/logs/nightly-$(date +%Y-%m-%d).log</code>. Or run <code>launchctl list | grep com.lft</code> to confirm the LaunchAgent is loaded. You can also type <code>/health-check</code> in Claude.</p>
 
         <h3>How do I change the collection time?</h3>
         <p>Edit <code>~/Library/LaunchAgents/com.lft.nightly.plist</code>, change the <code>Hour</code> (0-23) and <code>Minute</code> (0-59) values under <code>StartCalendarInterval</code>. Then reload: <code>launchctl unload ~/Library/LaunchAgents/com.lft.nightly.plist && launchctl load ~/Library/LaunchAgents/com.lft.nightly.plist</code></p>
