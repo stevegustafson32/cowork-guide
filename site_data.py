@@ -253,9 +253,9 @@ CHANGES = [
         "2026-10-01",
         "Claude Code mods",
         "Small TypeScript functions, shipped inside plugins, that change how "
-        "Claude Code works. Anthropic's own words: they run with the same "
-        "access to your machine as Claude Code itself and are not sandboxed, "
-        "so install them only from sources you trust.",
+        "Claude Code works. Anthropic says they run with the same access to "
+        "your machine as Claude Code itself, are not sandboxed, and should be "
+        "installed only from sources you trust.",
         "https://claude.com/blog/claude-code-mods",
         ("claude-code-2.html", "level-2.html"),
     ),
