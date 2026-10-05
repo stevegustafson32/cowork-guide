@@ -171,7 +171,7 @@
   h2.sec-title i { font-style: italic; color: var(--accent); font-weight: 400; }
   .sec-sub { color: var(--text-muted); font-size: 16px; max-width: 440px; line-height: 1.6; text-wrap: pretty; }
 
-  /* ─── path (9 guides) ─── */
+  /* ─── path ─── */
   .ramp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; position: relative; }
   /* Five app cards: 6-col track so row 1 holds 3 and row 2 holds 2 wider ones. */
   .ramp-apps { grid-template-columns: repeat(6, 1fr); }
@@ -698,7 +698,7 @@
   </div>
 </section>
 
-<!-- ─── THE APPS: the three doors ─── -->
+<!-- ─── THE APPS ─── -->
 <section class="section" id="apps">
   <div class="wrap">
     <div class="section-head">
@@ -753,7 +753,7 @@
   </div>
 </section>
 
-<!-- ─── SKILL RAMP, 8 GUIDES ─── -->
+<!-- ─── SKILL RAMP ─── -->
 <section class="section" id="path">
   <div class="wrap">
     <div class="section-head">
@@ -770,7 +770,7 @@
         <span class="ramp-level">Step 01 · Core skill</span>
         <h3 class="ramp-title">The <i>Prompting</i> Guide</h3>
         <p class="ramp-desc">From search bar to strategic partner. Eleven frameworks, research citations, and the prompt audit everyone skips.</p>
-        <div class="ramp-meta"><strong>~45 min read</strong><span>·</span><span>12 sections</span></div>
+        <div class="ramp-meta"><strong>~45 min read</strong><span>·</span><span>13 sections</span></div>
         <span class="ramp-link">Start here</span>
       </a>
       <a href="beginner.html" class="ramp-card">
@@ -778,7 +778,7 @@
         <span class="ramp-level">Step 02 · Setup</span>
         <h3 class="ramp-title">Claude <i>Beginner</i></h3>
         <p class="ramp-desc">Your first week with Claude Cowork. ABOUT ME, CLAUDE.md, MEMORY, the files that turn it from a chatbot into a partner.</p>
-        <div class="ramp-meta"><strong>~35 min read</strong><span>·</span><span>13 sections</span></div>
+        <div class="ramp-meta"><strong>~35 min read</strong><span>·</span><span>7 sections</span></div>
         <span class="ramp-link">Set it up</span>
       </a>
       <a href="level-2.html" class="ramp-card">
@@ -786,7 +786,7 @@
         <span class="ramp-level">Step 03 · Level up</span>
         <h3 class="ramp-title">Claude <i>Advanced</i></h3>
         <p class="ramp-desc">Projects, connectors, subagents, and the workflow patterns that actually compound over time.</p>
-        <div class="ramp-meta"><strong>~50 min read</strong><span>·</span><span>14 sections</span></div>
+        <div class="ramp-meta"><strong>~50 min read</strong><span>·</span><span>15 sections</span></div>
         <span class="ramp-link">Go deeper</span>
       </a>
       <a href="workflows.html" class="ramp-card">
@@ -834,7 +834,7 @@
         <span class="ramp-level">Step 09 · Now on your phone</span>
         <h3 class="ramp-title">Claude <i>Everywhere</i></h3>
         <p class="ramp-desc">The July 2026 release put Cowork on mobile, web, and the cloud. What syncs, what doesn't, and why connectors are the bridge that gets your work onto your phone.</p>
-        <div class="ramp-meta"><strong>~20 min read</strong><span>·</span><span>7 sections</span></div>
+        <div class="ramp-meta"><strong>~20 min read</strong><span>·</span><span>8 sections</span></div>
         <span class="ramp-link">Take it mobile</span>
       </a>
     </div>
@@ -918,7 +918,7 @@
           </li>
           <li>
             <span class="trainer-num">03</span>
-            <div><strong>Get scored</strong><span>Claude grades your prompt on clarity, specificity, role, constraints, and context, with honest notes on what to fix.</span></div>
+            <div><strong>Get scored</strong><span>An instant rubric check scores your prompt on clarity, specificity, role, constraints, and context, with notes on what to fix.</span></div>
           </li>
         </ul>
         <a class="btn-ghost" href="prompting.html">Read the full guide →</a>
@@ -1390,24 +1390,6 @@ Respond with ONLY valid JSON, nothing else:
   };
 </script>
 
-
-<!-- ─── MOBILE NAV TOGGLE ─── -->
-<script>
-  (function () {
-    var t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu');
-    if (!t || !m) return;
-    t.addEventListener('click', function () {
-      var open = m.classList.toggle('open');
-      t.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    m.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () {
-        m.classList.remove('open');
-        t.setAttribute('aria-expanded', 'false');
-      });
-    });
-  })();
-</script>
 
 <script src="search.js"></script>
 <script src="nav.js" defer></script>

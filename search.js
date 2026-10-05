@@ -50,7 +50,7 @@
       '<div class="wfs-modal" role="dialog" aria-label="Search">' +
         '<div class="wfs-inwrap">' +
           '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>' +
-          '<input class="wfs-input" type="text" placeholder="Search all seven guides…" aria-label="Search query" autocomplete="off" spellcheck="false">' +
+          '<input class="wfs-input" type="text" placeholder="Search the guides…" aria-label="Search query" autocomplete="off" spellcheck="false">' +
           '<span class="wfs-esc">esc</span>' +
         '</div>' +
         '<div class="wfs-results"></div>' +
@@ -106,7 +106,7 @@
     var raw = input.value.trim().toLowerCase();
     if (!raw) {
       results = idx.slice();
-      list.innerHTML = '<div class="wfs-empty">Type to search 9 guides, workflows, and plugin docs.</div>';
+      list.innerHTML = '<div class="wfs-empty">Type to search the guides, workflows, and plugin docs.</div>';
       return;
     }
     var terms = raw.split(/\s+/);
@@ -121,7 +121,7 @@
   function render(raw) {
     if (!results.length) { list.innerHTML = '<div class="wfs-empty">No matches for “' + esc(raw) + '”.</div>'; return; }
     list.innerHTML = results.map(function (p, i) {
-      var kind = p.url === "index.html" ? "Home" : (/linkedin|follow-up/.test(p.url) ? "Plugin" : "Guide");
+      var kind = p.kind || "Guide";
       return '<a class="wfs-item' + (i === sel ? " sel" : "") + '" href="' + p.url + '">' +
         '<span class="wfs-label">' + kind + '</span>' +
         '<div class="wfs-title">' + esc(p.label) + '</div>' +
