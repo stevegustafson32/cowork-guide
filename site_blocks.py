@@ -15,8 +15,8 @@ import re
 from datetime import date
 from urllib.parse import urlparse
 
-from site_data import (BASE_EDITION, CHANGELOG_PAGE, CHANGES, EXTRAS, GUIDES,
-                       ROLLOUT, change_id)
+from site_data import (AFTER_PATH, BASE_EDITION, CHANGELOG_PAGE, CHANGES,
+                       EXTRAS, GUIDES, ROLLOUT, change_id)
 
 SITE_URL = "https://stevesaiguide.com/"
 HOME_PAGE = "index.html"
@@ -97,10 +97,42 @@ def render_changelog(_variant):
     return "\n" + "\n".join(render_change(c) for c in newest_first) + "\n"
 
 
+def path_link(side, label, href, title):
+    return (f'  <a class="{side}" href="{href}"><span class="pn-label">{label}</span>'
+            f'<span class="pn-title">{title}</span></a>\n')
+
+
+def path_nav_renderer(page):
+    """Previous / all guides / next for one guide, from the path order."""
+    files = [g.file for g in GUIDES]
+    markup = ""
+    if page in files:
+        i = files.index(page)
+        after = GUIDES[i + 1] if i + 1 < len(GUIDES) else AFTER_PATH
+        after_title = getattr(after, "title", None) or after.label
+        prev = (path_link("prev", "&larr; Previous", GUIDES[i - 1].file, GUIDES[i - 1].title)
+                if i else '  <span class="pn-empty"></span>\n')
+        markup = ('\n<nav class="path-nav" aria-label="Guide navigation">\n' + prev
+                  + '  <a class="hub" href="/">All guides</a>\n'
+                  + path_link("next", "Next &rarr;", after.file, after_title) + "</nav>\n")
+    return lambda _variant: markup
+
+
+def render_guide_list(_variant):
+    """The homepage footer's list of guides."""
+    rows = []
+    for guide in GUIDES:
+        badge = '<span class="nav-new">NEW</span>' if guide.is_new else ""
+        rows.append(f'        <a href="{guide.file}">{guide.title}{badge}</a>')
+    return "\n" + "\n".join(rows) + "\n        "
+
+
 def apply_blocks(page, src):
     """Fill every generated block a page carries."""
     src = fill(src, "STAMP", stamp_renderer(page))
     src = fill(src, "ROLLOUT", render_rollout)
+    src = fill(src, "PATHNAV", path_nav_renderer(page))
+    src = fill(src, "GUIDELIST", render_guide_list)
     return fill(src, "CHANGELOG", render_changelog)
 
 

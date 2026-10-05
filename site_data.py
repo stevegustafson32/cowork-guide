@@ -50,9 +50,13 @@ GUIDES = [
     Guide("claude-code-2.html", "Claude Code 2.0", "40 min", False),
     Guide("claude-design.html", "Claude Design", "35 min", False),
     Guide("claude-office.html", "Claude in Office", "30 min", False),
-    Guide("claude-writing.html", "Claude Writing", "25 min", True),
+    Guide("claude-writing.html", "Claude Writing", "25 min", False),
     Guide("claude-everywhere.html", "Claude Everywhere", "20 min", False),
+    Guide("claude-plugins.html", "Claude Plugins", "15 min", True),
 ]
+
+# Where the last guide's "Next" link goes.
+AFTER_PATH = Page("people.html", "People I Learn From", "About")
 
 APPS = [
     App("https://keyroom.stevesaiguide.com", "Keyroom", "Residential real estate", False),
@@ -219,7 +223,7 @@ CHANGES = [
         "One place to find plugins and connectors (more than 2,000), "
         "Claude-powered products from partners, and service partners.",
         "https://claude.com/blog/claude-marketplace",
-        ("beginner.html", "level-2.html"),
+        ("beginner.html", "level-2.html", "claude-plugins.html"),
         "2026-10-04",
     ),
     Change(
@@ -230,7 +234,7 @@ CHANGES = [
         "validated and safety-scanned, then reviewed. Published plugins get "
         "install and search analytics.",
         "https://claude.com/blog/build-plugins-for-claude",
-        ("level-2.html",),
+        ("level-2.html", "claude-plugins.html"),
         "2026-10-04",
     ),
     Change(
@@ -262,7 +266,7 @@ CHANGES = [
         "your machine as Claude Code itself, are not sandboxed, and should be "
         "installed only from sources you trust.",
         "https://claude.com/blog/claude-code-mods",
-        ("claude-code-2.html",),
+        ("claude-code-2.html", "claude-plugins.html"),
         "2026-10-05",
     ),
 ]
