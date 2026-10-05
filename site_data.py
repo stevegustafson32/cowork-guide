@@ -180,6 +180,7 @@ CHANGES = [
         "on every paid plan.",
         "https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs",
         ("workflows.html",),
+        "2026-10-05",
     ),
     Change(
         "2026-09-16",

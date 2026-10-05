@@ -1028,18 +1028,19 @@
   <span id="tool-matrix" class="anchor-offset"></span>
   <div style="padding: 40px 0; border-bottom: 1px solid var(--border);">
     <h3 style="font-size: 24px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px;">Which Tool, When</h3>
-    <p style="color: var(--text-muted); margin-bottom: 4px;">Claude can touch a spreadsheet or a deck several different ways. Reaching for the wrong one wastes time. Use this map, and see the full <a href="claude-office.html">Claude in Office</a> guide for the why behind each.</p>
+    <p style="color: var(--text-muted); margin-bottom: 4px;">Claude can touch a spreadsheet, a deck, or a document several different ways, and reaching for the wrong one wastes time. The full map, with the why behind each row, lives in <a href="claude-office.html#which-tool">Claude in Office</a>.</p>
+    <div class="info-box tip" style="margin-top: 8px;"><strong>Rule of Thumb</strong>Editing something that exists → the Office add-in. Generating a file to send → a skill. A deck or doc people open by link → Claude Slides or Claude Docs. Sharing a view → a dashboard. Making it look designed → <a href="claude-design.html">Claude Design</a>.</div>
+
+    <h3 style="font-size: 24px; font-weight: 700; letter-spacing: -0.5px; margin: 40px 0 8px;">If You Use Claude for Small Business</h3>
+    <p style="color: var(--text-muted); margin-bottom: 4px;">Anthropic's small-business plugin ships 43 ready-made workflows (September 2026) and needs a paid plan. Five of them overlap with what is on this page. Use theirs when you want it connected to your accounting or CRM in one install. Use the version here when you want to see every prompt and change it.</p>
     <table class="compare-table">
-      <tr><th>You want to…</th><th>Use</th><th>Why this one</th></tr>
-      <tr><td>Edit a live workbook / model that already exists</td><td>Claude in Excel (add-in)</td><td>Only this edits real cells and traces dependencies in your open file.</td></tr>
-      <tr><td>Generate a fresh, formatted workbook from data or a brief</td><td>The <code>xlsx</code> skill</td><td>Builds a new .xlsx from scratch with formulas and styling, no add-in needed.</td></tr>
-      <tr><td>Edit / restyle an existing deck slide-by-slide</td><td>Claude in PowerPoint (add-in)</td><td>Works inside your template; keeps layouts and master styles intact.</td></tr>
-      <tr><td>Build a new deck from data, with a narrative</td><td>The <code>pptx</code> / <code>exec-deck</code> skill</td><td>Generates a full .pptx from a spreadsheet; the skill bakes in the blueprint→polish method.</td></tr>
-      <tr><td>A shareable, interactive view of a dataset</td><td><a href="#csv-dashboard">CSV → HTML dashboard</a></td><td>One self-contained HTML file with filters and charts, opens in any browser.</td></tr>
-      <tr><td>A designed, on-brand deck or page</td><td><a href="claude-design.html">Claude Design</a></td><td>Image-led visual polish and working code, when look-and-feel is the point.</td></tr>
-      <tr><td>A finished invoice / report / receipt to send</td><td>PDF agent / <code>invoice-pdf</code> skill</td><td>Layout, totals, and structure handled; returns a shareable PDF.</td></tr>
+      <tr><th>Anthropic's workflow</th><th>Closest one here</th><th>The difference</th></tr>
+      <tr><td>Monday Brief</td><td><a href="#the-6-am-dispatch">The 6 AM Dispatch</a> and <a href="#the-essential-three-scheduled-tasks-starter">The Essential Three</a></td><td>Theirs reads cash, sales, and overdue invoices from connected tools once a week. These run daily off your inbox and calendar.</td></tr>
+      <tr><td>Speed to Lead</td><td>Deal Pipeline Pulse, inside <a href="#the-ai-chief-of-staff">The AI Chief of Staff</a></td><td>Theirs answers a new inquiry and logs it to your CRM. This one reviews the pipeline you already have.</td></tr>
+      <tr><td>Proposal Builder</td><td><a href="#client-deliverable-factory">Client Deliverable Factory</a></td><td>Theirs prices from past jobs and sends for signature. This one turns your notes into a finished client document.</td></tr>
+      <tr><td>Social Content Engine</td><td>The content calendar prompt in <a href="#the-6-am-dispatch">The 6 AM Dispatch</a></td><td>Theirs drafts and stages posts for every channel. This one plans the month and leaves the writing to you.</td></tr>
+      <tr><td>Close the Month</td><td>Invoice Cleanup, inside <a href="#the-ai-chief-of-staff">The AI Chief of Staff</a></td><td>Theirs reconciles the books against payments and payroll. This one chases what is unpaid.</td></tr>
     </table>
-    <div class="info-box tip" style="margin-top: 8px;"><strong>Rule of Thumb</strong>Editing something that exists → the Office add-in. Generating something new → a skill. Sharing a view → a dashboard. Making it look designed → Claude Design.</div>
   </div>
 
   <!-- WORKFLOW 6: THE AI CHIEF OF STAFF -->
