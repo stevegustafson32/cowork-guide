@@ -210,6 +210,7 @@
       </div>
 
       <a class="sag-link" href="index.html#trainer">Trainer</a>
+      <a class="sag-link" href="whats-changed.html">What&rsquo;s new</a>
       <a class="sag-link" href="people.html">About</a>
     </nav>
 
@@ -244,6 +245,7 @@
         <a href="https://students.stevesaiguide.com">Recall<span class="sag-new">NEW</span><small>Students</small></a>
   <span class="sag-sheet-group">More</span>
       <a href="index.html#trainer">Prompt Trainer</a>
+      <a href="whats-changed.html">What&rsquo;s new</a>
       <a href="people.html">People I learn from</a>
       <a class="sag-sheet-cta" href="prompting.html">Read the guide &rarr;</a>
 </div>
@@ -251,7 +253,7 @@
 
 <!-- Hero -->
 <div class="hero">
-  <div class="badge">LinkedIn Feed Tracker, Cowork Plugin</div>
+  <div class="badge">LinkedIn Feed Tracker, Claude Plugin</div>
   <h1>See what your network is <em>really</em> talking about.</h1>
   <p class="sub">Collect every post from your LinkedIn connections. Claude does the rest: finds trends, spots content gaps, tracks your own post performance, and creates weekly intelligence reports. One setup file. Then just ask questions.</p>
   <button class="cta" onclick="document.getElementById('s2').scrollIntoView({behavior:'smooth'})">Get Started</button>
@@ -281,7 +283,7 @@
     </div>
     <div class="accordion-content">
       <div class="accordion-body">
-        <p>LinkedIn Feed Tracker is a <strong>Cowork hybrid plugin</strong>. Automated scrapers collect data from your LinkedIn every night. Claude analyzes everything inside Cowork. All data stays on your Mac.</p>
+        <p>LinkedIn Feed Tracker is a <strong>Claude hybrid plugin</strong>. Automated scrapers collect data from your LinkedIn every night. Claude analyzes everything inside Claude. All data stays on your Mac.</p>
 
         <h3>The collection layer</h3>
         <p>Four scrapers run on your Mac (via a nightly schedule) and capture different slices of your LinkedIn world:</p>
@@ -319,12 +321,12 @@
           <div class="feature-card">
             <div class="icon">🤖</div>
             <h4>Claude Analyzes</h4>
-            <p>Open Cowork and ask anything. Claude queries your database, finds trends, generates dashboards, and writes reports, all from your own data.</p>
+            <p>Open Claude and ask anything. Claude queries your database, finds trends, generates dashboards, and writes reports, all from your own data.</p>
           </div>
         </div>
 
         <h3>Self-healing selectors</h3>
-        <p>LinkedIn changes their page layout frequently. The plugin detects when its selectors break, dumps diagnostic info, and flags itself for repair. Next time you open Cowork, Claude auto-fixes the selectors. You don't have to do anything.</p>
+        <p>LinkedIn changes their page layout frequently. The plugin detects when its selectors break, dumps diagnostic info, and flags itself for repair. Next time you open Claude, Claude auto-fixes the selectors. You don't have to do anything.</p>
 
         <div class="info-box tip">
           <div class="box-label">Why this is powerful</div>
@@ -347,7 +349,8 @@
     <div class="accordion-content">
       <div class="accordion-body">
         <h3>Step 0: Install the plugin</h3>
-        <p>Before anything else, you need to add the plugin to Cowork:</p>
+        <p>Before anything else, you need to add the plugin to Claude:</p>
+        <!-- SAG-ROLLOUT:line --><p class="sag-rollout">Message box shows a Chat / Cowork switch? Pick <strong>Cowork</strong> for this. <a href="whats-changed.html#c-2026-09-16-cowork-and-chat-are-one-claude">Why</a>.</p><!-- /SAG-ROLLOUT -->
 
         <div style="display: grid; gap: 12px; margin: 12px 0 20px;">
           <div style="background: rgba(10,102,194,0.08); border: 1px solid rgba(10,102,194,0.2); border-radius: 10px; padding: 16px 20px; display: flex; gap: 14px; align-items: flex-start;">
@@ -356,7 +359,7 @@
           </div>
           <div style="background: rgba(10,102,194,0.08); border: 1px solid rgba(10,102,194,0.2); border-radius: 10px; padding: 16px 20px; display: flex; gap: 14px; align-items: flex-start;">
             <div style="color: var(--accent-light); font-weight: 800; font-size: 16px; flex-shrink: 0; margin-top: 1px;">2.</div>
-            <div style="color: var(--text); font-size: 14px;">Search for <strong style="color: var(--text-bright);">LinkedIn Feed Tracker</strong> and click <strong style="color: var(--text-bright);">Install</strong>. This adds the plugin files to your Cowork workspace.</div>
+            <div style="color: var(--text); font-size: 14px;">Search for <strong style="color: var(--text-bright);">LinkedIn Feed Tracker</strong> and click <strong style="color: var(--text-bright);">Install</strong>. This adds the plugin files to your Claude workspace.</div>
           </div>
           <div style="background: rgba(10,102,194,0.08); border: 1px solid rgba(10,102,194,0.2); border-radius: 10px; padding: 16px 20px; display: flex; gap: 14px; align-items: flex-start;">
             <div style="color: var(--accent-light); font-weight: 800; font-size: 16px; flex-shrink: 0; margin-top: 1px;">3.</div>
@@ -409,7 +412,7 @@
         </div>
 
         <h3>Why Step 4 matters</h3>
-        <p>Node.js + SQLite can't run reliably on iCloud Drive, file locking and sync cause crashes. Step 4 solves this by copying the collector to your <strong>local disk</strong> (<code>~/.linkedin-feed-tracker/</code>) and running from there. After each nightly collection, the script copies the database back to iCloud so Cowork can read it.</p>
+        <p>Node.js + SQLite can't run reliably on iCloud Drive, file locking and sync cause crashes. Step 4 solves this by copying the collector to your <strong>local disk</strong> (<code>~/.linkedin-feed-tracker/</code>) and running from there. After each nightly collection, the script copies the database back to iCloud so Claude can read it.</p>
 
         <div class="info-box key">
           <div class="box-label">How the nightly pipeline works</div>
@@ -418,14 +421,14 @@
 
         <div class="info-box tip">
           <div class="box-label">That's it</div>
-          <p>After setup, data flows automatically every night. Open Cowork anytime and start asking Claude about your network.</p>
+          <p>After setup, data flows automatically every night. Open Claude anytime and start asking Claude about your network.</p>
         </div>
 
         <h3>After setup</h3>
-        <p>Your data lives in two places: <code>~/.linkedin-feed-tracker/app/data/feeds.db</code> (primary, on local disk) and a synced copy on iCloud that Cowork reads. You can trigger a manual collection anytime by double-clicking <strong>Collect Now.command</strong> or running <code>bash ~/.linkedin-feed-tracker/nightly.sh</code> in Terminal.</p>
+        <p>Your data lives in two places: <code>~/.linkedin-feed-tracker/app/data/feeds.db</code> (primary, on local disk) and a synced copy on iCloud that Claude reads. You can trigger a manual collection anytime by double-clicking <strong>Collect Now.command</strong> or running <code>bash ~/.linkedin-feed-tracker/nightly.sh</code> in Terminal.</p>
 
         <h3>Set your topic clusters</h3>
-        <p>The plugin ships with default topics, but you'll want to customize them. Open Cowork and tell Claude: <strong>"Show my topics"</strong> to see what's configured, then <strong>"Add a topic for [whatever you care about]"</strong> or <strong>"Remove the topic about [X]."</strong> Claude handles it instantly. This is how you focus the analysis on what matters to you.</p>
+        <p>The plugin ships with default topics, but you'll want to customize them. Open Claude and tell Claude: <strong>"Show my topics"</strong> to see what's configured, then <strong>"Add a topic for [whatever you care about]"</strong> or <strong>"Remove the topic about [X]."</strong> Claude handles it instantly. This is how you focus the analysis on what matters to you.</p>
       </div>
     </div>
   </div>
@@ -442,7 +445,7 @@
     </div>
     <div class="accordion-content">
       <div class="accordion-body">
-        <p>Once data is flowing, Claude can answer any question you ask inside Cowork. Here's what the plugin gives you:</p>
+        <p>Once data is flowing, Claude can answer any question you ask inside Claude. Here's what the plugin gives you:</p>
 
         <h3>Interactive Dashboard</h3>
         <p>Ask Claude: <strong>"Show me my dashboard"</strong></p>
@@ -596,7 +599,7 @@
     </div>
     <div class="accordion-content">
       <div class="accordion-body">
-        <p>Once data is flowing, open Cowork and ask Claude anything about your network. You don't need special commands. Just talk naturally.</p>
+        <p>Once data is flowing, open Claude and ask Claude anything about your network. You don't need special commands. Just talk naturally.</p>
 
         <h3>Example conversations</h3>
 
@@ -671,7 +674,7 @@
         <h3>Who sees it</h3>
         <ul>
           <li>You</li>
-          <li>Claude (only when you ask questions inside Cowork)</li>
+          <li>Claude (only when you ask questions inside Claude)</li>
           <li>No one else</li>
         </ul>
 
@@ -706,7 +709,7 @@
         <p>macOS only right now. The scrapers use macOS .command files and the nightly schedule uses macOS launchd. Windows and Linux support may come later.</p>
 
         <h3>What if LinkedIn changes their website?</h3>
-        <p>The plugin has a self-healing selector system. When LinkedIn changes their DOM, the scraper detects the failure, dumps diagnostic info, and flags itself for repair. Next time you open Cowork, Claude fixes the selectors automatically. You don't do anything.</p>
+        <p>The plugin has a self-healing selector system. When LinkedIn changes their DOM, the scraper detects the failure, dumps diagnostic info, and flags itself for repair. Next time you open Claude, Claude fixes the selectors automatically. You don't do anything.</p>
 
         <h3>How often does it collect data?</h3>
         <p>Every night at 10 PM automatically via a macOS LaunchAgent. The nightly run syncs code to local disk, collects your feed, visits a batch of connection profiles, and copies the database back to iCloud. If your Mac is asleep at 10 PM, macOS catches up when it wakes.</p>
@@ -715,7 +718,7 @@
         <p>The connection sync handles networks up to 5,000+ using a 4-strategy fallback system. For ongoing monitoring, the profile collector uses a 7-day rotation, it visits ~1/7 of your connections each night so everyone gets covered weekly.</p>
 
         <h3>Can I trigger a collection manually?</h3>
-        <p>Yes. Either double-click <code>Collect Now.command</code> in the Setup folder, run <code>bash ~/.linkedin-feed-tracker/nightly.sh</code> in Terminal, or tell Claude <code>/collect-now</code> inside Cowork.</p>
+        <p>Yes. Either double-click <code>Collect Now.command</code> in the Setup folder, run <code>bash ~/.linkedin-feed-tracker/nightly.sh</code> in Terminal, or tell Claude <code>/collect-now</code> inside Claude.</p>
 
         <h3>Can I export my data?</h3>
         <p>Yes. The database is a standard SQLite file, you can query it with any SQLite tool. You can also ask Claude to generate reports as Word documents, CSVs, or dashboards you can share.</p>
@@ -724,13 +727,13 @@
         <p>The scrapers run briefly (a few minutes) and then stop. Outside of collection windows, there's zero background load. The nightly schedule only triggers once at 10 PM.</p>
 
         <h3>Why does the collector run on local disk instead of iCloud?</h3>
-        <p>Node.js + SQLite can't run reliably on iCloud Drive, file locking and sync cause <code>EAGAIN</code> errors that crash the collector. Step 4 of setup solves this by copying the project to <code>~/.linkedin-feed-tracker/</code> (local disk), running the collector there, and copying <code>feeds.db</code> back to iCloud after each run so Cowork can read it.</p>
+        <p>Node.js + SQLite can't run reliably on iCloud Drive, file locking and sync cause <code>EAGAIN</code> errors that crash the collector. Step 4 of setup solves this by copying the project to <code>~/.linkedin-feed-tracker/</code> (local disk), running the collector there, and copying <code>feeds.db</code> back to iCloud after each run so Claude can read it.</p>
 
         <h3>Where is my data stored?</h3>
-        <p>The primary database lives at <code>~/.linkedin-feed-tracker/app/data/feeds.db</code> on your local disk. After each nightly run, it's copied to two iCloud locations: your LinkedIn Feed Tracker workspace folder and the CLAUDE OUTPUTS backup. Cowork reads from iCloud. Your browser session (LinkedIn cookies) is at <code>~/.linkedin-feed-tracker/browser-profile/</code>.</p>
+        <p>The primary database lives at <code>~/.linkedin-feed-tracker/app/data/feeds.db</code> on your local disk. After each nightly run, it's copied to two iCloud locations: your LinkedIn Feed Tracker workspace folder and the CLAUDE OUTPUTS backup. Claude reads from iCloud. Your browser session (LinkedIn cookies) is at <code>~/.linkedin-feed-tracker/browser-profile/</code>.</p>
 
         <h3>How do I check if the nightly collection is working?</h3>
-        <p>Check today's log: open Terminal and run <code>cat ~/.linkedin-feed-tracker/logs/nightly-$(date +%Y-%m-%d).log</code>. Or run <code>launchctl list | grep com.lft</code> to confirm the LaunchAgent is loaded. You can also ask Claude <code>/health-check</code> inside Cowork.</p>
+        <p>Check today's log: open Terminal and run <code>cat ~/.linkedin-feed-tracker/logs/nightly-$(date +%Y-%m-%d).log</code>. Or run <code>launchctl list | grep com.lft</code> to confirm the LaunchAgent is loaded. You can also ask Claude <code>/health-check</code> inside Claude.</p>
 
         <h3>How do I change the collection time?</h3>
         <p>Edit <code>~/Library/LaunchAgents/com.lft.nightly.plist</code>, change the <code>Hour</code> (0-23) and <code>Minute</code> (0-59) values under <code>StartCalendarInterval</code>. Then reload: <code>launchctl unload ~/Library/LaunchAgents/com.lft.nightly.plist && launchctl load ~/Library/LaunchAgents/com.lft.nightly.plist</code></p>
@@ -742,7 +745,7 @@
         <p>LinkedIn sees normal browser traffic. The plugin uses a real Chromium browser with your actual session, it's visiting pages the same way you would manually. There are no API calls or unusual request patterns.</p>
 
         <h3>How much does this cost?</h3>
-        <p>The plugin is open-source. You need a Cowork subscription for the Claude-powered analysis features, but that's your regular Anthropic subscription.</p>
+        <p>The plugin is open-source. You need a paid Claude plan for the Claude-powered analysis features, and that is your regular Anthropic subscription.</p>
 
         <h3>What if I get logged out of LinkedIn?</h3>
         <p>Double-click <code>Login to LinkedIn.command</code> in the Setup folder to re-authenticate. Takes about 30 seconds. Sessions typically last 1-2 weeks.</p>
@@ -778,8 +781,8 @@
 
 <!-- Footer -->
 <div class="footer">
-  <p>Created by Steve Gustafson &bull; Updated August 2026</p>
-  <p style="margin-top: 8px;">Built with Claude Cowork (naturally). Have questions? <a href="mailto:stevegustafson@gmail.com">Reach out</a>.</p>
+  <p>Created by Steve Gustafson &bull; Updated <!-- SAG-STAMP -->October 2026<!-- /SAG-STAMP --></p>
+  <p style="margin-top: 8px;">Built with Claude (naturally). Have questions? <a href="mailto:stevegustafson@gmail.com">Reach out</a>.</p>
   <p style="margin-top: 16px;"><a href="https://github.com/stevegustafson32/linkedin-feed-tracker-plugin">GitHub</a></p>
   <p style="margin-top: 24px; font-size: 12px; color: var(--text-dim);">Your data, your machine, your control.</p>
 </div>

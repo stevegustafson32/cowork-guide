@@ -31,7 +31,9 @@ WRITING_GUIDE = "claude-writing.html"  # teaches the banned list, so it names it
 
 FAIL, WARN = "FAIL", "WARN"
 
-NAV_BLOCK_RE = re.compile(r"<!-- SAG-NAV:START.*?<!-- SAG-NAV:END -->", re.S)
+NAV_BLOCK_RE = re.compile(
+    r"<!-- SAG-NAV:START.*?<!-- SAG-NAV:END -->"
+    r"|<!-- SAG-CHANGELOG -->.*?<!-- /SAG-CHANGELOG -->", re.S)
 NON_TEXT_RE = re.compile(r"<(script|style)\b.*?</\1>", re.S | re.I)
 TAG_RE = re.compile(r"<[^>]*>")
 
@@ -52,6 +54,12 @@ STALE_RULES = {
 STALE_ALLOWED = [
     re.compile(r"Introducing Cowork"),
     re.compile(r"Get Started with Cowork"),
+    re.compile(r"called Cowork"),            # dated history: the mode's old name
+    re.compile(r"Claude Cowork Guide: 50\+ Tested Tips"),
+    re.compile(r"Anthropic's Opus 5 guidance"),  # cites the guidance as published
+    re.compile(r"Claude Cowork Plugins: What They Are"),
+    re.compile(r"Chat / Cowork"),            # the switch on the earlier app
+    re.compile(r"SAG-ROLLOUT"),              # generated rollout notice
 ]
 
 GUIDE_COUNT_RE = re.compile(

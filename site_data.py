@@ -28,12 +28,17 @@ class Page(NamedTuple):
 
 
 class Change(NamedTuple):
-    """One product change. `date` is the event date and never moves."""
+    """One product change.
+
+    `date` is the event date and never moves. `applied` is the day the
+    guides were revised for it; empty means they have not been yet.
+    """
     date: str
     title: str
     body: str
     source: str
     pages: tuple
+    applied: str = ""
 
 
 # The path, in reading order. Read times come from the homepage ramp cards.
@@ -62,6 +67,7 @@ APPS = [
 EXTRAS = [
     Page("index.html", "Home", "Home"),
     Page("people.html", "People I Learn From", "About"),
+    Page("whats-changed.html", "What Changed", "Updates"),
     Page("follow-up-tracker.html", "Follow-Up Tracker", "Plugin"),
     Page("linkedin-audience-simulator.html", "LinkedIn Audience Simulator", "Plugin"),
     Page("linkedin-content-engine.html", "LinkedIn Content Engine", "Plugin"),
@@ -80,6 +86,41 @@ def count_word(n):
     return NUMBER_WORDS[n]
 
 
+def change_id(change):
+    """Anchor for one change-log entry; stable because the date never moves."""
+    slug = "".join(ch if ch.isalnum() else "-" for ch in change.title.lower())
+    return f"c-{change.date}-" + "-".join(part for part in slug.split("-") if part)
+
+
+# Last full edition before the change log began. Pages no change has
+# touched since keep this date on their stamp.
+BASE_EDITION = "2026-08-18"
+CHANGELOG_PAGE = "whats-changed.html"
+MERGE_ANCHOR = "c-2026-09-16-cowork-and-chat-are-one-claude"
+
+# Shown only while Anthropic's merge of Cowork into Claude is still rolling
+# out, for readers whose app has the old Chat / Cowork switch. When the
+# rollout ends, set both values to "" and rebuild; every page drops them.
+ROLLOUT = {
+    "full": (
+        '<div class="info-box tip sag-rollout">'
+        "<strong>Two versions of the app are in use right now.</strong> "
+        "Anthropic began merging Cowork into Claude on September 16, 2026, "
+        "starting with Pro and Max plans. Look at the box where you type. "
+        "If it shows a <strong>Chat / Cowork</strong> switch, you have the "
+        "earlier version: pick <strong>Cowork</strong> before you send any "
+        "task that works with files. If there is no switch, you have the "
+        "merged app and can skip that step. Everything else in this guide is "
+        f'the same on both. <a href="{CHANGELOG_PAGE}#{MERGE_ANCHOR}">What changed</a>.'
+        "</div>"
+    ),
+    "line": (
+        '<p class="sag-rollout">Message box shows a Chat / Cowork switch? '
+        "Pick <strong>Cowork</strong> for this. "
+        f'<a href="{CHANGELOG_PAGE}#{MERGE_ANCHOR}">Why</a>.</p>'
+    ),
+}
+
 # Cloudflare Web Analytics site token. Empty means no beacon is written.
 ANALYTICS_TOKEN = ""
 
@@ -95,6 +136,7 @@ CHANGES = [
         "Max; off by default for Team and Enterprise.",
         "https://support.claude.com/en/articles/12138966-release-notes",
         ("level-2.html", "beginner.html"),
+        "2026-10-04",
     ),
     Change(
         "2026-08-26",
@@ -125,6 +167,7 @@ CHANGES = [
         "dates it September 2026; the app release notes say September 1.",
         "https://www.anthropic.com/claude-fable-and-mythos-5-1",
         ("beginner.html", "prompting.html"),
+        "2026-10-04",
     ),
     Change(
         "2026-09-15",
@@ -155,6 +198,7 @@ CHANGES = [
          "prompting.html", "workflows.html", "index.html", "people.html",
          "follow-up-tracker.html", "linkedin-audience-simulator.html",
          "linkedin-content-engine.html", "linkedin-feed-tracker.html"),
+        "2026-10-04",
     ),
     Change(
         "2026-09-22",
@@ -164,6 +208,7 @@ CHANGES = [
         "up on Pro, Max and Team.",
         "https://www.anthropic.com/claude-opus-5-5",
         ("beginner.html", "claude-design.html", "prompting.html"),
+        "2026-10-04",
     ),
     Change(
         "2026-09-23",
@@ -172,6 +217,7 @@ CHANGES = [
         "Claude-powered products from partners, and service partners.",
         "https://claude.com/blog/claude-marketplace",
         ("beginner.html", "level-2.html"),
+        "2026-10-04",
     ),
     Change(
         "2026-09-25",
@@ -182,15 +228,26 @@ CHANGES = [
         "install and search analytics.",
         "https://claude.com/blog/build-plugins-for-claude",
         ("level-2.html",),
+        "2026-10-04",
     ),
     Change(
         "2026-09-28",
-        "Claude Sonnet 5.5; Claude Code starts in auto mode",
-        "Sonnet 5.5 replaces Sonnet 5 as the faster, lower-cost complement to "
-        "Opus 5.5. The same week, Claude Code 2.1.284 changed interactive "
-        "sessions to start in auto mode when no permission mode is configured.",
+        "Claude Sonnet 5.5",
+        "Replaces Sonnet 5 as the faster, lower-cost complement to Opus 5.5. "
+        "Anthropic positions it for well-scoped everyday tasks and polished "
+        "documents, with Opus 5.5 stronger on complex, open-ended work.",
         "https://www.anthropic.com/claude-sonnet-5-5",
-        ("beginner.html", "claude-code-2.html"),
+        ("beginner.html",),
+        "2026-10-04",
+    ),
+    Change(
+        "2026-09-28",
+        "Claude Code starts in auto mode",
+        "From version 2.1.284, interactive terminal and VS Code sessions start "
+        "in auto mode when no permission mode is configured. Plan Mode is "
+        "still there; it is no longer where a new session begins.",
+        "https://code.claude.com/docs/en/changelog",
+        ("claude-code-2.html",),
     ),
     Change(
         "2026-10-01",

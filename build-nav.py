@@ -15,7 +15,9 @@ Idempotent. Safe to re-run.
 import re
 from pathlib import Path
 
-from site_data import ANALYTICS_TOKEN, APPS, EXTRA_PAGES, GUIDES, count_word
+from site_blocks import apply_blocks, render_sitemap
+from site_data import (ANALYTICS_TOKEN, APPS, CHANGELOG_PAGE, EXTRA_PAGES,
+                       GUIDES, count_word)
 
 ROOT = Path(__file__).parent
 
@@ -88,6 +90,7 @@ def build_header(page):
 
     trainer = "#trainer" if is_home else "index.html#trainer"
     about_active = ' active' if page == "people.html" else ''
+    news_active = ' active' if page == CHANGELOG_PAGE else ''
 
     # Mobile sheet mirrors the desktop groups.
     sheet_guides = []
@@ -132,6 +135,7 @@ def build_header(page):
       </div>
 
       <a class="sag-link" href="{trainer}">Trainer</a>
+      <a class="sag-link{news_active}" href="{CHANGELOG_PAGE}">What&rsquo;s new</a>
       <a class="sag-link{about_active}" href="people.html">About</a>
     </nav>
 
@@ -154,6 +158,7 @@ def build_header(page):
       {sheet_apps}
   <span class="sag-sheet-group">More</span>
       <a href="{trainer}">Prompt Trainer</a>
+      <a href="{CHANGELOG_PAGE}">What&rsquo;s new</a>
       <a href="people.html">People I learn from</a>
       <a class="sag-sheet-cta" href="{cta_href}">{cta_text}</a>
 </div>
@@ -236,6 +241,8 @@ def process(path: Path) -> str:
     src = BEACON_RE.sub("", src)
     src = src.replace("</body>", build_beacon() + "</body>", 1)
 
+    src = apply_blocks(page, src)
+
     block = build_header(page)
     m = BODY_RE.search(src)
     if not m:
@@ -254,7 +261,8 @@ def main():
         raise SystemExit("missing pages: " + ", ".join(missing))
     for p in sorted(pages):
         print(f"  {p:<34} {process(ROOT / p)}")
-    print(f"\n{len(pages)} pages carry the shared nav.")
+    (ROOT / "sitemap.xml").write_text(render_sitemap(), encoding="utf-8")
+    print(f"\n{len(pages)} pages carry the shared nav. sitemap.xml written.")
 
 
 if __name__ == "__main__":

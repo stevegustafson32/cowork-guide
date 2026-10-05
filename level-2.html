@@ -589,6 +589,7 @@
       </div>
 
       <a class="sag-link" href="index.html#trainer">Trainer</a>
+      <a class="sag-link" href="whats-changed.html">What&rsquo;s new</a>
       <a class="sag-link" href="people.html">About</a>
     </nav>
 
@@ -623,6 +624,7 @@
         <a href="https://students.stevesaiguide.com">Recall<span class="sag-new">NEW</span><small>Students</small></a>
   <span class="sag-sheet-group">More</span>
       <a href="index.html#trainer">Prompt Trainer</a>
+      <a href="whats-changed.html">What&rsquo;s new</a>
       <a href="people.html">People I learn from</a>
       <a class="sag-sheet-cta" href="workflows.html">Next: Claude in Action &rarr;</a>
 </div>
@@ -645,8 +647,8 @@
 <!-- HERO -->
 <div class="hero">
   <div class="hero-badge">ADVANCED GUIDE, LEVEL 2</div>
-  <h1>Claude Cowork<br><span>Power User Guide</span></h1>
-  <p>You've got the basics. Now learn to build skills, create plugins, automate with Chrome, orchestrate agents, and turn Cowork into your operating system.</p>
+  <h1>Claude<br><span>Power User Guide</span></h1>
+  <p>You've got the basics. Now learn to build skills, create plugins, automate with Chrome, orchestrate agents, and turn Claude into your operating system.</p>
   <button class="hero-cta" id="heroCtaBtn">Start Level 2 &darr;</button>
   <br>
   <a href="beginner.html" class="hero-back">&larr; Back to Level 1: Getting Started</a>
@@ -654,7 +656,8 @@
 
 <!-- TABLE OF CONTENTS -->
 <div class="container">
-  <div class="toc">
+  <!-- SAG-ROLLOUT:line --><p class="sag-rollout">Message box shows a Chat / Cowork switch? Pick <strong>Cowork</strong> for this. <a href="whats-changed.html#c-2026-09-16-cowork-and-chat-are-one-claude">Why</a>.</p><!-- /SAG-ROLLOUT -->
+    <div class="toc">
     <h2>What's Inside</h2>
     <div class="toc-grid">
       <a class="toc-item toc-link" href="#build-your-own-skills"><span class="toc-num">1</span> Build Your Own Skills</a>
@@ -811,11 +814,11 @@ When the user asks you to research a company:
         </div>
         <div class="step-card">
           <h3>2. Direct File Sharing</h3>
-          <p>Zip the plugin folder as a <code>.plugin</code> file and email or share it. Recipients drop it into their Cowork plugins folder.</p>
+          <p>Zip the plugin folder as a <code>.plugin</code> file and email or share it. Recipients add it under Customize &rarr; Plugins &rarr; Add &rarr; Upload plugin.</p>
         </div>
         <div class="step-card">
-          <h3>3. Official Anthropic Marketplace</h3>
-          <p>Submit through Anthropic's review process for broad distribution. Must pass security and quality standards.</p>
+          <h3>3. The Claude Directory</h3>
+          <p>Submit the repo through Anthropic's directory submission portal, open to paid plans since September 25, 2026. Each submission is validated and safety-scanned, then reviewed. Once approved, you choose when to publish, and you get install and search analytics.</p>
         </div>
       </div>
     </div>
@@ -846,7 +849,7 @@ When the user asks you to research a company:
 
    /plugin marketplace add your-username/your-repo
 
-4. Recipients run that command in Cowork. Installed instantly.</div>
+4. Recipients run that command in Claude. Installed instantly.</div>
 
         <h3>Community Ecosystem</h3>
         <p>The Claude skills community is growing fast. Here are places to find and share skills:</p>
@@ -881,7 +884,7 @@ When the user asks you to research a company:
     </div>
     <div class="accordion-content">
       <div class="accordion-body section">
-        <p>On August 12, 2026, Claude in Chrome stopped being a separate extension. The side panel is now a full Cowork session, the same one you run on desktop, web, and mobile. Your skills and connectors work inside it, which they did not before. Start a task in Chrome, finish it on your desktop, the context carries over. Claude still sees, clicks, types, and navigates any page. It does that as Cowork now, not as a bolt-on tool.</p>
+        <p>On August 12, 2026, Claude in Chrome stopped being a separate extension. The side panel is now a full Claude session, the same one you run on desktop, web, and mobile. Your skills and connectors work inside it, which they did not before. Start a task in Chrome, finish it on your desktop, the context carries over. Claude still sees, clicks, types, and navigates any page. It does that as the same Claude, not as a bolt-on tool.</p>
 
         <h3>What You Can Actually Do</h3>
         <div class="two-col">
@@ -907,7 +910,7 @@ When the user asks you to research a company:
           </div>
           <div class="step-card">
             <h3>Scheduled Browser Tasks</h3>
-            <p>Combine Cowork in Chrome with scheduled tasks. "Every morning at 9am, check these 3 dashboards and summarize what changed."</p>
+            <p>Combine Claude in Chrome with scheduled tasks. "Every morning at 9am, check these 3 dashboards and summarize what changed."</p>
           </div>
         </div>
 
@@ -932,7 +935,7 @@ When the user asks you to research a company:
     </div>
     <div class="accordion-content">
       <div class="accordion-body section">
-        <p>Cowork reaches a service through a connector when that service has one. It drives the page through Chrome when the service does not. But what about everything else, Finder, Notes, Maps, System Settings, Photoshop, Excel (the desktop app), or any native application? That's <strong>Computer Use</strong>. Claude takes screenshots of your screen, moves the mouse, clicks buttons, and types, just like a remote coworker sitting at your desk.</p>
+        <p>Claude reaches a service through a connector when that service has one. It drives the page through Chrome when the service does not. But what about everything else, Finder, Notes, Maps, System Settings, Photoshop, Excel (the desktop app), or any native application? That's <strong>Computer Use</strong>. Claude takes screenshots of your screen, moves the mouse, clicks buttons, and types, just like a remote coworker sitting at your desk.</p>
 
         <h3>How Claude Decides What to Use</h3>
         <p>This is the mental model that makes everything click. When you give Claude a task, it picks the fastest, most reliable tool available:</p>
@@ -947,7 +950,7 @@ When the user asks you to research a company:
             <span style="color: var(--text-dim); font-size: 20px;">&rarr;</span>
             <div style="background: rgba(91,155,213,0.12); border: 1px solid var(--blue); border-radius: 8px; padding: 12px 20px; min-width: 180px;">
               <strong style="color: var(--blue); display: block; font-size: 13px; margin-bottom: 4px;">2. BROWSER SECOND</strong>
-              <span style="font-size: 14px; color: var(--text-muted);">Cowork in Chrome for web apps</span>
+              <span style="font-size: 14px; color: var(--text-muted);">Claude in Chrome for web apps</span>
             </div>
             <span style="color: var(--text-dim); font-size: 20px;">&rarr;</span>
             <div style="background: rgba(155,126,216,0.12); border: 1px solid var(--purple); border-radius: 8px; padding: 12px 20px; min-width: 180px;">
@@ -955,7 +958,7 @@ When the user asks you to research a company:
               <span style="font-size: 14px; color: var(--text-muted);">Mouse + keyboard for native apps</span>
             </div>
           </div>
-          <p style="margin-top: 16px; font-size: 15px; color: var(--text-dim);">Connectors are fast and precise, they use each service's API. Chrome is that same Cowork session driving a web page, for apps without a connector. Screen control is the fallback for everything else.</p>
+          <p style="margin-top: 16px; font-size: 15px; color: var(--text-dim);">Connectors are fast and precise, they use each service's API. Chrome is that same Claude session driving a web page, for apps without a connector. Screen control is the fallback for everything else.</p>
         </div>
 
         <h3>How to Enable It</h3>
@@ -1025,7 +1028,7 @@ When the user asks you to research a company:
     </div>
     <div class="accordion-content">
       <div class="accordion-body section">
-        <p>Cowork can run tasks on a schedule, daily, weekly, or at specific times. Combined with plugins and Chrome, this is where Cowork becomes an autonomous operator.</p>
+        <p>Claude can run tasks on a schedule, daily, weekly, or at specific times. Combined with plugins and Chrome, this is where Claude becomes an autonomous operator.</p>
 
         <h3>Cron Syntax (Simplified)</h3>
         <table class="compare-table">
@@ -1052,7 +1055,7 @@ When the user asks you to research a company:
 
         <div class="info-box warning">
           <strong>Key Limitation</strong>
-          Your computer must be awake and the Claude Desktop app must be open for scheduled tasks to run. If your Mac is asleep at 9am, the task runs when you open the lid. Tasks don't run in the cloud.
+          Since the July 2026 release, scheduled tasks run in the cloud, so your Mac can be closed. The exception: a task that reads or writes a folder on your computer still needs the Mac awake and the Claude desktop app open. If the Mac is asleep at 9am, that task runs when you open the lid.
         </div>
       </div>
     </div>
@@ -1104,8 +1107,8 @@ When the user asks you to research a company:
           <tr><th></th><th>Native Auto-Memory</th><th>MEMORY.md (CoWork OS)</th></tr>
           <tr><td><strong>Trigger</strong></td><td>Automatic, Claude decides</td><td>User-triggered, "remember this"</td></tr>
           <tr><td><strong>Content</strong></td><td>Whatever Claude thinks is useful</td><td>Exactly what you told it to save</td></tr>
-          <tr><td><strong>Structure</strong></td><td>Unstructured, Claude-formatted</td><td>Your format, your categories</td></tr>
-          <tr><td><strong>Control</strong></td><td>Low, Claude curates</td><td>High, you curate</td></tr>
+          <tr><td><strong>Structure</strong></td><td>Sorted into Topics you can open in Settings &rarr; Memory</td><td>Your format, your categories</td></tr>
+          <tr><td><strong>Control</strong></td><td>Medium, Claude curates and you can edit or delete a Topic</td><td>High, you curate</td></tr>
           <tr><td><strong>Risk</strong></td><td>May save noise or miss critical facts</td><td>You might forget to say "remember this"</td></tr>
           <tr><td><strong>Best for</strong></td><td>Background context, patterns, preferences</td><td>Key decisions, deadlines, exact specifications</td></tr>
         </table>
@@ -1214,12 +1217,12 @@ When the user asks you to research a company:
 
         <div class="info-box key">
           <strong>Install Obsidian to Actually Edit Your Folder (Free, 2 Minutes)</strong>
-          Cowork runs on <code>.md</code> files. Double-click one and it opens in TextEdit as a mess of hashtags and asterisks, so most people quietly stop editing their context, and their setup never gets smarter. Fix it with <a href="https://obsidian.md" target="_blank" rel="noopener">Obsidian</a>: free for personal use, runs locally, renders markdown cleanly. Download it, choose <strong>"Open folder as vault"</strong>, point it at your Cowork folder. Now you browse and edit context in Obsidian and generate new work in Cowork, same files, no syncing. Not Notion (it corrupts markdown with hidden formatting) and not Google Docs (constant conversion). Obsidian just reads your folder without touching it.
+          Your workspace runs on <code>.md</code> files. Double-click one and it opens in TextEdit as a mess of hashtags and asterisks, so most people quietly stop editing their context, and their setup never gets smarter. Fix it with <a href="https://obsidian.md" target="_blank" rel="noopener">Obsidian</a>: free for personal use, runs locally, renders markdown cleanly. Download it, choose <strong>"Open folder as vault"</strong>, point it at your workspace folder. Now you browse and edit context in Obsidian and generate new work in Claude, same files, no syncing. Not Notion (it corrupts markdown with hidden formatting) and not Google Docs (constant conversion). Obsidian just reads your folder without touching it.
         </div>
 
         <div class="info-box warning">
           <strong>Keep the Workspace Lean</strong>
-          Cowork reads your folder before every task. That's how Claude knows you, but don't dump 50 files in "just in case." Your About Me, CLAUDE.md, templates, and active project files are essential. Last quarter's 47-page board PDF is not, move it out until you need it. And prune <code>CLAUDE OUTPUTS/</code> weekly, or Claude starts reading stale drafts as context.
+          Claude reads your folder before every task. That's how it knows you, but don't dump 50 files in "just in case." Your About Me, CLAUDE.md, templates, and active project files are essential. Last quarter's 47-page board PDF is not, move it out until you need it. And prune <code>CLAUDE OUTPUTS/</code> weekly, or Claude starts reading stale drafts as context.
         </div>
 
         <h3>The Identity File (About Me)</h3>
@@ -1244,7 +1247,7 @@ When the user asks you to research a company:
 
         <div class="info-box warning">
           <strong>Keep It Under 2,000 Words</strong>
-          Cowork reads this before every single task. If it's a novel, that's thousands of tokens burned before any work starts, every time. Trim to what Claude needs to do good work for you. Think resume, not autobiography.
+          Claude reads this before every single task. If it's a novel, that's thousands of tokens burned before any work starts, every time. Trim to what Claude needs to do good work for you. Think resume, not autobiography.
         </div>
 
         <h3>Fast Track: Import Your Context From ChatGPT</h3>
@@ -1309,7 +1312,7 @@ When the user asks you to research a company:
 
         <div class="info-box key">
           <strong>Start Simple</strong>
-          Before building a custom MCP connector, check if one already exists. Cowork's connector directory has 50+ pre-built integrations. Type your tool name in the Customize &rarr; Connectors search. If it's there, you're done in 2 clicks.
+          Before building a custom MCP connector, check if one already exists. Anthropic's directory lists more than 2,000 connectors and plugins. Type your tool name in the Customize &rarr; Connectors search. If it's there, you're done in 2 clicks.
         </div>
 
         <div class="info-box tip">
@@ -1413,8 +1416,8 @@ When the user asks you to research a company:
         </table>
 
         <div class="info-box tip">
-          <strong>Plan in Chat. Build in Cowork.</strong>
-          Chat is cheap. Cowork is powerful. Use Chat to brainstorm, iterate on structure, and nail your requirements. Once you know exactly what you want, move to Cowork and say "Build this exact file." You do the thinking in the cheap product. You do the building in the expensive one. File creation uses more of your limit than regular chat messages, so arrive in Cowork with a plan, not a brainstorm.
+          <strong>Plan first. Build second.</strong>
+          Talking is cheap. Building is not. Brainstorm, iterate on structure, and nail your requirements in plain conversation. Once you know exactly what you want, say "Build this exact file." File creation uses more of your limit than regular messages, so arrive with a plan, not a brainstorm.
         </div>
 
         <h3>Power Patterns</h3>
@@ -1491,7 +1494,7 @@ When the user asks you to research a company:
       <div style="flex: 1;">
         <div class="accordion-label">Section 13</div>
         <h2 class="accordion-title">Enterprise & Team Features</h2>
-        <div class="accordion-subtitle">For organizations scaling Cowork across teams.</div>
+        <div class="accordion-subtitle">For organizations rolling Claude out across teams.</div>
       </div>
       <span class="accordion-chevron"></span>   </div>
     <div class="accordion-content">
@@ -1510,12 +1513,12 @@ When the user asks you to research a company:
         </div>
         <div class="step-card">
           <h3>Custom Branding</h3>
-          <p>Customize the Cowork home screen with your company logo and branded experience.</p>
+          <p>Customize the home screen with your company logo and branded experience.</p>
         </div>
 
         <div class="info-box warning">
           <strong>Important Limitation</strong>
-          Cowork activity is NOT captured in enterprise audit logs or compliance APIs. This makes it unsuitable for regulated workloads (financial services compliance, healthcare data, etc.) where full audit trails are required.
+          As of August 2026, activity in the agentic mode (then called Cowork) was NOT captured in enterprise audit logs or compliance APIs. Confirm the current status with Anthropic before using it for regulated workloads (financial services compliance, healthcare data, etc.) where full audit trails are required.
         </div>
       </div>
     </div>
@@ -1528,7 +1531,7 @@ When the user asks you to research a company:
       <div style="flex: 1;">
         <div class="accordion-label">Section 14</div>
         <h2 class="accordion-title">Dispatch &amp; Mobile Control</h2>
-        <div class="accordion-subtitle">Control Cowork from your phone. Your desktop does the work.</div>
+        <div class="accordion-subtitle">Control your desktop Claude from your phone. Your desktop does the work.</div>
       </div>
       <span class="accordion-chevron"></span>
     </div>
@@ -1549,7 +1552,7 @@ When the user asks you to research a company:
         <div class="two-col">
           <div class="step-card">
             <h3>Persistent Context</h3>
-            <p>Unlike starting a new Cowork session, Dispatch maintains a single continuous thread. Claude retains context from your previous tasks, no re-explaining.</p>
+            <p>Unlike starting a new session, Dispatch maintains a single continuous thread. Claude retains context from your previous tasks, no re-explaining.</p>
           </div>
           <div class="step-card">
             <h3>Full Desktop Access</h3>
@@ -1575,7 +1578,7 @@ When the user asks you to research a company:
 
         <div class="info-box tip">
           <strong>Use "Restart From Here" Instead of Corrections</strong>
-          When Cowork gets something wrong, your instinct is to type "No, I meant..." Every correction stacks on the full conversation history and Claude re-reads all of it. Instead, use "Restart the conversation from here" on an earlier message. The higher up you restart, the more tokens you save. If the whole session went sideways, start fresh with a one-line summary of what you need.
+          When Claude gets something wrong, your instinct is to type "No, I meant..." Every correction stacks on the full conversation history and Claude re-reads all of it. Instead, use "Restart the conversation from here" on an earlier message. The higher up you restart, the more tokens you save. If the whole session went sideways, start fresh with a one-line summary of what you need.
         </div>
       </div>
     </div>
@@ -1672,9 +1675,9 @@ When the user asks you to research a company:
 </nav>
 
 <div class="footer">
-  <p>Created by Steve Gustafson &bull; August 2026</p>
-  <p style="margin-top: 8px;">Built with Claude Cowork (naturally). Have questions? <a href="https://www.linkedin.com/in/steve-j-gustafson/" target="_blank" rel="noopener">Reach out</a>.</p>
-  <p style="margin-top: 16px; color: var(--text-dim);">Claude and Cowork are products of <a href="https://anthropic.com" target="_blank" rel="noopener">Anthropic</a>. This is an independent guide, not official Anthropic documentation.</p>
+  <p>Created by Steve Gustafson &bull; Updated <!-- SAG-STAMP -->October 2026<!-- /SAG-STAMP --></p>
+  <p style="margin-top: 8px;">Built with Claude (naturally). Have questions? <a href="https://www.linkedin.com/in/steve-j-gustafson/" target="_blank" rel="noopener">Reach out</a>.</p>
+  <p style="margin-top: 16px; color: var(--text-dim);">Claude is a product of <a href="https://anthropic.com" target="_blank" rel="noopener">Anthropic</a>. This is an independent guide, not official Anthropic documentation.</p>
 </div>
 
 <script src="sections.js" defer></script>
