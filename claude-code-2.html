@@ -804,7 +804,7 @@
         <div class="step-card">
           <div class="step-num">1</div>
           <h3>Plan Mode</h3>
-          <p>You tell Claude what to do. Claude explains its strategy before executing. You say yes or no. That approval gate is Plan Mode. It's the thing that makes non-coders feel safe. Pick it from the mode indicator before your first task.</p>
+          <p>You tell Claude what to do. Claude explains its strategy before executing. You say yes or no. That approval gate is Plan Mode. It's the thing that makes non-coders feel safe. Pick it from the mode indicator at the start of a conversation.</p>
           <p style="margin-top: 8px; font-size: 14px; color: var(--text-dim);">When to use: Every first task. Every time something feels risky. Whenever you want to understand what's about to happen.</p>
         </div>
 
@@ -917,7 +917,7 @@
 
         <div class="info-box warning">
           <strong>First, Switch to Plan Mode</strong>
-          New sessions start in <strong>auto mode</strong> (Claude Code 2.1.283 and later, late September 2026). In auto mode a safety classifier reviews each action instead of you, and Claude keeps working. That is fine once you trust it. For your first tasks, click the <strong>mode indicator</strong> in the Claude panel and choose <strong>Plan</strong>, or start your message with <code>/plan</code>. Plan applies to that conversation only. To start every conversation in Plan, set <code>claudeCode.initialPermissionMode</code> to <code>plan</code> in VS Code's settings.
+          New sessions start in <strong>auto mode</strong> (Claude Code 2.1.283 and later, late September 2026). In auto mode a safety classifier reviews each action instead of you, and Claude keeps working. That suits routine work on your own files. For your first tasks, and for anything that reads content you did not write (downloads, web pages, inbound email), click the <strong>mode indicator</strong> in the Claude panel and choose <strong>Plan</strong>, where Claude proposes and you approve, or <strong>Manual</strong>, where Claude asks before each action. You can also start a message with <code>/plan</code>. Plan applies to that conversation only. To start every conversation in Plan, set <code>claudeCode.initialPermissionMode</code> to <code>plan</code> in VS Code's settings.
         </div>
 
         <p>Let's do a real task. You have three credit card statements as PDF files. You want to see all your spending organized by category. You have never written code.</p>
@@ -1072,7 +1072,7 @@
           <strong>Fear: Claude will break my files</strong>
         </div>
         <div class="info-box tip">
-          <strong>Real answer:</strong> Plan Mode shows you what Claude will change before it happens. You approve first. Choose Plan from the mode indicator, because new sessions start in auto mode. If you're still nervous, use Git (built into VS Code). Every change is tracked. You can undo anything.
+          <strong>Real answer:</strong> Plan Mode shows you what Claude will change before it happens. You approve first. Choose Plan from the mode indicator, because new sessions start in auto mode. If you're still nervous, use Git (built into VS Code). Every edit to a tracked file is recorded, so you can undo file changes. Git does not undo commands Claude ran.
         </div>
 
         <div class="info-box warning">
