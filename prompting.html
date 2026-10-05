@@ -1898,6 +1898,7 @@ Then execute the task.</div>
           <div class="step-num">11.1</div>
           <h3>Approve every outbound action on untrusted content by hand</h3>
           <p>If the model read anything from an inbound email, a downloaded file, or the open web, you personally approve every send, share, payment, or delete. This single habit removes the third ingredient and stops almost every real attack.</p>
+          <p style="margin-top: 8px;">Two defaults changed in 2026 and both bear on this habit. Since August 26, Claude in Chrome approves the actions it judges safe on its own. Since late September, Claude Code starts a new session in auto mode. In both, a classifier checks each action against what you asked, and Anthropic says those checks cannot eliminate injection risk. For any task that reads untrusted content, go back to approving by hand: a setting in Claude in Chrome, <strong>Manual</strong> in the Claude message box, and Manual or Plan in Claude Code.</p>
         </div>
 
         <div class="step-card">
@@ -1916,6 +1917,7 @@ Then execute the task.</div>
           <div class="step-num">11.4</div>
           <h3>Only install Skills and connectors you trust</h3>
           <p>Anthropic's own Agent Skills documentation warns that an untrusted package can carry injected instructions. Treat a third-party Skill like a third-party app: install it only from a source you would trust with the data it can reach.</p>
+          <p style="margin-top: 8px;">The same goes for a download that claims to be Claude. Anthropic's September 2026 threat report describes fake installers posing as Claude Code that collect every password and login session on the machine, and resellers selling cheap Claude access that was not Claude. Install Claude from claude.com and buy access from Anthropic or an authorized channel.</p>
         </div>
 
         <div class="two-col">
@@ -1945,6 +1947,8 @@ Then execute the task.</div>
             <li>Threat ranking: OWASP GenAI Top 10, prompt injection listed #1 for 2026</li>
             <li>Documented incident: Microsoft cross-prompt injection (XPIA) against Copilot, January 2026</li>
             <li>Untrusted packages: Anthropic Agent Skills documentation, security warning</li>
+            <li>Fake installers and resellers: Anthropic, "Detecting and countering misuse of AI," September 2026</li>
+            <li>Auto-approval defaults: Anthropic, Claude in Chrome general availability (August 26, 2026) and Claude Code permission modes documentation</li>
             <li>Professional duty: ABA Formal Opinion 512 (2024), AI use under the duties of competence and confidentiality</li>
           </ul>
         </div>
@@ -2048,6 +2052,7 @@ Then execute the task.</div>
           <p style="margin-bottom: 4px;">• Never let AI send, share, or pay on content it read from email, files, or the web without your click</p>
           <p style="margin-bottom: 4px;">• Draft only. You hit send.</p>
           <p style="margin-bottom: 4px;">• Untrusted PDF? Fresh chat, away from client files.</p>
+          <p style="margin-bottom: 4px;">• Chrome and Claude Code now approve safe-looking actions on their own. Go manual when the content is untrusted.</p>
         </div>
 
         <h3 style="margin-top: 32px;">Copy-Paste Templates</h3>

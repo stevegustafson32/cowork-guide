@@ -148,6 +148,7 @@ CHANGES = [
         "asked for and blocks mismatches.",
         "https://claude.com/blog/claude-in-chrome-generally-available",
         ("level-2.html", "claude-everywhere.html", "beginner.html", "prompting.html"),
+        "2026-10-05",
     ),
     Change(
         "2026-08-26",
@@ -159,6 +160,7 @@ CHANGES = [
         "Chrome, that stays the default.",
         "https://claude.com/blog/cowork-built-in-browser",
         ("level-2.html", "claude-everywhere.html"),
+        "2026-10-05",
     ),
     Change(
         "2026-09-01",
@@ -243,11 +245,13 @@ CHANGES = [
     Change(
         "2026-09-28",
         "Claude Code starts in auto mode",
-        "From version 2.1.284, interactive terminal and VS Code sessions start "
-        "in auto mode when no permission mode is configured. Plan Mode is "
-        "still there; it is no longer where a new session begins.",
-        "https://code.claude.com/docs/en/changelog",
-        ("claude-code-2.html",),
+        "From version 2.1.283, interactive terminal and VS Code sessions start "
+        "in auto mode, where a classifier reviews each action instead of you. "
+        "Plan Mode is still there; it is no longer where a new session begins. "
+        "Pick it from the mode indicator, or start a message with /plan.",
+        "https://code.claude.com/docs/en/permission-modes",
+        ("claude-code-2.html", "prompting.html"),
+        "2026-10-05",
     ),
     Change(
         "2026-10-01",
@@ -257,6 +261,7 @@ CHANGES = [
         "your machine as Claude Code itself, are not sandboxed, and should be "
         "installed only from sources you trust.",
         "https://claude.com/blog/claude-code-mods",
-        ("claude-code-2.html", "level-2.html"),
+        ("claude-code-2.html",),
+        "2026-10-05",
     ),
 ]

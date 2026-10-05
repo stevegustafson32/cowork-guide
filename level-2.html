@@ -886,6 +886,10 @@ When the user asks you to research a company:
       <div class="accordion-body section">
         <p>On August 12, 2026, Claude in Chrome stopped being a separate extension. The side panel is now a full Claude session, the same one you run on desktop, web, and mobile. Your skills and connectors work inside it, which they did not before. Start a task in Chrome, finish it on your desktop, the context carries over. Claude still sees, clicks, types, and navigates any page. It does that as the same Claude, not as a bolt-on tool.</p>
 
+        <h3>Two Browsers Now</h3>
+        <p>Since August 26, 2026 the desktop app also has its own browser. It opens in a side panel when a task needs a website. It is Claude's browser, separate from yours. You bring logins over site by site, and banking, email, and single sign-on sites stay out unless you add them.</p>
+        <p>Pick by where the work lives. Use the built-in browser when you want Claude working on the web while you keep using your own Chrome. Use Claude in Chrome when the job needs the pages and accounts you already have open. If you already use Claude in Chrome it stays the default, and you can change the preferred browser in the desktop app's settings.</p>
+
         <h3>What You Can Actually Do</h3>
         <div class="two-col">
           <div class="step-card">
@@ -916,7 +920,7 @@ When the user asks you to research a company:
 
         <div class="info-box warning">
           <strong>Requirements & Limitations</strong>
-          Out of beta as of August 2026. Runs in Chrome only, not Edge, Brave, Arc, or mobile yet. Available now on Max and Team, rolling out to Pro. Enterprise stays off by default, and admins can limit it to approved domains. Claude uses your existing logins, so it can reach anything you are signed into. Be deliberate about which tabs sit in the Claude group. A newer check reviews consequential actions, form submits, sends, and downloads, against what you first asked before it goes ahead.
+          Generally available since August 26, 2026, on every paid plan. Runs in Chrome only, not Edge, Brave, Arc, or mobile yet. On Enterprise, admins manage it in Organization Settings and can limit it to approved domains. Claude uses your existing logins, so it can reach anything you are signed into. Be deliberate about which tabs sit in the Claude group. By default Claude now approves the actions it judges safe on its own, and a classifier checks each action against what you asked and blocks the ones that do not match. To approve every action yourself, switch that back on in settings.
         </div>
       </div>
     </div>
@@ -950,7 +954,7 @@ When the user asks you to research a company:
             <span style="color: var(--text-dim); font-size: 20px;">&rarr;</span>
             <div style="background: rgba(91,155,213,0.12); border: 1px solid var(--blue); border-radius: 8px; padding: 12px 20px; min-width: 180px;">
               <strong style="color: var(--blue); display: block; font-size: 13px; margin-bottom: 4px;">2. BROWSER SECOND</strong>
-              <span style="font-size: 14px; color: var(--text-muted);">Claude in Chrome for web apps</span>
+              <span style="font-size: 14px; color: var(--text-muted);">Chrome or the built-in browser</span>
             </div>
             <span style="color: var(--text-dim); font-size: 20px;">&rarr;</span>
             <div style="background: rgba(155,126,216,0.12); border: 1px solid var(--purple); border-radius: 8px; padding: 12px 20px; min-width: 180px;">
@@ -958,7 +962,7 @@ When the user asks you to research a company:
               <span style="font-size: 14px; color: var(--text-muted);">Mouse + keyboard for native apps</span>
             </div>
           </div>
-          <p style="margin-top: 16px; font-size: 15px; color: var(--text-dim);">Connectors are fast and precise, they use each service's API. Chrome is that same Claude session driving a web page, for apps without a connector. Screen control is the fallback for everything else.</p>
+          <p style="margin-top: 16px; font-size: 15px; color: var(--text-dim);">Connectors are fast and precise, they use each service's API. The browser, yours through Claude in Chrome or Claude's own built-in one, handles web apps without a connector. Screen control is the fallback for everything else.</p>
         </div>
 
         <h3>How to Enable It</h3>
@@ -1009,7 +1013,7 @@ When the user asks you to research a company:
 
         <div class="info-box warning">
           <strong>Limitations & Safety</strong>
-          Mac only (Windows coming soon). Claude asks permission per app before interacting. Browsers are read-only via Computer Use (use the Chrome extension instead for clicking and typing in web apps). Terminals and IDEs allow clicking but not typing (use the built-in Bash tool instead). Claude won't enter passwords, execute trades, or move money on your behalf.
+          Mac only (Windows coming soon). Claude asks permission per app before interacting. Browsers are read-only via Computer Use (use Claude in Chrome or the built-in browser instead for clicking and typing in web apps). Terminals and IDEs allow clicking but not typing (use the built-in Bash tool instead). Claude won't enter passwords, execute trades, or move money on your behalf.
         </div>
       </div>
     </div>
