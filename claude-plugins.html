@@ -651,7 +651,7 @@
   <div class="hero-badge">NEW . WHAT TO INSTALL, WHAT TO SKIP</div>
   <h1>Claude <span>Plugins</span></h1>
   <h2 style="font-size: clamp(24px, 4vw, 40px); font-weight: 600; margin-top: -8px; color: var(--text-muted);">What to install, what to skip.</h2>
-  <p style="margin-top: 24px;">A plugin can make Claude useful for your job in one click. It can also hand a stranger's instructions the keys to your inbox. You do not need to read code to tell the two apart. You need to know what a plugin is made of, where it came from, and five questions to ask before you click Add.</p>
+  <p style="margin-top: 24px;">A plugin can make Claude useful for your job in one click. It can also hand a stranger's instructions the keys to your inbox. You can tell the two apart without reading code, if you know what a plugin is made of, where it came from, and five questions to ask before you click Add.</p>
   <button class="hero-cta" id="heroCtaBtn">Start the Guide &darr;</button>
 </div>
 
@@ -718,7 +718,7 @@
 
         <div class="step-card highlighted">
           <h3>1. The directory</h3>
-          <p>The <strong>Discover</strong> tab. Each listing names its publisher ("by Anthropic", "by Figma") and shows an install count. Since September 25, 2026, developers submit plugins through Anthropic's portal, where each one is validated and safety-scanned, then reviewed before it is listed.</p>
+          <p>The <strong>Discover</strong> tab. Each listing names its publisher ("by Anthropic", "by Figma") and shows an install count. Since September 25, 2026, new submissions go through Anthropic's portal, where each one is validated and safety-scanned, then reviewed before it is listed.</p>
         </div>
         <div class="step-card">
           <h3>2. A marketplace you add</h3>
@@ -776,12 +776,12 @@
         <div class="step-card">
           <div class="step-num">3.5</div>
           <h3>What happens when it changes?</h3>
-          <p>Plugins update on their own. Anthropic's help page says recipients "automatically get the updated version at next use." The publisher you trusted on install day is the publisher you are trusting on every day after it.</p>
+          <p>A plugin can change after you install it. Anthropic's help page says that when an author updates a shared plugin, recipients "automatically get the updated version at next use." The publisher you trusted on install day is the publisher you are trusting on every day after it.</p>
         </div>
 
         <div class="info-box tip">
           <strong>Then Run It Carefully Once</strong>
-          First run: keep Claude on <strong>Manual</strong> so it asks before each action, and point it at a folder with nothing sensitive in it. Watch what it reaches for. A plugin that asks for more than its description promised fails the test.
+          First run: keep Claude on <strong>Manual</strong> so it asks before each action. For a plugin with no connectors, point it at a folder with nothing sensitive in it. For a plugin with connectors, the folder does not limit what it can reach, so read every action before you approve it, sends above all. A plugin that asks for more than its description promised fails the test.
         </div>
       </div>
     </div>
@@ -799,16 +799,16 @@
     </div>
     <div class="accordion-content open">
       <div class="accordion-body">
-        <p>The Connectors tab listed 4,287 on October 5, 2026. Volume is not the problem. Choosing is. Four rules cover it.</p>
+        <p>The Connectors tab listed 4,287 on October 5, 2026. Four rules cover the choosing.</p>
         <ul class="checklist">
-          <li><strong>Prefer the one the service publishes.</strong> The Gmail connector says "by Google." The Canva connector says "by Canva." When the company that holds your data also wrote the connector, there is one party to trust, not two.</li>
+          <li><strong>Prefer the one the service publishes.</strong> The Gmail connector says "by Google." The Canva connector says "by Canva." When the company that holds your data also wrote the connector, there is no third company in the middle.</li>
           <li><strong>Connect for a task, not for completeness.</strong> Every connected account is one more place a bad instruction can reach. Add a connector the day a workflow needs it.</li>
           <li><strong>Your existing permissions still apply.</strong> Anthropic's small-business launch put it plainly: if an employee cannot see something in QuickBooks or Google Drive today, they cannot see it through Claude.</li>
           <li><strong>Disconnect what you stopped using.</strong> Review the <strong>Yours</strong> list once a quarter. Step 8 shows how.</li>
         </ul>
         <div class="info-box key">
           <strong>Why This Matters More Than It Looks</strong>
-          An attack needs three things at once: private data, untrusted content, and a way to send something out. Connectors supply the first and the third. The <a href="prompting.html#prompt-injection">Prompting Guide, Section 11</a> walks through the four habits that break the chain.
+          An attack needs three things at once: private data, untrusted content, and a way to send something out. One connector can supply all three. An email connector holds your private data, reads messages from strangers, and can send. The <a href="prompting.html#prompt-injection">Prompting Guide, Section 11</a> walks through the four habits that break the chain.
         </div>
       </div>
     </div>
@@ -827,12 +827,12 @@
     <div class="accordion-content open">
       <div class="accordion-body">
         <p>On September 17, 2026, the security firm Air Security published a flaw it named Plugin4Shell. It affected four coding agents, Claude Code among them. Whoever controlled a plugin's repository could swap in different code during an automatic update, while the setting meant to lock the plugin to one approved version appeared to hold.</p>
-        <p>According to the report, Anthropic fixed it in Claude Code 2.1.179. Not every vendor had shipped a fix when the report came out.</p>
-        <p>You do not need the technical detail. You need the three habits it argues for.</p>
+        <p>According to the report, Anthropic fixed it in Claude Code 2.1.179. Not every vendor had shipped a fix when the report came out. If you use the Claude app and never Claude Code, this flaw did not reach you.</p>
+        <p>The technical detail matters less than the three habits it argues for, and those apply to everyone.</p>
         <ul class="checklist">
-          <li><strong>Keep the app current.</strong> The fix only protects you if you have it. Update Claude Desktop and Claude Code when they ask.</li>
-          <li><strong>Install fewer plugins.</strong> Each one is a publisher who can change what runs on your account. Five you use beat twenty you tried once.</li>
-          <li><strong>Remove what you are not using.</strong> A plugin you turned off cannot be updated into something worse.</li>
+          <li><strong>Keep the app current.</strong> A fix only protects you if you have it. Update Claude Code and the desktop app when they ask.</li>
+          <li><strong>Install fewer plugins.</strong> Each one is a publisher who can change what runs on your account. Five plugins you use are safer than twenty you tried once.</li>
+          <li><strong>Remove what you are not using.</strong> A plugin that is not installed cannot change underneath you.</li>
         </ul>
       </div>
     </div>
@@ -851,7 +851,7 @@
     <div class="accordion-content open">
       <div class="accordion-body">
         <p>A mod is a small program, shipped inside a plugin, that changes how Claude Code itself works. It can rewrite a prompt, add a panel, or replace a built-in feature. Mods arrived on October 1, 2026.</p>
-        <p>Anthropic is direct about the trade. Mods are not sandboxed. They run with the same access to your machine as Claude Code. Its advice is to install them only from sources you trust, the way you would any software.</p>
+        <p>Mods are not sandboxed, Anthropic says. They run with the same access to your machine as Claude Code, and its advice is to install them only from sources you trust, the way you would any software.</p>
         <div class="info-box warning">
           <strong>For Most Readers of This Guide</strong>
           If you only use the Claude app, mods do not apply to you. If you use Claude Code, skip mods unless the publisher is Anthropic or someone you would trust alone with your laptop while you are signed in. Nothing in the other guides needs one.
@@ -874,7 +874,7 @@
       <div class="accordion-body">
         <table class="compare-table">
           <tr><th>Plugin</th><th>Publisher</th><th>What is inside</th><th>Use it for</th></tr>
-          <tr><td><a href="beginner.html#install-the-cowork-os-plugin">CoWork OS</a></td><td>Paul J Lipsky</td><td>One command and three skills. No connectors, nothing that runs on your computer.</td><td>Setting up a workspace folder with memory in one step.</td></tr>
+          <tr><td><a href="beginner.html#install-the-cowork-os-plugin">CoWork OS</a></td><td>Paul J Lipsky (<a href="people.html">who he is</a>)</td><td>One command and three skills. No connectors, nothing that runs on your computer.</td><td>Setting up a workspace folder with memory in one step.</td></tr>
           <tr><td>Claude for Small Business</td><td>Anthropic</td><td>43 workflows plus connectors to accounting, CRM, and payments. Each workflow starts in approval mode.</td><td>Weekly briefs, proposals, month-end close. See the <a href="workflows.html#tool-matrix">crosswalk</a>.</td></tr>
           <tr><td>Anthropic's role plugins</td><td>Anthropic</td><td>Skills for one job: Data, Design, Engineering, Legal, and others.</td><td>A head start in your own field. Find them under Discover.</td></tr>
         </table>
@@ -925,14 +925,15 @@
         </div>
 
         <div class="info-box key">
-          <strong>The Whole Guide on One Screen</strong>
-          Before you add: who published it, what is inside, what it can reach, can you read it, what happens when it changes. First run on Manual, in a folder with nothing sensitive. Fewer plugins beat more. Turn off at the first doubt.
+          <strong>The Checklist</strong>
+          Before you add: who published it, what is inside, what it can reach, can you read it, what happens when it changes. First run on Manual. Turn a plugin off at the first doubt, and remove the ones you stopped using.
         </div>
 
         <h3>Sources</h3>
         <ul>
           <li>Anthropic Help Center, <a href="https://support.claude.com/en/articles/13837440-use-plugins-in-claude" target="_blank" rel="noopener">Use plugins in Claude</a></li>
           <li>Anthropic, <a href="https://claude.com/blog/build-plugins-for-claude" target="_blank" rel="noopener">Build plugins for Claude</a>, September 25, 2026</li>
+          <li>Anthropic, <a href="https://claude.com/blog/claude-for-small-business-launches-new-workflows-integrations-and-training-programs" target="_blank" rel="noopener">Claude for Small Business</a>, September 15, 2026</li>
           <li>Anthropic, <a href="https://claude.com/blog/claude-code-mods" target="_blank" rel="noopener">Customize Claude Code with mods</a>, October 1, 2026</li>
           <li>Air Security, <a href="https://www.air.security/blog-posts/plugin4shell" target="_blank" rel="noopener">Plugin4Shell</a>, September 17, 2026</li>
         </ul>
