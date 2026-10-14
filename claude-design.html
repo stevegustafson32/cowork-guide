@@ -747,7 +747,7 @@
     </div>
     <div class="accordion-content open">
       <div class="accordion-body">
-        <p>Claude Design is an AI-powered visual design tool built on Claude Opus. It launched April 17, 2026, as a research preview at claude.ai/design. Since September 2026 it is included in every paid Claude plan, still labeled beta, and it works inside any Claude conversation as well as on its own page. Claude Design generates working frontend code from natural-language prompts. You get a working, interactive page built in code, not a canvas of layers you drag around.</p>
+        <p>Claude Design is an AI-powered visual design tool built on Claude Opus. It launched April 17, 2026, as a research preview at claude.ai/design. Since September 16, 2026 it works inside any Claude conversation, and on October 8, 2026 Anthropic took the beta label off and put it on every plan, including Free. The standalone site at claude.ai/design closes December 14, 2026; the migration note in Step 7 covers what to move. Claude Design generates working frontend code from natural-language prompts. You get a working, interactive page built in code, not a canvas of layers you drag around.</p>
 
         <p>Think of it this way: Canva and Figma are vector editors where you manually position shapes. Claude Design is a coder that reads your description and generates HTML/CSS/JavaScript that works right away.</p>
 
@@ -770,6 +770,16 @@
             <p>Email templates, ad creatives, social banners. Fast iteration on multiple concepts.</p>
           </div>
         </div>
+
+        <h3 id="motion-designs-sibling">Motion: Design's Sibling</h3>
+        <p>On October 8, 2026 Anthropic shipped Claude Motion beside Design. Same idea, one difference: Design generates a page, Motion generates a timeline. Type <code>/motion</code> or ask for an animation, and Claude writes code that animates your text, charts, shapes and images into a short film. No video model, no generated footage, no AI-generated people. Because it is code, you change one word, one number or one timing and the rest holds. Export is MP4.</p>
+
+        <div class="info-box warning">
+          <strong>Team and Enterprise Only (Beta)</strong>
+          Motion is not on Pro or Max. If <code>/motion</code> does nothing in your message box, that is the plan, not a setting. Team plans have it on by default; Enterprise owners turn it on in Organization settings &rarr; Artifacts. Claude Dashboards, which shipped the same day, is on every paid plan (see <a href="workflows.html#csv-dashboard">Workflow 5</a>).
+        </div>
+
+        <p>Where it fits the workflow in this guide: Design for the deck, Motion for the one chart in it that should move. Say who will watch it, where it plays and how long it should run. Attach the report or data it animates, so the facts are yours. Ask for the storyboard before the animation, so you fix the story in text before Claude spends minutes rendering it. Ruben Hassid's <a href="https://ruben.substack.com/p/claude-motion-and-dashboards" target="_blank" rel="noopener">how-to</a> (October 13, 2026) covers the prompt and the comment-on-the-timeline edit loop.</p>
 
         <h3>Claude Design vs Everything Else</h3>
         <table class="compare-table">
@@ -799,7 +809,7 @@
           </tr>
           <tr>
             <td>Team Collaboration</td>
-            <td>Share by link (beta)</td>
+            <td>Share by link; your team edits alongside Claude</td>
             <td>Excellent with comments</td>
             <td>Industry standard</td>
           </tr>
@@ -817,7 +827,7 @@
           </tr>
           <tr>
             <td>Cost</td>
-            <td>Included in every paid Claude plan</td>
+            <td>Included in every Claude plan, Free included</td>
             <td>Free to paid plans</td>
             <td>No-cost Starter tier, paid plans above it</td>
           </tr>
@@ -958,8 +968,8 @@ Generate all four as horizontal banner images (16:9). Make the title legible in 
 
         <div class="step-card highlighted">
           <div class="step-num">4.1</div>
-          <h3>Open claude.ai/design</h3>
-          <p>Go to claude.ai/design. You'll see an upload area and a text prompt field. Since September 2026 you can also start in any Claude conversation: attach the image and ask for a design.</p>
+          <h3>Open Claude</h3>
+          <p>Start a conversation, attach the image and ask for a design. Or open the Artifacts page and pick the Design template. The standalone site at claude.ai/design still works until December 14, 2026, then closes.</p>
         </div>
 
         <div class="step-card highlighted">
@@ -1022,7 +1032,7 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
     <div class="accordion-content">
       <div class="accordion-body">
         <p>Here is the exact process we recommend for building a real pitch or sales deck using Claude Design.</p>
-<div class="info-box tip"><strong>Where Claude Slides Fits</strong> Claude Slides, new in September 2026 and in beta, also drafts presentations inside any conversation and downloads to PowerPoint or PDF. This walkthrough uses Claude Design, because the visual direction is the point here. The <a href="claude-office.html#which-tool">tool map</a> shows when to pick which.</div>
+<div class="info-box tip"><strong>Where Claude Slides Fits</strong> Claude Slides, new in September 2026 and out of beta since October 8, also drafts presentations inside any conversation and downloads to PowerPoint or PDF. This walkthrough uses Claude Design, because the visual direction is the point here. The <a href="claude-office.html#which-tool">tool map</a> shows when to pick which.</div>
 
         <h3>The Four Phases</h3>
 
@@ -1142,7 +1152,12 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
     </div>
     <div class="accordion-content">
       <div class="accordion-body">
-        <p>Claude Design lets you upload brand assets through Organization Settings. Once you do, Claude extracts your design system (colors, typography, components, layout patterns) and applies it consistently to every new project.</p>
+        <div class="info-box warning">
+          <strong>Migrate Before December 14, 2026</strong>
+          The standalone claude.ai/design site closes that day. On the Artifacts page in Claude, click "Migrate team design systems" once; every design system in your organization comes over and the originals stay where they are until the site closes. Projects keep working there until then. Chats and comments on standalone projects do not carry over, and public links to them stop working. <a href="https://support.claude.com/en/articles/17440474" target="_blank" rel="noopener">Anthropic's migration guide</a>.
+        </div>
+
+        <p>Claude Design lets you upload brand assets once. Claude extracts your design system (colors, typography, components, layout patterns) and applies it consistently to every new project.</p>
 
         <h3>What to Upload</h3>
         <ul class="checklist">
@@ -1158,8 +1173,8 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
 
         <div class="step-card highlighted">
           <div class="step-num">7.1</div>
-          <h3>Go to Organization Settings</h3>
-          <p>In claude.ai/design, click your organization name in the top right. Select Settings.</p>
+          <h3>Go to the Artifacts Page</h3>
+          <p>In Claude, open Artifacts; design systems live there since the merge. On the standalone site, until it closes: click your organization name in the top right, then Settings.</p>
         </div>
 
         <div class="step-card highlighted">
@@ -1236,7 +1251,7 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
           </tr>
           <tr>
             <td>Team Collaboration</td>
-            <td>Share by link (beta)</td>
+            <td>Share by link; your team edits alongside Claude</td>
             <td>Excellent with comments and real-time</td>
             <td>Industry standard for design teams</td>
           </tr>
@@ -1260,7 +1275,7 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
           </tr>
           <tr>
             <td>Cost</td>
-            <td>Included in every paid Claude plan (Pro is $20/month)</td>
+            <td>Included in every Claude plan, Free included</td>
             <td>Paid Pro plan, see canva.com/pricing</td>
             <td>$16/month per full seat on Professional (October 2026)</td>
           </tr>
@@ -1311,8 +1326,8 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
         <p>Claude Design launched April 2026 as a research preview. It's fast and capable but has real limits. Being honest about them saves you time.</p>
 
         <div class="info-box warning">
-          <strong>Still in Beta</strong>
-          Anthropic labels Claude Design, Claude Slides, and Claude Docs as beta. Features change and bugs exist. Use them for rapid prototyping and iteration, and keep a second route for anything on a deadline.
+          <strong>Out of Beta, Still Moving</strong>
+          Anthropic took the beta label off Claude Design, Claude Slides and Claude Docs on October 8, 2026. The features still change often. Use them for rapid prototyping and iteration, and keep a second route for anything on a deadline.
         </div>
 
         <h3>Specific Limits</h3>
@@ -1376,7 +1391,9 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
 
         <h3>Official Resources</h3>
         <ul class="checklist">
-          <li><a href="https://claude.ai/design" target="_blank" rel="noopener">claude.ai/design</a>, Launch Claude Design</li>
+          <li><a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>, Claude Design works in any conversation (the standalone site closes December 14, 2026)</li>
+          <li><a href="https://claude.com/resources/articles/dashboards-and-motion" target="_blank" rel="noopener">Dashboards and Motion announcement</a>, Anthropic, October 8, 2026</li>
+          <li><a href="https://support.claude.com/en/articles/17454997" target="_blank" rel="noopener">Get started with Claude Motion</a>, Anthropic's help article, with the plan and admin details</li>
           <li><a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic Blog</a>, Follow for Claude Design launch announcements and deep dives</li>
           <li><a href="https://openai.com/index/gpt-4o/" target="_blank" rel="noopener">ChatGPT Images 2.0</a>, The image generation partner tool</li>
         </ul>
@@ -1400,7 +1417,7 @@ Make it polished, data-forward, and ready for investor meetings. Include subtle 
 
         <h3>Your Next Steps</h3>
         <ul class="checklist">
-          <li>Open claude.ai/design and create your first test project</li>
+          <li>Open Claude, ask for a design, and create your first test project</li>
           <li>Generate 4-8 visual concepts in ChatGPT Images 2.0 for a project you're working on</li>
           <li>Upload your reference image to Claude Design and build a prototype deck</li>
           <li>Export as PDF and share with colleagues. Get feedback.</li>

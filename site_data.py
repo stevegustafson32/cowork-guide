@@ -269,4 +269,20 @@ CHANGES = [
         ("claude-code-2.html", "claude-plugins.html"),
         "2026-10-05",
     ),
+    Change(
+        "2026-10-08",
+        "Claude Dashboards and Claude Motion",
+        "Both in beta. Dashboards connects to a data platform (Amazon Redshift, "
+        "BigQuery, ClickHouse, Databricks, Snowflake) or a connector such as "
+        "Salesforce, answers a plain-language question with a dashboard that "
+        "stays current, and shows the query behind every chart. Paid plans. "
+        "Motion builds an animation as code from your text, charts, shapes and "
+        "images, with no generated footage and no AI-generated people, and "
+        "exports MP4. Team and Enterprise only. Docs, Slides and Design are out "
+        "of beta on every plan, including Free. The standalone claude.ai/design "
+        "site closes December 14; migrate design systems from the Artifacts page.",
+        "https://claude.com/resources/articles/dashboards-and-motion",
+        ("claude-design.html", "workflows.html", "claude-office.html", "level-2.html"),
+        "2026-10-14",
+    ),
 ]

@@ -994,13 +994,33 @@
         <h3>Who This Is For</h3>
         <p>Anyone with data who needs visuals fast. You have the data. You don't care about the technical implementation. You want a dashboard you can share.</p>
 
-        <h3>The Setup</h3>
+        <div class="info-box key">
+          <strong>Two Routes Since October 8, 2026</strong>
+          Claude Dashboards, in beta on every paid plan, builds the dashboard inside Claude and shows the query behind every number. Take that route when the question will come back next week. The single-file HTML route below is still the one when someone needs a file in their inbox.
+        </div>
+
+        <h3>Route 1: Claude Dashboards</h3>
+
+        <div class="step-card">
+          <h4>Bring the Data</h4>
+          <p>Connect the source (Amazon Redshift, BigQuery, ClickHouse, Databricks, Snowflake, or a connector like Salesforce) and the dashboard stays current as the data changes. No warehouse? Drop the CSV in the chat. Claude takes a snapshot, so a dropped file does not refresh on its own.</p>
+        </div>
+
+        <div class="step-card">
+          <h4>Ask the Question, Not the Chart</h4>
+          <p>"A signups chart" gets you a chart. "How do this month's signups by channel compare with last month's?" gets you the dashboard that answers it. Say what you need to decide.</p>
+        </div>
+
+        <div class="code-block">Make a dashboard from [THIS FILE / MY DATA SOURCE]. I need to decide [THE DECISION]. Put the three numbers that matter most at the top, each compared with last [WEEK / MONTH]. Then show me why: break them down by [CHANNEL / TEAM / PRODUCT / REGION]. Add a filter for [DATE / REGION]. Tell me every assumption you made. Ask questions first if you need to.</div>
+
+        <p>Click any number to see the query behind it and when its data was last refreshed. Change it by asking: "Add a filter for region." "Make this weekly." "Add a table I can sort." Dashboards start private; Share is in the top right. Prompt pattern after Ruben Hassid, <a href="https://ruben.substack.com/p/claude-motion-and-dashboards" target="_blank" rel="noopener">How to AI</a>, October 2026.</p>
+
+        <h3>Route 2: One HTML File</h3>
+
         <div class="step-card">
           <h4>Drop CSV/Excel into Project Folder</h4>
           <p>That's it. No plugins, no connectors, no special configuration. Just add your data file to the project folder.</p>
         </div>
-
-        <h3>The Prompt</h3>
 
         <div class="code-block">Read the data file in my project folder. Create an interactive HTML dashboard with: a summary metrics bar at the top, dropdown filters for [COLUMN1] and [COLUMN2], a trend chart showing [METRIC] over time, and a sortable data table below. Use a dark theme. Make it a single HTML file I can share with anyone.</div>
 
@@ -1008,7 +1028,7 @@
         <p>A single-file HTML dashboard with Chart.js, dropdown filters, summary cards, responsive design. Fully interactive. Share via email or Slack. Works in any browser.</p>
 
         <div class="info-box key">
-          <strong>Why It Works</strong>
+          <strong>Why Route 2 Still Works</strong>
           One file, no dependencies, opens in any browser, shareable via email or Slack. Claude handles the Chart.js code, responsive layout, and filter logic. You get dashboards in minutes instead of hours.
         </div>
 
@@ -1018,7 +1038,7 @@
         </div>
 
         <div class="info-box levelup">
-          <strong>Level Up: Make This a Scheduled Task</strong>
+          <strong>Level Up: Make Route 2 a Scheduled Task</strong>
           If your data updates regularly (weekly exports, monthly reports), stop doing this manually. Tell Claude: <em>"Create a scheduled task that runs every Monday at 9 AM. It should read the latest CSV in my [PROJECT] folder, generate an updated dashboard with the same layout and filters as last time, and save it as an HTML file with this week's date. Compare to last week's numbers and flag anything that changed more than 10%."</em> Now your dashboard rebuilds itself, and anomaly alerts come with it.
         </div>
 
