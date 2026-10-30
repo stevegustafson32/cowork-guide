@@ -180,10 +180,6 @@
   .place span b { color: var(--accent); font-weight: 600; }
   @media (max-width: 1020px) { .place { grid-template-columns: 1fr; } }
   .ramp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; position: relative; }
-  /* Five app cards: 6-col track so row 1 holds 3 and row 2 holds 2 wider ones. */
-  .ramp-apps { grid-template-columns: repeat(6, 1fr); }
-  .ramp-apps > * { grid-column: span 2; }
-  .ramp-apps > *:nth-last-child(-n+2) { grid-column: span 3; }
   .ramp::before { display: none; }
   .ramp-card {
     position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
@@ -203,6 +199,48 @@
   .ramp-link { color: var(--accent); font-weight: 600; font-size: 13.5px; margin-top: 6px; display: inline-flex; align-items: center; gap: 6px; }
   .ramp-link::after { content: '→'; transition: transform 180ms ease; }
   .ramp-card:hover .ramp-link::after { transform: translateX(4px); }
+
+  /* ─── path: a reading list, not a card grid ─── */
+  .path-grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 72px; align-items: start; }
+  .path-grid .ramp { grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--border); }
+  .path-grid .ramp-card {
+    background: transparent; border: 0; border-bottom: 1px solid var(--border); border-radius: 0;
+    padding: 30px 0 28px; gap: 10px;
+  }
+  .path-grid .ramp-card:hover { background: transparent; transform: none; }
+  .path-grid .ramp-card:hover .ramp-title { color: var(--accent-light); }
+  .path-grid .ramp-dot { display: none; }
+  .path-grid .ramp-title { font-size: 28px; }
+  .path-grid .ramp-desc { font-size: 15.5px; max-width: 560px; }
+  .path-grid .ramp-meta { border-top: 0; padding-top: 2px; }
+  .path-grid .ramp-link { margin-top: 0; }
+  .path-grid .ramp-foot { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .path-side { position: sticky; top: calc(var(--sag-h, 60px) + 24px); display: flex; flex-direction: column; gap: 36px; }
+  .side-title { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .path-side .place { grid-template-columns: 1fr; gap: 0; margin: 0; border-top: 1px solid var(--border); }
+  .path-side .place a { border: 0; border-bottom: 1px solid var(--border); border-radius: 0; background: transparent; padding: 14px 0; }
+  .path-side .place a:hover strong { color: var(--accent-light); }
+  .side-links { border-top: 1px solid var(--border); }
+  .side-links a { display: block; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .side-links strong { display: block; color: #fff; font-size: 14.5px; font-weight: 600; }
+  .side-links span { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+  .side-links a:hover strong { color: var(--accent-light); }
+
+  /* ─── apps: one strip of rows ─── */
+  .section-apps { padding-top: 0; }
+  .apps-strip { border-top: 1px solid var(--border); }
+  .app-row {
+    display: grid; grid-template-columns: 200px 200px minmax(0, 1fr) auto; gap: 24px; align-items: baseline;
+    padding: 20px 0; border-bottom: 1px solid var(--border);
+  }
+  .app-name { font-family: var(--serif); font-size: 22px; color: #fff; letter-spacing: -0.01em; }
+  .app-name i { font-style: italic; color: var(--accent); }
+  .app-for { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+  .app-desc { font-size: 14.5px; color: var(--text-muted); line-height: 1.55; }
+  .app-link { color: var(--accent); font-weight: 600; font-size: 13.5px; white-space: nowrap; }
+  .app-link::after { content: ' →'; display: inline-block; transition: transform 180ms ease; }
+  .app-row:hover .app-link::after { transform: translateX(4px); }
+  .app-row:hover .app-name { color: var(--accent-light); }
 
   /* ─── PROMPT TRAINER ─── */
   .trainer-section {
@@ -560,8 +598,10 @@
   @media (max-width: 1020px) {
     .hero-grid, .trainer-grid, .about-grid { grid-template-columns: 1fr; gap: 48px; }
     .ramp { grid-template-columns: 1fr 1fr; }
-    .ramp-apps { grid-template-columns: 1fr 1fr; }
-    .ramp-apps > *, .ramp-apps > *:nth-last-child(-n+2) { grid-column: auto; }
+    .path-grid { grid-template-columns: 1fr; gap: 40px; }
+    .path-side { position: static; }
+    .app-row { grid-template-columns: 1fr 1fr; }
+    .app-desc { grid-column: 1 / -1; }
     .ramp::before { display: none; }
     .examples-grid { grid-template-columns: 1fr 1fr; }
     .people-grid { grid-template-columns: 1fr 1fr; }
@@ -571,8 +611,9 @@
   @media (max-width: 640px) {
     .wrap { padding: 0 20px; }
     .section, .trainer-section, .people-band { padding: 64px 0; }
-    .ramp, .ramp-apps, .examples-grid, .people-grid { grid-template-columns: 1fr; }
-    .ramp-apps > *, .ramp-apps > *:nth-last-child(-n+2) { grid-column: auto; }
+    .ramp, .examples-grid, .people-grid { grid-template-columns: 1fr; }
+    .app-row { grid-template-columns: 1fr; gap: 6px; }
+    .path-grid .ramp-title { font-size: 24px; }
   }
 
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
@@ -709,61 +750,6 @@
   </div>
 </section>
 
-<!-- ─── THE APPS ─── -->
-<section class="section" id="apps">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">▸ The Apps</span>
-        <h2 class="sec-title">The guides teach it. <i>These do it.</i></h2>
-      </div>
-      <p class="sec-sub">Five tools built on the same discipline this guide teaches: describe the task in plain words, keep every output grounded in real facts, and see the move behind it.</p>
-    </div>
-    <div class="ramp ramp-apps">
-      <a href="https://keyroom.stevesaiguide.com" class="ramp-card">
-        <div class="ramp-dot"></div>
-        <span class="ramp-level">For residential real estate</span>
-        <h3 class="ramp-title"><i>Keyroom</i></h3>
-        <p class="ramp-desc">Listings, follow-ups, and posts drafted in your phrasing, with steering language flagged before it reaches the MLS. Fair Housing discipline in every output.</p>
-        <div class="ramp-meta"><strong>Agents &amp; brokerages</strong></div>
-        <span class="ramp-link">Open Keyroom</span>
-      </a>
-      <a href="https://boardroom.stevesaiguide.com" class="ramp-card">
-        <div class="ramp-dot"></div>
-        <span class="ramp-level">For commercial real estate</span>
-        <h3 class="ramp-title"><i>Boardroom</i></h3>
-        <p class="ramp-desc">Underwriting, lease abstracts, OMs, and rent rolls. Every figure traces to your input or is marked UNKNOWN, so nothing is invented to sound complete.</p>
-        <div class="ramp-meta"><strong>Brokers, developers, investors</strong></div>
-        <span class="ramp-link">Open Boardroom</span>
-      </a>
-      <a href="https://toolroom.stevesaiguide.com" class="ramp-card">
-        <div class="ramp-dot"></div>
-        <span class="ramp-level">For builders &amp; GCs</span>
-        <h3 class="ramp-title"><i>Toolroom</i></h3>
-        <p class="ramp-desc">Change orders, client updates, daily logs, and collections letters, off your evenings. It never invents a price, a quantity, or a code, and it never replaces your license.</p>
-        <div class="ramp-meta"><strong>GCs, remodelers, custom builders</strong></div>
-        <span class="ramp-link">Open Toolroom</span>
-      </a>
-      <a href="https://righthand.stevesaiguide.com" class="ramp-card">
-        <div class="ramp-dot"></div>
-        <span class="ramp-level">For executive assistants</span>
-        <h3 class="ramp-title"><i>Righthand</i></h3>
-        <p class="ramp-desc">Meeting packets, minutes and action tables, inbox triage, and the Monday dashboard. One hard rule: it never invents a time, a commitment, an owner, or a fact about a person.</p>
-        <div class="ramp-meta"><strong>EAs, office managers, chiefs of staff</strong></div>
-        <span class="ramp-link">Open Righthand</span>
-      </a>
-      <a href="https://students.stevesaiguide.com" class="ramp-card">
-        <div class="ramp-dot"></div>
-        <span class="ramp-level">For students</span>
-        <h3 class="ramp-title"><i>Recall</i></h3>
-        <p class="ramp-desc">24 study prompts that quiz you, find your gaps, and attack your draft. Every one makes the AI ask, check, or argue &mdash; none of them write the assignment for you.</p>
-        <div class="ramp-meta"><strong>High school &amp; university</strong></div>
-        <span class="ramp-link">Open Recall</span>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- ─── SKILL RAMP ─── -->
 <section class="section" id="path">
   <div class="wrap">
@@ -775,92 +761,142 @@
       <p class="sec-sub">Most people chase clever prompt tricks. That's backwards&mdash;context beats cleverness every time. So start at the top and work down, or jump to the step that matches where you are.</p>
     </div>
 
-    <div class="place">
-      <a href="beginner.html"><strong>New to Claude</strong><span>Set it up and hand over a first real task. <b>Start with Claude Beginner &rarr;</b></span></a>
-      <a href="prompting.html"><strong>Using it most weeks</strong><span>Your results depend on how you ask. <b>Start with The Prompting Guide &rarr;</b></span></a>
-      <a href="claude-code-2.html"><strong>Ready to automate</strong><span>Routines, Claude Code, and which plugins to trust. <b>Start with Claude Code 2.0 &rarr;</b></span></a>
-    </div>
-
-    <div class="ramp">
+    <div class="path-grid">
+      <div class="ramp">
       <a href="prompting.html" class="ramp-card active">
         <div class="ramp-dot"></div>
         <span class="ramp-level">Step 01 · Core skill</span>
         <h3 class="ramp-title">The <i>Prompting</i> Guide</h3>
         <p class="ramp-desc">From search bar to strategic partner. Eleven frameworks, research citations, and the prompt audit everyone skips.</p>
-        <div class="ramp-meta"><strong>~45 min read</strong><span>·</span><span>13 sections</span></div>
-        <span class="ramp-link">Start here</span>
+        <div class="ramp-foot"><div class="ramp-meta"><strong>~45 min read</strong><span>·</span><span>13 sections</span></div> <span class="ramp-link">Start here</span></div>
       </a>
       <a href="beginner.html" class="ramp-card">
         <div class="ramp-dot"></div>
         <span class="ramp-level">Step 02 · Setup</span>
         <h3 class="ramp-title">Claude <i>Beginner</i></h3>
         <p class="ramp-desc">Your first week with Claude. ABOUT ME, CLAUDE.md, MEMORY, the files that turn it from a chatbot into a partner.</p>
-        <div class="ramp-meta"><strong>~35 min read</strong><span>·</span><span>7 sections</span></div>
-        <span class="ramp-link">Set it up</span>
+        <div class="ramp-foot"><div class="ramp-meta"><strong>~35 min read</strong><span>·</span><span>7 sections</span></div> <span class="ramp-link">Set it up</span></div>
       </a>
       <a href="level-2.html" class="ramp-card">
         <div class="ramp-dot"></div>
         <span class="ramp-level">Step 03 · Level up</span>
         <h3 class="ramp-title">Claude <i>Advanced</i></h3>
         <p class="ramp-desc">Projects, connectors, subagents, and the workflow patterns that actually compound over time.</p>
-        <div class="ramp-meta"><strong>~50 min read</strong><span>·</span><span>15 sections</span></div>
-        <span class="ramp-link">Go deeper</span>
+        <div class="ramp-foot"><div class="ramp-meta"><strong>~50 min read</strong><span>·</span><span>15 sections</span></div> <span class="ramp-link">Go deeper</span></div>
       </a>
       <a href="workflows.html" class="ramp-card">
         <div class="ramp-dot"></div>
         <span class="ramp-level">Step 04 · Real work</span>
         <h3 class="ramp-title">Claude <i>in Action</i></h3>
         <p class="ramp-desc">Eight end-to-end workflows I actually use. Research digests, LinkedIn engines, meeting debriefs, copy them, make them yours.</p>
-        <div class="ramp-meta"><strong>~30 min read</strong><span>·</span><span>8 workflows</span></div>
-        <span class="ramp-link">See the plays</span>
+        <div class="ramp-foot"><div class="ramp-meta"><strong>~30 min read</strong><span>·</span><span>8 workflows</span></div> <span class="ramp-link">See the plays</span></div>
       </a>
       <a href="claude-code-2.html" class="ramp-card">
         <div class="ramp-dot"></div>
         <span class="ramp-level">Step 05 · Action AI</span>
         <h3 class="ramp-title">Claude <i>Code 2.0</i></h3>
         <p class="ramp-desc">Built for non-coders. The April 2026 redesign turned Claude Code into a visual workspace. Plan Mode, Routines, no terminal required.</p>
-        <div class="ramp-meta"><strong>~40 min read</strong><span>·</span><span>9 sections</span></div>
-        <span class="ramp-link">Yes, this is for you</span>
+        <div class="ramp-foot"><div class="ramp-meta"><strong>~40 min read</strong><span>·</span><span>9 sections</span></div> <span class="ramp-link">Yes, this is for you</span></div>
       </a>
       <a href="claude-design.html" class="ramp-card">
         <div class="ramp-dot"></div>
         <span class="ramp-level">Step 06 · Make it look good</span>
         <h3 class="ramp-title">Claude <i>Design</i></h3>
         <p class="ramp-desc">The two-tool workflow for stunning decks. Brainstorm in ChatGPT Images. Polish in Claude Design. Skip Canva and Figma when you can. Plus where Motion fits.</p>
-        <div class="ramp-meta"><strong>~35 min read</strong><span>·</span><span>10 sections</span></div>
-        <span class="ramp-link">Make the deck</span>
+        <div class="ramp-foot"><div class="ramp-meta"><strong>~35 min read</strong><span>·</span><span>10 sections</span></div> <span class="ramp-link">Make the deck</span></div>
       </a>
       <a href="claude-office.html" class="ramp-card">
         <div class="ramp-dot"></div>
         <span class="ramp-level">Step 07 · Execute in the file</span>
         <h3 class="ramp-title">Claude <i>in Office</i></h3>
         <p class="ramp-desc">Excel, PowerPoint, and PDFs as agents. Claude edits real cells and slides inside the file, plus the tool-selection map for when to use which.</p>
-        <div class="ramp-meta"><strong>~30 min read</strong><span>·</span><span>7 sections</span></div>
-        <span class="ramp-link">Work in the file</span>
+        <div class="ramp-foot"><div class="ramp-meta"><strong>~30 min read</strong><span>·</span><span>7 sections</span></div> <span class="ramp-link">Work in the file</span></div>
       </a>
       <a href="claude-writing.html" class="ramp-card">
         <div class="ramp-dot"></div>
         <span class="ramp-level">Step 08 · Sound like you</span>
         <h3 class="ramp-title">Claude <i>Writing</i></h3>
         <p class="ramp-desc">Claude's default voice gets clocked in about two sentences. The eight tells, the banned list, the swap table, and how to teach it to write the way you already write.</p>
-        <div class="ramp-meta"><strong>~25 min read</strong><span>·</span><span>8 sections</span></div>
-        <span class="ramp-link">Fix the voice</span>
+        <div class="ramp-foot"><div class="ramp-meta"><strong>~25 min read</strong><span>·</span><span>8 sections</span></div> <span class="ramp-link">Fix the voice</span></div>
       </a>
       <a href="claude-everywhere.html" class="ramp-card">
         <div class="ramp-dot"></div>
         <span class="ramp-level">Step 09 · Now on your phone</span>
         <h3 class="ramp-title">Claude <i>Everywhere</i></h3>
         <p class="ramp-desc">Since July 2026, Claude does real work on mobile, web, and the cloud. What syncs, what doesn't, and why connectors are the bridge that gets your work onto your phone.</p>
-        <div class="ramp-meta"><strong>~20 min read</strong><span>·</span><span>8 sections</span></div>
-        <span class="ramp-link">Take it mobile</span>
+        <div class="ramp-foot"><div class="ramp-meta"><strong>~20 min read</strong><span>·</span><span>8 sections</span></div> <span class="ramp-link">Take it mobile</span></div>
       </a>
       <a href="claude-plugins.html" class="ramp-card">
         <div class="ramp-dot"></div>
         <span class="ramp-level">Step 10 · Stay safe<span class="nav-new">NEW</span></span>
         <h3 class="ramp-title">Claude <i>Plugins</i></h3>
         <p class="ramp-desc">What to install, what to skip. What a plugin can reach, where plugins come from, and a five-minute check to run before you click Add.</p>
-        <div class="ramp-meta"><strong>~15 min read</strong><span>·</span><span>8 sections</span></div>
-        <span class="ramp-link">Check before you add</span>
+        <div class="ramp-foot"><div class="ramp-meta"><strong>~15 min read</strong><span>·</span><span>8 sections</span></div> <span class="ramp-link">Check before you add</span></div>
+      </a>
+    </div>
+      <aside class="path-side">
+        <div class="side-block">
+          <h3 class="side-title">Where are you?</h3>
+          <div class="place">
+      <a href="beginner.html"><strong>New to Claude</strong><span>Set it up and hand over a first real task. <b>Start with Claude Beginner &rarr;</b></span></a>
+      <a href="prompting.html"><strong>Using it most weeks</strong><span>Your results depend on how you ask. <b>Start with The Prompting Guide &rarr;</b></span></a>
+      <a href="claude-code-2.html"><strong>Ready to automate</strong><span>Routines, Claude Code, and which plugins to trust. <b>Start with Claude Code 2.0 &rarr;</b></span></a>
+    </div>
+        </div>
+        <div class="side-block">
+          <h3 class="side-title">Also here</h3>
+          <nav class="side-links">
+            <a href="#trainer"><strong>Prompt trainer</strong><span>Four lessons, scored as you type.</span></a>
+            <a href="#examples"><strong>Eight weekly workflows</strong><span>The real plays from Claude in Action.</span></a>
+            <a href="whats-changed.html"><strong>What changed</strong><span>Dated log of product changes and which guides moved.</span></a>
+            <a href="people.html"><strong>People I learn from</strong><span>The writers and builders behind the citations.</span></a>
+          </nav>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ─── THE APPS ─── -->
+<section class="section section-apps" id="apps">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">▸ The Apps</span>
+        <h2 class="sec-title">The guides teach it. <i>These do it.</i></h2>
+      </div>
+      <p class="sec-sub">Five tools built on the same discipline this guide teaches: describe the task in plain words, keep every output grounded in real facts, and see the move behind it.</p>
+    </div>
+    <div class="apps-strip">
+      <a href="https://keyroom.stevesaiguide.com" class="app-row">
+        <span class="app-name"><i>Keyroom</i></span>
+        <span class="app-for">residential real estate</span>
+        <span class="app-desc">Listings, follow-ups, and posts drafted in your phrasing, with steering language flagged before it reaches the MLS. Fair Housing discipline in every output.</span>
+        <span class="app-link">Open Keyroom</span>
+      </a>
+      <a href="https://boardroom.stevesaiguide.com" class="app-row">
+        <span class="app-name"><i>Boardroom</i></span>
+        <span class="app-for">commercial real estate</span>
+        <span class="app-desc">Underwriting, lease abstracts, OMs, and rent rolls. Every figure traces to your input or is marked UNKNOWN, so nothing is invented to sound complete.</span>
+        <span class="app-link">Open Boardroom</span>
+      </a>
+      <a href="https://toolroom.stevesaiguide.com" class="app-row">
+        <span class="app-name"><i>Toolroom</i></span>
+        <span class="app-for">builders &amp; GCs</span>
+        <span class="app-desc">Change orders, client updates, daily logs, and collections letters, off your evenings. It never invents a price, a quantity, or a code, and it never replaces your license.</span>
+        <span class="app-link">Open Toolroom</span>
+      </a>
+      <a href="https://righthand.stevesaiguide.com" class="app-row">
+        <span class="app-name"><i>Righthand</i></span>
+        <span class="app-for">executive assistants</span>
+        <span class="app-desc">Meeting packets, minutes and action tables, inbox triage, and the Monday dashboard. One hard rule: it never invents a time, a commitment, an owner, or a fact about a person.</span>
+        <span class="app-link">Open Righthand</span>
+      </a>
+      <a href="https://students.stevesaiguide.com" class="app-row">
+        <span class="app-name"><i>Recall</i></span>
+        <span class="app-for">students</span>
+        <span class="app-desc">24 study prompts that quiz you, find your gaps, and attack your draft. Every one makes the AI ask, check, or argue &mdash; none of them write the assignment for you.</span>
+        <span class="app-link">Open Recall</span>
       </a>
     </div>
   </div>

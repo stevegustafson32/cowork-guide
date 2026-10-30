@@ -205,3 +205,39 @@ button, a {
 
 /* "NEW" badge for recently-added nav / ramp items */
 .nav-new{display:inline-block;margin-left:6px;padding:1px 5px;border-radius:4px;background:var(--accent);color:#141017;font-size:9px;font-weight:800;letter-spacing:.05em;line-height:1.5;vertical-align:middle;text-transform:uppercase;}
+
+/* ═══ Redesign A (2026-10-30): one accent, one sticky bar, plain contents ═══
+   design-system.css is linked before each page's inline <style>, so these
+   use `body` to outrank the pages' :root variables without !important. */
+
+/* One accent sitewide. Pages used to colour-code themselves (purple People,
+   green Workflows, blue Advanced and Office); the header already had to
+   pin its own palette to escape that. */
+body {
+  --accent: #d4956a;
+  --accent-light: #e8b892;
+  --accent-dim: rgba(212,149,106,0.15);
+  --accent-deep: #8a5a36;
+  /* Warmer, lighter muted text. #999 passed AA but read as grey fog on #0f0f0f. */
+  --text-muted: #a8a29e;
+  --text-dim: #a8a29e;
+}
+
+/* Guide pages ran header + "Guide N of 10" rail + a section sticky bar.
+   On desktop the section bar goes; the contents list and the back-to-top
+   button cover it. Phones keep it: on a 10,000px page it is the only map. */
+@media (min-width: 900px) {
+  body.sag-has-nav .sticky-nav { display: none; }
+}
+
+/* Contents: a numbered list with hairline rules instead of boxed cards.
+   `body` prefix: the pages' own .toc-item rules load after this file. */
+body .toc-grid, body .office-toc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; border-top: 1px solid var(--border); }
+body .toc-item, body .office-toc-grid a {
+  background: transparent; border: 0; border-bottom: 1px solid var(--border); border-radius: 0;
+  padding: 13px 4px; gap: 14px; font-size: 15px;
+}
+body .toc-item:hover, body .office-toc-grid a:hover { background: transparent; border-color: var(--border); color: var(--accent-light); }
+body .toc-item:hover .toc-num, body .office-toc-grid a:hover span { background: var(--accent); color: #1a1410; }
+body .toc-num, body .office-toc-grid a span { width: 24px; height: 24px; border-radius: 6px; font-size: 12px; }
+@media (max-width: 640px) { body .toc-grid, body .office-toc-grid { grid-template-columns: 1fr; } }
