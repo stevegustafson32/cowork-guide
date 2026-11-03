@@ -72,11 +72,11 @@ EXTRAS = [
     Page("index.html", "Home", "Home"),
     Page("people.html", "People I Learn From", "About"),
     Page("whats-changed.html", "What Changed", "Updates"),
-    Page("follow-up-tracker.html", "Follow-Up Tracker", "Plugin"),
-    Page("linkedin-audience-simulator.html", "LinkedIn Audience Simulator", "Plugin"),
-    Page("linkedin-content-engine.html", "LinkedIn Content Engine", "Plugin"),
-    Page("linkedin-feed-tracker.html", "LinkedIn Feed Tracker", "Plugin"),
 ]
+# Retired 2026-11-03: the four plugin pages (follow-up-tracker and the three
+# linkedin-*) moved to _Archive-Review/retired-plugin-pages-2026-11-03/. Their
+# old addresses hold a short noindex notice that is not part of the nav,
+# search or sitemap. The CHANGES entries that name them are history; leave them.
 EXTRA_PAGES = [page.file for page in EXTRAS]
 
 GUIDE_KIND = "Guide"
