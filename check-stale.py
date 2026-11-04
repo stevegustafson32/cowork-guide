@@ -20,6 +20,7 @@ from typing import NamedTuple
 from site_data import EXTRA_PAGES, GUIDES, NUMBER_WORDS
 
 ROOT = Path(__file__).parent
+GUIDE_FILES = {guide.file for guide in GUIDES}
 SITE_URL = "https://stevesaiguide.com/"
 HOME_PAGE = "index.html"
 INDEX_FILE = "search-index.json"
@@ -208,6 +209,14 @@ def load_builder(filename):
     return module
 
 
+def check_section_stamps(page, src, stamper):
+    """Every guide section ends with a current "Checked" stamp."""
+    findings = []
+    if page in GUIDE_FILES and stamper.stamp_page(page, src) != src:
+        findings.append(Finding(FAIL, page, "section stamps missing or stale; run python3 build-stamps.py"))
+    return findings
+
+
 def check_og_image(page, src):
     findings = []
     match = OG_IMAGE_RE.search(src)
@@ -277,8 +286,10 @@ def collect():
     ids_by_page = {page: set(ID_RE.findall(src)) for page, src in sources.items()}
     findings = []
     nav_builder = load_builder("build-nav.py")
+    stamper = load_builder("build-stamps.py")
     for page, src in sources.items():
         findings += check_asset_versions(page, src, nav_builder)
+        findings += check_section_stamps(page, src, stamper)
         findings += check_stale_strings(page, src)
         findings += check_guide_counts(page, src)
         findings += check_links(page, src, ids_by_page)

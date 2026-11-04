@@ -268,3 +268,16 @@ body .step-card > :last-child { margin-bottom: 0; }
   body .step-card.highlighted:has(> .step-num) { padding-left: 42px; }
   body .step-card.highlighted .step-num { left: 10px; }
 }
+
+/* ═══ "Checked <month>" stamp at the end of every section (build-stamps.py) ═══
+   Same grey, same place, every time: the reader learns when a section was
+   last verified against the product without hunting for it. */
+body .sag-checked {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  margin: -24px 0 0; padding: 14px 0 36px; border-top: 1px dashed var(--border);
+  font-family: var(--sg-mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-dim);
+}
+body .sag-checked time { color: var(--text-muted); }
+body .sag-checked a { color: var(--text-dim); text-decoration: none; border-bottom: 1px solid var(--border); transition: color .15s, border-color .15s; }
+body .sag-checked a:hover { color: var(--accent-light); border-color: var(--accent); }

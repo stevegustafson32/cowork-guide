@@ -90,6 +90,13 @@ class Cover(NamedTuple):
     subtitle: str
 
 
+# A section re-verified after its page's last revision: (page, section id)
+# -> ISO date. build-stamps.py prints the later of this and the page date
+# as "Checked <month>" at the end of the section. Add a line here when you
+# re-read a section against the product and change nothing.
+SECTION_CHECKS = {
+}
+
 # Keyed by guide file. Volume number is the guide's position in GUIDES.
 COVERS = {
     "prompting.html": Cover("The <i>Prompting</i> Guide", "From search bar to strategic partner. Stop Googling. Start engineering."),
