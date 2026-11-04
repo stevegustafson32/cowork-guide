@@ -35,9 +35,9 @@
       --text: #e8e8e8;
       --text-muted: #999;
       --text-dim: #a0a0a0;
-      --accent: #9b7ed8;
-      --accent-light: #b09ae0;
-      --accent-dim: rgba(155,126,216,0.15);
+      --accent: #d4956a;
+      --accent-light: #e8b892;
+      --accent-dim: rgba(212,149,106,0.15);
       --green: #5cb85c;
       --blue: #5b9bd5;
       --red: #e06666;
@@ -73,7 +73,7 @@
       top: 0; left: 50%;
       transform: translateX(-50%);
       width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(155,126,216,0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(212,149,106,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
     .hero-badge {
@@ -110,10 +110,12 @@
     }
 
     /* PEOPLE GRID */
+    /* Two-column list with hairline rules, no boxes (2026-11-04). */
     .people-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 56px;
+      border-top: 1px solid var(--border);
       margin-bottom: 60px;
     }
     @media (max-width: 640px) {
@@ -122,22 +124,18 @@
 
     /* PERSON CARD */
     .person-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
       display: flex;
       gap: 16px;
       align-items: flex-start;
-      transition: border-color 0.2s;
-    }
-    .person-card:hover {
-      border-color: var(--accent);
     }
     .person-icon {
       font-size: 28px;
       line-height: 1;
       flex-shrink: 0;
+      width: 32px;
+      text-align: center;
     }
     .person-name {
       font-size: 16px;

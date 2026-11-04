@@ -8,19 +8,17 @@
    styles that already exist in the 15 pages.
    =========================================================================== */
 
-/* The header is site chrome, not page content, so it does NOT inherit the
-   per-page --accent. Nine pages define six different accents (level-2 is
-   periwinkle, workflows green, claude-office blue, linkedin-feed-tracker
-   LinkedIn blue) and a CTA that recolors per page reads as six sites, not
-   one. Page accents stay in the body, where they answer "which guide am I
-   in." These values are literal for the same reason. */
+/* The header is site chrome. Its values are literal so it never depends on
+   a page's own tokens. Since Redesign A (2026-10-30) every page shares the
+   coral accent and the warm stone muted grey, so these match the body; keep
+   them in step with the "Redesign A" block in design-system.css. */
 :root {
   --sag-bg: #1a1a1a;
   --sag-page-bg: #0f0f0f;
   --sag-border: #333;
   --sag-text: #e8e8e8;
-  --sag-muted: #999;
-  --sag-dim: #a0a0a0;
+  --sag-muted: #a8a29e;
+  --sag-dim: #a8a29e;
   --sag-accent: #d4956a;
   --sag-accent-dim: rgba(212, 149, 106, 0.15);
   --sag-surface-2: #242424;

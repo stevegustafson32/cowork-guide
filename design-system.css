@@ -152,13 +152,7 @@ h1, h2, h3 {
   color: var(--accent) !important;
   letter-spacing: 0.02em;
 }
-.person-card {
-  border-radius: 14px !important;
-  transition: all 220ms ease;
-}
-.person-card:hover {
-  transform: translateY(-3px);
-}
+/* .person-card radius and hover lift removed 2026-11-04: people are a hairline list now. */
 
 /* ─── Code / mono tweaks ─── */
 code, pre, .mono {
