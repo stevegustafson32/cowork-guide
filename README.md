@@ -14,7 +14,7 @@ python3 check-stale.py
 - `build-search-index.py` rebuilds `search-index.json` from the pages.
 - `check-stale.py` fails on product names the app no longer uses, guide counts that disagree with the path, broken local links, and a search index older than the pages.
 
-After adding a guide or changing a share-card line, also run `python3 build-og.py` to redraw the share images in `assets/`.
+After adding a guide or changing its cover line in `site_data.COVERS`, also run `python3 build-covers.py` (stamps the paper cover into each guide hero between the `SAG-COVER` markers; never edit that block by hand) and then `python3 build-og.py`, which draws the share images in `assets/` from the same cover.
 
 ## Where things live
 

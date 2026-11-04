@@ -81,6 +81,29 @@ EXTRA_PAGES = [page.file for page in EXTRAS]
 
 GUIDE_KIND = "Guide"
 
+
+class Cover(NamedTuple):
+    """The paper book cover for one guide: the title with its italic phrase
+    as HTML, and the one-line subtitle under it. Rendered by build-covers.py
+    into each guide hero and by build-og.py into the share image."""
+    title_html: str
+    subtitle: str
+
+
+# Keyed by guide file. Volume number is the guide's position in GUIDES.
+COVERS = {
+    "prompting.html": Cover("The <i>Prompting</i> Guide", "From search bar to strategic partner. Stop Googling. Start engineering."),
+    "beginner.html": Cover("Claude <i>Beginner</i>", "Your first week. The files that turn a chatbot into a partner."),
+    "level-2.html": Cover("Claude <i>Advanced</i>", "Skills, plugins, agents, and Claude as your operating system."),
+    "workflows.html": Cover("Claude <i>in Action</i>", "Eight workflows Steve runs every week. Copy them."),
+    "claude-code-2.html": Cover("Claude <i>Code 2.0</i>", "Action AI for people who do not write code."),
+    "claude-design.html": Cover("Claude <i>Design</i>", "Decks, sites, and one-pagers that look finished."),
+    "claude-office.html": Cover("Claude <i>in Office</i>", "Excel, PowerPoint, and PDF, worked on inside the file."),
+    "claude-writing.html": Cover("Claude <i>Writing</i>", "Sound like you, not like a model."),
+    "claude-everywhere.html": Cover("Claude <i>Everywhere</i>", "Real work on your phone, the web, and the cloud."),
+    "claude-plugins.html": Cover("Claude <i>Plugins</i>", "What to install, what to skip, and how to tell."),
+}
+
 NUMBER_WORDS = ("zero", "one", "two", "three", "four", "five", "six", "seven",
                 "eight", "nine", "ten", "eleven", "twelve")
 

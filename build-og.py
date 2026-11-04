@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Render the share images (the cards shown when a page is linked).
 
-One 1200x630 PNG per page in assets/, drawn from a single HTML template
-and captured with headless Chrome, so every card matches. Run it after
-adding a guide or changing a card's wording:
+One 1200x630 PNG per page in assets/, captured with headless Chrome from a
+single template: the brand and title on the left, the guide's paper cover
+(the same markup and cover.css the site uses) standing on the right. Run it
+after adding a guide or changing a cover's wording:
 
     python3 build-og.py
 
@@ -14,46 +15,46 @@ import html
 import subprocess
 import sys
 import tempfile
+from importlib import import_module
 from pathlib import Path
 from typing import NamedTuple
 
-from site_data import GUIDES
+from site_data import COVERS, GUIDES
 
 ROOT = Path(__file__).parent
 ASSETS = ROOT / "assets"
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 WIDTH, HEIGHT = 1200, 630
 SITE = "stevesaiguide.com"
-BRAND = "Steve's AI Guide"
-
-WARM, INDIGO, GREEN, BLUE, VIOLET = "#d4956a", "#7b8bd4", "#6ab88f", "#5b9bd5", "#9b7ed8"
+ACCENT = "#d4956a"
+STAMP = "October 2026"
+COVERS_MODULE = import_module("build-covers")
 
 
 class Card(NamedTuple):
     file: str
     kicker: str
-    title: str
+    title_html: str
     tagline: str
-    accent: str
+    cover: str
 
 
-# Per guide: the label after "STEP n", the tagline, the accent colour.
-GUIDE_CARDS = {
-    "prompting.html": ("og-prompting.png", "Core skill", "From search bar to strategic partner.", WARM),
-    "beginner.html": ("og-beginner.png", "Setup", "Your first week, chatbot to partner.", WARM),
-    "level-2.html": ("og-level-2.png", "Level up", "Techniques for power users.", INDIGO),
-    "workflows.html": ("og-workflows.png", "Real work", "Eight workflows that actually work.", GREEN),
-    "claude-code-2.html": ("og-claude-code-2.png", "Action AI", "Built for non-coders.", WARM),
-    "claude-design.html": ("og-claude-design.png", "Look good", "Stunning decks. Skip Canva.", WARM),
-    "claude-office.html": ("og-claude-office.png", "In the file", "Excel, PowerPoint & PDF as agents.", BLUE),
-    "claude-writing.html": ("og-claude-writing.png", "Sound like you", "Sound like you, not like AI.", WARM),
-    "claude-everywhere.html": ("og-claude-everywhere.png", "On your phone", "Mobile, web, and cloud.", WARM),
-    "claude-plugins.html": ("og-claude-plugins.png", "Stay safe", "What to install, what to skip.", WARM),
+GUIDE_KICKERS = {
+    "prompting.html": "Core skill",
+    "beginner.html": "Setup",
+    "level-2.html": "Level up",
+    "workflows.html": "Real work",
+    "claude-code-2.html": "Action AI",
+    "claude-design.html": "Look good",
+    "claude-office.html": "In the file",
+    "claude-writing.html": "Sound like you",
+    "claude-everywhere.html": "On your phone",
+    "claude-plugins.html": "Stay safe",
 }
 
 OTHER_CARDS = [
-    Card("og-people.png", "People I learn from", "The People", "Who shaped these guides.", VIOLET),
-    Card("og-whats-changed.png", "Change log", "What Changed", "Every Claude change, dated and sourced.", VIOLET),
+    Card("og-people.png", "People I learn from", "The <i>People</i>", "Who shaped these guides.", ""),
+    Card("og-whats-changed.png", "Change log", "What <i>Changed</i>", "Every Claude change, dated and sourced.", ""),
 ]
 
 HOME_FILE = "og-image.png"
@@ -61,63 +62,69 @@ HOME_TAGLINE = "The complete guide to Claude for knowledge work, from zero to po
 
 PAGE_STYLE = """
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { width: 1200px; height: 630px; overflow: hidden; color: #f3ece2;
+  body { width: 1200px; height: 630px; overflow: hidden; color: #f3ece2; position: relative;
          font-family: Helvetica, Arial, sans-serif;
-         background: linear-gradient(180deg, color-mix(in srgb, ACCENT 16%, #141414) 0%, #0e0e0e 100%); }
-  .mark { position: absolute; left: 90px; display: flex; align-items: center; justify-content: center;
-          background: ACCENT; color: #17120e; font-family: Georgia, serif; font-weight: 700; }
-  .brand { position: absolute; font-weight: 700; }
-  .kicker { position: absolute; left: 90px; top: 250px; font-size: 24px; font-weight: 700;
-            letter-spacing: 0.03em; text-transform: uppercase; color: ACCENT; }
-  .title { position: absolute; left: 88px; top: 286px; font-family: Georgia, serif;
-           font-size: 84px; font-weight: 700; letter-spacing: -0.5px; white-space: nowrap; }
-  .tagline { position: absolute; left: 90px; font-size: 36px; color: #b4aca1; line-height: 1.35; }
-  .rule { position: absolute; left: 92px; height: 5px; background: ACCENT; }
-  .site { position: absolute; left: 90px; font-size: 26px; color: #b4aca1; }
+         background: radial-gradient(900px 500px at 80% 110%, rgba(212,149,106,0.14), transparent 60%),
+                     linear-gradient(180deg, #1a1410 0%, #0e0e0e 100%); }
+  .left { position: absolute; left: 90px; top: 0; height: 630px; width: 640px;
+          display: flex; flex-direction: column; justify-content: center; }
+  .brand { display: flex; align-items: center; gap: 16px; font-weight: 700; font-size: 26px; margin-bottom: 44px; }
+  .brand i { font-family: Georgia, serif; color: ACCENT; font-weight: 400; }
+  .mark { width: 44px; height: 44px; border-radius: 50%; background: ACCENT; color: #17120e;
+          display: flex; align-items: center; justify-content: center;
+          font-family: Georgia, serif; font-style: italic; font-weight: 700; font-size: 24px; }
+  .kicker { font-size: 18px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: ACCENT; margin-bottom: 18px; }
+  .title { font-family: Georgia, serif; font-size: 72px; line-height: 1.02; letter-spacing: -1.5px; margin-bottom: 26px; }
+  .title i { color: ACCENT; }
+  .tagline { font-size: 28px; color: #a8a29e; line-height: 1.4; max-width: 560px; }
+  .site { position: absolute; left: 90px; bottom: 54px; font-size: 20px; color: #a8a29e; letter-spacing: 0.04em; }
+  .cover-slot { position: absolute; right: 100px; top: 75px; width: 360px; }
+  .guide-cover { font-family: Helvetica, Arial, sans-serif; transform: perspective(1400px) rotateY(-11deg) rotateX(2deg); }
+  .cover-title { font-family: Georgia, serif; font-size: 40px; }
+  .cover-mark, .cover-bottom em { font-family: Georgia, serif; }
 """
 
-CARD_BODY = """
-<div class="mark" style="top:120px;width:85px;height:85px;border-radius:20px;font-size:56px;">S</div>
-<div class="brand" style="left:200px;top:134px;font-size:42px;">{brand}</div>
-<div class="kicker">{kicker}</div>
-<div class="title">{title}</div>
-<div class="tagline" style="top:396px;">{tagline}</div>
-<div class="rule" style="top:478px;width:161px;"></div>
-<div class="site" style="top:508px;">{site}</div>
-"""
-
-HOME_BODY = """
-<div class="mark" style="top:150px;width:97px;height:97px;border-radius:22px;font-size:62px;">S</div>
-<div class="brand" style="left:220px;top:156px;font-size:80px;">Steve's <span style="color:{accent}">AI</span> Guide</div>
-<div class="tagline" style="top:298px;width:960px;">{tagline}</div>
-<div class="rule" style="top:430px;width:181px;"></div>
-<div class="site" style="top:472px;font-weight:700;color:{accent};">{site}</div>
+BODY = """
+<div class="left">
+  <div class="brand"><span class="mark">S</span><span>Steve's <i>AI</i> Guide</span></div>
+  <div class="kicker">{kicker}</div>
+  <div class="title">{title}</div>
+  <div class="tagline">{tagline}</div>
+</div>
+<div class="site">{site}</div>
+<div class="cover-slot">{cover}</div>
 """
 
 
 def guide_cards():
     cards = []
     for number, guide in enumerate(GUIDES, 1):
-        file, label, tagline, accent = GUIDE_CARDS[guide.file]
-        cards.append(Card(file, f"Step {number} &middot; {label}", guide.title, tagline, accent))
+        cover = COVERS[guide.file]
+        stem = guide.file.replace(".html", "")
+        markup = COVERS_MODULE.cover_html(number, cover.title_html, cover.subtitle, STAMP)
+        cards.append(Card(f"og-{stem}.png", f"Step {number} · {GUIDE_KICKERS[guide.file]}",
+                          cover.title_html, cover.subtitle, markup))
     return cards
 
 
-def page(body, accent):
-    style = PAGE_STYLE.replace("ACCENT", accent)
-    return f"<!DOCTYPE html><html><head><meta charset='utf-8'><style>{style}</style></head><body>{body}</body></html>"
+def page(body):
+    cover_css = (ROOT / "cover.css").read_text(encoding="utf-8")
+    style = cover_css + PAGE_STYLE.replace("ACCENT", ACCENT)
+    markup = f"<!DOCTYPE html><html><head><meta charset='utf-8'><style>{style}</style></head><body>{body}</body></html>"
+    return markup
 
 
 def card_page(card):
-    body = CARD_BODY.format(brand=html.escape(BRAND), kicker=card.kicker,
-                            title=html.escape(card.title), tagline=html.escape(card.tagline),
-                            site=SITE)
-    return page(body, card.accent)
+    body = BODY.format(kicker=card.kicker, title=card.title_html,
+                       tagline=html.escape(card.tagline), site=SITE, cover=card.cover)
+    return page(body)
 
 
 def home_page():
-    body = HOME_BODY.format(accent=WARM, tagline=html.escape(HOME_TAGLINE), site=SITE)
-    return page(body, WARM)
+    cover = COVERS["prompting.html"]
+    markup = COVERS_MODULE.cover_html(1, cover.title_html, cover.subtitle, STAMP)
+    card = Card(HOME_FILE, "Ten guides, in order", "Claude for <i>knowledge work</i>", HOME_TAGLINE, markup)
+    return card_page(card)
 
 
 def render(markup, target):

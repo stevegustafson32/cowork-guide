@@ -235,3 +235,36 @@ body .toc-item:hover, body .office-toc-grid a:hover { background: transparent; b
 body .toc-item:hover .toc-num, body .office-toc-grid a:hover span { background: var(--accent); color: #1a1410; }
 body .toc-num, body .office-toc-grid a span { width: 24px; height: 24px; border-radius: 6px; font-size: 12px; }
 @media (max-width: 640px) { body .toc-grid, body .office-toc-grid { grid-template-columns: 1fr; } }
+
+/* ═══ Guide bodies, un-boxed (2026-11-04) ═══
+   242 step-cards across the guides were grey boxes with a numbered chip. The
+   box said nothing the number did not. Now the number hangs in the left
+   gutter and the prose runs at the reading measure (Josh Comeau, Stripe).
+   Only callouts keep a box: tip, warning, try-it, Prompt Coach. A
+   highlighted step keeps a thin accent rule on the left instead of a box. */
+body .step-card {
+  background: transparent; border: 0; border-radius: 0;
+  padding: 18px 0 2px; margin: 0 0 26px; position: relative;
+  border-top: 1px solid var(--border);
+}
+body .step-card:has(> .step-num) { border-top: 0; padding: 2px 0 2px 60px; margin-bottom: 30px; }
+body .step-card.highlighted {
+  background: transparent; border: 0; border-left: 2px solid var(--accent);
+  padding-left: 18px;
+}
+body .step-card.highlighted:has(> .step-num) { padding-left: 58px; }
+body .step-card .step-num {
+  position: absolute; left: 0; top: 3px;
+  display: block; min-width: 0; height: auto; padding: 0; margin: 0; border-radius: 0;
+  background: transparent; color: var(--accent);
+  font-family: var(--sg-mono); font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+body .step-card.highlighted .step-num { left: 14px; }
+body .step-card h3, body .step-card h4 { margin-top: 0; }
+body .step-card > :last-child { margin-bottom: 0; }
+@media (max-width: 640px) {
+  body .step-card:has(> .step-num) { padding-left: 44px; }
+  body .step-card.highlighted:has(> .step-num) { padding-left: 42px; }
+  body .step-card.highlighted .step-num { left: 10px; }
+}

@@ -1,0 +1,78 @@
+/* ===========================================================================
+   Steve's AI Guide — the paper book cover
+   One template, drawn in CSS, used four ways: the homepage hero, every guide
+   hero (injected by build-covers.py between SAG-COVER markers), the small
+   thumbnail on each homepage guide row, and the share image build-og.py
+   renders. Colours are literal: the cover is paper and ignores page tokens.
+   =========================================================================== */
+
+.guide-cover {
+  position: relative; aspect-ratio: 3/4;
+  background: linear-gradient(165deg, #f5ede1 0%, #e8d8c0 55%, #d4a574 100%);
+  border-radius: 8px 4px 4px 8px;
+  padding: 42px 40px 36px; color: #2b1f14;
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.6), 0 20px 40px -10px rgba(212,149,106,0.3), inset 0 0 0 1px rgba(255,255,255,0.3);
+  transform: perspective(1400px) rotateY(-9deg) rotateX(2deg);
+  display: flex; flex-direction: column; justify-content: space-between; isolation: isolate;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.guide-cover::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 18px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.18), rgba(0,0,0,0) 50%),
+    repeating-linear-gradient(to bottom, rgba(255,255,255,0.2) 0, rgba(255,255,255,0.2) 1px, transparent 1px, transparent 4px);
+  border-radius: 8px 0 0 8px; z-index: 1;
+}
+.guide-cover::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit;
+  background: radial-gradient(600px 300px at 85% 110%, rgba(0,0,0,0.15), transparent 60%);
+  pointer-events: none;
+}
+.cover-top { display: flex; justify-content: space-between; align-items: flex-start; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(43,31,20,0.6); }
+.cover-mark {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: #1a1410; color: #d4956a;
+  display: grid; place-items: center; font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 800; font-size: 18px;
+}
+.cover-mid { margin: auto 0; }
+.cover-title { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: clamp(28px, 3vw, 44px); line-height: 0.98; letter-spacing: -0.02em; color: #2b1f14; }
+.cover-title i { font-style: italic; font-weight: 400; color: #8a5a36; }
+.cover-sub { margin: 14px 0 0; font-size: 13px; color: rgba(43,31,20,0.7); font-weight: 500; max-width: 320px; line-height: 1.5; }
+.cover-bottom { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(43,31,20,0.55); display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.cover-bottom em { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; font-size: 18px; color: #2b1f14; letter-spacing: -0.01em; text-transform: none; }
+
+/* ---------- guide hero: text left, cover right (desktop) ---------- */
+@media (min-width: 900px) {
+  body .hero:has(> .guide-cover) {
+    display: grid; grid-template-columns: minmax(0, 1fr) 272px; column-gap: 80px; align-items: center;
+    text-align: left; padding-left: max(40px, calc((100% - 1000px) / 2)); padding-right: max(40px, calc((100% - 1000px) / 2));
+  }
+  body .hero:has(> .guide-cover) > :not(.guide-cover) { grid-column: 1; justify-self: start; }
+  body .hero:has(> .guide-cover) > .hero-badge, body .hero:has(> .guide-cover) > .hero-cta { width: auto; }
+  body .hero:has(> .guide-cover) > .guide-cover { grid-column: 2; grid-row: 1 / span 6; padding: 30px 28px 26px; }
+  body .hero:has(> .guide-cover) p { margin-left: 0; margin-right: 0; }
+  body .hero:has(> .guide-cover) .cover-title { font-size: 30px; }
+  body .hero:has(> .guide-cover) .cover-sub { font-size: 12px; }
+  body .hero:has(> .guide-cover) .cover-mark { width: 30px; height: 30px; font-size: 15px; }
+  body .hero:has(> .guide-cover) .cover-bottom em { font-size: 15px; }
+}
+@media (max-width: 899px) {
+  body .hero > .guide-cover { display: none; }
+}
+
+/* ---------- homepage row thumbnail ---------- */
+.ramp-cover {
+  flex-shrink: 0; width: 54px; aspect-ratio: 3/4; position: relative;
+  background: linear-gradient(165deg, #f5ede1 0%, #e8d8c0 55%, #d4a574 100%);
+  border-radius: 3px 2px 2px 3px; box-shadow: 0 10px 20px -8px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.3);
+  display: grid; place-items: center;
+  font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; font-size: 22px; color: #2b1f14; letter-spacing: -0.02em;
+  transition: transform 220ms ease;
+}
+.ramp-cover::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.18), rgba(0,0,0,0)); border-radius: 3px 0 0 3px;
+}
+.ramp-cover::after {
+  content: ''; position: absolute; right: 6px; top: 6px; width: 8px; height: 8px; border-radius: 50%; background: #1a1410;
+}
+.ramp-card:hover .ramp-cover { transform: translateY(-2px) rotate(-2deg); }
