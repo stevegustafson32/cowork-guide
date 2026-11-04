@@ -166,7 +166,7 @@ def check_ramp_cards(home_src):
 def link_problem(href, page, ids_by_page):
     """Why a local link is broken, or an empty string when it resolves."""
     target, _, anchor = href.partition("#")
-    target = target or page
+    target = target.split("?")[0] or page
     problem = ""
     if not (ROOT / target).exists():
         problem = f"links to missing file {target}"
@@ -188,6 +188,24 @@ def check_links(page, src, ids_by_page):
             if problem:
                 findings.append(Finding(FAIL, f"{page}:{number}", problem))
     return findings
+
+
+def check_asset_versions(page, src, nav_builder):
+    """Every ?v= on a shared stylesheet or script must match the file now."""
+    findings = []
+    for match in nav_builder.ASSET_RE.finditer(src):
+        name, stamped = match.group(2), (match.group(3) or "")[3:]
+        current = nav_builder.asset_version(name)
+        if stamped != current:
+            findings.append(Finding(FAIL, page, f"{name} is stamped ?v={stamped or 'none'}, file is {current}; run python3 build-nav.py"))
+    return findings
+
+
+def load_builder(filename):
+    spec = importlib.util.spec_from_file_location(filename.replace("-", "_").replace(".py", ""), ROOT / filename)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def check_og_image(page, src):
@@ -258,7 +276,9 @@ def collect():
     sources = {page: read(page) for page in site_pages()}
     ids_by_page = {page: set(ID_RE.findall(src)) for page, src in sources.items()}
     findings = []
+    nav_builder = load_builder("build-nav.py")
     for page, src in sources.items():
+        findings += check_asset_versions(page, src, nav_builder)
         findings += check_stale_strings(page, src)
         findings += check_guide_counts(page, src)
         findings += check_links(page, src, ids_by_page)

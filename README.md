@@ -11,6 +11,8 @@ python3 check-stale.py
 ```
 
 - `build-nav.py` writes the shared header into every page, between the `SAG-NAV` markers. Never edit that block by hand.
+  It also stamps `?v=<hash>` on every shared stylesheet and script link (design-system.css, nav.css, cover.css, nav.js, search.js, sections.js, progress.js), so rerun it after editing any of those files; `check-stale.py` fails when a page's hash is behind the file.
+- `progress.js` remembers the section a reader reached in each guide (localStorage, this browser only) and drives the "Continue" rows and hero button on the homepage, the reading line at the top of the viewport, and the "Resume" link in the path rail.
 - `build-search-index.py` rebuilds `search-index.json` from the pages.
 - `check-stale.py` fails on product names the app no longer uses, guide counts that disagree with the path, broken local links, and a search index older than the pages.
 

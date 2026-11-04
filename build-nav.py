@@ -12,6 +12,7 @@ rest of each file alone.
 Idempotent. Safe to re-run.
 """
 
+import hashlib
 import re
 from pathlib import Path
 
@@ -41,6 +42,31 @@ BURGER = ('<svg width="17" height="17" viewBox="0 0 24 24" fill="none" '
           'aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>')
 
 NEW_BADGE = '<span class="sag-new">NEW</span>'
+
+
+# Shared stylesheets and scripts get a ?v=<content hash> so Cloudflare's
+# four-hour cache for CSS/JS cannot serve an old sheet with new markup.
+# Rerun build-nav.py after editing any of them; check-stale.py fails when
+# a page's hash is behind the file.
+SHARED_SCRIPTS = ["nav.js", "search.js", "progress.js"]
+VERSIONED_ASSETS = ["design-system.css", "nav.css", "cover.css", "nav.js", "search.js", "sections.js", "progress.js"]
+ASSET_RE = re.compile(r'(href|src)="(' + "|".join(re.escape(a) for a in VERSIONED_ASSETS) + r')(\?v=[0-9a-f]+)?"')
+
+
+def asset_version(name):
+    """Eight hex characters of the file's SHA-1, or empty if it is missing."""
+    path = ROOT / name
+    version = hashlib.sha1(path.read_bytes()).hexdigest()[:8] if path.exists() else ""
+    return version
+
+
+def version_assets(src):
+    def stamp(match):
+        attr, name = match.group(1), match.group(2)
+        version = asset_version(name)
+        return f'{attr}="{name}?v={version}"' if version else f'{attr}="{name}"'
+    result = ASSET_RE.sub(stamp, src)
+    return result
 
 
 def guide_index(page):
@@ -226,16 +252,15 @@ def process(path: Path) -> str:
         if n:
             notes.append(f"dropped {n} legacy nav")
 
-    # Link the shared assets once.
-    if 'href="nav.css"' not in src:
+    # Link the shared assets once (the href/src may already carry a ?v=).
+    if 'href="nav.css' not in src:
         src = src.replace("</head>", '  <link rel="stylesheet" href="nav.css">\n</head>', 1)
         notes.append("+nav.css")
-    if 'src="nav.js"' not in src:
-        src = src.replace("</body>", '<script src="nav.js" defer></script>\n</body>', 1)
-        notes.append("+nav.js")
-    if 'src="search.js"' not in src:
-        src = src.replace("</body>", '<script src="search.js" defer></script>\n</body>', 1)
-        notes.append("+search.js")
+    for script in SHARED_SCRIPTS:
+        if f'src="{script}' not in src:
+            src = src.replace("</body>", f'<script src="{script}" defer></script>\n</body>', 1)
+            notes.append(f"+{script}")
+    src = version_assets(src)
 
     # Analytics tag: rewritten each run so a token change reaches every page.
     src = BEACON_RE.sub("", src)

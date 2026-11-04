@@ -391,3 +391,19 @@ p.sag-rollout {
   border-radius: 0 6px 6px 0;
 }
 p.sag-rollout a { color: var(--sag-accent); }
+
+/* ---------- pick up where you left off (progress.js) ---------- */
+/* A 2px reading line across the very top of the viewport, scaled by how far
+   through the article the reader is. Sits above the sticky header. */
+.sag-read-line {
+  position: fixed; top: 0; left: 0; width: 100%; height: 2px; z-index: 1300;
+  background: var(--sag-accent); transform-origin: left center; transform: scaleX(0);
+  pointer-events: none;
+}
+.sag-rail-resume {
+  color: var(--sag-accent); text-decoration: none; white-space: nowrap; font-weight: 600;
+  padding: 3px 10px; border: 1px solid var(--sag-accent-dim); border-radius: 999px;
+  background: var(--sag-accent-dim); transition: background .15s;
+}
+.sag-rail-resume:hover { background: rgba(212,149,106,0.28); }
+@media (max-width: 640px) { .sag-rail-resume { display: none; } }

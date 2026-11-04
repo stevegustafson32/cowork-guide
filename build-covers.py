@@ -27,7 +27,7 @@ STAMP_RE = re.compile(r"<!-- SAG-STAMP(?::upper)? -->(.*?)<!-- /SAG-STAMP -->")
 HERO_OPEN_RE = re.compile(r'<div class="hero">')
 HERO_CLOSE_RE = re.compile(r"\n</div>\n", re.S)
 MARKER_RE = re.compile(r"\n?" + re.escape(START) + r".*?" + re.escape(END), re.S)
-NAV_LINK = '<link rel="stylesheet" href="nav.css">'
+NAV_LINK_RE = re.compile(r'<link rel="stylesheet" href="nav\.css[^"]*">')
 COVER_LINK = '<link rel="stylesheet" href="cover.css">'
 
 
@@ -72,8 +72,8 @@ def inject(source, block):
 def link_stylesheet(source):
     """Add cover.css right after nav.css, once."""
     result = source
-    if COVER_LINK not in source:
-        result = source.replace(NAV_LINK, NAV_LINK + "\n  " + COVER_LINK, 1)
+    if 'href="cover.css' not in source:
+        result = NAV_LINK_RE.sub(lambda m: m.group(0) + "\n  " + COVER_LINK, source, count=1)
     return result
 
 
