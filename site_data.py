@@ -93,8 +93,12 @@ class Cover(NamedTuple):
 # A section re-verified after its page's last revision: (page, section id)
 # -> ISO date. build-stamps.py prints the later of this and the page date
 # as "Checked <month>" at the end of the section. Add a line here when you
-# re-read a section against the product and change nothing.
+# re-read a section against the product, or revise it for a reason that is
+# not a logged product change.
 SECTION_CHECKS = {
+    ("prompting.html", "enhance-the-output"): "2026-11-12",
+    ("prompting.html", "what-not-to-do"): "2026-11-12",
+    ("prompting.html", "recursive-iterative-prompting"): "2026-11-12",
 }
 
 # Keyed by guide file. Volume number is the guide's position in GUIDES.
@@ -314,5 +318,20 @@ CHANGES = [
         "https://claude.com/resources/articles/dashboards-and-motion",
         ("claude-design.html", "workflows.html", "claude-office.html", "level-2.html"),
         "2026-10-14",
+    ),
+    Change(
+        "2026-11-06",
+        "Anthropic measures what memory is worth",
+        "Research, not a product change, but it changes the advice. On a long "
+        "database task Opus 5.5 scored 0.655 without memory and 0.838 with it; "
+        "Sonnet 5.5 went from 0.644 to 0.833. In a Pokemon Red test, Sonnet 3.7 "
+        "wrote 413 memory files across 225 folders and earned one badge; Fable 5 "
+        "kept about ten files and earned four. The top layer of memory has to "
+        "stay small, and rules about what to save can cost much of the gain. "
+        "The guides now teach a monthly memory audit and keeping each client's "
+        "Project out of account memory.",
+        "https://www.anthropic.com/research/components-of-agent-memory",
+        ("level-2.html", "beginner.html"),
+        "2026-11-12",
     ),
 ]

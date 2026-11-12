@@ -62,6 +62,8 @@ STALE_ALLOWED = [
     re.compile(r"Claude Cowork Plugins: What They Are"),
     re.compile(r"Chat / Cowork"),            # the switch on the earlier app
     re.compile(r"SAG-ROLLOUT"),              # generated rollout notice
+    re.compile(r"earned one badge"),         # Nov 6, 2026 memory study: models as tested
+    re.compile(r"Told to record only failures"),  # same study
 ]
 
 GUIDE_COUNT_RE = re.compile(
